@@ -18,7 +18,7 @@ property.
 
   **Parameters**
 
-  > `new InputChannel(**input, number**)`
+  > `new InputChannel(input, number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -110,6 +110,8 @@ In this case, the method returns `false`.
 
   **Parameters**
 
+  > `new InputChannel#getCcNameByNumber(number)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`number`** |number||An integer representing the control change message|
@@ -129,6 +131,8 @@ returns `false`.
 
 
   **Parameters**
+
+  > `new InputChannel#getChannelModeByNumber(number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

@@ -17,7 +17,7 @@ You can find a list of all available `Output` objects in the
 
   **Parameters**
 
-  > `new Output(**midiOutput**)`
+  > `new Output(midiOutput)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -154,6 +154,8 @@ names that can be used with this method:
 
   **Parameters**
 
+  > `new Output#decrementRegisteredParameter(parameter, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** |String||A string identifying the parameter"s name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
@@ -201,6 +203,8 @@ names that can be used with this method:
 
 
   **Parameters**
+
+  > `new Output#incrementRegisteredParameter(parameter, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -252,6 +256,8 @@ functionally equivalent to a **note off** message.
 
   **Parameters**
 
+  > `new Output#playNote(note, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** |number||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
@@ -275,6 +281,8 @@ the pitch bend, to their default value.
 
 
   **Parameters**
+
+  > `new Output#resetAllControllers([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -304,6 +312,8 @@ from the MIDI Manufacturers Association.
 
   **Parameters**
 
+  > `new Output#send(message, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`message`** |Array.&lt;number&gt;||An array of 8bit unsigned integers, a `Uint8Array` object (not available in Node.js) containing the message bytes or a `Message` object.|
@@ -325,6 +335,8 @@ was no other activity on the MIDI port.
 
 
   **Parameters**
+
+  > `new Output#sendActiveSensing([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -366,6 +378,8 @@ To make it easier, all channel mode messages have a matching helper method:
 
   **Parameters**
 
+  > `new Output#sendChannelMode(command, [value], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`command`** |number||The numerical identifier of the channel mode message (integer between 120-127) or its name as a string.|
@@ -391,6 +405,8 @@ for every quarter note.
 
   **Parameters**
 
+  > `new Output#sendClock([options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] |Object|{}||
@@ -409,6 +425,8 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
 
   **Parameters**
+
+  > `new Output#sendContinue([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -509,6 +527,8 @@ specification.
 
   **Parameters**
 
+  > `new Output#sendControlChange(controller, [value], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`controller`** |number||The MIDI controller name or number (0-127).|
@@ -542,6 +562,8 @@ precedence over the one specified via the method's `options` parameter.
 
 
   **Parameters**
+
+  > `new Output#sendNoteOff(note, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -580,6 +602,8 @@ functionally equivalent to a **note off** message.
 
   **Parameters**
 
+  > `new Output#sendNoteOn(note, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** |number||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a {@link Note} object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
@@ -602,6 +626,8 @@ should reset itself to a default state.
 
   **Parameters**
 
+  > `new Output#sendReset([options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] |Object|{}||
@@ -621,6 +647,8 @@ song at beat 0. To start playback elsewhere in the song, use the
 
   **Parameters**
 
+  > `new Output#sendStart([options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] |Object|{}||
@@ -638,6 +666,8 @@ playback immediately (or at the scheduled time).
 
 
   **Parameters**
+
+  > `new Output#sendStop([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -702,6 +732,8 @@ system exclusive messages to 64Kb or less.
 
   **Parameters**
 
+  > `new Output#sendSysex(manufacturer, [data], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`manufacturer`** |number||An unsigned integer or an array of three unsigned integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers) .|
@@ -728,6 +760,8 @@ on the data. It is up to the developer to format the data according to the
 
   **Parameters**
 
+  > `new Output#sendTimecodeQuarterFrame(value, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |number||The quarter frame message content (integer between 0 and 127).|
@@ -745,6 +779,8 @@ Sends a MIDI **tune request** real-time message.
 
 
   **Parameters**
+
+  > `new Output#sendTuneRequest([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -764,6 +800,8 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
 
   **Parameters**
+
+  > `new Output#setChannelAftertouch([pressure], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -788,6 +826,8 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
   **Parameters**
 
+  > `new Output#setKeyAftertouch(note, [pressure], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** |number||The note for which you are sending an aftertouch value. The notes can be specified in one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use an array of note names and/or numbers.|
@@ -811,6 +851,8 @@ its out port.
 
 
   **Parameters**
+
+  > `new Output#setLocalControl([state], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -838,6 +880,8 @@ a **Master Fine Tuning** RPN messages.
 
   **Parameters**
 
+  > `new Output#setMasterTuning([value], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`value`**] |number|0.0|The desired decimal adjustment value in semitones (-65 < x < 64)|
@@ -862,6 +906,8 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 
   **Parameters**
+
+  > `new Output#setModulationRange([semitones], [cents], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -916,6 +962,8 @@ For further implementation details, refer to the manufacturer"s documentation.
 
   **Parameters**
 
+  > `new Output#setNonRegisteredParameter(parameter, [data], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** |Array.&lt;number&gt;||A two-position array specifying the two control bytes (0x63, 0x62) that identify the non-registered parameter.|
@@ -942,6 +990,8 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
   **Parameters**
 
+  > `new Output#setOmniMode([state], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`state`**] |boolean||Whether to activate OMNI mode (`true`) or not (`false`).|
@@ -966,6 +1016,8 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
   **Parameters**
 
+  > `new Output#setPitchBend(value, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |number||The intensity of the bend (between -1.0 and 1.0). A value of zero means no bend. The resulting bend is relative to the pitch bend range that has been defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange} . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave below its nominal value. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127 representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
@@ -989,6 +1041,8 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
   **Parameters**
+
+  > `new Output#setPitchBendRange(semitones, [cents], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1016,6 +1070,8 @@ multiple notes are being played.
 
   **Parameters**
 
+  > `new Output#setPolyphonicMode(mode, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`mode`** |string||The mode to use: `"mono"` or `"poly"`.|
@@ -1039,6 +1095,8 @@ that use a numbering scheme starting at 1.
 
 
   **Parameters**
+
+  > `new Output#setProgram([program], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1093,6 +1151,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
   **Parameters**
 
+  > `new Output#setRegisteredParameter(parameter, [data], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** |string||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
@@ -1117,6 +1177,8 @@ use a numbering scheme starting at 1.
 
   **Parameters**
 
+  > `new Output#setSong(value, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |number||The number of the song to select (integer between 1 and 128).|
@@ -1138,6 +1200,8 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 
   **Parameters**
+
+  > `new Output#setSongPosition([value], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1162,6 +1226,8 @@ that use a numbering scheme starting at 1.
 
 
   **Parameters**
+
+  > `new Output#setTuningBank(value, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1190,6 +1256,8 @@ that use a numbering scheme starting at 1.
 
   **Parameters**
 
+  > `new Output#setTuningProgram(value, [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |number||The desired tuning program (1-128).|
@@ -1212,6 +1280,8 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
   **Parameters**
 
+  > `new Output#stopNote(note, options)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** ||||
@@ -1230,6 +1300,8 @@ fade out just as if their key had been released. This is different from the
 
 
   **Parameters**
+
+  > `new Output#turnNotesOff([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -1250,6 +1322,8 @@ channel but will not prevent new sounds from being triggered.
 
 
   **Parameters**
+
+  > `new Output#turnSoundOff([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

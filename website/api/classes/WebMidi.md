@@ -221,6 +221,8 @@ WebMidi.enable().then(ports => {
 
   **Parameters**
 
+  > `new WebMidi#enable([options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] |Object|||
@@ -248,6 +250,8 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
+  > `new WebMidi#getInputById(id)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
@@ -268,6 +272,8 @@ input names in the same way as the Jazz-Plugin does.
 
 
   **Parameters**
+
+  > `new WebMidi#getInputByName(name)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -293,6 +299,8 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
+  > `new WebMidi#getOutputById(id)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
@@ -313,6 +321,8 @@ input names in the same way as the Jazz-Plugin does.
 
 
   **Parameters**
+
+  > `new WebMidi#getOutputByName(name)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

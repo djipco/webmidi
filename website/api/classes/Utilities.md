@@ -23,6 +23,8 @@ If the input is a note number or identifier, it is possible to specify options b
 
   **Parameters**
 
+  > `new Utilities.buildNote([input], [options])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`input`**] |number|||
@@ -52,6 +54,8 @@ input.
 
 
   **Parameters**
+
+  > `new Utilities.buildNoteArray([notes], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -85,6 +89,8 @@ When a number is specified, the translation to note is done using a value of 60 
 
   **Parameters**
 
+  > `new Utilities.getNoteDetails(value)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |string||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127).|
@@ -105,6 +111,8 @@ supplied.
 
 
   **Parameters**
+
+  > `new Utilities.getPropertyByValue(object, value)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -131,6 +139,8 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
   **Parameters**
 
+  > `new Utilities.guessNoteNumber(input)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`input`** |string||A string or number to extract the MIDI note number from.|
@@ -150,6 +160,8 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 
   **Parameters**
+
+  > `new Utilities.offsetNumber(offset)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -175,6 +187,8 @@ integers between 1 and 16 are silently ignored.
 
   **Parameters**
 
+  > `new Utilities.sanitizeChannels([channel])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`channel`**] |number||An integer or an array of integers to parse as channel numbers.|
@@ -198,6 +212,8 @@ the input value cannot be converted to a number, the method returns 0.
 
   **Parameters**
 
+  > `new Utilities.to7Bit(value)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |||A positive integer between 0 and 127 (inclusive)|
@@ -220,6 +236,8 @@ input value cannot be converted to an integer, the method returns 0.
 
   **Parameters**
 
+  > `new Utilities.toNormalized(value)`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |||A positive integer between 0 and 127 (inclusive)|
@@ -237,6 +255,8 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 
   **Parameters**
+
+  > `new Utilities.toNoteIdentifier(number, octaveOffset)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -268,6 +288,8 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
   **Parameters**
 
+  > `new Utilities.toNoteNumber(identifier, [octaveOffset])`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`identifier`** |string||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
@@ -293,6 +315,8 @@ returned.
 
 
   **Parameters**
+
+  > `new Utilities.toTimestamp([time])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
