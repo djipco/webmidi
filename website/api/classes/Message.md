@@ -3,7 +3,7 @@
 The `Message` class represents a single MIDI message. It has several properties that make it
 easy to make sense of the binaru data it contains.
 
-The &#x60;Message&#x60; class represents a single MIDI message. It has several properties that make it
+The `Message` class represents a single MIDI message. It has several properties that make it
 easy to make sense of the binaru data it contains.
 
 **Since**: 3.0.0

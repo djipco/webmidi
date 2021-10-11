@@ -3,8 +3,8 @@
 The `Utilities` class contains general-purpose utility methods. All methods are static and
 should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
 
-The &#x60;Utilities&#x60; class contains general-purpose utility methods. All methods are static and
-should be called using the class name. For example: &#x60;Utilities.getNoteDetails(&quot;C4&quot;)&#x60;.
+The `Utilities` class contains general-purpose utility methods. All methods are static and
+should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
 
 **Since**: 3.0.0
 
