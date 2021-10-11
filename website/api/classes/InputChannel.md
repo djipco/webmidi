@@ -334,7 +334,7 @@ Event emitted when a **note on** MIDI message has been received.
   |**`type`** |string|`"noteon"`|
   |**`channel`** |InputChannel|The `InputChannel` object that triggered the event.|
   |**`event.data`** |Array|The MIDI message as an array of 8 bit values.|
-  |**`input`** |InputChannel|The `Input` object where through which the message was received.|
+  |**`input`** |InputChannel|The [`Input`](Input) object where through which the message was received.|
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a `Uint8Array`.|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
