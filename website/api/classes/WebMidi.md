@@ -55,8 +55,8 @@ An array of all currently available MIDI inputs.
 ### `.interface`
 
 The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
-instance used to talk to the Web MIDI API. This should not be used directly unless you know
-what you are doing.
+instance used to talk to the lower-level Web MIDI API. This should not be used directly
+unless you know what you are doing.
 
 **Type**: MIDIAccess<br />
 **Attributes**: read-only, nullable<br />
@@ -74,7 +74,7 @@ and isBrowser can both be true at the same time.
 ### `.isNode`
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
-browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
+browser, use [isBrowser](isBrowser). In certain environments (such as Electron and NW.js) isNode and
 isBrowser can both be true at the same time.
 
 **Type**: boolean<br />
