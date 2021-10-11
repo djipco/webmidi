@@ -7,13 +7,6 @@ array.
 
 Note that a single device may expose several inputs and/or outputs.
 
-The `Input` class represents a single MIDI input port. This object is automatically instantiated
-by the library according to the host's MIDI subsystem and should not be directly instantiated.
-Instead, you can access all `Input` objects by referring to the [`WebMidi.inputs`](WebMidi#inputs)
-array.
-
-Note that a single device may expose several inputs and/or outputs.
-
 
 **Extends**: EventEmitter
 
@@ -43,7 +36,6 @@ Note that a single device may expose several inputs and/or outputs.
 
 **Type**: Array.&lt;InputChannel&gt;<br />
 
-
 Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
 channels are numbered 1 through 16.
 
@@ -53,7 +45,6 @@ channels are numbered 1 through 16.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
@@ -61,7 +52,6 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Type**: string<br />
 **Attributes**: read-only<br />
-
 
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -73,7 +63,6 @@ the same port.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 Name of the manufacturer of the device that makes this input port available.
 
 
@@ -82,7 +71,6 @@ Name of the manufacturer of the device that makes this input port available.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 Name of the MIDI input
 
 
@@ -90,7 +78,6 @@ Name of the MIDI input
 
 **Type**: number<br />
 **Since**: 3.0<br />
-
 
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
 number 60) is placed on the 4th octave (C4).
@@ -107,7 +94,6 @@ Note that this value is combined with the global offset value defined on the `We
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 State of the input port: `"connected"` or `"disconnected"`.
 
 
@@ -115,7 +101,6 @@ State of the input port: `"connected"` or `"disconnected"`.
 
 **Type**: string<br />
 **Attributes**: read-only<br />
-
 
 Port type. In the case of `Input`, this is always: `"input"`.
 
@@ -129,8 +114,8 @@ Port type. In the case of `Input`, this is always: `"input"`.
 
 Adds an event listener that will trigger a function callback when the specified event happens.
 The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
-{@link InputChannel} objects and are tied to a specific MIDI channel while input-wide events
-are dispatched by the {@link Input} object itself and are not tied to a specific channel.
+[InputChannel](InputChannel) objects and are tied to a specific MIDI channel while input-wide events
+are dispatched by the [Input](Input) object itself and are not tied to a specific channel.
 
 When listening for an input-wide event, you must specify the event to listen for and the
 callback function to trigger when the event happens:
@@ -150,52 +135,52 @@ WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
 The code above will add a listener for the `"noteon"` event and call `someFunction` when the
 event is triggered on MIDI channels `1`, `2` or `3`.
 
-Note that, when adding events to channels, it is the {@link InputChannel} instance that
-actually gets a listener added and not the `{@link Input} instance.
+Note that, when adding events to channels, it is the [InputChannel](InputChannel) instance that
+actually gets a listener added and not the `[Input](Input) instance.
 
 Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-on the {@link InputChannel} object itself.
+on the [InputChannel](InputChannel) object itself.
 
 There are 6 families of events you can listen to:
 
 1. **MIDI System Common** Events (input-wide)
 
-   * [songposition]{@link Input#event:songposition}
-   * [songselect]{@link Input#event:songselect}
-   * [sysex]{@link Input#event:sysex}
-   * [timecode]{@link Input#event:timecode}
-   * [tunerequest]{@link Input#event:tunerequest}
+   * [songposition](Input#event:songposition)
+   * [songselect](Input#event:songselect)
+   * [sysex](Input#event:sysex)
+   * [timecode](Input#event:timecode)
+   * [tunerequest](Input#event:tunerequest)
 
 2. **MIDI System Real-Time** Events (input-wide)
 
-   * [clock]{@link Input#event:clock}
-   * [start]{@link Input#event:start}
-   * [continue]{@link Input#event:continue}
-   * [stop]{@link Input#event:stop}
-   * [activesensing]{@link Input#event:activesensing}
-   * [reset]{@link Input#event:reset}
+   * [clock](Input#event:clock)
+   * [start](Input#event:start)
+   * [continue](Input#event:continue)
+   * [stop](Input#event:stop)
+   * [activesensing](Input#event:activesensing)
+   * [reset](Input#event:reset)
 
 3. **State Change** Events (input-wide)
 
-   * [opened]{@link Input#event:opened}
-   * [closed]{@link Input#event:closed}
-   * [disconnected]{@link Input#event:disconnected}
+   * [opened](Input#event:opened)
+   * [closed](Input#event:closed)
+   * [disconnected](Input#event:disconnected)
 
 4. **Catch-All** Events (input-wide)
 
-   * [midimessage]{@link Input#event:midimessage}
-   * [unknownmidimessage]{@link Input#event:unknownmidimessage}
+   * [midimessage](Input#event:midimessage)
+   * [unknownmidimessage](Input#event:unknownmidimessage)
 
 5. **Channel Voice** Events (channel-specific)
 
-   * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
-   * [controlchange]{@link InputChannel#event:controlchange}
-   * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
-   * [noteoff]{@link InputChannel#event:noteoff}
-   * [noteon]{@link InputChannel#event:noteon}
-   * [nrpn]{@link InputChannel#event:nrpn}
-   * [pitchbend]{@link InputChannel#event:pitchbend}
-   * [programchange]{@link InputChannel#event:programchange}
+   * [channelaftertouch](InputChannel#event:channelaftertouch)
+   * [controlchange](InputChannel#event:controlchange)
+   * [keyaftertouch](InputChannel#event:keyaftertouch)
+   * [noteoff](InputChannel#event:noteoff)
+   * [noteon](InputChannel#event:noteon)
+   * [nrpn](InputChannel#event:nrpn)
+   * [pitchbend](InputChannel#event:pitchbend)
+   * [programchange](InputChannel#event:programchange)
 
 6. **Channel Mode** Events (channel-specific)
 
@@ -246,8 +231,8 @@ There are 6 families of events you can listen to:
 
 Adds a one-time event listener that will trigger a function callback when the specified event
 happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
-dispatched by {@link InputChannel} objects and are tied to a specific MIDI channel while
-input-wide events are dispatched by the {@link Input} object itself and are not tied to a
+dispatched by [InputChannel](InputChannel) objects and are tied to a specific MIDI channel while
+input-wide events are dispatched by the [Input](Input) object itself and are not tied to a
 specific channel.
 
 When listening for an input-wide event, you must specify the event to listen for and the
@@ -268,52 +253,52 @@ WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
 The code above will add a listener for the `"noteon"` event and call `someFunction` when the
 event is triggered on MIDI channels `1`, `2` or `3`.
 
-Note that, when adding events to channels, it is the {@link InputChannel} instance that
-actually gets a listener added and not the `{@link Input} instance.
+Note that, when adding events to channels, it is the [InputChannel](InputChannel) instance that
+actually gets a listener added and not the `[Input](Input) instance.
 
 Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-on the {@link InputChannel} object itself.
+on the [InputChannel](InputChannel) object itself.
 
 There are 6 families of events you can listen to:
 
 1. **MIDI System Common** Events (input-wide)
 
-   * [songposition]{@link Input#event:songposition}
-   * [songselect]{@link Input#event:songselect}
-   * [sysex]{@link Input#event:sysex}
-   * [timecode]{@link Input#event:timecode}
-   * [tunerequest]{@link Input#event:tunerequest}
+   * [songposition](Input#event:songposition)
+   * [songselect](Input#event:songselect)
+   * [sysex](Input#event:sysex)
+   * [timecode](Input#event:timecode)
+   * [tunerequest](Input#event:tunerequest)
 
 2. **MIDI System Real-Time** Events (input-wide)
 
-   * [clock]{@link Input#event:clock}
-   * [start]{@link Input#event:start}
-   * [continue]{@link Input#event:continue}
-   * [stop]{@link Input#event:stop}
-   * [activesensing]{@link Input#event:activesensing}
-   * [reset]{@link Input#event:reset}
+   * [clock](Input#event:clock)
+   * [start](Input#event:start)
+   * [continue](Input#event:continue)
+   * [stop](Input#event:stop)
+   * [activesensing](Input#event:activesensing)
+   * [reset](Input#event:reset)
 
 3. **State Change** Events (input-wide)
 
-   * [opened]{@link Input#event:opened}
-   * [closed]{@link Input#event:closed}
-   * [disconnected]{@link Input#event:disconnected}
+   * [opened](Input#event:opened)
+   * [closed](Input#event:closed)
+   * [disconnected](Input#event:disconnected)
 
 4. **Catch-All** Events (input-wide)
 
-   * [midimessage]{@link Input#event:midimessage}
-   * [unknownmidimessage]{@link Input#event:unknownmidimessage}
+   * [midimessage](Input#event:midimessage)
+   * [unknownmidimessage](Input#event:unknownmidimessage)
 
 5. **Channel Voice** Events (channel-specific)
 
-   * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
-   * [controlchange]{@link InputChannel#event:controlchange}
-   * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
-   * [noteoff]{@link InputChannel#event:noteoff}
-   * [noteon]{@link InputChannel#event:noteon}
-   * [nrpn]{@link InputChannel#event:nrpn}
-   * [pitchbend]{@link InputChannel#event:pitchbend}
-   * [programchange]{@link InputChannel#event:programchange}
+   * [channelaftertouch](InputChannel#event:channelaftertouch)
+   * [controlchange](InputChannel#event:controlchange)
+   * [keyaftertouch](InputChannel#event:keyaftertouch)
+   * [noteoff](InputChannel#event:noteoff)
+   * [noteon](InputChannel#event:noteon)
+   * [nrpn](InputChannel#event:nrpn)
+   * [pitchbend](InputChannel#event:pitchbend)
+   * [programchange](InputChannel#event:programchange)
 
 6. **Channel Mode** Events (channel-specific)
 
@@ -348,7 +333,7 @@ There are 6 families of events you can listen to:
 ### `.close()`
 
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
-the input is opened again by calling [Input.open()]{@link Input#open}.
+the input is opened again by calling [Input.open()](#Input+open).
 
 
 
@@ -469,7 +454,7 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 
 ### `"closed"`<a id="event:closed"></a>
 
-Event emitted when the {@link Input} has been closed by calling the {@link Input#close}
+Event emitted when the [Input](Input) has been closed by calling the [Input#close](Input#close)
 method.
 
 
@@ -504,7 +489,7 @@ Input-wide (system) event emitted when a **continue** message has been received.
 
 ### `"disconnected"`<a id="event:disconnected"></a>
 
-Event emitted when the {@link Input} becomes unavailable. This event is typically fired
+Event emitted when the [Input](Input) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
 
@@ -547,7 +532,7 @@ Event emitted when any MIDI message is received on an `Input`
 
 ### `"opened"`<a id="event:opened"></a>
 
-Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
+Event emitted when the [Input](Input) has been opened by calling the [Input#open](Input#open)
 method.
 
 

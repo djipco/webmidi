@@ -4,12 +4,6 @@ The `OutputChannel` class represents a single output channel (1-16) from an outp
 object is derived from the host's MIDI subsystem and cannot be instantiated directly.
 
 All 16 `OutputChannel` objects can be found inside the parent output's
-[channels]{@link Output#channels} property.
-
-The `OutputChannel` class represents a single output channel (1-16) from an output device. This
-object is derived from the host's MIDI subsystem and cannot be instantiated directly.
-
-All 16 `OutputChannel` objects can be found inside the parent output's
 [channels](Output#channels) property.
 
 **Since**: 3.0.0
@@ -43,7 +37,6 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 **Type**: number<br />
 **Since**: 3.0<br />
 
-
 This channel's MIDI number (1-16)
 
 
@@ -51,7 +44,6 @@ This channel's MIDI number (1-16)
 
 **Type**: number<br />
 **Since**: 3.0<br />
-
 
 An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
@@ -66,8 +58,7 @@ and with the value defined on the parent `Output` object.
 **Type**: Output<br />
 **Since**: 3.0<br />
 
-
-The parent {@link Output} this channel belongs to
+The parent [Output](Output) this channel belongs to
 
 
 
@@ -154,21 +145,21 @@ names that can be used with this function:
 Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 can be a single value or an array of the following valid values:
 
- - A {@link Note} object
+ - A [Note](Note) object
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
 
 The `playNote()` method sends a **note on** MIDI message for all specified notes on all
-specified channels. If a `duration` is set in the `options` parameter or in the {@link Note}
-object's [duration]{@link Note#duration} property, it will also schedule a **note off** message
+specified channels. If a `duration` is set in the `options` parameter or in the [Note](Note)
+object's [duration](Note#duration) property, it will also schedule a **note off** message
 to end the note after said duration. If no `duration` is set, the note will simply play until
-a matching **note off** message is sent with [stopNote()]{@link OutputChannel#stopNote} or
-[sendNoteOff()]{@link OutputChannel#sendNoteOff}.
+a matching **note off** message is sent with [stopNote()](#OutputChannel+stopNote) or
+[sendNoteOff()](#OutputChannel+sendNoteOff).
 
  The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using {@link Note} objects, the durations and velocities defined in the {@link Note}
+When using [Note](Note) objects, the durations and velocities defined in the [Note](Note)
 objects have precedence over the ones specified via the method's `options` parameter.
 
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
@@ -215,14 +206,14 @@ the pitch bend, to their default value.
 
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
-[Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+[Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
 object or a `Message` object.
 
 It is usually not necessary to use this method directly as you can use one of the simpler
 helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
 
 Details on the format of MIDI messages are available in the summary of
-[MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
+[MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
 
 
@@ -262,12 +253,12 @@ defaults to 0.
 
 To make it easier, all channel mode messages have a matching helper method:
 
-  - [turnSoundOff()]{@link Output#turnSoundOff}
-  - [resetAllControllers()]{@link Output#resetAllControllers}
-  - [setLocalControl()]{@link Output#turnSoundOff}
-  - [turnNotesOff()]{@link Output#turnNotesOff}
-  - [setOmniMode()]{@link Output#setOmniMode}
-  - [setPolyphonicMode()]{@link Output#setPolyphonicMode}
+  - [turnSoundOff()](Output#turnSoundOff)
+  - [resetAllControllers()](Output#resetAllControllers)
+  - [setLocalControl()](Output#turnSoundOff)
+  - [turnNotesOff()](Output#turnNotesOff)
+  - [setOmniMode()](Output#setOmniMode)
+  - [setPolyphonicMode()](Output#setPolyphonicMode)
 
 
   **Parameters**
@@ -363,7 +354,7 @@ As you can see above, not all control change message have a matching common name
 does not mean you cannot use the others. It simply means you will need to use their number
 (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
 reserved for *channel mode* messages. See
-[sendChannelMode()]{@link OutputChannel#sendChannelMode} method for more info.
+[sendChannelMode()](#OutputChannel+sendChannelMode) method for more info.
 
 To view a detailed list of all available **control change** messages, please consult "Table 3 -
 Control Change Messages" from the [MIDI Messages](
@@ -403,12 +394,12 @@ note. It can be a single value or an array of the following valid values:
 
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A {@link Note} object
+ - A [Note](Note) object
 
  The execution of the **note off** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
+When using [Note](Note) objects, the release velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter.
 
 
@@ -432,11 +423,11 @@ precedence over the one specified via the method's `options` parameter.
 Sends a **note on** message for the specified note(s) on the channel. The first parameter is
 the note. It can be a single value or an array of the following valid values:
 
- - A {@link Note} object
+ - A [Note](Note) object
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
 
- When passing a {@link Note} object or a note name, the `octaveOffset` will be applied. This is
+ When passing a [Note](Note) object or a note name, the `octaveOffset` will be applied. This is
  not the case when using a note number number. In this case, we assume you know exactly which
  MIDI note number should be sent out.
 
@@ -444,10 +435,10 @@ the note. It can be a single value or an array of the following valid values:
  The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using {@link Note} objects, the attack velocity defined in the {@link Note} objects has
+When using [Note](Note) objects, the attack velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter. Also, the `duration` is
 ignored. If you want to also send a **note off** message, use the
-[playNote()]{@link Output#playNote} method instead.
+[playNote()](Output#playNote) method instead.
 
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
@@ -471,7 +462,7 @@ functionally equivalent to a **note off** message.
 ### `.setChannelAftertouch(...)`
 
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
-use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
+use [setKeyAftertouch()](Output#setKeyAftertouch).
 
 
   **Parameters**
@@ -494,7 +485,7 @@ use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
 
 Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
 aftertouch. For a channel-wide aftertouch message, use
-[setChannelAftertouch()]{@link Output#setChannelAftertouch}.
+[setChannelAftertouch()](Output#setChannelAftertouch).
 
 The key can be a single value or an array of the following valid values:
 
@@ -846,7 +837,7 @@ that use a numbering scheme starting at 1.
 
 ### `.stopNote(...)`
 
-This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
+This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 
   **Parameters**
@@ -865,7 +856,7 @@ This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
-[turnSoundOff()]{@link OutputChannel#turnSoundOff} method which mutes all sounds immediately.
+[turnSoundOff()](#OutputChannel+turnSoundOff) method which mutes all sounds immediately.
 
 
   **Parameters**

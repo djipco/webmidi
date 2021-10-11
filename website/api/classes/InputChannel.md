@@ -6,12 +6,6 @@ object is derived from the host's MIDI subsystem and cannot be instantiated dire
 All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
 property.
 
-The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
-object is derived from the host's MIDI subsystem and cannot be instantiated directly.
-
-All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
-property.
-
 **Since**: 3.0.0
 
 **Extends**: EventEmitter
@@ -45,7 +39,6 @@ property.
 **Attributes**: read-only<br />
   **Attributes**: static
 
-
 Array of channel-specific event names that can be listened to.
 
 
@@ -53,7 +46,6 @@ Array of channel-specific event names that can be listened to.
 
 **Type**: Input<br />
 **Since**: 3.0<br />
-
 
 The [`Input`](Input) this channel belongs to
 
@@ -63,7 +55,6 @@ The [`Input`](Input) this channel belongs to
 **Type**: number<br />
 **Since**: 3.0<br />
 
-
 This channel's MIDI number (1-16)
 
 
@@ -71,7 +62,6 @@ This channel's MIDI number (1-16)
 
 **Type**: number<br />
 **Since**: 3.0<br />
-
 
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
@@ -87,7 +77,6 @@ and with the value defined on the parent `Input` object.
 ### `.parameterNumberEventsEnabled`
 
 **Type**: boolean<br />
-
 
 Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
 are composed of a sequence of specific **control change** messages. When a valid sequence of

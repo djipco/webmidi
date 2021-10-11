@@ -8,14 +8,6 @@ instantiated. You cannot instantiate it yourself. If you use the **IIFE** versio
 simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
 module) version, you get an already-instantiated object.
 
-The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
-simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
-
-When using the WebMidi.js library, you should know that the `WebMidi` class has already been
-instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
-simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
-module) version, you get an already-instantiated object.
-
 
 **Extends**: EventEmitter
 
@@ -29,7 +21,6 @@ module) version, you get an already-instantiated object.
 ### `.defaults`
 
 **Type**: Object<br />
-
 
 Object containing system-wide default values that can be changed to customize how the library
 works.
@@ -50,7 +41,6 @@ works.
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
-
 Indicates whether access to the host's MIDI subsystem is active or not.
 
 
@@ -58,7 +48,6 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 **Type**: Array<br />
 **Attributes**: read-only<br />
-
 
 An array of all currently available MIDI inputs.
 
@@ -68,7 +57,6 @@ An array of all currently available MIDI inputs.
 **Type**: MIDIAccess<br />
 **Attributes**: read-only, nullable<br />
 
-
 The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
 unless you know what you are doing.
 
@@ -76,7 +64,6 @@ unless you know what you are doing.
 ### `.isBrowser`
 
 **Type**: boolean<br />
-
 
 Indicates whether the current environment is a browser environment or not. If you need to check
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
@@ -87,7 +74,6 @@ and isBrowser can both be true at the same time.
 
 **Type**: boolean<br />
 
-
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
 browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
 isBrowser can both be true at the same time.
@@ -97,7 +83,6 @@ isBrowser can both be true at the same time.
 
 **Type**: number<br />
 **Since**: 2.1<br />
-
 
 An integer to offset the octave of notes received from external devices or sent to external
 devices.
@@ -116,7 +101,6 @@ of 60).
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
-
 An array of all currently available MIDI outputs.
 
 
@@ -124,7 +108,6 @@ An array of all currently available MIDI outputs.
 
 **Type**: boolean<br />
 **Attributes**: read-only<br />
-
 
 Indicates whether the environment provides support for the Web MIDI API or not.
 
@@ -139,7 +122,6 @@ not be there.
 **Type**: Boolean<br />
 **Attributes**: read-only<br />
 
-
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
 
@@ -148,7 +130,6 @@ enabled via the `enable()` method.
 
 **Type**: DOMHighResTimeStamp<br />
 **Attributes**: read-only<br />
-
 
 The elapsed time, in milliseconds, since the time
 [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
@@ -162,7 +143,6 @@ browser might only be accurate to one millisecond.
 ### `.validation`
 
 **Type**: boolean<br />
-
 
 Indicates whether argument validation and backwards-compatibility checks are performed
 throughout the WebMidi.js library for object methods and property setters.
@@ -180,8 +160,8 @@ validation turned on.
 ### `.disable()`
 
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
-{@link Input} and {@link Output} objects that may be available. This also means that listeners
-added to {@link Input} objects, {@link Output} objects or to `WebMidi` itself are also
+[Input](Input) and [Output](Output) objects that may be available. This also means that listeners
+added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself are also
 destroyed.
 
 
@@ -201,7 +181,7 @@ be displayed to the user.
 To enable the use of MIDI system exclusive messages, the `sysex` option should be set to
 `true`. However, under some environments (e.g. Jazz-Plugin), the `sysex` option is ignored
 and system exclusive messages are always enabled. You can check the
-[sysexEnabled]{@link WebMidi#sysexEnabled} property to confirm.
+[sysexEnabled](WebMidi#sysexEnabled) property to confirm.
 
 To enable access to software synthesizers available on the host, you would set the `software`
 option to `true`. However, this option is only there to future-proof the library as support for
@@ -258,7 +238,7 @@ WebMidi.enable().then(ports => {
 
 ### `.getInputById(...)`
 
-Returns the {@link Input} object that matches the specified ID string or `false` if no matching
+Returns the [Input](Input) object that matches the specified ID string or `false` if no matching
 input is found. As per the Web MIDI API specification, IDs are strings (not integers).
 
 Please note that IDs change from one host to another. For example, Chrome does not use the same
@@ -281,7 +261,7 @@ kind of IDs as Jazz-Plugin.
 
 ### `.getInputByName(...)`
 
-Returns the first {@link Input} object whose name **contains** the specified string. Note that
+Returns the first [Input](Input) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
@@ -302,7 +282,7 @@ input names in the same way as the Jazz-Plugin does.
 
 ### `.getOutputById(...)`
 
-Returns the {@link Output} object that matches the specified ID string or `false` if no
+Returns the [Output](Output) object that matches the specified ID string or `false` if no
 matching output is found. As per the Web MIDI API specification, IDs are strings (not
 integers).
 
@@ -326,7 +306,7 @@ kind of IDs as Jazz-Plugin.
 
 ### `.getOutputByName(...)`
 
-Returns the first {@link Output} object whose name **contains** the specified string. Note that
+Returns the first [Output](Output) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
@@ -352,7 +332,7 @@ input names in the same way as the Jazz-Plugin does.
 
 ### `"connected"`<a id="event:connected"></a>
 
-Event emitted when an {@link Input} or {@link Output} becomes available. This event is
+Event emitted when an [Input](Input) or [Output](Output) becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
@@ -384,7 +364,7 @@ Event emitted once `WebMidi` has been successfully disabled.
 
 ### `"disconnected"`<a id="event:disconnected"></a>
 
-Event emitted when an {@link Input} or {@link Output} becomes unavailable. This event is
+Event emitted when an [Input](Input) or [Output](Output) becomes unavailable. This event is
 typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 

@@ -4,12 +4,6 @@ The `Output` class represents a MIDI output port. This object is derived from th
 subsystem and cannot be instantiated directly.
 
 You can find a list of all available `Output` objects in the
-[WebMidi.outputs]{@link WebMidi#outputs} array.
-
-The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
-subsystem and cannot be instantiated directly.
-
-You can find a list of all available `Output` objects in the
 [WebMidi.outputs](WebMidi#outputs) array.
 
 
@@ -41,8 +35,7 @@ You can find a list of all available `Output` objects in the
 
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
-
-Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
+Array containing the 16 [OutputChannel](OutputChannel) objects available for this `Output`. The
 channels are numbered 1 through 16.
 
 
@@ -51,7 +44,6 @@ channels are numbered 1 through 16.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
@@ -59,7 +51,6 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Type**: string<br />
 **Attributes**: read-only<br />
-
 
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -71,7 +62,6 @@ the same port.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 Name of the manufacturer of the device that makes this output port available.
 
 
@@ -80,7 +70,6 @@ Name of the manufacturer of the device that makes this output port available.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 Name of the MIDI output
 
 
@@ -88,7 +77,6 @@ Name of the MIDI output
 
 **Type**: number<br />
 **Since**: 3.0<br />
-
 
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
@@ -102,7 +90,6 @@ Note that this value is combined with the global offset value defined on the `We
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
 State of the output port: `"connected"` or `"disconnected"`.
 
 
@@ -110,7 +97,6 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 **Type**: string<br />
 **Attributes**: read-only<br />
-
 
 Type of the output port (`"output"`)
 
@@ -138,8 +124,8 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 ### `.close()`
 
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
-until the output is opened again by calling [Output.open()]{@link Output#open}. You can check
-the connection status by looking at the [connection]{@link Output#connection} property.
+until the output is opened again by calling [Output.open()](#Output+open). You can check
+the connection status by looking at the [connection](Output#connection) property.
 
 
 
@@ -246,20 +232,20 @@ is the note to play. It can be a single value or an array of the following valid
 
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A {@link Note} object
+ - A [Note](Note) object
 
 The `playNote()` method sends a **note on** MIDI message for all specified notes on all
 specified channels. If no channels are specified, it will send to all channels. If a `duration`
-is set in the `options` parameter or in the {@link Note} object's
-[duration]{@link Note#duration} property, it will also schedule a **note off** message to end
+is set in the `options` parameter or in the [Note](Note) object's
+[duration](Note#duration) property, it will also schedule a **note off** message to end
 the note after said duration. If no `duration` is set, the note will simply play until a
-matching **note off** message is sent with [stopNote()]{@link Output#stopNote} or
-[sendNoteOff()]{@link Output#sendNoteOff}.
+matching **note off** message is sent with [stopNote()](#Output+stopNote) or
+[sendNoteOff()](#Output+sendNoteOff).
 
 The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using {@link Note} objects, the durations and velocities defined in the {@link Note}
+When using [Note](Note) objects, the durations and velocities defined in the [Note](Note)
 objects have precedence over the ones specified via the method's `options` parameter.
 
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
@@ -307,14 +293,14 @@ the pitch bend, to their default value.
 
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
-[Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+[Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
 object or a `Message` object.
 
 It is usually not necessary to use this method directly as you can use one of the simpler
 helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
 
 Details on the format of MIDI messages are available in the summary of
-[MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
+[MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
 
 
@@ -372,12 +358,12 @@ defaults to 0.
 
 To make it easier, all channel mode messages have a matching helper method:
 
-  - [turnSoundOff()]{@link OutputChannel#turnSoundOff}
-  - [resetAllControllers()]{@link OutputChannel#resetAllControllers}
-  - [setLocalControl()]{@link OutputChannel#turnSoundOff}
-  - [turnNotesOff()]{@link OutputChannel#turnNotesOff}
-  - [setOmniMode()]{@link OutputChannel#setOmniMode}
-  - [setPolyphonicMode()]{@link OutputChannel#setPolyphonicMode}
+  - [turnSoundOff()](OutputChannel#turnSoundOff)
+  - [resetAllControllers()](OutputChannel#resetAllControllers)
+  - [setLocalControl()](OutputChannel#turnSoundOff)
+  - [turnNotesOff()](OutputChannel#turnNotesOff)
+  - [setOmniMode()](OutputChannel#setOmniMode)
+  - [setPolyphonicMode()](OutputChannel#setPolyphonicMode)
 
 
   **Parameters**
@@ -421,7 +407,7 @@ for every quarter note.
 
 Sends a **continue** real-time message. This resumes song playback where it was previously
 stopped or where it was last cued with a song position message. To start playback from the
-start, use the [sendStart()]{@link Output#sendStart}` method.
+start, use the [sendStart()](#Output+sendStart)` method.
 
 
   **Parameters**
@@ -514,7 +500,7 @@ following common names:
 Note: as you can see above, not all control change message have a matching common name. This
 does not mean you cannot use the others. It simply means you will need to use their number
 (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
-reserved for *channel mode* messages. See [sendChannelMode()]{@link Output#sendChannelMode}
+reserved for *channel mode* messages. See [sendChannelMode()](#Output+sendChannelMode)
 method for more info.
 
 To view a list of all available `control change` messages, please consult "Table 3 - Control
@@ -548,12 +534,12 @@ parameter is the note. It can be a single value or an array of the following val
 
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A {@link Note} object
+ - A [Note](Note) object
 
  The execution of the **note off** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
+When using [Note](Note) objects, the release velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter.
 
 
@@ -580,15 +566,15 @@ parameter is the note. It can be a single value or an array of the following val
 
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A {@link Note} object
+ - A [Note](Note) object
 
  The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using {@link Note} objects, the attack velocity defined in the {@link Note} objects has
+When using [Note](Note) objects, the attack velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter. Also, the `duration` is
 ignored. If you want to also send a **note off** message, use the
-[playNote()]{@link Output#playNote} method instead.
+[playNote()](#Output+playNote) method instead.
 
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
@@ -632,7 +618,7 @@ should reset itself to a default state.
 
 Sends a **start** real-time message. A MIDI Start message starts the playback of the current
 song at beat 0. To start playback elsewhere in the song, use the
-[sendContinue()]{@link Output#sendContinue} method.
+[sendContinue()](#Output+sendContinue) method.
 
 
   **Parameters**
@@ -667,8 +653,7 @@ playback immediately (or at the scheduled time).
 
 ### `.sendSysex(...)`
 
-Sends a MIDI [system exclusive]{@link
-https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
+Sends a MIDI [system exclusive](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
 (*sysex*) message. The `data` parameter should only contain the data of the message. When
 sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
 *sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
@@ -777,7 +762,7 @@ Sends a MIDI **tune request** real-time message.
 ### `.setChannelAftertouch(...)`
 
 Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
-aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
+aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch).
 
 
   **Parameters**
@@ -800,7 +785,7 @@ aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAfter
 
 Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
 is a key-specific aftertouch. For a channel-wide aftertouch message, use
-[setChannelAftertouch()]{@link Output#setChannelAftertouch}.
+[setChannelAftertouch()](#Output+setChannelAftertouch).
 
 
   **Parameters**
@@ -1224,7 +1209,7 @@ that use a numbering scheme starting at 1.
 
 ### `.stopNote(...)`
 
-This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
+This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 
   **Parameters**
@@ -1243,7 +1228,7 @@ This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
-[turnSoundOff()]{@link Output#turnSoundOff} method which mutes all sounds immediately.
+[turnSoundOff()](#Output+turnSoundOff) method which mutes all sounds immediately.
 
 
   **Parameters**
@@ -1287,8 +1272,8 @@ channel but will not prevent new sounds from being triggered.
 
 ### `"closed"`<a id="event:closed"></a>
 
-Event emitted when the {@link Output} has been closed by calling the
-[close()]{@link Output#close} method.
+Event emitted when the [Output](Output) has been closed by calling the
+[close()](Output#close) method.
 
 
 
@@ -1303,7 +1288,7 @@ Event emitted when the {@link Output} has been closed by calling the
 
 ### `"disconnected"`<a id="event:disconnected"></a>
 
-Event emitted when the {@link Output} becomes unavailable. This event is typically fired
+Event emitted when the [Output](Output) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
 
@@ -1325,8 +1310,8 @@ when the MIDI device is unplugged.
 
 ### `"opened"`<a id="event:opened"></a>
 
-Event emitted when the {@link Output} has been opened by calling the
-[open()]{@link Output#open} method.
+Event emitted when the [Output](Output) has been opened by calling the
+[open()](Output#open) method.
 
 
 

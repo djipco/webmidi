@@ -3,9 +3,6 @@
 The `Utilities` class contains general-purpose utility methods. All methods are static and
 should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
 
-The `Utilities` class contains general-purpose utility methods. All methods are static and
-should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
-
 **Since**: 3.0.0
 
 
@@ -17,8 +14,8 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 
 ### `.buildNote(...)`
 
-Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
-integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
+Converts the `input` parameter to a valid [Note](Note) object. The input usually is an unsigned
+integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a [Note](Note)
 object, it will be returned as is.
 
 If the input is a note number or identifier, it is possible to specify options by providing the
@@ -48,9 +45,9 @@ If the input is a note number or identifier, it is possible to specify options b
 ### `.buildNoteArray(...)`
 
 Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
-{@link Note} object or an array of the previous types, to an array of {@link Note} objects.
+[Note](Note) object or an array of the previous types, to an array of [Note](Note) objects.
 
-{@link Note} objects are returned as is. For note numbers and identifiers, a {@link Note}
+[Note](Note) objects are returned as is. For note numbers and identifiers, a [Note](Note)
 object is created with the options specified. An error will be thrown when encountering invalid
 input.
 

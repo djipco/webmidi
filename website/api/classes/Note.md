@@ -3,22 +3,6 @@
 The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
 
 `Note` objects can be played back on a single channel by calling
-[OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple channels of the same
-output by calling [Output.playNote()]{@link Output#playNote}.
-
-The note has attack and release velocities set at 0.5 by default. These can be changed by passing
-in the appropriate option. It is also possible to set a system-wide default for attack and
-release velocities by using the `WebMidi.defaults` property.
-
-The note may have a duration. If it does, playback will be automatically stopped when the
-duration has elapsed by sending a **noteoff** event. By default, the duration is set to
-`Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
-method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
-[Output.stopNote()]{@link Output#stopNote} or similar.
-
-The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
-
-`Note` objects can be played back on a single channel by calling
 [OutputChannel.playNote()](OutputChannel#playNote) or on multiple channels of the same
 output by calling [Output.playNote()](Output#playNote).
 
@@ -75,7 +59,6 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 **Type**: string<br />
 **Since**: 3.0.0<br />
 
-
 The accidental (#, ##, b or bb) of the note
 
 
@@ -84,7 +67,6 @@ The accidental (#, ##, b or bb) of the note
 **Type**: number<br />
 **Since**: 3.0.0<br />
 
-
 The attack velocity of the note as an integer between 0 and 127.
 
 
@@ -92,7 +74,6 @@ The attack velocity of the note as an integer between 0 and 127.
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
-
 
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
@@ -103,7 +84,6 @@ that the note should play for.
 **Type**: string<br />
 **Since**: 3.0.0<br />
 
-
 The name, optional accidental and octave of the note, as a string.
 
 
@@ -112,7 +92,6 @@ The name, optional accidental and octave of the note, as a string.
 **Type**: string<br />
 **Since**: 3.0.0<br />
 
-
 The name (letter) of the note
 
 
@@ -120,7 +99,6 @@ The name (letter) of the note
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
-
 
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
@@ -131,7 +109,6 @@ reference for middle C.
 **Type**: number<br />
 **Since**: 3.0.0<br />
 
-
 The octave of the note
 
 
@@ -139,7 +116,6 @@ The octave of the note
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
-
 
 The attack velocity of the note as a positive integer between 0 and 127.
 
@@ -149,7 +125,6 @@ The attack velocity of the note as a positive integer between 0 and 127.
 **Type**: number<br />
 **Since**: 3.0.0<br />
 
-
 The release velocity of the note as a positive integer between 0 and 127.
 
 
@@ -157,7 +132,6 @@ The release velocity of the note as a positive integer between 0 and 127.
 
 **Type**: number<br />
 **Since**: 3.0.0<br />
-
 
 The release velocity of the note as an integer between 0 and 127.
 
