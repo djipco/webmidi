@@ -52,7 +52,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 
 ***
 
-## Members
+## Properties
 
 ### `.accidental`
 

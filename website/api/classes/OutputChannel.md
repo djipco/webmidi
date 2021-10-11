@@ -30,7 +30,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ***
 
-## Members
+## Properties
 
 ### `.number`
 

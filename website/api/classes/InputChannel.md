@@ -31,7 +31,7 @@ property.
 
 ***
 
-## Members
+## Properties
 
 ### `.EVENTS`
 

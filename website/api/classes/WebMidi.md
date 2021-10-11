@@ -6,7 +6,7 @@ simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages
 When using the WebMidi.js library, you should know that the `WebMidi` class has already been
 instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
 simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
-module) version, you get an already-instantiated object.
+module) version, you get an already-instantiated object when you import the module.
 
 
 **Extends**: EventEmitter
@@ -16,7 +16,7 @@ module) version, you get an already-instantiated object.
 
 ***
 
-## Members
+## Properties
 
 ### `.defaults`
 

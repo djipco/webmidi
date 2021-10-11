@@ -30,7 +30,7 @@ Note that a single device may expose several inputs and/or outputs.
 
 ***
 
-## Members
+## Properties
 
 ### `.channels`
 
