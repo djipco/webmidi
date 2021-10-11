@@ -74,8 +74,9 @@ and isBrowser can both be true at the same time.
 ### `.isNode`
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
-browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js) isNode and
-isBrowser can both be true at the same time.
+browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
+NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
+same time.
 
 **Type**: boolean<br />
 
