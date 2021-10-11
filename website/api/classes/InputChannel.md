@@ -49,7 +49,7 @@ Array of channel-specific event names that can be listened to.
 **Since**: 3.0<br />
 
 
-The {@link Input} this channel belongs to
+The [`Input`](Input) this channel belongs to
 
 
 ### `.number`
