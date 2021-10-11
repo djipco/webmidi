@@ -22,7 +22,6 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 
 
 
-
 ### `new Note(...)`
 
 

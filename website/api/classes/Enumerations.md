@@ -9,7 +9,6 @@ enumerations are static and should be referenced using the class name. For examp
 
 
 
-
 ***
 
 ## Enums

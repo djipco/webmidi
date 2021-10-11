@@ -13,7 +13,6 @@ You can find a list of all available `Output` objects in the
 **Fires**: [`opened`](Output#event:opened), [`disconnected`](Output#event:disconnected), [`closed`](Output#event:closed)
 
 
-
 ### `new Output(...)`
 
 
