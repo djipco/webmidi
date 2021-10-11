@@ -8,7 +8,6 @@ enumerations are static and should be referenced using the class name. For examp
 **Since**: 3.0.0
 
 
-
 ***
 
 ## Enums
