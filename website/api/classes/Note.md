@@ -148,12 +148,12 @@ an invalid value is supplied, 0 will be used.
 
   **Parameters**
 
-  > `getOffsetNumber(octaveOffset, semitoneOffset)`
+  > `getOffsetNumber([octaveOffset], [semitoneOffset])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`octaveOffset`** |number|0|An integer to offset the note number by octave.|
-    |**`semitoneOffset`** |number|0|An integer to offset the note number by semitone.|
+    |[**`octaveOffset`**] |number|0|An integer to offset the note number by octave.|
+    |[**`semitoneOffset`**] |number|0|An integer to offset the note number by semitone.|
 
 
 
