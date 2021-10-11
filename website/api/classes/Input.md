@@ -1,3 +1,4 @@
+
 # Input
 
 The `Input` class represents a single MIDI input port. This object is automatically instantiated

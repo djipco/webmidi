@@ -1,3 +1,4 @@
+
 # Message
 
 The `Message` class represents a single MIDI message. It has several properties that make it

@@ -1,3 +1,4 @@
+
 # WebMidi
 
 The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it

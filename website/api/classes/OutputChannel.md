@@ -1,3 +1,4 @@
+
 # OutputChannel
 
 The `OutputChannel` class represents a single output channel (1-16) from an output device. This

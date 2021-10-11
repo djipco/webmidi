@@ -1,3 +1,4 @@
+
 # Utilities
 
 The `Utilities` class contains general-purpose utility methods. All methods are static and

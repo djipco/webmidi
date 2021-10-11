@@ -1,3 +1,4 @@
+
 # Note
 
 The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.

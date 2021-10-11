@@ -1,3 +1,4 @@
+
 # Enumerations
 
 The `Enumerations` class contains enumerations of elements used throughout the library. All

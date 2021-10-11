@@ -1,3 +1,4 @@
+
 # InputChannel
 
 The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This

@@ -1,3 +1,4 @@
+
 # Output
 
 The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
