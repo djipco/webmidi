@@ -54,8 +54,9 @@ An array of all currently available MIDI inputs.
 
 ### `.interface`
 
-The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
-unless you know what you are doing.
+The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+instance used to talk to the Web MIDI API. This should not be used directly unless you know
+what you are doing.
 
 **Type**: MIDIAccess<br />
 **Attributes**: read-only, nullable<br />
