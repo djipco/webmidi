@@ -13,7 +13,7 @@ easy to make sense of the binaru data it contains.
 
   **Parameters**
 
-  data
+  > `new Message(data)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

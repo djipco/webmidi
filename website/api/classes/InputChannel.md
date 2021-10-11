@@ -18,7 +18,7 @@ property.
 
   **Parameters**
 
-  input, number
+  > `new InputChannel(input, number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

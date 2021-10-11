@@ -17,7 +17,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
   **Parameters**
 
-  output, number
+  > `new OutputChannel(output, number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
