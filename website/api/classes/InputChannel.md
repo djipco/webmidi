@@ -25,9 +25,6 @@ property.
 
 
 
-
-
-
 ***
 
 ## Properties
