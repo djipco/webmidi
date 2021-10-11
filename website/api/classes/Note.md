@@ -26,7 +26,7 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 
   **Parameters**
 
-  > `new Note(value, [options])`
+  > `new Note(**value, [options]**)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

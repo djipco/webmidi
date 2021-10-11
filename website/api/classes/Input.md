@@ -18,7 +18,7 @@ Note that a single device may expose several inputs and/or outputs.
 
   **Parameters**
 
-  > `new Input(midiInput)`
+  > `new Input(**midiInput**)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

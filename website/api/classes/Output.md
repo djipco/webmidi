@@ -17,7 +17,7 @@ You can find a list of all available `Output` objects in the
 
   **Parameters**
 
-  > `new Output(midiOutput)`
+  > `new Output(**midiOutput**)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
