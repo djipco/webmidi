@@ -17,6 +17,8 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
   **Parameters**
 
+  output, number
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`output`** |Output||The output this channel belongs to|

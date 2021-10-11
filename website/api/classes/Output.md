@@ -17,6 +17,8 @@ You can find a list of all available `Output` objects in the
 
   **Parameters**
 
+  midiOutput
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`midiOutput`** |MIDIOutput||`MIDIOutput` object as provided by the MIDI subsystem|

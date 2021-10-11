@@ -26,6 +26,8 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 
   **Parameters**
 
+  value, [options]
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |string||The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).|

@@ -18,6 +18,8 @@ property.
 
   **Parameters**
 
+  input, number
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`input`** |Input||The `Input` object this channel belongs to|
