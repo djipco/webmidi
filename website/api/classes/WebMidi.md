@@ -8,6 +8,14 @@ instantiated. You cannot instantiate it yourself. If you use the **IIFE** versio
 simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
 module) version, you get an already-instantiated object.
 
+The &#x60;WebMidi&#x60; object makes it easier to work with the low-level Web MIDI API. Basically, it
+simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
+
+When using the WebMidi.js library, you should know that the &#x60;WebMidi&#x60; class has already been
+instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
+simply use the global object called &#x60;WebMidi&#x60;. If you use the **CJS** (CommonJS) or **ESM** (ES6
+module) version, you get an already-instantiated object.
+
 
 **Extends**: EventEmitter
 

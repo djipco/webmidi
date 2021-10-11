@@ -7,6 +7,13 @@ array.
 
 Note that a single device may expose several inputs and/or outputs.
 
+The &#x60;Input&#x60; class represents a single MIDI input port. This object is automatically instantiated
+by the library according to the host&#x27;s MIDI subsystem and should not be directly instantiated.
+Instead, you can access all &#x60;Input&#x60; objects by referring to the [&#x60;WebMidi.inputs&#x60;](WebMidi#inputs)
+array.
+
+Note that a single device may expose several inputs and/or outputs.
+
 
 **Extends**: EventEmitter
 

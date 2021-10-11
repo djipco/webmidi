@@ -6,6 +6,12 @@ subsystem and cannot be instantiated directly.
 You can find a list of all available `Output` objects in the
 [WebMidi.outputs]{@link WebMidi#outputs} array.
 
+The &#x60;Output&#x60; class represents a MIDI output port. This object is derived from the host&#x27;s MIDI
+subsystem and cannot be instantiated directly.
+
+You can find a list of all available &#x60;Output&#x60; objects in the
+[WebMidi.outputs](WebMidi#outputs) array.
+
 
 **Extends**: EventEmitter
 

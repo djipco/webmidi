@@ -4,6 +4,10 @@ The `Enumerations` class contains enumerations of elements used throughout the l
 enumerations are static and should be referenced using the class name. For example:
 `Enumerations.MIDI_CHANNEL_MESSAGES`.
 
+The &#x60;Enumerations&#x60; class contains enumerations of elements used throughout the library. All
+enumerations are static and should be referenced using the class name. For example:
+&#x60;Enumerations.MIDI_CHANNEL_MESSAGES&#x60;.
+
 **Since**: 3.0.0
 
 

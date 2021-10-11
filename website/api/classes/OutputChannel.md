@@ -6,6 +6,12 @@ object is derived from the host's MIDI subsystem and cannot be instantiated dire
 All 16 `OutputChannel` objects can be found inside the parent output's
 [channels]{@link Output#channels} property.
 
+The &#x60;OutputChannel&#x60; class represents a single output channel (1-16) from an output device. This
+object is derived from the host&#x27;s MIDI subsystem and cannot be instantiated directly.
+
+All 16 &#x60;OutputChannel&#x60; objects can be found inside the parent output&#x27;s
+[channels](Output#channels) property.
+
 **Since**: 3.0.0
 
 **Extends**: EventEmitter
