@@ -147,10 +147,10 @@ Returns a MIDI note number offset by octave and/or semitone. If the calculated v
 than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If
 an invalid value is supplied, 0 will be used.
 
-**Signature**: `getOffsetNumber([octaveOffset], [semitoneOffset])`
-
 
   **Parameters**
+
+  > Signature: `getOffsetNumber([octaveOffset], [semitoneOffset])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
