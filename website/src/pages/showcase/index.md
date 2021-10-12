@@ -39,10 +39,10 @@ Created by: **Jay Alan Zimmerman**
 Google Chrome experiment to experience music visually. This is a tool for visualizing music. You can turn on your mic to sing or play sounds. You can also drop in your own audio or video file.
 
 
-## [MicroFreak Reader](https://studiocode.dev/doc/microfreak-reader/)
-Created by: **François Georgy**
+## [Raaga](https://raaga.riteshkr.com/)
+Created by: **Ritesh Kumar, Jack Hsu, Prateek Bhatnagar, Sruthi, Majid Hajian & Rohit Kokate**
 
-An application to read and display the presets stored in the Arturia MicroFreak memory.
+An online app to play and learn music on a keyboard.
 
 
 ## [FAUST](https://faust.grame.fr/)
@@ -55,18 +55,6 @@ The online Faust IDE can be used to edit, compile and run Faust code from the We
 Created by: **?????????????????????????????**
 
 A tool to build custom interfaces for MIDI control.
-
-
-## [Mideo](https://github.com/jwktje/mideo)
-Created by: **Jan Willem 'jwktje' Kilkman**
-
-A Mac application that turns videos into music.
-
-
-## [Raaga](https://raaga.riteshkr.com/)
-Created by: **Ritesh Kumar, Jack Hsu, Prateek Bhatnagar, Sruthi, Majid Hajian & Rohit Kokate**
-
-An online app to play and learn music on a keyboard.
 
 
 ## [WebAudio Generator](https://webaudio.simmsreeve.com/)
@@ -86,6 +74,29 @@ Created by: **Yotam Mann**
 
 A piano that responds to you.
 
-<br>
 
-**pas trouver library**: [Nonoto](https://github.com/SonyCSLParis/NONOTO), [DAWG](https://dawg.dev/), [Pacer Editor](https://studiocode.dev/pacer-editor/#/)
+## [Learn Push 2 with Svelte](https://github.com/greyivy/learn-push2-with-svelte)
+Created by: **Ivy**
+
+A website to learn chords, scales and music theory on the Push 2.
+
+
+## [Soundshed App](https://soundshed.com/)
+Created by: **Christopher Cook & Lavabyrd**
+
+A Desktop app to browse and manage guitar amp tones. Control your bluetooth amp, jam to video backing tracks.
+
+
+## [Mideo](https://github.com/jwktje/mideo)
+Created by: **Jan Willem 'jwktje' Kilkman**
+
+A Mac application that turns videos into music.
+
+
+## [MicroFreak Reader](https://studiocode.dev/doc/microfreak-reader/)
+Created by: **François Georgy**
+
+An application to read and display the presets stored in the Arturia MicroFreak memory.
+
+
+**pas trouver library**: [Nonoto](https://github.com/SonyCSLParis/NONOTO), [DAWG](https://dawg.dev/), [Pacer Editor](https://studiocode.dev/pacer-editor/#/), [Inscore](https://inscore.grame.fr/)
