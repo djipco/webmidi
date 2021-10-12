@@ -259,8 +259,8 @@ kind of IDs as Jazz-Plugin.
 
 
 **Returns**: `Input` or `false`
-> An [`Input`](Input) object matching the specified ID string. If no
-matching input can be found, the method returns `false`.
+> An [`Input`](Input) object matching the specified ID string or `false`
+if no matching input can be found.
 
 
 **Since**: 2.0.0<br />
