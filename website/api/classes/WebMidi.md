@@ -209,7 +209,7 @@ software synths has not yet been implemented in any browser (as of September 202
 There are 3 ways to execute code after `WebMidi` has been enabled:
 
 - Pass a callback function in the `options`
-- Listen to the `enabled` event
+- Listen to the [`"enabled"`](#event:enabled) event
 - Wait for the promise to resolve
 
 In order, this is what happens towards the end of the enabling process:
