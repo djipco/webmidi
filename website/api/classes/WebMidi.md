@@ -99,7 +99,7 @@ of 60).
 
 ### `.outputs`
 
-An array of all currently available MIDI outputs.
+An array of all currently available MIDI outputs as [`Output`](Output) objects.
 
 **Type**: Array<br />
 **Attributes**: read-only<br />
