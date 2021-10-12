@@ -66,6 +66,7 @@ The parent [Output](Output) this channel belongs to
 
 ### `.decrementRegisteredParameter(...)`
 
+
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -84,7 +85,6 @@ names that can be used with this function:
  * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
-
 
 
   **Parameters**
@@ -107,6 +107,7 @@ names that can be used with this function:
 
 ### `.incrementRegisteredParameter(...)`
 
+
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
 names that can be used with this function:
 
@@ -125,7 +126,6 @@ names that can be used with this function:
  * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
-
 
 
   **Parameters**
@@ -147,6 +147,7 @@ names that can be used with this function:
   * TypeError The specified registered parameter is invalid.
 
 ### `.playNote(...)`
+
 
 Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 can be a single value or an array of the following valid values:
@@ -172,7 +173,6 @@ objects have precedence over the ones specified via the method's `options` param
 functionally equivalent to a **note off** message.
 
 
-
   **Parameters**
 
   > `playNote(note, [options])`
@@ -196,9 +196,9 @@ functionally equivalent to a **note off** message.
 
 ### `.resetAllControllers(...)`
 
+
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
-
 
 
   **Parameters**
@@ -218,6 +218,7 @@ the pitch bend, to their default value.
 
 ### `.send(...)`
 
+
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
 [Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -229,7 +230,6 @@ helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
 Details on the format of MIDI messages are available in the summary of
 [MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
-
 
 
   **Parameters**
@@ -252,6 +252,7 @@ from the MIDI Manufacturers Association.
   * `RangeError` : Data bytes must be integers between 0 and 255.
 
 ### `.sendChannelMode(...)`
+
 
 Sends a MIDI **channel mode** message. The channel mode message to send can be specified
 numerically or by using one of the following common names:
@@ -279,7 +280,6 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setPolyphonicMode()](Output#setPolyphonicMode)
 
 
-
   **Parameters**
 
   > `sendChannelMode(command, value, [options])`
@@ -298,6 +298,8 @@ To make it easier, all channel mode messages have a matching helper method:
 
 
 ### `.sendControlChange(...)`
+
+**Since**: 3.0.0<br />
 
 Sends a MIDI **control change** message to the channel at the scheduled time. The control
 change message to send can be specified numerically (0 to 127) or by using one of the following
@@ -390,9 +392,6 @@ and LSB for messages between 0 and 31, you can do so by passing a 2-value array 
 parameter.
 
 
-  **Since**: 3.0.0<br />
-
-
   **Parameters**
 
   > `sendControlChange(controller, value, [options])`
@@ -416,6 +415,7 @@ parameter.
 
 ### `.sendNoteOff(...)`
 
+
 Sends a **note off** message for the specified notes on the channel. The first parameter is the
 note. It can be a single value or an array of the following valid values:
 
@@ -428,7 +428,6 @@ note. It can be a single value or an array of the following valid values:
 
 When using [Note](Note) objects, the release velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter.
-
 
 
   **Parameters**
@@ -450,6 +449,7 @@ precedence over the one specified via the method's `options` parameter.
 
 
 ### `.sendNoteOn(...)`
+
 
 Sends a **note on** message for the specified note(s) on the channel. The first parameter is
 the note. It can be a single value or an array of the following valid values:
@@ -475,7 +475,6 @@ ignored. If you want to also send a **note off** message, use the
 functionally equivalent to a **note off** message.
 
 
-
   **Parameters**
 
   > `sendNoteOn(note, [options])`
@@ -496,9 +495,9 @@ functionally equivalent to a **note off** message.
 
 ### `.setChannelAftertouch(...)`
 
+
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()](Output#setKeyAftertouch).
-
 
 
   **Parameters**
@@ -522,6 +521,7 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 
 ### `.setKeyAftertouch(...)`
 
+
 Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
 aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](Output#setChannelAftertouch).
@@ -530,7 +530,6 @@ The key can be a single value or an array of the following valid values:
 
  - A MIDI note number (integer between `0` and `127`)
  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
-
 
 
   **Parameters**
@@ -555,10 +554,10 @@ The key can be a single value or an array of the following valid values:
 
 ### `.setLocalControl(...)`
 
+
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
-
 
 
   **Parameters**
@@ -579,6 +578,7 @@ its out port.
 
 ### `.setMasterTuning(...)`
 
+
 Sends a **master tuning** message. The value is decimal and must be larger than -65 semitones
 and smaller than 64 semitones.
 
@@ -586,7 +586,6 @@ Because of the way the MIDI specification works, the decimal portion of the valu
 encoded with a resolution of 14bit. The integer portion must be between -64 and 63
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
-
 
 
   **Parameters**
@@ -610,10 +609,10 @@ than 64.
 
 ### `.setModulationRange(...)`
 
+
 Sends a **modulation depth range** message to adjust the depth of the modulation wheel's range.
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
-
 
 
   **Parameters**
@@ -634,6 +633,7 @@ specifying both parameters at the same time.
 
 
 ### `.setNonRegisteredParameter(...)`
+
 
 Sets a non-registered parameter (NRPN) to the specified value. The NRPN is selected by passing
 in a two-position array specifying the values of the two control bytes. The value is specified
@@ -660,7 +660,6 @@ WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
 For further implementation details, refer to the manufacturer's documentation.
 
 
-
   **Parameters**
 
   > `setNonRegisteredParameter(parameter, [data], [options])`
@@ -683,11 +682,11 @@ For further implementation details, refer to the manufacturer's documentation.
 
 ### `.setOmniMode(...)`
 
+
 Sets OMNI mode to `"on"` or `"off"`. MIDI's OMNI mode causes the instrument to respond to
 messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
-
 
 
   **Parameters**
@@ -712,8 +711,8 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 ### `.setPitchBend(...)`
 
-Sends a MIDI **pitch bend** message at the scheduled time.
 
+Sends a MIDI **pitch bend** message at the scheduled time.
 
 
   **Parameters**
@@ -735,11 +734,11 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 ### `.setPitchBendRange(...)`
 
+
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
-
 
 
   **Parameters**
@@ -764,10 +763,10 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 ### `.setPolyphonicMode(...)`
 
+
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
-
 
 
   **Parameters**
@@ -788,12 +787,12 @@ multiple notes are being played.
 
 ### `.setProgram(...)`
 
+
 Sends a MIDI **program change** message at the scheduled time.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
 
 
   **Parameters**
@@ -816,6 +815,7 @@ that use a numbering scheme starting at 1.
 than 0xFF.
 
 ### `.setRegisteredParameter(...)`
+
 
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
@@ -850,7 +850,6 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
 
-
   **Parameters**
 
   > `setRegisteredParameter(parameter, [data], [options])`
@@ -870,13 +869,13 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 ### `.setTuningBank(...)`
 
+
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
 **Note**: since version 3.0, the bank number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
 
 
   **Parameters**
@@ -899,13 +898,13 @@ that use a numbering scheme starting at 1.
 
 ### `.setTuningProgram(...)`
 
+
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
-
 
 
   **Parameters**
@@ -928,8 +927,8 @@ that use a numbering scheme starting at 1.
 
 ### `.stopNote(...)`
 
-This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
+This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 
   **Parameters**
@@ -947,10 +946,10 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 ### `.turnNotesOff(...)`
 
+
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#OutputChannel+turnSoundOff) method which mutes all sounds immediately.
-
 
 
   **Parameters**
@@ -970,9 +969,9 @@ fade out just as if their key had been released. This is different from the
 
 ### `.turnSoundOff(...)`
 
+
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
-
 
 
   **Parameters**

@@ -141,10 +141,10 @@ The release velocity of the note as an integer between 0 and 127.
 
 ### `.getOffsetNumber(...)`
 
+
 Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less
 than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If
 an invalid value is supplied, 0 will be used.
-
 
 
   **Parameters**

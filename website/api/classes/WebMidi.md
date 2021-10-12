@@ -160,13 +160,12 @@ validation turned on.
 
 ### `.disable()`
 
+**Since**: 2.0.0<br />
+
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
 [Input](Input) and [Output](Output) objects that may be available. This also means that listeners
 added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself are also
 destroyed.
-
-
-  **Since**: 2.0.0<br />
 
 
 **Returns**: `Promise.&lt;void&gt;`
@@ -175,6 +174,7 @@ destroyed.
   * `Error` : The Web MIDI API is not supported by your environment.
 
 ### `.enable(...)`
+
 
 Checks if the Web MIDI API is available in the current environment and then tries to connect to
 the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
@@ -220,7 +220,6 @@ WebMidi.enable().then(ports => {
 ```
 
 
-
   **Parameters**
 
   > `enable([options])`
@@ -244,14 +243,13 @@ WebMidi.enable().then(ports => {
 
 ### `.getInputById(...)`
 
+**Since**: 2.0.0<br />
+
 Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
 matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
 
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
-
-
-  **Since**: 2.0.0<br />
 
 
   **Parameters**
@@ -273,12 +271,11 @@ if no matching input can be found.
 
 ### `.getInputByName(...)`
 
+**Since**: 2.0.0<br />
+
 Returns the first [Input](Input) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
-
-
-  **Since**: 2.0.0<br />
 
 
   **Parameters**
@@ -300,15 +297,14 @@ specified name.
 
 ### `.getOutputById(...)`
 
+**Since**: 2.0.0<br />
+
 Returns the [Output](Output) object that matches the specified ID string or `false` if no
 matching output is found. As per the Web MIDI API specification, IDs are strings (not
 integers).
 
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
-
-
-  **Since**: 2.0.0<br />
 
 
   **Parameters**
@@ -330,12 +326,11 @@ matching output can be found, the method returns `false`.
 
 ### `.getOutputByName(...)`
 
+**Since**: 2.0.0<br />
+
 Returns the first [Output](Output) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
-
-
-  **Since**: 2.0.0<br />
 
 
   **Parameters**

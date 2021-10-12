@@ -92,6 +92,7 @@ all buffered control change messages will be discarded as incomplete.
 
 ### `.destroy()`
 
+
 Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
 input.
 
@@ -99,16 +100,14 @@ input.
 
 
 
-
 ### `.getCcNameByNumber(...)`
+
+**Since**: 2.0.0<br />
 
 Returns the name of a control change message matching the specified number. Some valid control
 change numbers do not have a specific name or purpose assigned in the MIDI
 [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
 In this case, the method returns `false`.
-
-
-  **Since**: 2.0.0<br />
 
 
   **Parameters**
@@ -130,11 +129,10 @@ found.
 
 ### `.getChannelModeByNumber(...)`
 
+**Since**: 2.0.0<br />
+
 Returns the channel mode name matching the specified number. If no match is found, the function
 returns `false`.
-
-
-  **Since**: 2.0.0<br />
 
 
   **Parameters**
