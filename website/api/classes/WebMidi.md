@@ -161,7 +161,7 @@ throughout the WebMidi.js library for object methods and property setters.
 
 This is an advanced setting that should be used carefully. Setting `validation` to `false`
 improves performance but should only be done once the project has been thoroughly tested with
-validation turned on.
+`validation` turned on.
 
 **Type**: boolean<br />
 
