@@ -134,7 +134,7 @@ supplied.
 
 
 
-**Returns**: string - The name of the matching property
+**Returns**: `string` : The name of the matching property
 
 
 
@@ -165,7 +165,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 
 
-**Returns**: number - A valid MIDI note number (0-127) or `false` if the input could not
+**Returns**: `number` : A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.
 
 
@@ -194,7 +194,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 
 
-**Returns**: number - An integer between 0 and 127
+**Returns**: `number` : An integer between 0 and 127
 
 
 
@@ -225,7 +225,7 @@ integers between 1 and 16 are silently ignored.
 
 
 
-**Returns**: Array - An array of 0 or more valid MIDI channel numbers.
+**Returns**: `Array` : An array of 0 or more valid MIDI channel numbers.
 
 
 
@@ -255,7 +255,7 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 
-**Returns**: number - A number between 0 and 1 (inclusive)
+**Returns**: `number` : A number between 0 and 1 (inclusive)
 
 
 
@@ -284,7 +284,7 @@ input value cannot be converted to an integer, the method returns 0.
 
 
 
-**Returns**: number - A number between 0 and 1 (inclusive)
+**Returns**: `number` : A number between 0 and 1 (inclusive)
 
 
 
@@ -346,7 +346,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 
 
-**Returns**: number - The MIDI note number (an integer between 0 and 127).
+**Returns**: `number` : The MIDI note number (an integer between 0 and 127).
 
 
 
@@ -378,7 +378,7 @@ returned.
 
 
 
-**Returns**: number - A positive number or `false` (if the time cannot be converted)
+**Returns**: `number` : A positive number or `false` (if the time cannot be converted)
 
 
 

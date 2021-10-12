@@ -99,7 +99,7 @@ names that can be used with this function:
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -143,7 +143,7 @@ names that can be used with this function:
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -196,7 +196,7 @@ functionally equivalent to a **note off** message.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -221,7 +221,7 @@ the pitch bend, to their default value.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -256,7 +256,7 @@ from the MIDI Manufacturers Association.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -308,7 +308,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -422,7 +422,7 @@ parameter.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -465,7 +465,7 @@ precedence over the one specified via the method's `options` parameter.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -513,7 +513,7 @@ functionally equivalent to a **note off** message.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -540,7 +540,7 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -576,7 +576,7 @@ The key can be a single value or an array of the following valid values:
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -605,7 +605,7 @@ its out port.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -636,7 +636,7 @@ a **Master Fine Tuning** RPN messages.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -667,7 +667,7 @@ specifying both parameters at the same time.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -715,7 +715,7 @@ For further implementation details, refer to the manufacturer's documentation.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -746,7 +746,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -776,7 +776,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -805,7 +805,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -835,7 +835,7 @@ multiple notes are being played.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -864,7 +864,7 @@ that use a numbering scheme starting at 1.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -923,7 +923,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -953,7 +953,7 @@ that use a numbering scheme starting at 1.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -985,7 +985,7 @@ that use a numbering scheme starting at 1.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -1036,7 +1036,7 @@ fade out just as if their key had been released. This is different from the
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -1061,7 +1061,7 @@ channel but will not prevent new sounds from being triggered.
 
 
 
-**Returns**: OutputChannel - Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel` : Returns the `OutputChannel` object so methods can be chained.
 
 
 

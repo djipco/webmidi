@@ -238,7 +238,7 @@ WebMidi.enable().then(ports => {
 
 
 
-**Returns**: Promise.&lt;Object&gt; - The promise is fulfilled with the `WebMidi` object
+**Returns**: `Promise.&lt;Object&gt;` : The promise is fulfilled with the `WebMidi` object
 
 
 
@@ -268,7 +268,7 @@ kind of IDs as Jazz-Plugin.
 
 
 
-**Returns**: Input - An [Input](Input) object matching the specified ID string. If no matching
+**Returns**: `Input` : An [Input](Input) object matching the specified ID string. If no matching
 input can be found, the method returns `false`.
 
 
@@ -298,7 +298,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 
-**Returns**: Input - The [Input](Input) that was found or `false` if no input contained the
+**Returns**: `Input` : The [Input](Input) that was found or `false` if no input contained the
 specified name.
 
 
@@ -331,7 +331,7 @@ kind of IDs as Jazz-Plugin.
 
 
 
-**Returns**: Output - An [Output](Output) object matching the specified ID string. If no
+**Returns**: `Output` : An [Output](Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.
 
 
@@ -361,7 +361,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 
-**Returns**: Output - The [Output](Output) that was found or `false` if no output matched the
+**Returns**: `Output` : The [Output](Output) that was found or `false` if no output matched the
 specified name.
 
 
