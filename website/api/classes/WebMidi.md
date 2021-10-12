@@ -304,7 +304,7 @@ specified name.
 
 **Since**: 2.0.0<br />
 
-Returns the [Output](Output) object that matches the specified ID string or `false` if no
+Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
 matching output is found. As per the Web MIDI API specification, IDs are strings (not
 integers).
 
@@ -318,11 +318,11 @@ kind of IDs as Jazz-Plugin.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs](WebMidi#outputs) array.|
+    |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [`WebMidi.outputs`](WebMidi.outputs) array.|
 
 
 **Returns**: `Output` or `false`
-> An [Output](Output) object matching the specified ID string. If no
+> An [`Output`](Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.
 
 
