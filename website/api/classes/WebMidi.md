@@ -119,9 +119,10 @@ An array of all currently available MIDI outputs as [`Output`](Output) objects.
 Indicates whether the environment provides support for the Web MIDI API or not.
 
 **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
-the `navigator.requestMIDIAccess` function is available. For example, if you have installed
-WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
-not be there.
+the
+[`navigator.requestMIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this
+property will be `true` even though actual support might not be there.
 
 **Type**: boolean<br />
 **Attributes**: read-only<br />
