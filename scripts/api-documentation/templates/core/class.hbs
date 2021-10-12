@@ -1,8 +1,19 @@
+{{!
+
+  This template creates the 'class' portion of the output (at the top). It relies on the following
+  helpers:
+
+    - inlineLinks
+    - eq
+    - eventName
+
+}}
+
 {{! Class name }}
 # {{name}}
 
 {{! Class description }}
-{{{description}}}
+{{{inlineLinks description}}}
 
 {{! Since }}
 {{#if since}}
@@ -18,6 +29,3 @@
 {{#if fires}}
 **Fires**: {{#each fires}}[`{{eventName this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/each}}
 {{/if}}
-
-{{! Throws }}
-

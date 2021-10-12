@@ -1,23 +1,24 @@
 {{#if this}}
 ***
 
-## Members
+## Properties
 
 {{#each this}}
 ### `.{{this.name}}`
+
+{{#if this.since}}
+**Since**: {{this.since}}<br />
+{{/if}}
+
+{{{inlineLinks description}}}
 
 **Type**: {{this.type.names.[0]}}<br />
 {{#if (or this.readonly this.nullable)}}
 **Attributes**: {{#if this.readonly}}read-only{{#if this.nullable}}, nullable{{/if}}{{else}}{{#if this.nullable}}nullable{{/if}}{{/if}}<br />
 {{/if}}
-{{#if this.since}}
-**Since**: {{this.since}}<br />
-{{/if}}
 {{#if (eq this.scope "static")}}
   **Attributes**: static
 {{/if}}
-
-{{{inlineLinks description}}}
 
 {{#if properties}}
 

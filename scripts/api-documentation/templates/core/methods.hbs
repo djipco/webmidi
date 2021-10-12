@@ -4,35 +4,60 @@
 ## Methods
 
 {{#each this}}
+
+{{! Name }}
 ### `.{{this.name}}({{#if params}}...{{/if}})`
 
-{{{this.description}}}
+{{! Since }}
+{{#if this.since}}
+**Since**: {{this.since}}<br />
+{{/if}}
+{{#if (eq this.async true)}}
+**Attributes**: async
+{{/if}}
 
+{{! Description }}
+{{{inlineLinks description}}}
+
+{{! Parameters }}
 {{#if params}}
 
   **Parameters**
 
+  > Signature: `{{this.name}}({{methodSignature this}})`
+
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
   {{#each params}}
-    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} |{{this.type.names.[0]}}|{{this.defaultvalue}}|{{{stripNewlines this.description}}}|
+    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} |{{this.type.names.[0]}}|{{this.defaultvalue}}|{{{stripNewlines (inlineLinks this.description)}}}|
   {{/each}}
 
 {{/if}}
 
+{{! Returns }}
+{{#if returns}}
+**Returns**: {{#each returns~}}
+{{#if type~}}
+{{#each type.names~}}
+`{{{this}}}`{{#unless @last}} or {{/unless}}
+{{~/each}}
+{{/if~}}
+{{~#if description}}
 
-{{#if this.returns}}**Returns: ** {{this.returns.[0].type.names.[0]}}<br />{{/if}}
-{{#if this.since}}
-**Since**: {{this.since}}<br />
+> {{{inlineLinks description}}}
+{{/if~}}
+{{~/each}}
 {{/if}}
+
 {{#if (eq this.scope "static")}}
+
 **Attributes**: static
 {{/if}}
 
 {{#if this.exceptions}}
 **Throws**:
 {{#each this.exceptions}}
-  * {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{this.description}}
+  * {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{{inlineLinks this.description}}}
 {{/each}}
 {{/if}}
 

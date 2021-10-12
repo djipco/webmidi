@@ -1,10 +1,22 @@
+{{!
+
+  This template creates the 'constructor' portion of the output (below the class). It relies on the
+  following helpers:
+
+    - stripNewlines
+
+}}
 {{#if this}}
 
+{{! Constructor name }}
 ### `new {{this.longname}}({{#if params}}...{{/if}})`
 
+{{! Parameters }}
 {{#if params}}
 
   **Parameters**
+
+  > `new {{this.longname}}({{methodSignature this}})`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -14,14 +26,12 @@
 
 {{/if}}
 
-
-{{#if this.returns}}**Returns: ** {{this.returns.[0].type.names.[0]}}{{/if}}
-
+{{! Exceptions }}
 {{#if this.exceptions}}
-**Throws**:
-{{#each this.exceptions}}
-  * {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{this.description}}
-{{/each}}
+  **Throws**:
+  {{#each this.exceptions}}
+    * {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{this.description}}
+  {{/each}}
 {{/if}}
 
 {{/if}}
