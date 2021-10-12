@@ -1721,7 +1721,7 @@ export class OutputChannel extends EventEmitter {
    * octave (C4).
    *
    * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * and with the value defined on the parent `Output` object.
+   * and with the value defined on the parent {@link Output} object.
    *
    * @type {number}
    *

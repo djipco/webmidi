@@ -8,7 +8,7 @@ import {Enumerations} from "./Enumerations.js";
  * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
+ * All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
  * property.
  *
  * @param {Input} input The `Input` object this channel belongs to
@@ -183,7 +183,7 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} note A {@link Note} object containing information such as note name,
+       * @property {Object} note A [`Note`](Note) object containing information such as note name,
        * octave and release velocity.
        * @property {number} value The release velocity amount expressed as a float between 0 and 1.
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
@@ -221,15 +221,15 @@ export class InputChannel extends EventEmitter {
        *
        * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
+       * @property {InputChannel} input The [`Input`](Input) object where through which the message
+       * was received.
        * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} note A {@link Note} object containing information such as note name,
+       * @property {Note} note A [`Note`](Note) object containing information such as note name,
        * octave and attack velocity.
        *
        * @property {number} value The attack velocity amount expressed as a float between 0 and 1.
@@ -935,7 +935,7 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
-   * The {@link Input} this channel belongs to
+   * The [`Input`](Input) this channel belongs to
    * @type {Input}
    * @since 3.0
    */

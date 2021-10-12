@@ -255,11 +255,12 @@ export class Note {
   }
 
   /**
-   * Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
-   * value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
-   * returned. If an invalid value is supplied, 0 will be used.
+   * Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less
+   * than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If
+   * an invalid value is supplied, 0 will be used.
    *
-   * @param offset
+   * @param [octaveOffset] {number} An integer to offset the note number by octave.
+   * @param [semitoneOffset] {number} An integer to offset the note number by semitone.
    * @returns {number} An integer between 0 and 127
    */
   getOffsetNumber(octaveOffset = 0, semitoneOffset = 0) {
