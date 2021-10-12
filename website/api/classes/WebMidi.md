@@ -177,7 +177,7 @@ improves performance but should only be done once the project has been thoroughl
 **Since**: 2.0.0<br />
 **Attributes**: async
 
-Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
+Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
 [`Input`](Input) and [`Output`](Output) objects that may be available. This also means that
 listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `WebMidi` itself
 are also destroyed.
