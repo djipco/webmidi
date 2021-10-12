@@ -1,9 +1,6 @@
 
 # Output
 
-The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
-subsystem and cannot be instantiated directly.
-
 The `Output` class represents a single MIDI output port. This object is automatically
 instantiated by the library according to the host's MIDI subsystem and should not be directly
 instantiated. Instead, you can access all available `Output` objects by referring to the
