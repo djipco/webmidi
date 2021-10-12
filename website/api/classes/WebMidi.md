@@ -94,8 +94,8 @@ An integer to offset the octave of notes received from external devices or sent 
 devices.
 
 When a MIDI message comes in on an input channel the reported note name will be offset. For
-example, if the `octaveOffset` is set to `-1` and a **note on** message with MIDI number 60
-comes in, the note will be reported as C3 (instead of C4).
+example, if the `octaveOffset` is set to `-1` and a [`"noteon"`](Input#event:noteon) message
+with MIDI number 60 comes in, the note will be reported as C3 (instead of C4).
 
 By the same token, when [`OutputChannel.playNote()`](OutputChannel#playNote) is called, the
 MIDI note number being sent will be offset. If `octaveOffset` is set to `-1`, the MIDI note
