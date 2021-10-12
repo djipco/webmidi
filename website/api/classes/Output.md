@@ -812,6 +812,7 @@ Sends a MIDI **tune request** real-time message.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 
@@ -837,6 +838,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 
@@ -864,6 +866,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 
@@ -889,6 +892,7 @@ its out port.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 
@@ -918,6 +922,7 @@ a **Master Fine Tuning** RPN messages.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -947,6 +952,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -1031,6 +1037,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -1059,6 +1066,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 
@@ -1086,6 +1094,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -1114,6 +1123,7 @@ multiple notes are being played.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 
@@ -1141,6 +1151,7 @@ that use a numbering scheme starting at 1.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -1223,6 +1234,7 @@ use a numbering scheme starting at 1.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -1248,6 +1260,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 
@@ -1276,6 +1289,7 @@ that use a numbering scheme starting at 1.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -1306,6 +1320,7 @@ that use a numbering scheme starting at 1.
 
 
   **Returns**: * `Output`<br />Returns the `Output` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -1352,6 +1367,7 @@ fade out just as if their key had been released. This is different from the
 
 
   **Returns**: * `Output`
+
 **Since**: 3.0.0<br />
 
 
@@ -1375,6 +1391,7 @@ channel but will not prevent new sounds from being triggered.
 
 
   **Returns**: * `Output`
+
 **Since**: 3.0.0<br />
 
 

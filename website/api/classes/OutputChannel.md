@@ -399,6 +399,7 @@ parameter.
 
 
   **Returns**: * `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
+
 **Since**: 3.0.0<br />
 
 **Throws**:
