@@ -120,8 +120,9 @@ In this case, the method returns `false`.
 
 
 
-**Returns**: * `string` or * `undefined`<br />The matching control change name or `undefined` if not match was
+  **Returns**: * `string` or * `undefined`      <br />The matching control change name or `undefined` if not match was
 found.
+
 
 **Since**: 2.0.0<br />
 
@@ -145,8 +146,9 @@ returns `false`.
 
 
 
-**Returns**: * `string` or * `false`<br />The name of the matching channel mode or `false` if not match could be
+  **Returns**: * `string` or * `false`      <br />The name of the matching channel mode or `false` if not match could be
 found.
+
 
 **Since**: 2.0.0<br />
 

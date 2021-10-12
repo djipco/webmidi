@@ -37,7 +37,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
 
 
-**Returns**: * `Note`
+  **Returns**: * `Note`
 
 **Since**: version 3.0.0<br />
 **Attributes**: static
@@ -73,7 +73,7 @@ input.
 
 
 
-**Returns**: * `Array.&lt;Note&gt;`
+  **Returns**: * `Array.&lt;Note&gt;`
 
 **Since**: 3.0.0<br />
 **Attributes**: static
@@ -102,7 +102,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 
 
-**Returns**: * `Object`
+  **Returns**: * `Object`
 
 **Since**: 3.0.0<br />
 **Attributes**: static
@@ -128,7 +128,8 @@ supplied.
 
 
 
-**Returns**: * `string`<br />The name of the matching property
+  **Returns**: * `string`      <br />The name of the matching property
+
 **Attributes**: static
 
 
@@ -155,8 +156,9 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 
 
-**Returns**: * `number` or * `false`<br />A valid MIDI note number (0-127) or `false` if the input could not
+  **Returns**: * `number` or * `false`      <br />A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.
+
 
 **Since**: 3.0.0<br />
 **Attributes**: static
@@ -180,7 +182,8 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 
 
-**Returns**: * `number`<br />An integer between 0 and 127
+  **Returns**: * `number`      <br />An integer between 0 and 127
+
 **Attributes**: static
 
 **Throws**:
@@ -207,7 +210,8 @@ integers between 1 and 16 are silently ignored.
 
 
 
-**Returns**: * `Array`<br />An array of 0 or more valid MIDI channel numbers.
+  **Returns**: * `Array`      <br />An array of 0 or more valid MIDI channel numbers.
+
 
 **Since**: 3.0.0<br />
 **Attributes**: static
@@ -234,7 +238,8 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 
-**Returns**: * `number`<br />A number between 0 and 1 (inclusive)
+  **Returns**: * `number`      <br />A number between 0 and 1 (inclusive)
+
 **Attributes**: static
 
 
@@ -259,7 +264,8 @@ input value cannot be converted to an integer, the method returns 0.
 
 
 
-**Returns**: * `number`<br />A number between 0 and 1 (inclusive)
+  **Returns**: * `number`      <br />A number between 0 and 1 (inclusive)
+
 **Attributes**: static
 
 
@@ -281,7 +287,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 
 
-**Returns**: * `string`
+  **Returns**: * `string`
 
 **Since**: 3.0.0<br />
 **Attributes**: static
@@ -315,7 +321,8 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 
 
-**Returns**: * `number`<br />The MIDI note number (an integer between 0 and 127).
+  **Returns**: * `number`      <br />The MIDI note number (an integer between 0 and 127).
+
 
 **Since**: 3.0.0<br />
 **Attributes**: static
@@ -344,7 +351,8 @@ returned.
 
 
 
-**Returns**: * `number` or * `false`<br />A positive number or `false` (if the time cannot be converted)
+  **Returns**: * `number` or * `false`      <br />A positive number or `false` (if the time cannot be converted)
+
 
 **Since**: 3.0.0<br />
 **Attributes**: static
