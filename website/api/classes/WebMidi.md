@@ -247,7 +247,7 @@ WebMidi.enable().then(ports => {
     |[**`options.software`**] |boolean|false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
 
 
-**Returns**: `Promise.<Object>`
+**Returns**: `Promise.<WebMidi>`
 > The promise is fulfilled with the `WebMidi` object
 
 
