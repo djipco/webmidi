@@ -197,7 +197,7 @@ be displayed to the user.
 To enable the use of MIDI system exclusive messages, the `sysex` option should be set to
 `true`. However, under some environments (e.g. Jazz-Plugin), the `sysex` option is ignored
 and system exclusive messages are always enabled. You can check the
-[sysexEnabled](WebMidi#sysexEnabled) property to confirm.
+[`sysexEnabled`]{#sysexEnabled} property to confirm.
 
 To enable access to software synthesizers available on the host, you would set the `software`
 option to `true`. However, this option is only there to future-proof the library as support for
@@ -211,13 +211,11 @@ There are 3 ways to execute code after `WebMidi` has been enabled:
 
 In order, this is what happens towards the end of the enabling process:
 
-1. `midiaccessgranted` event is triggered
-2. `connected` events are triggered (for each available input and output)
-3. `enabled` event is triggered when WebMidi.js is ready
+1. `"midiaccessgranted"` event is triggered
+2. `"connected"` events are triggered (for each available input and output)
+3. `"enabled"` event is triggered when WebMidi.js is ready
 4. specified callback (if any) is executed
-5. promise is resolved
-
-The promise is fulfilled with the WebMidi object.
+5. promise is resolved and fulfilled with the `WebMidi` object.
 
 **Important note**: starting with Chrome v77, a page using Web MIDI API must be hosted on a
 secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
@@ -243,7 +241,7 @@ WebMidi.enable().then(ports => {
     |[**`options`**] |Object|||
     |[**`options.callback`**] |function||A function to execute once the operation completes. This function will receive an `Error` object if enabling the Web MIDI API failed.|
     |[**`options.sysex`**] |boolean|false|Whether to enable MIDI system exclusive messages or not.|
-    |[**`options.validation`**] |boolean|true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting `validation` to `false` improves performance but should only be done once the project has been thoroughly tested with validation turned on.|
+    |[**`options.validation`**] |boolean|true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting [`validation`](#validation) to `false` improves performance but should only be done once the project has been thoroughly tested with [`validation`](#validation)  turned on.|
     |[**`options.software`**] |boolean|false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
 
 
