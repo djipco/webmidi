@@ -87,7 +87,7 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-Signature: `decrementRegisteredParameter(parameter, [options])`
+**Signature**: `decrementRegisteredParameter(parameter, [options])`
 
 
   **Parameters**
@@ -129,7 +129,7 @@ names that can be used with this function:
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-Signature: `incrementRegisteredParameter(parameter, [options])`
+**Signature**: `incrementRegisteredParameter(parameter, [options])`
 
 
   **Parameters**
@@ -175,7 +175,7 @@ objects have precedence over the ones specified via the method's `options` param
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-Signature: `playNote(note, [options])`
+**Signature**: `playNote(note, [options])`
 
 
   **Parameters**
@@ -204,7 +204,7 @@ Signature: `playNote(note, [options])`
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
 
-Signature: `resetAllControllers([options])`
+**Signature**: `resetAllControllers([options])`
 
 
   **Parameters**
@@ -236,7 +236,7 @@ Details on the format of MIDI messages are available in the summary of
 [MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
 from the MIDI Manufacturers Association.
 
-Signature: `send(message, [options])`
+**Signature**: `send(message, [options])`
 
 
   **Parameters**
@@ -285,7 +285,7 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setOmniMode()](Output#setOmniMode)
   - [setPolyphonicMode()](Output#setPolyphonicMode)
 
-Signature: `sendChannelMode(command, value, [options])`
+**Signature**: `sendChannelMode(command, value, [options])`
 
 
   **Parameters**
@@ -398,7 +398,7 @@ modulationwheelfine to achieve a greater level of precision. if you want to spec
 and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
 parameter.
 
-Signature: `sendControlChange(controller, value, [options])`
+**Signature**: `sendControlChange(controller, value, [options])`
 
 
   **Parameters**
@@ -437,7 +437,7 @@ note. It can be a single value or an array of the following valid values:
 When using [Note](Note) objects, the release velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter.
 
-Signature: `sendNoteOff(note, [options])`
+**Signature**: `sendNoteOff(note, [options])`
 
 
   **Parameters**
@@ -483,7 +483,7 @@ ignored. If you want to also send a **note off** message, use the
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
-Signature: `sendNoteOn(note, [options])`
+**Signature**: `sendNoteOn(note, [options])`
 
 
   **Parameters**
@@ -509,7 +509,7 @@ Signature: `sendNoteOn(note, [options])`
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
 use [setKeyAftertouch()](Output#setKeyAftertouch).
 
-Signature: `setChannelAftertouch([pressure], [options])`
+**Signature**: `setChannelAftertouch([pressure], [options])`
 
 
   **Parameters**
@@ -542,7 +542,7 @@ The key can be a single value or an array of the following valid values:
  - A MIDI note number (integer between `0` and `127`)
  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
 
-Signature: `setKeyAftertouch(target, [pressure], [options])`
+**Signature**: `setKeyAftertouch(target, [pressure], [options])`
 
 
   **Parameters**
@@ -571,7 +571,7 @@ Turns local control on or off. Local control is usually enabled by default. If y
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
 
-Signature: `setLocalControl([state], [options])`
+**Signature**: `setLocalControl([state], [options])`
 
 
   **Parameters**
@@ -600,7 +600,7 @@ encoded with a resolution of 14bit. The integer portion must be between -64 and 
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
 
-Signature: `setMasterTuning([value], [options])`
+**Signature**: `setMasterTuning([value], [options])`
 
 
   **Parameters**
@@ -628,7 +628,7 @@ Sends a **modulation depth range** message to adjust the depth of the modulation
 The range can be specified with the `semitones` parameter, the `cents` parameter or by
 specifying both parameters at the same time.
 
-Signature: `setModulationRange(semitones, [cents], [options])`
+**Signature**: `setModulationRange(semitones, [cents], [options])`
 
 
   **Parameters**
@@ -674,7 +674,7 @@ WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
 
 For further implementation details, refer to the manufacturer's documentation.
 
-Signature: `setNonRegisteredParameter(parameter, [data], [options])`
+**Signature**: `setNonRegisteredParameter(parameter, [data], [options])`
 
 
   **Parameters**
@@ -704,7 +704,7 @@ messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
 
-Signature: `setOmniMode([state], [options])`
+**Signature**: `setOmniMode([state], [options])`
 
 
   **Parameters**
@@ -731,7 +731,7 @@ Signature: `setOmniMode([state], [options])`
 
 Sends a MIDI **pitch bend** message at the scheduled time.
 
-Signature: `setPitchBend([value], [options])`
+**Signature**: `setPitchBend([value], [options])`
 
 
   **Parameters**
@@ -758,7 +758,7 @@ adjust the range used by their pitch bend lever. The range is specified by using
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
 
-Signature: `setPitchBendRange(semitones, [cents], [options])`
+**Signature**: `setPitchBendRange(semitones, [cents], [options])`
 
 
   **Parameters**
@@ -787,7 +787,7 @@ Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
 
-Signature: `setPolyphonicMode([mode], [options])`
+**Signature**: `setPolyphonicMode([mode], [options])`
 
 
   **Parameters**
@@ -814,7 +814,7 @@ Sends a MIDI **program change** message at the scheduled time.
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-Signature: `setProgram([program], [options])`
+**Signature**: `setProgram([program], [options])`
 
 
   **Parameters**
@@ -870,7 +870,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
-Signature: `setRegisteredParameter(parameter, [data], [options])`
+**Signature**: `setRegisteredParameter(parameter, [data], [options])`
 
 
   **Parameters**
@@ -899,7 +899,7 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-Signature: `setTuningBank(value, [options])`
+**Signature**: `setTuningBank(value, [options])`
 
 
   **Parameters**
@@ -929,7 +929,7 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
 
-Signature: `setTuningProgram(value, [options])`
+**Signature**: `setTuningProgram(value, [options])`
 
 
   **Parameters**
@@ -954,7 +954,7 @@ Signature: `setTuningProgram(value, [options])`
 
 This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
-Signature: `stopNote(note, options)`
+**Signature**: `stopNote(note, options)`
 
 
   **Parameters**
@@ -976,7 +976,7 @@ Sends an **all notes off** channel mode message. This will make all currently pl
 fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#OutputChannel+turnSoundOff) method which mutes all sounds immediately.
 
-Signature: `turnNotesOff([options])`
+**Signature**: `turnNotesOff([options])`
 
 
   **Parameters**
@@ -999,7 +999,7 @@ Signature: `turnNotesOff([options])`
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
 
-Signature: `turnSoundOff([options])`
+**Signature**: `turnSoundOff([options])`
 
 
   **Parameters**

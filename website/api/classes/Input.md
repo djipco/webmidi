@@ -205,7 +205,7 @@ There are 6 families of events you can listen to:
    * rpndatabuttonincrement
    * rpndatabuttondecrement
 
-Signature: `addListener(event, listener, [options])`
+**Signature**: `addListener(event, listener, [options])`
 
 
   **Parameters**
@@ -314,7 +314,7 @@ There are 6 families of events you can listen to:
    * omnimode
    * resetallcontrollers
 
-Signature: `addOneTimeListener(event, listener, [options])`
+**Signature**: `addOneTimeListener(event, listener, [options])`
 
 
   **Parameters**
@@ -345,7 +345,7 @@ Signature: `addOneTimeListener(event, listener, [options])`
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()](#Input+open).
 
-Signature: `close()`
+**Signature**: `close()`
 
 
 **Returns**: `Promise.&lt;Input&gt;`
@@ -360,7 +360,7 @@ Signature: `close()`
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
-Signature: `destroy()`
+**Signature**: `destroy()`
 
 
 **Returns**: `Promise.&lt;void&gt;`
@@ -374,7 +374,7 @@ Checks if the specified event type is already defined to trigger the listener fu
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
 
-Signature: `hasListener(event, listener, [options])`
+**Signature**: `hasListener(event, listener, [options])`
 
 
   **Parameters**
@@ -402,7 +402,7 @@ listener defined.
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
 
-Signature: `open()`
+**Signature**: `open()`
 
 
 **Returns**: `Promise.&lt;Input&gt;`
@@ -421,7 +421,7 @@ the `Input` as well as all listeners for all `InputChannels` will be removed.
 By default, channel-specific listeners will be removed from all channels unless the
 `options.channel` narrows it down.
 
-Signature: `removeListener([type], [listener], [options])`
+**Signature**: `removeListener([type], [listener], [options])`
 
 
   **Parameters**
