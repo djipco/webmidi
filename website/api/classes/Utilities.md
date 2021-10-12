@@ -35,7 +35,7 @@ If the input is a note number or identifier, it is possible to specify options b
     |[**`options.octaveOffset`**] |number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 
-  **Returns: ** Note<br />
+  **Returns: ** `Note`<br />
 **Since**: version 3.0.0<br />
 **Attributes**: static
 
@@ -68,7 +68,7 @@ input.
     |[**`options.octaveOffset`**] |number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 
-  **Returns: ** Array.&lt;Note&gt;<br />
+  **Returns: ** `Array.&lt;Note&gt;`<br />
 **Since**: 3.0.0<br />
 **Attributes**: static
 
@@ -94,7 +94,7 @@ When a number is specified, the translation to note is done using a value of 60 
     |**`value`** |string||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127).|
 
 
-  **Returns: ** Object<br />
+  **Returns: ** `Object`<br />
 **Since**: 3.0.0<br />
 **Attributes**: static
 
@@ -117,7 +117,7 @@ supplied.
     |**`value`** |*|||
 
 
-  **Returns: ** string - The name of the matching property<br />
+  **Returns: ** `string` - The name of the matching property<br />
 **Attributes**: static
 
 
@@ -142,7 +142,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
     |**`input`** |string||A string or number to extract the MIDI note number from.|
 
 
-  **Returns: ** number - A valid MIDI note number (0-127) or `false` if the input could not
+  **Returns: ** `number` - A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.<br />
 **Since**: 3.0.0<br />
 **Attributes**: static
@@ -164,7 +164,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
     |**`offset`** ||||
 
 
-  **Returns: ** number - An integer between 0 and 127<br />
+  **Returns: ** `number` - An integer between 0 and 127<br />
 **Attributes**: static
 
 **Throws**:
@@ -189,7 +189,7 @@ integers between 1 and 16 are silently ignored.
     |[**`channel`**] |number||An integer or an array of integers to parse as channel numbers.|
 
 
-  **Returns: ** Array - An array of 0 or more valid MIDI channel numbers.<br />
+  **Returns: ** `Array` - An array of 0 or more valid MIDI channel numbers.<br />
 **Since**: 3.0.0<br />
 **Attributes**: static
 
@@ -213,7 +213,7 @@ the input value cannot be converted to a number, the method returns 0.
     |**`value`** |||A positive integer between 0 and 127 (inclusive)|
 
 
-  **Returns: ** number - A number between 0 and 1 (inclusive)<br />
+  **Returns: ** `number` - A number between 0 and 1 (inclusive)<br />
 **Attributes**: static
 
 
@@ -236,7 +236,7 @@ input value cannot be converted to an integer, the method returns 0.
     |**`value`** |||A positive integer between 0 and 127 (inclusive)|
 
 
-  **Returns: ** number - A number between 0 and 1 (inclusive)<br />
+  **Returns: ** `number` - A number between 0 and 1 (inclusive)<br />
 **Attributes**: static
 
 
@@ -256,7 +256,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
     |**`octaveOffset`** |number||An offset to apply to the resulting octave|
 
 
-  **Returns: ** string<br />
+  **Returns: ** `string`<br />
 **Since**: 3.0.0<br />
 **Attributes**: static
 
@@ -287,7 +287,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
     |[**`octaveOffset`**] |number|0|A integer to offset the octave by.|
 
 
-  **Returns: ** number - The MIDI note number (an integer between 0 and 127).<br />
+  **Returns: ** `number` - The MIDI note number (an integer between 0 and 127).<br />
 **Since**: 3.0.0<br />
 **Attributes**: static
 
@@ -313,7 +313,7 @@ returned.
     |[**`time`**] |number||The time string (e.g. `"+2000"`) or number to parse|
 
 
-  **Returns: ** number - A positive number or `false` (if the time cannot be converted)<br />
+  **Returns: ** `number` - A positive number or `false` (if the time cannot be converted)<br />
 **Since**: 3.0.0<br />
 **Attributes**: static
 

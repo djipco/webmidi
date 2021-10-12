@@ -221,7 +221,7 @@ There are 6 families of events you can listen to:
     |[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
 
 
-  **Returns: ** Array.&lt;Listener&gt; - An array of all `Listener` objects that were created.<br />
+  **Returns: ** `Array.&lt;Listener&gt;` - An array of all `Listener` objects that were created.<br />
 
 **Throws**:
   * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
@@ -325,7 +325,7 @@ There are 6 families of events you can listen to:
     |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
 
 
-  **Returns: ** Array.&lt;Listener&gt; - An array of all `Listener` objects that were created.<br />
+  **Returns: ** `Array.&lt;Listener&gt;` - An array of all `Listener` objects that were created.<br />
 
 **Throws**:
   * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
@@ -336,7 +336,7 @@ Closes the input. When an input is closed, it cannot be used to listen to MIDI m
 the input is opened again by calling [Input.open()](#Input+open).
 
 
-  **Returns: ** Promise.&lt;Input&gt; - The promise is fulfilled with the `Input` object<br />
+  **Returns: ** `Promise.&lt;Input&gt;` - The promise is fulfilled with the `Input` object<br />
 
 
 ### `.destroy()`
@@ -345,7 +345,7 @@ Destroys the `Input` by remove all listeners, emptying the `channels` array and 
 MIDI subsystem.
 
 
-  **Returns: ** Promise.&lt;void&gt;<br />
+  **Returns: ** `Promise.&lt;void&gt;`<br />
 
 
 ### `.hasListener(...)`
@@ -367,7 +367,7 @@ defined.
     |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
 
 
-  **Returns: ** Boolean - Boolean value indicating whether or not the channel(s) already have this
+  **Returns: ** `Boolean` - Boolean value indicating whether or not the channel(s) already have this
 listener defined.<br />
 
 **Throws**:
@@ -379,7 +379,7 @@ Opens the input for usage. This is usually unnecessary as the port is open autom
 WebMidi is enabled.
 
 
-  **Returns: ** Promise.&lt;Input&gt; - The promise is fulfilled with the `Input` object<br />
+  **Returns: ** `Promise.&lt;Input&gt;` - The promise is fulfilled with the `Input` object<br />
 
 
 ### `.removeListener(...)`
