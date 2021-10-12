@@ -318,7 +318,7 @@ kind of IDs as Jazz-Plugin.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [`WebMidi.outputs`](WebMidi.outputs) array.|
+    |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [`WebMidi.outputs`](WebMidi#outputs) array.|
 
 
 **Returns**: `Output` or `false`
