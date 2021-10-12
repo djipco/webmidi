@@ -117,7 +117,7 @@ In this case, the method returns `false`.
 
 
 **Returns**: `string` or `undefined`
-  * The matching control change name or `undefined` if not match was
+> The matching control change name or `undefined` if not match was
 found.
 
 
@@ -142,7 +142,7 @@ returns `false`.
 
 
 **Returns**: `string` or `false`
-  * The name of the matching channel mode or `false` if not match could be
+> The name of the matching channel mode or `false` if not match could be
 found.
 
 
