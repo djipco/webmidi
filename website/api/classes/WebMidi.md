@@ -168,6 +168,8 @@ Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and
 added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself are also
 destroyed.
 
+Signature: `disable()`
+
 
 **Returns**: `Promise.&lt;void&gt;`
 
@@ -221,10 +223,10 @@ WebMidi.enable().then(ports => {
 })
 ```
 
+Signature: `enable([options])`
+
 
   **Parameters**
-
-  > `enable([options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -254,10 +256,10 @@ matching input is found. As per the Web MIDI API specification, IDs are strings 
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
+Signature: `getInputById(id)`
+
 
   **Parameters**
-
-  > `getInputById(id)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -281,10 +283,10 @@ Returns the first [Input](Input) object whose name **contains** the specified st
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
+Signature: `getInputByName(name)`
+
 
   **Parameters**
-
-  > `getInputByName(name)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -311,10 +313,10 @@ integers).
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
 
+Signature: `getOutputById(id)`
+
 
   **Parameters**
-
-  > `getOutputById(id)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -338,10 +340,10 @@ Returns the first [Output](Output) object whose name **contains** the specified 
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
+Signature: `getOutputByName(name)`
+
 
   **Parameters**
-
-  > `getOutputByName(name)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

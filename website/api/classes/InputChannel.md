@@ -97,6 +97,8 @@ all buffered control change messages will be discarded as incomplete.
 Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
 input.
 
+Signature: `destroy()`
+
 
 
 
@@ -111,10 +113,10 @@ change numbers do not have a specific name or purpose assigned in the MIDI
 [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
 In this case, the method returns `false`.
 
+Signature: `getCcNameByNumber(number)`
+
 
   **Parameters**
-
-  > `getCcNameByNumber(number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -137,10 +139,10 @@ found.
 Returns the channel mode name matching the specified number. If no match is found, the function
 returns `false`.
 
+Signature: `getChannelModeByNumber(number)`
+
 
   **Parameters**
-
-  > `getChannelModeByNumber(number)`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |

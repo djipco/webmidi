@@ -205,10 +205,10 @@ There are 6 families of events you can listen to:
    * rpndatabuttonincrement
    * rpndatabuttondecrement
 
+Signature: `addListener(event, listener, [options])`
+
 
   **Parameters**
-
-  > `addListener(event, listener, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -314,10 +314,10 @@ There are 6 families of events you can listen to:
    * omnimode
    * resetallcontrollers
 
+Signature: `addOneTimeListener(event, listener, [options])`
+
 
   **Parameters**
-
-  > `addOneTimeListener(event, listener, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -345,6 +345,8 @@ There are 6 families of events you can listen to:
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()](#Input+open).
 
+Signature: `close()`
+
 
 **Returns**: `Promise.&lt;Input&gt;`
 > The promise is fulfilled with the `Input` object
@@ -358,6 +360,8 @@ the input is opened again by calling [Input.open()](#Input+open).
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
+Signature: `destroy()`
+
 
 **Returns**: `Promise.&lt;void&gt;`
 
@@ -370,10 +374,10 @@ Checks if the specified event type is already defined to trigger the listener fu
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
 
+Signature: `hasListener(event, listener, [options])`
+
 
   **Parameters**
-
-  > `hasListener(event, listener, [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
@@ -398,6 +402,8 @@ listener defined.
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.
 
+Signature: `open()`
+
 
 **Returns**: `Promise.&lt;Input&gt;`
 > The promise is fulfilled with the `Input` object
@@ -415,10 +421,10 @@ the `Input` as well as all listeners for all `InputChannels` will be removed.
 By default, channel-specific listeners will be removed from all channels unless the
 `options.channel` narrows it down.
 
+Signature: `removeListener([type], [listener], [options])`
+
 
   **Parameters**
-
-  > `removeListener([type], [listener], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
