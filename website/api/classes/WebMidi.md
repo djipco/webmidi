@@ -403,7 +403,7 @@ Event emitted once `WebMidi` has been successfully disabled.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
-  |**`type`** |string|`disabled`|
+  |**`type`** |string|`"disabled"`|
 
 
 ### `"disconnected"`<a id="event:disconnected"></a>
@@ -441,7 +441,7 @@ Event emitted once `WebMidi` has been fully enabled
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
-  |**`type`** |string|`enabled`|
+  |**`type`** |string|`"enabled"`|
 
 
 ### `"error"`<a id="event:error"></a>
