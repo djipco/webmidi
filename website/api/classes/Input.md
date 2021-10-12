@@ -225,7 +225,7 @@ There are 6 families of events you can listen to:
 
 
 **Throws**:
-  * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * `Error` : For channel-specific events, 'options.channels' must be defined.
 
 ### `.addOneTimeListener(...)`
 
@@ -330,7 +330,7 @@ There are 6 families of events you can listen to:
 
 
 **Throws**:
-  * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * `Error` : For channel-specific events, 'options.channels' must be defined.
 
 ### `.close()`
 
@@ -375,7 +375,7 @@ listener defined.
 
 
 **Throws**:
-  * Error For channel-specific events, &#x27;options.channels&#x27; must be defined.
+  * Error For channel-specific events, 'options.channels' must be defined.
 
 ### `.open()`
 

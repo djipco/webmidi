@@ -743,9 +743,9 @@ system exclusive messages to 64Kb or less.
 
 
 **Throws**:
-  * `DOMException` : Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: System exclusive message is
+  * `DOMException` : Failed to execute 'send' on 'MIDIOutput': System exclusive message is
 not allowed.
-  * `TypeError` : Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index x is greater
+  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index x is greater
 than 0xFF.
 
 ### `.sendTimecodeQuarterFrame(...)`
@@ -1119,7 +1119,7 @@ that use a numbering scheme starting at 1.
 **Since**: 3.0.0<br />
 
 **Throws**:
-  * `TypeError` : Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
+  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
 than 0xFF.
 
 ### `.setRegisteredParameter(...)`

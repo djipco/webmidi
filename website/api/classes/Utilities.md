@@ -306,7 +306,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 **Attributes**: static
 
 **Throws**:
-  * RangeError Invalid &#x27;octaveOffset&#x27; value
+  * RangeError Invalid 'octaveOffset' value
   * TypeError Invalid note identifier
 
 ### `.toTimestamp(...)`
