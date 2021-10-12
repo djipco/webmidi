@@ -132,9 +132,9 @@ property will be `true` even though actual support might not be there.
 
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
-enabled via the `enable()` method.
+enabled via the [`enable()`](#enable) method.
 
-**Type**: Boolean<br />
+**Type**: boolean<br />
 **Attributes**: read-only<br />
 
 
