@@ -197,7 +197,7 @@ be displayed to the user.
 To enable the use of MIDI system exclusive messages, the `sysex` option should be set to
 `true`. However, under some environments (e.g. Jazz-Plugin), the `sysex` option is ignored
 and system exclusive messages are always enabled. You can check the
-[`sysexEnabled`]{#sysexEnabled} property to confirm.
+[`sysexEnabled`](#sysexEnabled) property to confirm.
 
 To enable access to software synthesizers available on the host, you would set the `software`
 option to `true`. However, this option is only there to future-proof the library as support for
