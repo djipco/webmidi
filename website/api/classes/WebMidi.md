@@ -288,7 +288,7 @@ input names in the same way as the Jazz-Plugin does.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
+    |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs](WebMidi#inputs) array).|
 
 
 **Returns**: `Input` or `false`
@@ -318,7 +318,7 @@ kind of IDs as Jazz-Plugin.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
+    |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs](WebMidi#outputs) array.|
 
 
 **Returns**: `Output` or `false`
@@ -345,7 +345,7 @@ input names in the same way as the Jazz-Plugin does.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
+    |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs](WebMidi#outputs) array).|
 
 
 **Returns**: `Output` or `false`
