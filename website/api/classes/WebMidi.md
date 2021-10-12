@@ -177,9 +177,9 @@ validation turned on.
 **Attributes**: async
 
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
-[Input](Input) and [Output](Output) objects that may be available. This also means that listeners
-added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself are also
-destroyed.
+[`Input`](Input) and [`Output`](Output) objects that may be available. This also means that
+listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `WebMidi` itself
+are also destroyed.
 
 
 **Returns**: `Promise.<void>`
@@ -289,8 +289,8 @@ if no matching input can be found.
 
 **Since**: 2.0.0<br />
 
-Returns the first [Input](Input) object whose name **contains** the specified string. Note that
-the port names change from one environment to another. For example, Chrome does not report
+Returns the first [`Input`](Input) object whose name **contains** the specified string. Note
+that the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
 
@@ -304,7 +304,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 **Returns**: `Input` or `false`
-> The [Input](Input) that was found or `false` if no input contained the
+> The [`Input`](Input) that was found or `false` if no input contained the
 specified name.
 
 
@@ -346,8 +346,8 @@ matching output can be found, the method returns `false`.
 
 **Since**: 2.0.0<br />
 
-Returns the first [Output](Output) object whose name **contains** the specified string. Note that
-the port names change from one environment to another. For example, Chrome does not report
+Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
+that the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
 
 
@@ -361,8 +361,8 @@ input names in the same way as the Jazz-Plugin does.
 
 
 **Returns**: `Output` or `false`
-> The [Output](Output) that was found or `false` if no output matched the
-specified name.
+> The [`Output`](Output) that was found or `false` if no output matched
+the specified name.
 
 
 **Throws**:
@@ -375,7 +375,7 @@ specified name.
 
 ### `"connected"`<a id="event:connected"></a>
 
-Event emitted when an [Input](Input) or [Output](Output) becomes available. This event is
+Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
@@ -387,7 +387,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`connected`|
-  |**`target`** |Input|The {@link Input} or {@link Output} object that triggered the event.|
+  |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 ### `"disabled"`<a id="event:disabled"></a>
@@ -407,8 +407,8 @@ Event emitted once `WebMidi` has been successfully disabled.
 
 ### `"disconnected"`<a id="event:disconnected"></a>
 
-Event emitted when an [Input](Input) or [Output](Output) becomes unavailable. This event is
-typically fired whenever a MIDI device is unplugged. Please note that it may fire several
+Event emitted when an [`Input`](Input) or [`Output`](Output) becomes unavailable. This event
+is typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 times if a device possesses multiple inputs and/or outputs (which is often the case).
 
 
@@ -419,7 +419,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`disconnected`|
-  |**`target`** |Object|Object with properties describing the {@link Input} or {@Output} that triggered the event.|
+  |**`target`** |Object|Object with properties describing the [`Input`](Input) or [`Output`](Output) that triggered the event.|
   |**`target.connection`** |string|`"closed"`|
   |**`target.id`** |string|ID of the input|
   |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
