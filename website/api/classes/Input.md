@@ -204,6 +204,7 @@ There are 6 families of events you can listen to:
    * rpndatabuttondecrement
 
 
+
   **Parameters**
 
   > `addListener(event, listener, [options])`
@@ -311,6 +312,7 @@ There are 6 families of events you can listen to:
    * resetallcontrollers
 
 
+
   **Parameters**
 
   > `addOneTimeListener(event, listener, [options])`
@@ -340,6 +342,7 @@ Closes the input. When an input is closed, it cannot be used to listen to MIDI m
 the input is opened again by calling [Input.open()](#Input+open).
 
 
+
 **Returns**: `Promise.&lt;Input&gt;`
 > The promise is fulfilled with the `Input` object
 
@@ -351,6 +354,7 @@ Destroys the `Input` by remove all listeners, emptying the `channels` array and 
 MIDI subsystem.
 
 
+
 **Returns**: `Promise.&lt;void&gt;`
 
 
@@ -359,6 +363,7 @@ MIDI subsystem.
 Checks if the specified event type is already defined to trigger the listener function. For
 channel-specific events, the function will return `true` only if all channels have the listener
 defined.
+
 
 
   **Parameters**
@@ -387,6 +392,7 @@ Opens the input for usage. This is usually unnecessary as the port is open autom
 WebMidi is enabled.
 
 
+
 **Returns**: `Promise.&lt;Input&gt;`
 > The promise is fulfilled with the `Input` object
 
@@ -400,6 +406,7 @@ the `Input` as well as all listeners for all `InputChannels` will be removed.
 
 By default, channel-specific listeners will be removed from all channels unless the
 `options.channel` narrows it down.
+
 
 
   **Parameters**

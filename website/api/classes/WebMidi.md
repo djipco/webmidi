@@ -166,9 +166,10 @@ added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself
 destroyed.
 
 
-**Returns**: `Promise.&lt;void&gt;`
+  **Since**: 2.0.0<br />
 
-**Since**: 2.0.0<br />
+
+**Returns**: `Promise.&lt;void&gt;`
 
 **Throws**:
   * `Error` : The Web MIDI API is not supported by your environment.
@@ -219,6 +220,7 @@ WebMidi.enable().then(ports => {
 ```
 
 
+
   **Parameters**
 
   > `enable([options])`
@@ -249,6 +251,9 @@ Please note that IDs change from one host to another. For example, Chrome does n
 kind of IDs as Jazz-Plugin.
 
 
+  **Since**: 2.0.0<br />
+
+
   **Parameters**
 
   > `getInputById(id)`
@@ -263,8 +268,6 @@ kind of IDs as Jazz-Plugin.
 if no matching input can be found.
 
 
-**Since**: 2.0.0<br />
-
 **Throws**:
   * `Error` : WebMidi is not enabled.
 
@@ -273,6 +276,9 @@ if no matching input can be found.
 Returns the first [Input](Input) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
+
+
+  **Since**: 2.0.0<br />
 
 
   **Parameters**
@@ -289,8 +295,6 @@ input names in the same way as the Jazz-Plugin does.
 specified name.
 
 
-**Since**: 2.0.0<br />
-
 **Throws**:
   * `Error` : WebMidi is not enabled.
 
@@ -302,6 +306,9 @@ integers).
 
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
+
+
+  **Since**: 2.0.0<br />
 
 
   **Parameters**
@@ -318,8 +325,6 @@ kind of IDs as Jazz-Plugin.
 matching output can be found, the method returns `false`.
 
 
-**Since**: 2.0.0<br />
-
 **Throws**:
   * `Error` : WebMidi is not enabled.
 
@@ -328,6 +333,9 @@ matching output can be found, the method returns `false`.
 Returns the first [Output](Output) object whose name **contains** the specified string. Note that
 the port names change from one environment to another. For example, Chrome does not report
 input names in the same way as the Jazz-Plugin does.
+
+
+  **Since**: 2.0.0<br />
 
 
   **Parameters**
@@ -343,8 +351,6 @@ input names in the same way as the Jazz-Plugin does.
 > The [Output](Output) that was found or `false` if no output matched the
 specified name.
 
-
-**Since**: 2.0.0<br />
 
 **Throws**:
   * `Error` : WebMidi is not enabled.

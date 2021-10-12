@@ -146,6 +146,7 @@ than 0, 0 will be returned. If the calculated value is more than 127, 127 will b
 an invalid value is supplied, 0 will be used.
 
 
+
   **Parameters**
 
   > `getOffsetNumber([octaveOffset], [semitoneOffset])`

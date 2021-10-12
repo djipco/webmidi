@@ -21,6 +21,9 @@ If the input is a note number or identifier, it is possible to specify options b
 `options` parameter.
 
 
+  **Since**: version 3.0.0<br />
+
+
   **Parameters**
 
   > `buildNote([input], [options])`
@@ -37,7 +40,6 @@ If the input is a note number or identifier, it is possible to specify options b
 
 **Returns**: `Note`
 
-**Since**: version 3.0.0<br />
 **Attributes**: static
 
 **Throws**:
@@ -51,6 +53,9 @@ Converts an input value, which can be an unsigned integer (0-127), a note identi
 [Note](Note) objects are returned as is. For note numbers and identifiers, a [Note](Note)
 object is created with the options specified. An error will be thrown when encountering invalid
 input.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -71,7 +76,6 @@ input.
 
 **Returns**: `Array.&lt;Note&gt;`
 
-**Since**: 3.0.0<br />
 **Attributes**: static
 
 **Throws**:
@@ -87,6 +91,9 @@ When a number is specified, the translation to note is done using a value of 60 
 (C4 = middle C).
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `getNoteDetails(value)`
@@ -98,7 +105,6 @@ When a number is specified, the translation to note is done using a value of 60 
 
 **Returns**: `Object`
 
-**Since**: 3.0.0<br />
 **Attributes**: static
 
 **Throws**:
@@ -108,6 +114,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 Returns the name of the first property of the supplied object whose value is equal to the one
 supplied.
+
 
 
   **Parameters**
@@ -122,6 +129,7 @@ supplied.
 
 **Returns**: `string`
 > The name of the matching property
+
 
 **Attributes**: static
 
@@ -138,6 +146,9 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 -2, the resulting MIDI note number will be 36.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `guessNoteNumber(input)`
@@ -152,7 +163,6 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 successfully be parsed to a note number.
 
 
-**Since**: 3.0.0<br />
 **Attributes**: static
 
 
@@ -161,6 +171,7 @@ successfully be parsed to a note number.
 Returns the supplied MIDI note number offset by the requested octave and semitone values. If
 the calculated value is less than 0, 0 will be returned. If the calculated value is more than
 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+
 
 
   **Parameters**
@@ -174,6 +185,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 **Returns**: `number`
 > An integer between 0 and 127
+
 
 **Attributes**: static
 
@@ -190,6 +202,9 @@ channels being returned (1-16). Otherwise, parameters that cannot successfully b
 integers between 1 and 16 are silently ignored.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `sanitizeChannels([channel])`
@@ -203,7 +218,6 @@ integers between 1 and 16 are silently ignored.
 > An array of 0 or more valid MIDI channel numbers.
 
 
-**Since**: 3.0.0<br />
 **Attributes**: static
 
 
@@ -215,6 +229,7 @@ restricted between 0 and 127 even if the input is greater than 1 or smaller than
 
 Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
 the input value cannot be converted to a number, the method returns 0.
+
 
 
   **Parameters**
@@ -229,6 +244,7 @@ the input value cannot be converted to a number, the method returns 0.
 **Returns**: `number`
 > A number between 0 and 1 (inclusive)
 
+
 **Attributes**: static
 
 
@@ -240,6 +256,7 @@ smaller than 0.
 
 Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
 input value cannot be converted to an integer, the method returns 0.
+
 
 
   **Parameters**
@@ -254,6 +271,7 @@ input value cannot be converted to an integer, the method returns 0.
 **Returns**: `number`
 > A number between 0 and 1 (inclusive)
 
+
 **Attributes**: static
 
 
@@ -261,6 +279,9 @@ input value cannot be converted to an integer, the method returns 0.
 
 Returns an identifier string representing a note name (with optional accidental) followed by an
 octave number. The octave can be offset by using the `octaveOffset` parameter.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -275,7 +296,6 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 **Returns**: `string`
 
-**Since**: 3.0.0<br />
 **Attributes**: static
 
 **Throws**:
@@ -295,6 +315,9 @@ When converting note identifiers to numbers, C4 is considered to be middle C (MI
 The resulting note number can be offset by using the `octaveOffset` parameter.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `toNoteNumber(identifier, [octaveOffset])`
@@ -309,7 +332,6 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 > The MIDI note number (an integer between 0 and 127).
 
 
-**Since**: 3.0.0<br />
 **Attributes**: static
 
 **Throws**:
@@ -325,6 +347,9 @@ the parameter is a positive number, it will be returned as is. Otherwise, false 
 returned.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `toTimestamp([time])`
@@ -338,7 +363,6 @@ returned.
 > A positive number or `false` (if the time cannot be converted)
 
 
-**Since**: 3.0.0<br />
 **Attributes**: static
 
 

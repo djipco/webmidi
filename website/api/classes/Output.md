@@ -115,6 +115,7 @@ You can check out the current status of this feature for Chromium (Chrome) here:
 https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 
+
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
 
@@ -125,6 +126,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
 until the output is opened again by calling [Output.open()](#Output+open). You can check
 the connection status by looking at the [connection](Output#connection) property.
+
 
 
 **Returns**: `Promise.&lt;void&gt;`
@@ -152,6 +154,7 @@ names that can be used with this method:
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
 
+
   **Parameters**
 
   > `decrementRegisteredParameter(parameter, [options])`
@@ -175,6 +178,7 @@ names that can be used with this method:
 
 Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
 subsystem is unlinked.
+
 
 
 **Returns**: `Promise.&lt;void&gt;`
@@ -202,6 +206,7 @@ names that can be used with this method:
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
 
+
   **Parameters**
 
   > `incrementRegisteredParameter(parameter, [options])`
@@ -222,6 +227,7 @@ names that can be used with this method:
 ### `.open()`
 
 Opens the output for usage.
+
 
 
 **Returns**: `Promise.&lt;Output&gt;`
@@ -256,6 +262,7 @@ objects have precedence over the ones specified via the method's `options` param
 functionally equivalent to a **note off** message.
 
 
+
   **Parameters**
 
   > `playNote(note, [options])`
@@ -281,6 +288,7 @@ functionally equivalent to a **note off** message.
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
 the pitch bend, to their default value.
+
 
 
   **Parameters**
@@ -312,6 +320,7 @@ Details on the format of MIDI messages are available in the summary of
 from the MIDI Manufacturers Association.
 
 
+
   **Parameters**
 
   > `send(message, [options])`
@@ -335,6 +344,7 @@ from the MIDI Manufacturers Association.
 Sends an **active sensing** real-time message. This tells the device connected to this port
 that the connection is still good. Active sensing messages should be sent every 300 ms if there
 was no other activity on the MIDI port.
+
 
 
   **Parameters**
@@ -380,6 +390,7 @@ To make it easier, all channel mode messages have a matching helper method:
   - [setPolyphonicMode()](OutputChannel#setPolyphonicMode)
 
 
+
   **Parameters**
 
   > `sendChannelMode(command, [value], [options])`
@@ -408,6 +419,7 @@ Sends a MIDI **clock* real-time message. According to the standard, there are 24
 for every quarter note.
 
 
+
   **Parameters**
 
   > `sendClock([options])`
@@ -428,6 +440,7 @@ for every quarter note.
 Sends a **continue** real-time message. This resumes song playback where it was previously
 stopped or where it was last cued with a song position message. To start playback from the
 start, use the [sendStart()](#Output+sendStart)` method.
+
 
 
   **Parameters**
@@ -532,6 +545,7 @@ https://www.midi.org/specifications/item/table-3-control-change-messages-data-by
 specification.
 
 
+
   **Parameters**
 
   > `sendControlChange(controller, [value], [options])`
@@ -567,6 +581,7 @@ parameter is the note. It can be a single value or an array of the following val
 
 When using [Note](Note) objects, the release velocity defined in the [Note](Note) objects has
 precedence over the one specified via the method's `options` parameter.
+
 
 
   **Parameters**
@@ -609,6 +624,7 @@ ignored. If you want to also send a **note off** message, use the
 functionally equivalent to a **note off** message.
 
 
+
   **Parameters**
 
   > `sendNoteOn(note, [options])`
@@ -634,6 +650,7 @@ Sends a **reset** real-time message. This tells the device connected to this out
 should reset itself to a default state.
 
 
+
   **Parameters**
 
   > `sendReset([options])`
@@ -656,6 +673,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 [sendContinue()](#Output+sendContinue) method.
 
 
+
   **Parameters**
 
   > `sendStart([options])`
@@ -675,6 +693,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 Sends a **stop** real-time message. This tells the device connected to this output to stop
 playback immediately (or at the scheduled time).
+
 
 
   **Parameters**
@@ -743,6 +762,7 @@ There is no limit for the length of the data array. However, it is generally sug
 system exclusive messages to 64Kb or less.
 
 
+
   **Parameters**
 
   > `sendSysex(manufacturer, [data], [options])`
@@ -772,6 +792,7 @@ on the data. It is up to the developer to format the data according to the
 [MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
 
 
+
   **Parameters**
 
   > `sendTimecodeQuarterFrame(value, [options])`
@@ -793,6 +814,9 @@ on the data. It is up to the developer to format the data according to the
 Sends a MIDI **tune request** real-time message.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `sendTuneRequest([options])`
@@ -807,13 +831,14 @@ Sends a MIDI **tune request** real-time message.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 
 ### `.setChannelAftertouch(...)`
 
 Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
 aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch).
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -833,14 +858,15 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 
 ### `.setKeyAftertouch(...)`
 
 Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
 is a key-specific aftertouch. For a channel-wide aftertouch message, use
 [setChannelAftertouch()](#Output+setChannelAftertouch).
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -861,14 +887,15 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 
 ### `.setLocalControl(...)`
 
 Turns local control on or off. Local control is usually enabled by default. If you disable it,
 the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
 its out port.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -887,8 +914,6 @@ its out port.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 
 ### `.setMasterTuning(...)`
 
@@ -899,6 +924,9 @@ Because of the way the MIDI specification works, the decimal portion of the valu
 encoded with a resolution of 14bit. The integer portion must be between -64 and 63
 inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
 a **Master Fine Tuning** RPN messages.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -917,8 +945,6 @@ a **Master Fine Tuning** RPN messages.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 **Throws**:
   * `RangeError` : The value must be a decimal number between larger than -65 and smaller
 than 64.
@@ -928,6 +954,9 @@ than 64.
 Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
 depth of their modulation wheel's range. The range can be specified with the `semitones`
 parameter, the `cents` parameter or by specifying both parameters at the same time.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -946,8 +975,6 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
 
-
-**Since**: 3.0.0<br />
 
 **Throws**:
   * `RangeError` : The msb value must be between 0 and 127
@@ -987,6 +1014,7 @@ WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
 For further implementation details, refer to the manufacturer"s documentation.
 
 
+
   **Parameters**
 
   > `setNonRegisteredParameter(parameter, [data], [options])`
@@ -1016,6 +1044,9 @@ instrument to respond to messages from all channels.
 It should be noted that support for OMNI mode is not as common as it used to be.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `setOmniMode([state], [options])`
@@ -1032,8 +1063,6 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 **Throws**:
   * `TypeError` : Invalid channel mode message name.
   * `RangeError` : Channel mode controller numbers must be between 120 and 127.
@@ -1042,6 +1071,9 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 ### `.setPitchBend(...)`
 
 Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1061,8 +1093,6 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 
 ### `.setPitchBendRange(...)`
 
@@ -1070,6 +1100,9 @@ Sends a pitch bend range message to the specified channel(s) at the scheduled ti
 adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1089,8 +1122,6 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 **Throws**:
   * `RangeError` : The msb value must be between 0 and 127.
   * `RangeError` : The lsb value must be between 0 and 127.
@@ -1100,6 +1131,9 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
 and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
 multiple notes are being played.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1118,8 +1152,6 @@ multiple notes are being played.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 
 ### `.setProgram(...)`
 
@@ -1128,6 +1160,9 @@ Sends a MIDI **program change** message to the specified channel(s) at the sched
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1145,8 +1180,6 @@ that use a numbering scheme starting at 1.
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
 
-
-**Since**: 3.0.0<br />
 
 **Throws**:
   * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
@@ -1187,6 +1220,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
  * Roll Angle (0x3D, 0x08): `"rollangle"`
 
 
+
   **Parameters**
 
   > `setRegisteredParameter(parameter, [data], [options])`
@@ -1214,6 +1248,9 @@ and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with mo
 use a numbering scheme starting at 1.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `setSong(value, [options])`
@@ -1229,8 +1266,6 @@ use a numbering scheme starting at 1.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 **Throws**:
   * The song number must be between 1 and 128.
 
@@ -1238,6 +1273,9 @@ use a numbering scheme starting at 1.
 
 Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
 16383) which are 16th note. Position 0 is always the start of the song.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1255,8 +1293,6 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 
 ### `.setTuningBank(...)`
 
@@ -1266,6 +1302,9 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 **Note**: since version 3.0, the bank number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1284,8 +1323,6 @@ that use a numbering scheme starting at 1.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 **Throws**:
   * `RangeError` : The bank value must be between 1 and 128.
 
@@ -1297,6 +1334,9 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
 that use a numbering scheme starting at 1.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1315,14 +1355,13 @@ that use a numbering scheme starting at 1.
 > Returns the `Output` object so methods can be chained.
 
 
-**Since**: 3.0.0<br />
-
 **Throws**:
   * `RangeError` : The program value must be between 1 and 128.
 
 ### `.stopNote(...)`
 
 This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
+
 
 
   **Parameters**
@@ -1345,6 +1384,9 @@ fade out just as if their key had been released. This is different from the
 [turnSoundOff()](#Output+turnSoundOff) method which mutes all sounds immediately.
 
 
+  **Since**: 3.0.0<br />
+
+
   **Parameters**
 
   > `turnNotesOff([options])`
@@ -1358,13 +1400,14 @@ fade out just as if their key had been released. This is different from the
 
 **Returns**: `Output`
 
-**Since**: 3.0.0<br />
-
 
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
 channel but will not prevent new sounds from being triggered.
+
+
+  **Since**: 3.0.0<br />
 
 
   **Parameters**
@@ -1379,8 +1422,6 @@ channel but will not prevent new sounds from being triggered.
 
 
 **Returns**: `Output`
-
-**Since**: 3.0.0<br />
 
 
 
