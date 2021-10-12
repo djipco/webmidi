@@ -69,8 +69,8 @@ unless you know what you are doing.
 
 
 Indicates whether the current environment is a browser environment or not. If you need to check
-if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
-and isBrowser can both be true at the same time.
+if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
+NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
 
 **Type**: boolean<br />
 
