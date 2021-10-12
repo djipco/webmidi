@@ -156,7 +156,13 @@ an invalid value is supplied, 0 will be used.
     |[**`semitoneOffset`**] |number|0|An integer to offset the note number by semitone.|
 
 
-  **Returns: ** `number` : An integer between 0 and 127<br />
+
+
+**Returns**: number - An integer between 0 and 127
+
+
+
+  **Returns: ** number - An integer between 0 and 127<br />
 
 
 
