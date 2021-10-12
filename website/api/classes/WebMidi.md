@@ -214,9 +214,9 @@ There are 3 ways to execute code after `WebMidi` has been enabled:
 
 In order, this is what happens towards the end of the enabling process:
 
-1. `"midiaccessgranted"` event is triggered
-2. `"connected"` events are triggered (for each available input and output)
-3. `"enabled"` event is triggered when WebMidi.js is ready
+1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered
+2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
+3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is ready
 4. specified callback (if any) is executed
 5. promise is resolved and fulfilled with the `WebMidi` object.
 
