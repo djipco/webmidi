@@ -168,7 +168,7 @@ destroyed.
 
 
 
-  **Returns**: * `Promise.&lt;void&gt;`
+**Returns**: * `Promise.&lt;void&gt;`
 
 **Since**: 2.0.0<br />
 
@@ -236,7 +236,7 @@ WebMidi.enable().then(ports => {
 
 
 
-  **Returns**: * `Promise.&lt;Object&gt;`<br />The promise is fulfilled with the `WebMidi` object
+**Returns**: * `Promise.&lt;Object&gt;`<br />The promise is fulfilled with the `WebMidi` object
 
 **Throws**:
   * `Error` : The Web MIDI API is not supported in your environment.
@@ -262,7 +262,7 @@ kind of IDs as Jazz-Plugin.
 
 
 
-  **Returns**: * `Input` or * `false`<br />An [Input](Input) object matching the specified ID string. If no matching
+**Returns**: * `Input` or * `false`<br />An [Input](Input) object matching the specified ID string. If no matching
 input can be found, the method returns `false`.
 
 **Since**: 2.0.0<br />
@@ -288,7 +288,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 
-  **Returns**: * `Input` or * `false`<br />The [Input](Input) that was found or `false` if no input contained the
+**Returns**: * `Input` or * `false`<br />The [Input](Input) that was found or `false` if no input contained the
 specified name.
 
 **Since**: 2.0.0<br />
@@ -317,7 +317,7 @@ kind of IDs as Jazz-Plugin.
 
 
 
-  **Returns**: * `Output` or * `false`<br />An [Output](Output) object matching the specified ID string. If no
+**Returns**: * `Output` or * `false`<br />An [Output](Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.
 
 **Since**: 2.0.0<br />
@@ -343,7 +343,7 @@ input names in the same way as the Jazz-Plugin does.
 
 
 
-  **Returns**: * `Output` or * `false`<br />The [Output](Output) that was found or `false` if no output matched the
+**Returns**: * `Output` or * `false`<br />The [Output](Output) that was found or `false` if no output matched the
 specified name.
 
 **Since**: 2.0.0<br />

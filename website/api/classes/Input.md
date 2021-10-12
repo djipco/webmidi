@@ -223,7 +223,7 @@ There are 6 families of events you can listen to:
 
 
 
-  **Returns**: * `Array.&lt;Listener&gt;`<br />An array of all `Listener` objects that were created.
+**Returns**: * `Array.&lt;Listener&gt;`<br />An array of all `Listener` objects that were created.
 
 **Throws**:
   * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
@@ -329,7 +329,7 @@ There are 6 families of events you can listen to:
 
 
 
-  **Returns**: * `Array.&lt;Listener&gt;`<br />An array of all `Listener` objects that were created.
+**Returns**: * `Array.&lt;Listener&gt;`<br />An array of all `Listener` objects that were created.
 
 **Throws**:
   * `Error` : For channel-specific events, &#x27;options.channels&#x27; must be defined.
@@ -342,7 +342,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 
 
-  **Returns**: * `Promise.&lt;Input&gt;`<br />The promise is fulfilled with the `Input` object
+**Returns**: * `Promise.&lt;Input&gt;`<br />The promise is fulfilled with the `Input` object
 
 
 ### `.destroy()`
@@ -353,7 +353,7 @@ MIDI subsystem.
 
 
 
-  **Returns**: * `Promise.&lt;void&gt;`
+**Returns**: * `Promise.&lt;void&gt;`
 
 
 ### `.hasListener(...)`
@@ -377,7 +377,7 @@ defined.
 
 
 
-  **Returns**: * `Boolean`<br />Boolean value indicating whether or not the channel(s) already have this
+**Returns**: * `Boolean`<br />Boolean value indicating whether or not the channel(s) already have this
 listener defined.
 
 **Throws**:
@@ -391,7 +391,7 @@ WebMidi is enabled.
 
 
 
-  **Returns**: * `Promise.&lt;Input&gt;`<br />The promise is fulfilled with the `Input` object
+**Returns**: * `Promise.&lt;Input&gt;`<br />The promise is fulfilled with the `Input` object
 
 
 ### `.removeListener(...)`
