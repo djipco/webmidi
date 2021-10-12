@@ -387,7 +387,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`connected`|
+  |**`type`** |string|`"connected"`|
   |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
@@ -419,7 +419,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`disconnected`|
+  |**`type`** |string|`"disconnected"`|
   |**`target`** |Object|Object with properties describing the [`Input`](Input) or [`Output`](Output) that triggered the event.|
   |**`target.connection`** |string|`"closed"`|
   |**`target.id`** |string|ID of the input|
