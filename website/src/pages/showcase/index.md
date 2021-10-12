@@ -14,6 +14,7 @@ page on GitHub and submit a pull request.
 ---
 
 ## [Sema](https://sema.codes/)
+Category: Machine learning - Live coding                       <br>
 Created by: **Francisco Bernardo, Chris Kiefer & Thor Magnusson**
 
 Sema is a playground where you can rapidly prototype live coding mini-languages for signal
@@ -21,6 +22,7 @@ synthesis, machine learning and machine listening.
 
 
 ## [Shared Piano](https://musiclab.chromeexperiments.com/Shared-Piano/)
+Category: Synthesizer simulator   <br> 
 Created by: **Yotam Mann**
 
 Shared Piano is a simple tool for remote music teaching and collaboration that lets you play music 
@@ -28,75 +30,110 @@ together live on the web.
 
 
 ## [NTS1 Web Controller](https://directions4.github.io/nts1-web-controller/)
-Created by: **Satoru 'directions4' Shikita**
+Category: UI controller - Tekt NTS-1<br>
+Created by: **Satoru Shikita**
 
 Web browser interface to control the KORG Nu:Tekt NTS-1.
 
+## [DAWG](https://dawg.dev/)
+Category: Digital Audio Workstation - Synthesizer simulator <br>
+Created by: **<Jacob Smith, Amir Eldesoky, Alex ODonnell & Matt DeSilva>**
+
 
 ## [Seeing Music](https://experiments.withgoogle.com/seeing-music)
+Category: Experience - Learning <br>
 Created by: **Jay Alan Zimmerman**
 
 Google Chrome experiment to experience music visually. This is a tool for visualizing music. You can turn on your mic to sing or play sounds. You can also drop in your own audio or video file.
 
 
 ## [Raaga](https://raaga.riteshkr.com/)
+Category: Synthesizer simulator <br>
 Created by: **Ritesh Kumar, Jack Hsu, Prateek Bhatnagar, Sruthi, Majid Hajian & Rohit Kokate**
 
 An online app to play and learn music on a keyboard.
 
 
+## [MicroFreak Reader](https://studiocode.dev/doc/microfreak-reader/)
+Category: <br>
+Created by: **François Georgy**
+
+An application to read and display the presets stored in the Arturia MicroFreak memory.
+
+## [A.I. Duet](https://experiments.withgoogle.com/ai-duet)
+Category: Experience - Machine Learning - Synthesizer simulator - AI<br>
+Created by: **Yotam Mann**
+
+A piano that responds to you.
+
+
+## [Nonoto](https://github.com/SonyCSLParis/NONOTO)
+Category: AI - Synthesizer simulator<br>
+Created by: **Théis Bazin, Sebastian Haas & Gaetan Hadjeres**
+
+Web interface for interactive music generation and real-time playback
+
+
 ## [FAUST](https://faust.grame.fr/)
-Created by: **?????????????????????????????**
+Category: Programming language<br>
+Created by: **Grame Research Lab**
 
 The online Faust IDE can be used to edit, compile and run Faust code from the Web Browser.
 
 
-## [Midi Bricks](https://midi-bricks.timsusa.vercel.app/)
+## [Midi Bricks](https://midi-bricks.timsusa.vercel.app/) 
 Created by: **?????????????????????????????**
 
 A tool to build custom interfaces for MIDI control.
 
 
 ## [WebAudio Generator](https://webaudio.simmsreeve.com/)
+Category: Code generator<br>
 Created by: **Joe Reeve & Magnus**
 
 A UI to generate WebAudio code.
 
 
 ## [React Audio Tools](http://react-audio-tools.surge.sh/)
-Created by: **?????????????????**
+Category: <br>
+Created by: **ambewas**
 
 A set of React components to build things with the Web Audio and Web MIDI APIs.
 
+## [Inscore](https://inscore.grame.fr/)
+Category: Experience - Music Notation<br>
+Created by: **Dominique Fober, guillaumeg03 & Gabriel Leptit-Aimon**
 
-## [A.I. Duet](https://experiments.withgoogle.com/ai-duet)
-Created by: **Yotam Mann**
+An environment for the design of interactive, augmented, dynamic musical scores.
 
-A piano that responds to you.
+## [Pacer Editor](https://studiocode.dev/pacer-editor/#/)
+Category: <br>
+Created by: **François Georgy**
+
+Web interface for the Nektar Pacer MIDI controller.
 
 
 ## [Learn Push 2 with Svelte](https://github.com/greyivy/learn-push2-with-svelte)
+Category: Learning - Synthesizer simulator<br>
 Created by: **Ivy**
 
 A website to learn chords, scales and music theory on the Push 2.
 
 
 ## [Soundshed App](https://soundshed.com/)
+Category: Amp simulator - Share<br>
 Created by: **Christopher Cook & Lavabyrd**
 
 A Desktop app to browse and manage guitar amp tones. Control your bluetooth amp, jam to video backing tracks.
 
 
 ## [Mideo](https://github.com/jwktje/mideo)
-Created by: **Jan Willem 'jwktje' Kilkman**
+Category: Experience - Video<br>
+Created by: **Jan Willem Kilkman**
 
 A Mac application that turns videos into music.
 
 
-## [MicroFreak Reader](https://studiocode.dev/doc/microfreak-reader/)
-Created by: **François Georgy**
-
-An application to read and display the presets stored in the Arturia MicroFreak memory.
 
 
-**pas trouver library**: [Nonoto](https://github.com/SonyCSLParis/NONOTO), [DAWG](https://dawg.dev/), [Pacer Editor](https://studiocode.dev/pacer-editor/#/), [Inscore](https://inscore.grame.fr/)
+
