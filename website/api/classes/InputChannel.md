@@ -98,8 +98,6 @@ input.
 
 
 
-
-
 ### `.getCcNameByNumber(...)`
 
 Returns the name of a control change message matching the specified number. Some valid control
@@ -117,8 +115,8 @@ In this case, the method returns `false`.
     |**`number`** |number||An integer representing the control change message|
 
 
-
-**Returns: ** string<br />
+  **Returns: ** string - The matching control change name or `undefined` if not match was
+found.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -139,8 +137,8 @@ returns `false`.
     |**`number`** |number||An integer representing the channel mode message.|
 
 
-
-**Returns: ** string<br />
+  **Returns: ** string - The name of the matching channel mode or `false` if not match could be
+found.<br />
 **Since**: 2.0.0<br />
 
 

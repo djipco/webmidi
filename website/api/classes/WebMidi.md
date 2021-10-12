@@ -166,8 +166,7 @@ added to [Input](Input) objects, [Output](Output) objects or to `WebMidi` itself
 destroyed.
 
 
-
-**Returns: ** Promise.&lt;void&gt;<br />
+  **Returns: ** Promise.&lt;void&gt;<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -232,8 +231,7 @@ WebMidi.enable().then(ports => {
     |[**`options.software`**] |boolean|false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
 
 
-
-**Returns: ** Promise.&lt;Object&gt;<br />
+  **Returns: ** Promise.&lt;Object&gt; - The promise is fulfilled with the `WebMidi` object<br />
 
 **Throws**:
   * `Error` : The Web MIDI API is not supported in your environment.
@@ -257,8 +255,8 @@ kind of IDs as Jazz-Plugin.
     |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
 
 
-
-**Returns: ** Input<br />
+  **Returns: ** Input - An [Input](Input) object matching the specified ID string. If no matching
+input can be found, the method returns `false`.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -280,8 +278,8 @@ input names in the same way as the Jazz-Plugin does.
     |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs]{@link WebMidi#inputs} array).|
 
 
-
-**Returns: ** Input<br />
+  **Returns: ** Input - The [Input](Input) that was found or `false` if no input contained the
+specified name.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -306,8 +304,8 @@ kind of IDs as Jazz-Plugin.
     |**`id`** |string||The ID string of the port. IDs can be viewed by looking at the [outputs]{@link WebMidi#outputs} array.|
 
 
-
-**Returns: ** Output<br />
+  **Returns: ** Output - An [Output](Output) object matching the specified ID string. If no
+matching output can be found, the method returns `false`.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -329,8 +327,8 @@ input names in the same way as the Jazz-Plugin does.
     |**`name`** |string||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs]{@link WebMidi#outputs} array).|
 
 
-
-**Returns: ** Output<br />
+  **Returns: ** Output - The [Output](Output) that was found or `false` if no output matched the
+specified name.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
