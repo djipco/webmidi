@@ -19,6 +19,7 @@ module) version, you get an already-instantiated object when you import the modu
 
 ### `.defaults`
 
+
 Object containing system-wide default values that can be changed to customize how the library
 works.
 
@@ -37,6 +38,7 @@ works.
 
 ### `.enabled`
 
+
 Indicates whether access to the host's MIDI subsystem is active or not.
 
 **Type**: boolean<br />
@@ -45,6 +47,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 ### `.inputs`
 
+
 An array of all currently available MIDI inputs.
 
 **Type**: Array<br />
@@ -52,6 +55,7 @@ An array of all currently available MIDI inputs.
 
 
 ### `.interface`
+
 
 The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
 instance used to talk to the lower-level Web MIDI API. This should not be used directly
@@ -63,6 +67,7 @@ unless you know what you are doing.
 
 ### `.isBrowser`
 
+
 Indicates whether the current environment is a browser environment or not. If you need to check
 if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
 and isBrowser can both be true at the same time.
@@ -71,6 +76,7 @@ and isBrowser can both be true at the same time.
 
 
 ### `.isNode`
+
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
 browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
@@ -81,6 +87,8 @@ same time.
 
 
 ### `.octaveOffset`
+
+**Since**: 2.1<br />
 
 An integer to offset the octave of notes received from external devices or sent to external
 devices.
@@ -94,10 +102,10 @@ will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will
 of 60).
 
 **Type**: number<br />
-**Since**: 2.1<br />
 
 
 ### `.outputs`
+
 
 An array of all currently available MIDI outputs as [`Output`](Output) objects.
 
@@ -106,6 +114,7 @@ An array of all currently available MIDI outputs as [`Output`](Output) objects.
 
 
 ### `.supported`
+
 
 Indicates whether the environment provides support for the Web MIDI API or not.
 
@@ -120,6 +129,7 @@ not be there.
 
 ### `.sysexEnabled`
 
+
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the `enable()` method.
 
@@ -128,6 +138,7 @@ enabled via the `enable()` method.
 
 
 ### `.time`
+
 
 The elapsed time, in milliseconds, since the time
 [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
@@ -142,6 +153,7 @@ browser might only be accurate to one millisecond.
 
 
 ### `.validation`
+
 
 Indicates whether argument validation and backwards-compatibility checks are performed
 throughout the WebMidi.js library for object methods and property setters.

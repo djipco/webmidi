@@ -54,84 +54,94 @@ method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
 
 ### `.accidental`
 
+**Since**: 3.0.0<br />
+
 The accidental (#, ##, b or bb) of the note
 
 **Type**: string<br />
-**Since**: 3.0.0<br />
 
 
 ### `.attack`
 
+**Since**: 3.0.0<br />
+
 The attack velocity of the note as an integer between 0 and 127.
 
 **Type**: number<br />
-**Since**: 3.0.0<br />
 
 
 ### `.duration`
+
+**Since**: 3.0.0<br />
 
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
 **Type**: number<br />
-**Since**: 3.0.0<br />
 
 
 ### `.identifier`
 
+**Since**: 3.0.0<br />
+
 The name, optional accidental and octave of the note, as a string.
 
 **Type**: string<br />
-**Since**: 3.0.0<br />
 
 
 ### `.name`
 
+**Since**: 3.0.0<br />
+
 The name (letter) of the note
 
 **Type**: string<br />
-**Since**: 3.0.0<br />
 
 
 ### `.number`
+
+**Since**: 3.0.0<br />
 
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
 
 **Type**: number<br />
-**Since**: 3.0.0<br />
 
 
 ### `.octave`
 
+**Since**: 3.0.0<br />
+
 The octave of the note
 
 **Type**: number<br />
-**Since**: 3.0.0<br />
 
 
 ### `.rawAttack`
 
+**Since**: 3.0.0<br />
+
 The attack velocity of the note as a positive integer between 0 and 127.
 
 **Type**: number<br />
-**Since**: 3.0.0<br />
 
 
 ### `.rawRelease`
 
+**Since**: 3.0.0<br />
+
 The release velocity of the note as a positive integer between 0 and 127.
 
 **Type**: number<br />
-**Since**: 3.0.0<br />
 
 
 ### `.release`
 
+**Since**: 3.0.0<br />
+
 The release velocity of the note as an integer between 0 and 127.
 
 **Type**: number<br />
-**Since**: 3.0.0<br />
 
 
 

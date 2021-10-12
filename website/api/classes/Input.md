@@ -32,6 +32,7 @@ Note that a single device may expose several inputs and/or outputs.
 
 ### `.channels`
 
+
 Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
 channels are numbered 1 through 16.
 
@@ -40,6 +41,7 @@ channels are numbered 1 through 16.
 
 ### `.connection`
 
+
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Type**: string<br />
@@ -47,6 +49,7 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
 ### `.id`
+
 
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -58,6 +61,7 @@ the same port.
 
 ### `.manufacturer`
 
+
 Name of the manufacturer of the device that makes this input port available.
 
 **Type**: string<br />
@@ -66,6 +70,7 @@ Name of the manufacturer of the device that makes this input port available.
 
 ### `.name`
 
+
 Name of the MIDI input
 
 **Type**: string<br />
@@ -73,6 +78,8 @@ Name of the MIDI input
 
 
 ### `.octaveOffset`
+
+**Since**: 3.0<br />
 
 An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
 number 60) is placed on the 4th octave (C4).
@@ -84,10 +91,10 @@ Note that this value is combined with the global offset value defined on the `We
 (if any).
 
 **Type**: number<br />
-**Since**: 3.0<br />
 
 
 ### `.state`
+
 
 State of the input port: `"connected"` or `"disconnected"`.
 
@@ -96,6 +103,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 
 
 ### `.type`
+
 
 Port type. In the case of `Input`, this is always: `"input"`.
 

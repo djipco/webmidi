@@ -20,7 +20,7 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`midiOutput`** |MIDIOutput||[`MIDIOutput`↪](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput) object as provided by the MIDI subsystem.|
+    |**`midiOutput`** |MIDIOutput||[`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput) object as provided by the MIDI subsystem.|
 
 
 
@@ -30,6 +30,7 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 
 ### `.channels`
 
+
 Array containing the 16 [OutputChannel](OutputChannel) objects available for this `Output`. The
 channels are numbered 1 through 16.
 
@@ -38,6 +39,7 @@ channels are numbered 1 through 16.
 
 ### `.connection`
 
+
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Type**: string<br />
@@ -45,6 +47,7 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
 ### `.id`
+
 
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -56,6 +59,7 @@ the same port.
 
 ### `.manufacturer`
 
+
 Name of the manufacturer of the device that makes this output port available.
 
 **Type**: string<br />
@@ -63,6 +67,7 @@ Name of the manufacturer of the device that makes this output port available.
 
 
 ### `.name`
+
 
 Name of the MIDI output
 
@@ -72,6 +77,8 @@ Name of the MIDI output
 
 ### `.octaveOffset`
 
+**Since**: 3.0<br />
+
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
 
@@ -79,10 +86,10 @@ Note that this value is combined with the global offset value defined on the `We
 (if any).
 
 **Type**: number<br />
-**Since**: 3.0<br />
 
 
 ### `.state`
+
 
 State of the output port: `"connected"` or `"disconnected"`.
 
@@ -91,6 +98,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 
 ### `.type`
+
 
 Type of the output port (`"output"`)
 
