@@ -97,7 +97,8 @@ names that can be used with this function:
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -136,7 +137,8 @@ names that can be used with this function:
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -184,7 +186,8 @@ functionally equivalent to a **note off** message.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -204,7 +207,8 @@ the pitch bend, to their default value.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -234,7 +238,8 @@ from the MIDI Manufacturers Association.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -281,7 +286,8 @@ To make it easier, all channel mode messages have a matching helper method:
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -390,7 +396,8 @@ parameter.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -429,7 +436,8 @@ precedence over the one specified via the method's `options` parameter.
     |[**`options.rawRelease`**] |number|64|The velocity at which to release the note (between `0` and `127`). If the `release` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `64`.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -472,7 +480,8 @@ functionally equivalent to a **note off** message.
     |[**`options.rawAttack`**] |number|64|The velocity at which to release the note (between `0` and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `64`.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -494,7 +503,8 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -525,7 +535,8 @@ The key can be a single value or an array of the following valid values:
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -549,7 +560,8 @@ its out port.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -575,7 +587,8 @@ a **Master Fine Tuning** RPN messages.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -601,7 +614,8 @@ specifying both parameters at the same time.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -644,7 +658,8 @@ For further implementation details, refer to the manufacturer's documentation.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -670,7 +685,8 @@ It should be noted that support for OMNI mode is not as common as it used to be.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -695,7 +711,8 @@ Sends a MIDI **pitch bend** message at the scheduled time.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -719,7 +736,8 @@ means that the pitch bend range will be 12 semitones above and below the nominal
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -744,7 +762,8 @@ multiple notes are being played.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -768,7 +787,8 @@ that use a numbering scheme starting at 1.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -822,7 +842,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -847,7 +868,8 @@ that use a numbering scheme starting at 1.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -874,7 +896,8 @@ that use a numbering scheme starting at 1.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
@@ -915,7 +938,8 @@ fade out just as if their key had been released. This is different from the
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 
@@ -935,7 +959,8 @@ channel but will not prevent new sounds from being triggered.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `OutputChannel`> Returns the `OutputChannel` object so methods can be chained.
+**Returns**: `OutputChannel`
+> Returns the `OutputChannel` object so methods can be chained.
 
 
 

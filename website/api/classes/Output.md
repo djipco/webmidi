@@ -115,7 +115,8 @@ You can check out the current status of this feature for Chromium (Chrome) here:
 https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -163,7 +164,8 @@ names that can be used with this method:
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
@@ -212,7 +214,8 @@ names that can be used with this method:
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -221,7 +224,8 @@ names that can be used with this method:
 Opens the output for usage.
 
 
-**Returns**: `Promise.&lt;Output&gt;`> The promise is fulfilled with the `Output`
+**Returns**: `Promise.&lt;Output&gt;`
+> The promise is fulfilled with the `Output`
 
 
 
@@ -268,7 +272,8 @@ functionally equivalent to a **note off** message.
     |[**`options.attack`**] |number|0.5|The attack velocity to use when playing the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -318,7 +323,8 @@ from the MIDI Manufacturers Association.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
@@ -341,7 +347,8 @@ was no other activity on the MIDI port.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -386,7 +393,8 @@ To make it easier, all channel mode messages have a matching helper method:
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
@@ -410,7 +418,8 @@ for every quarter note.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -431,7 +440,8 @@ start, use the [sendStart()](#Output+sendStart)` method.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -535,7 +545,8 @@ specification.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
@@ -572,7 +583,8 @@ precedence over the one specified via the method's `options` parameter.
     |[**`options.release`**] |number|0.5|The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -611,7 +623,8 @@ functionally equivalent to a **note off** message.
     |[**`options.attack`**] |number|0.5|The velocity at which to play the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -631,7 +644,8 @@ should reset itself to a default state.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -652,7 +666,8 @@ song at beat 0. To start playback elsewhere in the song, use the
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -672,7 +687,8 @@ playback immediately (or at the scheduled time).
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -739,7 +755,8 @@ system exclusive messages to 64Kb or less.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
@@ -766,7 +783,8 @@ on the data. It is up to the developer to format the data according to the
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -785,7 +803,8 @@ Sends a MIDI **tune request** real-time message.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -810,7 +829,8 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -837,7 +857,8 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -862,7 +883,8 @@ its out port.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -891,7 +913,8 @@ a **Master Fine Tuning** RPN messages.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -920,7 +943,8 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -976,7 +1000,8 @@ For further implementation details, refer to the manufacturer"s documentation.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
@@ -1003,7 +1028,8 @@ It should be noted that support for OMNI mode is not as common as it used to be.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1031,7 +1057,8 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1058,7 +1085,8 @@ means that the pitch bend range will be 12 semitones above and below the nominal
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1086,7 +1114,8 @@ multiple notes are being played.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1113,7 +1142,8 @@ that use a numbering scheme starting at 1.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1170,7 +1200,8 @@ Another set of extra parameters have been later added for 3D sound controllers. 
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 
@@ -1194,7 +1225,8 @@ use a numbering scheme starting at 1.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1219,7 +1251,8 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1247,7 +1280,8 @@ that use a numbering scheme starting at 1.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
@@ -1277,7 +1311,8 @@ that use a numbering scheme starting at 1.
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
-**Returns**: `Output`> Returns the `Output` object so methods can be chained.
+**Returns**: `Output`
+> Returns the `Output` object so methods can be chained.
 
 
 **Since**: 3.0.0<br />
