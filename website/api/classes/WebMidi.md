@@ -178,12 +178,12 @@ improves performance but should only be done once the project has been thoroughl
 **Attributes**: async
 
 Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
-[`Input`](Input) and [`Output`](Output) objects that may be available. This also means that
+[`Input`](Input) and [`Output`](Output) objects that may have been opened. This also means that
 listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `WebMidi` itself
 are also destroyed.
 
 
-**Returns**: `Promise.<void>`
+**Returns**: `Promise`
 
 **Throws**:
   * `Error` : The Web MIDI API is not supported by your environment.
