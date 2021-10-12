@@ -117,8 +117,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -133,7 +132,7 @@ the connection status by looking at the [connection](Output#connection) property
 
 
 
-    **Returns**: `Promise.&lt;void&gt;`        <br />
+  **Returns**: `Promise.&lt;void&gt;`
 
 
   **Returns: ** Promise.&lt;void&gt;<br />
@@ -175,8 +174,7 @@ names that can be used with this method:
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -192,7 +190,7 @@ subsystem is unlinked.
 
 
 
-    **Returns**: `Promise.&lt;void&gt;`        <br />
+  **Returns**: `Promise.&lt;void&gt;`
 
 
   **Returns: ** Promise.&lt;void&gt;<br />
@@ -234,8 +232,7 @@ names that can be used with this method:
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -248,8 +245,7 @@ Opens the output for usage.
 
 
 
-    **Returns**: `Promise.&lt;Output&gt;`        <br />          The promise is fulfilled with the `Output`
-
+  **Returns**: `Promise.&lt;Output&gt;`<br />The promise is fulfilled with the `Output`
 
 
   **Returns: ** Promise.&lt;Output&gt; - The promise is fulfilled with the `Output`<br />
@@ -300,8 +296,7 @@ functionally equivalent to a **note off** message.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -326,7 +321,7 @@ the pitch bend, to their default value.
 
 
 
-    **Returns**: `Output`        <br />
+  **Returns**: `Output`
 
 
   **Returns: ** Output<br />
@@ -360,8 +355,7 @@ from the MIDI Manufacturers Association.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -388,8 +382,7 @@ was no other activity on the MIDI port.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -438,8 +431,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -467,8 +459,7 @@ for every quarter note.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -493,8 +484,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -602,8 +592,7 @@ specification.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -644,8 +633,7 @@ precedence over the one specified via the method's `options` parameter.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -688,8 +676,7 @@ functionally equivalent to a **note off** message.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -713,8 +700,7 @@ should reset itself to a default state.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -739,8 +725,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -764,8 +749,7 @@ playback immediately (or at the scheduled time).
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -836,8 +820,7 @@ system exclusive messages to 64Kb or less.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -868,8 +851,7 @@ on the data. It is up to the developer to format the data according to the
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -892,8 +874,7 @@ Sends a MIDI **tune request** real-time message.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -921,8 +902,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -952,8 +932,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -981,8 +960,7 @@ its out port.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1014,8 +992,7 @@ a **Master Fine Tuning** RPN messages.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1047,8 +1024,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1107,8 +1083,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1139,8 +1114,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1171,8 +1145,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1202,8 +1175,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1234,8 +1206,7 @@ multiple notes are being played.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1265,8 +1236,7 @@ that use a numbering scheme starting at 1.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1326,8 +1296,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1355,8 +1324,7 @@ use a numbering scheme starting at 1.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1384,8 +1352,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1416,8 +1383,7 @@ that use a numbering scheme starting at 1.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1450,8 +1416,7 @@ that use a numbering scheme starting at 1.
 
 
 
-    **Returns**: `Output`        <br />          Returns the `Output` object so methods can be chained.
-
+  **Returns**: `Output`<br />Returns the `Output` object so methods can be chained.
 
 
   **Returns: ** Output - Returns the `Output` object so methods can be chained.<br />
@@ -1477,7 +1442,7 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 
 
-    **Returns**: `Output`        <br />
+  **Returns**: `Output`
 
 
   **Returns: ** Output<br />
@@ -1503,7 +1468,7 @@ fade out just as if their key had been released. This is different from the
 
 
 
-    **Returns**: `Output`        <br />
+  **Returns**: `Output`
 
 
   **Returns: ** Output<br />
@@ -1529,7 +1494,7 @@ channel but will not prevent new sounds from being triggered.
 
 
 
-    **Returns**: `Output`        <br />
+  **Returns**: `Output`
 
 
   **Returns: ** Output<br />

@@ -223,8 +223,7 @@ There are 6 families of events you can listen to:
 
 
 
-    **Returns**: `Array.&lt;Listener&gt;`        <br />          An array of all `Listener` objects that were created.
-
+  **Returns**: `Array.&lt;Listener&gt;`<br />An array of all `Listener` objects that were created.
 
 
   **Returns: ** Array.&lt;Listener&gt; - An array of all `Listener` objects that were created.<br />
@@ -333,8 +332,7 @@ There are 6 families of events you can listen to:
 
 
 
-    **Returns**: `Array.&lt;Listener&gt;`        <br />          An array of all `Listener` objects that were created.
-
+  **Returns**: `Array.&lt;Listener&gt;`<br />An array of all `Listener` objects that were created.
 
 
   **Returns: ** Array.&lt;Listener&gt; - An array of all `Listener` objects that were created.<br />
@@ -350,8 +348,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 
 
-    **Returns**: `Promise.&lt;Input&gt;`        <br />          The promise is fulfilled with the `Input` object
-
+  **Returns**: `Promise.&lt;Input&gt;`<br />The promise is fulfilled with the `Input` object
 
 
   **Returns: ** Promise.&lt;Input&gt; - The promise is fulfilled with the `Input` object<br />
@@ -365,7 +362,7 @@ MIDI subsystem.
 
 
 
-    **Returns**: `Promise.&lt;void&gt;`        <br />
+  **Returns**: `Promise.&lt;void&gt;`
 
 
   **Returns: ** Promise.&lt;void&gt;<br />
@@ -392,9 +389,8 @@ defined.
 
 
 
-    **Returns**: `Boolean`        <br />          Boolean value indicating whether or not the channel(s) already have this
+  **Returns**: `Boolean`<br />Boolean value indicating whether or not the channel(s) already have this
 listener defined.
-
 
 
   **Returns: ** Boolean - Boolean value indicating whether or not the channel(s) already have this
@@ -411,8 +407,7 @@ WebMidi is enabled.
 
 
 
-    **Returns**: `Promise.&lt;Input&gt;`        <br />          The promise is fulfilled with the `Input` object
-
+  **Returns**: `Promise.&lt;Input&gt;`<br />The promise is fulfilled with the `Input` object
 
 
   **Returns: ** Promise.&lt;Input&gt; - The promise is fulfilled with the `Input` object<br />
