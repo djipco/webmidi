@@ -261,7 +261,7 @@ kind of IDs as Jazz-Plugin.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [WebMidi.inputs](WebMidi#inputs) array. Even though they sometimes look like integers, IDs are strings.|
+    |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs are strings.|
 
 
 **Returns**: `Input` or `false`
