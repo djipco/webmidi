@@ -132,6 +132,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 ### `.close()`
 
+**Attributes**: async
 
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
 until the output is opened again by calling [Output.open()](#Output+open). You can check
@@ -187,6 +188,7 @@ names that can be used with this method:
 
 ### `.destroy()`
 
+**Attributes**: async
 
 Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
 subsystem is unlinked.
@@ -239,6 +241,7 @@ names that can be used with this method:
 
 ### `.open()`
 
+**Attributes**: async
 
 Opens the output for usage.
 

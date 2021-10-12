@@ -349,6 +349,7 @@ There are 6 families of events you can listen to:
 
 ### `.close()`
 
+**Attributes**: async
 
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [Input.open()](#Input+open).
@@ -362,6 +363,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 ### `.destroy()`
 
+**Attributes**: async
 
 Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
@@ -402,6 +404,7 @@ listener defined.
 
 ### `.open()`
 
+**Attributes**: async
 
 Opens the input for usage. This is usually unnecessary as the port is open automatically when
 WebMidi is enabled.

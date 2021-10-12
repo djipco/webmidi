@@ -174,6 +174,7 @@ validation turned on.
 ### `.disable()`
 
 **Since**: 2.0.0<br />
+**Attributes**: async
 
 Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
 [Input](Input) and [Output](Output) objects that may be available. This also means that listeners
@@ -189,6 +190,7 @@ destroyed.
 
 ### `.enable(...)`
 
+**Attributes**: async
 
 Checks if the Web MIDI API is available in the current environment and then tries to connect to
 the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
