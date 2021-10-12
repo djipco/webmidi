@@ -101,9 +101,6 @@ names that can be used with this function:
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
 **Throws**:
   * TypeError The specified registered parameter is invalid.
 
@@ -143,9 +140,6 @@ names that can be used with this function:
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 **Throws**:
   * TypeError The specified registered parameter is invalid.
@@ -197,9 +191,6 @@ functionally equivalent to a **note off** message.
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
 
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
-
 ### `.resetAllControllers(...)`
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
@@ -219,9 +210,6 @@ the pitch bend, to their default value.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 
 ### `.send(...)`
@@ -253,9 +241,6 @@ from the MIDI Manufacturers Association.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 **Throws**:
   * `RangeError` : The first byte (status) must be an integer between 128 and 255.
@@ -304,9 +289,6 @@ To make it easier, all channel mode messages have a matching helper method:
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 
 ### `.sendControlChange(...)`
@@ -417,9 +399,6 @@ parameter.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 **Since**: 3.0.0<br />
 
 **Throws**:
@@ -459,9 +438,6 @@ precedence over the one specified via the method's `options` parameter.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 
 ### `.sendNoteOn(...)`
@@ -508,9 +484,6 @@ functionally equivalent to a **note off** message.
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
 
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
-
 ### `.setChannelAftertouch(...)`
 
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
@@ -532,9 +505,6 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 **Throws**:
   * RangeError Invalid channel aftertouch value.
@@ -568,9 +538,6 @@ The key can be a single value or an array of the following valid values:
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
 **Throws**:
   * RangeError Invalid key aftertouch value.
 
@@ -595,9 +562,6 @@ its out port.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 
 ### `.setMasterTuning(...)`
@@ -626,9 +590,6 @@ a **Master Fine Tuning** RPN messages.
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
 **Throws**:
   * `RangeError` : The value must be a decimal number between larger than -65 and smaller
 than 64.
@@ -655,9 +616,6 @@ specifying both parameters at the same time.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 
 ### `.setNonRegisteredParameter(...)`
@@ -703,9 +661,6 @@ For further implementation details, refer to the manufacturer's documentation.
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
 **Throws**:
   * `RangeError` : The control value must be between 0 and 127.
   * `RangeError` : The msb value must be between 0 and 127
@@ -732,9 +687,6 @@ It should be noted that support for OMNI mode is not as common as it used to be.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 **Throws**:
   * `TypeError` : Invalid channel mode message name.
@@ -763,9 +715,6 @@ Sends a MIDI **pitch bend** message at the scheduled time.
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
 
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
-
 ### `.setPitchBendRange(...)`
 
 Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
@@ -789,9 +738,6 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 **Throws**:
   * `RangeError` : The msb value must be between 0 and 127.
@@ -820,9 +766,6 @@ multiple notes are being played.
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
 
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
-
 ### `.setProgram(...)`
 
 Sends a MIDI **program change** message at the scheduled time.
@@ -846,9 +789,6 @@ that use a numbering scheme starting at 1.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 **Throws**:
   * `TypeError` : Failed to execute &#x27;send&#x27; on &#x27;MIDIOutput&#x27;: The value at index 1 is greater
@@ -906,9 +846,6 @@ Another set of extra parameters have been later added for 3D sound controllers. 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
 
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
-
 ### `.setTuningBank(...)`
 
 Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -933,9 +870,6 @@ that use a numbering scheme starting at 1.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 **Throws**:
   * `RangeError` : The bank value must be between 1 and 128.
@@ -965,9 +899,6 @@ that use a numbering scheme starting at 1.
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
 **Throws**:
   * `RangeError` : The program value must be between 1 and 128.
 
@@ -989,9 +920,6 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 
   **Returns**: `Output`
-
-
-  **Returns: ** Output<br />
 
 
 ### `.turnNotesOff(...)`
@@ -1016,9 +944,6 @@ fade out just as if their key had been released. This is different from the
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
 
 
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
-
-
 ### `.turnSoundOff(...)`
 
 Sends an **all sound off** channel mode message. This will silence all sounds playing on that
@@ -1038,9 +963,6 @@ channel but will not prevent new sounds from being triggered.
 
 
   **Returns**: `OutputChannel`<br />Returns the `OutputChannel` object so methods can be chained.
-
-
-  **Returns: ** OutputChannel - Returns the `OutputChannel` object so methods can be chained.<br />
 
 
 

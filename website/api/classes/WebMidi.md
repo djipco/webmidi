@@ -169,9 +169,6 @@ destroyed.
 
 
   **Returns**: `Promise.&lt;void&gt;`
-
-
-  **Returns: ** Promise.&lt;void&gt;<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -240,9 +237,6 @@ WebMidi.enable().then(ports => {
 
   **Returns**: `Promise.&lt;Object&gt;`<br />The promise is fulfilled with the `WebMidi` object
 
-
-  **Returns: ** Promise.&lt;Object&gt; - The promise is fulfilled with the `WebMidi` object<br />
-
 **Throws**:
   * `Error` : The Web MIDI API is not supported in your environment.
   * `Error` : Jazz-Plugin must be installed to use WebMIDIAPIShim.
@@ -269,10 +263,6 @@ kind of IDs as Jazz-Plugin.
 
   **Returns**: `Input` or `false`<br />An [Input](Input) object matching the specified ID string. If no matching
 input can be found, the method returns `false`.
-
-
-  **Returns: ** Input - An [Input](Input) object matching the specified ID string. If no matching
-input can be found, the method returns `false`.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -298,10 +288,6 @@ input names in the same way as the Jazz-Plugin does.
 
   **Returns**: `Input` or `false`<br />The [Input](Input) that was found or `false` if no input contained the
 specified name.
-
-
-  **Returns: ** Input - The [Input](Input) that was found or `false` if no input contained the
-specified name.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -330,10 +316,6 @@ kind of IDs as Jazz-Plugin.
 
   **Returns**: `Output` or `false`<br />An [Output](Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.
-
-
-  **Returns: ** Output - An [Output](Output) object matching the specified ID string. If no
-matching output can be found, the method returns `false`.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:
@@ -359,10 +341,6 @@ input names in the same way as the Jazz-Plugin does.
 
   **Returns**: `Output` or `false`<br />The [Output](Output) that was found or `false` if no output matched the
 specified name.
-
-
-  **Returns: ** Output - The [Output](Output) that was found or `false` if no output matched the
-specified name.<br />
 **Since**: 2.0.0<br />
 
 **Throws**:

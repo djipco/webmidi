@@ -161,7 +161,4 @@ an invalid value is supplied, 0 will be used.
   **Returns**: `number`<br />An integer between 0 and 127
 
 
-  **Returns: ** number - An integer between 0 and 127<br />
-
-
 
