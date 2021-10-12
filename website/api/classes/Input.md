@@ -108,6 +108,7 @@ Port type. In the case of `Input`, this is always: `"input"`.
 
 ## Methods
 
+
 ### `.addListener(...)`
 
 
@@ -229,6 +230,7 @@ There are 6 families of events you can listen to:
 **Throws**:
   * `Error` : For channel-specific events, 'options.channels' must be defined.
 
+
 ### `.addOneTimeListener(...)`
 
 
@@ -336,6 +338,7 @@ There are 6 families of events you can listen to:
 **Throws**:
   * `Error` : For channel-specific events, 'options.channels' must be defined.
 
+
 ### `.close()`
 
 
@@ -348,6 +351,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 
 
+
 ### `.destroy()`
 
 
@@ -356,6 +360,7 @@ MIDI subsystem.
 
 
 **Returns**: `Promise.&lt;void&gt;`
+
 
 
 ### `.hasListener(...)`
@@ -386,6 +391,7 @@ listener defined.
 **Throws**:
   * Error For channel-specific events, 'options.channels' must be defined.
 
+
 ### `.open()`
 
 
@@ -395,6 +401,7 @@ WebMidi is enabled.
 
 **Returns**: `Promise.&lt;Input&gt;`
 > The promise is fulfilled with the `Input` object
+
 
 
 

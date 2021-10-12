@@ -158,6 +158,7 @@ validation turned on.
 
 ## Methods
 
+
 ### `.disable()`
 
 **Since**: 2.0.0<br />
@@ -172,6 +173,7 @@ destroyed.
 
 **Throws**:
   * `Error` : The Web MIDI API is not supported by your environment.
+
 
 ### `.enable(...)`
 
@@ -241,6 +243,7 @@ WebMidi.enable().then(ports => {
   * `Error` : The Web MIDI API is not supported in your environment.
   * `Error` : Jazz-Plugin must be installed to use WebMIDIAPIShim.
 
+
 ### `.getInputById(...)`
 
 **Since**: 2.0.0<br />
@@ -269,6 +272,7 @@ if no matching input can be found.
 **Throws**:
   * `Error` : WebMidi is not enabled.
 
+
 ### `.getInputByName(...)`
 
 **Since**: 2.0.0<br />
@@ -294,6 +298,7 @@ specified name.
 
 **Throws**:
   * `Error` : WebMidi is not enabled.
+
 
 ### `.getOutputById(...)`
 
@@ -323,6 +328,7 @@ matching output can be found, the method returns `false`.
 
 **Throws**:
   * `Error` : WebMidi is not enabled.
+
 
 ### `.getOutputByName(...)`
 

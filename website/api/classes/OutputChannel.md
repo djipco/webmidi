@@ -64,6 +64,7 @@ The parent [Output](Output) this channel belongs to
 
 ## Methods
 
+
 ### `.decrementRegisteredParameter(...)`
 
 
@@ -105,6 +106,7 @@ names that can be used with this function:
 **Throws**:
   * TypeError The specified registered parameter is invalid.
 
+
 ### `.incrementRegisteredParameter(...)`
 
 
@@ -145,6 +147,7 @@ names that can be used with this function:
 
 **Throws**:
   * TypeError The specified registered parameter is invalid.
+
 
 ### `.playNote(...)`
 
@@ -194,6 +197,7 @@ functionally equivalent to a **note off** message.
 
 
 
+
 ### `.resetAllControllers(...)`
 
 
@@ -213,6 +217,7 @@ the pitch bend, to their default value.
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 
@@ -250,6 +255,7 @@ from the MIDI Manufacturers Association.
 **Throws**:
   * `RangeError` : The first byte (status) must be an integer between 128 and 255.
   * `RangeError` : Data bytes must be integers between 0 and 255.
+
 
 ### `.sendChannelMode(...)`
 
@@ -294,6 +300,7 @@ To make it easier, all channel mode messages have a matching helper method:
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 
@@ -413,6 +420,7 @@ parameter.
   * `RangeError` : Invalid controller name.
   * `TypeError` : The value array must have a length of 2.
 
+
 ### `.sendNoteOff(...)`
 
 
@@ -445,6 +453,7 @@ precedence over the one specified via the method's `options` parameter.
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 
@@ -493,6 +502,7 @@ functionally equivalent to a **note off** message.
 
 
 
+
 ### `.setChannelAftertouch(...)`
 
 
@@ -518,6 +528,7 @@ use [setKeyAftertouch()](Output#setKeyAftertouch).
 
 **Throws**:
   * RangeError Invalid channel aftertouch value.
+
 
 ### `.setKeyAftertouch(...)`
 
@@ -552,6 +563,7 @@ The key can be a single value or an array of the following valid values:
 **Throws**:
   * RangeError Invalid key aftertouch value.
 
+
 ### `.setLocalControl(...)`
 
 
@@ -573,6 +585,7 @@ its out port.
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 
@@ -607,6 +620,7 @@ a **Master Fine Tuning** RPN messages.
   * `RangeError` : The value must be a decimal number between larger than -65 and smaller
 than 64.
 
+
 ### `.setModulationRange(...)`
 
 
@@ -629,6 +643,7 @@ specifying both parameters at the same time.
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 
@@ -680,6 +695,7 @@ For further implementation details, refer to the manufacturer's documentation.
   * `RangeError` : The control value must be between 0 and 127.
   * `RangeError` : The msb value must be between 0 and 127
 
+
 ### `.setOmniMode(...)`
 
 
@@ -709,6 +725,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
   * `RangeError` : Channel mode controller numbers must be between 120 and 127.
   * `RangeError` : Value must be an integer between 0 and 127.
 
+
 ### `.setPitchBend(...)`
 
 
@@ -729,6 +746,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 
@@ -761,6 +779,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
   * `RangeError` : The msb value must be between 0 and 127.
   * `RangeError` : The lsb value must be between 0 and 127.
 
+
 ### `.setPolyphonicMode(...)`
 
 
@@ -782,6 +801,7 @@ multiple notes are being played.
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 
@@ -813,6 +833,7 @@ that use a numbering scheme starting at 1.
 **Throws**:
   * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
 than 0xFF.
+
 
 ### `.setRegisteredParameter(...)`
 
@@ -867,6 +888,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 
 
+
 ### `.setTuningBank(...)`
 
 
@@ -895,6 +917,7 @@ that use a numbering scheme starting at 1.
 
 **Throws**:
   * `RangeError` : The bank value must be between 1 and 128.
+
 
 ### `.setTuningProgram(...)`
 
@@ -925,6 +948,7 @@ that use a numbering scheme starting at 1.
 **Throws**:
   * `RangeError` : The program value must be between 1 and 128.
 
+
 ### `.stopNote(...)`
 
 
@@ -942,6 +966,7 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 
 **Returns**: `Output`
+
 
 
 ### `.turnNotesOff(...)`
@@ -964,6 +989,7 @@ fade out just as if their key had been released. This is different from the
 
 **Returns**: `OutputChannel`
 > Returns the `OutputChannel` object so methods can be chained.
+
 
 
 

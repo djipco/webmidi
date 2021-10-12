@@ -11,6 +11,7 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 
 ## Methods
 
+
 ### `.buildNote(...)`
 
 **Since**: version 3.0.0<br />
@@ -43,6 +44,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
 **Throws**:
   * TypeError The input could not be parsed to a note
+
 
 ### `.buildNoteArray(...)`
 
@@ -79,6 +81,7 @@ input.
 **Throws**:
   * TypeError An element could not be parsed as a note.
 
+
 ### `.getNoteDetails(...)`
 
 **Since**: 3.0.0<br />
@@ -107,6 +110,7 @@ When a number is specified, the translation to note is done using a value of 60 
 **Throws**:
   * TypeError Invalid note identifier
 
+
 ### `.getPropertyByValue(...)`
 
 
@@ -129,6 +133,7 @@ supplied.
 
 
 **Attributes**: static
+
 
 
 ### `.guessNoteNumber(...)`
@@ -162,6 +167,7 @@ successfully be parsed to a note number.
 **Attributes**: static
 
 
+
 ### `.offsetNumber(...)`
 
 
@@ -187,6 +193,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 **Throws**:
   * `Error` : Invalid note number
+
 
 ### `.sanitizeChannels(...)`
 
@@ -216,6 +223,7 @@ integers between 1 and 16 are silently ignored.
 **Attributes**: static
 
 
+
 ### `.to7Bit(...)`
 
 
@@ -241,6 +249,7 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 **Attributes**: static
+
 
 
 ### `.toNormalized(...)`
@@ -270,6 +279,7 @@ input value cannot be converted to an integer, the method returns 0.
 **Attributes**: static
 
 
+
 ### `.toNoteIdentifier(...)`
 
 **Since**: 3.0.0<br />
@@ -295,6 +305,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 **Throws**:
   * RangeError Invalid note number
   * RangeError Invalid octaveOffset value
+
 
 ### `.toNoteNumber(...)`
 
@@ -330,6 +341,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 **Throws**:
   * RangeError Invalid 'octaveOffset' value
   * TypeError Invalid note identifier
+
 
 ### `.toTimestamp(...)`
 

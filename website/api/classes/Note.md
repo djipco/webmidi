@@ -139,6 +139,7 @@ The release velocity of the note as an integer between 0 and 127.
 
 ## Methods
 
+
 ### `.getOffsetNumber(...)`
 
 

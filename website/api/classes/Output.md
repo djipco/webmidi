@@ -104,6 +104,7 @@ Type of the output port (`"output"`)
 
 ## Methods
 
+
 ### `.clear()`
 
 
@@ -121,6 +122,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 
 
+
 ### `.close()`
 
 
@@ -130,6 +132,7 @@ the connection status by looking at the [connection](Output#connection) property
 
 
 **Returns**: `Promise.&lt;void&gt;`
+
 
 
 ### `.decrementRegisteredParameter(...)`
@@ -174,6 +177,7 @@ names that can be used with this method:
 **Throws**:
   * TypeError The specified parameter is not available.
 
+
 ### `.destroy()`
 
 
@@ -182,6 +186,7 @@ subsystem is unlinked.
 
 
 **Returns**: `Promise.&lt;void&gt;`
+
 
 
 ### `.incrementRegisteredParameter(...)`
@@ -224,6 +229,7 @@ names that can be used with this method:
 
 
 
+
 ### `.open()`
 
 
@@ -232,6 +238,7 @@ Opens the output for usage.
 
 **Returns**: `Promise.&lt;Output&gt;`
 > The promise is fulfilled with the `Output`
+
 
 
 
@@ -284,6 +291,7 @@ functionally equivalent to a **note off** message.
 
 
 
+
 ### `.resetAllControllers(...)`
 
 
@@ -303,6 +311,7 @@ the pitch bend, to their default value.
 
 
 **Returns**: `Output`
+
 
 
 ### `.send(...)`
@@ -339,6 +348,7 @@ from the MIDI Manufacturers Association.
 **Throws**:
   * `RangeError` : The first byte (status) must be an integer between 128 and 255.
 
+
 ### `.sendActiveSensing(...)`
 
 
@@ -359,6 +369,7 @@ was no other activity on the MIDI port.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -413,6 +424,7 @@ To make it easier, all channel mode messages have a matching helper method:
   * `RangeError` : Channel mode controller numbers must be between 120 and 127.
   * `RangeError` : Value must be an integer between 0 and 127.
 
+
 ### `.sendClock(...)`
 
 
@@ -432,6 +444,7 @@ for every quarter note.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -455,6 +468,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -567,6 +581,7 @@ specification.
   * `RangeError` : Controller numbers must be between 0 and 127.
   * `RangeError` : Invalid controller name.
 
+
 ### `.sendNoteOff(...)`
 
 
@@ -600,6 +615,7 @@ precedence over the one specified via the method's `options` parameter.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -644,6 +660,7 @@ functionally equivalent to a **note off** message.
 
 
 
+
 ### `.sendReset(...)`
 
 
@@ -663,6 +680,7 @@ should reset itself to a default state.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -689,6 +707,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 
 
+
 ### `.sendStop(...)`
 
 
@@ -708,6 +727,7 @@ playback immediately (or at the scheduled time).
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -785,6 +805,7 @@ not allowed.
   * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index x is greater
 than 0xFF.
 
+
 ### `.sendTimecodeQuarterFrame(...)`
 
 
@@ -809,6 +830,7 @@ on the data. It is up to the developer to format the data according to the
 
 
 
+
 ### `.sendTuneRequest(...)`
 
 **Since**: 3.0.0<br />
@@ -828,6 +850,7 @@ Sends a MIDI **tune request** real-time message.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -854,6 +877,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -885,6 +909,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 
 
+
 ### `.setLocalControl(...)`
 
 **Since**: 3.0.0<br />
@@ -908,6 +933,7 @@ its out port.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -944,6 +970,7 @@ a **Master Fine Tuning** RPN messages.
   * `RangeError` : The value must be a decimal number between larger than -65 and smaller
 than 64.
 
+
 ### `.setModulationRange(...)`
 
 **Since**: 3.0.0<br />
@@ -973,6 +1000,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
 **Throws**:
   * `RangeError` : The msb value must be between 0 and 127
   * `RangeError` : The lsb value must be between 0 and 127
+
 
 ### `.setNonRegisteredParameter(...)`
 
@@ -1030,6 +1058,7 @@ For further implementation details, refer to the manufacturer"s documentation.
   * `RangeError` : The control value must be between 0 and 127.
   * `RangeError` : The msb value must be between 0 and 127
 
+
 ### `.setOmniMode(...)`
 
 **Since**: 3.0.0<br />
@@ -1061,6 +1090,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
   * `RangeError` : Channel mode controller numbers must be between 120 and 127.
   * `RangeError` : Value must be an integer between 0 and 127.
 
+
 ### `.setPitchBend(...)`
 
 **Since**: 3.0.0<br />
@@ -1083,6 +1113,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -1117,6 +1148,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
   * `RangeError` : The msb value must be between 0 and 127.
   * `RangeError` : The lsb value must be between 0 and 127.
 
+
 ### `.setPolyphonicMode(...)`
 
 **Since**: 3.0.0<br />
@@ -1140,6 +1172,7 @@ multiple notes are being played.
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -1173,6 +1206,7 @@ that use a numbering scheme starting at 1.
 **Throws**:
   * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
 than 0xFF.
+
 
 ### `.setRegisteredParameter(...)`
 
@@ -1228,6 +1262,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 
 
+
 ### `.setSong(...)`
 
 **Since**: 3.0.0<br />
@@ -1257,6 +1292,7 @@ use a numbering scheme starting at 1.
 **Throws**:
   * The song number must be between 1 and 128.
 
+
 ### `.setSongPosition(...)`
 
 **Since**: 3.0.0<br />
@@ -1278,6 +1314,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 **Returns**: `Output`
 > Returns the `Output` object so methods can be chained.
+
 
 
 
@@ -1312,6 +1349,7 @@ that use a numbering scheme starting at 1.
 **Throws**:
   * `RangeError` : The bank value must be between 1 and 128.
 
+
 ### `.setTuningProgram(...)`
 
 **Since**: 3.0.0<br />
@@ -1343,6 +1381,7 @@ that use a numbering scheme starting at 1.
 **Throws**:
   * `RangeError` : The program value must be between 1 and 128.
 
+
 ### `.stopNote(...)`
 
 
@@ -1360,6 +1399,7 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 
 **Returns**: `Output`
+
 
 
 ### `.turnNotesOff(...)`
@@ -1383,6 +1423,7 @@ fade out just as if their key had been released. This is different from the
 
 
 **Returns**: `Output`
+
 
 
 ### `.turnSoundOff(...)`

@@ -90,11 +90,13 @@ all buffered control change messages will be discarded as incomplete.
 
 ## Methods
 
+
 ### `.destroy()`
 
 
 Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
 input.
+
 
 
 
@@ -126,6 +128,7 @@ found.
 
 **Throws**:
   * `RangeError` : Invalid control change number.
+
 
 ### `.getChannelModeByNumber(...)`
 
