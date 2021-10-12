@@ -165,7 +165,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 
 
-**Returns**: `number` : A valid MIDI note number (0-127) or `false` if the input could not
+**Returns**: `number``false` : A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.
 
 
@@ -378,7 +378,7 @@ returned.
 
 
 
-**Returns**: `number` : A positive number or `false` (if the time cannot be converted)
+**Returns**: `number``false` : A positive number or `false` (if the time cannot be converted)
 
 
 
