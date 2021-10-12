@@ -74,7 +74,7 @@ input.
     |[**`options.octaveOffset`**] |number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
 
-**Returns**: `Array.&lt;Note&gt;`
+**Returns**: `Array.<Note>`
 
 **Attributes**: static
 

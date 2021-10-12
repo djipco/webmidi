@@ -138,7 +138,7 @@ until the output is opened again by calling [Output.open()](#Output+open). You c
 the connection status by looking at the [connection](Output#connection) property.
 
 
-**Returns**: `Promise.&lt;void&gt;`
+**Returns**: `Promise.<void>`
 
 
 
@@ -192,7 +192,7 @@ Destroys the `Output`. All listeners are removed, all channels are destroyed and
 subsystem is unlinked.
 
 
-**Returns**: `Promise.&lt;void&gt;`
+**Returns**: `Promise.<void>`
 
 
 
@@ -243,7 +243,7 @@ names that can be used with this method:
 Opens the output for usage.
 
 
-**Returns**: `Promise.&lt;Output&gt;`
+**Returns**: `Promise.<Output>`
 > The promise is fulfilled with the `Output`
 
 
