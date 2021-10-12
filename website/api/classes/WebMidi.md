@@ -242,8 +242,8 @@ WebMidi.enable().then(ports => {
 
 ### `.getInputById(...)`
 
-Returns the [Input](Input) object that matches the specified ID string or `false` if no matching
-input is found. As per the Web MIDI API specification, IDs are strings (not integers).
+Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
+matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
 
 Please note that IDs change from one host to another. For example, Chrome does not use the same
 kind of IDs as Jazz-Plugin.
@@ -255,7 +255,7 @@ kind of IDs as Jazz-Plugin.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are strings.|
+    |**`id`** |string||The ID string of the input. IDs can be viewed by looking at the [WebMidi.inputs](WebMidi#inputs) array. Even though they sometimes look like integers, IDs are strings.|
 
 
 **Returns**: `Input` or `false`
