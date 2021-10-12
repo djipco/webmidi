@@ -223,7 +223,8 @@ There are 6 families of events you can listen to:
 
 
 
-**Returns**: `Array.&lt;Listener&gt;`. An array of all `Listener` objects that were created.
+**Returns**: `Array.&lt;Listener&gt;`          An array of all `Listener` objects that were created.
+
 
 
 
@@ -333,7 +334,8 @@ There are 6 families of events you can listen to:
 
 
 
-**Returns**: `Array.&lt;Listener&gt;`. An array of all `Listener` objects that were created.
+**Returns**: `Array.&lt;Listener&gt;`          An array of all `Listener` objects that were created.
+
 
 
 
@@ -350,7 +352,8 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 
 
-**Returns**: `Promise.&lt;Input&gt;`. The promise is fulfilled with the `Input` object
+**Returns**: `Promise.&lt;Input&gt;`          The promise is fulfilled with the `Input` object
+
 
 
 
@@ -392,8 +395,9 @@ defined.
 
 
 
-**Returns**: `Boolean`. Boolean value indicating whether or not the channel(s) already have this
+**Returns**: `Boolean`          Boolean value indicating whether or not the channel(s) already have this
 listener defined.
+
 
 
 
@@ -411,7 +415,8 @@ WebMidi is enabled.
 
 
 
-**Returns**: `Promise.&lt;Input&gt;`. The promise is fulfilled with the `Input` object
+**Returns**: `Promise.&lt;Input&gt;`          The promise is fulfilled with the `Input` object
+
 
 
 
