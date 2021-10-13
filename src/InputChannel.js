@@ -96,6 +96,13 @@ export class InputChannel extends EventEmitter {
      */
     this.parameterNumberEventsEnabled = true;
 
+    /**
+     * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+     * `true` for a currently playing note and `false` otherwise.
+     * @type {boolean[]}
+     */
+    this.notesState = new Array(128).fill(false);
+
   }
 
   /**
@@ -107,6 +114,7 @@ export class InputChannel extends EventEmitter {
     this._number = null;
     this._octaveOffset = 0;
     this._nrpnBuffer = [];
+    this.notesState = new Array(128).fill(false);
     this.parameterNumberEventsEnabled = false;
     this.removeListener();
   }
@@ -160,6 +168,7 @@ export class InputChannel extends EventEmitter {
    */
   _parseEventForStandardMessages(e) {
 
+
     const event = Object.assign({}, e);
     event.type = event.message.type || "unknownmidimessage";
 
@@ -167,6 +176,8 @@ export class InputChannel extends EventEmitter {
     const data2 = e.message.dataBytes[1];
 
     if ( event.type === "noteoff" || (event.type === "noteon" && data2 === 0) ) {
+
+      this.notesState[data1] = false;
 
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
@@ -210,6 +221,8 @@ export class InputChannel extends EventEmitter {
       event.rawVelocity = event.note.rawRelease;
 
     } else if (event.type === "noteon") {
+
+      this.notesState[data1] = true;
 
       /**
        * Event emitted when a **note on** MIDI message has been received.
@@ -333,7 +346,7 @@ export class InputChannel extends EventEmitter {
       // Parse the inbound event to see if its part of an RPN/NRPN sequence
       if (
         this.parameterNumberEventsEnabled &&
-        this.isRpnOrNrpnController(event.message.dataBytes[0])
+        this._isRpnOrNrpnController(event.message.dataBytes[0])
       ) {
         this._parseEventForParameterNumber(event);
       }
@@ -552,12 +565,6 @@ export class InputChannel extends EventEmitter {
 
   /**
    * Parses inbound events to identify NRPN sequences.
-   *
-   * and constructs NRPN message parts in valid sequences.
-   * Keeps a separate NRPN buffer for each channel.
-   * Emits an event after it receives the final CC parts msb 127 lsb 127.
-   * If a message is incomplete and other messages are received before
-   * the final 127 bytes, the incomplete message is cleared.
    * @param e Event
    * @private
    */
@@ -647,7 +654,12 @@ export class InputChannel extends EventEmitter {
 
   }
 
-  isRpnOrNrpnController(controller) {
+  /**
+   * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+   * @param controller
+   * @returns {boolean}
+   */
+  _isRpnOrNrpnController(controller) {
 
     return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||        //   6
       controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||               //  38
@@ -902,6 +914,31 @@ export class InputChannel extends EventEmitter {
     }
 
     return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
+
+  }
+
+  /**
+   * Return the playing status of the specified note. The `note` parameter can be an unsigned
+   * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
+   *
+   * If a note identifier or Note object is passed in, the method will take into account any
+   * `octaveOffset` defined.
+   *
+   * @param [input] {number|string|Note}
+   * @returns {boolean}
+   * @since version 3.0.0
+   */
+  getNoteState(note) {
+
+    // If it's a note object, we simply use the identifier
+    if (note instanceof Note) note = note.identifier;
+
+    const number = Utilities.guessNoteNumber(
+      note,
+      WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset
+    );
+
+    return this.notesState[number];
 
   }
 

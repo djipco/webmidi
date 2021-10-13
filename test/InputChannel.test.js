@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 const midi = require("midi");
-const {WebMidi, Utilities, Enumerations} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Utilities, Enumerations, Note} = require("../dist/webmidi.cjs.js");
 
 // Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
 // an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
@@ -948,6 +948,87 @@ describe("InputChannel Object", function() {
       results.forEach(result => {
         expect(result).to.be.undefined;
       });
+
+    });
+
+  });
+
+  describe("getNoteState()", function () {
+
+    it("should return correct play state", function (done) {
+
+      // Arrange
+      let channel = WEBMIDI_INPUT.channels[1];
+      let status = 0x90; // note on on channel 1
+      let event = "noteon";
+      let velocity = 127;
+      let note = 64;
+
+      channel.addListener(event, assert);
+
+      // Act
+      VIRTUAL_INPUT.PORT.sendMessage([status, note, velocity]);
+
+      // Assert
+      function assert() {
+
+        for (let i = 0; i < 128; i++) {
+          if (i === note) {
+            expect(channel.getNoteState(note)).to.equal(true);
+            expect(channel.getNoteState(new Note(i))).to.equal(true);
+            expect(channel.getNoteState(Utilities.toNoteIdentifier(i))).to.equal(true);
+          } else {
+            expect(channel.getNoteState(i)).to.equal(false);
+            expect(channel.getNoteState(new Note(i))).to.equal(false);
+            expect(channel.getNoteState(Utilities.toNoteIdentifier(i))).to.equal(false);
+          }
+        }
+
+        done();
+
+      }
+
+    });
+
+    it("should return correct play state (with octaveOffset", function (done) {
+
+      // Arrange
+      let channel = WEBMIDI_INPUT.channels[1];
+      let event = "noteon";
+      let velocity = 127;
+      let index = 0;
+      let status = 0x90;
+
+      WebMidi.octaveOffset = 1;
+      WEBMIDI_INPUT.octaveOffset = 1;
+      channel.octaveOffset = 1;
+
+      let notes = [
+        {identifier: "C-4", number: 0},
+        {identifier: "C1", number: 60},
+        {identifier: "G6", number: 127}
+      ];
+
+      channel.addListener(event, assert);
+
+      // Act
+      notes.forEach(note => {
+        VIRTUAL_INPUT.PORT.sendMessage([status, note.number, velocity]);
+      });
+
+      // Assert
+      function assert() {
+
+        index++;
+        if (index < notes.length) return;
+
+        notes.forEach(note => {
+          expect(channel.getNoteState(new Note(note.identifier))).to.equal(true);
+        });
+
+        done();
+
+      }
 
     });
 

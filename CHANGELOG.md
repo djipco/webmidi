@@ -54,6 +54,10 @@ options of `WebMidi.enable()`.
 
 - A two-position array cna now be passed to sendControlChange() to specify both MSB and LSB at once.
 
+- The `InputChannel` object now has a `getNoteState()` method that reports if a note is currently 
+playing or not. It also has a new `notesState` property which is an array holding the playing status
+of all notes (0-127).
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means
