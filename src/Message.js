@@ -1,4 +1,3 @@
-import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";
 
