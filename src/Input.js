@@ -67,7 +67,7 @@ export class Input extends EventEmitter {
   }
 
   /**
-   * Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
+   * Destroys the `Input` by removing all listeners, emptying the `channels` array and unlinking the
    * MIDI subsystem.
    *
    * @returns {Promise<void>}
@@ -76,8 +76,10 @@ export class Input extends EventEmitter {
     this.removeListener();
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
-    this._midiInput.onstatechange = null;
-    this._midiInput.onmidimessage = null;
+    if (this._midiInput) {
+      this._midiInput.onstatechange = null;
+      this._midiInput.onmidimessage = null;
+    }
     await this.close();
     this._midiInput = null;
   }
@@ -681,9 +683,9 @@ export class Input extends EventEmitter {
 
     // If the event is not specified, remove everything (channel-specific and input-wide)!
     if (event == undefined) {
-      Utilities.sanitizeChannels(
-        options.channels).forEach(ch => this.channels[ch].removeListener()
-      );
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
+        if (this.channels[ch]) this.channels[ch].removeListener();
+      });
       return super.removeListener();
     }
 

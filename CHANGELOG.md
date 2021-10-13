@@ -116,6 +116,9 @@ methods will continue to work but will trigger a deprecation warning in the cons
 
 - The send() method now accepts a `Message` object.
 
+- If a device is disconnected and connected back, it will retain its state (such as listeners, 
+etc.). This is particularly useful when the computer goes to sleep and is brought back online.
+
 ### Deprecated
 
 - The `velocity` option parameter has been renamed `attack`. There are new `rawAttack` and 

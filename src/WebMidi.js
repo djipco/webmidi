@@ -89,11 +89,27 @@ class WebMidi extends EventEmitter {
     this._inputs = [];
 
     /**
+     * Array of disconnected [`Input`](Input) objects. This is used when inputs are plugged back in
+     * to retain their previous state.
+     * @type {Input[]}
+     * @private
+     */
+    this._disconnectedInputs = [];
+
+    /**
      * Array of all [`Output`](Output) objects
      * @type {Output[]}
      * @private
      */
     this._outputs = [];
+
+    /**
+     * Array of disconnected [`Output`](Output) objects. This is used when outputs are plugged back
+     * in to retain their previous state.
+     * @type {Output[]}
+     * @private
+     */
+    this._disconnectedOutputs = [];
 
     /**
      * Array of statechange events to process. These events must be parsed synchronously so they do
@@ -125,6 +141,11 @@ class WebMidi extends EventEmitter {
    * To enable access to software synthesizers available on the host, you would set the `software`
    * option to `true`. However, this option is only there to future-proof the library as support for
    * software synths has not yet been implemented in any browser (as of September 2021).
+   *
+   * By the way, if you call the [`enable()`](#enable) method while WebMidi.js is already enabled,
+   * the callback function will be executed (if any), the promise will resolve but the events
+   * ([`"midiaccessgranted"`](#event:midiaccessgranted), [`"connected"`](#event:connected) and
+   * [`"enabled"`](#event:enabled)) will not be fired.
    *
    * There are 3 ways to execute code after `WebMidi` has been enabled:
    *
@@ -172,7 +193,8 @@ class WebMidi extends EventEmitter {
    *
    * @async
    *
-   * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object
+   * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object fro
+   * chainability
    *
    * @throws {Error} The Web MIDI API is not supported in your environment.
    * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
@@ -187,7 +209,7 @@ class WebMidi extends EventEmitter {
       if (legacy) options.sysex = true;
     }
 
-    // If already enabled, trigger callback and resolve promise but to not dispatch events
+    // If already enabled, trigger callback and resolve promise but do not dispatch events.
     if (this.enabled) {
       if (typeof options.callback === "function") options.callback();
       return Promise.resolve();
@@ -272,7 +294,7 @@ class WebMidi extends EventEmitter {
       type: "enabled"
     };
 
-    // Request MIDI access
+    // Request MIDI access (this iw where the prompt will appear)
     try {
       this.interface = await navigator.requestMIDIAccess(
         {sysex: options.sysex, software: options.software}
@@ -288,7 +310,7 @@ class WebMidi extends EventEmitter {
     // event. This allows the developer an occasion to assign listeners on 'connected' events.
     this.emit("midiaccessgranted", midiAccessGrantedEvent);
 
-    // We setup the statechange listener before creating the ports so that it properly catches the
+    // We setup the state change listener before creating the ports so that it properly catches the
     // the ports' `connected` events
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
 
@@ -302,13 +324,12 @@ class WebMidi extends EventEmitter {
       return Promise.reject(err);
     }
 
-    // If the ports are successfully created, we trigger the 'enabled' event
+    // If we make it here, the ports have been successfully created, so we trigger the 'enabled'
+    // event.
     this.emit("enabled", enabledEvent);
 
-    // Execute the callback (if any) and resolve the promise with an object containing inputs and
-    // outputs
+    // Execute the callback (if any) and resolve the promise with 'this' (for chainability)
     if (typeof options.callback === "function") options.callback();
-
     return Promise.resolve(this);
 
   }
@@ -649,6 +670,8 @@ class WebMidi extends EventEmitter {
    */
   _onInterfaceStateChange(e) {
 
+    console.log(e.type, e.port.name, e.port.state, e.port.connection);
+
     this._updateInputsAndOutputs();
 
     /**
@@ -689,7 +712,9 @@ class WebMidi extends EventEmitter {
       type: e.port.state
     };
 
-    if (this.interface && e.port.state === "connected") {
+    // We check if "connection" is "open" because connected events are also triggered with
+    // "connection=closed"
+    if (e.port.state === "connected" && e.port.connection === "open") {
 
       if (e.port.type === "output") {
         event.port = this.getOutputById(e.port.id); // legacy
@@ -699,7 +724,10 @@ class WebMidi extends EventEmitter {
         event.target = event.port;
       }
 
-    } else {
+      this.emit(e.port.state, event);
+
+    // We check if "connection" is "pending" because we do not always get the "closed" event
+    } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
 
       // It feels more logical to include a `target` property instead of a `port` property. This is
       // the terminology used everywhere in the library.
@@ -714,9 +742,9 @@ class WebMidi extends EventEmitter {
 
       event.target = event.port;
 
-    }
+      this.emit(e.port.state, event);
 
-    this.emit(e.port.state, event);
+    }
 
   };
 
@@ -737,51 +765,43 @@ class WebMidi extends EventEmitter {
    */
   async _updateInputs() {
 
-    // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
-    //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
-
-    let promises = [];
+    // We must check for the existence of this.interface because it might have been closed via
+    // WebMidi.disable().
+    if (!this.interface) return;
 
     // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
-    for (let i = 0; i < this._inputs.length; i++) {
-
-      let remove = true;
-
-      let updated = this.interface.inputs.values();
-
-      for (let input = updated.next(); input && !input.done; input = updated.next()) {
-        if (this._inputs[i]._midiInput === input.value) {
-          remove = false;
-          break;
-        }
+    for (let i = this._inputs.length - 1; i >= 0; i--) {
+      const current = this._inputs[i];
+      const inputs = Array.from(this.interface.inputs.values());
+      if (! inputs.find(input => input === current._midiInput)) {
+        // Instead of destroying removed inputs, we stash them in case they come back (which is the
+        // case when the computer goes to sleep and is later brought back online).
+        this._disconnectedInputs.push(current);
+        this._inputs.splice(i, 1);
       }
-
-      if (remove) this._inputs.splice(i, 1);
-
     }
 
-    // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end inputs list. We must check for the existence of this.interface because it might
-    // have been closed via WebMidi.disable().
-    this.interface && this.interface.inputs.forEach(nInput => {
+    // Array to hold pending promises from trying to open all input ports
+    let promises = [];
 
-      let add = true;
+    // Add new inputs (if not already present)
+    this.interface.inputs.forEach(nInput => {
 
-      for (let j = 0; j < this._inputs.length; j++) {
-        if (this._inputs[j]._midiInput === nInput) {
-          add = false;
-        }
-      }
+      // Check if the input is currently absent from the 'inputs' array.
+      if (! this._inputs.find(input => input._midiInput === nInput) ) {
 
-      if (add) {
-        let input = new Input(nInput);
+        // If the input has previously been stashed away, reuse it. If not, create a new one.
+        let input = this._disconnectedInputs.find(input => input._midiInput === nInput);
+        if (!input) input = new Input(nInput);
         this._inputs.push(input);
         promises.push(input.open());
+
       }
 
     });
 
+    // Return a promise that resolves when all promises have resolved
     return Promise.all(promises);
 
   };
@@ -791,51 +811,43 @@ class WebMidi extends EventEmitter {
    */
   async _updateOutputs() {
 
-    let promises = [];
+    // We must check for the existence of this.interface because it might have been closed via
+    // WebMidi.disable().
+    if (!this.interface) return;
 
     // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
-    for (let i = 0; i < this._outputs.length; i++) {
-
-      let remove = true;
-
-      let updated = this.interface.outputs.values();
-
-      for (let output = updated.next(); output && !output.done; output = updated.next()) {
-        if (this._outputs[i]._midiOutput === output.value) {
-          remove = false;
-          break;
-        }
-      }
-
-      if (remove) {
-        this._outputs[i].close();
+    for (let i = this._outputs.length - 1; i >= 0; i--) {
+      const current = this._outputs[i];
+      const outputs = Array.from(this.interface.outputs.values());
+      if (! outputs.find(output => output === current._midiOutput)) {
+        // Instead of destroying removed inputs, we stash them in case they come back (which is the
+        // case when the computer goes to sleep and is later brought back online).
+        this._disconnectedOutputs.push(current);
         this._outputs.splice(i, 1);
       }
-
     }
 
-    // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end outputs list. We must check for the existence of this.interface because it might
-    // have been closed via WebMidi.disable().
-    this.interface && this.interface.outputs.forEach(nOutput => {
+    // Array to hold pending promises from trying to open all output ports
+    let promises = [];
 
-      let add = true;
+    // Add new outputs (if not already present)
+    this.interface.outputs.forEach(nOutput => {
 
-      for (let j = 0; j < this._outputs.length; j++) {
-        if (this._outputs[j]._midiOutput === nOutput) {
-          add = false;
-        }
-      }
+      // Check if the output is currently absent from the 'outputs' array.
+      if (! this._outputs.find(output => output._midiOutput === nOutput) ) {
 
-      if (add) {
-        let output = new Output(nOutput);
+        // If the output has previously been stashed away, reuse it. If not, create a new one.
+        let output = this._disconnectedOutputs.find(output => output._midiOutput === nOutput);
+        if (!output) output = new Output(nOutput);
         this._outputs.push(output);
         promises.push(output.open());
+
       }
 
     });
 
+    // Return a promise that resolves when all sub-promises have resolved
     return Promise.all(promises);
 
   };
