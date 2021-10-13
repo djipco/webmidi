@@ -7835,6 +7835,7 @@
           // If the output has previously been stashed away, reuse it. If not, create a new one.
           let output = this._disconnectedOutputs.find(output => output._midiOutput === nOutput);
 
+          if (output) console.log(output);
           if (!output) output = new Output(nOutput);
 
           this._outputs.push(output);
