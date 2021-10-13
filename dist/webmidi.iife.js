@@ -7803,7 +7803,7 @@
 
       for (let i = this._inputs.length - 1; i >= 0; i--) {
         const current = this._inputs[i];
-        const inputs = Array.from(this.interface.inputs.entries());
+        const inputs = Array.from(this.interface.inputs.values());
 
         if (!inputs.find(input => input === current._midiInput)) {
           current.destroy();
@@ -7894,7 +7894,7 @@
 
       for (let i = this._outputs.length - 1; i >= 0; i--) {
         const current = this._outputs[i];
-        const outputs = Array.from(this.interface.outputs.entries());
+        const outputs = Array.from(this.interface.outputs.values());
 
         if (!outputs.find(input => input === current._midiOutput)) {
           current.destroy();
