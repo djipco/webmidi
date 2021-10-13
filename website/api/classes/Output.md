@@ -595,18 +595,15 @@ specification.
 ### `.sendNoteOff(...)`
 
 
-Sends a **note off** message for the specified notes on the specified channel(s). The first
-parameter is the note. It can be a single value or an array of the following valid values:
+Sends a **note off** message for the specified MIDI note number on the specified channel(s).
+The first parameter is the number. It can be a single value or an array of the following valid
+values:
 
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [Note](Note) object
 
  The execution of the **note off** command can be delayed by using the `time` property of the
 `options` parameter.
-
-When using [Note](Note) objects, the release velocity defined in the [Note](Note) objects has
-precedence over the one specified via the method's `options` parameter.
 
 
   **Parameters**
@@ -615,7 +612,7 @@ precedence over the one specified via the method's `options` parameter.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** |number||The note(s) to stop. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
+    |**`note`** |number||The note(s) to stop. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
     |[**`options`**] |Object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.rawValue`**] |boolean|false|Controls whether the release velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
@@ -632,20 +629,15 @@ precedence over the one specified via the method's `options` parameter.
 ### `.sendNoteOn(...)`
 
 
-Sends a **note on** message for the specified notes on the specified channel(s). The first
-parameter is the note. It can be a single value or an array of the following valid values:
+Sends a **note on** message for the specified MIDI note number on the specified channel(s). The
+first parameter is the number. It can be a single value or an array of the following valid
+values:
 
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [Note](Note) object
 
  The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
-
-When using [Note](Note) objects, the attack velocity defined in the [Note](Note) objects has
-precedence over the one specified via the method's `options` parameter. Also, the `duration` is
-ignored. If you want to also send a **note off** message, use the
-[playNote()](#Output+playNote) method instead.
 
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
@@ -657,7 +649,7 @@ functionally equivalent to a **note off** message.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** |number||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
+    |**`note`** |number||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
     |[**`options`**] |Object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.rawValue`**] |boolean|false|Controls whether the attack velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
