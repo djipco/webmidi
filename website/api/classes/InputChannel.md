@@ -94,6 +94,15 @@ The [`Input`](Input) this channel belongs to
 **Type**: Input<br />
 
 
+### `.notesState`
+
+
+Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+`true` for a currently playing note and `false` otherwise.
+
+**Type**: Array.&lt;boolean&gt;<br />
+
+
 ### `.number`
 
 **Since**: 3.0<br />
@@ -138,6 +147,25 @@ all buffered control change messages will be discarded as incomplete.
 ***
 
 ## Methods
+
+
+### `._isRpnOrNrpnController(...)`
+
+
+Indicates whether the specified controller can be part of an RPN or NRPN sequence
+
+
+  **Parameters**
+
+  > Signature: `_isRpnOrNrpnController(controller)`
+
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`controller`** ||||
+
+
+**Returns**: `boolean`
+
 
 
 ### `.addListener(...)`
@@ -366,6 +394,30 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 **Returns**: `Array.<Listener>`
 > An array of `Listener` objects
 
+
+
+
+### `.getNoteState(...)`
+
+**Since**: version 3.0.0<br />
+
+Return the playing status of the specified note. The `note` parameter can be an unsigned
+integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [Note](Note) object.
+
+If a note identifier or Note object is passed in, the method will take into account any
+`octaveOffset` defined.
+
+
+  **Parameters**
+
+  > Signature: `getNoteState([input])`
+
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`input`**] |number|||
+
+
+**Returns**: `boolean`
 
 
 
