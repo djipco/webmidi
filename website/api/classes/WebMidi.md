@@ -206,7 +206,7 @@ To enable access to software synthesizers available on the host, you would set t
 option to `true`. However, this option is only there to future-proof the library as support for
 software synths has not yet been implemented in any browser (as of September 2021).
 
-By the way, if you call the [`enable()`(#enable) method while WebMidi.js is already enabled,
+By the way, if you call the [`enable()`](#enable) method while WebMidi.js is already enabled,
 the callback function will be executed (if any), the promise will resolve but the events
 ([`"midiaccessgranted"`](#event:midiaccessgranted), [`"connected"`](#event:connected) and
 [`"enabled"`](#event:enabled)) will not be fired.
