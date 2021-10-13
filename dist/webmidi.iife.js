@@ -7666,8 +7666,6 @@
 
 
     _onInterfaceStateChange(e) {
-      console.log("state: " + e.port.state, "connection: " + e.port.connection, e.port.type, e.port.name);
-
       this._updateInputsAndOutputs();
       /**
        * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
@@ -7749,56 +7747,6 @@
     /**
      * @private
      */
-    // async _updateInputs() {
-    //
-    //   // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
-    //   //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
-    //
-    //   let promises = [];
-    //
-    //   // Check for items to remove from the existing array (because they are no longer being reported
-    //   // by the MIDI back-end).
-    //   for (let i = 0; i < this._inputs.length; i++) {
-    //
-    //     let remove = true;
-    //
-    //     let updated = this.interface.inputs.values();
-    //
-    //     for (let input = updated.next(); input && !input.done; input = updated.next()) {
-    //       if (this._inputs[i]._midiInput === input.value) {
-    //         remove = false;
-    //         break;
-    //       }
-    //     }
-    //
-    //     if (remove) this._inputs.splice(i, 1);
-    //
-    //   }
-    //
-    //   // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    //   // back-end inputs list. We must check for the existence of this.interface because it might
-    //   // have been closed via WebMidi.disable().
-    //   this.interface && this.interface.inputs.forEach(nInput => {
-    //
-    //     let add = true;
-    //
-    //     for (let j = 0; j < this._inputs.length; j++) {
-    //       if (this._inputs[j]._midiInput === nInput) {
-    //         add = false;
-    //       }
-    //     }
-    //
-    //     if (add) {
-    //       let input = new Input(nInput);
-    //       this._inputs.push(input);
-    //       promises.push(input.open());
-    //     }
-    //
-    //   });
-    //
-    //   return Promise.all(promises);
-    //
-    // };
     async _updateInputs() {
       // We must check for the existence of this.interface because it might have been closed via
       // WebMidi.disable().
@@ -7840,56 +7788,6 @@
     /**
      * @private
      */
-    // async _updateOutputs() {
-    //
-    //   let promises = [];
-    //
-    //   // Check for items to remove from the existing array (because they are no longer being reported
-    //   // by the MIDI back-end).
-    //   for (let i = 0; i < this._outputs.length; i++) {
-    //
-    //     let remove = true;
-    //
-    //     let updated = this.interface.outputs.values();
-    //
-    //     for (let output = updated.next(); output && !output.done; output = updated.next()) {
-    //       if (this._outputs[i]._midiOutput === output.value) {
-    //         remove = false;
-    //         break;
-    //       }
-    //     }
-    //
-    //     if (remove) {
-    //       this._outputs[i].close();
-    //       this._outputs.splice(i, 1);
-    //     }
-    //
-    //   }
-    //
-    //   // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    //   // back-end outputs list. We must check for the existence of this.interface because it might
-    //   // have been closed via WebMidi.disable().
-    //   this.interface && this.interface.outputs.forEach(nOutput => {
-    //
-    //     let add = true;
-    //
-    //     for (let j = 0; j < this._outputs.length; j++) {
-    //       if (this._outputs[j]._midiOutput === nOutput) {
-    //         add = false;
-    //       }
-    //     }
-    //
-    //     if (add) {
-    //       let output = new Output(nOutput);
-    //       this._outputs.push(output);
-    //       promises.push(output.open());
-    //     }
-    //
-    //   });
-    //
-    //   return Promise.all(promises);
-    //
-    // };
     async _updateOutputs() {
       // We must check for the existence of this.interface because it might have been closed via
       // WebMidi.disable().
