@@ -2013,10 +2013,12 @@
 
 
     getNoteState(note) {
-      const n = Utilities.buildNote(note);
-      const number = Utilities.toNoteNumber(n // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
-      );
-      return this.notesState[number];
+      // const n = Utilities.buildNote(note);
+      // const number = Utilities.toNoteNumber(
+      //   n,
+      //   // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
+      // );
+      return this.notesState[note];
     }
     /**
      * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
