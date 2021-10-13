@@ -1282,9 +1282,7 @@
        * @type {boolean[]}
        */
 
-      this.notesState = []; // Fill note states with `false`
-
-      this.notesState = this.notesState.fill(false, 0, 128);
+      this.notesState = new Array(128).fill(false);
     }
     /**
      * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
