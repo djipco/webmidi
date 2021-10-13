@@ -7660,7 +7660,7 @@
 
 
     _onInterfaceStateChange(e) {
-      console.log("statechange", e.port.name, e.port.type, e.port.state, e.timestamp);
+      console.log("statechange", e.port.name, e.port.type, e.port.state, e);
 
       this._updateInputsAndOutputs();
       /**
