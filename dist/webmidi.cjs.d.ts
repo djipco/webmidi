@@ -3250,7 +3250,12 @@ declare class InputChannel {
      * @private
      */
     private _parseEventForParameterNumber;
-    isRpnOrNrpnController(controller: any): boolean;
+    /**
+     * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+     * @param controller
+     * @returns {boolean}
+     */
+    _isRpnOrNrpnController(controller: any): boolean;
     _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
     /**
      * Returns the channel mode name matching the specified number. If no match is found, the function
