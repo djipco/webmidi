@@ -892,37 +892,31 @@
           "via"
         ],
         "Input.html": [
+          "access",
+          "accord",
+          "and/or",
           "array",
-          "avail",
+          "automat",
           "class",
-          "current",
-          "deriv",
+          "devic",
           "directli",
-          "djipev",
-          "emit",
-          "eventemitt",
-          "extend",
-          "find",
-          "getlisten",
+          "expos",
           "host'",
-          "includ",
           "input",
           "instanti",
-          "list",
-          "mean",
-          "method",
+          "instead",
+          "librari",
           "midi",
-          "modul",
+          "note",
           "object",
-          "other",
+          "output",
           "port",
+          "refer",
           "repres",
           "sever",
           "singl",
           "subsystem",
-          "such",
-          "suspendev",
-          "webmidi#input"
+          "webmidi.input"
         ],
         "Input.html#channels": [
           "1",
@@ -1600,42 +1594,24 @@
         "InputChannel.html": [
           "1",
           "16",
-          "addlisten",
           "channel",
-          "check",
           "class",
           "deriv",
-          "detail",
           "devic",
           "directli",
-          "djipev",
-          "document",
-          "eventemitt",
-          "extend",
           "found",
-          "haslisten",
           "host'",
-          "includ",
           "input",
           "input'",
           "inputchannel",
           "insid",
           "instanti",
-          "mean",
-          "method",
           "midi",
-          "modul",
-          "more",
           "object",
-          "other",
-          "out",
           "properti",
-          "removelisten",
           "repres",
-          "sever",
           "singl",
-          "subsystem",
-          "such"
+          "subsystem"
         ],
         "InputChannel.html#.EVENTS": [
           "array",
@@ -2646,10 +2622,10 @@
         "Note.html#getOffsetNumber": [
           "0",
           "127",
+          "and/or",
           "calcul",
           "function",
           "getoffsetnumb",
-          "integ",
           "invalid",
           "less",
           "midi",
@@ -2657,43 +2633,36 @@
           "note",
           "note#getoffsetnumb",
           "number",
+          "octav",
+          "octaveoffset",
           "offset",
-          "paramet",
           "return",
-          "specifi",
+          "semiton",
+          "semitoneoffset",
           "suppli",
           "us",
           "valu"
         ],
         "Output.html": [
-          "addlisten",
+          "access",
+          "accord",
           "array",
+          "automat",
           "avail",
           "class",
-          "deriv",
           "directli",
-          "djipev",
-          "eventemitt",
-          "extend",
-          "find",
-          "haslisten",
           "host'",
-          "includ",
           "instanti",
-          "list",
-          "mean",
-          "method",
+          "instead",
+          "librari",
           "midi",
-          "modul",
           "object",
-          "other",
           "output",
           "port",
-          "removelisten",
+          "refer",
           "repres",
-          "sever",
+          "singl",
           "subsystem",
-          "such",
           "webmidi.output"
         ],
         "Output.html#channels": [
@@ -4744,38 +4713,25 @@
         "OutputChannel.html": [
           "1",
           "16",
-          "addlisten",
           "channel",
           "class",
           "deriv",
           "devic",
           "directli",
-          "djipev",
-          "eventemitt",
-          "extend",
           "found",
-          "haslisten",
           "host'",
-          "includ",
           "insid",
           "instanti",
-          "mean",
-          "method",
           "midi",
-          "modul",
           "object",
-          "other",
           "output",
           "output'",
           "outputchannel",
           "parent",
           "properti",
-          "removelisten",
           "repres",
-          "sever",
           "singl",
-          "subsystem",
-          "such"
+          "subsystem"
         ],
         "OutputChannel.html#eventCount": [
           "event",
@@ -6771,12 +6727,12 @@
           "cj",
           "class",
           "commonj",
-          "directli",
           "easier",
           "es6",
           "esm",
           "global",
           "iif",
+          "import",
           "incom",
           "instanti",
           "know",
@@ -6784,12 +6740,9 @@
           "librari",
           "low",
           "make",
-          "mean",
           "messag",
           "midi",
           "modul",
-          "need",
-          "new",
           "object",
           "outgo",
           "react",
@@ -6801,7 +6754,8 @@
           "web",
           "webmidi",
           "webmidi.j",
-          "work"
+          "work",
+          "yourself"
         ],
         "WebMidi.html#defaults": [
           "chang",
@@ -6915,6 +6869,8 @@
           "instanc",
           "interfac",
           "know",
+          "level",
+          "lower",
           "lt;readonli",
           "member",
           "midi",
@@ -6995,6 +6951,7 @@
           "midi",
           "name",
           "note",
+          "noteon",
           "number",
           "octav",
           "octaveoffset",
@@ -7015,6 +6972,7 @@
           "lt;readonly&gt",
           "member",
           "midi",
+          "object",
           "output",
           "webmidi#output"
         ],
@@ -7188,7 +7146,6 @@
         ],
         "WebMidi.html#disable": [
           "ad",
-          "avail",
           "close",
           "complet",
           "destroy",
@@ -7202,8 +7159,9 @@
           "mean",
           "midi",
           "object",
+          "open",
           "output",
-          "promise.&lt;void&gt",
+          "promis",
           "subsystem'",
           "unlink",
           "webmidi",
@@ -7263,12 +7221,14 @@
           "2021",
           "3",
           "access",
+          "alreadi",
           "alway",
           "api",
           "asynchron",
           "author",
           "avail",
           "browser",
+          "call",
           "callback",
           "caus",
           "check",
@@ -7291,6 +7251,7 @@
           "exclus",
           "execut",
           "file",
+          "fire",
           "fulfil",
           "function",
           "futur",
@@ -7310,6 +7271,7 @@
           "lt;async&gt",
           "matter",
           "messag",
+          "method",
           "midi",
           "midiaccessgr",
           "note",
@@ -7326,7 +7288,7 @@
           "ports.output",
           "process",
           "promis",
-          "promise.&lt;object&gt",
+          "promise.&lt;webmidi&gt",
           "prompt",
           "proof",
           "properti",
@@ -9028,7 +8990,7 @@
               },
               "InputChannel.html": {
                 "ref": "InputChannel.html",
-                "tf": 2.083333333333333
+                "tf": 3.8461538461538463
               },
               "InputChannel.html#number": {
                 "ref": "InputChannel.html#number",
@@ -9048,7 +9010,7 @@
               },
               "OutputChannel.html": {
                 "ref": "OutputChannel.html",
-                "tf": 2.380952380952381
+                "tf": 3.8461538461538463
               },
               "OutputChannel.html#number": {
                 "ref": "OutputChannel.html#number",
@@ -9150,7 +9112,7 @@
             },
             "InputChannel.html": {
               "ref": "InputChannel.html",
-              "tf": 1.0416666666666665
+              "tf": 1.9230769230769231
             },
             "InputChannel.html#number": {
               "ref": "InputChannel.html#number",
@@ -9226,7 +9188,7 @@
             },
             "OutputChannel.html": {
               "ref": "OutputChannel.html",
-              "tf": 1.1904761904761905
+              "tf": 1.9230769230769231
             },
             "OutputChannel.html#number": {
               "ref": "OutputChannel.html#number",
@@ -9356,7 +9318,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   }
                 }
               },
@@ -9783,7 +9745,7 @@
             },
             "WebMidi.html#enable": {
               "ref": "WebMidi.html#enable",
-              "tf": 0.33112582781456956
+              "tf": 0.29940119760479045
             }
           },
           ".": {
@@ -10665,11 +10627,11 @@
                 },
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.9259259259259258
+                  "tf": 0.9803921568627451
                 },
                 "WebMidi.html#interface": {
                   "ref": "WebMidi.html#interface",
-                  "tf": 4.166666666666666
+                  "tf": 3.571428571428571
                 },
                 "WebMidi.html#supported": {
                   "ref": "WebMidi.html#supported",
@@ -10677,7 +10639,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.6622516556291391
+                  "tf": 0.5988023952095809
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -10876,7 +10838,7 @@
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.33112582781456956
+                              "tf": 0.29940119760479045
                             }
                           }
                         }
@@ -11136,7 +11098,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.6622516556291391
+                      "tf": 0.5988023952095809
                     }
                   }
                 }
@@ -11158,7 +11120,11 @@
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 1.8518518518518516
+                          "tf": 1.9607843137254901
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -11329,7 +11295,7 @@
                     },
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3157894736842104
+                      "tf": 1.5625
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -11393,7 +11359,7 @@
                     },
                     "Output.html": {
                       "ref": "Output.html",
-                      "tf": 1.3888888888888888
+                      "tf": 2
                     },
                     "Output.html#channels": {
                       "ref": "Output.html#channels",
@@ -11505,7 +11471,7 @@
                     },
                     "WebMidi.html#outputs": {
                       "ref": "WebMidi.html#outputs",
-                      "tf": 43.33333333333333
+                      "tf": 40.47619047619047
                     },
                     "WebMidi.html#emit": {
                       "ref": "WebMidi.html#emit",
@@ -12108,33 +12074,27 @@
             },
             "c": {
               "docs": {},
-              "i": {
+              "e": {
                 "docs": {},
-                "d": {
+                "s": {
                   "docs": {},
-                  "e": {
-                    "docs": {},
-                    "n": {
-                      "docs": {},
-                      "t": {
-                        "docs": {
-                          "Note.html#accidental": {
-                            "ref": "Note.html#accidental",
-                            "tf": 712.5
-                          },
-                          "Note.html#identifier": {
-                            "ref": "Note.html#identifier",
-                            "tf": 8.333333333333332
-                          },
-                          "Utilities.html#.getNoteDetails": {
-                            "ref": "Utilities.html#.getNoteDetails",
-                            "tf": 1.25
-                          },
-                          "Utilities.html#.toNoteIdentifier": {
-                            "ref": "Utilities.html#.toNoteIdentifier",
-                            "tf": 3.125
-                          }
-                        }
+                  "s": {
+                    "docs": {
+                      "Input.html": {
+                        "ref": "Input.html",
+                        "tf": 1.5625
+                      },
+                      "Output.html": {
+                        "ref": "Output.html",
+                        "tf": 2
+                      },
+                      "WebMidi.html#enabled": {
+                        "ref": "WebMidi.html#enabled",
+                        "tf": 7.142857142857142
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.29940119760479045
                       }
                     }
                   }
@@ -12146,6 +12106,14 @@
                   "docs": {},
                   "d": {
                     "docs": {
+                      "Input.html": {
+                        "ref": "Input.html",
+                        "tf": 1.5625
+                      },
+                      "Output.html": {
+                        "ref": "Output.html",
+                        "tf": 2
+                      },
                       "Output.html#sendClock": {
                         "ref": "Output.html#sendClock",
                         "tf": 3.8461538461538463
@@ -12190,19 +12158,33 @@
                   }
                 }
               },
-              "e": {
+              "i": {
                 "docs": {},
-                "s": {
+                "d": {
                   "docs": {},
-                  "s": {
-                    "docs": {
-                      "WebMidi.html#enabled": {
-                        "ref": "WebMidi.html#enabled",
-                        "tf": 7.142857142857142
-                      },
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                  "e": {
+                    "docs": {},
+                    "n": {
+                      "docs": {},
+                      "t": {
+                        "docs": {
+                          "Note.html#accidental": {
+                            "ref": "Note.html#accidental",
+                            "tf": 712.5
+                          },
+                          "Note.html#identifier": {
+                            "ref": "Note.html#identifier",
+                            "tf": 8.333333333333332
+                          },
+                          "Utilities.html#.getNoteDetails": {
+                            "ref": "Utilities.html#.getNoteDetails",
+                            "tf": 1.25
+                          },
+                          "Utilities.html#.toNoteIdentifier": {
+                            "ref": "Utilities.html#.toNoteIdentifier",
+                            "tf": 3.125
+                          }
+                        }
                       }
                     }
                   }
@@ -12446,25 +12428,13 @@
                               "ref": "Input.html#addListener",
                               "tf": 670
                             },
-                            "InputChannel.html": {
-                              "ref": "InputChannel.html",
-                              "tf": 1.0416666666666665
-                            },
                             "InputChannel.html#addListener": {
                               "ref": "InputChannel.html#addListener",
                               "tf": 670
                             },
-                            "Output.html": {
-                              "ref": "Output.html",
-                              "tf": 1.3888888888888888
-                            },
                             "Output.html#addListener": {
                               "ref": "Output.html#addListener",
                               "tf": 670
-                            },
-                            "OutputChannel.html": {
-                              "ref": "OutputChannel.html",
-                              "tf": 1.1904761904761905
                             },
                             "OutputChannel.html#addListener": {
                               "ref": "OutputChannel.html#addListener",
@@ -12661,6 +12631,27 @@
                       "EventEmitter.html#.ANY_EVENT": {
                         "ref": "EventEmitter.html#.ANY_EVENT",
                         "tf": 683.3333333333334
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "d": {
+              "docs": {},
+              "/": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Input.html": {
+                        "ref": "Input.html",
+                        "tf": 1.5625
+                      },
+                      "Note.html#getOffsetNumber": {
+                        "ref": "Note.html#getOffsetNumber",
+                        "tf": 2
                       }
                     }
                   }
@@ -12866,6 +12857,63 @@
               }
             }
           },
+          "u": {
+            "docs": {},
+            "t": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {},
+                  "a": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "Input.html": {
+                          "ref": "Input.html",
+                          "tf": 1.5625
+                        },
+                        "Input.html#open": {
+                          "ref": "Input.html#open",
+                          "tf": 5
+                        },
+                        "Listener.html#remaining": {
+                          "ref": "Listener.html#remaining",
+                          "tf": 8.333333333333332
+                        },
+                        "Note.html": {
+                          "ref": "Note.html",
+                          "tf": 0.6578947368421052
+                        },
+                        "Output.html": {
+                          "ref": "Output.html",
+                          "tf": 2
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.5780346820809248
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "h": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.29940119760479045
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "v": {
             "docs": {},
             "a": {
@@ -12874,10 +12922,6 @@
                 "docs": {},
                 "l": {
                   "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 1.3157894736842104
-                    },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
                       "tf": 4.166666666666666
@@ -12888,7 +12932,7 @@
                     },
                     "Output.html": {
                       "ref": "Output.html",
-                      "tf": 1.3888888888888888
+                      "tf": 2
                     },
                     "Output.html#channels": {
                       "ref": "Output.html#channels",
@@ -12920,19 +12964,15 @@
                     },
                     "WebMidi.html#outputs": {
                       "ref": "WebMidi.html#outputs",
-                      "tf": 10
+                      "tf": 7.142857142857142
                     },
                     "WebMidi.html#supported": {
                       "ref": "WebMidi.html#supported",
                       "tf": 1.7241379310344827
                     },
-                    "WebMidi.html#disable": {
-                      "ref": "WebMidi.html#disable",
-                      "tf": 2.272727272727273
-                    },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.9933774834437087
+                      "tf": 0.8982035928143712
                     }
                   }
                 }
@@ -12954,55 +12994,6 @@
                     "Output.html#close": {
                       "ref": "Output.html#close",
                       "tf": 2.380952380952381
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "u": {
-            "docs": {},
-            "t": {
-              "docs": {},
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {},
-                  "a": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "Input.html#open": {
-                          "ref": "Input.html#open",
-                          "tf": 5
-                        },
-                        "Listener.html#remaining": {
-                          "ref": "Listener.html#remaining",
-                          "tf": 8.333333333333332
-                        },
-                        "Note.html": {
-                          "ref": "Note.html",
-                          "tf": 0.6578947368421052
-                        },
-                        "Output.html#sendSysex": {
-                          "ref": "Output.html#sendSysex",
-                          "tf": 0.5780346820809248
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "h": {
-                "docs": {},
-                "o": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
-                      }
                     }
                   }
                 }
@@ -13144,14 +13135,6 @@
                         "ref": "EventEmitter.html#hasListener",
                         "tf": 1.6129032258064515
                       },
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 1.3157894736842104
-                      },
-                      "InputChannel.html": {
-                        "ref": "InputChannel.html",
-                        "tf": 1.0416666666666665
-                      },
                       "InputChannel.html#hasListener": {
                         "ref": "InputChannel.html#hasListener",
                         "tf": 1.6129032258064515
@@ -13164,17 +13147,9 @@
                         "ref": "Message.html#rawDataBytes",
                         "tf": 2.380952380952381
                       },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 1.3888888888888888
-                      },
                       "Output.html#hasListener": {
                         "ref": "Output.html#hasListener",
                         "tf": 1.6129032258064515
-                      },
-                      "OutputChannel.html": {
-                        "ref": "OutputChannel.html",
-                        "tf": 1.1904761904761905
                       },
                       "OutputChannel.html#hasListener": {
                         "ref": "OutputChannel.html#hasListener",
@@ -13222,7 +13197,7 @@
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.9259259259259258
+                      "tf": 0.9803921568627451
                     }
                   },
                   "p": {
@@ -13436,10 +13411,6 @@
                       "ref": "Note.html#release",
                       "tf": 7.142857142857142
                     },
-                    "Note.html#getOffsetNumber": {
-                      "ref": "Note.html#getOffsetNumber",
-                      "tf": 2
-                    },
                     "Output.html#octaveOffset": {
                       "ref": "Output.html#octaveOffset",
                       "tf": 2
@@ -13597,7 +13568,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1905.2631578947369
+                      "tf": 1906.25
                     },
                     "Input.html#channels": {
                       "ref": "Input.html#channels",
@@ -13649,7 +13620,7 @@
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 2.083333333333333
+                      "tf": 3.8461538461538463
                     },
                     "InputChannel.html#input": {
                       "ref": "InputChannel.html#input",
@@ -13697,7 +13668,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -14382,7 +14353,7 @@
                                   },
                                   "InputChannel.html": {
                                     "ref": "InputChannel.html",
-                                    "tf": 1903.125
+                                    "tf": 1903.8461538461538
                                   }
                                 },
                                 ".": {
@@ -15114,7 +15085,7 @@
                     "docs": {
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0416666666666665
+                        "tf": 1.9230769230769231
                       }
                     }
                   },
@@ -15159,23 +15130,23 @@
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 1.3157894736842104
+                            "tf": 3.125
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
-                            "tf": 1.0416666666666665
+                            "tf": 1.9230769230769231
                           },
                           "Output.html": {
                             "ref": "Output.html",
-                            "tf": 1.3888888888888888
+                            "tf": 4
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.1904761904761905
+                            "tf": 1.9230769230769231
                           },
                           "WebMidi.html": {
                             "ref": "WebMidi.html",
-                            "tf": 2.7777777777777777
+                            "tf": 2.941176470588235
                           }
                         }
                       }
@@ -15196,7 +15167,7 @@
                         },
                         "WebMidi.html#interface": {
                           "ref": "WebMidi.html#interface",
-                          "tf": 4.166666666666666
+                          "tf": 3.571428571428571
                         }
                       }
                     }
@@ -15216,6 +15187,14 @@
                     "docs": {},
                     "d": {
                       "docs": {
+                        "Input.html": {
+                          "ref": "Input.html",
+                          "tf": 1.5625
+                        },
+                        "Output.html": {
+                          "ref": "Output.html",
+                          "tf": 2
+                        },
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
                           "tf": 0.2403846153846154
@@ -15294,7 +15273,7 @@
                   "docs": {
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
+                      "tf": 1.9230769230769231
                     },
                     "Listener.html#context": {
                       "ref": "Listener.html#context",
@@ -15302,7 +15281,7 @@
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
+                      "tf": 1.9230769230769231
                     }
                   }
                 }
@@ -15444,10 +15423,28 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.33112582781456956
+                              "tf": 0.29940119760479045
                             }
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "WebMidi.html": {
+                        "ref": "WebMidi.html",
+                        "tf": 0.9803921568627451
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.29940119760479045
                       }
                     }
                   }
@@ -15462,20 +15459,6 @@
                       "WebMidi.html#validation": {
                         "ref": "WebMidi.html#validation",
                         "tf": 1.6129032258064515
-                      }
-                    }
-                  }
-                }
-              },
-              "o": {
-                "docs": {},
-                "r": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "WebMidi.html#enable": {
-                        "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
                       }
                     }
                   }
@@ -15815,7 +15798,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -15828,7 +15811,7 @@
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.9259259259259258
+                  "tf": 0.9803921568627451
                 }
               }
             }
@@ -15881,7 +15864,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -16063,11 +16046,11 @@
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.9259259259259258
+                    "tf": 0.9803921568627451
                   },
                   "WebMidi.html#interface": {
                     "ref": "WebMidi.html#interface",
-                    "tf": 4.166666666666666
+                    "tf": 3.571428571428571
                   }
                 }
               }
@@ -16110,9 +16093,17 @@
                           "ref": "Enumerations.html",
                           "tf": 3.125
                         },
+                        "Input.html": {
+                          "ref": "Input.html",
+                          "tf": 1.5625
+                        },
+                        "Output.html": {
+                          "ref": "Output.html",
+                          "tf": 2
+                        },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 0.9259259259259258
+                          "tf": 0.9803921568627451
                         },
                         "WebMidi.html#defaults": {
                           "ref": "WebMidi.html#defaults",
@@ -16124,7 +16115,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -16152,10 +16143,6 @@
                     "ref": "EventEmitter.html#getListeners",
                     "tf": 2.083333333333333
                   },
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 1.3157894736842104
-                  },
                   "Input.html#getListeners": {
                     "ref": "Input.html#getListeners",
                     "tf": 2.083333333333333
@@ -16167,10 +16154,6 @@
                   "Message.html#manufacturerId": {
                     "ref": "Message.html#manufacturerId",
                     "tf": 1.7857142857142856
-                  },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 1.3888888888888888
                   },
                   "Output.html#decrementRegisteredParameter": {
                     "ref": "Output.html#decrementRegisteredParameter",
@@ -16558,7 +16541,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#getListenerCount": {
                         "ref": "WebMidi.html#getListenerCount",
@@ -16941,7 +16924,7 @@
                                   },
                                   "Utilities.html#.toNoteIdentifier": {
                                     "ref": "Utilities.html#.toNoteIdentifier",
-                                    "tf": 33.33333333333333
+                                    "tf": 20
                                   },
                                   "Utilities.html#.toNoteNumber": {
                                     "ref": "Utilities.html#.toNoteNumber",
@@ -17351,7 +17334,7 @@
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.33112582781456956
+                              "tf": 0.29940119760479045
                             }
                           }
                         }
@@ -17411,7 +17394,18 @@
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.9259259259259258
+                  "tf": 0.9803921568627451
+                }
+              },
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#interface": {
+                      "ref": "WebMidi.html#interface",
+                      "tf": 3.571428571428571
+                    }
+                  }
                 }
               }
             },
@@ -17610,7 +17604,11 @@
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.9259259259259258
+                      "tf": 0.9803921568627451
+                    },
+                    "WebMidi.html#interface": {
+                      "ref": "WebMidi.html#interface",
+                      "tf": 3.571428571428571
                     }
                   }
                 }
@@ -17724,7 +17722,7 @@
                   },
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 2.631578947368421
+                    "tf": 3.125
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -17756,7 +17754,7 @@
                   },
                   "InputChannel.html": {
                     "ref": "InputChannel.html",
-                    "tf": 2.083333333333333
+                    "tf": 3.8461538461538463
                   },
                   "InputChannel.html#number": {
                     "ref": "InputChannel.html#number",
@@ -17824,7 +17822,7 @@
                   },
                   "Output.html": {
                     "ref": "Output.html",
-                    "tf": 2.7777777777777777
+                    "tf": 4
                   },
                   "Output.html#id": {
                     "ref": "Output.html#id",
@@ -17948,7 +17946,7 @@
                   },
                   "OutputChannel.html": {
                     "ref": "OutputChannel.html",
-                    "tf": 1.1904761904761905
+                    "tf": 1.9230769230769231
                   },
                   "OutputChannel.html#number": {
                     "ref": "OutputChannel.html#number",
@@ -18048,7 +18046,7 @@
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 2.7777777777777777
+                    "tf": 2.941176470588235
                   },
                   "WebMidi.html#enabled": {
                     "ref": "WebMidi.html#enabled",
@@ -18060,7 +18058,7 @@
                   },
                   "WebMidi.html#interface": {
                     "ref": "WebMidi.html#interface",
-                    "tf": 4.166666666666666
+                    "tf": 3.571428571428571
                   },
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
@@ -18068,7 +18066,7 @@
                   },
                   "WebMidi.html#outputs": {
                     "ref": "WebMidi.html#outputs",
-                    "tf": 10
+                    "tf": 7.142857142857142
                   },
                   "WebMidi.html#supported": {
                     "ref": "WebMidi.html#supported",
@@ -18084,7 +18082,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 1.3245033112582782
+                    "tf": 1.1976047904191618
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -18405,7 +18403,7 @@
                             "docs": {
                               "WebMidi.html#interface": {
                                 "ref": "WebMidi.html#interface",
-                                "tf": 29.166666666666664
+                                "tf": 28.57142857142857
                               }
                             },
                             "g": {
@@ -18414,7 +18412,7 @@
                                 "docs": {
                                   "WebMidi.html#enable": {
                                     "ref": "WebMidi.html#enable",
-                                    "tf": 0.33112582781456956
+                                    "tf": 0.5988023952095809
                                   }
                                 }
                               }
@@ -19236,7 +19234,7 @@
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 1.8518518518518516
+                        "tf": 1.9607843137254901
                       },
                       "WebMidi.html#octaveOffset": {
                         "ref": "WebMidi.html#octaveOffset",
@@ -19248,7 +19246,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6622516556291391
+                        "tf": 0.5988023952095809
                       }
                     },
                     "e": {
@@ -19555,18 +19553,6 @@
               "docs": {},
               "n": {
                 "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 1.3157894736842104
-                  },
-                  "InputChannel.html": {
-                    "ref": "InputChannel.html",
-                    "tf": 1.0416666666666665
-                  },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 1.3888888888888888
-                  },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
                     "tf": 0.4807692307692308
@@ -19575,10 +19561,6 @@
                     "ref": "Output.html#setPitchBendRange",
                     "tf": 1.3888888888888888
                   },
-                  "OutputChannel.html": {
-                    "ref": "OutputChannel.html",
-                    "tf": 1.1904761904761905
-                  },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
                     "tf": 0.40650406504065045
@@ -19586,10 +19568,6 @@
                   "OutputChannel.html#setPitchBendRange": {
                     "ref": "OutputChannel.html#setPitchBendRange",
                     "tf": 1.3888888888888888
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.9259259259259258
                   },
                   "WebMidi.html#disable": {
                     "ref": "WebMidi.html#disable",
@@ -19630,17 +19608,9 @@
                         "ref": "EventEmitter.html#~callback",
                         "tf": 1.0638297872340425
                       },
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 1.3157894736842104
-                      },
                       "Input.html#waitFor": {
                         "ref": "Input.html#waitFor",
                         "tf": 0.5434782608695652
-                      },
-                      "InputChannel.html": {
-                        "ref": "InputChannel.html",
-                        "tf": 1.0416666666666665
                       },
                       "InputChannel.html#getCcNameByNumber": {
                         "ref": "InputChannel.html#getCcNameByNumber",
@@ -19657,10 +19627,6 @@
                       "Note.html": {
                         "ref": "Note.html",
                         "tf": 0.6578947368421052
-                      },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 1.3888888888888888
                       },
                       "Output.html#clear": {
                         "ref": "Output.html#clear",
@@ -19721,10 +19687,6 @@
                       "Output.html#waitFor": {
                         "ref": "Output.html#waitFor",
                         "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html": {
-                        "ref": "OutputChannel.html",
-                        "tf": 1.1904761904761905
                       },
                       "OutputChannel.html#hasListener": {
                         "ref": "OutputChannel.html#hasListener",
@@ -19789,6 +19751,10 @@
                       "WebMidi.html#validation": {
                         "ref": "WebMidi.html#validation",
                         "tf": 1.6129032258064515
+                      },
+                      "WebMidi.html#enable": {
+                        "ref": "WebMidi.html#enable",
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#hasListener": {
                         "ref": "WebMidi.html#hasListener",
@@ -19916,18 +19882,6 @@
                 "docs": {},
                 "l": {
                   "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 1.3157894736842104
-                    },
-                    "InputChannel.html": {
-                      "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 1.3888888888888888
-                    },
                     "Output.html#decrementRegisteredParameter": {
                       "ref": "Output.html#decrementRegisteredParameter",
                       "tf": 0.5434782608695652
@@ -19943,10 +19897,6 @@
                     "Output.html#setRegisteredParameter": {
                       "ref": "Output.html#setRegisteredParameter",
                       "tf": 0.3289473684210526
-                    },
-                    "OutputChannel.html": {
-                      "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
                     },
                     "OutputChannel.html#decrementRegisteredParameter": {
                       "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -19966,7 +19916,7 @@
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.9259259259259258
+                      "tf": 1.9607843137254901
                     }
                   },
                   "a": {
@@ -20184,10 +20134,6 @@
                   "EventEmitter.html#removeListener": {
                     "ref": "EventEmitter.html#removeListener",
                     "tf": 2.857142857142857
-                  },
-                  "InputChannel.html": {
-                    "ref": "InputChannel.html",
-                    "tf": 1.0416666666666665
                   },
                   "InputChannel.html#removeListener": {
                     "ref": "InputChannel.html#removeListener",
@@ -20454,7 +20400,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       }
                     }
                   }
@@ -20519,7 +20465,7 @@
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.9259259259259258
+                    "tf": 0.9803921568627451
                   },
                   "WebMidi.html#waitFor": {
                     "ref": "WebMidi.html#waitFor",
@@ -21163,7 +21109,7 @@
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
-                            "tf": 1.0416666666666665
+                            "tf": 1.9230769230769231
                           },
                           "InputChannel.html#eventMap": {
                             "ref": "InputChannel.html#eventMap",
@@ -21219,7 +21165,7 @@
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.1904761904761905
+                            "tf": 1.9230769230769231
                           },
                           "OutputChannel.html#eventMap": {
                             "ref": "OutputChannel.html#eventMap",
@@ -21267,7 +21213,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.33112582781456956
+                            "tf": 0.29940119760479045
                           },
                           "WebMidi.html#suspendEvent": {
                             "ref": "WebMidi.html#suspendEvent",
@@ -21305,9 +21251,13 @@
                         "ref": "OutputChannel.html#waitFor",
                         "tf": 2.1739130434782608
                       },
+                      "WebMidi.html#disable": {
+                        "ref": "WebMidi.html#disable",
+                        "tf": 33.33333333333333
+                      },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 1.3245033112582782
+                        "tf": 1.1976047904191618
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -21384,10 +21334,6 @@
                                                 "Output.html#destroy": {
                                                   "ref": "Output.html#destroy",
                                                   "tf": 33.33333333333333
-                                                },
-                                                "WebMidi.html#disable": {
-                                                  "ref": "WebMidi.html#disable",
-                                                  "tf": 33.33333333333333
                                                 }
                                               }
                                             }
@@ -21427,26 +21373,32 @@
                                         }
                                       }
                                     }
-                                  },
-                                  "b": {
+                                  }
+                                },
+                                "w": {
+                                  "docs": {},
+                                  "e": {
                                     "docs": {},
-                                    "j": {
+                                    "b": {
                                       "docs": {},
-                                      "e": {
+                                      "m": {
                                         "docs": {},
-                                        "c": {
+                                        "i": {
                                           "docs": {},
-                                          "t": {
+                                          "d": {
                                             "docs": {},
-                                            "&": {
+                                            "i": {
                                               "docs": {},
-                                              "g": {
+                                              "&": {
                                                 "docs": {},
-                                                "t": {
-                                                  "docs": {
-                                                    "WebMidi.html#enable": {
-                                                      "ref": "WebMidi.html#enable",
-                                                      "tf": 25
+                                                "g": {
+                                                  "docs": {},
+                                                  "t": {
+                                                    "docs": {
+                                                      "WebMidi.html#enable": {
+                                                        "ref": "WebMidi.html#enable",
+                                                        "tf": 25
+                                                      }
                                                     }
                                                   }
                                                 }
@@ -21472,7 +21424,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6622516556291391
+                        "tf": 0.5988023952095809
                       }
                     }
                   }
@@ -21513,7 +21465,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -21526,7 +21478,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -21949,7 +21901,7 @@
                 "docs": {
                   "Input.html": {
                     "ref": "Input.html",
-                    "tf": 1.3157894736842104
+                    "tf": 1.5625
                   },
                   "Input.html#id": {
                     "ref": "Input.html#id",
@@ -21973,7 +21925,7 @@
                   },
                   "Output.html": {
                     "ref": "Output.html",
-                    "tf": 1.3888888888888888
+                    "tf": 2
                   },
                   "Output.html#id": {
                     "ref": "Output.html#id",
@@ -22163,7 +22115,7 @@
                               "docs": {
                                 "WebMidi.html#enable": {
                                   "ref": "WebMidi.html#enable",
-                                  "tf": 0.33112582781456956
+                                  "tf": 0.29940119760479045
                                 }
                               }
                             }
@@ -22185,7 +22137,7 @@
                                 "docs": {
                                   "WebMidi.html#enable": {
                                     "ref": "WebMidi.html#enable",
-                                    "tf": 0.33112582781456956
+                                    "tf": 0.29940119760479045
                                   }
                                 }
                               }
@@ -22520,10 +22472,6 @@
                           "ref": "InputChannel.html#removeListener",
                           "tf": 4.285714285714286
                         },
-                        "Note.html#getOffsetNumber": {
-                          "ref": "Note.html#getOffsetNumber",
-                          "tf": 2
-                        },
                         "Output.html#addListener": {
                           "ref": "Output.html#addListener",
                           "tf": 1.6129032258064515
@@ -22794,7 +22742,7 @@
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.1904761904761905
+                        "tf": 1.9230769230769231
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
@@ -23007,7 +22955,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   },
                   "WebMidi.html#removeListener": {
                     "ref": "WebMidi.html#removeListener",
@@ -23038,7 +22986,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   }
                 }
               }
@@ -23387,7 +23335,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -23553,7 +23501,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -23626,7 +23574,7 @@
                   "docs": {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.9259259259259258
+                      "tf": 0.9803921568627451
                     }
                   }
                 }
@@ -23638,9 +23586,17 @@
                 "docs": {},
                 "r": {
                   "docs": {
+                    "Input.html": {
+                      "ref": "Input.html",
+                      "tf": 1.5625
+                    },
                     "Note.html#number": {
                       "ref": "Note.html#number",
                       "tf": 4.166666666666666
+                    },
+                    "Output.html": {
+                      "ref": "Output.html",
+                      "tf": 2
                     },
                     "Output.html#decrementRegisteredParameter": {
                       "ref": "Output.html#decrementRegisteredParameter",
@@ -23926,7 +23882,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6622516556291391
+                        "tf": 0.8982035928143712
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -24757,25 +24713,13 @@
                                     "ref": "Input.html#removeListener",
                                     "tf": 675
                                   },
-                                  "InputChannel.html": {
-                                    "ref": "InputChannel.html",
-                                    "tf": 1.0416666666666665
-                                  },
                                   "InputChannel.html#removeListener": {
                                     "ref": "InputChannel.html#removeListener",
                                     "tf": 675
                                   },
-                                  "Output.html": {
-                                    "ref": "Output.html",
-                                    "tf": 1.3888888888888888
-                                  },
                                   "Output.html#removeListener": {
                                     "ref": "Output.html#removeListener",
                                     "tf": 675
-                                  },
-                                  "OutputChannel.html": {
-                                    "ref": "OutputChannel.html",
-                                    "tf": 1.1904761904761905
                                   },
                                   "OutputChannel.html#removeListener": {
                                     "ref": "OutputChannel.html#removeListener",
@@ -25130,11 +25074,11 @@
                     "docs": {
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 1.3157894736842104
+                        "tf": 1.5625
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 1.0416666666666665
+                        "tf": 1.9230769230769231
                       },
                       "Listener.html": {
                         "ref": "Listener.html",
@@ -25154,11 +25098,11 @@
                       },
                       "Output.html": {
                         "ref": "Output.html",
-                        "tf": 1.3888888888888888
+                        "tf": 2
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.1904761904761905
+                        "tf": 1.9230769230769231
                       },
                       "Utilities.html#.toNormalized": {
                         "ref": "Utilities.html#.toNormalized",
@@ -25695,11 +25639,11 @@
                 },
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.9259259259259258
+                  "tf": 0.9803921568627451
                 },
                 "WebMidi.html#interface": {
                   "ref": "WebMidi.html#interface",
-                  "tf": 4.166666666666666
+                  "tf": 3.571428571428571
                 },
                 "WebMidi.html#supported": {
                   "ref": "WebMidi.html#supported",
@@ -25707,7 +25651,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.6622516556291391
+                  "tf": 0.5988023952095809
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -25748,7 +25692,7 @@
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 1903.7037037037037
+                          "tf": 1902.9411764705883
                         },
                         "WebMidi.html#disable": {
                           "ref": "WebMidi.html#disable",
@@ -25756,7 +25700,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.9933774834437087
+                          "tf": 0.8982035928143712
                         }
                       },
                       ".": {
@@ -25805,7 +25749,7 @@
                             },
                             "WebMidi.html": {
                               "ref": "WebMidi.html",
-                              "tf": 0.9259259259259258
+                              "tf": 0.9803921568627451
                             },
                             "WebMidi.html#sysexEnabled": {
                               "ref": "WebMidi.html#sysexEnabled",
@@ -25821,7 +25765,7 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.33112582781456956
+                              "tf": 0.5988023952095809
                             }
                           }
                         },
@@ -25834,7 +25778,12 @@
                               "u": {
                                 "docs": {},
                                 "t": {
-                                  "docs": {},
+                                  "docs": {
+                                    "Input.html": {
+                                      "ref": "Input.html",
+                                      "tf": 1.5625
+                                    }
+                                  },
                                   "s": {
                                     "docs": {},
                                     "[": {
@@ -26000,7 +25949,7 @@
                                     "docs": {
                                       "Output.html": {
                                         "ref": "Output.html",
-                                        "tf": 1.3888888888888888
+                                        "tf": 2
                                       }
                                     },
                                     "s": {
@@ -26392,7 +26341,7 @@
                                                             "docs": {
                                                               "WebMidi.html#enable": {
                                                                 "ref": "WebMidi.html#enable",
-                                                                "tf": 0.33112582781456956
+                                                                "tf": 0.29940119760479045
                                                               }
                                                             }
                                                           }
@@ -26416,90 +26365,6 @@
                       },
                       "#": {
                         "docs": {},
-                        "i": {
-                          "docs": {},
-                          "n": {
-                            "docs": {},
-                            "p": {
-                              "docs": {},
-                              "u": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {
-                                    "Input.html": {
-                                      "ref": "Input.html",
-                                      "tf": 1.3157894736842104
-                                    },
-                                    "WebMidi.html#inputs": {
-                                      "ref": "WebMidi.html#inputs",
-                                      "tf": 1150
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "t": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "f": {
-                                    "docs": {},
-                                    "a": {
-                                      "docs": {},
-                                      "c": {
-                                        "docs": {
-                                          "WebMidi.html#interface": {
-                                            "ref": "WebMidi.html#interface",
-                                            "tf": 1150
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          },
-                          "s": {
-                            "docs": {},
-                            "b": {
-                              "docs": {},
-                              "r": {
-                                "docs": {},
-                                "o": {
-                                  "docs": {},
-                                  "w": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {
-                                        "WebMidi.html#isBrowser": {
-                                          "ref": "WebMidi.html#isBrowser",
-                                          "tf": 1150
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "n": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "d": {
-                                  "docs": {
-                                    "WebMidi.html#isNode": {
-                                      "ref": "WebMidi.html#isNode",
-                                      "tf": 1150
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
                         "d": {
                           "docs": {},
                           "e": {
@@ -26649,6 +26514,86 @@
                                   "WebMidi.html#emit": {
                                     "ref": "WebMidi.html#emit",
                                     "tf": 1150
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "i": {
+                          "docs": {},
+                          "n": {
+                            "docs": {},
+                            "p": {
+                              "docs": {},
+                              "u": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {
+                                    "WebMidi.html#inputs": {
+                                      "ref": "WebMidi.html#inputs",
+                                      "tf": 1150
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "t": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "f": {
+                                    "docs": {},
+                                    "a": {
+                                      "docs": {},
+                                      "c": {
+                                        "docs": {
+                                          "WebMidi.html#interface": {
+                                            "ref": "WebMidi.html#interface",
+                                            "tf": 1150
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "s": {
+                            "docs": {},
+                            "b": {
+                              "docs": {},
+                              "r": {
+                                "docs": {},
+                                "o": {
+                                  "docs": {},
+                                  "w": {
+                                    "docs": {},
+                                    "s": {
+                                      "docs": {
+                                        "WebMidi.html#isBrowser": {
+                                          "ref": "WebMidi.html#isBrowser",
+                                          "tf": 1150
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "n": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "d": {
+                                  "docs": {
+                                    "WebMidi.html#isNode": {
+                                      "ref": "WebMidi.html#isNode",
+                                      "tf": 1150
+                                    }
                                   }
                                 }
                               }
@@ -27502,7 +27447,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   },
                   "WebMidi.html#waitFor": {
                     "ref": "WebMidi.html#waitFor",
@@ -27576,7 +27521,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.33112582781456956
+                  "tf": 0.5988023952095809
                 },
                 "WebMidi.html#getInputByName": {
                   "ref": "WebMidi.html#getInputByName",
@@ -27719,7 +27664,7 @@
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.9259259259259258
+                    "tf": 0.9803921568627451
                   },
                   "WebMidi.html#defaults": {
                     "ref": "WebMidi.html#defaults",
@@ -27753,7 +27698,7 @@
             "docs": {
               "WebMidi.html#interface": {
                 "ref": "WebMidi.html#interface",
-                "tf": 4.166666666666666
+                "tf": 3.571428571428571
               }
             },
             "c": {
@@ -27775,10 +27720,6 @@
                           "list_class.html": {
                             "ref": "list_class.html",
                             "tf": 35
-                          },
-                          "InputChannel.html": {
-                            "ref": "InputChannel.html",
-                            "tf": 1.0416666666666665
                           },
                           "Output.html#setNonRegisteredParameter": {
                             "ref": "Output.html#setNonRegisteredParameter",
@@ -28281,7 +28222,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -28325,7 +28266,7 @@
                         "docs": {
                           "Input.html": {
                             "ref": "Input.html",
-                            "tf": 1.3157894736842104
+                            "tf": 1.5625
                           },
                           "Input.html#addListener": {
                             "ref": "Input.html#addListener",
@@ -28337,11 +28278,11 @@
                           },
                           "InputChannel.html": {
                             "ref": "InputChannel.html",
-                            "tf": 1.0416666666666665
+                            "tf": 1.9230769230769231
                           },
                           "Output.html": {
                             "ref": "Output.html",
-                            "tf": 1.3888888888888888
+                            "tf": 2
                           },
                           "Output.html#send": {
                             "ref": "Output.html#send",
@@ -28349,19 +28290,15 @@
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.1904761904761905
+                            "tf": 1.9230769230769231
                           },
                           "OutputChannel.html#send": {
                             "ref": "OutputChannel.html#send",
                             "tf": 1.0204081632653061
                           },
-                          "WebMidi.html": {
-                            "ref": "WebMidi.html",
-                            "tf": 0.9259259259259258
-                          },
                           "WebMidi.html#interface": {
                             "ref": "WebMidi.html#interface",
-                            "tf": 4.166666666666666
+                            "tf": 3.571428571428571
                           }
                         }
                       }
@@ -28684,13 +28621,17 @@
                 "docs": {},
                 "c": {
                   "docs": {
+                    "Input.html": {
+                      "ref": "Input.html",
+                      "tf": 1.5625
+                    },
                     "Input.html#manufacturer": {
                       "ref": "Input.html#manufacturer",
                       "tf": 7.142857142857142
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
+                      "tf": 1.9230769230769231
                     },
                     "Output.html#manufacturer": {
                       "ref": "Output.html#manufacturer",
@@ -28730,7 +28671,7 @@
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
+                      "tf": 1.9230769230769231
                     },
                     "OutputChannel.html#setProgram": {
                       "ref": "OutputChannel.html#setProgram",
@@ -28758,70 +28699,21 @@
                 "docs": {},
                 "v": {
                   "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 1.3157894736842104
-                    },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
+                      "tf": 1.9230769230769231
                     },
                     "Note.html#number": {
                       "ref": "Note.html#number",
                       "tf": 4.166666666666666
                     },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 1.3888888888888888
-                    },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
+                      "tf": 1.9230769230769231
                     },
                     "Utilities.html#.toTimestamp": {
                       "ref": "Utilities.html#.toTimestamp",
                       "tf": 1.6666666666666667
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "i": {
-                  "docs": {},
-                  "l": {
-                    "docs": {
-                      "InputChannel.html": {
-                        "ref": "InputChannel.html",
-                        "tf": 1.0416666666666665
-                      },
-                      "Output.html#send": {
-                        "ref": "Output.html#send",
-                        "tf": 1.0204081632653061
-                      },
-                      "Output.html#setNonRegisteredParameter": {
-                        "ref": "Output.html#setNonRegisteredParameter",
-                        "tf": 0.4098360655737705
-                      },
-                      "OutputChannel.html#send": {
-                        "ref": "OutputChannel.html#send",
-                        "tf": 1.0204081632653061
-                      },
-                      "OutputChannel.html#sendControlChange": {
-                        "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
-                      },
-                      "OutputChannel.html#setNonRegisteredParameter": {
-                        "ref": "OutputChannel.html#setNonRegisteredParameter",
-                        "tf": 0.4807692307692308
-                      },
-                      "Utilities.html#.getNoteDetails": {
-                        "ref": "Utilities.html#.getNoteDetails",
-                        "tf": 1.25
-                      }
                     }
                   }
                 }
@@ -28985,6 +28877,43 @@
                 }
               }
             },
+            "t": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "l": {
+                    "docs": {
+                      "Output.html#send": {
+                        "ref": "Output.html#send",
+                        "tf": 1.0204081632653061
+                      },
+                      "Output.html#setNonRegisteredParameter": {
+                        "ref": "Output.html#setNonRegisteredParameter",
+                        "tf": 0.4098360655737705
+                      },
+                      "OutputChannel.html#send": {
+                        "ref": "OutputChannel.html#send",
+                        "tf": 1.0204081632653061
+                      },
+                      "OutputChannel.html#sendControlChange": {
+                        "ref": "OutputChannel.html#sendControlChange",
+                        "tf": 0.20325203252032523
+                      },
+                      "OutputChannel.html#setNonRegisteredParameter": {
+                        "ref": "OutputChannel.html#setNonRegisteredParameter",
+                        "tf": 0.4807692307692308
+                      },
+                      "Utilities.html#.getNoteDetails": {
+                        "ref": "Utilities.html#.getNoteDetails",
+                        "tf": 1.25
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "p": {
               "docs": {},
               "e": {
@@ -29083,38 +29012,6 @@
                 "WebMidi.html#time": {
                   "ref": "WebMidi.html#time",
                   "tf": 1.5625
-                }
-              }
-            }
-          },
-          "j": {
-            "docs": {},
-            "i": {
-              "docs": {},
-              "p": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "v": {
-                    "docs": {
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 1.3157894736842104
-                      },
-                      "InputChannel.html": {
-                        "ref": "InputChannel.html",
-                        "tf": 1.0416666666666665
-                      },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 1.3888888888888888
-                      },
-                      "OutputChannel.html": {
-                        "ref": "OutputChannel.html",
-                        "tf": 1.1904761904761905
-                      }
-                    }
-                  }
                 }
               }
             }
@@ -29409,7 +29306,7 @@
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.9259259259259258
+                        "tf": 0.9803921568627451
                       },
                       "WebMidi.html#eventCount": {
                         "ref": "WebMidi.html#eventCount",
@@ -29741,10 +29638,6 @@
                               "ref": "EventEmitter.html#getListeners",
                               "tf": 683.3333333333334
                             },
-                            "Input.html": {
-                              "ref": "Input.html",
-                              "tf": 1.3157894736842104
-                            },
                             "Input.html#getListeners": {
                               "ref": "Input.html#getListeners",
                               "tf": 683.3333333333334
@@ -29934,7 +29827,7 @@
                                   "docs": {
                                     "Note.html#getOffsetNumber": {
                                       "ref": "Note.html#getOffsetNumber",
-                                      "tf": 683.3333333333334
+                                      "tf": 675
                                     }
                                   }
                                 }
@@ -30304,7 +30197,7 @@
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 0.33112582781456956
+                "tf": 0.29940119760479045
               },
               "WebMidi.html#waitFor": {
                 "ref": "WebMidi.html#waitFor",
@@ -30660,11 +30553,11 @@
                     },
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 113.94736842105263
+                      "tf": 111.5625
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 113.125
+                      "tf": 111.92307692307692
                     },
                     "Listener.html": {
                       "ref": "Listener.html",
@@ -30680,11 +30573,11 @@
                     },
                     "Output.html": {
                       "ref": "Output.html",
-                      "tf": 114.16666666666667
+                      "tf": 112
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 113.57142857142857
+                      "tf": 111.92307692307692
                     },
                     "Utilities.html": {
                       "ref": "Utilities.html",
@@ -30692,7 +30585,7 @@
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 110.92592592592592
+                      "tf": 110.98039215686275
                     }
                   }
                 }
@@ -31150,7 +31043,7 @@
                                             "docs": {
                                               "WebMidi.html#enable": {
                                                 "ref": "WebMidi.html#enable",
-                                                "tf": 0.33112582781456956
+                                                "tf": 0.29940119760479045
                                               }
                                             }
                                           }
@@ -31172,7 +31065,7 @@
                                               "docs": {
                                                 "WebMidi.html#enable": {
                                                   "ref": "WebMidi.html#enable",
-                                                  "tf": 0.33112582781456956
+                                                  "tf": 0.29940119760479045
                                                 }
                                               }
                                             }
@@ -31201,7 +31094,7 @@
                                                     "docs": {
                                                       "WebMidi.html#enable": {
                                                         "ref": "WebMidi.html#enable",
-                                                        "tf": 0.33112582781456956
+                                                        "tf": 0.29940119760479045
                                                       }
                                                     }
                                                   }
@@ -31380,7 +31273,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.6622516556291391
+                          "tf": 0.8982035928143712
                         }
                       }
                     }
@@ -31441,7 +31334,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -31498,7 +31391,7 @@
                       "docs": {
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 0.9259259259259258
+                          "tf": 0.9803921568627451
                         }
                       }
                     }
@@ -31756,7 +31649,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   }
                 }
               }
@@ -31876,7 +31769,7 @@
                         },
                         "InputChannel.html": {
                           "ref": "InputChannel.html",
-                          "tf": 2.083333333333333
+                          "tf": 3.8461538461538463
                         },
                         "InputChannel.html#.EVENTS": {
                           "ref": "InputChannel.html#.EVENTS",
@@ -31972,7 +31865,7 @@
                         },
                         "OutputChannel.html": {
                           "ref": "OutputChannel.html",
-                          "tf": 2.380952380952381
+                          "tf": 3.8461538461538463
                         },
                         "OutputChannel.html#output": {
                           "ref": "OutputChannel.html#output",
@@ -32415,10 +32308,6 @@
                       "ref": "Input.html#hasListener",
                       "tf": 2.7777777777777777
                     },
-                    "InputChannel.html": {
-                      "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
-                    },
                     "InputChannel.html#hasListener": {
                       "ref": "InputChannel.html#hasListener",
                       "tf": 1.6129032258064515
@@ -32457,7 +32346,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.6622516556291391
+                      "tf": 0.5988023952095809
                     },
                     "WebMidi.html#hasListener": {
                       "ref": "WebMidi.html#hasListener",
@@ -32489,7 +32378,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -32669,10 +32558,6 @@
                           "ref": "EventEmitter.html#eventsSuspended",
                           "tf": 6.25
                         },
-                        "Input.html": {
-                          "ref": "Input.html",
-                          "tf": 1.3157894736842104
-                        },
                         "Input.html#eventsSuspended": {
                           "ref": "Input.html#eventsSuspended",
                           "tf": 6.25
@@ -32731,11 +32616,11 @@
                         },
                         "WebMidi.html#outputs": {
                           "ref": "WebMidi.html#outputs",
-                          "tf": 10
+                          "tf": 7.142857142857142
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -32821,7 +32706,7 @@
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.9259259259259258
+                    "tf": 0.9803921568627451
                   },
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
@@ -32830,6 +32715,10 @@
                   "WebMidi.html#emit": {
                     "ref": "WebMidi.html#emit",
                     "tf": 0.7142857142857143
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.29940119760479045
                   }
                 },
                 "b": {
@@ -33034,7 +32923,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.6622516556291391
+                            "tf": 0.8982035928143712
                           },
                           "WebMidi.html#hasListener": {
                             "ref": "WebMidi.html#hasListener",
@@ -33181,7 +33070,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   }
                 }
               }
@@ -33324,7 +33213,7 @@
             "docs": {
               "WebMidi.html": {
                 "ref": "WebMidi.html",
-                "tf": 0.9259259259259258
+                "tf": 0.9803921568627451
               }
             }
           }
@@ -33860,7 +33749,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.33112582781456956
+                  "tf": 0.29940119760479045
                 }
               }
             },
@@ -33896,7 +33785,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 677.9801324503311
+                      "tf": 678.5928143712575
                     }
                   }
                 }
@@ -33972,7 +33861,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.6622516556291391
+                          "tf": 0.5988023952095809
                         },
                         "WebMidi.html#getInputByName": {
                           "ref": "WebMidi.html#getInputByName",
@@ -34129,7 +34018,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -34247,6 +34136,17 @@
                   }
                 }
               },
+              "o": {
+                "docs": {},
+                "s": {
+                  "docs": {
+                    "Input.html": {
+                      "ref": "Input.html",
+                      "tf": 1.5625
+                    }
+                  }
+                }
+              },
               "e": {
                 "docs": {},
                 "c": {
@@ -34316,25 +34216,9 @@
                         "ref": "EventEmitter.html",
                         "tf": 2
                       },
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 1.3157894736842104
-                      },
-                      "InputChannel.html": {
-                        "ref": "InputChannel.html",
-                        "tf": 1.0416666666666665
-                      },
-                      "Output.html": {
-                        "ref": "Output.html",
-                        "tf": 1.3888888888888888
-                      },
                       "Output.html#setRegisteredParameter": {
                         "ref": "Output.html#setRegisteredParameter",
                         "tf": 0.3289473684210526
-                      },
-                      "OutputChannel.html": {
-                        "ref": "OutputChannel.html",
-                        "tf": 1.1904761904761905
                       },
                       "OutputChannel.html#setRegisteredParameter": {
                         "ref": "OutputChannel.html#setRegisteredParameter",
@@ -34533,7 +34417,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6622516556291391
+                        "tf": 0.8982035928143712
                       },
                       "WebMidi.html#suspendEvent": {
                         "ref": "WebMidi.html#suspendEvent",
@@ -34638,7 +34522,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6622516556291391
+                        "tf": 0.5988023952095809
                       }
                     }
                   }
@@ -34809,10 +34693,6 @@
                   "EventEmitter.html#~callback": {
                     "ref": "EventEmitter.html#~callback",
                     "tf": 3.1914893617021276
-                  },
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 1.3157894736842104
                   },
                   "Input.html#emit": {
                     "ref": "Input.html#emit",
@@ -35283,7 +35163,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 1.3245033112582782
+                      "tf": 1.4970059880239521
                     },
                     "WebMidi.html#getListenerCount": {
                       "ref": "WebMidi.html#getListenerCount",
@@ -35340,10 +35220,6 @@
                                 "ref": "EventEmitter.html#waitFor",
                                 "tf": 2.1739130434782608
                               },
-                              "Input.html": {
-                                "ref": "Input.html",
-                                "tf": 1.3157894736842104
-                              },
                               "Input.html#emit": {
                                 "ref": "Input.html#emit",
                                 "tf": 1.4285714285714286
@@ -35355,10 +35231,6 @@
                               "Input.html#waitFor": {
                                 "ref": "Input.html#waitFor",
                                 "tf": 2.1739130434782608
-                              },
-                              "InputChannel.html": {
-                                "ref": "InputChannel.html",
-                                "tf": 2.083333333333333
                               },
                               "InputChannel.html#emit": {
                                 "ref": "InputChannel.html#emit",
@@ -35376,10 +35248,6 @@
                                 "ref": "Listener.html#target",
                                 "tf": 50
                               },
-                              "Output.html": {
-                                "ref": "Output.html",
-                                "tf": 1.3888888888888888
-                              },
                               "Output.html#emit": {
                                 "ref": "Output.html#emit",
                                 "tf": 1.4285714285714286
@@ -35391,10 +35259,6 @@
                               "Output.html#waitFor": {
                                 "ref": "Output.html#waitFor",
                                 "tf": 2.1739130434782608
-                              },
-                              "OutputChannel.html": {
-                                "ref": "OutputChannel.html",
-                                "tf": 1.1904761904761905
                               },
                               "OutputChannel.html#emit": {
                                 "ref": "OutputChannel.html#emit",
@@ -36463,7 +36327,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   }
                 }
               }
@@ -36519,7 +36383,7 @@
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.9259259259259258
+                        "tf": 0.9803921568627451
                       }
                     }
                   }
@@ -36747,7 +36611,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.33112582781456956
+                  "tf": 0.29940119760479045
                 }
               }
             }
@@ -36832,7 +36696,7 @@
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.9259259259259258
+                  "tf": 0.9803921568627451
                 }
               }
             },
@@ -36841,7 +36705,7 @@
               "docs": {
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
-                  "tf": 0.9259259259259258
+                  "tf": 0.9803921568627451
                 }
               }
             }
@@ -37168,6 +37032,10 @@
                   "EventEmitter.html#hasListener": {
                     "ref": "EventEmitter.html#hasListener",
                     "tf": 1.6129032258064515
+                  },
+                  "Input.html": {
+                    "ref": "Input.html",
+                    "tf": 1.5625
                   },
                   "Input.html#eventCount": {
                     "ref": "Input.html#eventCount",
@@ -37527,7 +37395,7 @@
                   },
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
-                    "tf": 5.555555555555555
+                    "tf": 4.62962962962963
                   },
                   "WebMidi.html#supported": {
                     "ref": "WebMidi.html#supported",
@@ -37547,7 +37415,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -37632,6 +37500,10 @@
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
                         "tf": 1.3888888888888888
+                      },
+                      "WebMidi.html#octaveOffset": {
+                        "ref": "WebMidi.html#octaveOffset",
+                        "tf": 0.9259259259259258
                       }
                     }
                   }
@@ -38419,7 +38291,7 @@
                       },
                       "Note.html#getOffsetNumber": {
                         "ref": "Note.html#getOffsetNumber",
-                        "tf": 35.33333333333333
+                        "tf": 27
                       },
                       "Output.html#channels": {
                         "ref": "Output.html#channels",
@@ -38563,7 +38435,7 @@
                       },
                       "Utilities.html#.toNoteIdentifier": {
                         "ref": "Utilities.html#.toNoteIdentifier",
-                        "tf": 3.125
+                        "tf": 23.125
                       },
                       "Utilities.html#.toNoteNumber": {
                         "ref": "Utilities.html#.toNoteNumber",
@@ -38790,10 +38662,6 @@
                   "ref": "OutputChannel.html#waitFor",
                   "tf": 2.1739130434782608
                 },
-                "WebMidi.html": {
-                  "ref": "WebMidi.html",
-                  "tf": 0.9259259259259258
-                },
                 "WebMidi.html#emit": {
                   "ref": "WebMidi.html#emit",
                   "tf": 0.7142857142857143
@@ -38857,10 +38725,6 @@
                   "OutputChannel.html#setNonRegisteredParameter": {
                     "ref": "OutputChannel.html#setNonRegisteredParameter",
                     "tf": 0.4807692307692308
-                  },
-                  "WebMidi.html": {
-                    "ref": "WebMidi.html",
-                    "tf": 0.9259259259259258
                   },
                   "WebMidi.html#isBrowser": {
                     "ref": "WebMidi.html#isBrowser",
@@ -39069,7 +38933,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -39308,7 +39172,7 @@
                       },
                       "Utilities.html#.toNoteIdentifier": {
                         "ref": "Utilities.html#.toNoteIdentifier",
-                        "tf": 36.45833333333333
+                        "tf": 23.125
                       },
                       "Utilities.html#.toNoteNumber": {
                         "ref": "Utilities.html#.toNoteNumber",
@@ -39444,7 +39308,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.9933774834437087
+                          "tf": 0.8982035928143712
                         }
                       }
                     }
@@ -40028,10 +39892,6 @@
                               "ref": "EventEmitter.html#suspendEvent",
                               "tf": 701.0869565217391
                             },
-                            "Input.html": {
-                              "ref": "Input.html",
-                              "tf": 1.3157894736842104
-                            },
                             "Input.html#suspendEvent": {
                               "ref": "Input.html#suspendEvent",
                               "tf": 701.0869565217391
@@ -40096,17 +39956,9 @@
                     "ref": "EventEmitter.html#emit",
                     "tf": 0.7142857142857143
                   },
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 1.3157894736842104
-                  },
                   "Input.html#emit": {
                     "ref": "Input.html#emit",
                     "tf": 0.7142857142857143
-                  },
-                  "InputChannel.html": {
-                    "ref": "InputChannel.html",
-                    "tf": 1.0416666666666665
                   },
                   "InputChannel.html#parameterNumberEventsEnabled": {
                     "ref": "InputChannel.html#parameterNumberEventsEnabled",
@@ -40124,10 +39976,6 @@
                     "ref": "Note.html",
                     "tf": 1.3157894736842104
                   },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 1.3888888888888888
-                  },
                   "Output.html#emit": {
                     "ref": "Output.html#emit",
                     "tf": 0.7142857142857143
@@ -40143,10 +39991,6 @@
                   "Output.html#setNonRegisteredParameter": {
                     "ref": "Output.html#setNonRegisteredParameter",
                     "tf": 0.4098360655737705
-                  },
-                  "OutputChannel.html": {
-                    "ref": "OutputChannel.html",
-                    "tf": 1.1904761904761905
                   },
                   "OutputChannel.html#emit": {
                     "ref": "OutputChannel.html#emit",
@@ -40293,7 +40137,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -40333,7 +40177,7 @@
                           "docs": {
                             "Input.html": {
                               "ref": "Input.html",
-                              "tf": 1.3157894736842104
+                              "tf": 1.5625
                             },
                             "Input.html#destroy": {
                               "ref": "Input.html#destroy",
@@ -40341,11 +40185,11 @@
                             },
                             "InputChannel.html": {
                               "ref": "InputChannel.html",
-                              "tf": 1.0416666666666665
+                              "tf": 1.9230769230769231
                             },
                             "Output.html": {
                               "ref": "Output.html",
-                              "tf": 1.3888888888888888
+                              "tf": 2
                             },
                             "Output.html#destroy": {
                               "ref": "Output.html#destroy",
@@ -40353,7 +40197,7 @@
                             },
                             "OutputChannel.html": {
                               "ref": "OutputChannel.html",
-                              "tf": 1.1904761904761905
+                              "tf": 1.9230769230769231
                             },
                             "WebMidi.html#enabled": {
                               "ref": "WebMidi.html#enabled",
@@ -40361,7 +40205,7 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.33112582781456956
+                              "tf": 0.29940119760479045
                             }
                           },
                           "'": {
@@ -40727,7 +40571,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.6622516556291391
+                  "tf": 0.5988023952095809
                 },
                 "WebMidi.html#suspendEvent": {
                   "ref": "WebMidi.html#suspendEvent",
@@ -41448,7 +41292,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -41464,11 +41308,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3157894736842104
-                    },
-                    "InputChannel.html": {
-                      "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
+                      "tf": 1.5625
                     },
                     "InputChannel.html#destroy": {
                       "ref": "InputChannel.html#destroy",
@@ -41477,14 +41317,6 @@
                     "Message.html": {
                       "ref": "Message.html",
                       "tf": 3.3333333333333335
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 1.3888888888888888
-                    },
-                    "OutputChannel.html": {
-                      "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
                     }
                   }
                 }
@@ -41724,7 +41556,7 @@
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
-                    "tf": 0.9259259259259258
+                    "tf": 0.9803921568627451
                   }
                 },
                 "n": {
@@ -42169,6 +42001,10 @@
                     "docs": {},
                     "n": {
                       "docs": {
+                        "Note.html#getOffsetNumber": {
+                          "ref": "Note.html#getOffsetNumber",
+                          "tf": 2
+                        },
                         "Output.html#setMasterTuning": {
                           "ref": "Output.html#setMasterTuning",
                           "tf": 2.272727272727273
@@ -42196,6 +42032,32 @@
                         "Utilities.html#.offsetNumber": {
                           "ref": "Utilities.html#.offsetNumber",
                           "tf": 1.7857142857142856
+                        }
+                      },
+                      "e": {
+                        "docs": {},
+                        "o": {
+                          "docs": {},
+                          "f": {
+                            "docs": {},
+                            "f": {
+                              "docs": {},
+                              "s": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "t": {
+                                    "docs": {
+                                      "Note.html#getOffsetNumber": {
+                                        "ref": "Note.html#getOffsetNumber",
+                                        "tf": 25
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -42225,7 +42087,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.6622516556291391
+                      "tf": 0.5988023952095809
                     }
                   }
                 }
@@ -42288,7 +42150,7 @@
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 0.9259259259259258
+                        "tf": 0.9803921568627451
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
@@ -42305,7 +42167,7 @@
                         "docs": {
                           "WebMidi.html": {
                             "ref": "WebMidi.html",
-                            "tf": 0.9259259259259258
+                            "tf": 0.9803921568627451
                           }
                         }
                       }
@@ -42354,7 +42216,7 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3157894736842104
+                      "tf": 3.125
                     },
                     "Input.html#addListener": {
                       "ref": "Input.html#addListener",
@@ -42366,7 +42228,7 @@
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
+                      "tf": 1.9230769230769231
                     },
                     "Listener.html": {
                       "ref": "Listener.html",
@@ -42379,6 +42241,10 @@
                     "Note.html": {
                       "ref": "Note.html",
                       "tf": 1.3157894736842104
+                    },
+                    "Output.html": {
+                      "ref": "Output.html",
+                      "tf": 2
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
@@ -42398,7 +42264,7 @@
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
+                      "tf": 1.9230769230769231
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
@@ -42883,10 +42749,6 @@
                           "ref": "InputChannel.html#waitFor",
                           "tf": 1.6304347826086956
                         },
-                        "Note.html#getOffsetNumber": {
-                          "ref": "Note.html#getOffsetNumber",
-                          "tf": 2
-                        },
                         "Output.html#addListener": {
                           "ref": "Output.html#addListener",
                           "tf": 1.6129032258064515
@@ -43093,7 +42955,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         },
                         "WebMidi.html#getInputById": {
                           "ref": "WebMidi.html#getInputById",
@@ -43213,7 +43075,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.9933774834437087
+                      "tf": 0.8982035928143712
                     }
                   },
                   "e": {
@@ -43226,7 +43088,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       },
                       "d": {
@@ -43301,7 +43163,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.6622516556291391
+                        "tf": 0.5988023952095809
                       }
                     }
                   }
@@ -43368,7 +43230,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   },
                   "e": {
@@ -43377,7 +43239,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -44067,7 +43929,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.33112582781456956
+                  "tf": 0.29940119760479045
                 },
                 "WebMidi.html#waitFor": {
                   "ref": "WebMidi.html#waitFor",
@@ -44224,7 +44086,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.9933774834437087
+                          "tf": 0.8982035928143712
                         },
                         "WebMidi.html#getListeners": {
                           "ref": "WebMidi.html#getListeners",
@@ -44326,7 +44188,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.9933774834437087
+                    "tf": 0.8982035928143712
                   },
                   "WebMidi.html#hasListener": {
                     "ref": "WebMidi.html#hasListener",
@@ -45130,7 +44992,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#getListenerCount": {
                         "ref": "WebMidi.html#getListenerCount",
@@ -45178,7 +45040,7 @@
                                     "docs": {
                                       "Utilities.html#.toNoteIdentifier": {
                                         "ref": "Utilities.html#.toNoteIdentifier",
-                                        "tf": 683.3333333333334
+                                        "tf": 670
                                       }
                                     }
                                   }
@@ -45405,7 +45267,7 @@
                 "docs": {
                   "WebMidi.html#interface": {
                     "ref": "WebMidi.html#interface",
-                    "tf": 4.166666666666666
+                    "tf": 3.571428571428571
                   }
                 }
               }
@@ -45776,11 +45638,11 @@
               },
               "WebMidi.html": {
                 "ref": "WebMidi.html",
-                "tf": 3.7037037037037033
+                "tf": 3.9215686274509802
               },
               "WebMidi.html#interface": {
                 "ref": "WebMidi.html#interface",
-                "tf": 8.333333333333332
+                "tf": 7.142857142857142
               },
               "WebMidi.html#isBrowser": {
                 "ref": "WebMidi.html#isBrowser",
@@ -45804,7 +45666,7 @@
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 0.9933774834437087
+                "tf": 0.8982035928143712
               },
               "WebMidi.html#getInputById": {
                 "ref": "WebMidi.html#getInputById",
@@ -45906,7 +45768,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.6622516556291391
+                    "tf": 0.5988023952095809
                   }
                 }
               }
@@ -45972,7 +45834,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -46307,7 +46169,7 @@
                       },
                       "WebMidi.html#interface": {
                         "ref": "WebMidi.html#interface",
-                        "tf": 4.166666666666666
+                        "tf": 3.571428571428571
                       }
                     }
                   }
@@ -47200,7 +47062,7 @@
                   "docs": {
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.9259259259259258
+                      "tf": 0.9803921568627451
                     }
                   }
                 }
@@ -47358,7 +47220,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.33112582781456956
+                          "tf": 0.29940119760479045
                         }
                       }
                     }
@@ -48055,7 +47917,7 @@
                       },
                       "Input.html": {
                         "ref": "Input.html",
-                        "tf": 2.631578947368421
+                        "tf": 3.125
                       },
                       "Input.html#channels": {
                         "ref": "Input.html#channels",
@@ -48087,7 +47949,7 @@
                       },
                       "InputChannel.html": {
                         "ref": "InputChannel.html",
-                        "tf": 2.083333333333333
+                        "tf": 3.8461538461538463
                       },
                       "InputChannel.html#eventMap": {
                         "ref": "InputChannel.html#eventMap",
@@ -48131,7 +47993,7 @@
                       },
                       "Output.html": {
                         "ref": "Output.html",
-                        "tf": 2.7777777777777777
+                        "tf": 4
                       },
                       "Output.html#channels": {
                         "ref": "Output.html#channels",
@@ -48183,7 +48045,7 @@
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 2.380952380952381
+                        "tf": 3.8461538461538463
                       },
                       "OutputChannel.html#eventMap": {
                         "ref": "OutputChannel.html#eventMap",
@@ -48243,7 +48105,7 @@
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
-                        "tf": 3.7037037037037033
+                        "tf": 2.941176470588235
                       },
                       "WebMidi.html#defaults": {
                         "ref": "WebMidi.html#defaults",
@@ -48252,6 +48114,10 @@
                       "WebMidi.html#eventMap": {
                         "ref": "WebMidi.html#eventMap",
                         "tf": 39.2156862745098
+                      },
+                      "WebMidi.html#outputs": {
+                        "ref": "WebMidi.html#outputs",
+                        "tf": 7.142857142857142
                       },
                       "WebMidi.html#validation": {
                         "ref": "WebMidi.html#validation",
@@ -48275,7 +48141,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -48526,7 +48392,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       }
                     }
                   }
@@ -48545,7 +48411,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -48858,6 +48724,10 @@
                       "ref": "Note.html#octave",
                       "tf": 725
                     },
+                    "Note.html#getOffsetNumber": {
+                      "ref": "Note.html#getOffsetNumber",
+                      "tf": 2
+                    },
                     "Output.html#octaveOffset": {
                       "ref": "Output.html#octaveOffset",
                       "tf": 4
@@ -48933,6 +48803,10 @@
                                     "ref": "InputChannel.html#octaveOffset",
                                     "tf": 701.8181818181819
                                   },
+                                  "Note.html#getOffsetNumber": {
+                                    "ref": "Note.html#getOffsetNumber",
+                                    "tf": 25
+                                  },
                                   "Output.html#octaveOffset": {
                                     "ref": "Output.html#octaveOffset",
                                     "tf": 700
@@ -48951,7 +48825,7 @@
                                   },
                                   "Utilities.html#.toNoteIdentifier": {
                                     "ref": "Utilities.html#.toNoteIdentifier",
-                                    "tf": 3.125
+                                    "tf": 23.125
                                   },
                                   "Utilities.html#.toNoteNumber": {
                                     "ref": "Utilities.html#.toNoteNumber",
@@ -49353,7 +49227,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 26.986754966887418
+                        "tf": 26.79640718562874
                       },
                       "WebMidi.html#removeListener": {
                         "ref": "WebMidi.html#removeListener",
@@ -49435,6 +49309,10 @@
                   "Output.html#open": {
                     "ref": "Output.html#open",
                     "tf": 700
+                  },
+                  "WebMidi.html#disable": {
+                    "ref": "WebMidi.html#disable",
+                    "tf": 2.272727272727273
                   }
                 }
               },
@@ -49442,168 +49320,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.6622516556291391
-                  }
-                }
-              }
-            }
-          },
-          "t": {
-            "docs": {},
-            "h": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 1.3157894736842104
-                    },
-                    "InputChannel.html": {
-                      "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
-                    },
-                    "Output.html": {
-                      "ref": "Output.html",
-                      "tf": 1.3888888888888888
-                    },
-                    "Output.html#sendControlChange": {
-                      "ref": "Output.html#sendControlChange",
-                      "tf": 0.2403846153846154
-                    },
-                    "OutputChannel.html": {
-                      "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
-                    },
-                    "OutputChannel.html#sendControlChange": {
-                      "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
-                    }
-                  },
-                  "w": {
-                    "docs": {},
-                    "i": {
-                      "docs": {},
-                      "s": {
-                        "docs": {
-                          "Utilities.html#.sanitizeChannels": {
-                            "ref": "Utilities.html#.sanitizeChannels",
-                            "tf": 1.3888888888888888
-                          },
-                          "Utilities.html#.to7Bit": {
-                            "ref": "Utilities.html#.to7Bit",
-                            "tf": 1.1111111111111112
-                          },
-                          "Utilities.html#.toNormalized": {
-                            "ref": "Utilities.html#.toNormalized",
-                            "tf": 1.2195121951219512
-                          },
-                          "Utilities.html#.toTimestamp": {
-                            "ref": "Utilities.html#.toTimestamp",
-                            "tf": 1.6666666666666667
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "f": {
-            "docs": {},
-            "f": {
-              "docs": {},
-              "s": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "t": {
-                    "docs": {
-                      "Input.html#octaveOffset": {
-                        "ref": "Input.html#octaveOffset",
-                        "tf": 2.2222222222222223
-                      },
-                      "InputChannel.html#octaveOffset": {
-                        "ref": "InputChannel.html#octaveOffset",
-                        "tf": 1.8181818181818181
-                      },
-                      "Note.html#getOffsetNumber": {
-                        "ref": "Note.html#getOffsetNumber",
-                        "tf": 35.33333333333333
-                      },
-                      "Output.html#octaveOffset": {
-                        "ref": "Output.html#octaveOffset",
-                        "tf": 4
-                      },
-                      "OutputChannel.html#octaveOffset": {
-                        "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 2.7777777777777777
-                      },
-                      "Utilities.html#.guessNoteNumber": {
-                        "ref": "Utilities.html#.guessNoteNumber",
-                        "tf": 0.8771929824561403
-                      },
-                      "Utilities.html#.offsetNumber": {
-                        "ref": "Utilities.html#.offsetNumber",
-                        "tf": 28.57142857142857
-                      },
-                      "Utilities.html#.toNoteIdentifier": {
-                        "ref": "Utilities.html#.toNoteIdentifier",
-                        "tf": 3.125
-                      },
-                      "Utilities.html#.toNoteNumber": {
-                        "ref": "Utilities.html#.toNoteNumber",
-                        "tf": 0.7936507936507936
-                      },
-                      "WebMidi.html#octaveOffset": {
-                        "ref": "WebMidi.html#octaveOffset",
-                        "tf": 2.7777777777777777
-                      }
-                    },
-                    "n": {
-                      "docs": {},
-                      "u": {
-                        "docs": {},
-                        "m": {
-                          "docs": {},
-                          "b": {
-                            "docs": {
-                              "Utilities.html#.offsetNumber": {
-                                "ref": "Utilities.html#.offsetNumber",
-                                "tf": 675
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "i": {
-                "docs": {},
-                "c": {
-                  "docs": {},
-                  "i": {
-                    "docs": {
-                      "Message.html#manufacturerId": {
-                        "ref": "Message.html#manufacturerId",
-                        "tf": 1.7857142857142856
-                      }
-                    }
-                  }
-                }
-              },
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "WebMidi.html#supported": {
-                      "ref": "WebMidi.html#supported",
-                      "tf": 1.7241379310344827
-                    }
+                    "tf": 0.5988023952095809
                   }
                 }
               }
@@ -49613,10 +49330,6 @@
             "docs": {},
             "t": {
               "docs": {
-                "InputChannel.html": {
-                  "ref": "InputChannel.html",
-                  "tf": 1.0416666666666665
-                },
                 "InputChannel.html#parameterNumberEventsEnabled": {
                   "ref": "InputChannel.html#parameterNumberEventsEnabled",
                   "tf": 1.1904761904761905
@@ -49660,13 +49373,17 @@
                   "docs": {},
                   "t": {
                     "docs": {
+                      "Input.html": {
+                        "ref": "Input.html",
+                        "tf": 1.5625
+                      },
                       "Note.html": {
                         "ref": "Note.html",
                         "tf": 0.6578947368421052
                       },
                       "Output.html": {
                         "ref": "Output.html",
-                        "tf": 1905.5555555555557
+                        "tf": 1906
                       },
                       "Output.html#channels": {
                         "ref": "Output.html#channels",
@@ -49862,7 +49579,7 @@
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 2.380952380952381
+                        "tf": 3.8461538461538463
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
@@ -49882,7 +49599,7 @@
                       },
                       "WebMidi.html#outputs": {
                         "ref": "WebMidi.html#outputs",
-                        "tf": 693.3333333333334
+                        "tf": 697.6190476190477
                       },
                       "WebMidi.html#disable": {
                         "ref": "WebMidi.html#disable",
@@ -49890,7 +49607,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
@@ -49993,7 +49710,7 @@
                                     },
                                     "OutputChannel.html": {
                                       "ref": "OutputChannel.html",
-                                      "tf": 1903.5714285714287
+                                      "tf": 1903.8461538461538
                                     },
                                     "OutputChannel.html#decrementRegisteredParameter": {
                                       "ref": "OutputChannel.html#decrementRegisteredParameter",
@@ -53543,7 +53260,7 @@
                       "docs": {
                         "OutputChannel.html": {
                           "ref": "OutputChannel.html",
-                          "tf": 1.1904761904761905
+                          "tf": 1.9230769230769231
                         }
                       }
                     },
@@ -53588,7 +53305,105 @@
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
-                      "tf": 0.9259259259259258
+                      "tf": 0.9803921568627451
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "f": {
+            "docs": {},
+            "f": {
+              "docs": {},
+              "s": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Input.html#octaveOffset": {
+                        "ref": "Input.html#octaveOffset",
+                        "tf": 2.2222222222222223
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 1.8181818181818181
+                      },
+                      "Note.html#getOffsetNumber": {
+                        "ref": "Note.html#getOffsetNumber",
+                        "tf": 2
+                      },
+                      "Output.html#octaveOffset": {
+                        "ref": "Output.html#octaveOffset",
+                        "tf": 4
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 2.7777777777777777
+                      },
+                      "Utilities.html#.guessNoteNumber": {
+                        "ref": "Utilities.html#.guessNoteNumber",
+                        "tf": 0.8771929824561403
+                      },
+                      "Utilities.html#.offsetNumber": {
+                        "ref": "Utilities.html#.offsetNumber",
+                        "tf": 28.57142857142857
+                      },
+                      "Utilities.html#.toNoteIdentifier": {
+                        "ref": "Utilities.html#.toNoteIdentifier",
+                        "tf": 3.125
+                      },
+                      "Utilities.html#.toNoteNumber": {
+                        "ref": "Utilities.html#.toNoteNumber",
+                        "tf": 0.7936507936507936
+                      },
+                      "WebMidi.html#octaveOffset": {
+                        "ref": "WebMidi.html#octaveOffset",
+                        "tf": 2.7777777777777777
+                      }
+                    },
+                    "n": {
+                      "docs": {},
+                      "u": {
+                        "docs": {},
+                        "m": {
+                          "docs": {},
+                          "b": {
+                            "docs": {
+                              "Utilities.html#.offsetNumber": {
+                                "ref": "Utilities.html#.offsetNumber",
+                                "tf": 675
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "i": {
+                "docs": {},
+                "c": {
+                  "docs": {},
+                  "i": {
+                    "docs": {
+                      "Message.html#manufacturerId": {
+                        "ref": "Message.html#manufacturerId",
+                        "tf": 1.7857142857142856
+                      }
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "WebMidi.html#supported": {
+                      "ref": "WebMidi.html#supported",
+                      "tf": 1.7241379310344827
                     }
                   }
                 }
@@ -53703,6 +53518,53 @@
                 }
               }
             }
+          },
+          "t": {
+            "docs": {},
+            "h": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Output.html#sendControlChange": {
+                      "ref": "Output.html#sendControlChange",
+                      "tf": 0.2403846153846154
+                    },
+                    "OutputChannel.html#sendControlChange": {
+                      "ref": "OutputChannel.html#sendControlChange",
+                      "tf": 0.20325203252032523
+                    }
+                  },
+                  "w": {
+                    "docs": {},
+                    "i": {
+                      "docs": {},
+                      "s": {
+                        "docs": {
+                          "Utilities.html#.sanitizeChannels": {
+                            "ref": "Utilities.html#.sanitizeChannels",
+                            "tf": 1.3888888888888888
+                          },
+                          "Utilities.html#.to7Bit": {
+                            "ref": "Utilities.html#.to7Bit",
+                            "tf": 1.1111111111111112
+                          },
+                          "Utilities.html#.toNormalized": {
+                            "ref": "Utilities.html#.toNormalized",
+                            "tf": 1.2195121951219512
+                          },
+                          "Utilities.html#.toTimestamp": {
+                            "ref": "Utilities.html#.toTimestamp",
+                            "tf": 1.6666666666666667
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "v": {
@@ -53711,7 +53573,7 @@
               "docs": {
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.33112582781456956
+                  "tf": 0.29940119760479045
                 }
               }
             },
@@ -54312,7 +54174,7 @@
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
-                          "tf": 1.8518518518518516
+                          "tf": 1.9607843137254901
                         }
                       }
                     }
@@ -54554,7 +54416,7 @@
                   "docs": {
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
+                      "tf": 1.9230769230769231
                     },
                     "InputChannel.html#getChannelModeByNumber": {
                       "ref": "InputChannel.html#getChannelModeByNumber",
@@ -54562,7 +54424,7 @@
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
+                      "tf": 1.9230769230769231
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -55243,7 +55105,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 110.33112582781457
+                            "tf": 110.59880239520957
                           },
                           "WebMidi.html#getInputById": {
                             "ref": "WebMidi.html#getInputById",
@@ -55326,7 +55188,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -55389,7 +55251,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -55572,24 +55434,16 @@
                   "InputChannel.html#parameterNumberEventsEnabled": {
                     "ref": "InputChannel.html#parameterNumberEventsEnabled",
                     "tf": 1.1904761904761905
+                  },
+                  "WebMidi.html#enable": {
+                    "ref": "WebMidi.html#enable",
+                    "tf": 0.29940119760479045
                   }
                 }
               }
             },
             "n": {
               "docs": {},
-              "d": {
-                "docs": {
-                  "Input.html": {
-                    "ref": "Input.html",
-                    "tf": 1.3157894736842104
-                  },
-                  "Output.html": {
-                    "ref": "Output.html",
-                    "tf": 1.3888888888888888
-                  }
-                }
-              },
               "e": {
                 "docs": {
                   "Output.html#decrementRegisteredParameter": {
@@ -55645,7 +55499,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   }
                 }
               }
@@ -55954,7 +55808,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.6622516556291391
+                    "tf": 0.5988023952095809
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -55969,19 +55823,19 @@
                   "docs": {
                     "Input.html": {
                       "ref": "Input.html",
-                      "tf": 1.3157894736842104
+                      "tf": 1.5625
                     },
                     "InputChannel.html": {
                       "ref": "InputChannel.html",
-                      "tf": 1.0416666666666665
+                      "tf": 1.9230769230769231
                     },
                     "Output.html": {
                       "ref": "Output.html",
-                      "tf": 1.3888888888888888
+                      "tf": 2
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.1904761904761905
+                      "tf": 1.9230769230769231
                     },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
@@ -55989,7 +55843,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.33112582781456956
+                      "tf": 0.29940119760479045
                     }
                   }
                 }
@@ -56020,25 +55874,13 @@
                               "ref": "Input.html#hasListener",
                               "tf": 670
                             },
-                            "InputChannel.html": {
-                              "ref": "InputChannel.html",
-                              "tf": 1.0416666666666665
-                            },
                             "InputChannel.html#hasListener": {
                               "ref": "InputChannel.html#hasListener",
                               "tf": 675
                             },
-                            "Output.html": {
-                              "ref": "Output.html",
-                              "tf": 1.3888888888888888
-                            },
                             "Output.html#hasListener": {
                               "ref": "Output.html#hasListener",
                               "tf": 675
-                            },
-                            "OutputChannel.html": {
-                              "ref": "OutputChannel.html",
-                              "tf": 1.1904761904761905
                             },
                             "OutputChannel.html#hasListener": {
                               "ref": "OutputChannel.html#hasListener",
@@ -56074,7 +55916,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.33112582781456956
+                        "tf": 0.29940119760479045
                       }
                     }
                   }
@@ -56094,7 +55936,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.33112582781456956
+                    "tf": 0.29940119760479045
                   }
                 },
                 "s": {
@@ -56463,6 +56305,32 @@
               "ref": "WebMidi.html#emit",
               "tf": 0.7142857142857143
             }
+          },
+          "o": {
+            "docs": {},
+            "u": {
+              "docs": {},
+              "r": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "e": {
+                    "docs": {},
+                    "l": {
+                      "docs": {},
+                      "f": {
+                        "docs": {
+                          "WebMidi.html": {
+                            "ref": "WebMidi.html",
+                            "tf": 0.9803921568627451
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
           }
         },
         "z": {
@@ -56553,7 +56421,7 @@
           }
         }
       },
-      "length": 7131
+      "length": 7093
     },
     "corpusTokens": [
       "0",
@@ -56726,6 +56594,7 @@
       "alon",
       "alreadi",
       "alway",
+      "and/or",
       "angl",
       "anoth",
       "any_ev",
@@ -56898,7 +56767,6 @@
       "distanc",
       "distanceratio",
       "divid",
-      "djipev",
       "do",
       "document",
       "domhighrestimestamp",
@@ -56976,6 +56844,7 @@
       "execut",
       "expect",
       "explicitli",
+      "expos",
       "express",
       "expressioncoars",
       "expressionfin",
@@ -56991,7 +56860,6 @@
       "famili",
       "featur",
       "file",
-      "find",
       "fine",
       "fire",
       "first",
@@ -57196,6 +57064,7 @@
       "longer",
       "look",
       "low",
+      "lower",
       "lsb",
       "lt;async&gt",
       "lt;readonli",
@@ -57510,9 +57379,9 @@
       "project",
       "promis",
       "promise.&lt;input&gt",
-      "promise.&lt;object&gt",
       "promise.&lt;output&gt",
       "promise.&lt;void&gt",
+      "promise.&lt;webmidi&gt",
       "prompt",
       "proof",
       "proper",
@@ -57588,6 +57457,7 @@
       "seem",
       "select",
       "semiton",
+      "semitoneoffset",
       "send",
       "sendactivesens",
       "sendchannelmod",
@@ -57828,6 +57698,7 @@
       "webmidi.en",
       "webmidi.enable().then(port",
       "webmidi.enable({sysex",
+      "webmidi.input",
       "webmidi.inputs[0].addlistener(\"midimessag",
       "webmidi.inputs[0].addlistener(\"noteon",
       "webmidi.j",
@@ -57850,6 +57721,7 @@
       "within",
       "work",
       "y",
+      "yourself",
       "z",
       "zero"
     ],
@@ -58133,7 +58005,7 @@
       "name": "Input",
       "tags": "Input",
       "summary": "",
-      "description": "The Input class represents a single MIDI input port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all currently available Input objects in the WebMidi#inputs array. The Input class extends the EventEmitter class from the djipevents module. This means it also includes methods such as getListeners(), emit(), suspendEvent() and several others.",
+      "description": "The Input class represents a single MIDI input port. This object is automatically instantiated by the library according to the host's MIDI subsystem and should not be directly instantiated. Instead, you can access all Input objects by referring to the WebMidi.inputs array. Note that a single device may expose several inputs and/or outputs.",
       "body": ""
     },
     "Input.html#channels": {
@@ -58294,7 +58166,7 @@
       "name": "destroy",
       "tags": "Input#destroy destroy",
       "summary": "",
-      "description": "Destroys the Input by remove all listeners, emptying the channels array and unlinking the MIDI subsystem."
+      "description": "Destroys the Input by removing all listeners, emptying the channels array and unlinking the MIDI subsystem."
     },
     "Input.html#emit": {
       "id": "Input.html#emit",
@@ -58394,7 +58266,7 @@
       "name": "InputChannel",
       "tags": "InputChannel",
       "summary": "",
-      "description": "The InputChannel class represents a MIDI input channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property. The InputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others. Check out the documentation for EventEmitter for more details.",
+      "description": "The InputChannel class represents a MIDI input channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property.",
       "body": ""
     },
     "InputChannel.html#.EVENTS": {
@@ -58943,12 +58815,12 @@
     "Note.html#getOffsetNumber": {
       "id": "Note.html#getOffsetNumber",
       "kind": "function",
-      "title": "getOffsetNumber( offset ) → {number}",
+      "title": "getOffsetNumber( [ octaveOffset [, semitoneOffset ] ] ) → {number}",
       "longname": "Note#getOffsetNumber",
       "name": "getOffsetNumber",
       "tags": "Note#getOffsetNumber getOffsetNumber",
       "summary": "",
-      "description": "Returns a MIDI note number offset by the integer specified in the parameter. If the calculated value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If an invalid value is supplied, 0 will be used."
+      "description": "Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If an invalid value is supplied, 0 will be used."
     },
     "Output.html": {
       "id": "Output.html",
@@ -58958,7 +58830,7 @@
       "name": "Output",
       "tags": "Output",
       "summary": "",
-      "description": "The Output class represents a MIDI output port. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. You can find a list of all available Output objects in the WebMidi.outputs array. The Output class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others.",
+      "description": "The Output class represents a single MIDI output port. This object is automatically instantiated by the library according to the host's MIDI subsystem and should not be directly instantiated. Instead, you can access all available Output objects by referring to the WebMidi.outputs array.",
       "body": ""
     },
     "Output.html#channels": {
@@ -59599,7 +59471,7 @@
       "name": "OutputChannel",
       "tags": "OutputChannel",
       "summary": "",
-      "description": "The OutputChannel class represents a single output channel (1-16) from an output device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 OutputChannel objects can be found inside the parent output's channels property. The OutputChannel class extends the EventEmitter class from the djipevents module. This means it also includes methods such as addListener(), removeListener(), hasListener() and several others.",
+      "description": "The OutputChannel class represents a single output channel (1-16) from an output device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 OutputChannel objects can be found inside the parent output's channels property.",
       "body": ""
     },
     "OutputChannel.html#eventCount": {
@@ -60136,7 +60008,7 @@
     "Utilities.html#.toNoteIdentifier": {
       "id": "Utilities.html#.toNoteIdentifier",
       "kind": "function",
-      "title": "&lt;static&gt; toNoteIdentifier( The, An ) → {string}",
+      "title": "&lt;static&gt; toNoteIdentifier( number, octaveOffset ) → {string}",
       "longname": "Utilities.toNoteIdentifier",
       "name": "toNoteIdentifier",
       "tags": "Utilities.toNoteIdentifier toNoteIdentifier",
@@ -60171,7 +60043,7 @@
       "name": "WebMidi",
       "tags": "WebMidi",
       "summary": "",
-      "description": "The WebMidi object makes it easier to work with the low-level Web MIDI API. Basically, it simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages. When using the WebMidi.js library, you should know that the WebMidi class has already been instantiated. If you use the IIFE version, you should simply use the global object called WebMidi. If you use the CJS (CommonJS) or ESM (ES6 module) version, you get an already-instantiated object. This means there is no need to instantiate a new WebMidi object directly.",
+      "description": "The WebMidi object makes it easier to work with the low-level Web MIDI API. Basically, it simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages. When using the WebMidi.js library, you should know that the WebMidi class has already been instantiated. You cannot instantiate it yourself. If you use the IIFE version, you should simply use the global object called WebMidi. If you use the CJS (CommonJS) or ESM (ES6 module) version, you get an already-instantiated object when you import the module.",
       "body": ""
     },
     "WebMidi.html#defaults": {
@@ -60252,7 +60124,7 @@
       "name": "interface",
       "tags": "WebMidi#interface interface",
       "summary": "",
-      "description": "The MIDIAccess instance used to talk to the Web MIDI API. This should not be used directly unless you know what you are doing."
+      "description": "The MIDIAccess instance used to talk to the lower-level Web MIDI API. This should not be used directly unless you know what you are doing."
     },
     "WebMidi.html#isBrowser": {
       "id": "WebMidi.html#isBrowser",
@@ -60282,7 +60154,7 @@
       "name": "octaveOffset",
       "tags": "WebMidi#octaveOffset octaveOffset",
       "summary": "",
-      "description": "An integer to offset the octave of notes received from external devices or sent to external devices. When a MIDI message comes in on an input channel the reported note name will be offset. For example, if the octaveOffset is set to -1 and a note on message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4). By the same token, when OutputChannel.playNote() is called, the MIDI note number being sent will be offset. If octaveOffset is set to -1, the MIDI note number sent will be 72 (instead of 60)."
+      "description": "An integer to offset the octave of notes received from external devices or sent to external devices. When a MIDI message comes in on an input channel the reported note name will be offset. For example, if the octaveOffset is set to -1 and a \"noteon\" message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4). By the same token, when OutputChannel.playNote() is called, the MIDI note number being sent will be offset. If octaveOffset is set to -1, the MIDI note number sent will be 72 (instead of 60)."
     },
     "WebMidi.html#outputs": {
       "id": "WebMidi.html#outputs",
@@ -60292,7 +60164,7 @@
       "name": "outputs",
       "tags": "WebMidi#outputs outputs",
       "summary": "",
-      "description": "An array of all currently available MIDI outputs."
+      "description": "An array of all currently available MIDI outputs as Output objects."
     },
     "WebMidi.html#supported": {
       "id": "WebMidi.html#supported",
@@ -60307,7 +60179,7 @@
     "WebMidi.html#sysexEnabled": {
       "id": "WebMidi.html#sysexEnabled",
       "kind": "member",
-      "title": "&lt;readonly&gt; sysexEnabled :Boolean",
+      "title": "&lt;readonly&gt; sysexEnabled :boolean",
       "longname": "WebMidi#sysexEnabled",
       "name": "sysexEnabled",
       "tags": "WebMidi#sysexEnabled sysexEnabled",
@@ -60357,12 +60229,12 @@
     "WebMidi.html#disable": {
       "id": "WebMidi.html#disable",
       "kind": "function",
-      "title": "&lt;async&gt; disable() → {Promise.&lt;void&gt;}",
+      "title": "&lt;async&gt; disable() → {Promise}",
       "longname": "WebMidi#disable",
       "name": "disable",
       "tags": "WebMidi#disable disable",
       "summary": "",
-      "description": "Completely disables WebMidi.js by unlinking the MIDI subsystem's interface and closing all Input and Output objects that may be available. This also means that listeners added to Input objects, Output objects or to WebMidi itself are also destroyed."
+      "description": "Completely disables WebMidi.js by unlinking the MIDI subsystem's interface and closing all Input and Output objects that may have been opened. This also means that listeners added to Input objects, Output objects or to WebMidi itself are also destroyed."
     },
     "WebMidi.html#emit": {
       "id": "WebMidi.html#emit",
@@ -60377,12 +60249,12 @@
     "WebMidi.html#enable": {
       "id": "WebMidi.html#enable",
       "kind": "function",
-      "title": "&lt;async&gt; enable( [ options ] ) → {Promise.&lt;Object&gt;}",
+      "title": "&lt;async&gt; enable( [ options ] ) → {Promise.&lt;WebMidi&gt;}",
       "longname": "WebMidi#enable",
       "name": "enable",
       "tags": "WebMidi#enable enable",
       "summary": "",
-      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of September 2021). There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the enabled event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: midiaccessgranted event is triggered connected events are triggered (for each available input and output) enabled event is triggered when WebMidi.js is ready specified callback (if any) is executed promise is resolved The promise is fulfilled with the WebMidi object. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
+      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of September 2021). By the way, if you call the enable() method while WebMidi.js is already enabled, the callback function will be executed (if any), the promise will resolve but the events (\"midiaccessgranted\", \"connected\" and \"enabled\") will not be fired. There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the \"enabled\" event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: \"midiaccessgranted\" event is triggered \"connected\" events are triggered (for each available input and output) \"enabled\" event is triggered when WebMidi.js is ready specified callback (if any) is executed promise is resolved and fulfilled with the WebMidi object. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
     },
     "WebMidi.html#getInputById": {
       "id": "WebMidi.html#getInputById",

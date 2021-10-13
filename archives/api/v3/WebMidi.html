@@ -128,10 +128,9 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>WebMidi</code> object makes it easier to work with the low-level Web MIDI API. Basically, it
 			simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.</p>
 			<p>When using the WebMidi.js library, you should know that the <code>WebMidi</code> class has already been
-			instantiated. If you use the <strong>IIFE</strong> version, you should simply use the global object called
-			<code>WebMidi</code>. If you use the <strong>CJS</strong> (CommonJS) or <strong>ESM</strong> (ES6 module) version, you get an
-			already-instantiated object. This means there is no need to instantiate a new <code>WebMidi</code> object
-			directly.</p></div>
+			instantiated. You cannot instantiate it yourself. If you use the <strong>IIFE</strong> version, you should
+			simply use the global object called <code>WebMidi</code>. If you use the <strong>CJS</strong> (CommonJS) or <strong>ESM</strong> (ES6
+			module) version, you get an already-instantiated object when you import the module.</p></div>
 			</div>			<div class="callout callout-warning"><h5>Fires</h5>		<form class="form-horizontal fires">
 							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="WebMidi.html#event:connected">WebMidi#connected</a></label>
@@ -198,7 +197,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-35">line 35</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-34">line 34</a></p>
 								</div>
 							</div>
 			
@@ -292,7 +291,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-55">line 55</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-54">line 54</a></p>
 								</div>
 							</div>
 			
@@ -336,7 +335,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-874">line 874</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-884">line 884</a></p>
 								</div>
 							</div>
 			
@@ -619,7 +618,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-884">line 884</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-894">line 894</a></p>
 								</div>
 							</div>
 			
@@ -635,7 +634,8 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>MIDIAccess</code> instance used to talk to the Web MIDI API. This should not be used directly
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess"><code>MIDIAccess</code></a>
+			instance used to talk to the lower-level Web MIDI API. This should not be used directly
 			unless you know what you are doing.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
@@ -681,8 +681,8 @@
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the current environment is a browser environment or not. If you need to check
-			if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
-			and isBrowser can both be true at the same time.</p></div>
+			if we are in Node.js, use <a href="#isNode"><code>isNode</code></a>. In certain environments (such as Electron and
+			NW.js) <a href="#isNode"><code>isNode</code></a> and <a href="#isBrowser"><code>isBrowser</code></a> can both be true at the same time.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -710,7 +710,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-913">line 913</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-924">line 924</a></p>
 								</div>
 							</div>
 			
@@ -727,8 +727,9 @@
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the current environment is Node.js or not. If you need to check if we are in
-			browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
-			isBrowser can both be true at the same time.</p></div>
+			browser, use <a href="#isBrowser"><code>isBrowser</code></a>. In certain environments (such as Electron and
+			NW.js) <a href="#isNode"><code>isNode</code></a> and <a href="#isBrowser"><code>isBrowser</code></a> can both be true at the
+			same time.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -756,7 +757,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-894">line 894</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-905">line 905</a></p>
 								</div>
 							</div>
 			
@@ -775,11 +776,11 @@
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An integer to offset the octave of notes received from external devices or sent to external
 			devices.</p>
 			<p>When a MIDI message comes in on an input channel the reported note name will be offset. For
-			example, if the <code>octaveOffset</code> is set to <code>-1</code> and a <strong>note on</strong> message with MIDI number 60
-			comes in, the note will be reported as C3 (instead of C4).</p>
-			<p>By the same token, when <code>OutputChannel.playNote()</code> is called, the MIDI note number being sent
-			will be offset. If <code>octaveOffset</code> is set to <code>-1</code>, the MIDI note number sent will be 72 (instead
-			of 60).</p></div>
+			example, if the <code>octaveOffset</code> is set to <code>-1</code> and a <a href="InputChannel#event:noteon"><code>&quot;noteon&quot;</code></a>
+			message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4).</p>
+			<p>By the same token, when <a href="OutputChannel#playNote"><code>OutputChannel.playNote()</code></a> is called, the
+			MIDI note number being sent will be offset. If <code>octaveOffset</code> is set to <code>-1</code>, the MIDI note
+			number sent will be 72 (instead of 60).</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -814,7 +815,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-933">line 933</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-944">line 944</a></p>
 								</div>
 							</div>
 			
@@ -830,7 +831,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all currently available MIDI outputs.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all currently available MIDI outputs as <a href="Output"><code>Output</code></a> objects.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -858,7 +859,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-953">line 953</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-964">line 964</a></p>
 								</div>
 							</div>
 			
@@ -876,9 +877,10 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the environment provides support for the Web MIDI API or not.</p>
 			<p><strong>Note</strong>: in environments that do not offer built-in MIDI support, this will report <code>true</code> if
-			the <code>navigator.requestMIDIAccess</code> function is available. For example, if you have installed
-			WebMIDIAPIShim.js but no plugin, this property will be <code>true</code> even though actual support might
-			not be there.</p></div>
+			the
+			<a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess"><code>navigator.requestMIDIAccess</code></a>
+			function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this
+			property will be <code>true</code> even though actual support might not be there.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -906,7 +908,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-968">line 968</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-980">line 980</a></p>
 								</div>
 							</div>
 			
@@ -918,19 +920,19 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="sysexEnabled" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">sysexEnabled</span><span class="signature-type"> :Boolean</span></h4>
+			<h4 id="sysexEnabled" class="member public"><span class="signature-attribs">&lt;readonly> </span><span class="name">sysexEnabled</span><span class="signature-type"> :boolean</span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
-			enabled via the <code>enable()</code> method.</p></div>
+			enabled via the <a href="#enable"><code>enable()</code></a> method.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Boolean</span></div>
+									<div class="form-control-static type-names"><span class="param-type">boolean</span></div>
 								</div>
 							</div>
 			
@@ -951,7 +953,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-979">line 979</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-991">line 991</a></p>
 								</div>
 							</div>
 			
@@ -1001,7 +1003,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-995">line 995</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-1007">line 1007</a></p>
 								</div>
 							</div>
 			
@@ -1021,7 +1023,7 @@
 			throughout the WebMidi.js library for object methods and property setters.</p>
 			<p>This is an advanced setting that should be used carefully. Setting <code>validation</code> to <code>false</code>
 			improves performance but should only be done once the project has been thoroughly tested with
-			validation turned on.</p></div>
+			<code>validation</code> turned on.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -1421,17 +1423,17 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="disable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">disable</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;void>}</span></h4>
+			<h4 id="disable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">disable</span><span class="signature-params">()</span><span class="signature-type"> &rarr;&nbsp;{Promise}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Completely disables <code>WebMidi.js</code> by unlinking the MIDI subsystem's interface and closing all
-			<a href="Input.html">Input</a> and <a href="Output.html">Output</a> objects that may be available. This also means that listeners
-			added to <a href="Input.html">Input</a> objects, <a href="Output.html">Output</a> objects or to <code>WebMidi</code> itself are also
-			destroyed.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Completely disables <strong>WebMidi.js</strong> by unlinking the MIDI subsystem's interface and closing all
+			<a href="Input"><code>Input</code></a> and <a href="Output"><code>Output</code></a> objects that may have been opened. This also means that
+			listeners added to <a href="Input"><code>Input</code></a> objects, <a href="Output"><code>Output</code></a> objects or to <code>WebMidi</code> itself
+			are also destroyed.</p></div>
 			</div>			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;void></span></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise</span></label>
 								<div class="col-sm-9">
 									<div class="form-control-static returns-description"></div>
 								</div>
@@ -1439,9 +1441,9 @@
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error The Web MIDI API is not supported by your environment.</p></div>
+									<div class="form-control-static exceptions-description"><p>The Web MIDI API is not supported by your environment.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1472,7 +1474,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-331">line 331</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-350">line 350</a></p>
 								</div>
 							</div>
 			
@@ -1596,7 +1598,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="enable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">enable</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;Object>}</span></h4>
+			<h4 id="enable" class="function public"><span class="signature-attribs">&lt;async> </span><span class="name">enable</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Promise.&lt;<a href="WebMidi.html">WebMidi</a>>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -1606,25 +1608,28 @@
 			<p>To enable the use of MIDI system exclusive messages, the <code>sysex</code> option should be set to
 			<code>true</code>. However, under some environments (e.g. Jazz-Plugin), the <code>sysex</code> option is ignored
 			and system exclusive messages are always enabled. You can check the
-			<a href="WebMidi.html#sysexEnabled">sysexEnabled</a> property to confirm.</p>
+			<a href="#sysexEnabled"><code>sysexEnabled</code></a> property to confirm.</p>
 			<p>To enable access to software synthesizers available on the host, you would set the <code>software</code>
 			option to <code>true</code>. However, this option is only there to future-proof the library as support for
 			software synths has not yet been implemented in any browser (as of September 2021).</p>
+			<p>By the way, if you call the <a href="#enable"><code>enable()</code></a> method while WebMidi.js is already enabled,
+			the callback function will be executed (if any), the promise will resolve but the events
+			(<a href="#event:midiaccessgranted"><code>&quot;midiaccessgranted&quot;</code></a>, <a href="#event:connected"><code>&quot;connected&quot;</code></a> and
+			<a href="#event:enabled"><code>&quot;enabled&quot;</code></a>) will not be fired.</p>
 			<p>There are 3 ways to execute code after <code>WebMidi</code> has been enabled:</p>
 			<ul>
 			<li>Pass a callback function in the <code>options</code></li>
-			<li>Listen to the <code>enabled</code> event</li>
+			<li>Listen to the <a href="#event:enabled"><code>&quot;enabled&quot;</code></a> event</li>
 			<li>Wait for the promise to resolve</li>
 			</ul>
 			<p>In order, this is what happens towards the end of the enabling process:</p>
 			<ol>
-			<li><code>midiaccessgranted</code> event is triggered</li>
-			<li><code>connected</code> events are triggered (for each available input and output)</li>
-			<li><code>enabled</code> event is triggered when WebMidi.js is ready</li>
+			<li><a href="#event:midiaccessgranted"><code>&quot;midiaccessgranted&quot;</code></a> event is triggered</li>
+			<li><a href="#event:connected"><code>&quot;connected&quot;</code></a> events are triggered (for each available input and output)</li>
+			<li><a href="#event:enabled"><code>&quot;enabled&quot;</code></a> event is triggered when WebMidi.js is ready</li>
 			<li>specified callback (if any) is executed</li>
-			<li>promise is resolved</li>
+			<li>promise is resolved and fulfilled with the <code>WebMidi</code> object.</li>
 			</ol>
-			<p>The promise is fulfilled with the WebMidi object.</p>
 			<p><strong>Important note</strong>: starting with Chrome v77, a page using Web MIDI API must be hosted on a
 			secure origin (<code>https://</code>, <code>localhost</code> or <code>file:///</code>) and the user will always be prompted to
 			authorize the operation (no matter if the <code>sysex</code> option is <code>true</code> or not).</p>
@@ -1691,8 +1696,8 @@
 													<td class="last">
 															<p>Whether to enable library-wide validation of method
 									arguments and setter values. This is an advanced setting that should be used carefully. Setting
-									<code>validation</code> to <code>false</code> improves performance but should only be done once the project has been
-									thoroughly tested with validation turned on.</p>
+									<a href="#validation"><code>validation</code></a> to <code>false</code> improves performance but should only be done once the
+									project has been thoroughly tested with <a href="#validation"><code>validation</code></a>  turned on.</p>
 													</td>
 												</tr>
 												<tr>
@@ -1715,23 +1720,24 @@
 			</div>
 			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;Object></span></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">Promise.&lt;<a href="WebMidi.html">WebMidi</a>></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The promise is fulfilled with the <code>WebMidi</code> object</p></div>
+									<div class="form-control-static returns-description"><p>The promise is fulfilled with the <code>WebMidi</code> object fro
+			chainability</p></div>
 								</div>
 							</div>
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error The Web MIDI API is not supported in your environment.</p></div>
+									<div class="form-control-static exceptions-description"><p>The Web MIDI API is not supported in your environment.</p></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error Jazz-Plugin must be installed to use WebMIDIAPIShim.</p></div>
+									<div class="form-control-static exceptions-description"><p>Jazz-Plugin must be installed to use WebMIDIAPIShim.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1755,7 +1761,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-182">line 182</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-202">line 202</a></p>
 								</div>
 							</div>
 			
@@ -1771,8 +1777,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the <a href="Input.html">Input</a> object that matches the specified ID string or <code>false</code> if no matching
-			input is found. As per the Web MIDI API specification, IDs are strings (not integers).</p>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the <a href="Input"><code>Input</code></a> object that matches the specified ID string or <code>false</code> if no
+			matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).</p>
 			<p>Please note that IDs change from one host to another. For example, Chrome does not use the same
 			kind of IDs as Jazz-Plugin.</p></div>
 			</div>			<div class="callout callout-info">
@@ -1791,8 +1797,8 @@
 							<td><span class="param-type">string</span></td>
 							<td class="last">
 									<p>The ID string of the input. IDs can be viewed by looking at the
-			<a href="WebMidi.html#inputs">inputs</a> array. Even though they sometimes look like integers, IDs are
-			strings.</p>
+			<a href="WebMidi#inputs"><code>WebMidi.inputs</code></a> array. Even though they sometimes look like integers, IDs
+			are strings.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1802,16 +1808,16 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Input.html">Input</a></span> | <span class="param-type">false</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>An <a href="Input.html">Input</a> object matching the specified ID string. If no matching
-			input can be found, the method returns <code>false</code>.</p></div>
+									<div class="form-control-static returns-description"><p>An <a href="Input"><code>Input</code></a> object matching the specified ID string or <code>false</code>
+			if no matching input can be found.</p></div>
 								</div>
 							</div>
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error WebMidi is not enabled.</p></div>
+									<div class="form-control-static exceptions-description"><p>WebMidi is not enabled.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1842,7 +1848,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-382">line 382</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-401">line 401</a></p>
 								</div>
 							</div>
 			
@@ -1858,8 +1864,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the first <a href="Input.html">Input</a> object whose name <strong>contains</strong> the specified string. Note that
-			the port names change from one environment to another. For example, Chrome does not report
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the first <a href="Input"><code>Input</code></a> object whose name <strong>contains</strong> the specified string. Note
+			that the port names change from one environment to another. For example, Chrome does not report
 			input names in the same way as the Jazz-Plugin does.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -1877,7 +1883,7 @@
 							<td><span class="param-type">string</span></td>
 							<td class="last">
 									<p>The non-empty string to look for within the name of MIDI inputs (such as
-			those visible in the <a href="WebMidi.html#inputs">inputs</a> array).</p>
+			those visible in the <a href="WebMidi#inputs">inputs</a> array).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1887,7 +1893,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Input.html">Input</a></span> | <span class="param-type">false</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The <a href="Input.html">Input</a> that was found or <code>false</code> if no input contained the
+									<div class="form-control-static returns-description"><p>The <a href="Input"><code>Input</code></a> that was found or <code>false</code> if no input contained the
 			specified name.</p></div>
 								</div>
 							</div>
@@ -1927,7 +1933,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-412">line 412</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-431">line 431</a></p>
 								</div>
 							</div>
 			
@@ -2109,7 +2115,7 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the <a href="Output.html">Output</a> object that matches the specified ID string or <code>false</code> if no
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the <a href="Output"><code>Output</code></a> object that matches the specified ID string or <code>false</code> if no
 			matching output is found. As per the Web MIDI API specification, IDs are strings (not
 			integers).</p>
 			<p>Please note that IDs change from one host to another. For example, Chrome does not use the same
@@ -2130,7 +2136,7 @@
 							<td><span class="param-type">string</span></td>
 							<td class="last">
 									<p>The ID string of the port. IDs can be viewed by looking at the
-			<a href="WebMidi.html#outputs">outputs</a> array.</p>
+			<a href="WebMidi#outputs"><code>WebMidi.outputs</code></a> array.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2140,16 +2146,16 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Output.html">Output</a></span> | <span class="param-type">false</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>An <a href="Output.html">Output</a> object matching the specified ID string. If no
+									<div class="form-control-static returns-description"><p>An <a href="Output"><code>Output</code></a> object matching the specified ID string. If no
 			matching output can be found, the method returns <code>false</code>.</p></div>
 								</div>
 							</div>
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error WebMidi is not enabled.</p></div>
+									<div class="form-control-static exceptions-description"><p>WebMidi is not enabled.</p></div>
 								</div>
 							</div>
 					</form>
@@ -2180,7 +2186,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-477">line 477</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-496">line 496</a></p>
 								</div>
 							</div>
 			
@@ -2196,8 +2202,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the first <a href="Output.html">Output</a> object whose name <strong>contains</strong> the specified string. Note that
-			the port names change from one environment to another. For example, Chrome does not report
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the first <a href="Output"><code>Output</code></a> object whose name <strong>contains</strong> the specified string. Note
+			that the port names change from one environment to another. For example, Chrome does not report
 			input names in the same way as the Jazz-Plugin does.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -2215,7 +2221,7 @@
 							<td><span class="param-type">string</span></td>
 							<td class="last">
 									<p>The non-empty string to look for within the name of MIDI inputs (such as
-			those visible in the <a href="WebMidi.html#outputs">outputs</a> array).</p>
+			those visible in the <a href="WebMidi#outputs">outputs</a> array).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2225,16 +2231,16 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Output.html">Output</a></span> | <span class="param-type">false</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The <a href="Output.html">Output</a> that was found or <code>false</code> if no output matched the
-			specified name.</p></div>
+									<div class="form-control-static returns-description"><p>The <a href="Output"><code>Output</code></a> that was found or <code>false</code> if no output matched
+			the specified name.</p></div>
 								</div>
 							</div>
 					</form>
 			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">Error</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Error WebMidi is not enabled.</p></div>
+									<div class="form-control-static exceptions-description"><p>WebMidi is not enabled.</p></div>
 								</div>
 							</div>
 					</form>
@@ -2265,7 +2271,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-443">line 443</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-462">line 462</a></p>
 								</div>
 							</div>
 			
@@ -2800,7 +2806,7 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <a href="Input.html">Input</a> or <a href="Output.html">Output</a> becomes available. This event is
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <a href="Input"><code>Input</code></a> or <a href="Output"><code>Output</code></a> becomes available. This event is
 			typically fired whenever a MIDI device is plugged in. Please note that it may fire several
 			times if a device possesses multiple inputs and/or outputs (which is often the case).</p></div>
 			</div>			<div class="callout callout-info">
@@ -2826,15 +2832,15 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>connected</code></p>
+									<p><code>&quot;connected&quot;</code></p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="Input.html">Input</a></span> | <span class="param-type"><a href="Output.html">Output</a></span></td>
 							<td class="last">
-									<p>The <a href="Input.html">Input</a> or <a href="Output.html">Output</a> object that triggered the
-			event.</p>
+									<p>The <a href="Input"><code>Input</code></a> or <a href="Output"><code>Output</code></a> object that
+			triggered the event.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2867,7 +2873,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-656">line 656</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-677">line 677</a></p>
 								</div>
 							</div>
 			
@@ -2914,7 +2920,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>disabled</code></p>
+									<p><code>&quot;disabled&quot;</code></p>
 							</td>
 						</tr>
 					</tbody>
@@ -2947,7 +2953,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-340">line 340</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-359">line 359</a></p>
 								</div>
 							</div>
 			
@@ -2963,8 +2969,8 @@
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <a href="Input.html">Input</a> or <a href="Output.html">Output</a> becomes unavailable. This event is
-			typically fired whenever a MIDI device is unplugged. Please note that it may fire several
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <a href="Input"><code>Input</code></a> or <a href="Output"><code>Output</code></a> becomes unavailable. This event
+			is typically fired whenever a MIDI device is unplugged. Please note that it may fire several
 			times if a device possesses multiple inputs and/or outputs (which is often the case).</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
@@ -2989,15 +2995,15 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>disconnected</code></p>
+									<p><code>&quot;disconnected&quot;</code></p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>target</code></td>
 							<td><span class="param-type">Object</span></td>
 							<td class="last">
-									<p>Object with properties describing the <a href="Input.html">Input</a> or {@Output}
-			that triggered the event.</p>
+									<p>Object with properties describing the <a href="Input"><code>Input</code></a> or
+			<a href="Output"><code>Output</code></a> that triggered the event.</p>
 										<table class="params table table-striped">
 											<thead>
 											<tr>
@@ -3083,7 +3089,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-670">line 670</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-691">line 691</a></p>
 								</div>
 							</div>
 			
@@ -3130,7 +3136,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>enabled</code></p>
+									<p><code>&quot;enabled&quot;</code></p>
 							</td>
 						</tr>
 					</tbody>
@@ -3163,7 +3169,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-261">line 261</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-281">line 281</a></p>
 								</div>
 							</div>
 			
@@ -3250,7 +3256,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-227">line 227</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-247">line 247</a></p>
 								</div>
 							</div>
 			
@@ -3330,7 +3336,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-245">line 245</a></p>
+									<p class="form-control-static"><a href="src_WebMidi.js.html">src/WebMidi.js</a>, <a href="src_WebMidi.js.html#line-265">line 265</a></p>
 								</div>
 							</div>
 			
@@ -3351,7 +3357,7 @@
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:42:04 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 15:03:52 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

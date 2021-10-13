@@ -126,10 +126,9 @@ global["navigator"] = require("jzz");
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
  *
  * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
- * instantiated. If you use the **IIFE** version, you should simply use the global object called
- * `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an
- * already-instantiated object. This means there is no need to instantiate a new `WebMidi` object
- * directly.
+ * instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
+ * simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
+ * module) version, you get an already-instantiated object when you import the module.
  *
  * @fires WebMidi#connected
  * @fires WebMidi#disabled
@@ -169,7 +168,8 @@ class WebMidi extends EventEmitter {
     };
 
     /**
-     * The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
+     * The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+     * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
      * @type {?MIDIAccess}
@@ -183,25 +183,41 @@ class WebMidi extends EventEmitter {
      *
      * This is an advanced setting that should be used carefully. Setting `validation` to `false`
      * improves performance but should only be done once the project has been thoroughly tested with
-     * validation turned on.
+     * `validation` turned on.
      *
      * @type {boolean}
      */
     this.validation = true;
 
     /**
-     * Array of all {@link Input} objects
+     * Array of all (Input) objects
      * @type {Input[]}
      * @private
      */
     this._inputs = [];
 
     /**
-     * Array of all {@link Output} objects
+     * Array of disconnected [`Input`](Input) objects. This is used when inputs are plugged back in
+     * to retain their previous state.
+     * @type {Input[]}
+     * @private
+     */
+    this._disconnectedInputs = [];
+
+    /**
+     * Array of all [`Output`](Output) objects
      * @type {Output[]}
      * @private
      */
     this._outputs = [];
+
+    /**
+     * Array of disconnected [`Output`](Output) objects. This is used when outputs are plugged back
+     * in to retain their previous state.
+     * @type {Output[]}
+     * @private
+     */
+    this._disconnectedOutputs = [];
 
     /**
      * Array of statechange events to process. These events must be parsed synchronously so they do
@@ -228,27 +244,30 @@ class WebMidi extends EventEmitter {
    * To enable the use of MIDI system exclusive messages, the `sysex` option should be set to
    * `true`. However, under some environments (e.g. Jazz-Plugin), the `sysex` option is ignored
    * and system exclusive messages are always enabled. You can check the
-   * [sysexEnabled]{@link WebMidi#sysexEnabled} property to confirm.
+   * [`sysexEnabled`](#sysexEnabled) property to confirm.
    *
    * To enable access to software synthesizers available on the host, you would set the `software`
    * option to `true`. However, this option is only there to future-proof the library as support for
    * software synths has not yet been implemented in any browser (as of September 2021).
    *
+   * By the way, if you call the [`enable()`](#enable) method while WebMidi.js is already enabled,
+   * the callback function will be executed (if any), the promise will resolve but the events
+   * ([`"midiaccessgranted"`](#event:midiaccessgranted), [`"connected"`](#event:connected) and
+   * [`"enabled"`](#event:enabled)) will not be fired.
+   *
    * There are 3 ways to execute code after `WebMidi` has been enabled:
    *
    * - Pass a callback function in the `options`
-   * - Listen to the `enabled` event
+   * - Listen to the [`"enabled"`](#event:enabled) event
    * - Wait for the promise to resolve
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. `midiaccessgranted` event is triggered
-   * 2. `connected` events are triggered (for each available input and output)
-   * 3. `enabled` event is triggered when WebMidi.js is ready
+   * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered
+   * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
+   * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is ready
    * 4. specified callback (if any) is executed
-   * 5. promise is resolved
-   *
-   * The promise is fulfilled with the WebMidi object.
+   * 5. promise is resolved and fulfilled with the `WebMidi` object.
    *
    * **Important note**: starting with Chrome v77, a page using Web MIDI API must be hosted on a
    * secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
@@ -273,8 +292,8 @@ class WebMidi extends EventEmitter {
    *
    * @param [options.validation=true] {boolean} Whether to enable library-wide validation of method
    * arguments and setter values. This is an advanced setting that should be used carefully. Setting
-   * `validation` to `false` improves performance but should only be done once the project has been
-   * thoroughly tested with validation turned on.
+   * [`validation`](#validation) to `false` improves performance but should only be done once the
+   * project has been thoroughly tested with [`validation`](#validation)  turned on.
    *
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
@@ -282,10 +301,11 @@ class WebMidi extends EventEmitter {
    *
    * @async
    *
-   * @returns {Promise&lt;Object>} The promise is fulfilled with the `WebMidi` object
+   * @returns {Promise.&lt;WebMidi>} The promise is fulfilled with the `WebMidi` object fro
+   * chainability
    *
-   * @throws Error The Web MIDI API is not supported in your environment.
-   * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
+   * @throws {Error} The Web MIDI API is not supported in your environment.
+   * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
 
@@ -297,7 +317,7 @@ class WebMidi extends EventEmitter {
       if (legacy) options.sysex = true;
     }
 
-    // If already enabled, trigger callback and resolve promise but to not dispatch events
+    // If already enabled, trigger callback and resolve promise but do not dispatch events.
     if (this.enabled) {
       if (typeof options.callback === "function") options.callback();
       return Promise.resolve();
@@ -374,7 +394,7 @@ class WebMidi extends EventEmitter {
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
-     * @property {string} type `enabled`
+     * @property {string} type `"enabled"`
      */
     const enabledEvent = {
       timestamp: this.time,
@@ -382,7 +402,7 @@ class WebMidi extends EventEmitter {
       type: "enabled"
     };
 
-    // Request MIDI access
+    // Request MIDI access (this iw where the prompt will appear)
     try {
       this.interface = await navigator.requestMIDIAccess(
         {sysex: options.sysex, software: options.software}
@@ -394,11 +414,11 @@ class WebMidi extends EventEmitter {
       return Promise.reject(err);
     }
 
-    // Now that the Web MIDI API interface has been created, we trigger the 'midiaccessgranted' event.
-    // This allows the developer an occasion to assign listeners on 'connected' events.
+    // Now that the Web MIDI API interface has been created, we trigger the 'midiaccessgranted'
+    // event. This allows the developer an occasion to assign listeners on 'connected' events.
     this.emit("midiaccessgranted", midiAccessGrantedEvent);
 
-    // We setup the statechange listener before creating the ports so that it properly catches the
+    // We setup the state change listener before creating the ports so that it properly catches the
     // the ports' `connected` events
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
 
@@ -412,27 +432,26 @@ class WebMidi extends EventEmitter {
       return Promise.reject(err);
     }
 
-    // If the ports are successfully created, we trigger the 'enabled' event
+    // If we make it here, the ports have been successfully created, so we trigger the 'enabled'
+    // event.
     this.emit("enabled", enabledEvent);
 
-    // Execute the callback (if any) and resolve the promise with an object containing inputs and
-    // outputs
+    // Execute the callback (if any) and resolve the promise with 'this' (for chainability)
     if (typeof options.callback === "function") options.callback();
-
     return Promise.resolve(this);
 
   }
 
   /**
-   * Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
-   * {@link Input} and {@link Output} objects that may be available. This also means that listeners
-   * added to {@link Input} objects, {@link Output} objects or to `WebMidi` itself are also
-   * destroyed.
+   * Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
+   * [`Input`](Input) and [`Output`](Output) objects that may have been opened. This also means that
+   * listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `WebMidi` itself
+   * are also destroyed.
    *
    * @async
-   * @returns {Promise&lt;void>}
+   * @returns {Promise}
    *
-   * @throws Error The Web MIDI API is not supported by your environment.
+   * @throws {Error} The Web MIDI API is not supported by your environment.
    *
    * @since 2.0.0
    */
@@ -453,7 +472,7 @@ class WebMidi extends EventEmitter {
        * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {WebMidi} target The object that triggered the event
-       * @property {string} type `disabled`
+       * @property {string} type `"disabled"`
        */
       let event = {
         timestamp: this.time,
@@ -470,20 +489,20 @@ class WebMidi extends EventEmitter {
   };
 
   /**
-   * Returns the {@link Input} object that matches the specified ID string or `false` if no matching
-   * input is found. As per the Web MIDI API specification, IDs are strings (not integers).
+   * Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
+   * matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
    *
    * Please note that IDs change from one host to another. For example, Chrome does not use the same
    * kind of IDs as Jazz-Plugin.
    *
    * @param id {string} The ID string of the input. IDs can be viewed by looking at the
-   * [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are
-   * strings.
+   * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
+   * are strings.
    *
-   * @returns {Input|false} An {@link Input} object matching the specified ID string. If no matching
-   * input can be found, the method returns `false`.
+   * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
+   * if no matching input can be found.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -503,14 +522,14 @@ class WebMidi extends EventEmitter {
   };
 
   /**
-   * Returns the first {@link Input} object whose name **contains** the specified string. Note that
-   * the port names change from one environment to another. For example, Chrome does not report
+   * Returns the first [`Input`](Input) object whose name **contains** the specified string. Note
+   * that the port names change from one environment to another. For example, Chrome does not report
    * input names in the same way as the Jazz-Plugin does.
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
-   * those visible in the [inputs]{@link WebMidi#inputs} array).
+   * those visible in the [inputs](WebMidi#inputs) array).
    *
-   * @returns {Input|false} The {@link Input} that was found or `false` if no input contained the
+   * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
    * specified name.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -534,17 +553,17 @@ class WebMidi extends EventEmitter {
   };
 
   /**
-   * Returns the first {@link Output} object whose name **contains** the specified string. Note that
-   * the port names change from one environment to another. For example, Chrome does not report
+   * Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
+   * that the port names change from one environment to another. For example, Chrome does not report
    * input names in the same way as the Jazz-Plugin does.
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
-   * those visible in the [outputs]{@link WebMidi#outputs} array).
+   * those visible in the [outputs](WebMidi#outputs) array).
    *
-   * @returns {Output|false} The {@link Output} that was found or `false` if no output matched the
-   * specified name.
+   * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
+   * the specified name.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -565,7 +584,7 @@ class WebMidi extends EventEmitter {
   };
 
   /**
-   * Returns the {@link Output} object that matches the specified ID string or `false` if no
+   * Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
    * matching output is found. As per the Web MIDI API specification, IDs are strings (not
    * integers).
    *
@@ -573,12 +592,12 @@ class WebMidi extends EventEmitter {
    * kind of IDs as Jazz-Plugin.
    *
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
-   * [outputs]{@link WebMidi#outputs} array.
+   * [`WebMidi.outputs`](WebMidi#outputs) array.
    *
-   * @returns {Output|false} An {@link Output} object matching the specified ID string. If no
+   * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
    * matching output can be found, the method returns `false`.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -759,10 +778,12 @@ class WebMidi extends EventEmitter {
    */
   _onInterfaceStateChange(e) {
 
+    console.log(e.type, e.port.name, e.port.state, e.port.connection);
+
     this._updateInputsAndOutputs();
 
     /**
-     * Event emitted when an {@link Input} or {@link Output} becomes available. This event is
+     * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
      * typically fired whenever a MIDI device is plugged in. Please note that it may fire several
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
@@ -770,23 +791,23 @@ class WebMidi extends EventEmitter {
      * @type {Object}
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
-     * @property {string} type `connected`
-     * @property {Input|Output} target The {@link Input} or {@link Output} object that triggered the
-     * event.
+     * @property {string} type `"connected"`
+     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
      */
 
     /**
-     * Event emitted when an {@link Input} or {@link Output} becomes unavailable. This event is
-     * typically fired whenever a MIDI device is unplugged. Please note that it may fire several
+     * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes unavailable. This event
+     * is typically fired whenever a MIDI device is unplugged. Please note that it may fire several
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
      * @event WebMidi#disconnected
      * @type {Object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
-     * @property {string} type `disconnected`
-     * @property {Object} target Object with properties describing the {@link Input} or {@Output}
-     * that triggered the event.
+     * @property {string} type `"disconnected"`
+     * @property {Object} target Object with properties describing the [`Input`](Input) or
+     * [`Output`](Output) that triggered the event.
      * @property {string} target.connection `"closed"`
      * @property {string} target.id ID of the input
      * @property {string} target.manufacturer Manufacturer of the device that provided the input
@@ -799,7 +820,9 @@ class WebMidi extends EventEmitter {
       type: e.port.state
     };
 
-    if (this.interface &amp;&amp; e.port.state === "connected") {
+    // We check if "connection" is "open" because connected events are also triggered with
+    // "connection=closed"
+    if (e.port.state === "connected" &amp;&amp; e.port.connection === "open") {
 
       if (e.port.type === "output") {
         event.port = this.getOutputById(e.port.id); // legacy
@@ -809,7 +832,10 @@ class WebMidi extends EventEmitter {
         event.target = event.port;
       }
 
-    } else {
+      this.emit(e.port.state, event);
+
+    // We check if "connection" is "pending" because we do not always get the "closed" event
+    } else if (e.port.state === "disconnected" &amp;&amp; e.port.connection === "pending") {
 
       // It feels more logical to include a `target` property instead of a `port` property. This is
       // the terminology used everywhere in the library.
@@ -824,9 +850,9 @@ class WebMidi extends EventEmitter {
 
       event.target = event.port;
 
-    }
+      this.emit(e.port.state, event);
 
-    this.emit(e.port.state, event);
+    }
 
   };
 
@@ -847,51 +873,43 @@ class WebMidi extends EventEmitter {
    */
   async _updateInputs() {
 
-    // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
-    //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
-
-    let promises = [];
+    // We must check for the existence of this.interface because it might have been closed via
+    // WebMidi.disable().
+    if (!this.interface) return;
 
     // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
-    for (let i = 0; i &lt; this._inputs.length; i++) {
-
-      let remove = true;
-
-      let updated = this.interface.inputs.values();
-
-      for (let input = updated.next(); input &amp;&amp; !input.done; input = updated.next()) {
-        if (this._inputs[i]._midiInput === input.value) {
-          remove = false;
-          break;
-        }
+    for (let i = this._inputs.length - 1; i >= 0; i--) {
+      const current = this._inputs[i];
+      const inputs = Array.from(this.interface.inputs.values());
+      if (! inputs.find(input => input === current._midiInput)) {
+        // Instead of destroying removed inputs, we stash them in case they come back (which is the
+        // case when the computer goes to sleep and is later brought back online).
+        this._disconnectedInputs.push(current);
+        this._inputs.splice(i, 1);
       }
-
-      if (remove) this._inputs.splice(i, 1);
-
     }
 
-    // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end inputs list. We must check for the existence of this.interface because it might
-    // have been closed via WebMidi.disable().
-    this.interface &amp;&amp; this.interface.inputs.forEach(nInput => {
+    // Array to hold pending promises from trying to open all input ports
+    let promises = [];
 
-      let add = true;
+    // Add new inputs (if not already present)
+    this.interface.inputs.forEach(nInput => {
 
-      for (let j = 0; j &lt; this._inputs.length; j++) {
-        if (this._inputs[j]._midiInput === nInput) {
-          add = false;
-        }
-      }
+      // Check if the input is currently absent from the 'inputs' array.
+      if (! this._inputs.find(input => input._midiInput === nInput) ) {
 
-      if (add) {
-        let input = new Input(nInput);
+        // If the input has previously been stashed away, reuse it. If not, create a new one.
+        let input = this._disconnectedInputs.find(input => input._midiInput === nInput);
+        if (!input) input = new Input(nInput);
         this._inputs.push(input);
         promises.push(input.open());
+
       }
 
     });
 
+    // Return a promise that resolves when all promises have resolved
     return Promise.all(promises);
 
   };
@@ -901,51 +919,43 @@ class WebMidi extends EventEmitter {
    */
   async _updateOutputs() {
 
-    let promises = [];
+    // We must check for the existence of this.interface because it might have been closed via
+    // WebMidi.disable().
+    if (!this.interface) return;
 
     // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
-    for (let i = 0; i &lt; this._outputs.length; i++) {
-
-      let remove = true;
-
-      let updated = this.interface.outputs.values();
-
-      for (let output = updated.next(); output &amp;&amp; !output.done; output = updated.next()) {
-        if (this._outputs[i]._midiOutput === output.value) {
-          remove = false;
-          break;
-        }
-      }
-
-      if (remove) {
-        this._outputs[i].close();
+    for (let i = this._outputs.length - 1; i >= 0; i--) {
+      const current = this._outputs[i];
+      const outputs = Array.from(this.interface.outputs.values());
+      if (! outputs.find(output => output === current._midiOutput)) {
+        // Instead of destroying removed inputs, we stash them in case they come back (which is the
+        // case when the computer goes to sleep and is later brought back online).
+        this._disconnectedOutputs.push(current);
         this._outputs.splice(i, 1);
       }
-
     }
 
-    // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end outputs list. We must check for the existence of this.interface because it might
-    // have been closed via WebMidi.disable().
-    this.interface &amp;&amp; this.interface.outputs.forEach(nOutput => {
+    // Array to hold pending promises from trying to open all output ports
+    let promises = [];
 
-      let add = true;
+    // Add new outputs (if not already present)
+    this.interface.outputs.forEach(nOutput => {
 
-      for (let j = 0; j &lt; this._outputs.length; j++) {
-        if (this._outputs[j]._midiOutput === nOutput) {
-          add = false;
-        }
-      }
+      // Check if the output is currently absent from the 'outputs' array.
+      if (! this._outputs.find(output => output._midiOutput === nOutput) ) {
 
-      if (add) {
-        let output = new Output(nOutput);
+        // If the output has previously been stashed away, reuse it. If not, create a new one.
+        let output = this._disconnectedOutputs.find(output => output._midiOutput === nOutput);
+        if (!output) output = new Output(nOutput);
         this._outputs.push(output);
         promises.push(output.open());
+
       }
 
     });
 
+    // Return a promise that resolves when all sub-promises have resolved
     return Promise.all(promises);
 
   };
@@ -995,8 +1005,9 @@ class WebMidi extends EventEmitter {
 
   /**
    * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-   * browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
-   * isBrowser can both be true at the same time.
+   * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
+   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
+   * same time.
    * @type {boolean}
    */
   get isNode() {
@@ -1014,8 +1025,8 @@ class WebMidi extends EventEmitter {
 
   /**
    * Indicates whether the current environment is a browser environment or not. If you need to check
-   * if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
-   * and isBrowser can both be true at the same time.
+   * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
+   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
    * @type {boolean}
    */
   get isBrowser() {
@@ -1027,12 +1038,12 @@ class WebMidi extends EventEmitter {
    * devices.
    *
    * When a MIDI message comes in on an input channel the reported note name will be offset. For
-   * example, if the `octaveOffset` is set to `-1` and a **note on** message with MIDI number 60
-   * comes in, the note will be reported as C3 (instead of C4).
+   * example, if the `octaveOffset` is set to `-1` and a [`"noteon"`](InputChannel#event:noteon)
+   * message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4).
    *
-   * By the same token, when `OutputChannel.playNote()` is called, the MIDI note number being sent
-   * will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
-   * of 60).
+   * By the same token, when [`OutputChannel.playNote()`](OutputChannel#playNote) is called, the
+   * MIDI note number being sent will be offset. If `octaveOffset` is set to `-1`, the MIDI note
+   * number sent will be 72 (instead of 60).
    *
    * @type {number}
    *
@@ -1053,7 +1064,7 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * An array of all currently available MIDI outputs.
+   * An array of all currently available MIDI outputs as [`Output`](Output) objects.
    *
    * @readonly
    * @type {Array}
@@ -1066,9 +1077,10 @@ class WebMidi extends EventEmitter {
    * Indicates whether the environment provides support for the Web MIDI API or not.
    *
    * **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
-   * the `navigator.requestMIDIAccess` function is available. For example, if you have installed
-   * WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
-   * not be there.
+   * the
+   * [`navigator.requestMIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+   * function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this
+   * property will be `true` even though actual support might not be there.
    *
    * @readonly
    * @type {boolean}
@@ -1079,10 +1091,10 @@ class WebMidi extends EventEmitter {
 
   /**
    * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
-   * enabled via the `enable()` method.
+   * enabled via the [`enable()`](#enable) method.
    *
    * @readonly
-   * @type Boolean
+   * @type boolean
    */
   get sysexEnabled() {
     return !!(this.interface &amp;&amp; this.interface.sysexEnabled);
@@ -1219,7 +1231,7 @@ export {Message} from "./Message.js";
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:42:04 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 15:03:52 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

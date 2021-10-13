@@ -125,18 +125,10 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Output</code> class represents a MIDI output port. This object is derived from the host's MIDI
-			subsystem and cannot be instantiated directly.</p>
-			<p>You can find a list of all available <code>Output</code> objects in the
-			<a href="WebMidi.html#outputs">WebMidi.outputs</a> array.</p>
-			<p>The <code>Output</code> class extends the
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html">EventEmitter</a> class from the
-			<a href="https://djipco.github.io/djipevents/index.html">djipevents</a> module. This means
-			it also includes methods such as
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#addListener">addListener()</a>,
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#removeListener">removeListener()</a>,
-			<a href="https://djipco.github.io/djipevents/EventEmitter.html#hasListener">hasListener()</a> and several
-			others.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Output</code> class represents a single MIDI output port. This object is automatically
+			instantiated by the library according to the host's MIDI subsystem and should not be directly
+			instantiated. Instead, you can access all available <code>Output</code> objects by referring to the
+			<a href="WebMidi#outputs"><code>WebMidi.outputs</code></a> array.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -152,7 +144,8 @@
 								<td><code>midiOutput</code></td>
 							<td><span class="param-type">MIDIOutput</span></td>
 							<td class="last">
-									<p><code>MIDIOutput</code> object as provided by the MIDI subsystem</p>
+									<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput"><code>MIDIOutput</code></a>
+			object as provided by the MIDI subsystem.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -212,7 +205,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-31">line 31</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-22">line 22</a></p>
 								</div>
 							</div>
 			
@@ -272,7 +265,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-56">line 56</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-47">line 47</a></p>
 								</div>
 							</div>
 			
@@ -316,7 +309,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2286">line 2286</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2277">line 2277</a></p>
 								</div>
 							</div>
 			
@@ -601,7 +594,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2276">line 2276</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2267">line 2267</a></p>
 								</div>
 							</div>
 			
@@ -645,7 +638,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2296">line 2296</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2287">line 2287</a></p>
 								</div>
 							</div>
 			
@@ -689,7 +682,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2264">line 2264</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2255">line 2255</a></p>
 								</div>
 							</div>
 			
@@ -743,7 +736,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2331">line 2331</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2322">line 2322</a></p>
 								</div>
 							</div>
 			
@@ -787,7 +780,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2306">line 2306</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2297">line 2297</a></p>
 								</div>
 							</div>
 			
@@ -831,7 +824,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2316">line 2316</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2307">line 2307</a></p>
 								</div>
 							</div>
 			
@@ -1240,7 +1233,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-380">line 380</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-371">line 371</a></p>
 								</div>
 							</div>
 			
@@ -1287,7 +1280,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-186">line 186</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-177">line 177</a></p>
 								</div>
 							</div>
 			
@@ -1429,7 +1422,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1997">line 1997</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1988">line 1988</a></p>
 								</div>
 							</div>
 			
@@ -1475,7 +1468,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-68">line 68</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-59">line 59</a></p>
 								</div>
 							</div>
 			
@@ -1982,7 +1975,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1935">line 1935</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1926">line 1926</a></p>
 								</div>
 							</div>
 			
@@ -2027,7 +2020,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-164">line 164</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-155">line 155</a></p>
 								</div>
 							</div>
 			
@@ -2208,7 +2201,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2157">line 2157</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2148">line 2148</a></p>
 								</div>
 							</div>
 			
@@ -2442,7 +2435,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1657">line 1657</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1648">line 1648</a></p>
 								</div>
 							</div>
 			
@@ -2569,7 +2562,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-229">line 229</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-220">line 220</a></p>
 								</div>
 							</div>
 			
@@ -2663,7 +2656,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-688">line 688</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-679">line 679</a></p>
 								</div>
 							</div>
 			
@@ -2830,7 +2823,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1532">line 1532</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1523">line 1523</a></p>
 								</div>
 							</div>
 			
@@ -2923,7 +2916,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-589">line 589</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-580">line 580</a></p>
 								</div>
 							</div>
 			
@@ -3017,7 +3010,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-639">line 639</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-630">line 630</a></p>
 								</div>
 							</div>
 			
@@ -3367,7 +3360,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-920">line 920</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-911">line 911</a></p>
 								</div>
 							</div>
 			
@@ -3517,7 +3510,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2061">line 2061</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2052">line 2052</a></p>
 								</div>
 							</div>
 			
@@ -3671,7 +3664,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2235">line 2235</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2226">line 2226</a></p>
 								</div>
 							</div>
 			
@@ -3764,7 +3757,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-712">line 712</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-703">line 703</a></p>
 								</div>
 							</div>
 			
@@ -3858,7 +3851,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-614">line 614</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-605">line 605</a></p>
 								</div>
 							</div>
 			
@@ -3951,7 +3944,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-663">line 663</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-654">line 654</a></p>
 								</div>
 							</div>
 			
@@ -4112,7 +4105,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-348">line 348</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-339">line 339</a></p>
 								</div>
 							</div>
 			
@@ -4215,7 +4208,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-416">line 416</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-407">line 407</a></p>
 								</div>
 							</div>
 			
@@ -4314,7 +4307,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-565">line 565</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-556">line 556</a></p>
 								</div>
 							</div>
 			
@@ -4448,7 +4441,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1097">line 1097</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1088">line 1088</a></p>
 								</div>
 							</div>
 			
@@ -4597,7 +4590,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-774">line 774</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-765">line 765</a></p>
 								</div>
 							</div>
 			
@@ -4721,7 +4714,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1748">line 1748</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1739">line 1739</a></p>
 								</div>
 							</div>
 			
@@ -4856,7 +4849,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1360">line 1360</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1351">line 1351</a></p>
 								</div>
 							</div>
 			
@@ -5003,7 +4996,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1308">line 1308</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1299">line 1299</a></p>
 								</div>
 							</div>
 			
@@ -5161,7 +5154,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1875">line 1875</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1866">line 1866</a></p>
 								</div>
 							</div>
 			
@@ -5304,7 +5297,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1798">line 1798</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1789">line 1789</a></p>
 								</div>
 							</div>
 			
@@ -5447,7 +5440,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1173">line 1173</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1164">line 1164</a></p>
 								</div>
 							</div>
 			
@@ -5596,7 +5589,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-973">line 973</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-964">line 964</a></p>
 								</div>
 							</div>
 			
@@ -5719,7 +5712,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1702">line 1702</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1693">line 1693</a></p>
 								</div>
 							</div>
 			
@@ -5852,7 +5845,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1240">line 1240</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1231">line 1231</a></p>
 								</div>
 							</div>
 			
@@ -6007,7 +6000,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1049">line 1049</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1040">line 1040</a></p>
 								</div>
 							</div>
 			
@@ -6126,7 +6119,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-511">line 511</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-502">line 502</a></p>
 								</div>
 							</div>
 			
@@ -6235,7 +6228,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-454">line 454</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-445">line 445</a></p>
 								</div>
 							</div>
 			
@@ -6368,7 +6361,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1460">line 1460</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1451">line 1451</a></p>
 								</div>
 							</div>
 			
@@ -6501,7 +6494,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1410">line 1410</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1401">line 1401</a></p>
 								</div>
 							</div>
 			
@@ -6572,7 +6565,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2093">line 2093</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-2084">line 2084</a></p>
 								</div>
 							</div>
 			
@@ -6772,7 +6765,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1617">line 1617</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1608">line 1608</a></p>
 								</div>
 							</div>
 			
@@ -6885,7 +6878,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1574">line 1574</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-1565">line 1565</a></p>
 								</div>
 							</div>
 			
@@ -7183,7 +7176,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-105">line 105</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-96">line 96</a></p>
 								</div>
 							</div>
 			
@@ -7318,7 +7311,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-122">line 122</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-113">line 113</a></p>
 								</div>
 							</div>
 			
@@ -7399,7 +7392,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-88">line 88</a></p>
+									<p class="form-control-static"><a href="src_Output.js.html">src/Output.js</a>, <a href="src_Output.js.html#line-79">line 79</a></p>
 								</div>
 							</div>
 			
@@ -7420,7 +7413,7 @@
 	</div>
 	<footer>
 				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on September 29th 2021 @ 11:42:04 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 15:03:52 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
