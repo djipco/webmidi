@@ -2005,6 +2005,8 @@ class InputChannel extends e {
    * Return the playing status of the specified note. The `note` parameter can be an unsigned
    * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
    *
+   * If a note identifier is passed in, the method will take into account the octaveOffset.
+   *
    * @param [input] {number|string|Note}
    * @returns {boolean}
    * @since version 3.0.0
@@ -2012,9 +2014,9 @@ class InputChannel extends e {
 
 
   getNoteState(note) {
-    const n = Utilities.buildNote(note);
-    const number = Utilities.toNoteNumber(n.identifier // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
-    );
+    // If it's a note object, we simply use the identifier
+    if (note instanceof Note) note = note.identifier;
+    const number = Utilities.guessNoteNumber(note, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
     return this.notesState[number];
   }
   /**
