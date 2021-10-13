@@ -2908,24 +2908,20 @@ declare class Output {
         time?: number | string;
     }, legacy?: {}): Output;
     /**
-     * Sends a **note off** message for the specified notes on the specified channel(s). The first
-     * parameter is the note. It can be a single value or an array of the following valid values:
+     * Sends a **note off** message for the specified MIDI note number on the specified channel(s).
+     * The first parameter is the number. It can be a single value or an array of the following valid
+     * values:
      *
      *  - A MIDI note number (integer between `0` and `127`)
      *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-     *  - A {@link Note} object
      *
      *  The execution of the **note off** command can be delayed by using the `time` property of the
      * `options` parameter.
      *
-     * When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
-     * precedence over the one specified via the method's `options` parameter.
-     *
-     * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to stop. The notes can be
-     * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-     * {@link Note} object or an array of the previous types. When using a note name, octave range
-     * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-     * note is G9 (MIDI note number 127).
+     * @param note {number|string|number[]|string[]} The note(s) to stop. The notes can be specified
+     * by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the
+     * previous types. When using a note name, octave range must be between -1 and 9. The lowest note
+     * is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
      *
      * @param {Object} [options={}]
      *
@@ -2948,7 +2944,7 @@ declare class Output {
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
-    sendNoteOff(note: number | string | Note | number[] | string[] | Note[], options?: {
+    sendNoteOff(note: number | string | number[] | string[], options?: {
         channels?: number | number[] | "all";
         rawValue?: boolean;
         time?: number | string;
@@ -3033,29 +3029,23 @@ declare class Output {
         attack?: number;
     }, legacy?: {}): Output;
     /**
-     * Sends a **note on** message for the specified notes on the specified channel(s). The first
-     * parameter is the note. It can be a single value or an array of the following valid values:
+     * Sends a **note on** message for the specified MIDI note number on the specified channel(s). The
+     * first parameter is the number. It can be a single value or an array of the following valid
+     * values:
      *
      *  - A MIDI note number (integer between `0` and `127`)
      *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-     *  - A {@link Note} object
      *
      *  The execution of the **note on** command can be delayed by using the `time` property of the
      * `options` parameter.
      *
-     * When using {@link Note} objects, the attack velocity defined in the {@link Note} objects has
-     * precedence over the one specified via the method's `options` parameter. Also, the `duration` is
-     * ignored. If you want to also send a **note off** message, use the
-     * [playNote()]{@link Output#playNote} method instead.
-     *
      * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
      * functionally equivalent to a **note off** message.
      *
-     * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-     * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-     * {@link Note} object or an array of the previous types. When using a note name, octave range
-     * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-     * note is G9 (MIDI note number 127).
+     * @param note {number|string|number[]|string[]} The note(s) to play. The notes can be specified
+     * by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the
+     * previous types. When using a note name, octave range must be between -1 and 9. The lowest note
+     * is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
      *
      * @param {Object} [options={}]
      *
@@ -3078,7 +3068,7 @@ declare class Output {
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
-    sendNoteOn(note: number | string | Note | number[] | string[] | Note[], options?: {
+    sendNoteOn(note: number | string | number[] | string[], options?: {
         channels?: number | number[] | "all";
         rawValue?: boolean;
         time?: number | string;
@@ -3231,6 +3221,12 @@ declare class InputChannel {
      */
     parameterNumberEventsEnabled: boolean;
     /**
+     * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+     * `true` for a currently playing note and `false` otherwise.
+     * @type {boolean[]}
+     */
+    notesState: boolean[];
+    /**
      * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
      * input.
      */
@@ -3249,17 +3245,16 @@ declare class InputChannel {
     _parseChannelModeMessage(e: any): void;
     /**
      * Parses inbound events to identify NRPN sequences.
-     *
-     * and constructs NRPN message parts in valid sequences.
-     * Keeps a separate NRPN buffer for each channel.
-     * Emits an event after it receives the final CC parts msb 127 lsb 127.
-     * If a message is incomplete and other messages are received before
-     * the final 127 bytes, the incomplete message is cleared.
      * @param e Event
      * @private
      */
     private _parseEventForParameterNumber;
-    isRpnOrNrpnController(controller: any): boolean;
+    /**
+     * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+     * @param controller
+     * @returns {boolean}
+     */
+    _isRpnOrNrpnController(controller: any): boolean;
     _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
     /**
      * Returns the channel mode name matching the specified number. If no match is found, the function
@@ -3287,6 +3282,18 @@ declare class InputChannel {
      * @since 2.0.0
      */
     getCcNameByNumber(number: number): string | undefined;
+    /**
+     * Return the playing status of the specified note. The `note` parameter can be an unsigned
+     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
+     *
+     * If a note identifier or Note object is passed in, the method will take into account any
+     * `octaveOffset` defined.
+     *
+     * @param [input] {number|string|Note}
+     * @returns {boolean}
+     * @since version 3.0.0
+     */
+    getNoteState(note: any): boolean;
     set octaveOffset(arg: number);
     /**
      * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
