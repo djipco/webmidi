@@ -1296,6 +1296,7 @@ class InputChannel extends e {
     this._number = null;
     this._octaveOffset = 0;
     this._nrpnBuffer = [];
+    this.notesState = new Array(128).fill(false);
     this.parameterNumberEventsEnabled = false;
     this.removeListener();
   }
@@ -1489,7 +1490,7 @@ class InputChannel extends e {
 
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
 
-      if (this.parameterNumberEventsEnabled && this.isRpnOrNrpnController(event.message.dataBytes[0])) {
+      if (this.parameterNumberEventsEnabled && this._isRpnOrNrpnController(event.message.dataBytes[0])) {
         this._parseEventForParameterNumber(event);
       }
     } else if (event.type === "programchange") {
@@ -1764,8 +1765,14 @@ class InputChannel extends e {
         }
       }
   }
+  /**
+   * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+   * @param controller
+   * @returns {boolean}
+   */
 
-  isRpnOrNrpnController(controller) {
+
+  _isRpnOrNrpnController(controller) {
     return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse || //   6
     controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine || //  38
     controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement || //  96
@@ -2018,7 +2025,6 @@ class InputChannel extends e {
     // If it's a note object, we simply use the identifier
     if (note instanceof Note) note = note.identifier;
     const number = Utilities.guessNoteNumber(note, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
-    console.log("number", number);
     return this.notesState[number];
   }
   /**
