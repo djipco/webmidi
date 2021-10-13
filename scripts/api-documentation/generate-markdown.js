@@ -97,10 +97,6 @@ function parseFile(data) {
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/properties.hbs`), {encoding: "utf-8"});
   output += Handlebars.compile(hbs)(filtered);
 
-  filtered.forEach(x => {
-    if (x.memberof === "WebMidi") console.log(x);
-  });
-
   // Methods
   filtered = data.filter(el => el.kind === "function" && el.access !== "private");
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/methods.hbs`), {encoding: "utf-8"});
