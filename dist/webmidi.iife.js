@@ -7762,6 +7762,11 @@
 
         if (!inputs.find(input => input === current._midiInput)) {
           // current.destroy();
+          // Instead of destroying removed inputs, we stash them in case they come back (which is the
+          // case when the computer goes to sleep and is brought back up). We just suspend events
+          // while stashed.
+          current.eventsSuspended = true;
+
           this._disconnectedInputs.push(current);
 
           this._inputs.splice(i, 1);
@@ -7777,7 +7782,7 @@
 
         const test = this._disconnectedInputs.find(input => input._midiInput === nInput);
 
-        if (test) console.log("Found input in disconnedted array", test); // If the input does not already exist, create new Input object and add it to the list of
+        if (test) console.log("Found input in disconnedted array", test.id, nInput); // If the input does not already exist, create new Input object and add it to the list of
         // inputs.
 
         if (!exists) {
@@ -7807,6 +7812,11 @@
 
         if (!outputs.find(output => output === current._midiOutput)) {
           // current.destroy();
+          // Instead of destroying removed outputs, we stash them in case they come back (which is the
+          // case when the computer goes to sleep and is brought back up). We just suspend events
+          // while stashed.
+          current.eventsSuspended = true;
+
           this._disconnectedInputs.push(current);
 
           this._outputs.splice(i, 1);
