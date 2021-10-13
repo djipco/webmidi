@@ -7668,6 +7668,8 @@
 
 
     _onInterfaceStateChange(e) {
+      console.log(e.type, e.poert.name);
+
       this._updateInputsAndOutputs();
       /**
        * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
