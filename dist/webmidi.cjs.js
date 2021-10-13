@@ -2012,9 +2012,11 @@ class InputChannel extends e {
 
 
   getNoteState(note) {
-    const n = Utilities.buildNote(note);
-    const number = Utilities.toNoteNumber(n // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
-    );
+    const n = Utilities.buildNote(note); // const number = Utilities.toNoteNumber(
+    //   n,
+    //   // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
+    // );
+
     return this.notesState[n.number];
   }
   /**
