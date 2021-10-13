@@ -38,13 +38,20 @@ async function generate() {
   files = files.map(file => path.resolve(SOURCE_DIR, file));
   files.push(DJIPEVENTS);
 
+  const data = jsdoc2md.getTemplateDataSync({files: files});
+
   // Parse each input files and save parsed output
   files.forEach(filepath => {
 
-    // Save markdown files (except for djipevents)
     const basename = path.basename(filepath, ".js");
+    const filtered = data.filter(x => x.memberof === basename || x.id === basename);
+
+    // Save markdown files (except for djipevents)
     if (basename !== path.basename(DJIPEVENTS, ".js")) {
-      fs.writeFileSync(path.resolve(TARGET_PATH, `${basename}.md`), parseFile(filepath));
+      fs.writeFileSync(
+        path.resolve(TARGET_PATH, `${basename}.md`),
+        parseFile(filtered)
+      );
       console.info(`Saved markdown file to ${basename}.md`);
     }
 
@@ -59,13 +66,11 @@ async function generate() {
 
 }
 
-function parseFile(filepath) {
+function parseFile(data) {
 
   let output = "";
   let hbs;
   let filtered;
-
-  const data = jsdoc2md.getTemplateDataSync({files: filepath});
 
   // Sort elements according to kind and then according to name
   const order = {class: 0, constructor: 1, function: 2, member: 3, event: 4, enum: 5, typedef: 6};
@@ -91,6 +96,10 @@ function parseFile(filepath) {
   filtered = data.filter(el => el.kind === "member" && el.access !== "private");
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/properties.hbs`), {encoding: "utf-8"});
   output += Handlebars.compile(hbs)(filtered);
+
+  filtered.forEach(x => {
+    if (x.memberof === "WebMidi") console.log(x);
+  });
 
   // Methods
   filtered = data.filter(el => el.kind === "function" && el.access !== "private");
