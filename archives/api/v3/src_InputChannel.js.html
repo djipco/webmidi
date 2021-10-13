@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -204,6 +204,13 @@ export class InputChannel extends EventEmitter {
      */
     this.parameterNumberEventsEnabled = true;
 
+    /**
+     * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+     * `true` for a currently playing note and `false` otherwise.
+     * @type {boolean[]}
+     */
+    this.notesState = new Array(128).fill(false);
+
   }
 
   /**
@@ -215,6 +222,7 @@ export class InputChannel extends EventEmitter {
     this._number = null;
     this._octaveOffset = 0;
     this._nrpnBuffer = [];
+    this.notesState = new Array(128).fill(false);
     this.parameterNumberEventsEnabled = false;
     this.removeListener();
   }
@@ -268,6 +276,7 @@ export class InputChannel extends EventEmitter {
    */
   _parseEventForStandardMessages(e) {
 
+
     const event = Object.assign({}, e);
     event.type = event.message.type || "unknownmidimessage";
 
@@ -275,6 +284,8 @@ export class InputChannel extends EventEmitter {
     const data2 = e.message.dataBytes[1];
 
     if ( event.type === "noteoff" || (event.type === "noteon" &amp;&amp; data2 === 0) ) {
+
+      this.notesState[data1] = false;
 
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
@@ -318,6 +329,8 @@ export class InputChannel extends EventEmitter {
       event.rawVelocity = event.note.rawRelease;
 
     } else if (event.type === "noteon") {
+
+      this.notesState[data1] = true;
 
       /**
        * Event emitted when a **note on** MIDI message has been received.
@@ -441,7 +454,7 @@ export class InputChannel extends EventEmitter {
       // Parse the inbound event to see if its part of an RPN/NRPN sequence
       if (
         this.parameterNumberEventsEnabled &amp;&amp;
-        this.isRpnOrNrpnController(event.message.dataBytes[0])
+        this._isRpnOrNrpnController(event.message.dataBytes[0])
       ) {
         this._parseEventForParameterNumber(event);
       }
@@ -660,12 +673,6 @@ export class InputChannel extends EventEmitter {
 
   /**
    * Parses inbound events to identify NRPN sequences.
-   *
-   * and constructs NRPN message parts in valid sequences.
-   * Keeps a separate NRPN buffer for each channel.
-   * Emits an event after it receives the final CC parts msb 127 lsb 127.
-   * If a message is incomplete and other messages are received before
-   * the final 127 bytes, the incomplete message is cleared.
    * @param e Event
    * @private
    */
@@ -755,7 +762,12 @@ export class InputChannel extends EventEmitter {
 
   }
 
-  isRpnOrNrpnController(controller) {
+  /**
+   * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+   * @param controller
+   * @returns {boolean}
+   */
+  _isRpnOrNrpnController(controller) {
 
     return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||        //   6
       controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||               //  38
@@ -1014,6 +1026,31 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
+   * Return the playing status of the specified note. The `note` parameter can be an unsigned
+   * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
+   *
+   * If a note identifier or Note object is passed in, the method will take into account any
+   * `octaveOffset` defined.
+   *
+   * @param [input] {number|string|Note}
+   * @returns {boolean}
+   * @since version 3.0.0
+   */
+  getNoteState(note) {
+
+    // If it's a note object, we simply use the identifier
+    if (note instanceof Note) note = note.identifier;
+
+    const number = Utilities.guessNoteNumber(
+      note,
+      WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset
+    );
+
+    return this.notesState[number];
+
+  }
+
+  /**
    * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
    * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
    * octave (C4).
@@ -1128,8 +1165,8 @@ export class InputChannel extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.16 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 15:03:52 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 18:30:29 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
