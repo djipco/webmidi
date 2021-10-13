@@ -156,7 +156,7 @@ describe("WebMidi Object", function() {
       await WebMidi.enable({sysex: true});
     });
 
-    it.only("should set 'enabled' property to false", function(done) {
+    it("should set 'enabled' property to false", function(done) {
 
       // Assert
       WebMidi.disable().then(() => {
