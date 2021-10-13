@@ -7701,9 +7701,9 @@
       let event = {
         timestamp: e.timeStamp,
         type: e.port.state
-      };
+      }; // if (this.interface && e.port.state === "connected") {
 
-      if (this.interface && e.port.state === "connected") {
+      if (e.port.state === "connected") {
         if (e.port.type === "output") {
           event.port = this.getOutputById(e.port.id); // legacy
 
@@ -7713,7 +7713,7 @@
 
           event.target = event.port;
         }
-      } else {
+      } else if (e.port.state === "disconnected") {
         // It feels more logical to include a `target` property instead of a `port` property. This is
         // the terminology used everywhere in the library.
         event.port = {
