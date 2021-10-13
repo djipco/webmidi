@@ -7131,6 +7131,7 @@
        */
 
       this._inputs = [];
+      this._disconnectedInputs = [];
       /**
        * Array of all [`Output`](Output) objects
        * @type {Output[]}
@@ -7138,6 +7139,7 @@
        */
 
       this._outputs = [];
+      this._disconnectedOutputs = [];
       /**
        * Array of statechange events to process. These events must be parsed synchronously so they do
        * not override each other.
@@ -7758,7 +7760,8 @@
         const inputs = Array.from(this.interface.inputs.values());
 
         if (!inputs.find(input => input === current._midiInput)) {
-          current.destroy();
+          // current.destroy();
+          this._disconnectedInputs.push(current);
 
           this._inputs.splice(i, 1);
         }
@@ -7769,9 +7772,12 @@
 
       this.interface.inputs.forEach(nInput => {
         // Check if the input already exists
-        const exists = this._inputs.find(input => input._midiInput === nInput); // If the input does not already exist, create new Input object and add it to the list of
-        // inputs.
+        const exists = this._inputs.find(input => input._midiInput === nInput);
 
+        const test = this._disconnectedInputs.find(input => input._midiInput === nInput);
+
+        if (test) console.log("Found input in disconnedted array", test); // If the input does not already exist, create new Input object and add it to the list of
+        // inputs.
 
         if (!exists) {
           const input = new Input(nInput);
@@ -7799,7 +7805,8 @@
         const outputs = Array.from(this.interface.outputs.values());
 
         if (!outputs.find(output => output === current._midiOutput)) {
-          current.destroy();
+          // current.destroy();
+          this._disconnectedInputs.push(current);
 
           this._outputs.splice(i, 1);
         }
@@ -7810,9 +7817,12 @@
 
       this.interface.outputs.forEach(nOutput => {
         // Check if the output already exists
-        const exists = this._outputs.find(output => output._midiOutput === nOutput); // If the output does not already exist, create new Input object and add it to the list of
-        // outputs.
+        const exists = this._outputs.find(output => output._midiOutput === nOutput);
 
+        const test = this._disconnectedOutputs.find(output => output._midiOutput === nOutput);
+
+        if (test) console.log("Found output in disconnedted array", test); // If the output does not already exist, create new Input object and add it to the list of
+        // outputs.
 
         if (!exists) {
           const output = new Output(nOutput);
