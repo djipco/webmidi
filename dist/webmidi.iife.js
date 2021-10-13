@@ -4062,7 +4062,7 @@
 
           if (!output) output = new Input(nOutput);
 
-          this._inputs.push(output);
+          this._outputs.push(output);
 
           promises.push(output.open());
         }
