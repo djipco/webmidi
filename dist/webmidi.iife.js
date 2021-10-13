@@ -7765,8 +7765,7 @@
           // Instead of destroying removed inputs, we stash them in case they come back (which is the
           // case when the computer goes to sleep and is brought back up). We just suspend events
           // while stashed.
-          current.eventsSuspended = true;
-
+          // current.eventsSuspended = true;
           this._disconnectedInputs.push(current);
 
           this._inputs.splice(i, 1);
@@ -7777,13 +7776,21 @@
       let promises = []; // Add new inputs (if not already present)
 
       this.interface.inputs.forEach(nInput => {
-        // Check if the input already exists
-        const exists = this._inputs.find(input => input._midiInput === nInput);
+        // Check if the input has already been stashed in _disconnectedInputs (when previously
+        // disconnected). If so, bring it back.
+        const found = this._disconnectedInputs.find(input => input._midiInput === nInput);
 
-        const test = this._disconnectedInputs.find(input => input._midiInput === nInput);
+        if (found) {
+          // found.eventsSuspended = false;
+          this._inputs.push(found);
 
-        if (test) console.log("Found input in disconnedted array", test.id, nInput); // If the input does not already exist, create new Input object and add it to the list of
+          return;
+        } // Check if the input already exists
+
+
+        const exists = this._inputs.find(input => input._midiInput === nInput); // If the input does not already exist, create new Input object and add it to the list of
         // inputs.
+
 
         if (!exists) {
           const input = new Input(nInput);
