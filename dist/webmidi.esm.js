@@ -1159,6 +1159,13 @@ class InputChannel extends e {
      */
     this.parameterNumberEventsEnabled = true;
 
+    /**
+     * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+     * `true` for a currently playing note and `false` otherwise.
+     * @type {boolean[]}
+     */
+    this.notesState = new Array(128).fill(false);
+
   }
 
   /**
@@ -1170,6 +1177,7 @@ class InputChannel extends e {
     this._number = null;
     this._octaveOffset = 0;
     this._nrpnBuffer = [];
+    this.notesState = new Array(128).fill(false);
     this.parameterNumberEventsEnabled = false;
     this.removeListener();
   }
@@ -1223,6 +1231,7 @@ class InputChannel extends e {
    */
   _parseEventForStandardMessages(e) {
 
+
     const event = Object.assign({}, e);
     event.type = event.message.type || "unknownmidimessage";
 
@@ -1230,6 +1239,8 @@ class InputChannel extends e {
     const data2 = e.message.dataBytes[1];
 
     if ( event.type === "noteoff" || (event.type === "noteon" && data2 === 0) ) {
+
+      this.notesState[data1] = false;
 
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
@@ -1273,6 +1284,8 @@ class InputChannel extends e {
       event.rawVelocity = event.note.rawRelease;
 
     } else if (event.type === "noteon") {
+
+      this.notesState[data1] = true;
 
       /**
        * Event emitted when a **note on** MIDI message has been received.
@@ -1396,7 +1409,7 @@ class InputChannel extends e {
       // Parse the inbound event to see if its part of an RPN/NRPN sequence
       if (
         this.parameterNumberEventsEnabled &&
-        this.isRpnOrNrpnController(event.message.dataBytes[0])
+        this._isRpnOrNrpnController(event.message.dataBytes[0])
       ) {
         this._parseEventForParameterNumber(event);
       }
@@ -1615,12 +1628,6 @@ class InputChannel extends e {
 
   /**
    * Parses inbound events to identify NRPN sequences.
-   *
-   * and constructs NRPN message parts in valid sequences.
-   * Keeps a separate NRPN buffer for each channel.
-   * Emits an event after it receives the final CC parts msb 127 lsb 127.
-   * If a message is incomplete and other messages are received before
-   * the final 127 bytes, the incomplete message is cleared.
    * @param e Event
    * @private
    */
@@ -1710,7 +1717,12 @@ class InputChannel extends e {
 
   }
 
-  isRpnOrNrpnController(controller) {
+  /**
+   * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+   * @param controller
+   * @returns {boolean}
+   */
+  _isRpnOrNrpnController(controller) {
 
     return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||        //   6
       controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||               //  38
@@ -1965,6 +1977,31 @@ class InputChannel extends e {
     }
 
     return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
+
+  }
+
+  /**
+   * Return the playing status of the specified note. The `note` parameter can be an unsigned
+   * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
+   *
+   * If a note identifier or Note object is passed in, the method will take into account any
+   * `octaveOffset` defined.
+   *
+   * @param [input] {number|string|Note}
+   * @returns {boolean}
+   * @since version 3.0.0
+   */
+  getNoteState(note) {
+
+    // If it's a note object, we simply use the identifier
+    if (note instanceof Note) note = note.identifier;
+
+    const number = Utilities.guessNoteNumber(
+      note,
+      wm.octaveOffset + this.input.octaveOffset + this.octaveOffset
+    );
+
+    return this.notesState[number];
 
   }
 
@@ -6916,24 +6953,20 @@ class Output extends e {
   }
 
   /**
-   * Sends a **note off** message for the specified notes on the specified channel(s). The first
-   * parameter is the note. It can be a single value or an array of the following valid values:
+   * Sends a **note off** message for the specified MIDI note number on the specified channel(s).
+   * The first parameter is the number. It can be a single value or an array of the following valid
+   * values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
    *
    *  The execution of the **note off** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
-   * precedence over the one specified via the method's `options` parameter.
-   *
-   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to stop. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-   * note is G9 (MIDI note number 127).
+   * @param note {number|string|number[]|string[]} The note(s) to stop. The notes can be specified
+   * by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the
+   * previous types. When using a note name, octave range must be between -1 and 9. The lowest note
+   * is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
    *
    * @param {Object} [options={}]
    *
@@ -6971,6 +7004,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
+    // This actually supports passing a Note object even if, semantically, this does not make sense.
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
     });
@@ -7085,29 +7119,23 @@ class Output extends e {
   }
 
   /**
-   * Sends a **note on** message for the specified notes on the specified channel(s). The first
-   * parameter is the note. It can be a single value or an array of the following valid values:
+   * Sends a **note on** message for the specified MIDI note number on the specified channel(s). The
+   * first parameter is the number. It can be a single value or an array of the following valid
+   * values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
    *
    *  The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * When using {@link Note} objects, the attack velocity defined in the {@link Note} objects has
-   * precedence over the one specified via the method's `options` parameter. Also, the `duration` is
-   * ignored. If you want to also send a **note off** message, use the
-   * [playNote()]{@link Output#playNote} method instead.
-   *
    * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
    * functionally equivalent to a **note off** message.
    *
-   * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-   * note is G9 (MIDI note number 127).
+   * @param note {number|string|number[]|string[]} The note(s) to play. The notes can be specified
+   * by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the
+   * previous types. When using a note name, octave range must be between -1 and 9. The lowest note
+   * is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
    *
    * @param {Object} [options={}]
    *
@@ -7145,6 +7173,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
+    // This actually supports passing a Note object even if, semantically, this does not make sense.
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOn(note, options);
     });
