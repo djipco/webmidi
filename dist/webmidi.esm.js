@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.16
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on September 28th, 2021.
+ * Build generated on October 13th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -70,6 +70,7 @@ class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListene
  * @throws {RangeError} Invalid attack value
  * @throws {RangeError} Invalid release value
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 class Note {
@@ -84,13 +85,13 @@ class Note {
     // Assign property values from options (validation occurs in setter)
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
-    if (options.rawAttack != undefined) this.attack = utils.toNormalized(options.rawAttack);
+    if (options.rawAttack != undefined) this.attack = Utilities.toNormalized(options.rawAttack);
     if (options.release != undefined) this.release = options.release;
-    if (options.rawRelease != undefined) this.release = utils.toNormalized(options.rawRelease);
+    if (options.rawRelease != undefined) this.release = Utilities.toNormalized(options.rawRelease);
 
     // Assign note depending on the way it was specified (name or number)
     if (Number.isInteger(value)) {
-      this.identifier = utils.toNoteIdentifier(value);
+      this.identifier = Utilities.toNoteIdentifier(value);
     } else {
       this.identifier = value;
     }
@@ -107,7 +108,7 @@ class Note {
   }
   set identifier(value) {
 
-    const fragments = utils.getNoteDetails(value);
+    const fragments = Utilities.getNoteDetails(value);
 
     if (wm.validation) {
       if (!value) throw new Error("Invalid note identifier");
@@ -248,7 +249,7 @@ class Note {
    * @since 3.0.0
    */
   get rawAttack() {
-    return utils.to7Bit(this._attack);
+    return Utilities.to7Bit(this._attack);
   }
 
   /**
@@ -257,7 +258,7 @@ class Note {
    * @since 3.0.0
    */
   get rawRelease() {
-    return utils.to7Bit(this._release);
+    return Utilities.to7Bit(this._release);
   }
 
   /**
@@ -268,15 +269,16 @@ class Note {
    * @since 3.0.0
    */
   get number() {
-    return utils.toNoteNumber(this.identifier);
+    return Utilities.toNoteNumber(this.identifier);
   }
 
   /**
-   * Returns a MIDI note number offset by the integer specified in the parameter. If the calculated
-   * value is less than 0, 0 will be returned. If the calculated value is more than 127, 127 will be
-   * returned. If an invalid value is supplied, 0 will be used.
+   * Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less
+   * than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If
+   * an invalid value is supplied, 0 will be used.
    *
-   * @param offset
+   * @param [octaveOffset] {number} An integer to offset the note number by octave.
+   * @param [semitoneOffset] {number} An integer to offset the note number by semitone.
    * @returns {number} An integer between 0 and 127
    */
   getOffsetNumber(octaveOffset = 0, semitoneOffset = 0) {
@@ -293,9 +295,10 @@ class Note {
 }
 
 /**
- * The `Utilities` class contains general-purpose utility functions. The class is a singleton with
- * static methode and is not meant to be instantiated.
+ * The `Utilities` class contains general-purpose utility methods. All methods are static and
+ * should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 class Utilities {
@@ -323,9 +326,11 @@ class Utilities {
    *
    * @throws TypeError Invalid note identifier
    *
+   * @license Apache-2.0
    * @since 3.0.0
+   * @static
    */
-  toNoteNumber(identifier, octaveOffset = 0) {
+  static toNoteNumber(identifier, octaveOffset = 0) {
 
     // Validation
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
@@ -369,8 +374,9 @@ class Utilities {
    * @throws TypeError Invalid note identifier
    *
    * @since 3.0.0
+   * @static
    */
-  getNoteDetails(value) {
+  static getNoteDetails(value) {
 
     if (Number.isInteger(value)) value = this.toNoteIdentifier(value);
 
@@ -407,8 +413,9 @@ class Utilities {
    * @returns {Array} An array of 0 or more valid MIDI channel numbers.
    *
    * @since 3.0.0
+   * @static
    */
-  sanitizeChannels(channel) {
+  static sanitizeChannels(channel) {
 
     let channels;
 
@@ -454,8 +461,9 @@ class Utilities {
    * @return {number|false} A positive number or `false` (if the time cannot be converted)
    *
    * @since 3.0.0
+   * @static
    */
-  toTimestamp(time) {
+  static toTimestamp(time) {
 
     let value = false;
 
@@ -488,8 +496,9 @@ class Utilities {
    * successfully be parsed to a note number.
    *
    * @since 3.0.0
+   * @static
    */
-  guessNoteNumber(input, octaveOffset) {
+  static guessNoteNumber(input, octaveOffset) {
 
     // Validate and, if necessary, assign default
     octaveOffset = parseInt(octaveOffset) || 0;
@@ -517,8 +526,8 @@ class Utilities {
    * Returns an identifier string representing a note name (with optional accidental) followed by an
    * octave number. The octave can be offset by using the `octaveOffset` parameter.
    *
-   * @param {number} The MIDI note number to convert to a note identifier
-   * @param {octaveOffset} An offset to apply to the resulting octave
+   * @param {number} number The MIDI note number to convert to a note identifier
+   * @param {number} octaveOffset An offset to apply to the resulting octave
    *
    * @returns {string}
    *
@@ -526,8 +535,9 @@ class Utilities {
    * @throws RangeError Invalid octaveOffset value
    *
    * @since 3.0.0
+   * @static
    */
-  toNoteIdentifier(number, octaveOffset) {
+  static toNoteIdentifier(number, octaveOffset) {
 
     number = parseInt(number);
     if (isNaN(number) || number < 0 || number > 127) throw new RangeError("Invalid note number");
@@ -535,8 +545,9 @@ class Utilities {
     octaveOffset = octaveOffset == undefined ? 0 : parseInt(octaveOffset);
     if (isNaN(octaveOffset)) throw new RangeError("Invalid octaveOffset value");
 
+    const notes = ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
     const octave = Math.floor(number / 12 - 1) + octaveOffset;
-    return wm.NOTES[number % 12] + octave.toString();
+    return notes[number % 12] + octave.toString();
 
   }
 
@@ -568,8 +579,9 @@ class Utilities {
    * @throws TypeError The input could not be parsed to a note
    *
    * @since version 3.0.0
+   * @static
    */
-  buildNote(input, options= {}) {
+  static buildNote(input, options= {}) {
 
     options.octaveOffset = parseInt(options.octaveOffset) || 0;
 
@@ -624,8 +636,9 @@ class Utilities {
    * @throws TypeError An element could not be parsed as a note.
    *
    * @since 3.0.0
+   * @static
    */
-  buildNoteArray(notes, options = {}) {
+  static buildNoteArray(notes, options = {}) {
 
     let result = [];
     if (!Array.isArray(notes)) notes = [notes];
@@ -648,8 +661,9 @@ class Utilities {
    *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
+   * @static
    */
-  toNormalized(value) {
+  static toNormalized(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -665,8 +679,9 @@ class Utilities {
    *
    * @param value A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
+   * @static
    */
-  to7Bit(value) {
+  static to7Bit(value) {
     if (value === Infinity) value = 1;
     value = parseFloat(value) || 0;
     return Math.min(Math.max(Math.round(value * 127), 0), 127);
@@ -681,8 +696,9 @@ class Utilities {
    * @returns {number} An integer between 0 and 127
    *
    * @throws {Error} Invalid note number
+   * @static
    */
-  offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
+  static offsetNumber(number, octaveOffset = 0, semitoneOffset = 0) {
 
     if (wm.validation) {
       number = parseInt(number);
@@ -702,36 +718,361 @@ class Utilities {
    * @param object {Object}
    * @param value {*}
    * @returns {string} The name of the matching property
+   * @static
    */
-  getPropertyByValue(object, value) {
+  static getPropertyByValue(object, value) {
     return Object.keys(object).find(key => object[key] === value);
   }
 
 }
 
-// Export singleton instance of Utilities class. The 'constructor' is nulled so that it cannot be
-// used to instantiate a new Utilities object or extend it. However, it is not freezed so it remains
-// extensible (properties can be added at will).
-const utils = new Utilities();
-utils.constructor = null;
+/**
+ * The `Enumerations` class contains enumerations of elements used throughout the library. All
+ * enumerations are static and should be referenced using the class name. For example:
+ * `Enumerations.MIDI_CHANNEL_MESSAGES`.
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */
+class Enumerations {
+
+  /**
+   * Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
+   *
+   * - `noteoff`: 0x8 (8)
+   * - `noteon`: 0x9 (9)
+   * - `keyaftertouch`: 0xA (10)
+   * - `controlchange`: 0xB (11)
+   * - `nrpn`: 0xB (11)
+   * - `programchange`: 0xC (12)
+   * - `channelaftertouch`: 0xD (13)
+   * - `pitchbend`: 0xE (14)
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   * @static
+   */
+  static get MIDI_CHANNEL_MESSAGES() {
+
+    return {
+      noteoff: 0x8,           // 8
+      noteon: 0x9,            // 9
+      keyaftertouch: 0xA,     // 10
+      controlchange: 0xB,     // 11
+      programchange: 0xC,     // 12
+      channelaftertouch: 0xD, // 13
+      pitchbend: 0xE          // 14
+    };
+
+  }
+
+  /**
+   * Enumeration of all channel mode messages and their associated numerical value:
+   *
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   * @static
+   */
+  static get MIDI_CHANNEL_MODE_MESSAGES() {
+
+    return {
+      allsoundoff: 120,
+      resetallcontrollers: 121,
+      localcontrol: 122,
+      allnotesoff: 123,
+      omnimodeoff: 124,
+      omnimodeon: 125,
+      monomodeon: 126,
+      polymodeon: 127
+    };
+
+  }
+
+  /**
+   * Enumeration of most control change messages and their associated numerical value. Note that
+   * some control change numbers do not have a predefined purpose and are absent from this list.
+   *
+   * - `bankselectcoarse`: 0
+   * - `modulationwheelcoarse`: 1
+   * - `breathcontrollercoarse`: 2
+   * - `footcontrollercoarse`: 4
+   * - `portamentotimecoarse`: 5
+   * - `dataentrycoarse`: 6
+   * - `volumecoarse`: 7
+   * - `balancecoarse`: 8
+   * - `pancoarse`: 10
+   * - `expressioncoarse`: 11
+   * - `effectcontrol1coarse`: 12
+   * - `effectcontrol2coarse`: 13
+   * - `generalpurposeslider1`: 16
+   * - `generalpurposeslider2`: 17
+   * - `generalpurposeslider3`: 18
+   * - `generalpurposeslider4`: 19
+   * - `bankselectfine`: 32
+   * - `modulationwheelfine`: 33
+   * - `breathcontrollerfine`: 34
+   * - `footcontrollerfine`: 36
+   * - `portamentotimefine`: 37
+   * - `dataentryfine`: 38
+   * - `volumefine`: 39
+   * - `balancefine`: 40
+   * - `panfine`: 42
+   * - `expressionfine`: 43
+   * - `effectcontrol1fine`: 44
+   * - `effectcontrol2fine`: 45
+   * - `holdpedal`: 64
+   * - `portamento`: 65
+   * - `sustenutopedal`: 66
+   * - `softpedal`: 67
+   * - `legatopedal`: 68
+   * - `hold2pedal`: 69
+   * - `soundvariation`: 70
+   * - `resonance`: 71
+   * - `soundreleasetime`: 72
+   * - `soundattacktime`: 73
+   * - `brightness`: 74
+   * - `soundcontrol6`: 75
+   * - `soundcontrol7`: 76
+   * - `soundcontrol8`:`77
+   * - `soundcontrol9`: 78
+   * - `soundcontrol10`: 79
+   * - `generalpurposebutton1`: 80
+   * - `generalpurposebutton2`: 81
+   * - `generalpurposebutton3`: 82
+   * - `generalpurposebutton4`: 83
+   * - `reverblevel`: 91
+   * - `tremololevel`: 92
+   * - `choruslevel`: 93
+   * - `celestelevel`: 94
+   * - `phaserlevel`: 95
+   * - `databuttonincrement`: 96
+   * - `databuttondecrement`: 97
+   * - `nonregisteredparametercoarse`: 98
+   * - `nonregisteredparameterfine`: 99
+   * - `registeredparametercoarse`: 100
+   * - `registeredparameterfine`: 101
+   *
+   * - `allsoundoff`: 120
+   * - `resetallcontrollers`: 121
+   * - `localcontrol`: 122
+   * - `allnotesoff`: 123
+   * - `omnimodeoff`: 124
+   * - `omnimodeon`: 125
+   * - `monomodeon`: 126
+   * - `polymodeon`: 127
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   * @static
+   */
+  static get MIDI_CONTROL_CHANGE_MESSAGES() {
+
+    return {
+
+      bankselectcoarse: 0,
+      modulationwheelcoarse: 1,
+      breathcontrollercoarse: 2,
+      footcontrollercoarse: 4,
+      portamentotimecoarse: 5,
+      dataentrycoarse: 6,
+      volumecoarse: 7,
+      balancecoarse: 8,
+      pancoarse: 10,
+      expressioncoarse: 11,
+      effectcontrol1coarse: 12,
+      effectcontrol2coarse: 13,
+      generalpurposeslider1: 16,
+      generalpurposeslider2: 17,
+      generalpurposeslider3: 18,
+      generalpurposeslider4: 19,
+      bankselectfine: 32,
+      modulationwheelfine: 33,
+      breathcontrollerfine: 34,
+      footcontrollerfine: 36,
+      portamentotimefine: 37,
+      dataentryfine: 38,
+      volumefine: 39,
+      balancefine: 40,
+      panfine: 42,
+      expressionfine: 43,
+      effectcontrol1fine: 44,
+      effectcontrol2fine: 45,
+      holdpedal: 64,
+      portamento: 65,
+      sustenutopedal: 66,
+      softpedal: 67,
+      legatopedal: 68,
+      hold2pedal: 69,
+      soundvariation: 70,
+      resonance: 71,
+      soundreleasetime: 72,
+      soundattacktime: 73,
+      brightness: 74,
+      soundcontrol6: 75,
+      soundcontrol7: 76,
+      soundcontrol8: 77,
+      soundcontrol9: 78,
+      soundcontrol10: 79,
+      generalpurposebutton1: 80,
+      generalpurposebutton2: 81,
+      generalpurposebutton3: 82,
+      generalpurposebutton4: 83,
+      reverblevel: 91,
+      tremololevel: 92,
+      choruslevel: 93,
+      celestelevel: 94,
+      phaserlevel: 95,
+      databuttonincrement: 96,
+      databuttondecrement: 97,
+      nonregisteredparametercoarse: 98,
+      nonregisteredparameterfine: 99,
+      registeredparametercoarse: 100,
+      registeredparameterfine: 101,
+
+      allsoundoff: 120,
+      resetallcontrollers: 121,
+      localcontrol: 122,
+      allnotesoff: 123,
+      omnimodeoff: 124,
+      omnimodeon: 125,
+      monomodeon: 126,
+      polymodeon: 127
+
+    };
+
+  }
+
+  /**
+   * Enumeration of all registered parameters and their associated pair of numerical values. MIDI
+   * registered parameters extend the original list of control change messages. Currently, there are
+   * only a limited number of them:
+   *
+   * - `pitchbendrange`: [0x00, 0x00]
+   * - `channelfinetuning`: [0x00, 0x01]
+   * - `channelcoarsetuning`: [0x00, 0x02]
+   * - `tuningprogram`: [0x00, 0x03]
+   * - `tuningbank`: [0x00, 0x04]
+   * - `modulationrange`: [0x00, 0x05]
+   * - `azimuthangle`: [0x3D, 0x00]
+   * - `elevationangle`: [0x3D, 0x01]
+   * - `gain`: [0x3D, 0x02]
+   * - `distanceratio`: [0x3D, 0x03]
+   * - `maximumdistance`: [0x3D, 0x04]
+   * - `maximumdistancegain`: [0x3D, 0x05]
+   * - `referencedistanceratio`: [0x3D, 0x06]
+   * - `panspreadangle`: [0x3D, 0x07]
+   * - `rollangle`: [0x3D, 0x08]
+   *
+   * @enum {Object.<string, number[]>}
+   * @readonly
+   * @static
+   */
+  static get MIDI_REGISTERED_PARAMETERS() {
+
+    return {
+      pitchbendrange: [0x00, 0x00],
+      channelfinetuning: [0x00, 0x01],
+      channelcoarsetuning: [0x00, 0x02],
+      tuningprogram: [0x00, 0x03],
+      tuningbank: [0x00, 0x04],
+
+      modulationrange: [0x00, 0x05],
+      azimuthangle: [0x3D, 0x00],
+      elevationangle: [0x3D, 0x01],
+      gain: [0x3D, 0x02],
+      distanceratio: [0x3D, 0x03],
+      maximumdistance: [0x3D, 0x04],
+      maximumdistancegain: [0x3D, 0x05],
+      referencedistanceratio: [0x3D, 0x06],
+      panspreadangle: [0x3D, 0x07],
+      rollangle: [0x3D, 0x08]
+    };
+
+  }
+
+  /**
+   * Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
+   * uses two custom messages.
+   *
+   * **System common messages**
+   * - `sysex`: 0xF0 (240)
+   * - `timecode`: 0xF1 (241)
+   * - `songposition`: 0xF2 (242)
+   * - `songselect`: 0xF3 (243)
+   * - `tunerequest`: 0xF6 (246)
+   * - `sysexend`: 0xF7 (247)
+   *
+   * The `sysexend` message is never actually received. It simply ends a sysex stream.
+   *
+   * **System real-time messages**
+   *
+   * - `clock`: 0xF8 (248)
+   * - `start`: 0xFA (250)
+   * - `continue`: 0xFB (251)
+   * - `stop`: 0xFC (252)
+   * - `activesensing`: 0xFE (254)
+   * - `reset`: 0xFF (255)
+   *
+   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
+   * purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * simply states that they are undefined/reserved.
+   *
+   * **Custom WebMidi.js messages**
+   *
+   * - `midimessage`: 0
+   * - `unknownsystemmessage`: -1
+   *
+   * @enum {Object.<string, number>}
+   * @readonly
+   * @static
+   */
+  static get MIDI_SYSTEM_MESSAGES() {
+
+    return {
+
+      // System common messages
+      sysex: 0xF0,            // 240
+      timecode: 0xF1,         // 241
+      songposition: 0xF2,     // 242
+      songselect: 0xF3,       // 243
+      tunerequest: 0xF6,      // 246
+      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
+      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
+
+      // System real-time messages
+      clock: 0xF8,            // 248
+      start: 0xFA,            // 250
+      continue: 0xFB,         // 251
+      stop: 0xFC,             // 252
+      activesensing: 0xFE,    // 254
+      reset: 0xFF,            // 255
+
+      // Custom WebMidi.js messages
+      midimessage: 0,
+      unknownsystemmessage: -1
+
+    };
+
+  }
+
+}
 
 /**
  * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
  *
- * All 16 `InputChannel` objects can be found inside the input's [channels]{@link Input#channels}
+ * All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
  * property.
- *
- * The `InputChannel` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
- * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
- * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others. Check out the
- * [documentation for EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) for more
- * details.
  *
  * @param {Input} input The `Input` object this channel belongs to
  * @param {number} number The MIDI channel's number (1-16)
@@ -763,6 +1104,8 @@ utils.constructor = null;
  * @fires InputChannel#rpndatabuttonincrement
  * @fires InputChannel#rpndatabuttondecrement
  *
+ * @extends EventEmitter
+ * @license Apache-2.0
  * @since 3.0.0
  */
 class InputChannel extends e {
@@ -903,7 +1246,7 @@ class InputChannel extends e {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} note A {@link Note} object containing information such as note name,
+       * @property {Object} note A [`Note`](Note) object containing information such as note name,
        * octave and release velocity.
        * @property {number} value The release velocity amount expressed as a float between 0 and 1.
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
@@ -912,7 +1255,7 @@ class InputChannel extends e {
 
       // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
       event.note = new Note(
-        utils.offsetNumber(
+        Utilities.offsetNumber(
           data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
         ),
         {
@@ -921,7 +1264,7 @@ class InputChannel extends e {
         }
       );
 
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -941,15 +1284,15 @@ class InputChannel extends e {
        *
        * @property {InputChannel} channel The `InputChannel` object that triggered the event.
        * @property {Array} event.data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The `Input` object where through which the message was
-       * received.
+       * @property {InputChannel} input The [`Input`](Input) object where through which the message
+       * was received.
        * @property {Uint8Array} event.rawData The raw MIDI message as a `Uint8Array`.
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} note A {@link Note} object containing information such as note name,
+       * @property {Note} note A [`Note`](Note) object containing information such as note name,
        * octave and attack velocity.
        *
        * @property {number} value The attack velocity amount expressed as a float between 0 and 1.
@@ -957,13 +1300,13 @@ class InputChannel extends e {
        * and 127).
        */
       event.note = new Note(
-        utils.offsetNumber(
+        Utilities.offsetNumber(
           data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
         ),
         { rawAttack: data2 }
       );
 
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -998,20 +1341,20 @@ class InputChannel extends e {
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
-      event.identifier = utils.toNoteIdentifier(
+      event.identifier = Utilities.toNoteIdentifier(
         data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset
       );
 
-      event.key = utils.toNoteNumber(event.identifier);
+      event.key = Utilities.toNoteNumber(event.identifier);
       event.rawKey = data1;
 
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
       event.note = new Note(
-        utils.offsetNumber(
+        Utilities.offsetNumber(
           data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset
         )
       );
@@ -1044,7 +1387,7 @@ class InputChannel extends e {
         name: this.getCcNameByNumber(data1)
       };
 
-      event.value = utils.toNormalized(data2);
+      event.value = Utilities.toNormalized(data2);
       event.rawValue = data2;
 
       // Trigger channel mode message events (if appropriate)
@@ -1101,7 +1444,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.value = utils.toNormalized(data1);
+      event.value = Utilities.toNormalized(data1);
       event.rawValue = data1;
 
     } else if (event.type === "pitchbend") {
@@ -1286,7 +1629,7 @@ class InputChannel extends e {
     // To make it more legible
     const controller = event.message.dataBytes[0];
     const value = event.message.dataBytes[1];
-    const list = wm.MIDI_CONTROL_CHANGE_MESSAGES;
+    const list = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES;
 
     // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
     if (
@@ -1369,14 +1712,14 @@ class InputChannel extends e {
 
   isRpnOrNrpnController(controller) {
 
-    return controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||           //   6
-      controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||                  //  38
-      controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement ||            //  96
-      controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement ||            //  97
-      controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse ||   //  98
-      controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine ||     //  99
-      controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse ||      // 100
-      controller === wm.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine;          // 101
+    return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse ||        //   6
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine ||               //  38
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement ||         //  96
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement ||         //  97
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse ||//  98
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine ||  //  99
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse ||   // 100
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine;       // 101
 
   }
 
@@ -1540,23 +1883,23 @@ class InputChannel extends e {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: utils.toNormalized(e.message.dataBytes[1]),
+      value: Utilities.toNormalized(e.message.dataBytes[1]),
       rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     };
 
     // Retrieve controller type and append to event type
-    event.type += utils.getPropertyByValue(
-      wm.MIDI_CONTROL_CHANGE_MESSAGES,
+    event.type += Utilities.getPropertyByValue(
+      Enumerations.MIDI_CONTROL_CHANGE_MESSAGES,
       e.message.dataBytes[0]
     );
 
     // Identify the parameter (by name for RPN and by number for NRPN)
     if (type === "rpn") {
 
-      event.parameter = Object.keys(wm.MIDI_REGISTERED_PARAMETERS).find(key => {
-        return wm.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &&
-          wm.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
+      event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
+        return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &&
+          Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
       });
 
     } else {
@@ -1585,11 +1928,11 @@ class InputChannel extends e {
 
     if ( !(number >= 120 && number <= 127) ) return false;
 
-    for (let cm in wm.MIDI_CHANNEL_MODE_MESSAGES) {
+    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
 
       if (
-        wm.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
-        number === wm.MIDI_CHANNEL_MODE_MESSAGES[cm]
+        Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]
       ) {
         return cm;
       }
@@ -1621,7 +1964,7 @@ class InputChannel extends e {
       if ( !(number >= 0 && number <= 127) ) throw new RangeError("Invalid control change number.");
     }
 
-    return utils.getPropertyByValue(wm.MIDI_CONTROL_CHANGE_MESSAGES, number);
+    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
 
   }
 
@@ -1655,7 +1998,7 @@ class InputChannel extends e {
   }
 
   /**
-   * The {@link Input} this channel belongs to
+   * The [`Input`](Input) this channel belongs to
    * @type {Input}
    * @since 3.0
    */
@@ -1692,23 +2035,56 @@ class InputChannel extends e {
 
   }
 
+  /**
+   * Array of channel-specific event names that can be listened to.
+   * @type {string[]}
+   * @readonly
+   */
+  static get EVENTS() {
+
+    return [
+
+      // MIDI channel message events
+      "noteoff",
+      "controlchange",
+      "noteon",
+      "keyaftertouch",
+      "programchange",
+      "channelaftertouch",
+      "pitchbend",
+
+      // MIDI channel mode events
+      "allnotesoff",
+      "allsoundoff",
+      "localcontrol",
+      "monomode",
+      "omnimode",
+      "resetallcontrollers",
+
+      // NRPN events
+      "nrpndataentrycoarse",
+      "nrpndataentryfine",
+      "nrpndatabuttonincrement",
+      "nrpndatabuttondecrement",
+
+      // RPN events
+      "rpndataentrycoarse",
+      "rpndataentryfine",
+      "rpndatabuttonincrement",
+      "rpndatabuttondecrement"
+
+    ];
+  }
+
 }
 
 /**
- * The `Input` class represents a single MIDI input port. This object is derived from the host's
- * MIDI subsystem and cannot be instantiated directly.
- *
- * You can find a list of all currently available `Input` objects in the {@link WebMidi#inputs}
+ * The `Input` class represents a single MIDI input port. This object is automatically instantiated
+ * by the library according to the host's MIDI subsystem and should not be directly instantiated.
+ * Instead, you can access all `Input` objects by referring to the [`WebMidi.inputs`](WebMidi#inputs)
  * array.
  *
- * The `Input` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [getListeners()](https://djipco.github.io/djipevents/EventEmitter.html#getListeners),
- * [emit()](https://djipco.github.io/djipevents/EventEmitter.html#emit),
- * [suspendEvent()](https://djipco.github.io/djipevents/EventEmitter.html#suspendEvent) and several
- * others.
+ * Note that a single device may expose several inputs and/or outputs.
  *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
@@ -1727,8 +2103,10 @@ class InputChannel extends e {
  * @fires Input#stop
  * @fires Input#activesensing
  * @fires Input#reset
- * @fires Input#midimessage
  * @fires Input#unknownmidimessage
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
  */
 class Input extends e {
 
@@ -1749,7 +2127,7 @@ class Input extends e {
     this._octaveOffset = 0;
 
     /**
-     * Array containing the 16 {@link InputChannel} objects available for this `Input`. The
+     * Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
      * channels are numbered 1 through 16.
      *
      * @type {InputChannel[]}
@@ -1764,7 +2142,7 @@ class Input extends e {
   }
 
   /**
-   * Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
+   * Destroys the `Input` by removing all listeners, emptying the `channels` array and unlinking the
    * MIDI subsystem.
    *
    * @returns {Promise<void>}
@@ -1773,8 +2151,10 @@ class Input extends e {
     this.removeListener();
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
-    this._midiInput.onstatechange = null;
-    this._midiInput.onmidimessage = null;
+    if (this._midiInput) {
+      this._midiInput.onstatechange = null;
+      this._midiInput.onmidimessage = null;
+    }
     await this.close();
     this._midiInput = null;
   }
@@ -1937,277 +2317,6 @@ class Input extends e {
 
     // Emit event
     this.emit(event.type, event);
-
-    /**
-     * Input-wide (system) event emitted when a **system exclusive** message has been received.
-     * You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
-     * method with the `sysex` option set to `true`:
-     *
-     * ```js
-     * WebMidi.enable({sysex: true})
-     *  .then(() => console.log("WebMidi has been enabled with sysex support."))
-     *  .catch(err => console.log("WebMidi could not be enabled."))
-     * ```
-     *
-     * @event Input#sysex
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"sysex"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values.
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **time code quarter frame** message has been
-     * received.
-     *
-     * @event Input#timecode
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"timecode"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **song position** message has been received.
-     *
-     * @event Input#songposition
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"songposition"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **song select** message has been received.
-     *
-     * @event Input#songselect
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"songselect"`
-     * @property {string} song Song (or sequence) number to select (1-128)
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **tune request** message has been received.
-     *
-     * @event Input#tunerequest
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"tunerequest"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **timing clock** message has been received.
-     *
-     * @event Input#clock
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"clock"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **start** message has been received.
-     *
-     * @event Input#start
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"start"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **continue** message has been received.
-     *
-     * @event Input#continue
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"continue"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **stop** message has been received.
-     *
-     * @event Input#stop
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"stop"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when an **active sensing** message has been received.
-     *
-     * @event Input#activesensing
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"activesensing"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when a **reset** message has been received.
-     *
-     * @event Input#reset
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"reset"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
-
-    /**
-     * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
-     * be, for example, one of the undefined/reserved messages.
-     *
-     * @event Input#unknownmidimessage
-     *
-     * @type {Object}
-     *
-     * @property {Input} target The `Input` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} type `"unknownmidimessage"`
-     *
-     * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     *
-     * @since 2.1
-     */
 
   }
 
@@ -2405,7 +2514,7 @@ class Input extends e {
 
       // Validation
       if (
-        wm.CHANNEL_EVENTS.includes(event) &&
+        InputChannel.EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -2416,10 +2525,10 @@ class Input extends e {
     let listeners = [];
 
     // Check if the event is channel-specific or input-wide
-    if (!wm.CHANNEL_EVENTS.includes(event)) {
+    if (!InputChannel.EVENTS.includes(event)) {
       listeners.push(super.addListener(event, listener, options));
     } else {
-      utils.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         listeners.push(this.channels[ch].addListener(event, listener, options));
       });
     }
@@ -2585,7 +2694,7 @@ class Input extends e {
 
       // Validation
       if (
-        wm.CHANNEL_EVENTS.includes(event) &&
+        InputChannel.EVENTS.includes(event) &&
         options.channels === undefined
       ) {
         throw new Error("For channel-specific events, 'options.channels' must be defined.");
@@ -2593,9 +2702,9 @@ class Input extends e {
 
     }
 
-    if (wm.CHANNEL_EVENTS.includes(event)) {
+    if (InputChannel.EVENTS.includes(event)) {
 
-      return utils.sanitizeChannels(options.channels).every(ch => {
+      return Utilities.sanitizeChannels(options.channels).every(ch => {
         return this.channels[ch].hasListener(event, listener);
       });
 
@@ -2647,16 +2756,16 @@ class Input extends e {
 
     // If the event is not specified, remove everything (channel-specific and input-wide)!
     if (event == undefined) {
-      utils.sanitizeChannels(
-        options.channels).forEach(ch => this.channels[ch].removeListener()
-      );
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
+        if (this.channels[ch]) this.channels[ch].removeListener();
+      });
       return super.removeListener();
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
-    if (wm.CHANNEL_EVENTS.includes(event)) {
+    if (InputChannel.EVENTS.includes(event)) {
 
-      utils.sanitizeChannels(options.channels).forEach(ch => {
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
       });
 
@@ -2772,6 +2881,279 @@ class Input extends e {
 
 }
 
+// Events that do not have code below them must be placed outside the class definition (?!)
+
+/**
+ * Input-wide (system) event emitted when a **system exclusive** message has been received.
+ * You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
+ * method with the `sysex` option set to `true`:
+ *
+ * ```js
+ * WebMidi.enable({sysex: true})
+ *  .then(() => console.log("WebMidi has been enabled with sysex support."))
+ *  .catch(err => console.log("WebMidi could not be enabled."))
+ * ```
+ *
+ * @event Input#sysex
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"sysex"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values.
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
+ */
+
+/**
+ * Input-wide (system) event emitted when a **time code quarter frame** message has been
+ * received.
+ *
+ * @event Input#timecode
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"timecode"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **song position** message has been received.
+ *
+ * @event Input#songposition
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"songposition"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **song select** message has been received.
+ *
+ * @event Input#songselect
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"songselect"`
+ * @property {string} song Song (or sequence) number to select (1-128)
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **tune request** message has been received.
+ *
+ * @event Input#tunerequest
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"tunerequest"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **timing clock** message has been received.
+ *
+ * @event Input#clock
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"clock"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **start** message has been received.
+ *
+ * @event Input#start
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"start"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **continue** message has been received.
+ *
+ * @event Input#continue
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"continue"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **stop** message has been received.
+ *
+ * @event Input#stop
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"stop"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when an **active sensing** message has been received.
+ *
+ * @event Input#activesensing
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"activesensing"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when a **reset** message has been received.
+ *
+ * @event Input#reset
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"reset"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
+/**
+ * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+ * be, for example, one of the undefined/reserved messages.
+ *
+ * @event Input#unknownmidimessage
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A `Message` object containing information about the incoming MIDI
+ * message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `"unknownmidimessage"`
+ *
+ * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+ * the `message` object instead).
+ * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
+ * the `message` object instead).
+ *
+ * @since 2.1
+ */
+
 /**
  * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
  * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
@@ -2779,18 +3161,11 @@ class Input extends e {
  * All 16 `OutputChannel` objects can be found inside the parent output's
  * [channels]{@link Output#channels} property.
  *
- * The `OutputChannel` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
- * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
- * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others.
- *
  * @param {Output} output The output this channel belongs to
  * @param {number} number The channel number (1-16)
  *
+ * @extends EventEmitter
+ * @license Apache-2.0
  * @since 3.0.0
  */
 class OutputChannel extends e {
@@ -2929,21 +3304,21 @@ class OutputChannel extends e {
     }
 
     // Normalize pressure to integer
-    if (!options.rawValue) pressure = utils.to7Bit(pressure);
+    if (!options.rawValue) pressure = Utilities.to7Bit(pressure);
 
     // Retrieve key number. If identifier specified, offset by total offset value
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
     if (!Array.isArray(target)) target = [target];
-    target = target.map(item => utils.guessNoteNumber(item));
+    target = target.map(item => Utilities.guessNoteNumber(item));
 
     target.forEach(n => {
       this.send(
         [
-          (wm.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
-          utils.offsetNumber(n, offset),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+          Utilities.offsetNumber(n, offset),
           pressure
         ],
-        {time: utils.toTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -2957,7 +3332,7 @@ class OutputChannel extends e {
     // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
     //   this.send(
     //     [
-    //       (WebMidi.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+    //       (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
     //       n.getOffsetNumber(offset),
     //       n.rawAttack
     //     ],
@@ -3079,11 +3454,14 @@ class OutputChannel extends e {
    * @throws {TypeError} The value array must have a length of 2.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
+   *
+   * @license Apache-2.0
+   * @since 3.0.0
    */
   sendControlChange(controller, value, options = {}) {
 
     if (typeof controller === "string") {
-      controller = wm.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      controller = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[controller];
     }
 
     if (!Array.isArray(value)) value = [value];
@@ -3116,11 +3494,11 @@ class OutputChannel extends e {
 
       this.send(
         [
-          (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
           controller + (index * 32),
           value[index]
         ],
-        {time: utils.toTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
 
     });
@@ -3322,7 +3700,7 @@ class OutputChannel extends e {
    */
   decrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3331,10 +3709,10 @@ class OutputChannel extends e {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          wm.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
-          wm.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -3389,7 +3767,7 @@ class OutputChannel extends e {
    */
   incrementRegisteredParameter(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = wm.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
       if (parameter === undefined) {
@@ -3398,10 +3776,10 @@ class OutputChannel extends e {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(wm.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
         if (
-          wm.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
-          wm.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -3489,7 +3867,7 @@ class OutputChannel extends e {
     if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
 
       let noteOffOptions = {
-        time: (utils.toTimestamp(options.time) || wm.time) + options.duration,
+        time: (Utilities.toTimestamp(options.time) || wm.time) + options.duration,
         release: options.release,
         rawRelease: options.rawRelease,
       };
@@ -3578,14 +3956,14 @@ class OutputChannel extends e {
     // Plot total octave offset
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
 
-    utils.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
+    Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
-          (wm.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawRelease,
         ],
-        {time: utils.toTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -3688,14 +4066,14 @@ class OutputChannel extends e {
     // Plot total octave offset
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
 
-    utils.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
+    Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
-          (wm.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+          (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawAttack
         ],
-        {time: utils.toTimestamp(options.time)}
+        {time: Utilities.toTimestamp(options.time)}
       );
     });
 
@@ -3747,7 +4125,7 @@ class OutputChannel extends e {
   sendChannelMode(command, value, options = {}) {
 
     // Normalize command to integer
-    if (typeof command === "string") command = wm.MIDI_CHANNEL_MODE_MESSAGES[command];
+    if (typeof command === "string") command = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[command];
 
     if (wm.validation) {
 
@@ -3767,11 +4145,11 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
         command,
         value
       ],
-      {time: utils.toTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -3858,10 +4236,10 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
-      {time: utils.toTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -4122,11 +4500,11 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
         lsb,
         msb
       ],
-      {time: utils.toTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -4214,10 +4592,10 @@ class OutputChannel extends e {
 
     this.send(
       [
-        (wm.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
+        (Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
         program - 1
       ],
-      {time: utils.toTimestamp(options.time)}
+      {time: Utilities.toTimestamp(options.time)}
     );
 
     return this;
@@ -4276,7 +4654,7 @@ class OutputChannel extends e {
    */
   setRegisteredParameter(rpn, data, options = {}) {
 
-    if (!Array.isArray(rpn)) rpn = wm.MIDI_REGISTERED_PARAMETERS[rpn];
+    if (!Array.isArray(rpn)) rpn = Enumerations.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (wm.validation) {
 
@@ -4494,7 +4872,7 @@ class OutputChannel extends e {
    * octave (C4).
    *
    * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * and with the value defined on the parent `Output` object.
+   * and with the value defined on the parent {@link Output} object.
    *
    * @type {number}
    *
@@ -4535,26 +4913,20 @@ class OutputChannel extends e {
 }
 
 /**
- * The `Output` class represents a MIDI output port. This object is derived from the host's MIDI
- * subsystem and cannot be instantiated directly.
+ * The `Output` class represents a single MIDI output port. This object is automatically
+ * instantiated by the library according to the host's MIDI subsystem and should not be directly
+ * instantiated. Instead, you can access all available `Output` objects by referring to the
+ * [`WebMidi.outputs`](WebMidi#outputs) array.
  *
- * You can find a list of all available `Output` objects in the
- * [WebMidi.outputs]{@link WebMidi#outputs} array.
- *
- * The `Output` class extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
- * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
- * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others.
- *
- * @param {MIDIOutput} midiOutput `MIDIOutput` object as provided by the MIDI subsystem
+ * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+ * object as provided by the MIDI subsystem.
  *
  * @fires Output#opened
  * @fires Output#disconnected
  * @fires Output#closed
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
  */
 class Output extends e {
 
@@ -4748,8 +5120,9 @@ class Output extends e {
    *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
-   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
+   *
+   * @license Apache-2.0
    */
   send(message, options = {time: 0}, legacy = undefined) {
 
@@ -4791,7 +5164,7 @@ class Output extends e {
     }
 
     // Send message and return `Output` for chaining
-    this._midiOutput.send(message, utils.toTimestamp(options.time));
+    this._midiOutput.send(message, Utilities.toTimestamp(options.time));
     return this;
 
   }
@@ -4877,14 +5250,14 @@ class Output extends e {
     // Check if data is Uint8Array
     if (data instanceof Uint8Array) {
       const merged = new Uint8Array(1 + manufacturer.length + data.length + 1);
-      merged[0] = wm.MIDI_SYSTEM_MESSAGES.sysex;
+      merged[0] = Enumerations.MIDI_SYSTEM_MESSAGES.sysex;
       merged.set(Uint8Array.from(manufacturer), 1);
       merged.set(data, 1 + manufacturer.length);
-      merged[merged.length - 1] = wm.MIDI_SYSTEM_MESSAGES.sysexend;
+      merged[merged.length - 1] = Enumerations.MIDI_SYSTEM_MESSAGES.sysexend;
       this.send(merged, {time: options.time});
     } else {
-      const merged = manufacturer.concat(data, wm.MIDI_SYSTEM_MESSAGES.sysexend);
-      this.send([wm.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
+      const merged = manufacturer.concat(data, Enumerations.MIDI_SYSTEM_MESSAGES.sysexend);
+      this.send([Enumerations.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
     }
 
     return this;
@@ -4949,7 +5322,7 @@ class Output extends e {
 
     this.send(
       [
-        wm.MIDI_SYSTEM_MESSAGES.timecode,
+        Enumerations.MIDI_SYSTEM_MESSAGES.timecode,
         value
       ],
       {time: options.time}
@@ -4985,7 +5358,7 @@ class Output extends e {
 
     this.send(
       [
-        wm.MIDI_SYSTEM_MESSAGES.songposition,
+        Enumerations.MIDI_SYSTEM_MESSAGES.songposition,
         msb,
         lsb
       ],
@@ -5047,7 +5420,7 @@ class Output extends e {
 
     this.send(
       [
-        wm.MIDI_SYSTEM_MESSAGES.songselect,
+        Enumerations.MIDI_SYSTEM_MESSAGES.songselect,
         value
       ],
       {time: options.time}
@@ -5090,7 +5463,7 @@ class Output extends e {
   sendTuneRequest(options = {}) {
 
     this.send(
-      [wm.MIDI_SYSTEM_MESSAGES.tunerequest],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.tunerequest],
       {time: options.time}
     );
 
@@ -5114,7 +5487,7 @@ class Output extends e {
   sendClock(options = {}) {
 
     this.send(
-      [wm.MIDI_SYSTEM_MESSAGES.clock],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.clock],
       {time: options.time}
     );
 
@@ -5139,7 +5512,7 @@ class Output extends e {
   sendStart(options = {}) {
 
     this.send(
-      [wm.MIDI_SYSTEM_MESSAGES.start],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.start],
       {time: options.time}
     );
 
@@ -5164,7 +5537,7 @@ class Output extends e {
   sendContinue(options = {}) {
 
     this.send(
-      [wm.MIDI_SYSTEM_MESSAGES.continue],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.continue],
       {time: options.time}
     );
 
@@ -5188,7 +5561,7 @@ class Output extends e {
   sendStop(options = {}) {
 
     this.send(
-      [wm.MIDI_SYSTEM_MESSAGES.stop],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.stop],
       {time: options.time}
     );
 
@@ -5213,7 +5586,7 @@ class Output extends e {
   sendActiveSensing(options = {}) {
 
     this.send(
-      [wm.MIDI_SYSTEM_MESSAGES.activesensing],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.activesensing],
       {time: options.time}
     );
 
@@ -5237,7 +5610,7 @@ class Output extends e {
   sendReset(options = {}) {
 
     this.send(
-      [wm.MIDI_SYSTEM_MESSAGES.reset],
+      [Enumerations.MIDI_SYSTEM_MESSAGES.reset],
       {time: options.time}
     );
 
@@ -5312,7 +5685,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setKeyAftertouch(note, pressure, options);
     });
 
@@ -5457,7 +5830,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendControlChange(controller, value, options);
     });
 
@@ -5510,7 +5883,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
 
@@ -5586,7 +5959,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setRegisteredParameter(parameter, data, options);
     });
 
@@ -5633,7 +6006,7 @@ class Output extends e {
     }
 
     if (options.channels == undefined) options.channels = "all";
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
 
@@ -5710,7 +6083,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBend(value, options);
     });
 
@@ -5777,7 +6150,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setProgram(program, options);
     });
 
@@ -5845,7 +6218,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setModulationRange(semitones, cents, options);
     });
 
@@ -5897,7 +6270,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setMasterTuning(value, options);
     });
 
@@ -5947,7 +6320,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningProgram(value, options);
     });
 
@@ -5997,7 +6370,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningBank(value, options);
     });
 
@@ -6069,7 +6442,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendChannelMode(command, value, options);
     });
 
@@ -6111,7 +6484,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnSoundOff(options);
     });
 
@@ -6154,7 +6527,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnNotesOff(options);
     });
 
@@ -6194,7 +6567,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].resetAllControllers(options);
     });
 
@@ -6239,7 +6612,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPolyphonicMode(mode, options);
     });
 
@@ -6285,7 +6658,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setLocalControl(state, options);
     });
 
@@ -6335,7 +6708,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setOmniMode(state, options);
     });
 
@@ -6412,7 +6785,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setNonRegisteredParameter(parameter, data, options);
     });
 
@@ -6472,7 +6845,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].incrementRegisteredParameter(parameter, options);
     });
 
@@ -6534,7 +6907,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].decrementRegisteredParameter(parameter, options);
     });
 
@@ -6598,7 +6971,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
     });
 
@@ -6703,7 +7076,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].playNote(note, options);
     });
 
@@ -6772,7 +7145,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = "all";
 
-    utils.sanitizeChannels(options.channels).forEach(ch => {
+    Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOn(note, options);
     });
 
@@ -6876,6 +7249,7 @@ class Output extends e {
  * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
  * and 255.
  *
+ * @license Apache-2.0
  * @since 3.0.0
  */
 class Message {
@@ -6987,14 +7361,14 @@ class Message {
 
     // Assign type (depending in whether the message is channel-specific or system)
     if (this.isChannelMessage) {
-      this.type = utils.getPropertyByValue(wm.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
-      this.type = utils.getPropertyByValue(wm.MIDI_SYSTEM_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, this.command);
     }
 
     // When the message is a sysex message, we add a manufacturer property and strip out the id from
     // dataBytes and rawDataBytes.
-    if (this.statusByte === wm.MIDI_SYSTEM_MESSAGES.sysex) {
+    if (this.statusByte === Enumerations.MIDI_SYSTEM_MESSAGES.sysex) {
 
       if (this.dataBytes[0] === 0) {
         this.manufacturerId = this.dataBytes.slice(0, 3);
@@ -7013,22 +7387,13 @@ class Message {
 }
 
 /**
- * The `WebMidi` object makes it easier to work with the Web MIDI API. Basically, it simplifies
- * sending outgoing MIDI messages and reacting to incoming MIDI messages.
+ * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
+ * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
  *
- * When using the WebMidi.js library, the `WebMidi` class has already been instantiated for you.
- * If you use the **IIFE** version, you should simply use the global object called `WebMidi`. If you
- * use the **CJS** (CommonJS) or **ESM** (ES6 module) version, you get an already-instantiated
- * object. This means there is no need to instantiate a new `WebMidi` object directly.
- *
- * The `WebMidi` object extends the
- * [EventEmitter](https://djipco.github.io/djipevents/EventEmitter.html) class from the
- * [djipevents]{@link https://djipco.github.io/djipevents/index.html} module. This means
- * it also includes methods such as
- * [addListener()](https://djipco.github.io/djipevents/EventEmitter.html#addListener),
- * [removeListener()](https://djipco.github.io/djipevents/EventEmitter.html#removeListener),
- * [hasListener()](https://djipco.github.io/djipevents/EventEmitter.html#hasListener) and several
- * others.
+ * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
+ * instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
+ * simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
+ * module) version, you get an already-instantiated object when you import the module.
  *
  * @fires WebMidi#connected
  * @fires WebMidi#disabled
@@ -7037,6 +7402,7 @@ class Message {
  * @fires WebMidi#midiaccessgranted
  *
  * @extends EventEmitter
+ * @license Apache-2.0
  */
 class WebMidi extends e {
 
@@ -7060,14 +7426,15 @@ class WebMidi extends e {
      */
     this.defaults = {
       note: {
-        attack: utils.toNormalized(64),
-        release: utils.toNormalized(64),
+        attack: Utilities.toNormalized(64),
+        release: Utilities.toNormalized(64),
         duration: Infinity
       }
     };
 
     /**
-     * The `MIDIAccess` instance used to talk to the Web MIDI API. This should not be used directly
+     * The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+     * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
      * @type {?MIDIAccess}
@@ -7081,21 +7448,21 @@ class WebMidi extends e {
      *
      * This is an advanced setting that should be used carefully. Setting `validation` to `false`
      * improves performance but should only be done once the project has been thoroughly tested with
-     * validation turned on.
+     * `validation` turned on.
      *
      * @type {boolean}
      */
     this.validation = true;
 
     /**
-     * Array of all {@link Input} objects
+     * Array of all (Input) objects
      * @type {Input[]}
      * @private
      */
     this._inputs = [];
 
     /**
-     * Array of all {@link Output} objects
+     * Array of all [`Output`](Output) objects
      * @type {Output[]}
      * @private
      */
@@ -7126,27 +7493,30 @@ class WebMidi extends e {
    * To enable the use of MIDI system exclusive messages, the `sysex` option should be set to
    * `true`. However, under some environments (e.g. Jazz-Plugin), the `sysex` option is ignored
    * and system exclusive messages are always enabled. You can check the
-   * [sysexEnabled]{@link WebMidi#sysexEnabled} property to confirm.
+   * [`sysexEnabled`](#sysexEnabled) property to confirm.
    *
    * To enable access to software synthesizers available on the host, you would set the `software`
    * option to `true`. However, this option is only there to future-proof the library as support for
    * software synths has not yet been implemented in any browser (as of September 2021).
    *
+   * By the way, if you call the [`enable()`](#enable) method while WebMidi.js is already enabled,
+   * the callback function will be executed (if any), the promise will resolve but the events
+   * ([`"midiaccessgranted"`](#event:midiaccessgranted), [`"connected"`](#event:connected) and
+   * [`"enabled"`](#event:enabled)) will not be fired.
+   *
    * There are 3 ways to execute code after `WebMidi` has been enabled:
    *
    * - Pass a callback function in the `options`
-   * - Listen to the `enabled` event
+   * - Listen to the [`"enabled"`](#event:enabled) event
    * - Wait for the promise to resolve
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. `midiaccessgranted` event is triggered
-   * 2. `connected` events are triggered (for each available input and output)
-   * 3. `enabled` event is triggered when WebMidi.js is ready
+   * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered
+   * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
+   * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is ready
    * 4. specified callback (if any) is executed
-   * 5. promise is resolved
-   *
-   * The promise is fulfilled with the WebMidi object.
+   * 5. promise is resolved and fulfilled with the `WebMidi` object.
    *
    * **Important note**: starting with Chrome v77, a page using Web MIDI API must be hosted on a
    * secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
@@ -7171,8 +7541,8 @@ class WebMidi extends e {
    *
    * @param [options.validation=true] {boolean} Whether to enable library-wide validation of method
    * arguments and setter values. This is an advanced setting that should be used carefully. Setting
-   * `validation` to `false` improves performance but should only be done once the project has been
-   * thoroughly tested with validation turned on.
+   * [`validation`](#validation) to `false` improves performance but should only be done once the
+   * project has been thoroughly tested with [`validation`](#validation)  turned on.
    *
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
@@ -7180,10 +7550,11 @@ class WebMidi extends e {
    *
    * @async
    *
-   * @returns {Promise<Object>} The promise is fulfilled with the `WebMidi` object
+   * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object fro
+   * chainability
    *
-   * @throws Error The Web MIDI API is not supported in your environment.
-   * @throws Error Jazz-Plugin must be installed to use WebMIDIAPIShim.
+   * @throws {Error} The Web MIDI API is not supported in your environment.
+   * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
 
@@ -7195,7 +7566,7 @@ class WebMidi extends e {
       if (legacy) options.sysex = true;
     }
 
-    // If already enabled, trigger callback and resolve promise but to not dispatch events
+    // If already enabled, trigger callback and resolve promise but do not dispatch events.
     if (this.enabled) {
       if (typeof options.callback === "function") options.callback();
       return Promise.resolve();
@@ -7272,7 +7643,7 @@ class WebMidi extends e {
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
-     * @property {string} type `enabled`
+     * @property {string} type `"enabled"`
      */
     const enabledEvent = {
       timestamp: this.time,
@@ -7280,7 +7651,7 @@ class WebMidi extends e {
       type: "enabled"
     };
 
-    // Request MIDI access
+    // Request MIDI access (this iw where the prompt will appear)
     try {
       this.interface = await navigator.requestMIDIAccess(
         {sysex: options.sysex, software: options.software}
@@ -7292,11 +7663,11 @@ class WebMidi extends e {
       return Promise.reject(err);
     }
 
-    // Now that the Web MIDI API interface has been created, we trigger the 'midiaccessgranted' event.
-    // This allows the developer an occasion to assign listeners on 'connected' events.
+    // Now that the Web MIDI API interface has been created, we trigger the 'midiaccessgranted'
+    // event. This allows the developer an occasion to assign listeners on 'connected' events.
     this.emit("midiaccessgranted", midiAccessGrantedEvent);
 
-    // We setup the statechange listener before creating the ports so that it properly catches the
+    // We setup the state change listener before creating the ports so that it properly catches the
     // the ports' `connected` events
     this.interface.onstatechange = this._onInterfaceStateChange.bind(this);
 
@@ -7310,27 +7681,26 @@ class WebMidi extends e {
       return Promise.reject(err);
     }
 
-    // If the ports are successfully created, we trigger the 'enabled' event
+    // If we make it here, the ports have been successfully created, so we trigger the 'enabled'
+    // event.
     this.emit("enabled", enabledEvent);
 
-    // Execute the callback (if any) and resolve the promise with an object containing inputs and
-    // outputs
+    // Execute the callback (if any) and resolve the promise with 'this' (for chainability)
     if (typeof options.callback === "function") options.callback();
-
     return Promise.resolve(this);
 
   }
 
   /**
-   * Completely disables `WebMidi.js` by unlinking the MIDI subsystem's interface and closing all
-   * {@link Input} and {@link Output} objects that may be available. This also means that listeners
-   * added to {@link Input} objects, {@link Output} objects or to `WebMidi` itself are also
-   * destroyed.
+   * Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
+   * [`Input`](Input) and [`Output`](Output) objects that may have been opened. This also means that
+   * listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `WebMidi` itself
+   * are also destroyed.
    *
    * @async
-   * @returns {Promise<void>}
+   * @returns {Promise}
    *
-   * @throws Error The Web MIDI API is not supported by your environment.
+   * @throws {Error} The Web MIDI API is not supported by your environment.
    *
    * @since 2.0.0
    */
@@ -7351,7 +7721,7 @@ class WebMidi extends e {
        * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {WebMidi} target The object that triggered the event
-       * @property {string} type `disabled`
+       * @property {string} type `"disabled"`
        */
       let event = {
         timestamp: this.time,
@@ -7368,20 +7738,20 @@ class WebMidi extends e {
   };
 
   /**
-   * Returns the {@link Input} object that matches the specified ID string or `false` if no matching
-   * input is found. As per the Web MIDI API specification, IDs are strings (not integers).
+   * Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
+   * matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
    *
    * Please note that IDs change from one host to another. For example, Chrome does not use the same
    * kind of IDs as Jazz-Plugin.
    *
    * @param id {string} The ID string of the input. IDs can be viewed by looking at the
-   * [inputs]{@link WebMidi#inputs} array. Even though they sometimes look like integers, IDs are
-   * strings.
+   * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
+   * are strings.
    *
-   * @returns {Input|false} An {@link Input} object matching the specified ID string. If no matching
-   * input can be found, the method returns `false`.
+   * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
+   * if no matching input can be found.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -7401,14 +7771,14 @@ class WebMidi extends e {
   };
 
   /**
-   * Returns the first {@link Input} object whose name **contains** the specified string. Note that
-   * the port names change from one environment to another. For example, Chrome does not report
+   * Returns the first [`Input`](Input) object whose name **contains** the specified string. Note
+   * that the port names change from one environment to another. For example, Chrome does not report
    * input names in the same way as the Jazz-Plugin does.
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
-   * those visible in the [inputs]{@link WebMidi#inputs} array).
+   * those visible in the [inputs](WebMidi#inputs) array).
    *
-   * @returns {Input|false} The {@link Input} that was found or `false` if no input contained the
+   * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
    * specified name.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -7432,17 +7802,17 @@ class WebMidi extends e {
   };
 
   /**
-   * Returns the first {@link Output} object whose name **contains** the specified string. Note that
-   * the port names change from one environment to another. For example, Chrome does not report
+   * Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
+   * that the port names change from one environment to another. For example, Chrome does not report
    * input names in the same way as the Jazz-Plugin does.
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
-   * those visible in the [outputs]{@link WebMidi#outputs} array).
+   * those visible in the [outputs](WebMidi#outputs) array).
    *
-   * @returns {Output|false} The {@link Output} that was found or `false` if no output matched the
-   * specified name.
+   * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
+   * the specified name.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -7463,7 +7833,7 @@ class WebMidi extends e {
   };
 
   /**
-   * Returns the {@link Output} object that matches the specified ID string or `false` if no
+   * Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
    * matching output is found. As per the Web MIDI API specification, IDs are strings (not
    * integers).
    *
@@ -7471,12 +7841,12 @@ class WebMidi extends e {
    * kind of IDs as Jazz-Plugin.
    *
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
-   * [outputs]{@link WebMidi#outputs} array.
+   * [`WebMidi.outputs`](WebMidi#outputs) array.
    *
-   * @returns {Output|false} An {@link Output} object matching the specified ID string. If no
+   * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
    * matching output can be found, the method returns `false`.
    *
-   * @throws Error WebMidi is not enabled.
+   * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
@@ -7506,7 +7876,7 @@ class WebMidi extends e {
         "Utilities.toNoteNumber() instead."
       );
     }
-    return utils.toNoteNumber(name, this.octaveOffset);
+    return Utilities.toNoteNumber(name, this.octaveOffset);
   }
 
   /**
@@ -7521,7 +7891,7 @@ class WebMidi extends e {
     }
 
     if (!isNaN(number) && number >= 0 && number <= 127) {
-      return utils.getNoteDetails(utils.offsetNumber(number, this.octaveOffset)).octave;
+      return Utilities.getNoteDetails(Utilities.offsetNumber(number, this.octaveOffset)).octave;
     } else {
       return false;
     }
@@ -7538,7 +7908,7 @@ class WebMidi extends e {
       console.warn("The sanitizeChannels() method has been moved to the utilities class.");
     }
 
-    return utils.sanitizeChannels(channel);
+    return Utilities.sanitizeChannels(channel);
 
     // let channels;
     //
@@ -7585,7 +7955,7 @@ class WebMidi extends e {
       );
     }
 
-    return utils.sanitizeChannels(channel);
+    return Utilities.sanitizeChannels(channel);
 
   }
 
@@ -7601,7 +7971,7 @@ class WebMidi extends e {
       );
     }
 
-    return utils.guessNoteNumber(input, this.octaveOffset);
+    return Utilities.guessNoteNumber(input, this.octaveOffset);
 
   }
 
@@ -7615,7 +7985,7 @@ class WebMidi extends e {
         "The getValidNoteArray() method has been moved to the Utilities.buildNoteArray()"
       );
     }
-    return utils.buildNoteArray(notes, options);
+    return Utilities.buildNoteArray(notes, options);
   }
 
   /**
@@ -7630,7 +8000,7 @@ class WebMidi extends e {
       );
     }
 
-    return utils.toTimestamp(time);
+    return Utilities.toTimestamp(time);
 
   }
 
@@ -7660,7 +8030,7 @@ class WebMidi extends e {
     this._updateInputsAndOutputs();
 
     /**
-     * Event emitted when an {@link Input} or {@link Output} becomes available. This event is
+     * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
      * typically fired whenever a MIDI device is plugged in. Please note that it may fire several
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
@@ -7668,23 +8038,23 @@ class WebMidi extends e {
      * @type {Object}
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
-     * @property {string} type `connected`
-     * @property {Input|Output} target The {@link Input} or {@link Output} object that triggered the
-     * event.
+     * @property {string} type `"connected"`
+     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
      */
 
     /**
-     * Event emitted when an {@link Input} or {@link Output} becomes unavailable. This event is
-     * typically fired whenever a MIDI device is unplugged. Please note that it may fire several
+     * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes unavailable. This event
+     * is typically fired whenever a MIDI device is unplugged. Please note that it may fire several
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
      * @event WebMidi#disconnected
      * @type {Object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
-     * @property {string} type `disconnected`
-     * @property {Object} target Object with properties describing the {@link Input} or {@Output}
-     * that triggered the event.
+     * @property {string} type `"disconnected"`
+     * @property {Object} target Object with properties describing the [`Input`](Input) or
+     * [`Output`](Output) that triggered the event.
      * @property {string} target.connection `"closed"`
      * @property {string} target.id ID of the input
      * @property {string} target.manufacturer Manufacturer of the device that provided the input
@@ -7697,7 +8067,8 @@ class WebMidi extends e {
       type: e.port.state
     };
 
-    if (this.interface && e.port.state === "connected") {
+    // if (this.interface && e.port.state === "connected") {
+    if (e.port.state === "connected") {
 
       if (e.port.type === "output") {
         event.port = this.getOutputById(e.port.id); // legacy
@@ -7707,7 +8078,9 @@ class WebMidi extends e {
         event.target = event.port;
       }
 
-    } else {
+      this.emit(e.port.state, event);
+
+    } else if (e.port.state === "disconnected") {
 
       // It feels more logical to include a `target` property instead of a `port` property. This is
       // the terminology used everywhere in the library.
@@ -7722,9 +8095,9 @@ class WebMidi extends e {
 
       event.target = event.port;
 
-    }
+      this.emit(e.port.state, event);
 
-    this.emit(e.port.state, event);
+    }
 
   };
 
@@ -7743,53 +8116,92 @@ class WebMidi extends e {
   /**
    * @private
    */
+  // async _updateInputs() {
+  //
+  //   // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
+  //   //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
+  //
+  //   let promises = [];
+  //
+  //   // Check for items to remove from the existing array (because they are no longer being reported
+  //   // by the MIDI back-end).
+  //   for (let i = 0; i < this._inputs.length; i++) {
+  //
+  //     let remove = true;
+  //
+  //     let updated = this.interface.inputs.values();
+  //
+  //     for (let input = updated.next(); input && !input.done; input = updated.next()) {
+  //       if (this._inputs[i]._midiInput === input.value) {
+  //         remove = false;
+  //         break;
+  //       }
+  //     }
+  //
+  //     if (remove) this._inputs.splice(i, 1);
+  //
+  //   }
+  //
+  //   // Check for items to add in the existing inputs array because they just appeared in the MIDI
+  //   // back-end inputs list. We must check for the existence of this.interface because it might
+  //   // have been closed via WebMidi.disable().
+  //   this.interface && this.interface.inputs.forEach(nInput => {
+  //
+  //     let add = true;
+  //
+  //     for (let j = 0; j < this._inputs.length; j++) {
+  //       if (this._inputs[j]._midiInput === nInput) {
+  //         add = false;
+  //       }
+  //     }
+  //
+  //     if (add) {
+  //       let input = new Input(nInput);
+  //       this._inputs.push(input);
+  //       promises.push(input.open());
+  //     }
+  //
+  //   });
+  //
+  //   return Promise.all(promises);
+  //
+  // };
   async _updateInputs() {
 
-    // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
-    //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
-
-    let promises = [];
+    // We must check for the existence of this.interface because it might have been closed via
+    // WebMidi.disable().
+    if (!this.interface) return;
 
     // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
-    for (let i = 0; i < this._inputs.length; i++) {
-
-      let remove = true;
-
-      let updated = this.interface.inputs.values();
-
-      for (let input = updated.next(); input && !input.done; input = updated.next()) {
-        if (this._inputs[i]._midiInput === input.value) {
-          remove = false;
-          break;
-        }
+    for (let i = this._inputs.length - 1; i >= 0; i--) {
+      const current = this._inputs[i];
+      if (! this.interface.inputs.find(input => input === current._midiInput)) {
+        current.destroy();
+        this._inputs.splice(i, 1);
       }
-
-      if (remove) this._inputs.splice(i, 1);
-
     }
 
-    // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end inputs list. We must check for the existence of this.interface because it might
-    // have been closed via WebMidi.disable().
-    this.interface && this.interface.inputs.forEach(nInput => {
+    // Array to hold pending promises from trying to open all input ports
+    let promises = [];
 
-      let add = true;
+    // Add new inputs (if not already present)
+    this.interface.inputs.forEach(nInput => {
 
-      for (let j = 0; j < this._inputs.length; j++) {
-        if (this._inputs[j]._midiInput === nInput) {
-          add = false;
-        }
-      }
+      // Check if the input already exists
+      const exists = this._inputs.find(input => input._midiInput === nInput);
 
-      if (add) {
-        let input = new Input(nInput);
+      // If the input does not already exist, create new Input object and add it to the list of
+      // inputs.
+      if (!exists) {
+        const input = new Input(nInput);
         this._inputs.push(input);
         promises.push(input.open());
       }
 
     });
 
+    // Return a promise that resolves when all promises have resolved
     return Promise.all(promises);
 
   };
@@ -7797,53 +8209,92 @@ class WebMidi extends e {
   /**
    * @private
    */
+  // async _updateOutputs() {
+  //
+  //   let promises = [];
+  //
+  //   // Check for items to remove from the existing array (because they are no longer being reported
+  //   // by the MIDI back-end).
+  //   for (let i = 0; i < this._outputs.length; i++) {
+  //
+  //     let remove = true;
+  //
+  //     let updated = this.interface.outputs.values();
+  //
+  //     for (let output = updated.next(); output && !output.done; output = updated.next()) {
+  //       if (this._outputs[i]._midiOutput === output.value) {
+  //         remove = false;
+  //         break;
+  //       }
+  //     }
+  //
+  //     if (remove) {
+  //       this._outputs[i].close();
+  //       this._outputs.splice(i, 1);
+  //     }
+  //
+  //   }
+  //
+  //   // Check for items to add in the existing inputs array because they just appeared in the MIDI
+  //   // back-end outputs list. We must check for the existence of this.interface because it might
+  //   // have been closed via WebMidi.disable().
+  //   this.interface && this.interface.outputs.forEach(nOutput => {
+  //
+  //     let add = true;
+  //
+  //     for (let j = 0; j < this._outputs.length; j++) {
+  //       if (this._outputs[j]._midiOutput === nOutput) {
+  //         add = false;
+  //       }
+  //     }
+  //
+  //     if (add) {
+  //       let output = new Output(nOutput);
+  //       this._outputs.push(output);
+  //       promises.push(output.open());
+  //     }
+  //
+  //   });
+  //
+  //   return Promise.all(promises);
+  //
+  // };
   async _updateOutputs() {
 
-    let promises = [];
+    // We must check for the existence of this.interface because it might have been closed via
+    // WebMidi.disable().
+    if (!this.interface) return;
 
     // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
-    for (let i = 0; i < this._outputs.length; i++) {
-
-      let remove = true;
-
-      let updated = this.interface.outputs.values();
-
-      for (let output = updated.next(); output && !output.done; output = updated.next()) {
-        if (this._outputs[i]._midiOutput === output.value) {
-          remove = false;
-          break;
-        }
-      }
-
-      if (remove) {
-        this._outputs[i].close();
+    for (let i = this._outputs.length - 1; i >= 0; i--) {
+      const current = this._outputs[i];
+      if (! this.interface.outputs.find(input => input === current._midiOutput)) {
+        current.destroy();
         this._outputs.splice(i, 1);
       }
-
     }
 
-    // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end outputs list. We must check for the existence of this.interface because it might
-    // have been closed via WebMidi.disable().
-    this.interface && this.interface.outputs.forEach(nOutput => {
+    // Array to hold pending promises from trying to open all output ports
+    let promises = [];
 
-      let add = true;
+    // Add new outputs (if not already present)
+    this.interface.outputs.forEach(nOutput => {
 
-      for (let j = 0; j < this._outputs.length; j++) {
-        if (this._outputs[j]._midiOutput === nOutput) {
-          add = false;
-        }
-      }
+      // Check if the output already exists
+      const exists = this._outputs.find(output => output._midiOutput === nOutput);
 
-      if (add) {
-        let output = new Output(nOutput);
+      // If the output does not already exist, create new Input object and add it to the list of
+      // outputs.
+      if (!exists) {
+        const output = new Output(nOutput);
         this._outputs.push(output);
         promises.push(output.open());
       }
 
     });
 
+    // Return a promise that resolves when all promises have resolved
     return Promise.all(promises);
 
   };
@@ -7893,8 +8344,9 @@ class WebMidi extends e {
 
   /**
    * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-   * browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and
-   * isBrowser can both be true at the same time.
+   * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
+   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
+   * same time.
    * @type {boolean}
    */
   get isNode() {
@@ -7912,8 +8364,8 @@ class WebMidi extends e {
 
   /**
    * Indicates whether the current environment is a browser environment or not. If you need to check
-   * if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode
-   * and isBrowser can both be true at the same time.
+   * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
+   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
    * @type {boolean}
    */
   get isBrowser() {
@@ -7925,12 +8377,12 @@ class WebMidi extends e {
    * devices.
    *
    * When a MIDI message comes in on an input channel the reported note name will be offset. For
-   * example, if the `octaveOffset` is set to `-1` and a **note on** message with MIDI number 60
-   * comes in, the note will be reported as C3 (instead of C4).
+   * example, if the `octaveOffset` is set to `-1` and a [`"noteon"`](InputChannel#event:noteon)
+   * message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4).
    *
-   * By the same token, when `OutputChannel.playNote()` is called, the MIDI note number being sent
-   * will be offset. If `octaveOffset` is set to `-1`, the MIDI note number sent will be 72 (instead
-   * of 60).
+   * By the same token, when [`OutputChannel.playNote()`](OutputChannel#playNote) is called, the
+   * MIDI note number being sent will be offset. If `octaveOffset` is set to `-1`, the MIDI note
+   * number sent will be 72 (instead of 60).
    *
    * @type {number}
    *
@@ -7951,7 +8403,7 @@ class WebMidi extends e {
   }
 
   /**
-   * An array of all currently available MIDI outputs.
+   * An array of all currently available MIDI outputs as [`Output`](Output) objects.
    *
    * @readonly
    * @type {Array}
@@ -7964,9 +8416,10 @@ class WebMidi extends e {
    * Indicates whether the environment provides support for the Web MIDI API or not.
    *
    * **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
-   * the `navigator.requestMIDIAccess` function is available. For example, if you have installed
-   * WebMIDIAPIShim.js but no plugin, this property will be `true` even though actual support might
-   * not be there.
+   * the
+   * [`navigator.requestMIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+   * function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this
+   * property will be `true` even though actual support might not be there.
    *
    * @readonly
    * @type {boolean}
@@ -7977,10 +8430,10 @@ class WebMidi extends e {
 
   /**
    * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
-   * enabled via the `enable()` method.
+   * enabled via the [`enable()`](#enable) method.
    *
    * @readonly
-   * @type Boolean
+   * @type boolean
    */
   get sysexEnabled() {
     return !!(this.interface && this.interface.sysexEnabled);
@@ -8003,396 +8456,98 @@ class WebMidi extends e {
   }
 
   /**
-   * An array of channel-specific event names that can be listened to.
-   * @type {string[]}
+   * @private
+   * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
    */
   get CHANNEL_EVENTS() {
-    return [
-      "noteoff",
-      "controlchange",
-      "noteon",
-      "keyaftertouch",
-      "programchange",
-      "channelaftertouch",
-      "pitchbend",
-
-      "nrpndataentrycoarse",
-      "nrpndataentryfine",
-      "nrpndatabuttonincrement",
-      "nrpndatabuttondecrement",
-
-      "rpndataentrycoarse",
-      "rpndataentryfine",
-      "rpndatabuttonincrement",
-      "rpndatabuttondecrement",
-
-      "allnotesoff",
-      "allsoundoff",
-      "localcontrol",
-      "monomode",
-      "omnimode",
-      "resetallcontrollers"
-    ];
+    if (this.validation) {
+      console.warn(
+        "The CHANNEL_EVENTS enum has been moved to InputChannel.EVENTS."
+      );
+    }
+    return InputChannel.EVENTS;
   }
 
   /**
-   * Enum of all MIDI channel messages and their associated numerical value:
-   *
-   * - `noteoff`: 0x8 (8)
-   * - `noteon`: 0x9 (9)
-   * - `keyaftertouch`: 0xA (10)
-   * - `controlchange`: 0xB (11)
-   * - `nrpn`: 0xB (11)
-   * - `programchange`: 0xC (12)
-   * - `channelaftertouch`: 0xD (13)
-   * - `pitchbend`: 0xE (14)
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 3.0.0
-   */
-  get MIDI_CHANNEL_MESSAGES() {
-
-    return {
-      noteoff: 0x8,           // 8
-      noteon: 0x9,            // 9
-      keyaftertouch: 0xA,     // 10
-      controlchange: 0xB,     // 11
-      programchange: 0xC,     // 12
-      channelaftertouch: 0xD, // 13
-      pitchbend: 0xE          // 14
-    };
-
-  }
-
-  /**
-   * Enum of all valid MIDI system messages and matching numerical values. WebMidi.js also uses
-   * two custom messages.
-   *
-   * **System common messages**
-   * - `sysex`: 0xF0 (240)
-   * - `timecode`: 0xF1 (241)
-   * - `songposition`: 0xF2 (242)
-   * - `songselect`: 0xF3 (243)
-   * - `tunerequest`: 0xF6 (246)
-   * - `sysexend`: 0xF7 (247)
-   *
-   * The `sysexend` message is never actually received. It simply ends a sysex stream.
-   *
-   * **System real-time messages**
-   *
-   * - `clock`: 0xF8 (248)
-   * - `start`: 0xFA (250)
-   * - `continue`: 0xFB (251)
-   * - `stop`: 0xFC (252)
-   * - `activesensing`: 0xFE (254)
-   * - `reset`: 0xFF (255)
-   *
-   * Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-   * purpose. The
-   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
-   * simply states that they are undefined/reserved.
-   *
-   * **Custom WebMidi.js messages**
-   *
-   * - `midimessage`: 0
-   * - `unknownsystemmessage`: -1
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
+   * @private
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_SYSTEM_MESSAGES instead.
    */
   get MIDI_SYSTEM_MESSAGES() {
 
-    return {
+    if (this.validation) {
+      console.warn(
+        "The MIDI_SYSTEM_MESSAGES enum has been moved to " +
+        "Enumerations.MIDI_SYSTEM_MESSAGES."
+      );
+    }
 
-      // System common messages
-      sysex: 0xF0,            // 240
-      timecode: 0xF1,         // 241
-      songposition: 0xF2,     // 242
-      songselect: 0xF3,       // 243
-      tunerequest: 0xF6,      // 246
-      tuningrequest: 0xF6,    // for backwards-compatibility (deprecated in version 3.0)
-      sysexend: 0xF7,         // 247 (never actually received - simply ends a sysex)
-
-      // System real-time messages
-      clock: 0xF8,            // 248
-      start: 0xFA,            // 250
-      continue: 0xFB,         // 251
-      stop: 0xFC,             // 252
-      activesensing: 0xFE,    // 254
-      reset: 0xFF,            // 255
-
-      // Custom WebMidi.js messages
-      midimessage: 0,
-      unknownsystemmessage: -1
-
-    };
+    return Enumerations.MIDI_SYSTEM_MESSAGES;
 
   }
 
   /**
-   * Enum of all channel mode messages and their associated numerical value:
-   *
-   * - `allsoundoff`: 120
-   * - `resetallcontrollers`: 121
-   * - `localcontrol`: 122
-   * - `allnotesoff`: 123
-   * - `omnimodeoff`: 124
-   * - `omnimodeon`: 125
-   * - `monomodeon`: 126
-   * - `polymodeon`: 127
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
+   * @private
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
    */
   get MIDI_CHANNEL_MODE_MESSAGES() {
 
-    return {
-      allsoundoff: 120,
-      resetallcontrollers: 121,
-      localcontrol: 122,
-      allnotesoff: 123,
-      omnimodeoff: 124,
-      omnimodeon: 125,
-      monomodeon: 126,
-      polymodeon: 127
-    };
+    if (this.validation) {
+      console.warn(
+        "The MIDI_CHANNEL_MODE_MESSAGES enum has been moved to " +
+        "Enumerations.MIDI_CHANNEL_MODE_MESSAGES."
+      );
+    }
+
+    return Enumerations.MIDI_CHANNEL_MODE_MESSAGES;
 
   }
 
   /**
-   * Enum of most control change messages and their associated numerical value. Note that some
-   * control change numbers do not have a predefined purpose.
-   *
-   * - `bankselectcoarse`: 0
-   * - `modulationwheelcoarse`: 1
-   * - `breathcontrollercoarse`: 2
-   * - `footcontrollercoarse`: 4
-   * - `portamentotimecoarse`: 5
-   * - `dataentrycoarse`: 6
-   * - `volumecoarse`: 7
-   * - `balancecoarse`: 8
-   * - `pancoarse`: 10
-   * - `expressioncoarse`: 11
-   * - `effectcontrol1coarse`: 12
-   * - `effectcontrol2coarse`: 13
-   * - `generalpurposeslider1`: 16
-   * - `generalpurposeslider2`: 17
-   * - `generalpurposeslider3`: 18
-   * - `generalpurposeslider4`: 19
-   * - `bankselectfine`: 32
-   * - `modulationwheelfine`: 33
-   * - `breathcontrollerfine`: 34
-   * - `footcontrollerfine`: 36
-   * - `portamentotimefine`: 37
-   * - `dataentryfine`: 38
-   * - `volumefine`: 39
-   * - `balancefine`: 40
-   * - `panfine`: 42
-   * - `expressionfine`: 43
-   * - `effectcontrol1fine`: 44
-   * - `effectcontrol2fine`: 45
-   * - `holdpedal`: 64
-   * - `portamento`: 65
-   * - `sustenutopedal`: 66
-   * - `softpedal`: 67
-   * - `legatopedal`: 68
-   * - `hold2pedal`: 69
-   * - `soundvariation`: 70
-   * - `resonance`: 71
-   * - `soundreleasetime`: 72
-   * - `soundattacktime`: 73
-   * - `brightness`: 74
-   * - `soundcontrol6`: 75
-   * - `soundcontrol7`: 76
-   * - `soundcontrol8`:`77
-   * - `soundcontrol9`: 78
-   * - `soundcontrol10`: 79
-   * - `generalpurposebutton1`: 80
-   * - `generalpurposebutton2`: 81
-   * - `generalpurposebutton3`: 82
-   * - `generalpurposebutton4`: 83
-   * - `reverblevel`: 91
-   * - `tremololevel`: 92
-   * - `choruslevel`: 93
-   * - `celestelevel`: 94
-   * - `phaserlevel`: 95
-   * - `databuttonincrement`: 96
-   * - `databuttondecrement`: 97
-   * - `nonregisteredparametercoarse`: 98
-   * - `nonregisteredparameterfine`: 99
-   * - `registeredparametercoarse`: 100
-   * - `registeredparameterfine`: 101
-   *
-   * - `allsoundoff`: 120
-   * - `resetallcontrollers`: 121
-   * - `localcontrol`: 122
-   * - `allnotesoff`: 123
-   * - `omnimodeoff`: 124
-   * - `omnimodeon`: 125
-   * - `monomodeon`: 126
-   * - `polymodeon`: 127
-   *
-   * @enum {Object.<string, number>}
-   * @readonly
-   *
-   * @since 2.0.0
+   * @private
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
    */
   get MIDI_CONTROL_CHANGE_MESSAGES() {
 
-    return {
-      bankselectcoarse: 0,
-      modulationwheelcoarse: 1,
-      breathcontrollercoarse: 2,
-      footcontrollercoarse: 4,
-      portamentotimecoarse: 5,
-      dataentrycoarse: 6,
-      volumecoarse: 7,
-      balancecoarse: 8,
-      pancoarse: 10,
-      expressioncoarse: 11,
-      effectcontrol1coarse: 12,
-      effectcontrol2coarse: 13,
-      generalpurposeslider1: 16,
-      generalpurposeslider2: 17,
-      generalpurposeslider3: 18,
-      generalpurposeslider4: 19,
-      bankselectfine: 32,
-      modulationwheelfine: 33,
-      breathcontrollerfine: 34,
-      footcontrollerfine: 36,
-      portamentotimefine: 37,
-      dataentryfine: 38,
-      volumefine: 39,
-      balancefine: 40,
-      panfine: 42,
-      expressionfine: 43,
-      effectcontrol1fine: 44,
-      effectcontrol2fine: 45,
-      holdpedal: 64,
-      portamento: 65,
-      sustenutopedal: 66,
-      softpedal: 67,
-      legatopedal: 68,
-      hold2pedal: 69,
-      soundvariation: 70,
-      resonance: 71,
-      soundreleasetime: 72,
-      soundattacktime: 73,
-      brightness: 74,
-      soundcontrol6: 75,
-      soundcontrol7: 76,
-      soundcontrol8: 77,
-      soundcontrol9: 78,
-      soundcontrol10: 79,
-      generalpurposebutton1: 80,
-      generalpurposebutton2: 81,
-      generalpurposebutton3: 82,
-      generalpurposebutton4: 83,
-      reverblevel: 91,
-      tremololevel: 92,
-      choruslevel: 93,
-      celestelevel: 94,
-      phaserlevel: 95,
-      databuttonincrement: 96,
-      databuttondecrement: 97,
-      nonregisteredparametercoarse: 98,
-      nonregisteredparameterfine: 99,
-      registeredparametercoarse: 100,
-      registeredparameterfine: 101,
+    if (this.validation) {
+      console.warn(
+        "The MIDI_CONTROL_CHANGE_MESSAGES enum has been moved to " +
+        "Enumerations.MIDI_CONTROL_CHANGE_MESSAGES."
+      );
+    }
 
-      allsoundoff: 120,
-      resetallcontrollers: 121,
-      localcontrol: 122,
-      allnotesoff: 123,
-      omnimodeoff: 124,
-      omnimodeon: 125,
-      monomodeon: 126,
-      polymodeon: 127
-    };
+    return Enumerations.MIDI_CONTROL_CHANGE_MESSAGES;
 
   }
 
   /**
-   * Array of valid events triggered at the interface level.
-   *
-   * @type {string[]}
-   * @readonly
-   */
-  get MIDI_INTERFACE_EVENTS() {
-    return ["connected", "disconnected"];
-  }
-
-  /**
-   * Enum of all registered parameters and their associated pair of numerical values. MIDI
-   * registered parameters extend the original list of control change messages. Currently, there are
-   * only a limited number of them:
-   *
-   * - `pitchbendrange`: [0x00, 0x00]
-   * - `channelfinetuning`: [0x00, 0x01]
-   * - `channelcoarsetuning`: [0x00, 0x02]
-   * - `tuningprogram`: [0x00, 0x03]
-   * - `tuningbank`: [0x00, 0x04]
-   * - `modulationrange`: [0x00, 0x05]
-   * - `azimuthangle`: [0x3D, 0x00]
-   * - `elevationangle`: [0x3D, 0x01]
-   * - `gain`: [0x3D, 0x02]
-   * - `distanceratio`: [0x3D, 0x03]
-   * - `maximumdistance`: [0x3D, 0x04]
-   * - `maximumdistancegain`: [0x3D, 0x05]
-   * - `referencedistanceratio`: [0x3D, 0x06]
-   * - `panspreadangle`: [0x3D, 0x07]
-   * - `rollangle`: [0x3D, 0x08]
-   *
-   * @enum {Object.<string, number[]>}
-   * @readonly
-   *
-   * @since 3.0.0
-   */
-  get MIDI_REGISTERED_PARAMETERS() {
-
-    return {
-      pitchbendrange: [0x00, 0x00],
-      channelfinetuning: [0x00, 0x01],
-      channelcoarsetuning: [0x00, 0x02],
-      tuningprogram: [0x00, 0x03],
-      tuningbank: [0x00, 0x04],
-
-      modulationrange: [0x00, 0x05],
-      azimuthangle: [0x3D, 0x00],
-      elevationangle: [0x3D, 0x01],
-      gain: [0x3D, 0x02],
-      distanceratio: [0x3D, 0x03],
-      maximumdistance: [0x3D, 0x04],
-      maximumdistancegain: [0x3D, 0x05],
-      referencedistanceratio: [0x3D, 0x06],
-      panspreadangle: [0x3D, 0x07],
-      rollangle: [0x3D, 0x08]
-    };
-
-  }
-
-  /**
-   * @deprecated since 3.0.0. Use WebMidi.MIDI_REGISTERED_PARAMETERS instead.
+   * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
    * @private
    */
   get MIDI_REGISTERED_PARAMETER() {
+
+    if (this.validation) {
+      console.warn(
+        "The MIDI_REGISTERED_PARAMETER enum has been moved to " +
+        "Enumerations.MIDI_REGISTERED_PARAMETERS."
+      );
+    }
+
     return this.MIDI_REGISTERED_PARAMETERS;
+
   }
 
   /**
-   * Array of standard note names
-   *
-   * @type {string[]}
-   * @readonly
+   * @deprecated since 3.0.0.
+   * @private
    */
   get NOTES() {
+
+    if (this.validation) {
+      console.warn("The NOTES enum has been deprecated.");
+    }
+
     return ["C", "C#", "D", "D#", "E", "F", "F#", "G", "G#", "A", "A#", "B"];
+
   }
 
 }
@@ -8403,4 +8558,4 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
-export { Message, Note, utils as Utilities, wm as WebMidi };
+export { Enumerations, Message, Note, Utilities, wm as WebMidi };
