@@ -3282,6 +3282,8 @@ declare class InputChannel {
      * Return the playing status of the specified note. The `note` parameter can be an unsigned
      * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
      *
+     * If a note identifier is passed in, the method will take into account the octaveOffset.
+     *
      * @param [input] {number|string|Note}
      * @returns {boolean}
      * @since version 3.0.0
