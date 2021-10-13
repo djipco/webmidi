@@ -7707,9 +7707,10 @@
       let event = {
         timestamp: e.timeStamp,
         type: e.port.state
-      }; // if (this.interface && e.port.state === "connected") {
+      }; // We check if "connection" is "open" because connected events are also triggered with
+      // "connection=closed"
 
-      if (e.port.state === "connected") {
+      if (e.port.state === "connected" && e.port.connection === "open") {
         if (e.port.type === "output") {
           event.port = this.getOutputById(e.port.id); // legacy
 
@@ -7720,8 +7721,9 @@
           event.target = event.port;
         }
 
-        this.emit(e.port.state, event);
-      } else if (e.port.state === "disconnected") {
+        this.emit(e.port.state, event); // We check if "connection" is "closed" because disconnected events are also triggered with
+        // "connection=pending"
+      } else if (e.port.state === "disconnected" && e.port.connection === "closed") {
         // It feels more logical to include a `target` property instead of a `port` property. This is
         // the terminology used everywhere in the library.
         event.port = {
