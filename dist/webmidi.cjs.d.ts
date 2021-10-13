@@ -859,14 +859,26 @@ declare class WebMidi {
      * @private
      */
     private _inputs;
-    _disconnectedInputs: any[];
+    /**
+     * Array of disconnected [`Input`](Input) objects. This is used when inputs are plugged back in
+     * to retain their previous state.
+     * @type {Input[]}
+     * @private
+     */
+    private _disconnectedInputs;
     /**
      * Array of all [`Output`](Output) objects
      * @type {Output[]}
      * @private
      */
     private _outputs;
-    _disconnectedOutputs: any[];
+    /**
+     * Array of disconnected [`Output`](Output) objects. This is used when outputs are plugged back
+     * in to retain their previous state.
+     * @type {Output[]}
+     * @private
+     */
+    private _disconnectedOutputs;
     /**
      * Array of statechange events to process. These events must be parsed synchronously so they do
      * not override each other.
