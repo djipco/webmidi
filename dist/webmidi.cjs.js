@@ -7238,7 +7238,6 @@ class WebMidi extends e {
 
 
   async enable(options = {}, legacy = false) {
-    console.log("enable");
     this.validation = options.validation !== false;
 
     if (this.validation) {
@@ -7677,8 +7676,6 @@ class WebMidi extends e {
 
 
   _onInterfaceStateChange(e) {
-    console.log("statechange", e.port.name, e.port.type, e.port.state, e);
-
     this._updateInputsAndOutputs();
     /**
      * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
@@ -7848,48 +7845,90 @@ class WebMidi extends e {
   /**
    * @private
    */
+  // async _updateOutputs() {
+  //
+  //   let promises = [];
+  //
+  //   // Check for items to remove from the existing array (because they are no longer being reported
+  //   // by the MIDI back-end).
+  //   for (let i = 0; i < this._outputs.length; i++) {
+  //
+  //     let remove = true;
+  //
+  //     let updated = this.interface.outputs.values();
+  //
+  //     for (let output = updated.next(); output && !output.done; output = updated.next()) {
+  //       if (this._outputs[i]._midiOutput === output.value) {
+  //         remove = false;
+  //         break;
+  //       }
+  //     }
+  //
+  //     if (remove) {
+  //       this._outputs[i].close();
+  //       this._outputs.splice(i, 1);
+  //     }
+  //
+  //   }
+  //
+  //   // Check for items to add in the existing inputs array because they just appeared in the MIDI
+  //   // back-end outputs list. We must check for the existence of this.interface because it might
+  //   // have been closed via WebMidi.disable().
+  //   this.interface && this.interface.outputs.forEach(nOutput => {
+  //
+  //     let add = true;
+  //
+  //     for (let j = 0; j < this._outputs.length; j++) {
+  //       if (this._outputs[j]._midiOutput === nOutput) {
+  //         add = false;
+  //       }
+  //     }
+  //
+  //     if (add) {
+  //       let output = new Output(nOutput);
+  //       this._outputs.push(output);
+  //       promises.push(output.open());
+  //     }
+  //
+  //   });
+  //
+  //   return Promise.all(promises);
+  //
+  // };
   async _updateOutputs() {
-    let promises = []; // Check for items to remove from the existing array (because they are no longer being reported
+    // We must check for the existence of this.interface because it might have been closed via
+    // WebMidi.disable().
+    if (!this.interface) return; // Check for items to remove from the existing array (because they are no longer being reported
     // by the MIDI back-end).
 
-    for (let i = 0; i < this._outputs.length; i++) {
-      let remove = true;
-      let updated = this.interface.outputs.values();
+    for (let i = this._outputs.length - 1; i >= 0; i--) {
+      const current = this._outputs[i];
 
-      for (let output = updated.next(); output && !output.done; output = updated.next()) {
-        if (this._outputs[i]._midiOutput === output.value) {
-          remove = false;
-          break;
-        }
-      }
-
-      if (remove) {
-        this._outputs[i].close();
+      if (!this.interface.outputs.find(input => input === current._midiOutput)) {
+        current.destroy();
 
         this._outputs.splice(i, 1);
       }
-    } // Check for items to add in the existing inputs array because they just appeared in the MIDI
-    // back-end outputs list. We must check for the existence of this.interface because it might
-    // have been closed via WebMidi.disable().
+    } // Array to hold pending promises from trying to open all output ports
 
 
-    this.interface && this.interface.outputs.forEach(nOutput => {
-      let add = true;
+    let promises = []; // Add new outputs (if not already present)
 
-      for (let j = 0; j < this._outputs.length; j++) {
-        if (this._outputs[j]._midiOutput === nOutput) {
-          add = false;
-        }
-      }
+    this.interface.outputs.forEach(nOutput => {
+      // Check if the output already exists
+      const exists = this._outputs.find(output => output._midiOutput === nOutput); // If the output does not already exist, create new Input object and add it to the list of
+      // outputs.
 
-      if (add) {
-        let output = new Output(nOutput);
+
+      if (!exists) {
+        const output = new Output(nOutput);
 
         this._outputs.push(output);
 
         promises.push(output.open());
       }
-    });
+    }); // Return a promise that resolves when all promises have resolved
+
     return Promise.all(promises);
   }
 
