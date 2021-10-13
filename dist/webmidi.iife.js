@@ -2004,6 +2004,9 @@
      * Return the playing status of the specified note. The `note` parameter can be an unsigned
      * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
      *
+     * If a note identifier or Note object is passed in, the method will take into account any
+     * `octaveOffset` defined.
+     *
      * @param [input] {number|string|Note}
      * @returns {boolean}
      * @since version 3.0.0
@@ -2011,12 +2014,10 @@
 
 
     getNoteState(note) {
-      // const n = Utilities.buildNote(note);
-      // const number = Utilities.toNoteNumber(
-      //   n,
-      //   // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
-      // );
-      return this.notesState[note];
+      // If it's a note object, we simply use the identifier
+      if (note instanceof Note) note = note.identifier;
+      const number = Utilities.guessNoteNumber(note, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+      return this.notesState[number];
     }
     /**
      * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
