@@ -2742,7 +2742,9 @@ class Input extends e {
 
 
     if (event == undefined) {
-      Utilities.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
+      Utilities.sanitizeChannels(options.channels).forEach(ch => {
+        if (this.channels[ch]) this.channels[ch].removeListener();
+      });
       return super.removeListener();
     } // If the event is specified, check if it's channel-specific or input-wide.
 
