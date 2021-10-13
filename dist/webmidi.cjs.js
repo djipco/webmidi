@@ -1283,9 +1283,7 @@ class InputChannel extends e {
      * @type {boolean[]}
      */
 
-    this.notesState = []; // Fill note states with `false`
-
-    this.notesState.fill(false, 0, 128);
+    this.notesState = new Array(128).fill(false);
   }
   /**
    * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
@@ -2014,11 +2012,12 @@ class InputChannel extends e {
 
 
   getNoteState(note) {
-    const n = Utilities.buildNote(note);
-    const number = Utilities.toNoteNumber(n, {
-      octaveOffset: wm.octaveOffset + this.input.octaveOffset + this.octaveOffset
-    });
-    return this.notesState[number];
+    // const n = Utilities.buildNote(note);
+    // const number = Utilities.toNoteNumber(
+    //   n,
+    //   // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
+    // );
+    return this.notesState[note];
   }
   /**
    * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
