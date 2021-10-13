@@ -2188,7 +2188,7 @@ export class Output extends EventEmitter {
    * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
    * functionally equivalent to a **note off** message.
    *
-   * @param note {number|string|number[]|string[]|} The note(s) to play. The notes can be specified
+   * @param note {number|string|number[]|string[]} The note(s) to play. The notes can be specified
    * by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the
    * previous types. When using a note name, octave range must be between -1 and 9. The lowest note
    * is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
