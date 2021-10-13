@@ -2005,7 +2005,8 @@ class InputChannel extends e {
    * Return the playing status of the specified note. The `note` parameter can be an unsigned
    * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
    *
-   * If a note identifier is passed in, the method will take into account the octaveOffset.
+   * If a note identifier or Note object is passed in, the method will take into account any
+   * `octaveOffset` defined.
    *
    * @param [input] {number|string|Note}
    * @returns {boolean}
@@ -2017,6 +2018,7 @@ class InputChannel extends e {
     // If it's a note object, we simply use the identifier
     if (note instanceof Note) note = note.identifier;
     const number = Utilities.guessNoteNumber(note, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+    console.log("number", number);
     return this.notesState[number];
   }
   /**
