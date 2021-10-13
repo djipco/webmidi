@@ -254,7 +254,8 @@ WebMidi.enable().then(ports => {
 
 
 **Returns**: `Promise.<WebMidi>`
-> The promise is fulfilled with the `WebMidi` object
+> The promise is fulfilled with the `WebMidi` object fro
+chainability
 
 
 **Throws**:

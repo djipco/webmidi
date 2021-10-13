@@ -365,7 +365,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 **Attributes**: async
 
-Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
+Destroys the `Input` by removing all listeners, emptying the `channels` array and unlinking the
 MIDI subsystem.
 
 
