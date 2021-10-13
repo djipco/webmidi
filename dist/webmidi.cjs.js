@@ -2015,7 +2015,7 @@ class InputChannel extends e {
     const n = Utilities.buildNote(note);
     const number = Utilities.toNoteNumber(n // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
     );
-    return this.notesState[number];
+    return this.notesState[n.number];
   }
   /**
    * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
