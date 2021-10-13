@@ -379,9 +379,10 @@ There are 3 ways to execute code after `WebMidi` has been enabled:
 
 In order, this is what happens towards the end of the enabling process:
 
-1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered
+1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered once the user has
+granted access to use MIDI.
 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
-3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is ready
+3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is fully ready
 4. specified callback (if any) is executed
 5. promise is resolved and fulfilled with the `WebMidi` object.
 
@@ -843,7 +844,8 @@ Event emitted when an error occurs trying to enable `WebMidi`
 
 ### `"midiaccessgranted"`<a id="event:midiaccessgranted"></a>
 
-Event emitted once the MIDI interface has been successfully created.
+Event emitted once the MIDI interface has been successfully created (which implies user has
+granted access to MIDI).
 
 
 
