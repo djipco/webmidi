@@ -7808,8 +7808,7 @@
         const inputs = Array.from(this.interface.inputs.values());
 
         if (!inputs.find(input => input === current._midiInput)) {
-          current.destroy();
-
+          // current.destroy();
           this._inputs.splice(i, 1);
         }
       } // Array to hold pending promises from trying to open all input ports
@@ -7899,8 +7898,7 @@
         const outputs = Array.from(this.interface.outputs.values());
 
         if (!outputs.find(output => output === current._midiOutput)) {
-          current.destroy();
-
+          // current.destroy();
           this._outputs.splice(i, 1);
         }
       } // Array to hold pending promises from trying to open all output ports
