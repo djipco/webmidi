@@ -1,3 +1,11 @@
+{{!
+
+  This template creates the 'Events' portion of the output . It relies on the following helpers:
+
+    - inlineLinks
+    - stripNewlines
+
+}}
 {{#if this}}
 ***
 
@@ -15,6 +23,7 @@
 **Since**: {{since}}
 {{/if}}
 
+{{! Properties }}
 {{#if properties}}
 
 **Event Properties**
