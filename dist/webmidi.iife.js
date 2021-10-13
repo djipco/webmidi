@@ -1295,6 +1295,7 @@
       this._number = null;
       this._octaveOffset = 0;
       this._nrpnBuffer = [];
+      this.notesState = new Array(128).fill(false);
       this.parameterNumberEventsEnabled = false;
       this.removeListener();
     }
@@ -1488,7 +1489,7 @@
 
         if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
 
-        if (this.parameterNumberEventsEnabled && this.isRpnOrNrpnController(event.message.dataBytes[0])) {
+        if (this.parameterNumberEventsEnabled && this._isRpnOrNrpnController(event.message.dataBytes[0])) {
           this._parseEventForParameterNumber(event);
         }
       } else if (event.type === "programchange") {
@@ -1763,8 +1764,14 @@
           }
         }
     }
+    /**
+     * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+     * @param controller
+     * @returns {boolean}
+     */
 
-    isRpnOrNrpnController(controller) {
+
+    _isRpnOrNrpnController(controller) {
       return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse || //   6
       controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine || //  38
       controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement || //  96
