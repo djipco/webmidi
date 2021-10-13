@@ -7896,7 +7896,7 @@
         const current = this._outputs[i];
         const outputs = Array.from(this.interface.outputs.values());
 
-        if (!outputs.find(input => input === current._midiOutput)) {
+        if (!outputs.find(output => output === current._midiOutput)) {
           current.destroy();
 
           this._outputs.splice(i, 1);
