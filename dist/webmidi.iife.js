@@ -7666,7 +7666,7 @@
 
 
     _onInterfaceStateChange(e) {
-      console.log(e.port.state, e.port.type, e.port.name, e);
+      console.log("state: " + e.port.state, "connection: " + e.port.connection, e.port.type, e.port.name);
 
       this._updateInputsAndOutputs();
       /**
