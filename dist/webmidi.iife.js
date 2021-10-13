@@ -2143,7 +2143,7 @@
       this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
     }
     /**
-     * Destroys the `Input` by remove all listeners, emptying the `channels` array and unlinking the
+     * Destroys the `Input` by removing all listeners, emptying the `channels` array and unlinking the
      * MIDI subsystem.
      *
      * @returns {Promise<void>}
@@ -2154,8 +2154,12 @@
       this.removeListener();
       this.channels.forEach(ch => ch.destroy());
       this.channels = [];
-      this._midiInput.onstatechange = null;
-      this._midiInput.onmidimessage = null;
+
+      if (this._midiInput) {
+        this._midiInput.onstatechange = null;
+        this._midiInput.onmidimessage = null;
+      }
+
       await this.close();
       this._midiInput = null;
     }
@@ -2741,7 +2745,9 @@
 
 
       if (event == undefined) {
-        Utilities.sanitizeChannels(options.channels).forEach(ch => this.channels[ch].removeListener());
+        Utilities.sanitizeChannels(options.channels).forEach(ch => {
+          if (this.channels[ch]) this.channels[ch].removeListener();
+        });
         return super.removeListener();
       } // If the event is specified, check if it's channel-specific or input-wide.
 
@@ -7222,7 +7228,6 @@
 
 
     async enable(options = {}, legacy = false) {
-      console.log("enable");
       this.validation = options.validation !== false;
 
       if (this.validation) {
@@ -7661,8 +7666,6 @@
 
 
     _onInterfaceStateChange(e) {
-      console.log("statechange", e.port.name, e.port.type, e.port.state, e);
-
       this._updateInputsAndOutputs();
       /**
        * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
@@ -7742,94 +7745,180 @@
     /**
      * @private
      */
+    // async _updateInputs() {
+    //
+    //   // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
+    //   //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
+    //
+    //   let promises = [];
+    //
+    //   // Check for items to remove from the existing array (because they are no longer being reported
+    //   // by the MIDI back-end).
+    //   for (let i = 0; i < this._inputs.length; i++) {
+    //
+    //     let remove = true;
+    //
+    //     let updated = this.interface.inputs.values();
+    //
+    //     for (let input = updated.next(); input && !input.done; input = updated.next()) {
+    //       if (this._inputs[i]._midiInput === input.value) {
+    //         remove = false;
+    //         break;
+    //       }
+    //     }
+    //
+    //     if (remove) this._inputs.splice(i, 1);
+    //
+    //   }
+    //
+    //   // Check for items to add in the existing inputs array because they just appeared in the MIDI
+    //   // back-end inputs list. We must check for the existence of this.interface because it might
+    //   // have been closed via WebMidi.disable().
+    //   this.interface && this.interface.inputs.forEach(nInput => {
+    //
+    //     let add = true;
+    //
+    //     for (let j = 0; j < this._inputs.length; j++) {
+    //       if (this._inputs[j]._midiInput === nInput) {
+    //         add = false;
+    //       }
+    //     }
+    //
+    //     if (add) {
+    //       let input = new Input(nInput);
+    //       this._inputs.push(input);
+    //       promises.push(input.open());
+    //     }
+    //
+    //   });
+    //
+    //   return Promise.all(promises);
+    //
+    // };
     async _updateInputs() {
-      // @todo: THIS DOES NOT WORK WHEN THE COMPUTER GOES TO SLEEP BECAUSE STATECHANGE EVENTS ARE
-      //  FIRED ONE AFER THE OTHER. ALSO NEEDS TO BE FIXED IN V2.5
-      let promises = []; // Check for items to remove from the existing array (because they are no longer being reported
+      // We must check for the existence of this.interface because it might have been closed via
+      // WebMidi.disable().
+      if (!this.interface) return; // Check for items to remove from the existing array (because they are no longer being reported
       // by the MIDI back-end).
 
-      for (let i = 0; i < this._inputs.length; i++) {
-        let remove = true;
-        let updated = this.interface.inputs.values();
+      for (let i = this._inputs.length - 1; i >= 0; i--) {
+        const current = this._inputs[i];
 
-        for (let input = updated.next(); input && !input.done; input = updated.next()) {
-          if (this._inputs[i]._midiInput === input.value) {
-            remove = false;
-            break;
-          }
+        if (!this.interface.inputs.find(input => input === current._midiInput)) {
+          current.destroy();
+
+          this._inputs.splice(i, 1);
         }
-
-        if (remove) this._inputs.splice(i, 1);
-      } // Check for items to add in the existing inputs array because they just appeared in the MIDI
-      // back-end inputs list. We must check for the existence of this.interface because it might
-      // have been closed via WebMidi.disable().
+      } // Array to hold pending promises from trying to open all input ports
 
 
-      this.interface && this.interface.inputs.forEach(nInput => {
-        let add = true;
+      let promises = []; // Add new inputs (if not already present)
 
-        for (let j = 0; j < this._inputs.length; j++) {
-          if (this._inputs[j]._midiInput === nInput) {
-            add = false;
-          }
-        }
+      this.interface.inputs.forEach(nInput => {
+        // Check if the input already exists
+        const exists = this._inputs.find(input => input._midiInput === nInput); // If the input does not already exist, create new Input object and add it to the list of
+        // inputs.
 
-        if (add) {
-          let input = new Input(nInput);
+
+        if (!exists) {
+          const input = new Input(nInput);
 
           this._inputs.push(input);
 
           promises.push(input.open());
         }
-      });
+      }); // Return a promise that resolves when all promises have resolved
+
       return Promise.all(promises);
     }
 
     /**
      * @private
      */
+    // async _updateOutputs() {
+    //
+    //   let promises = [];
+    //
+    //   // Check for items to remove from the existing array (because they are no longer being reported
+    //   // by the MIDI back-end).
+    //   for (let i = 0; i < this._outputs.length; i++) {
+    //
+    //     let remove = true;
+    //
+    //     let updated = this.interface.outputs.values();
+    //
+    //     for (let output = updated.next(); output && !output.done; output = updated.next()) {
+    //       if (this._outputs[i]._midiOutput === output.value) {
+    //         remove = false;
+    //         break;
+    //       }
+    //     }
+    //
+    //     if (remove) {
+    //       this._outputs[i].close();
+    //       this._outputs.splice(i, 1);
+    //     }
+    //
+    //   }
+    //
+    //   // Check for items to add in the existing inputs array because they just appeared in the MIDI
+    //   // back-end outputs list. We must check for the existence of this.interface because it might
+    //   // have been closed via WebMidi.disable().
+    //   this.interface && this.interface.outputs.forEach(nOutput => {
+    //
+    //     let add = true;
+    //
+    //     for (let j = 0; j < this._outputs.length; j++) {
+    //       if (this._outputs[j]._midiOutput === nOutput) {
+    //         add = false;
+    //       }
+    //     }
+    //
+    //     if (add) {
+    //       let output = new Output(nOutput);
+    //       this._outputs.push(output);
+    //       promises.push(output.open());
+    //     }
+    //
+    //   });
+    //
+    //   return Promise.all(promises);
+    //
+    // };
     async _updateOutputs() {
-      let promises = []; // Check for items to remove from the existing array (because they are no longer being reported
+      // We must check for the existence of this.interface because it might have been closed via
+      // WebMidi.disable().
+      if (!this.interface) return; // Check for items to remove from the existing array (because they are no longer being reported
       // by the MIDI back-end).
 
-      for (let i = 0; i < this._outputs.length; i++) {
-        let remove = true;
-        let updated = this.interface.outputs.values();
+      for (let i = this._outputs.length - 1; i >= 0; i--) {
+        const current = this._outputs[i];
 
-        for (let output = updated.next(); output && !output.done; output = updated.next()) {
-          if (this._outputs[i]._midiOutput === output.value) {
-            remove = false;
-            break;
-          }
-        }
-
-        if (remove) {
-          this._outputs[i].close();
+        if (!this.interface.outputs.find(input => input === current._midiOutput)) {
+          current.destroy();
 
           this._outputs.splice(i, 1);
         }
-      } // Check for items to add in the existing inputs array because they just appeared in the MIDI
-      // back-end outputs list. We must check for the existence of this.interface because it might
-      // have been closed via WebMidi.disable().
+      } // Array to hold pending promises from trying to open all output ports
 
 
-      this.interface && this.interface.outputs.forEach(nOutput => {
-        let add = true;
+      let promises = []; // Add new outputs (if not already present)
 
-        for (let j = 0; j < this._outputs.length; j++) {
-          if (this._outputs[j]._midiOutput === nOutput) {
-            add = false;
-          }
-        }
+      this.interface.outputs.forEach(nOutput => {
+        // Check if the output already exists
+        const exists = this._outputs.find(output => output._midiOutput === nOutput); // If the output does not already exist, create new Input object and add it to the list of
+        // outputs.
 
-        if (add) {
-          let output = new Output(nOutput);
+
+        if (!exists) {
+          const output = new Output(nOutput);
 
           this._outputs.push(output);
 
           promises.push(output.open());
         }
-      });
+      }); // Return a promise that resolves when all promises have resolved
+
       return Promise.all(promises);
     }
 
