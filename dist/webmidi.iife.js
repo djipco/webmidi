@@ -7222,6 +7222,7 @@
 
 
     async enable(options = {}, legacy = false) {
+      console.log("enable");
       this.validation = options.validation !== false;
 
       if (this.validation) {
