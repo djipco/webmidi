@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.16
+ * WebMidi.js v3.0.0-alpha.18
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on October 13th, 2021.
@@ -7131,6 +7131,13 @@
        */
 
       this._inputs = [];
+      /**
+       * Array of disconnected [`Input`](Input) objects. This is used when inputs are plugged back in
+       * to retain their previous state.
+       * @type {Input[]}
+       * @private
+       */
+
       this._disconnectedInputs = [];
       /**
        * Array of all [`Output`](Output) objects
@@ -7139,6 +7146,13 @@
        */
 
       this._outputs = [];
+      /**
+       * Array of disconnected [`Output`](Output) objects. This is used when outputs are plugged back
+       * in to retain their previous state.
+       * @type {Output[]}
+       * @private
+       */
+
       this._disconnectedOutputs = [];
       /**
        * Array of statechange events to process. These events must be parsed synchronously so they do
@@ -7668,8 +7682,6 @@
 
 
     _onInterfaceStateChange(e) {
-      console.log(e.type, e.port.name, e.port.state, e.port.connection);
-
       this._updateInputsAndOutputs();
       /**
        * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
@@ -7761,8 +7773,8 @@
         const inputs = Array.from(this.interface.inputs.values());
 
         if (!inputs.find(input => input === current._midiInput)) {
-          // Instead of destroying removed inputs, we stash them in case they come back later (which
-          // is the case when the computer goes to sleep and is later brought back online).
+          // Instead of destroying removed inputs, we stash them in case they come back (which is the
+          // case when the computer goes to sleep and is later brought back online).
           this._disconnectedInputs.push(current);
 
           this._inputs.splice(i, 1);
@@ -7803,8 +7815,8 @@
         const outputs = Array.from(this.interface.outputs.values());
 
         if (!outputs.find(output => output === current._midiOutput)) {
-          // Instead of destroying removed inputs, we stash them in case they come back later (which
-          // is the case when the computer goes to sleep and is later brought back online).
+          // Instead of destroying removed inputs, we stash them in case they come back (which is the
+          // case when the computer goes to sleep and is later brought back online).
           this._disconnectedOutputs.push(current);
 
           this._outputs.splice(i, 1);
@@ -7812,22 +7824,7 @@
       } // Array to hold pending promises from trying to open all output ports
 
 
-      let promises = []; // // Add new outputs (if not already present)
-      // this.interface.outputs.forEach(nOutput => {
-      //
-      //   // Check if the output already exists
-      //   const exists = this._outputs.find(output => output._midiOutput === nOutput);
-      //
-      //   // If the output does not already exist, create new Input object and add it to the list of
-      //   // outputs.
-      //   if (!exists) {
-      //     const output = new Output(nOutput);
-      //     this._outputs.push(output);
-      //     promises.push(output.open());
-      //   }
-      //
-      // });
-      // Add new outputs (if not already present)
+      let promises = []; // Add new outputs (if not already present)
 
       this.interface.outputs.forEach(nOutput => {
         // Check if the output is currently absent from the 'outputs' array.
@@ -7835,14 +7832,13 @@
           // If the output has previously been stashed away, reuse it. If not, create a new one.
           let output = this._disconnectedOutputs.find(output => output._midiOutput === nOutput);
 
-          if (output) console.log(output);
           if (!output) output = new Output(nOutput);
 
           this._outputs.push(output);
 
           promises.push(output.open());
         }
-      }); // Return a promise that resolves when all promises have resolved
+      }); // Return a promise that resolves when all sub-promises have resolved
 
       return Promise.all(promises);
     }
