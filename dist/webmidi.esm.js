@@ -8176,7 +8176,8 @@ class WebMidi extends e {
     // by the MIDI back-end).
     for (let i = this._inputs.length - 1; i >= 0; i--) {
       const current = this._inputs[i];
-      if (! this.interface.inputs.find(input => input === current._midiInput)) {
+      const inputs = Array.from(this.interface.inputs.values());
+      if (! inputs.find(input => input === current._midiInput)) {
         current.destroy();
         this._inputs.splice(i, 1);
       }
@@ -8269,7 +8270,8 @@ class WebMidi extends e {
     // by the MIDI back-end).
     for (let i = this._outputs.length - 1; i >= 0; i--) {
       const current = this._outputs[i];
-      if (! this.interface.outputs.find(input => input === current._midiOutput)) {
+      const outputs = Array.from(this.interface.outputs.values());
+      if (! outputs.find(output => output === current._midiOutput)) {
         current.destroy();
         this._outputs.splice(i, 1);
       }
