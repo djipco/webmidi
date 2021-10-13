@@ -859,12 +859,14 @@ declare class WebMidi {
      * @private
      */
     private _inputs;
+    _disconnectedInputs: any[];
     /**
      * Array of all [`Output`](Output) objects
      * @type {Output[]}
      * @private
      */
     private _outputs;
+    _disconnectedOutputs: any[];
     /**
      * Array of statechange events to process. These events must be parsed synchronously so they do
      * not override each other.
