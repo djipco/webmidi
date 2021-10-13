@@ -7713,6 +7713,8 @@
 
           event.target = event.port;
         }
+
+        this.emit(e.port.state, event);
       } else if (e.port.state === "disconnected") {
         // It feels more logical to include a `target` property instead of a `port` property. This is
         // the terminology used everywhere in the library.
@@ -7725,10 +7727,8 @@
           type: e.port.type
         };
         event.target = event.port;
+        this.emit(e.port.state, event);
       }
-
-      console.log("coucou", e);
-      this.emit(e.port.state, event);
     }
 
     /**
