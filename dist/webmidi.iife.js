@@ -7723,9 +7723,8 @@
           event.target = event.port;
         }
 
-        this.emit(e.port.state, event); // We check if "connection" is "closed" because disconnected events are also triggered with
-        // "connection=pending"
-      } else if (e.port.state === "disconnected" && e.port.connection === "closed") {
+        this.emit(e.port.state, event); // We check if "connection" is "pending" because we do not always get the "closed" event
+      } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
         // It feels more logical to include a `target` property instead of a `port` property. This is
         // the terminology used everywhere in the library.
         event.port = {
