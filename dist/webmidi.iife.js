@@ -2014,9 +2014,8 @@
 
     getNoteState(note) {
       const n = Utilities.buildNote(note);
-      const number = Utilities.toNoteNumber(n, {
-        octaveOffset: wm.octaveOffset + this.input.octaveOffset + this.octaveOffset
-      });
+      const number = Utilities.toNoteNumber(n // {octaveOffset: WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset}
+      );
       return this.notesState[number];
     }
     /**
