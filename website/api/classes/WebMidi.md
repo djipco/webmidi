@@ -1,10 +1,18 @@
 
-# 
+# WebMidi
+
+The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
+simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
+
+When using the WebMidi.js library, you should know that the `WebMidi` class has already been
+instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
+simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
+module) version, you get an already-instantiated object when you import the module.
 
 
+**Extends**: EventEmitter
 
-
-
+**Fires**: [`connected`](WebMidi#event:connected), [`disabled`](WebMidi#event:disabled), [`disconnected`](WebMidi#event:disconnected), [`enabled`](WebMidi#event:enabled), [`midiaccessgranted`](WebMidi#event:midiaccessgranted)
 ***
 
 ## Properties

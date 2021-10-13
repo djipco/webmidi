@@ -1,8 +1,10 @@
 
-# 
+# Utilities
 
+The `Utilities` class contains general-purpose utility methods. All methods are static and
+should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
 
-
+**Since**: 3.0.0
 
 
 ***
