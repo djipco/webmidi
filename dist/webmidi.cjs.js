@@ -7141,6 +7141,7 @@ class WebMidi extends e {
      */
 
     this._inputs = [];
+    this._disconnectedInputs = [];
     /**
      * Array of all [`Output`](Output) objects
      * @type {Output[]}
@@ -7148,6 +7149,7 @@ class WebMidi extends e {
      */
 
     this._outputs = [];
+    this._disconnectedOutputs = [];
     /**
      * Array of statechange events to process. These events must be parsed synchronously so they do
      * not override each other.
@@ -7676,6 +7678,8 @@ class WebMidi extends e {
 
 
   _onInterfaceStateChange(e) {
+    console.log(e.type, e.port.name, e.port.state, e.port.connection);
+
     this._updateInputsAndOutputs();
     /**
      * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
@@ -7729,9 +7733,8 @@ class WebMidi extends e {
         event.target = event.port;
       }
 
-      this.emit(e.port.state, event); // We check if "connection" is "closed" because disconnected events are also triggered with
-      // "connection=pending"
-    } else if (e.port.state === "disconnected" && e.port.connection === "closed") {
+      this.emit(e.port.state, event); // We check if "connection" is "pending" because we do not always get the "closed" event
+    } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
       // It feels more logical to include a `target` property instead of a `port` property. This is
       // the terminology used everywhere in the library.
       event.port = {
@@ -7768,7 +7771,9 @@ class WebMidi extends e {
       const inputs = Array.from(this.interface.inputs.values());
 
       if (!inputs.find(input => input === current._midiInput)) {
-        current.destroy();
+        // Instead of destroying removed inputs, we stash them in case they come back later (which
+        // is the case when the computer goes to sleep and is later brought back online).
+        this._disconnectedInputs.push(current);
 
         this._inputs.splice(i, 1);
       }
@@ -7778,13 +7783,12 @@ class WebMidi extends e {
     let promises = []; // Add new inputs (if not already present)
 
     this.interface.inputs.forEach(nInput => {
-      // Check if the input already exists
-      const exists = this._inputs.find(input => input._midiInput === nInput); // If the input does not already exist, create new Input object and add it to the list of
-      // inputs.
+      // Check if the input is currently absent from the 'inputs' array.
+      if (!this._inputs.find(input => input._midiInput === nInput)) {
+        // If the input has previously been stashed away, reuse it. If not, create a new one.
+        let input = this._disconnectedInputs.find(input => input._midiInput === nInput);
 
-
-      if (!exists) {
-        const input = new Input(nInput);
+        if (!input) input = new Input(nInput);
 
         this._inputs.push(input);
 
@@ -7809,23 +7813,40 @@ class WebMidi extends e {
       const outputs = Array.from(this.interface.outputs.values());
 
       if (!outputs.find(output => output === current._midiOutput)) {
-        current.destroy();
+        // Instead of destroying removed inputs, we stash them in case they come back later (which
+        // is the case when the computer goes to sleep and is later brought back online).
+        this._disconnectedOutputs.push(current);
 
         this._outputs.splice(i, 1);
       }
     } // Array to hold pending promises from trying to open all output ports
 
 
-    let promises = []; // Add new outputs (if not already present)
+    let promises = []; // // Add new outputs (if not already present)
+    // this.interface.outputs.forEach(nOutput => {
+    //
+    //   // Check if the output already exists
+    //   const exists = this._outputs.find(output => output._midiOutput === nOutput);
+    //
+    //   // If the output does not already exist, create new Input object and add it to the list of
+    //   // outputs.
+    //   if (!exists) {
+    //     const output = new Output(nOutput);
+    //     this._outputs.push(output);
+    //     promises.push(output.open());
+    //   }
+    //
+    // });
+    // Add new outputs (if not already present)
 
     this.interface.outputs.forEach(nOutput => {
-      // Check if the output already exists
-      const exists = this._outputs.find(output => output._midiOutput === nOutput); // If the output does not already exist, create new Input object and add it to the list of
-      // outputs.
+      // Check if the output is currently absent from the 'outputs' array.
+      if (!this._outputs.find(output => output._midiOutput === nOutput)) {
+        // If the output has previously been stashed away, reuse it. If not, create a new one.
+        let output = this._disconnectedOutputs.find(output => output._midiOutput === nOutput);
 
-
-      if (!exists) {
-        const output = new Output(nOutput);
+        if (output) console.log(output);
+        if (!output) output = new Output(nOutput);
 
         this._outputs.push(output);
 
