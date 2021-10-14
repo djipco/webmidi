@@ -23,7 +23,7 @@ import {Utilities} from "./Utilities.js";
  * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
  * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
- * @param {Object} [options={}]
+ * @param {object} [options={}]
  *
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.

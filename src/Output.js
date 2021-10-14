@@ -81,7 +81,7 @@ export class Output extends EventEmitter {
        * [open()]{@link Output#open} method.
        *
        * @event Output#opened
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"opened"`
@@ -98,7 +98,7 @@ export class Output extends EventEmitter {
        * [close()]{@link Output#close} method.
        *
        * @event Output#closed
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"closed"`
@@ -115,11 +115,11 @@ export class Output extends EventEmitter {
        * when the MIDI device is unplugged.
        *
        * @event Output#disconnected
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Output} that
+       * @property {object} target Object with properties describing the {@link Output} that
        * triggered the event. This is not the actual `Output` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
@@ -202,7 +202,7 @@ export class Output extends EventEmitter {
    * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
    * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a positive
@@ -321,7 +321,7 @@ export class Output extends EventEmitter {
    * @param {number[]|Uint8Array} [data=[]] A Uint8Array or an array of unsigned integers between 0
    * and 127. This is the data you wish to transfer.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -395,7 +395,7 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The quarter frame message content (integer between 0 and 127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -431,7 +431,7 @@ export class Output extends EventEmitter {
    *
    * @param [value=0] {number} The MIDI beat to cue to (integer between 0 and 16383).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -486,7 +486,7 @@ export class Output extends EventEmitter {
    *
    * @param value {number} The number of the song to select (integer between 1 and 128).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -542,7 +542,7 @@ export class Output extends EventEmitter {
   /**
    * Sends a MIDI **tune request** real-time message.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -568,7 +568,7 @@ export class Output extends EventEmitter {
    * Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
    * for every quarter note.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -593,7 +593,7 @@ export class Output extends EventEmitter {
    * song at beat 0. To start playback elsewhere in the song, use the
    * [sendContinue()]{@link Output#sendContinue} method.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -618,7 +618,7 @@ export class Output extends EventEmitter {
    * stopped or where it was last cued with a song position message. To start playback from the
    * start, use the [sendStart()]{@link Output#sendStart}` method.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -642,7 +642,7 @@ export class Output extends EventEmitter {
    * Sends a **stop** real-time message. This tells the device connected to this output to stop
    * playback immediately (or at the scheduled time).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -667,7 +667,7 @@ export class Output extends EventEmitter {
    * that the connection is still good. Active sensing messages should be sent every 300 ms if there
    * was no other activity on the MIDI port.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -691,7 +691,7 @@ export class Output extends EventEmitter {
    * Sends a **reset** real-time message. This tells the device connected to this output that it
    * should reset itself to a default state.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -744,7 +744,7 @@ export class Output extends EventEmitter {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -892,7 +892,7 @@ export class Output extends EventEmitter {
    *
    * @param [value=0] {number} The value to send (0-127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -943,7 +943,7 @@ export class Output extends EventEmitter {
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -1024,7 +1024,7 @@ export class Output extends EventEmitter {
    * @param [data=[]] {number|number[]} A single integer or an array of integers with a maximum
    * length of 2 specifying the desired data.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -1068,7 +1068,7 @@ export class Output extends EventEmitter {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -1142,7 +1142,7 @@ export class Output extends EventEmitter {
    * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
    * (1/100 of a semitone). An LSB of `64` also means no bend.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to

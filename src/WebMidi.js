@@ -41,7 +41,7 @@ class WebMidi extends EventEmitter {
      * Object containing system-wide default values that can be changed to customize how the library
      * works.
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {object}  defaults.note - Default values relating to note
      * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
@@ -155,9 +155,10 @@ class WebMidi extends EventEmitter {
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered
+   * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered once the user has
+   * granted access to use MIDI.
    * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
-   * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is ready
+   * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is fully ready
    * 4. specified callback (if any) is executed
    * 5. promise is resolved and fulfilled with the `WebMidi` object.
    *
@@ -175,7 +176,7 @@ class WebMidi extends EventEmitter {
    * })
    * ```
    *
-   * @param [options] {Object}
+   * @param [options] {object}
    *
    * @param [options.callback] {function} A function to execute once the operation completes. This
    * function will receive an `Error` object if enabling the Web MIDI API failed.
@@ -248,7 +249,7 @@ class WebMidi extends EventEmitter {
      * Event emitted when an error occurs trying to enable `WebMidi`
      *
      * @event WebMidi#error
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
@@ -263,10 +264,11 @@ class WebMidi extends EventEmitter {
     };
 
     /**
-     * Event emitted once the MIDI interface has been successfully created.
+     * Event emitted once the MIDI interface has been successfully created (which implies user has
+     * granted access to MIDI).
      *
      * @event WebMidi#midiaccessgranted
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
@@ -282,7 +284,7 @@ class WebMidi extends EventEmitter {
      * Event emitted once `WebMidi` has been fully enabled
      *
      * @event WebMidi#enabled
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
@@ -360,7 +362,7 @@ class WebMidi extends EventEmitter {
        * Event emitted once `WebMidi` has been successfully disabled.
        *
        * @event WebMidi#disabled
-       * @type {Object}
+       * @type {object}
        * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {WebMidi} target The object that triggered the event
@@ -678,7 +680,7 @@ class WebMidi extends EventEmitter {
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
      * @event WebMidi#connected
-     * @type {Object}
+     * @type {object}
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
      * @property {string} type `"connected"`
@@ -692,11 +694,11 @@ class WebMidi extends EventEmitter {
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
      * @event WebMidi#disconnected
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {string} type `"disconnected"`
-     * @property {Object} target Object with properties describing the [`Input`](Input) or
+     * @property {object} target Object with properties describing the [`Input`](Input) or
      * [`Output`](Output) that triggered the event.
      * @property {string} target.connection `"closed"`
      * @property {string} target.id ID of the input

@@ -104,7 +104,7 @@ export class Input extends EventEmitter {
        * method.
        *
        * @event Input#opened
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"opened"`
@@ -120,7 +120,7 @@ export class Input extends EventEmitter {
        * method.
        *
        * @event Input#closed
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"closed"`
@@ -136,11 +136,11 @@ export class Input extends EventEmitter {
        * when the MIDI device is unplugged.
        *
        * @event Input#disconnected
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Input} that
+       * @property {object} target Object with properties describing the {@link Input} that
        * triggered the event. This is not the actual `Input` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
@@ -183,7 +183,7 @@ export class Input extends EventEmitter {
      *
      * @event Input#midimessage
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {Input} target The `Input` that triggered the event.
      * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -403,7 +403,7 @@ export class Input extends EventEmitter {
    * This function will receive an event parameter object. For details on this object's properties,
    * check out the documentation for the various events (links above).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {array} [options.arguments] An array of arguments which will be passed separately to the
    * callback function. This array is stored in the `arguments` property of the `Listener` object
@@ -413,7 +413,7 @@ export class Input extends EventEmitter {
    * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
    * input-wide events.
    *
-   * @param {Object} [options.context=this] The value of `this` in the callback function.
+   * @param {object} [options.context=this] The value of `this` in the callback function.
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
    * automatically expires.
@@ -551,7 +551,7 @@ export class Input extends EventEmitter {
    * This function will receive an event parameter object. For details on this object's properties,
    * check out the documentation for the various events (links above).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {array} [options.arguments] An array of arguments which will be passed separately to the
    * callback function. This array is stored in the `arguments` property of the `Listener` object
@@ -561,7 +561,7 @@ export class Input extends EventEmitter {
    * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
    * input-wide events.
    *
-   * @param {Object} [options.context=this] The value of `this` in the callback function.
+   * @param {object} [options.context=this] The value of `this` in the callback function.
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
    * automatically expires.
@@ -597,13 +597,13 @@ export class Input extends EventEmitter {
    *
    * @param listener {function} The callback function to check for.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
    * such integers representing the MIDI channel(s) to check. This parameter is ignored for
    * input-wide events.
    *
-   * @returns {Boolean} Boolean value indicating whether or not the channel(s) already have this
+   * @returns {boolean} Boolean value indicating whether or not the channel(s) already have this
    * listener defined.
    *
    * @throws Error For channel-specific events, 'options.channels' must be defined.
@@ -649,11 +649,11 @@ export class Input extends EventEmitter {
    * By default, channel-specific listeners will be removed from all channels unless the
    * `options.channel` narrows it down.
    *
-   * @param [type] {String} The type of the event.
+   * @param [type] {string} The type of the event.
    *
    * @param [listener] {Function} The callback function to check for.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
    * such integers representing the MIDI channel(s) to match. This parameter is ignored for
@@ -823,7 +823,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#sysex
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -842,7 +842,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#timecode
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -864,7 +864,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#songposition
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -886,7 +886,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#songselect
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -909,7 +909,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#tunerequest
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -931,7 +931,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#clock
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -953,7 +953,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#start
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -975,7 +975,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#continue
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -997,7 +997,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#stop
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -1019,7 +1019,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#activesensing
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -1041,7 +1041,7 @@ export class Input extends EventEmitter {
  *
  * @event Input#reset
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI

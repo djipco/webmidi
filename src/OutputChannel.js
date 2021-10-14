@@ -73,7 +73,7 @@ export class OutputChannel extends EventEmitter {
    * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
    * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a positive
@@ -115,7 +115,7 @@ export class OutputChannel extends EventEmitter {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure is defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {boolean} [options.useRawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -290,7 +290,7 @@ export class OutputChannel extends EventEmitter {
    * calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first
    * controller)
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -366,7 +366,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @private
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -404,7 +404,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @private
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -426,7 +426,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @private
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -451,7 +451,7 @@ export class OutputChannel extends EventEmitter {
    * @param parameter {number[]} A two-position array of integers specifying the two control bytes
    * (0x65, 0x64) that identify the registered parameter. The integers must be between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -474,7 +474,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @param data {number|number[]}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -535,7 +535,7 @@ export class OutputChannel extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -602,7 +602,7 @@ export class OutputChannel extends EventEmitter {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -675,7 +675,7 @@ export class OutputChannel extends EventEmitter {
    * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration] A positive number larger than 0 representing the number of
    * milliseconds to wait before sending a **note off** message. If invalid or left undefined, only
@@ -749,7 +749,7 @@ export class OutputChannel extends EventEmitter {
    * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -861,7 +861,7 @@ export class OutputChannel extends EventEmitter {
    * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
    * {@link Note} object or an array of the previous types.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -961,7 +961,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @param value {number} The value to send (integer between 0-127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -1013,7 +1013,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @param [state=true] {boolean} Whether to activate OMNI mode (`true`) or not (`false`).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -1046,7 +1046,7 @@ export class OutputChannel extends EventEmitter {
    * @param [pressure] {number} The pressure level (between 0 and 1). If the `rawValue` option is
    * set to `true`, the pressure can be defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -1106,7 +1106,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @param [value=0.0] {number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the

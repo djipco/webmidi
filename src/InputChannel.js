@@ -135,7 +135,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#midimessage
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {Input} target The `InputChannel` that triggered the event.
      * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -184,7 +184,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#noteoff
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"noteoff"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -194,7 +194,7 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} note A [`Note`](Note) object containing information such as note name,
+       * @property {object} note A [`Note`](Note) object containing information such as note name,
        * octave and release velocity.
        * @property {number} value The release velocity amount expressed as a float between 0 and 1.
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
@@ -229,7 +229,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#noteon
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"noteon"`
        *
        * @property {InputChannel} channel The `InputChannel` object that triggered the event.
@@ -271,7 +271,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#keyaftertouch
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"keyaftertouch"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -316,7 +316,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#controlchange
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"controlchange"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -326,9 +326,9 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} controller
-       * @property {Object} controller.number The number of the controller.
-       * @property {Object} controller.name The usual name or function of the controller.
+       * @property {object} controller
+       * @property {object} controller.number The number of the controller.
+       * @property {object} controller.name The usual name or function of the controller.
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -358,7 +358,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#programchange
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"programchange"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -381,7 +381,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#channelaftertouch
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"channelaftertouch"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -404,7 +404,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#pitchbend
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"pitchbend"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -439,7 +439,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#allsoundoff
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"allsoundoff"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -455,7 +455,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#resetallcontrollers
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"resetallcontrollers"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -473,7 +473,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#localcontrol
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"localcontrol"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -495,7 +495,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#allnotesoff
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"allnotesoff"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -512,7 +512,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#omnimode
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"omnimode"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -539,7 +539,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#monomode
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"monomode"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -679,7 +679,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#nrpndataentrycoarse
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"nrpndataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
@@ -699,7 +699,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#nrpndataentryfine
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"nrpndataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
@@ -719,7 +719,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#nrpndatabuttonincrement
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"nrpndatabuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
@@ -739,7 +739,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#nrpndatabuttondecrement
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"nrpndatabuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
@@ -760,7 +760,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#rpndataentrycoarse
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"rpndataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
@@ -778,7 +778,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#rpndataentryfine
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"rpndataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
@@ -796,7 +796,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#rpndatabuttonincrement
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"rpndatabuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
@@ -814,7 +814,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#rpndatabuttondecrement
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {string} type `"rpndatabuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.

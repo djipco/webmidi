@@ -268,7 +268,7 @@ export class Utilities {
    *
    * @param [input] {number|string|Note}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
@@ -318,7 +318,7 @@ export class Utilities {
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
@@ -422,7 +422,7 @@ export class Utilities {
    * Returns the name of the first property of the supplied object whose value is equal to the one
    * supplied.
    *
-   * @param object {Object}
+   * @param object {object}
    * @param value {*}
    * @returns {string} The name of the matching property
    * @static
