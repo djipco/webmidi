@@ -1,3 +1,8 @@
+// Type definitions for WebMidi.js 3.0.0-alpha.19
+// Project: https://webmidijs.org
+// Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+
 /**
  * The `Enumerations` class contains enumerations of elements used throughout the library. All
  * enumerations are static and should be referenced using the class name. For example:
