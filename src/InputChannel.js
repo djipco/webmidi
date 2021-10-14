@@ -678,11 +678,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndataentrycoarse
+     * @event InputChannel#nrpn:dataentrycoarse
      *
      * @type {object}
      *
-     * @property {string} type `"nrpndataentrycoarse"`
+     * @property {string} type `"nrpn:dataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -698,11 +698,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentryfine' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndataentryfine
+     * @event InputChannel#nrpn:dataentryfine
      *
      * @type {object}
      *
-     * @property {string} type `"nrpndataentryfine"`
+     * @property {string} type `"nrpn:dataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -718,11 +718,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndatabuttonincrement
+     * @event InputChannel#nrpn:databuttonincrement
      *
      * @type {object}
      *
-     * @property {string} type `"nrpndatabuttonincrement"`
+     * @property {string} type `"nrpn:databuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -738,11 +738,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndatabuttondecrement
+     * @event InputChannel#nrpn:databuttondecrement
      *
      * @type {object}
      *
-     * @property {string} type `"nrpndatabuttondecrement"`
+     * @property {string} type `"nrpn:databuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -759,11 +759,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndataentrycoarse
+     * @event InputChannel#rpn:dataentrycoarse
      *
      * @type {object}
      *
-     * @property {string} type `"rpndataentrycoarse"`
+     * @property {string} type `"rpn:dataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -777,11 +777,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentryfine' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndataentryfine
+     * @event InputChannel#rpn:dataentryfine
      *
      * @type {object}
      *
-     * @property {string} type `"rpndataentryfine"`
+     * @property {string} type `"rpn:dataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -795,11 +795,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttonincrement' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndatabuttonincrement
+     * @event InputChannel#rpn:databuttonincrement
      *
      * @type {object}
      *
-     * @property {string} type `"rpndatabuttonincrement"`
+     * @property {string} type `"rpn:databuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -813,11 +813,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttondecrement' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndatabuttondecrement
+     * @event InputChannel#rpn:databuttondecrement
      *
      * @type {object}
      *
-     * @property {string} type `"rpndatabuttondecrement"`
+     * @property {string} type `"rpn:databuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -839,7 +839,7 @@ export class InputChannel extends EventEmitter {
     };
 
     // Retrieve controller type and append to event type
-    event.type += Utilities.getPropertyByValue(
+    event.type += ":" + Utilities.getPropertyByValue(
       Enumerations.MIDI_CONTROL_CHANGE_MESSAGES,
       e.message.dataBytes[0]
     );
@@ -1037,16 +1037,16 @@ export class InputChannel extends EventEmitter {
       "resetallcontrollers",
 
       // NRPN events
-      "nrpndataentrycoarse",
-      "nrpndataentryfine",
-      "nrpndatabuttonincrement",
-      "nrpndatabuttondecrement",
+      "nrpn:dataentrycoarse",
+      "nrpn:dataentryfine",
+      "nrpn:databuttonincrement",
+      "nrpn:databuttondecrement",
 
       // RPN events
-      "rpndataentrycoarse",
-      "rpndataentryfine",
-      "rpndatabuttonincrement",
-      "rpndatabuttondecrement"
+      "rpn:dataentrycoarse",
+      "rpn:dataentryfine",
+      "rpn:databuttonincrement",
+      "rpn:databuttondecrement"
 
     ];
   }
