@@ -658,6 +658,7 @@ export class InputChannel extends EventEmitter {
    * Indicates whether the specified controller can be part of an RPN or NRPN sequence
    * @param controller
    * @returns {boolean}
+   * @private
    */
   _isRpnOrNrpnController(controller) {
 
