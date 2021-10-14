@@ -13,8 +13,8 @@ node module by Jazz-Soft.
 - WebMidi.js now explicitly checks for Jazz-Plugin support in environments with no native support 
 for the Web MIDI API.
 
-- The `WebMidi.enabled()` method now returns a promise. The promise is fulfilled with an object 
-referencing the available inputs and outputs.
+- The `WebMidi.enabled()` method now returns a promise. The promise is fulfilled with the `WebMidi`
+object.
 
 - `Input` and `Output` objects now emit `opened`, `closed` and `disconnected` events.
 
@@ -25,7 +25,7 @@ referencing the available inputs and outputs.
 - The `sendNoteOn()` method has been added. It behaves the same way as `playNote()` does except it 
 does not accept a `duration` option. It was added mostly for completeness' sake.
 
-- The `sendNoteOff()` message has been added. It behaves the same way as `stopNote()` does. 
+- The `sendNoteOff()` method has been added. It behaves the same way as `stopNote()` does. 
 Actually, `stopNote()` is an alias to `sendNoteOff()`.
 
 - The `setChannelAftertouch()`, `setKeyAftertouch()` and `setPitchbend()` method now have a 
