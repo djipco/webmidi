@@ -6,10 +6,17 @@
 const git = require("simple-git/promise")();
 const moment = require("moment");
 const path = require("path");
+const prependFile = require("prepend-file");
 const replace = require("replace-in-file");
 const system = require("system-commands");
+const pkg = require("../../package.json");
 
 const OUT_DIR = "dist";
+
+const HEADER = `// Type definitions for ${pkg.webmidi.name} ${pkg.version}\n` +
+  `// Project: ${pkg.homepage}\n` +
+  `// Definitions by: ${pkg.author.name} <https://github.com/djipco/>\n` +
+  `// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped\n\n`;
 
 let targets = [];
 
@@ -42,6 +49,9 @@ async function execute() {
       to: ""
     };
     await replace(options);
+
+    // Prepend header for DefinitelyTyped
+    await prependFile(file, HEADER);
     log("Saved " + target.type + " TypeScript declaration file to '" + file+ "'");
 
     // Commit
