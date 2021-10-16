@@ -611,7 +611,7 @@ from the MIDI Manufacturers Association.
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`message`** |Array.&lt;number&gt;||An array of 8bit unsigned integers, a `Uint8Array` object (not available in Node.js) containing the message bytes or a `Message` object.|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -637,7 +637,7 @@ was no other activity on the MIDI port.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -712,7 +712,7 @@ for every quarter note.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -736,7 +736,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -842,7 +842,7 @@ specification.
   | ------------ | ------------ | ------------ | ------------ |
     |**`controller`** |number||The MIDI controller name or number (0-127).|
     |[**`value`**] |number|0|The value to send (0-127).|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -940,7 +940,7 @@ should reset itself to a default state.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -964,7 +964,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -987,7 +987,7 @@ playback immediately (or at the scheduled time).
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -1057,7 +1057,7 @@ system exclusive messages to 64Kb or less.
   | ------------ | ------------ | ------------ | ------------ |
     |**`manufacturer`** |number||An unsigned integer or an array of three unsigned integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers) .|
     |[**`data`**] |Array.&lt;number&gt;|[]|A Uint8Array or an array of unsigned integers between 0 and 127. This is the data you wish to transfer.|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -1087,7 +1087,7 @@ on the data. It is up to the developer to format the data according to the
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |number||The quarter frame message content (integer between 0 and 127).|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -1110,7 +1110,7 @@ Sends a MIDI **tune request** real-time message.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -1135,7 +1135,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`pressure`**] |number|0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
@@ -1164,7 +1164,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** |number||The note for which you are sending an aftertouch value. The notes can be specified in one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use an array of note names and/or numbers.|
     |[**`pressure`**] |number|0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
@@ -1371,7 +1371,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |number||The intensity of the bend (between -1.0 and 1.0). A value of zero means no bend. The resulting bend is relative to the pitch bend range that has been defined. The range can be set with [setPitchBendRange()](OutputChannel#setPitchBendRange) . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave below its nominal value. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127 representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.rawValue`**] |boolean|false|A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB).|
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
@@ -1401,7 +1401,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
   | ------------ | ------------ | ------------ | ------------ |
     |**`semitones`** |number||The desired adjustment value in semitones (between 0 and 127). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
     |[**`cents`**] |number|0|The desired adjustment value in cents (integer between 0-127).|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -1518,7 +1518,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** |string||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
     |[**`data`**] |number|[]|A single integer or an array of integers with a maximum length of 2 specifying the desired data.|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.channels`**] |number|&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -1547,7 +1547,7 @@ use a numbering scheme starting at 1.
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |number||The number of the song to select (integer between 1 and 128).|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -1574,7 +1574,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`value`**] |number|0|The MIDI beat to cue to (integer between 0 and 16383).|
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
 
@@ -1859,7 +1859,7 @@ when the MIDI device is unplugged.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"disconnected"`|
-  |**`target`** |Object|Object with properties describing the {@link Output} that triggered the event. This is not the actual `Output` as it is no longer available.|
+  |**`target`** |object|Object with properties describing the {@link Output} that triggered the event. This is not the actual `Output` as it is no longer available.|
   |**`target.connection`** |string|`"closed"`|
   |**`target.id`** |string|ID of the input|
   |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|

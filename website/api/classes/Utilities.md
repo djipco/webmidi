@@ -31,7 +31,7 @@ If the input is a note number or identifier, it is possible to specify options b
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`input`**] |number|||
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.duration`**] |number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
     |[**`options.attack`**] |number|64|The note's attack velocity as an integer between 0 and 127.|
     |[**`options.release`**] |number|64|The note's release velocity as an integer between 0 and 127.|
@@ -65,7 +65,7 @@ input.
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`notes`**] |number|||
-    |[**`options`**] |Object|{}||
+    |[**`options`**] |object|{}||
     |[**`options.duration`**] |number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
     |[**`options.attack`**] |number|0.5|The note's attack velocity as a decimal number between 0 and 1.|
     |[**`options.release`**] |number|0.5|The note's release velocity as a decimal number between 0 and 1.|
@@ -124,7 +124,7 @@ supplied.
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`object`** |Object|||
+    |**`object`** |object|||
     |**`value`** |*|||
 
 

@@ -23,7 +23,7 @@ module) version, you get an already-instantiated object when you import the modu
 Object containing system-wide default values that can be changed to customize how the library
 works.
 
-**Type**: Object<br />
+**Type**: object<br />
 
 
   **Properties**
@@ -407,7 +407,7 @@ WebMidi.enable().then(ports => {
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] |Object|||
+    |[**`options`**] |object|||
     |[**`options.callback`**] |function||A function to execute once the operation completes. This function will receive an `Error` object if enabling the Web MIDI API failed.|
     |[**`options.sysex`**] |boolean|false|Whether to enable MIDI system exclusive messages or not.|
     |[**`options.validation`**] |boolean|true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting [`validation`](#validation) to `false` improves performance but should only be done once the project has been thoroughly tested with [`validation`](#validation)  turned on.|
@@ -802,7 +802,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"disconnected"`|
-  |**`target`** |Object|Object with properties describing the [`Input`](Input) or [`Output`](Output) that triggered the event.|
+  |**`target`** |object|Object with properties describing the [`Input`](Input) or [`Output`](Output) that triggered the event.|
   |**`target.connection`** |string|`"closed"`|
   |**`target.id`** |string|ID of the input|
   |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
