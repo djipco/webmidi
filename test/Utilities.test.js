@@ -990,7 +990,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("from7Bit()", function() {
+  describe("from7bitToFloat()", function() {
 
     it("should return the correct value for normal input", function () {
 
@@ -1084,6 +1084,108 @@ describe("Utilities Object", function() {
         expect(
           Utilities.fromFloatTo7Bit(item.input)
         ).to.equal(item.output);
+      }
+
+    });
+
+  });
+
+  describe("fromMsbLsbToFloat()", function() {
+
+    it("should return the correct value for normal input", function () {
+
+      // Arrange
+      const items = [
+        {msb: 0, lsb: 0, output: 0/16383},
+        {msb: 0, lsb: 64, output: 64/16383},
+        {msb: 0, lsb: 127, output: 127/16383},
+        {msb: 64, lsb: 0, output: 8192/16383},
+        {msb: 64, lsb: 64, output: 8256/16383},
+        {msb: 64, lsb: 127, output: 8319/16383},
+        {msb: 127, lsb: 0, output: 16256/16383},
+        {msb: 127, lsb: 64, output: 16320/16383},
+        {msb: 127, lsb: 127, output: 16383/16383}
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        expect(
+          Utilities.fromMsbLsbToFloat(item.msb, item.lsb)
+        ).to.equal(item.output);
+      }
+
+    });
+
+    it("should return the correct value for out of bounds input", function () {
+
+      // Arrange
+      const items = [
+        {msb: -1, lsb: 0, output: 0},
+        {msb: 0, lsb: -1, output: 0},
+        {msb: 128, lsb: 0, output: 16256/16383},
+        {msb: 0, lsb: 128, output: 127/16383}
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        expect(
+          Utilities.fromMsbLsbToFloat(item.msb, item.lsb)
+        ).to.equal(item.output);
+      }
+
+    });
+
+  });
+
+  describe("fromFloatToMsbLsb()", function() {
+
+    it("should return the correct value for normal input", function () {
+
+      // Arrange
+      const items = [
+        {input: 0, msb: 0, lsb: 0},
+        {input: 0.25, msb: 32, lsb: 0},
+        {input: 0.5, msb: 64, lsb: 0},
+        {input: 0.75, msb: 95, lsb: 127},
+        {input: 1, msb: 127, lsb: 127}
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        let {msb, lsb} = Utilities.fromFloatToMsbLsb(item.input);
+        expect(msb).to.equal(item.msb);
+        expect(lsb).to.equal(item.lsb);
+      }
+
+    });
+
+    it("should return the correct value for out of bounds input", function () {
+
+      // Arrange
+      const items = [
+        {input: -10, msb: 0, lsb: 0},
+        {input: -1, msb: 0, lsb: 0},
+        {input: 1.2, msb: 127, lsb: 127},
+        {input: 12, msb: 127, lsb: 127},
+      ];
+
+      // Act
+      items.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        let {msb, lsb} = Utilities.fromFloatToMsbLsb(item.input);
+        expect(msb).to.equal(item.msb);
+        expect(lsb).to.equal(item.lsb);
       }
 
     });

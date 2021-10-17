@@ -395,6 +395,46 @@ export class Utilities {
   }
 
   /**
+   * Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
+   * is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
+   *
+   * @param msb {number} The most significant byte as a integer between 0 and 127.
+   * @param [lsb=0] {number} The least significant byte as a integer between 0 and 127.
+   * @returns {number} A float between 0 and 1.
+   */
+  static fromMsbLsbToFloat(msb, lsb = 0) {
+
+    if (WebMidi.validation) {
+      msb = Math.min(Math.max(parseInt(msb) || 0, 0), 127);
+      lsb = Math.min(Math.max(parseInt(lsb) || 0, 0), 127);
+    }
+
+    const value = ((msb << 7) + lsb) / 16383;
+    return Math.min(Math.max(value, 0), 1);
+
+  }
+
+  /**
+   * Extracts 7bit MSB and LSB values from the supplied float.
+   *
+   * @param value {number} A float between 0 and 1
+   * @returns {{lsb: number, msb: number}}
+   */
+  static fromFloatToMsbLsb(value) {
+
+    if (WebMidi.validation) {
+      value = Math.min(Math.max(parseFloat(value) || 0, 0), 1);
+    }
+
+    const multiplied = Math.round(value * 16383);
+    const msb = multiplied >> 7;
+    const lsb = multiplied & 0x7F;
+
+    return {msb: msb, lsb: lsb};
+
+  }
+
+  /**
    * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
    * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
    * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
