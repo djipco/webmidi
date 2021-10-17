@@ -834,7 +834,7 @@ class Utilities {
     }
 
     const value = ((msb << 7) + lsb) / 16383;
-    return Math.min(Math.max(value / 127, 0), 1);
+    return Math.min(Math.max(value, 0), 1);
   }
   /**
    * Extracts 7bit MSB and LSB values from the supplied float.
