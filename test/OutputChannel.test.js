@@ -197,7 +197,10 @@ describe("OutputChannel Object", function() {
 
       // Assert
       expect(
-        spy.calledOnceWithExactly(Enumerations.MIDI_REGISTERED_PARAMETERS["pitchbendrange"], options)
+        spy.calledOnceWithExactly(
+          Enumerations.MIDI_REGISTERED_PARAMETERS["pitchbendrange"],
+          options
+        )
       ).to.be.true;
 
     });
