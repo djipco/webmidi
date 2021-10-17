@@ -829,8 +829,8 @@ class Utilities {
 
   static fromMsbLsbToFloat(msb, lsb = 0) {
     if (wm.validation) {
-      msb = parseInt(msb) || 0;
-      lsb = parseInt(lsb) || 0;
+      msb = Math.min(Math.max(parseInt(msb) || 0, 0), 127);
+      lsb = Math.min(Math.max(parseInt(lsb) || 0, 0), 127);
     }
 
     const value = ((msb << 7) + lsb) / 16383;
