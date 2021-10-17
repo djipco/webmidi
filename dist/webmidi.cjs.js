@@ -4468,9 +4468,14 @@ class OutputChannel extends e {
     } else if (options.rawValue && !Array.isArray(value)) {
       msb = value;
     } else {
-      let nLevel = Math.round((value + 1) / 2 * 16383);
-      msb = nLevel >> 7 & 0x7F;
-      lsb = nLevel & 0x7F;
+      // let nLevel = Math.round((value + 1) / 2 * 16383);
+      // msb = (nLevel >> 7) & 0x7F;
+      // lsb = nLevel & 0x7F;
+      let nLevel = Math.round((value + 1) / 2);
+      ({
+        msb,
+        lsb
+      } = Utilities.fromFloatToMsbLsb(nLevel));
     }
 
     this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
