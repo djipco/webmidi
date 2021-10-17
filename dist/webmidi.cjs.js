@@ -846,12 +846,12 @@ class Utilities {
 
   static fromFloatToMsbLsb(value) {
     if (wm.validation) {
-      value = parseFloat(value) || 0;
+      value = Math.min(Math.max(parseFloat(value) || 0, 0), 1);
     }
 
     const multiplied = Math.round(value * 16383);
-    const msb = Math.min(Math.max(multiplied >> 7, 0), 127);
-    const lsb = Math.min(Math.max(multiplied & 0x7F, 0), 127);
+    const msb = multiplied >> 7;
+    const lsb = multiplied & 0x7F;
     return {
       msb: msb,
       lsb: lsb
