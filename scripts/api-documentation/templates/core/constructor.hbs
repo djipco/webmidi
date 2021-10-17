@@ -28,10 +28,10 @@
 
 {{! Exceptions }}
 {{#if this.exceptions}}
-  **Throws**:
-  {{#each this.exceptions}}
-    * {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{this.description}}
-  {{/each}}
+**Throws**:
+{{#each this.exceptions}}
+* {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{this.description}}
+{{/each}}
 {{/if}}
 
 {{/if}}
