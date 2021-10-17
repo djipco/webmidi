@@ -123,6 +123,9 @@ methods will continue to work but will trigger a deprecation warning in the cons
 - If a device is disconnected and connected back, it will retain its state (such as listeners, 
 etc.). This is particularly useful when the computer goes to sleep and is brought back online.
 
+- Several conversion methods have been added to the new `Utilities` class such as 
+`from7bitToFloat()`, `fromFloatTo7Bit()`, `fromMsbLsbToFloat()`, `fromFloatToMsbLsb()`, etc.
+
 ### Deprecated
 
 - The `velocity` option parameter has been renamed `attack`. There are new `rawAttack` and 
