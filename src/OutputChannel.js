@@ -1344,7 +1344,7 @@ export class OutputChannel extends EventEmitter {
       msb = value;
     } else {
       let nLevel = Math.round((value + 1) / 2 * 16383);
-      msb = (nLevel >> 7) & 0x7F;
+      msb = nLevel >> 7;
       lsb = nLevel & 0x7F;
     }
 
