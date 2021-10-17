@@ -427,10 +427,11 @@ export class Utilities {
     }
 
     const multiplied = Math.round(value * 16383);
-    const msb = multiplied >> 7;
-    const lsb = multiplied & 0x7F;
 
-    return {msb: msb, lsb: lsb};
+    return {
+      msb: multiplied >> 7,
+      lsb: multiplied & 0x7F
+    };
 
   }
 
