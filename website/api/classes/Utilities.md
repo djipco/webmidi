@@ -82,6 +82,62 @@ input.
   * TypeError An element could not be parsed as a note.
 
 
+### `.from7bitToFloat(...)`
+
+
+Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
+bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
+smaller than 0.
+
+Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
+input value cannot be converted to an integer, the method returns 0.
+
+
+  **Parameters**
+
+  > Signature: `from7bitToFloat(value)`
+
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`value`** |||A positive integer between 0 and 127 (inclusive)|
+
+
+**Returns**: `number`
+> A number between 0 and 1 (inclusive)
+
+
+**Attributes**: static
+
+
+
+### `.fromFloatTo7Bit(...)`
+
+
+Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
+The input value should be number between 0 and 1 (inclusively). The returned value is
+restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
+
+Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
+the input value cannot be converted to a number, the method returns 0.
+
+
+  **Parameters**
+
+  > Signature: `fromFloatTo7Bit(value)`
+
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`value`** |||A positive integer between 0 and 127 (inclusive)|
+
+
+**Returns**: `number`
+> A number between 0 and 1 (inclusive)
+
+
+**Attributes**: static
+
+
+
 ### `.getNoteDetails(...)`
 
 **Since**: 3.0.0<br />
@@ -218,62 +274,6 @@ integers between 1 and 16 are silently ignored.
 
 **Returns**: `Array`
 > An array of 0 or more valid MIDI channel numbers.
-
-
-**Attributes**: static
-
-
-
-### `.to7Bit(...)`
-
-
-Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-The input value should be number between 0 and 1 (inclusively). The returned value is
-restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
-
-Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
-the input value cannot be converted to a number, the method returns 0.
-
-
-  **Parameters**
-
-  > Signature: `to7Bit(value)`
-
-  | Parameter    | Type      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |||A positive integer between 0 and 127 (inclusive)|
-
-
-**Returns**: `number`
-> A number between 0 and 1 (inclusive)
-
-
-**Attributes**: static
-
-
-
-### `.toNormalized(...)`
-
-
-Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
-bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
-smaller than 0.
-
-Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
-input value cannot be converted to an integer, the method returns 0.
-
-
-  **Parameters**
-
-  > Signature: `toNormalized(value)`
-
-  | Parameter    | Type      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |||A positive integer between 0 and 127 (inclusive)|
-
-
-**Returns**: `number`
-> A number between 0 and 1 (inclusive)
 
 
 **Attributes**: static
