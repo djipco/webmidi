@@ -148,18 +148,22 @@ class t {
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
  * `Note` objects can be played back on a single channel by calling
- * [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple channels of the same
- * output by calling [Output.playNote()]{@link Output#playNote}.
+ * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
+ * output, by calling [`Output.playNote()`]{@link Output#playNote}.
  *
- * The note has attack and release velocities set at 0.5 by default. These can be changed by passing
- * in the appropriate option. It is also possible to set a system-wide default for attack and
- * release velocities by using the `WebMidi.defaults` property.
+ * The note has [`attack`](#attack) and [`release`](#release) velocities set at 0.5 by default.
+ * These can be changed by passing in the appropriate option. It is also possible to set a
+ * system-wide default for attack and release velocities by using the
+ * [`WebMidi.defaults`](WebMidi#defaults) property.
  *
- * The note may have a duration. If it does, playback will be automatically stopped when the
- * duration has elapsed by sending a **noteoff** event. By default, the duration is set to
+ * If you prefer to work with raw MIDI values (0-127), you can use [`rawAttack`](#rawAttack) and
+ * [`rawRelease`](#rawRelease) to both get and set the values.
+ *
+ * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
+ * when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
  * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
- * method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
- * [Output.stopNote()]{@link Output#stopNote} or similar.
+ * method such as [`OutputChannel.stopNote()`]{@link OutputChannel#stopNote},
+ * [`Output.stopNote()`]{@link Output#stopNote} or similar.
  *
  * @param value {string|number} The value used to create the note. If an identifier string is used,
  * it must start with the note letter, optionally followed by an accidental and followed by the
@@ -208,9 +212,13 @@ class Note {
 
     if (options.duration != undefined) this.duration = options.duration;
     if (options.attack != undefined) this.attack = options.attack;
-    if (options.rawAttack != undefined) this.attack = Utilities.toNormalized(options.rawAttack);
+    if (options.rawAttack != undefined) this.attack = Utilities.from7bitToFloat(options.rawAttack);
     if (options.release != undefined) this.release = options.release;
-    if (options.rawRelease != undefined) this.release = Utilities.toNormalized(options.rawRelease); // Assign note depending on the way it was specified (name or number)
+
+    if (options.rawRelease != undefined) {
+      this.release = Utilities.from7bitToFloat(options.rawRelease);
+    } // Assign note depending on the way it was specified (name or number)
+
 
     if (Number.isInteger(value)) {
       this.identifier = Utilities.toNoteIdentifier(value);
@@ -376,11 +384,11 @@ class Note {
 
 
   get rawAttack() {
-    return Utilities.to7Bit(this._attack);
+    return Utilities.fromFloatTo7Bit(this._attack);
   }
 
   set rawAttack(value) {
-    this._attack = Utilities.toNormalized(value);
+    this._attack = Utilities.from7bitToFloat(value);
   }
   /**
    * The release velocity of the note as a positive integer between 0 and 127.
@@ -390,11 +398,11 @@ class Note {
 
 
   get rawRelease() {
-    return Utilities.to7Bit(this._release);
+    return Utilities.fromFloatTo7Bit(this._release);
   }
 
   set rawRelease(value) {
-    this._release = Utilities.toNormalized(value);
+    this._release = Utilities.from7bitToFloat(value);
   }
   /**
    * The MIDI number of the note. This number is derived from the note identifier using C4 as a
@@ -785,7 +793,7 @@ class Utilities {
    */
 
 
-  static toNormalized(value) {
+  static from7bitToFloat(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -804,7 +812,7 @@ class Utilities {
    */
 
 
-  static to7Bit(value) {
+  static fromFloatTo7Bit(value) {
     if (value === Infinity) value = 1;
     value = parseFloat(value) || 0;
     return Math.min(Math.max(Math.round(value * 127), 0), 127);
@@ -1390,7 +1398,7 @@ class InputChannel extends e {
         rawAttack: 0,
         rawRelease: data2
       });
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
 
@@ -1427,7 +1435,7 @@ class InputChannel extends e {
       event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
         rawAttack: data2
       });
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
       // be removed in future versions (@deprecated).
 
@@ -1462,7 +1470,7 @@ class InputChannel extends e {
       event.identifier = Utilities.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
       event.key = Utilities.toNoteNumber(event.identifier);
       event.rawKey = data1;
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
       // removed from future versions (@deprecated).
 
@@ -1493,7 +1501,7 @@ class InputChannel extends e {
         number: data1,
         name: this.getCcNameByNumber(data1)
       };
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2; // Trigger channel mode message events (if appropriate)
 
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
@@ -1541,7 +1549,7 @@ class InputChannel extends e {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.value = Utilities.toNormalized(data1);
+      event.value = Utilities.from7bitToFloat(data1);
       event.rawValue = data1;
     } else if (event.type === "pitchbend") {
       /**
@@ -1949,7 +1957,7 @@ class InputChannel extends e {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: Utilities.toNormalized(e.message.dataBytes[1]),
+      value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
       rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     }; // Retrieve controller type and append to event type
@@ -3336,7 +3344,7 @@ class OutputChannel extends e {
     } // Normalize pressure to integer
 
 
-    if (!options.rawValue) pressure = Utilities.to7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
+    if (!options.rawValue) pressure = Utilities.fromFloatTo7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
     if (!Array.isArray(target)) target = [target];
@@ -7139,8 +7147,8 @@ class WebMidi extends e {
 
     this.defaults = {
       note: {
-        attack: Utilities.toNormalized(64),
-        release: Utilities.toNormalized(64),
+        attack: Utilities.from7bitToFloat(64),
+        release: Utilities.from7bitToFloat(64),
         duration: Infinity
       }
     };
