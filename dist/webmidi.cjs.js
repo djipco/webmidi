@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.19
+ * WebMidi.js v3.0.0-alpha.20
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on October 17th, 2021.
@@ -4468,16 +4468,10 @@ class OutputChannel extends e {
     } else if (options.rawValue && !Array.isArray(value)) {
       msb = value;
     } else {
-      // let nLevel = Math.round((value + 1) / 2 * 16383);
-      // msb = nLevel >> 7;
-      // lsb = nLevel & 0x7F;
-      // const result = Utilities.fromFloatToMsbLsb((value + 1) / 2);
-      // msb = result.msb;
-      // lsb = result.lsb;
-      ({
-        msb,
-        lsb
-      } = Utilities.fromFloatToMsbLsb((value + 1) / 2));
+      const result = Utilities.fromFloatToMsbLsb((value + 1) / 2); // b/c value is -1 to 1
+
+      msb = result.msb;
+      lsb = result.lsb;
     }
 
     this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1), lsb, msb], {
