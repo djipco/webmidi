@@ -138,6 +138,31 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 
+### `.fromMsbLsbToFloat(...)`
+
+
+Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
+is within between 0 and 127 even if the result is greater than 1 or smaller than 0.
+
+
+  **Parameters**
+
+  > Signature: `fromMsbLsbToFloat(msb, [lsb])`
+
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`msb`** |number||The most significant byte as a integer between 0 and 127.|
+    |[**`lsb`**] |number|0|The least significant byte as a integer between 0 and 127.|
+
+
+**Returns**: `number`
+> A float between 0 and 1.
+
+
+**Attributes**: static
+
+
+
 ### `.getNoteDetails(...)`
 
 **Since**: 3.0.0<br />
