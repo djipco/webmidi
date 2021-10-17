@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.19
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on October 13th, 2021.
+ * Build generated on October 17th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -166,7 +166,7 @@ class t {
  * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
  * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
- * @param {Object} [options={}]
+ * @param {object} [options={}]
  *
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
@@ -378,6 +378,10 @@ class Note {
   get rawAttack() {
     return Utilities.to7Bit(this._attack);
   }
+
+  set rawAttack(value) {
+    this._attack = Utilities.toNormalized(value);
+  }
   /**
    * The release velocity of the note as a positive integer between 0 and 127.
    * @type {number}
@@ -387,6 +391,10 @@ class Note {
 
   get rawRelease() {
     return Utilities.to7Bit(this._release);
+  }
+
+  set rawRelease(value) {
+    this._release = Utilities.toNormalized(value);
   }
   /**
    * The MIDI number of the note. This number is derived from the note identifier using C4 as a
@@ -678,7 +686,7 @@ class Utilities {
    *
    * @param [input] {number|string|Note}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
@@ -726,7 +734,7 @@ class Utilities {
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
@@ -828,7 +836,7 @@ class Utilities {
    * Returns the name of the first property of the supplied object whose value is equal to the one
    * supplied.
    *
-   * @param object {Object}
+   * @param object {object}
    * @param value {*}
    * @returns {string} The name of the matching property
    * @static
@@ -1316,7 +1324,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#midimessage
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {Input} target The `InputChannel` that triggered the event.
      * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -1360,7 +1368,7 @@ class InputChannel extends e {
        *
        * @event InputChannel#noteoff
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"noteoff"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1370,7 +1378,7 @@ class InputChannel extends e {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} note A [`Note`](Note) object containing information such as note name,
+       * @property {object} note A [`Note`](Note) object containing information such as note name,
        * octave and release velocity.
        * @property {number} value The release velocity amount expressed as a float between 0 and 1.
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
@@ -1395,7 +1403,7 @@ class InputChannel extends e {
        *
        * @event InputChannel#noteon
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"noteon"`
        *
        * @property {InputChannel} channel The `InputChannel` object that triggered the event.
@@ -1431,7 +1439,7 @@ class InputChannel extends e {
        *
        * @event InputChannel#keyaftertouch
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"keyaftertouch"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1465,7 +1473,7 @@ class InputChannel extends e {
        *
        * @event InputChannel#controlchange
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"controlchange"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1475,9 +1483,9 @@ class InputChannel extends e {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} controller
-       * @property {Object} controller.number The number of the controller.
-       * @property {Object} controller.name The usual name or function of the controller.
+       * @property {object} controller
+       * @property {object} controller.number The number of the controller.
+       * @property {object} controller.name The usual name or function of the controller.
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1499,7 +1507,7 @@ class InputChannel extends e {
        *
        * @event InputChannel#programchange
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"programchange"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1520,7 +1528,7 @@ class InputChannel extends e {
        *
        * @event InputChannel#channelaftertouch
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"channelaftertouch"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1541,7 +1549,7 @@ class InputChannel extends e {
        *
        * @event InputChannel#pitchbend
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"pitchbend"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1572,7 +1580,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#allsoundoff
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"allsoundoff"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1588,7 +1596,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#resetallcontrollers
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"resetallcontrollers"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1606,7 +1614,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#localcontrol
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"localcontrol"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1628,7 +1636,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#allnotesoff
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"allnotesoff"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1645,7 +1653,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#omnimode
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"omnimode"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1673,7 +1681,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#monomode
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"monomode"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -1769,6 +1777,7 @@ class InputChannel extends e {
    * Indicates whether the specified controller can be part of an RPN or NRPN sequence
    * @param controller
    * @returns {boolean}
+   * @private
    */
 
 
@@ -1787,11 +1796,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndataentrycoarse
+     * @event InputChannel#nrpn:dataentrycoarse
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndataentrycoarse"`
+     * @property {string} type `"nrpn:dataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1807,11 +1816,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'dataentryfine' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndataentryfine
+     * @event InputChannel#nrpn:dataentryfine
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndataentryfine"`
+     * @property {string} type `"nrpn:dataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1827,11 +1836,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndatabuttonincrement
+     * @event InputChannel#nrpn:databuttonincrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndatabuttonincrement"`
+     * @property {string} type `"nrpn:databuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1847,11 +1856,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndatabuttondecrement
+     * @event InputChannel#nrpn:databuttondecrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndatabuttondecrement"`
+     * @property {string} type `"nrpn:databuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1867,11 +1876,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndataentrycoarse
+     * @event InputChannel#rpn:dataentrycoarse
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndataentrycoarse"`
+     * @property {string} type `"rpn:dataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1885,11 +1894,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'dataentryfine' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndataentryfine
+     * @event InputChannel#rpn:dataentryfine
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndataentryfine"`
+     * @property {string} type `"rpn:dataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1903,11 +1912,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'databuttonincrement' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndatabuttonincrement
+     * @event InputChannel#rpn:databuttonincrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndatabuttonincrement"`
+     * @property {string} type `"rpn:databuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1921,11 +1930,11 @@ class InputChannel extends e {
     /**
      * Event emitted when a 'databuttondecrement' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndatabuttondecrement
+     * @event InputChannel#rpn:databuttondecrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndatabuttondecrement"`
+     * @property {string} type `"rpn:databuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1945,7 +1954,7 @@ class InputChannel extends e {
       type: type === "rpn" ? "rpn" : "nrpn"
     }; // Retrieve controller type and append to event type
 
-    event.type += Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
+    event.type += ":" + Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
       event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
@@ -2107,8 +2116,8 @@ class InputChannel extends e {
     return [// MIDI channel message events
     "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
     "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // NRPN events
-    "nrpndataentrycoarse", "nrpndataentryfine", "nrpndatabuttonincrement", "nrpndatabuttondecrement", // RPN events
-    "rpndataentrycoarse", "rpndataentryfine", "rpndatabuttonincrement", "rpndatabuttondecrement"];
+    "nrpn:dataentrycoarse", "nrpn:dataentryfine", "nrpn:databuttonincrement", "nrpn:databuttondecrement", // RPN events
+    "rpn:dataentrycoarse", "rpn:dataentryfine", "rpn:databuttonincrement", "rpn:databuttondecrement"];
   }
 
 }
@@ -2215,7 +2224,7 @@ class Input extends e {
        * method.
        *
        * @event Input#opened
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"opened"`
@@ -2229,7 +2238,7 @@ class Input extends e {
        * method.
        *
        * @event Input#closed
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"closed"`
@@ -2243,11 +2252,11 @@ class Input extends e {
        * when the MIDI device is unplugged.
        *
        * @event Input#disconnected
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Input} that
+       * @property {object} target Object with properties describing the {@link Input} that
        * triggered the event. This is not the actual `Input` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
@@ -2285,7 +2294,7 @@ class Input extends e {
      *
      * @event Input#midimessage
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {Input} target The `Input` that triggered the event.
      * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -2502,7 +2511,7 @@ class Input extends e {
    * This function will receive an event parameter object. For details on this object's properties,
    * check out the documentation for the various events (links above).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {array} [options.arguments] An array of arguments which will be passed separately to the
    * callback function. This array is stored in the `arguments` property of the `Listener` object
@@ -2512,7 +2521,7 @@ class Input extends e {
    * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
    * input-wide events.
    *
-   * @param {Object} [options.context=this] The value of `this` in the callback function.
+   * @param {object} [options.context=this] The value of `this` in the callback function.
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
    * automatically expires.
@@ -2646,7 +2655,7 @@ class Input extends e {
    * This function will receive an event parameter object. For details on this object's properties,
    * check out the documentation for the various events (links above).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {array} [options.arguments] An array of arguments which will be passed separately to the
    * callback function. This array is stored in the `arguments` property of the `Listener` object
@@ -2656,7 +2665,7 @@ class Input extends e {
    * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
    * input-wide events.
    *
-   * @param {Object} [options.context=this] The value of `this` in the callback function.
+   * @param {object} [options.context=this] The value of `this` in the callback function.
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
    * automatically expires.
@@ -2694,13 +2703,13 @@ class Input extends e {
    *
    * @param listener {function} The callback function to check for.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
    * such integers representing the MIDI channel(s) to check. This parameter is ignored for
    * input-wide events.
    *
-   * @returns {Boolean} Boolean value indicating whether or not the channel(s) already have this
+   * @returns {boolean} Boolean value indicating whether or not the channel(s) already have this
    * listener defined.
    *
    * @throws Error For channel-specific events, 'options.channels' must be defined.
@@ -2741,11 +2750,11 @@ class Input extends e {
    * By default, channel-specific listeners will be removed from all channels unless the
    * `options.channel` narrows it down.
    *
-   * @param [type] {String} The type of the event.
+   * @param [type] {string} The type of the event.
    *
    * @param [listener] {Function} The callback function to check for.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
    * such integers representing the MIDI channel(s) to match. This parameter is ignored for
@@ -2918,7 +2927,7 @@ class Input extends e {
  *
  * @event Input#sysex
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -2937,7 +2946,7 @@ class Input extends e {
  *
  * @event Input#timecode
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -2959,7 +2968,7 @@ class Input extends e {
  *
  * @event Input#songposition
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -2981,7 +2990,7 @@ class Input extends e {
  *
  * @event Input#songselect
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3004,7 +3013,7 @@ class Input extends e {
  *
  * @event Input#tunerequest
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3026,7 +3035,7 @@ class Input extends e {
  *
  * @event Input#clock
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3048,7 +3057,7 @@ class Input extends e {
  *
  * @event Input#start
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3070,7 +3079,7 @@ class Input extends e {
  *
  * @event Input#continue
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3092,7 +3101,7 @@ class Input extends e {
  *
  * @event Input#stop
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3114,7 +3123,7 @@ class Input extends e {
  *
  * @event Input#activesensing
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3136,7 +3145,7 @@ class Input extends e {
  *
  * @event Input#reset
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3244,7 +3253,7 @@ class OutputChannel extends e {
    * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
    * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a positive
@@ -3289,7 +3298,7 @@ class OutputChannel extends e {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure is defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {boolean} [options.useRawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -3447,7 +3456,7 @@ class OutputChannel extends e {
    * calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first
    * controller)
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3510,7 +3519,7 @@ class OutputChannel extends e {
    *
    * @private
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3545,7 +3554,7 @@ class OutputChannel extends e {
    *
    * @private
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3568,7 +3577,7 @@ class OutputChannel extends e {
    *
    * @private
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3594,7 +3603,7 @@ class OutputChannel extends e {
    * @param parameter {number[]} A two-position array of integers specifying the two control bytes
    * (0x65, 0x64) that identify the registered parameter. The integers must be between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3618,7 +3627,7 @@ class OutputChannel extends e {
    *
    * @param data {number|number[]}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3673,7 +3682,7 @@ class OutputChannel extends e {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3736,7 +3745,7 @@ class OutputChannel extends e {
    * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
    * parameter.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3805,7 +3814,7 @@ class OutputChannel extends e {
    * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration] A positive number larger than 0 representing the number of
    * milliseconds to wait before sending a **note off** message. If invalid or left undefined, only
@@ -3874,7 +3883,7 @@ class OutputChannel extends e {
    * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3977,7 +3986,7 @@ class OutputChannel extends e {
    * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
    * {@link Note} object or an array of the previous types.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4070,7 +4079,7 @@ class OutputChannel extends e {
    *
    * @param value {number} The value to send (integer between 0-127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4113,7 +4122,7 @@ class OutputChannel extends e {
    *
    * @param [state=true] {boolean} Whether to activate OMNI mode (`true`) or not (`false`).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4145,7 +4154,7 @@ class OutputChannel extends e {
    * @param [pressure] {number} The pressure level (between 0 and 1). If the `rawValue` option is
    * set to `true`, the pressure can be defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -4195,7 +4204,7 @@ class OutputChannel extends e {
    *
    * @param [value=0.0] {number} The desired decimal adjustment value in semitones (-65 < x < 64)
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4888,7 +4897,7 @@ class Output extends e {
        * [open()]{@link Output#open} method.
        *
        * @event Output#opened
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"opened"`
@@ -4903,7 +4912,7 @@ class Output extends e {
        * [close()]{@link Output#close} method.
        *
        * @event Output#closed
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"closed"`
@@ -4918,11 +4927,11 @@ class Output extends e {
        * when the MIDI device is unplugged.
        *
        * @event Output#disconnected
-       * @type {Object}
+       * @type {object}
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Object} target Object with properties describing the {@link Output} that
+       * @property {object} target Object with properties describing the {@link Output} that
        * triggered the event. This is not the actual `Output` as it is no longer available.
        * @property {string} target.connection `"closed"`
        * @property {string} target.id ID of the input
@@ -4998,7 +5007,7 @@ class Output extends e {
    * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
    * object (not available in Node.js) containing the message bytes or a `Message` object.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a positive
@@ -5123,7 +5132,7 @@ class Output extends e {
    * @param {number[]|Uint8Array} [data=[]] A Uint8Array or an array of unsigned integers between 0
    * and 127. This is the data you wish to transfer.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5191,7 +5200,7 @@ class Output extends e {
    *
    * @param value {number} The quarter frame message content (integer between 0 and 127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5223,7 +5232,7 @@ class Output extends e {
    *
    * @param [value=0] {number} The MIDI beat to cue to (integer between 0 and 16383).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5265,7 +5274,7 @@ class Output extends e {
    *
    * @param value {number} The number of the song to select (integer between 1 and 128).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5310,7 +5319,7 @@ class Output extends e {
   /**
    * Sends a MIDI **tune request** real-time message.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5333,7 +5342,7 @@ class Output extends e {
    * Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
    * for every quarter note.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5355,7 +5364,7 @@ class Output extends e {
    * song at beat 0. To start playback elsewhere in the song, use the
    * [sendContinue()]{@link Output#sendContinue} method.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5377,7 +5386,7 @@ class Output extends e {
    * stopped or where it was last cued with a song position message. To start playback from the
    * start, use the [sendStart()]{@link Output#sendStart}` method.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5398,7 +5407,7 @@ class Output extends e {
    * Sends a **stop** real-time message. This tells the device connected to this output to stop
    * playback immediately (or at the scheduled time).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5420,7 +5429,7 @@ class Output extends e {
    * that the connection is still good. Active sensing messages should be sent every 300 ms if there
    * was no other activity on the MIDI port.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5441,7 +5450,7 @@ class Output extends e {
    * Sends a **reset** real-time message. This tells the device connected to this output that it
    * should reset itself to a default state.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -5487,7 +5496,7 @@ class Output extends e {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -5626,7 +5635,7 @@ class Output extends e {
    *
    * @param [value=0] {number} The value to send (0-127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -5673,7 +5682,7 @@ class Output extends e {
    *
    * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -5747,7 +5756,7 @@ class Output extends e {
    * @param [data=[]] {number|number[]} A single integer or an array of integers with a maximum
    * length of 2 specifying the desired data.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -5786,7 +5795,7 @@ class Output extends e {
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
    * pressure can be defined by using an integer between 0 and 127.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -5853,7 +5862,7 @@ class Output extends e {
    * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
    * (1/100 of a semitone). An LSB of `64` also means no bend.
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
    * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -7117,7 +7126,7 @@ class WebMidi extends e {
      * Object containing system-wide default values that can be changed to customize how the library
      * works.
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {object}  defaults.note - Default values relating to note
      * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
@@ -7230,9 +7239,10 @@ class WebMidi extends e {
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered
+   * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered once the user has
+   * granted access to use MIDI.
    * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
-   * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is ready
+   * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is fully ready
    * 4. specified callback (if any) is executed
    * 5. promise is resolved and fulfilled with the `WebMidi` object.
    *
@@ -7250,7 +7260,7 @@ class WebMidi extends e {
    * })
    * ```
    *
-   * @param [options] {Object}
+   * @param [options] {object}
    *
    * @param [options.callback] {function} A function to execute once the operation completes. This
    * function will receive an `Error` object if enabling the Web MIDI API failed.
@@ -7325,7 +7335,7 @@ class WebMidi extends e {
      * Event emitted when an error occurs trying to enable `WebMidi`
      *
      * @event WebMidi#error
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
@@ -7341,10 +7351,11 @@ class WebMidi extends e {
       error: undefined
     };
     /**
-     * Event emitted once the MIDI interface has been successfully created.
+     * Event emitted once the MIDI interface has been successfully created (which implies user has
+     * granted access to MIDI).
      *
      * @event WebMidi#midiaccessgranted
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
@@ -7360,7 +7371,7 @@ class WebMidi extends e {
      * Event emitted once `WebMidi` has been fully enabled
      *
      * @event WebMidi#enabled
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {WebMidi} target The object that triggered the event
@@ -7433,7 +7444,7 @@ class WebMidi extends e {
        * Event emitted once `WebMidi` has been successfully disabled.
        *
        * @event WebMidi#disabled
-       * @type {Object}
+       * @type {object}
        * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {WebMidi} target The object that triggered the event
@@ -7722,7 +7733,7 @@ class WebMidi extends e {
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
      * @event WebMidi#connected
-     * @type {Object}
+     * @type {object}
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
      * @property {string} type `"connected"`
@@ -7736,11 +7747,11 @@ class WebMidi extends e {
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
      *
      * @event WebMidi#disconnected
-     * @type {Object}
+     * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {string} type `"disconnected"`
-     * @property {Object} target Object with properties describing the [`Input`](Input) or
+     * @property {object} target Object with properties describing the [`Input`](Input) or
      * [`Output`](Output) that triggered the event.
      * @property {string} target.connection `"closed"`
      * @property {string} target.id ID of the input
