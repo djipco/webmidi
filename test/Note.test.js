@@ -427,6 +427,56 @@ describe("Note Object", function() {
 
     });
 
+    it("should assign correct value to 'rawAttack'", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let values = [
+        {value: 0, rawValue: 0},
+        {value: 0.25, rawValue: 32},
+        {value: 0.5, rawValue: 64},
+        {value: 0.75, rawValue: 95},
+        {value: 1, rawValue: 127},
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        note.attack = item.value;
+        expect(note.rawAttack).to.equal(item.rawValue);
+      }
+
+    });
+
+  });
+
+  describe("set rawAttack()", function () {
+
+    it("should assign correct value to 'attack'", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let values = [
+        {value: 0, rawValue: 0},
+        {value: 0.25, rawValue: 32},
+        {value: 0.5, rawValue: 64},
+        {value: 0.75, rawValue: 95},
+        {value: 1, rawValue: 127},
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        note.rawAttack = item.rawValue;
+        expect(note.attack).to.be.within(item.value - 0.005, item.value + 0.005);
+      }
+
+    });
+
   });
 
   describe("set release()", function () {
@@ -451,6 +501,56 @@ describe("Note Object", function() {
       // Assert
       function assert(value) {
         expect(() => note.release = value).to.throw(RangeError);
+      }
+
+    });
+
+    it("should assign correct value to 'rawRelease'", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let values = [
+        {value: 0, rawValue: 0},
+        {value: 0.25, rawValue: 32},
+        {value: 0.5, rawValue: 64},
+        {value: 0.75, rawValue: 95},
+        {value: 1, rawValue: 127},
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        note.release = item.value;
+        expect(note.rawRelease).to.equal(item.rawValue);
+      }
+
+    });
+
+  });
+
+  describe("set rawRelease()", function () {
+
+    it("should assign correct value to 'release'", function() {
+
+      // Arrange
+      let note = new Note(42);
+      let values = [
+        {value: 0, rawValue: 0},
+        {value: 0.25, rawValue: 32},
+        {value: 0.5, rawValue: 64},
+        {value: 0.75, rawValue: 95},
+        {value: 1, rawValue: 127},
+      ];
+
+      // Act
+      values.forEach(assert);
+
+      // Assert
+      function assert(item) {
+        note.rawRelease = item.rawValue;
+        expect(note.release).to.be.within(item.value - 0.005, item.value + 0.005);
       }
 
     });

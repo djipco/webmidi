@@ -12,6 +12,9 @@ import {Utilities} from "./Utilities.js";
  * in the appropriate option. It is also possible to set a system-wide default for attack and
  * release velocities by using the `WebMidi.defaults` property.
  *
+ * If you prefer to use raw MIDI values (0-127), you can use `rawAttack` and `rawRelease` to both
+ * get and set the values.
+ *
  * The note may have a duration. If it does, playback will be automatically stopped when the
  * duration has elapsed by sending a **noteoff** event. By default, the duration is set to
  * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
@@ -233,6 +236,9 @@ export class Note {
   get rawAttack() {
     return Utilities.to7Bit(this._attack);
   }
+  set rawAttack(value) {
+    this._attack = Utilities.toNormalized(value);
+  }
 
   /**
    * The release velocity of the note as a positive integer between 0 and 127.
@@ -241,6 +247,9 @@ export class Note {
    */
   get rawRelease() {
     return Utilities.to7Bit(this._release);
+  }
+  set rawRelease(value) {
+    this._release = Utilities.toNormalized(value);
   }
 
   /**
