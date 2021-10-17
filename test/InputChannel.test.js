@@ -97,7 +97,7 @@ describe("InputChannel Object", function() {
       expect(e.note.attack).to.equal(0); // the note must have an attack of 0 to be a noteoff
       expect(e.note.rawRelease).to.equal(velocity);
       expect(e.note.duration).to.equal(WebMidi.defaults.note.duration);
-      expect(e.value).to.equal(Utilities.toNormalized(velocity));
+      expect(e.value).to.equal(Utilities.from7bitToFloat(velocity));
       expect(e.rawValue).to.equal(velocity);
       expect(e.target).to.equal(channel);
 
@@ -505,7 +505,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpndataentrycoarse";
+    let event = "nrpn:dataentrycoarse";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -533,7 +533,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpndataentryfine";
+    let event = "nrpn:dataentryfine";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -561,7 +561,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpndatabuttonincrement";
+    let event = "nrpn:databuttonincrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -589,7 +589,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpndatabuttondecrement";
+    let event = "nrpn:databuttondecrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -617,7 +617,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpndatabuttondecrement";
+    let event = "nrpn:databuttondecrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -649,7 +649,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpndataentrycoarse";
+    let event = "rpn:dataentrycoarse";
     let status = 0xB0;      // control change
     let parameter = "pitchbendrange";
     let parameterMsb = 0;
@@ -679,7 +679,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpndataentryfine";
+    let event = "rpn:dataentryfine";
     let status = 0xB0;      // control change
     let parameter = "channelfinetuning";
     let parameterMsb = 0;
@@ -709,7 +709,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpndatabuttonincrement";
+    let event = "rpn:databuttonincrement";
     let status = 0xB0;      // control change
     let parameter = "tuningbank";
     let parameterMsb = 0;
@@ -739,7 +739,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpndatabuttondecrement";
+    let event = "rpn:databuttondecrement";
     let status = 0xB0;      // control change
     let parameter = "referencedistanceratio";
     let parameterMsb = 0x3D;
@@ -769,7 +769,7 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpndatabuttondecrement";
+    let event = "rpn:databuttondecrement";
     let status = 0xB0;      // control change
     let parameter = "referencedistanceratio";
     let parameterMsb = 0x3D;
