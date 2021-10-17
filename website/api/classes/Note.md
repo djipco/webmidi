@@ -43,14 +43,14 @@ method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
     |[**`options.rawRelease`**] |number|64|The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
 
 
-  **Throws**:
-    * `Error` : Invalid note identifier
-    * `RangeError` : Invalid name value
-    * `RangeError` : Invalid accidental value
-    * `RangeError` : Invalid octave value
-    * `RangeError` : Invalid duration value
-    * `RangeError` : Invalid attack value
-    * `RangeError` : Invalid release value
+**Throws**:
+* `Error` : Invalid note identifier
+* `RangeError` : Invalid name value
+* `RangeError` : Invalid accidental value
+* `RangeError` : Invalid octave value
+* `RangeError` : Invalid duration value
+* `RangeError` : Invalid attack value
+* `RangeError` : Invalid release value
 
 ***
 
