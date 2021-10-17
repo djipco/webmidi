@@ -18,8 +18,8 @@ If you prefer to work with raw MIDI values (0-127), you can use [`rawAttack`](#r
 The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
 when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
 `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
-method such as [OutputChannel.stopNote()](OutputChannel#stopNote),
-[Output.stopNote()](Output#stopNote) or similar.
+method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
+[`Output.stopNote()`](Output#stopNote) or similar.
 
 **Since**: 3.0.0
 
