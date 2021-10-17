@@ -1274,9 +1274,10 @@ export class OutputChannel extends EventEmitter {
    *
    * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
    * zero means no bend. The resulting bend is relative to the pitch bend range that has been
-   * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
-   * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
-   * -1 will bend the note 1 octave below its nominal value.
+   * defined. The range can be set with
+   * [`setPitchBendRange()`]{@link OutputChannel#setPitchBendRange}. So, for example, if the pitch
+   * bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave
+   * below its nominal value.
    *
    * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
    * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
@@ -1380,8 +1381,8 @@ export class OutputChannel extends EventEmitter {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws {RangeError} The msb value must be between 0 and 127.
-   * @throws {RangeError} The lsb value must be between 0 and 127.
+   * @throws {RangeError} The semitones value must be an integer between 0 and 127.
+   * @throws {RangeError} The cents value must be an integer between 0 and 127.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
