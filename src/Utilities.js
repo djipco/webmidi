@@ -370,7 +370,7 @@ export class Utilities {
    * @returns {number} A number between 0 and 1 (inclusive)
    * @static
    */
-  static toNormalized(value) {
+  static from7bitToFloat(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -388,7 +388,7 @@ export class Utilities {
    * @returns {number} A number between 0 and 1 (inclusive)
    * @static
    */
-  static to7Bit(value) {
+  static fromFloatTo7Bit(value) {
     if (value === Infinity) value = 1;
     value = parseFloat(value) || 0;
     return Math.min(Math.max(Math.round(value * 127), 0), 127);

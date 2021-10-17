@@ -53,8 +53,8 @@ class WebMidi extends EventEmitter {
      */
     this.defaults = {
       note: {
-        attack: Utilities.toNormalized(64),
-        release: Utilities.toNormalized(64),
+        attack: Utilities.from7bitToFloat(64),
+        release: Utilities.from7bitToFloat(64),
         duration: Infinity
       }
     };

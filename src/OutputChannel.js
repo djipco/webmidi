@@ -153,7 +153,7 @@ export class OutputChannel extends EventEmitter {
     }
 
     // Normalize pressure to integer
-    if (!options.rawValue) pressure = Utilities.to7Bit(pressure);
+    if (!options.rawValue) pressure = Utilities.fromFloatTo7Bit(pressure);
 
     // Retrieve key number. If identifier specified, offset by total offset value
     const offset = WebMidi.octaveOffset + this.output.octaveOffset + this.octaveOffset;

@@ -78,9 +78,9 @@ describe("Note Object", function() {
       notes.forEach(note => {
         expect(note).to.be.an.instanceof(Note);
         expect(note.attack).to.equal(options.attack);
-        expect(note.rawAttack).to.equal(Utilities.to7Bit(options.attack));
+        expect(note.rawAttack).to.equal(Utilities.fromFloatTo7Bit(options.attack));
         expect(note.release).to.equal(options.release);
-        expect(note.rawRelease).to.equal(Utilities.to7Bit(options.release));
+        expect(note.rawRelease).to.equal(Utilities.fromFloatTo7Bit(options.release));
         expect(note.duration).to.equal(options.duration);
       });
 
@@ -108,9 +108,9 @@ describe("Note Object", function() {
       function assert(note) {
         expect(note).to.be.an.instanceof(Note);
         expect(note.attack).to.equal(options.attack);
-        expect(note.rawAttack).to.equal(Utilities.to7Bit(options.attack));
+        expect(note.rawAttack).to.equal(Utilities.fromFloatTo7Bit(options.attack));
         expect(note.release).to.equal(options.release);
-        expect(note.rawRelease).to.equal(Utilities.to7Bit(options.release));
+        expect(note.rawRelease).to.equal(Utilities.fromFloatTo7Bit(options.release));
         expect(note.duration).to.equal(options.duration);
       }
 
@@ -126,8 +126,8 @@ describe("Note Object", function() {
       const note = new Note(identifier, options);
 
       // Assert
-      expect(note.attack).to.equal(Utilities.toNormalized(options.rawAttack));
-      expect(note.release).to.equal(Utilities.toNormalized(options.rawRelease));
+      expect(note.attack).to.equal(Utilities.from7bitToFloat(options.rawAttack));
+      expect(note.release).to.equal(Utilities.from7bitToFloat(options.rawRelease));
 
     });
 

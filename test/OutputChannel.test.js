@@ -1896,7 +1896,7 @@ describe("OutputChannel Object", function() {
 
         expect(
           message
-        ).to.have.ordered.members([160, items[index].number, Utilities.to7Bit(value)]);
+        ).to.have.ordered.members([160, items[index].number, Utilities.fromFloatTo7Bit(value)]);
 
         index++;
 
@@ -1969,7 +1969,7 @@ describe("OutputChannel Object", function() {
       function assert(deltaTime, message) {
 
         expect(message).to.have.ordered.members(
-          [160, items[index].number, Utilities.to7Bit(value)]
+          [160, items[index].number, Utilities.fromFloatTo7Bit(value)]
         );
 
         index++;

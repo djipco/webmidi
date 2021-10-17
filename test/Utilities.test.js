@@ -1007,7 +1007,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.toNormalized(item.input)
+          Utilities.from7bitToFloat(item.input)
         ).to.equal(item.output);
       }
 
@@ -1032,7 +1032,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.toNormalized(item.input)
+          Utilities.from7bitToFloat(item.input)
         ).to.equal(item.output);
       }
 
@@ -1040,7 +1040,7 @@ describe("Utilities Object", function() {
 
   });
 
-  describe("to7Bit()", function() {
+  describe("fromFloatTo7Bit()", function() {
 
     it("should return the correct value for normal input", function () {
 
@@ -1057,7 +1057,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.to7Bit(item.input)
+          Utilities.fromFloatTo7Bit(item.input)
         ).to.equal(item.output);
       }
 
@@ -1082,7 +1082,7 @@ describe("Utilities Object", function() {
       // Assert
       function assert(item) {
         expect(
-          Utilities.to7Bit(item.input)
+          Utilities.fromFloatTo7Bit(item.input)
         ).to.equal(item.output);
       }
 

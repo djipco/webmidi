@@ -212,7 +212,7 @@ export class InputChannel extends EventEmitter {
         }
       );
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -256,7 +256,7 @@ export class InputChannel extends EventEmitter {
         { rawAttack: data2 }
       );
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -298,7 +298,7 @@ export class InputChannel extends EventEmitter {
       event.key = Utilities.toNoteNumber(event.identifier);
       event.rawKey = data1;
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // This is kept for backwards-compatibility but is gone from the documentation. It will be
@@ -337,7 +337,7 @@ export class InputChannel extends EventEmitter {
         name: this.getCcNameByNumber(data1)
       };
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // Trigger channel mode message events (if appropriate)
@@ -394,7 +394,7 @@ export class InputChannel extends EventEmitter {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.value = Utilities.toNormalized(data1);
+      event.value = Utilities.from7bitToFloat(data1);
       event.rawValue = data1;
 
     } else if (event.type === "pitchbend") {
@@ -833,7 +833,7 @@ export class InputChannel extends EventEmitter {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: Utilities.toNormalized(e.message.dataBytes[1]),
+      value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
       rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     };
