@@ -1343,9 +1343,9 @@ export class OutputChannel extends EventEmitter {
     } else if (options.rawValue && !Array.isArray(value)) {
       msb = value;
     } else {
-      let nLevel = Math.round((value + 1) / 2 * 16383);
-      msb = nLevel >> 7;
-      lsb = nLevel & 0x7F;
+      const result = Utilities.fromFloatToMsbLsb((value + 1) / 2); // b/c value is -1 to 1
+      msb = result.msb;
+      lsb = result.lsb;
     }
 
     this.send(
