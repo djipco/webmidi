@@ -1,4 +1,4 @@
-// Type definitions for WebMidi.js 3.0.0-alpha.19
+// Type definitions for WebMidi.js 3.0.0-alpha.20
 // Project: https://webmidijs.org
 // Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -785,6 +785,25 @@ export class Utilities {
      * @static
      */
     static fromFloatTo7Bit(value: any): number;
+    /**
+     * Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
+     * is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
+     *
+     * @param msb {number} The most significant byte as a integer between 0 and 127.
+     * @param [lsb=0] {number} The least significant byte as a integer between 0 and 127.
+     * @returns {number} A float between 0 and 1.
+     */
+    static fromMsbLsbToFloat(msb: number, lsb?: number): number;
+    /**
+     * Extracts 7bit MSB and LSB values from the supplied float.
+     *
+     * @param value {number} A float between 0 and 1
+     * @returns {{lsb: number, msb: number}}
+     */
+    static fromFloatToMsbLsb(value: number): {
+        lsb: number;
+        msb: number;
+    };
     /**
      * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
      * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
@@ -4382,9 +4401,10 @@ declare class OutputChannel {
      *
      * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
      * zero means no bend. The resulting bend is relative to the pitch bend range that has been
-     * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
-     * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
-     * -1 will bend the note 1 octave below its nominal value.
+     * defined. The range can be set with
+     * [`setPitchBendRange()`]{@link OutputChannel#setPitchBendRange}. So, for example, if the pitch
+     * bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave
+     * below its nominal value.
      *
      * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
      * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
@@ -4431,8 +4451,8 @@ declare class OutputChannel {
      * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
      * will be carried out as soon as possible.
      *
-     * @throws {RangeError} The msb value must be between 0 and 127.
-     * @throws {RangeError} The lsb value must be between 0 and 127.
+     * @throws {RangeError} The semitones value must be an integer between 0 and 127.
+     * @throws {RangeError} The cents value must be an integer between 0 and 127.
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
