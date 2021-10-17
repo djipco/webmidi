@@ -397,7 +397,7 @@ describe("Input Object", function() {
 
     });
 
-    it.only("should throw if event is input-specific but no ch. is defined (normal)", function () {
+    it("should throw if event is input-specific but no ch. is defined (normal)", function () {
 
       // Arrange
       let events = [
@@ -442,15 +442,15 @@ describe("Input Object", function() {
         "keyaftertouch",
         "controlchange",
 
-        "nrpndataentrycoarse",
-        "nrpndataentryfine",
-        "nrpndatabuttonincrement",
-        "nrpndatabuttondecrement",
+        "nrpn:dataentrycoarse",
+        "nrpn:dataentryfine",
+        "nrpn:databuttonincrement",
+        "nrpn:databuttondecrement",
 
-        "rpndataentrycoarse",
-        "rpndataentryfine",
-        "rpndatabuttonincrement",
-        "rpndatabuttondecrement",
+        "rpn:dataentrycoarse",
+        "rpn:dataentryfine",
+        "rpn:databuttonincrement",
+        "rpn:databuttondecrement",
 
         "programchange",
         "channelaftertouch",
