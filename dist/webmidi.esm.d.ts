@@ -407,25 +407,29 @@ export class Message {
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
  * `Note` objects can be played back on a single channel by calling
- * [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple channels of the same
- * output by calling [Output.playNote()]{@link Output#playNote}.
+ * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
+ * output, by calling [`Output.playNote()`]{@link Output#playNote}.
  *
- * The note has attack and release velocities set at 0.5 by default. These can be changed by passing
- * in the appropriate option. It is also possible to set a system-wide default for attack and
- * release velocities by using the `WebMidi.defaults` property.
+ * The note has [`attack`](#attack) and [`release`](#release) velocities set at 0.5 by default.
+ * These can be changed by passing in the appropriate option. It is also possible to set a
+ * system-wide default for attack and release velocities by using the
+ * [`WebMidi.defaults`](WebMidi#defaults) property.
  *
- * The note may have a duration. If it does, playback will be automatically stopped when the
- * duration has elapsed by sending a **noteoff** event. By default, the duration is set to
+ * If you prefer to work with raw MIDI values (0-127), you can use [`rawAttack`](#rawAttack) and
+ * [`rawRelease`](#rawRelease) to both get and set the values.
+ *
+ * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
+ * when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
  * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
- * method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
- * [Output.stopNote()]{@link Output#stopNote} or similar.
+ * method such as [`OutputChannel.stopNote()`]{@link OutputChannel#stopNote},
+ * [`Output.stopNote()`]{@link Output#stopNote} or similar.
  *
  * @param value {string|number} The value used to create the note. If an identifier string is used,
  * it must start with the note letter, optionally followed by an accidental and followed by the
  * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
  * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
- * @param {Object} [options={}]
+ * @param {object} [options={}]
  *
  * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
  * explicitly stopped.
@@ -516,12 +520,14 @@ export class Note {
     _duration: number;
     _attack: number;
     _release: number;
+    set rawAttack(arg: number);
     /**
      * The attack velocity of the note as a positive integer between 0 and 127.
      * @type {number}
      * @since 3.0.0
      */
     get rawAttack(): number;
+    set rawRelease(arg: number);
     /**
      * The release velocity of the note as a positive integer between 0 and 127.
      * @type {number}
@@ -682,7 +688,7 @@ export class Utilities {
      *
      * @param [input] {number|string|Note}
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
      * be explicitly stopped.
@@ -718,7 +724,7 @@ export class Utilities {
      *
      * @param [notes] {number|string|Note|number[]|string[]|Note[]}
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
      * be explicitly stopped.
@@ -765,7 +771,7 @@ export class Utilities {
      * @returns {number} A number between 0 and 1 (inclusive)
      * @static
      */
-    static toNormalized(value: any): number;
+    static from7bitToFloat(value: any): number;
     /**
      * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
      * The input value should be number between 0 and 1 (inclusively). The returned value is
@@ -778,7 +784,7 @@ export class Utilities {
      * @returns {number} A number between 0 and 1 (inclusive)
      * @static
      */
-    static to7Bit(value: any): number;
+    static fromFloatTo7Bit(value: any): number;
     /**
      * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
      * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
@@ -795,12 +801,12 @@ export class Utilities {
      * Returns the name of the first property of the supplied object whose value is equal to the one
      * supplied.
      *
-     * @param object {Object}
+     * @param object {object}
      * @param value {*}
      * @returns {string} The name of the matching property
      * @static
      */
-    static getPropertyByValue(object: any, value: any): string;
+    static getPropertyByValue(object: object, value: any): string;
 }
 declare const wm: WebMidi;
 /**
@@ -826,7 +832,7 @@ declare class WebMidi {
      * Object containing system-wide default values that can be changed to customize how the library
      * works.
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {object}  defaults.note - Default values relating to note
      * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
@@ -836,7 +842,7 @@ declare class WebMidi {
      * @property {number}  defaults.note.duration - A number representing the default duration of
      * notes (in seconds). Initial value is Infinity.
      */
-    defaults: any;
+    defaults: object;
     /**
      * The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
      * instance used to talk to the lower-level Web MIDI API. This should not be used directly
@@ -923,9 +929,10 @@ declare class WebMidi {
      *
      * In order, this is what happens towards the end of the enabling process:
      *
-     * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered
+     * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered once the user has
+     * granted access to use MIDI.
      * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
-     * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is ready
+     * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is fully ready
      * 4. specified callback (if any) is executed
      * 5. promise is resolved and fulfilled with the `WebMidi` object.
      *
@@ -943,7 +950,7 @@ declare class WebMidi {
      * })
      * ```
      *
-     * @param [options] {Object}
+     * @param [options] {object}
      *
      * @param [options.callback] {function} A function to execute once the operation completes. This
      * function will receive an `Error` object if enabling the Web MIDI API failed.
@@ -1424,7 +1431,7 @@ declare class Input {
      * This function will receive an event parameter object. For details on this object's properties,
      * check out the documentation for the various events (links above).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {array} [options.arguments] An array of arguments which will be passed separately to the
      * callback function. This array is stored in the `arguments` property of the `Listener` object
@@ -1434,7 +1441,7 @@ declare class Input {
      * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
      * input-wide events.
      *
-     * @param {Object} [options.context=this] The value of `this` in the callback function.
+     * @param {object} [options.context=this] The value of `this` in the callback function.
      *
      * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
      * automatically expires.
@@ -1452,7 +1459,7 @@ declare class Input {
     addListener(event: string, listener: Function, options?: {
         arguments?: any[];
         channels?: number | number[];
-        context?: any;
+        context?: object;
         duration?: number;
         prepend?: boolean;
         remaining?: boolean;
@@ -1544,7 +1551,7 @@ declare class Input {
      * This function will receive an event parameter object. For details on this object's properties,
      * check out the documentation for the various events (links above).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {array} [options.arguments] An array of arguments which will be passed separately to the
      * callback function. This array is stored in the `arguments` property of the `Listener` object
@@ -1554,7 +1561,7 @@ declare class Input {
      * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
      * input-wide events.
      *
-     * @param {Object} [options.context=this] The value of `this` in the callback function.
+     * @param {object} [options.context=this] The value of `this` in the callback function.
      *
      * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
      * automatically expires.
@@ -1569,7 +1576,7 @@ declare class Input {
     addOneTimeListener(event: string, listener: Function, options?: {
         arguments?: any[];
         channels?: number | number[];
-        context?: any;
+        context?: object;
         duration?: number;
         prepend?: boolean;
     }): any[];
@@ -1589,13 +1596,13 @@ declare class Input {
      *
      * @param listener {function} The callback function to check for.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
      * such integers representing the MIDI channel(s) to check. This parameter is ignored for
      * input-wide events.
      *
-     * @returns {Boolean} Boolean value indicating whether or not the channel(s) already have this
+     * @returns {boolean} Boolean value indicating whether or not the channel(s) already have this
      * listener defined.
      *
      * @throws Error For channel-specific events, 'options.channels' must be defined.
@@ -1611,11 +1618,11 @@ declare class Input {
      * By default, channel-specific listeners will be removed from all channels unless the
      * `options.channel` narrows it down.
      *
-     * @param [type] {String} The type of the event.
+     * @param [type] {string} The type of the event.
      *
      * @param [listener] {Function} The callback function to check for.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
      * such integers representing the MIDI channel(s) to match. This parameter is ignored for
@@ -1774,7 +1781,7 @@ declare class Output {
      * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
      * object (not available in Node.js) containing the message bytes or a `Message` object.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a positive
@@ -1851,7 +1858,7 @@ declare class Output {
      * @param {number[]|Uint8Array} [data=[]] A Uint8Array or an array of unsigned integers between 0
      * and 127. This is the data you wish to transfer.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1888,7 +1895,7 @@ declare class Output {
      *
      * @param value {number} The quarter frame message content (integer between 0 and 127).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1906,7 +1913,7 @@ declare class Output {
      *
      * @param [value=0] {number} The MIDI beat to cue to (integer between 0 and 16383).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1934,7 +1941,7 @@ declare class Output {
      *
      * @param value {number} The number of the song to select (integer between 1 and 128).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1958,7 +1965,7 @@ declare class Output {
     /**
      * Sends a MIDI **tune request** real-time message.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1976,7 +1983,7 @@ declare class Output {
      * Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
      * for every quarter note.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -1993,7 +2000,7 @@ declare class Output {
      * song at beat 0. To start playback elsewhere in the song, use the
      * [sendContinue()]{@link Output#sendContinue} method.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -2010,7 +2017,7 @@ declare class Output {
      * stopped or where it was last cued with a song position message. To start playback from the
      * start, use the [sendStart()]{@link Output#sendStart}` method.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -2026,7 +2033,7 @@ declare class Output {
      * Sends a **stop** real-time message. This tells the device connected to this output to stop
      * playback immediately (or at the scheduled time).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -2043,7 +2050,7 @@ declare class Output {
      * that the connection is still good. Active sensing messages should be sent every 300 ms if there
      * was no other activity on the MIDI port.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -2059,7 +2066,7 @@ declare class Output {
      * Sends a **reset** real-time message. This tells the device connected to this output that it
      * should reset itself to a default state.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number
@@ -2092,7 +2099,7 @@ declare class Output {
      * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
      * pressure can be defined by using an integer between 0 and 127.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
      * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -2209,7 +2216,7 @@ declare class Output {
      *
      * @param [value=0] {number} The value to send (0-127).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
      * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -2241,7 +2248,7 @@ declare class Output {
      *
      * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
      * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -2303,7 +2310,7 @@ declare class Output {
      * @param [data=[]] {number|number[]} A single integer or an array of integers with a maximum
      * length of 2 specifying the desired data.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
      * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -2328,7 +2335,7 @@ declare class Output {
      * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
      * pressure can be defined by using an integer between 0 and 127.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
      * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -2373,7 +2380,7 @@ declare class Output {
      * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
      * (1/100 of a semitone). An LSB of `64` also means no bend.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
      * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
@@ -3258,8 +3265,9 @@ declare class InputChannel {
      * Indicates whether the specified controller can be part of an RPN or NRPN sequence
      * @param controller
      * @returns {boolean}
+     * @private
      */
-    _isRpnOrNrpnController(controller: any): boolean;
+    private _isRpnOrNrpnController;
     _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
     /**
      * Returns the channel mode name matching the specified number. If no match is found, the function
@@ -3351,7 +3359,7 @@ declare class InputChannel {
  *
  * @event Input#sysex
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3369,7 +3377,7 @@ declare class InputChannel {
  *
  * @event Input#timecode
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3390,7 +3398,7 @@ declare class InputChannel {
  *
  * @event Input#songposition
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3411,7 +3419,7 @@ declare class InputChannel {
  *
  * @event Input#songselect
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3433,7 +3441,7 @@ declare class InputChannel {
  *
  * @event Input#tunerequest
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3454,7 +3462,7 @@ declare class InputChannel {
  *
  * @event Input#clock
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3475,7 +3483,7 @@ declare class InputChannel {
  *
  * @event Input#start
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3496,7 +3504,7 @@ declare class InputChannel {
  *
  * @event Input#continue
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3517,7 +3525,7 @@ declare class InputChannel {
  *
  * @event Input#stop
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3538,7 +3546,7 @@ declare class InputChannel {
  *
  * @event Input#activesensing
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3559,7 +3567,7 @@ declare class InputChannel {
  *
  * @event Input#reset
  *
- * @type {Object}
+ * @type {object}
  *
  * @property {Input} target The `Input` that triggered the event.
  * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -3652,7 +3660,7 @@ declare class OutputChannel {
      * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
      * object (not available in Node.js) containing the message bytes or a `Message` object.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a positive
@@ -3692,7 +3700,7 @@ declare class OutputChannel {
      * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
      * pressure is defined by using an integer between 0 and 127.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {boolean} [options.useRawValue=false] A boolean indicating whether the value should be
      * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -3809,7 +3817,7 @@ declare class OutputChannel {
      * calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first
      * controller)
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3839,7 +3847,7 @@ declare class OutputChannel {
      *
      * @private
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3859,7 +3867,7 @@ declare class OutputChannel {
      *
      * @private
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3876,7 +3884,7 @@ declare class OutputChannel {
      *
      * @private
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3896,7 +3904,7 @@ declare class OutputChannel {
      * @param parameter {number[]} A two-position array of integers specifying the two control bytes
      * (0x65, 0x64) that identify the registered parameter. The integers must be between 0 and 127.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3914,7 +3922,7 @@ declare class OutputChannel {
      *
      * @param data {number|number[]}
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3949,7 +3957,7 @@ declare class OutputChannel {
      * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
      * parameter.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -3988,7 +3996,7 @@ declare class OutputChannel {
      * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
      * parameter.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4033,7 +4041,7 @@ declare class OutputChannel {
      * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
      * note is G9 (MIDI note number 127).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number} [options.duration] A positive number larger than 0 representing the number of
      * milliseconds to wait before sending a **note off** message. If invalid or left undefined, only
@@ -4093,7 +4101,7 @@ declare class OutputChannel {
      * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
      * note is G9 (MIDI note number 127).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4154,7 +4162,7 @@ declare class OutputChannel {
      * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
      * {@link Note} object or an array of the previous types.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4208,7 +4216,7 @@ declare class OutputChannel {
      *
      * @param value {number} The value to send (integer between 0-127).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4229,7 +4237,7 @@ declare class OutputChannel {
      *
      * @param [state=true] {boolean} Whether to activate OMNI mode (`true`) or not (`false`).
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
@@ -4253,7 +4261,7 @@ declare class OutputChannel {
      * @param [pressure] {number} The pressure level (between 0 and 1). If the `rawValue` option is
      * set to `true`, the pressure can be defined by using an integer between 0 and 127.
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
      * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
@@ -4283,7 +4291,7 @@ declare class OutputChannel {
      *
      * @param [value=0.0] {number} The desired decimal adjustment value in semitones (-65 < x < 64)
      *
-     * @param {Object} [options={}]
+     * @param {object} [options={}]
      *
      * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
      * a number, the message will be delayed by that many milliseconds. If the value is a number, the
