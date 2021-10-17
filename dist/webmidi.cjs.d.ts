@@ -408,18 +408,22 @@ export class Message {
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
  *
  * `Note` objects can be played back on a single channel by calling
- * [OutputChannel.playNote()]{@link OutputChannel#playNote} or on multiple channels of the same
- * output by calling [Output.playNote()]{@link Output#playNote}.
+ * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
+ * output, by calling [`Output.playNote()`]{@link Output#playNote}.
  *
- * The note has attack and release velocities set at 0.5 by default. These can be changed by passing
- * in the appropriate option. It is also possible to set a system-wide default for attack and
- * release velocities by using the `WebMidi.defaults` property.
+ * The note has [`attack`](#attack) and [`release`](#release) velocities set at 0.5 by default.
+ * These can be changed by passing in the appropriate option. It is also possible to set a
+ * system-wide default for attack and release velocities by using the
+ * [`WebMidi.defaults`](WebMidi#defaults) property.
  *
- * The note may have a duration. If it does, playback will be automatically stopped when the
- * duration has elapsed by sending a **noteoff** event. By default, the duration is set to
+ * If you prefer to work with raw MIDI values (0-127), you can use [`rawAttack`](#rawAttack) and
+ * [`rawRelease`](#rawRelease) to both get and set the values.
+ *
+ * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
+ * when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
  * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
- * method such as [OutputChannel.stopNote()]{@link OutputChannel#stopNote},
- * [Output.stopNote()]{@link Output#stopNote} or similar.
+ * method such as [`OutputChannel.stopNote()`]{@link OutputChannel#stopNote},
+ * [`Output.stopNote()`]{@link Output#stopNote} or similar.
  *
  * @param value {string|number} The value used to create the note. If an identifier string is used,
  * it must start with the note letter, optionally followed by an accidental and followed by the
@@ -768,7 +772,7 @@ export class Utilities {
      * @returns {number} A number between 0 and 1 (inclusive)
      * @static
      */
-    static toNormalized(value: any): number;
+    static from7bitToFloat(value: any): number;
     /**
      * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
      * The input value should be number between 0 and 1 (inclusively). The returned value is
@@ -781,7 +785,7 @@ export class Utilities {
      * @returns {number} A number between 0 and 1 (inclusive)
      * @static
      */
-    static to7Bit(value: any): number;
+    static fromFloatTo7Bit(value: any): number;
     /**
      * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
      * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
