@@ -7,9 +7,10 @@ The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1
 [`OutputChannel.playNote()`](OutputChannel#playNote) or, on multiple channels of the same
 output, by calling [`Output.playNote()`](Output#playNote).
 
-The note has attack and release velocities set at 0.5 by default. These can be changed by passing
-in the appropriate option. It is also possible to set a system-wide default for attack and
-release velocities by using the `WebMidi.defaults` property.
+The note has [`attack`](#attack) and [`release`](#release) velocities set at 0.5 by default.
+These can be changed by passing in the appropriate option. It is also possible to set a
+system-wide default for attack and release velocities by using the
+(`WebMidi.defaults`)[WebMidi.defaults] property.
 
 If you prefer to work with raw MIDI values (0-127), you can use `rawAttack` and `rawRelease` to
 both get and set the values.
