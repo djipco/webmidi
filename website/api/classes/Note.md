@@ -4,8 +4,8 @@
 The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
 
 `Note` objects can be played back on a single channel by calling
-[`OutputChannel.playNote()`](OutputChannel#playNote) or on multiple channels of the same
-output by calling [`Output.playNote()`](Output#playNote).
+[`OutputChannel.playNote()`](OutputChannel#playNote) or, on multiple channels of the same
+output, by calling [`Output.playNote()`](Output#playNote).
 
 The note has attack and release velocities set at 0.5 by default. These can be changed by passing
 in the appropriate option. It is also possible to set a system-wide default for attack and
