@@ -40,7 +40,7 @@ async function generate() {
 
   const data = jsdoc2md.getTemplateDataSync({files: files});
 
-  // Parse each input files and save parsed output
+  // Parse each input file and save parsed output
   files.forEach(filepath => {
 
     const basename = path.basename(filepath, ".js");
@@ -111,6 +111,11 @@ function parseFile(data) {
   filtered = data.filter(el => el.kind === "enum" && el.access !== "private");
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/enumerations.hbs`), {encoding: "utf-8"});
   output += Handlebars.compile(hbs)(filtered);
+
+  // Strip out links to Listener class
+  output = output.replaceAll("[**Listener**](Listener)", "`Listener`");
+  output = output.replaceAll("[Listener](Listener)", "`Listener`");
+  output = output.replaceAll("[**arguments**](Listener#arguments)", "`arguments`");
 
   return output;
 
