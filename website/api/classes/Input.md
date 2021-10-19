@@ -13,7 +13,7 @@ Note that a single device may expose several inputs and/or outputs.
 
 **Fires**: [`opened`](Input#event:opened), [`disconnected`](Input#event:disconnected), [`closed`](Input#event:closed), [`midimessage`](Input#event:midimessage), [`sysex`](Input#event:sysex), [`timecode`](Input#event:timecode), [`songposition`](Input#event:songposition), [`songselect`](Input#event:songselect), [`tunerequest`](Input#event:tunerequest), [`clock`](Input#event:clock), [`start`](Input#event:start), [`continue`](Input#event:continue), [`stop`](Input#event:stop), [`activesensing`](Input#event:activesensing), [`reset`](Input#event:reset), [`unknownmidimessage`](Input#event:unknownmidimessage)
 
-### `new Input(...)` {#constructor}
+### `Constructor`
 
 
   **Parameters**

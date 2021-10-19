@@ -11,7 +11,7 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 
 **Fires**: [`opened`](Output#event:opened), [`disconnected`](Output#event:disconnected), [`closed`](Output#event:closed)
 
-### `new Output(...)` {#constructor}
+### `Constructor`
 
 
   **Parameters**

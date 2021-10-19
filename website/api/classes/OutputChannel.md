@@ -12,7 +12,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 **Extends**: EventEmitter
 
 
-### `new OutputChannel(...)` {#constructor}
+### `Constructor`
 
 
   **Parameters**

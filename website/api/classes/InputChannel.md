@@ -13,7 +13,7 @@ property.
 
 **Fires**: [`midimessage`](InputChannel#event:midimessage), [`noteoff`](InputChannel#event:noteoff), [`noteon`](InputChannel#event:noteon), [`keyaftertouch`](InputChannel#event:keyaftertouch), [`controlchange`](InputChannel#event:controlchange), [`programchange`](InputChannel#event:programchange), [`channelaftertouch`](InputChannel#event:channelaftertouch), [`pitchbend`](InputChannel#event:pitchbend), [`allnotesoff`](InputChannel#event:allnotesoff), [`allsoundoff`](InputChannel#event:allsoundoff), [`localcontrol`](InputChannel#event:localcontrol), [`monomode`](InputChannel#event:monomode), [`omnimode`](InputChannel#event:omnimode), [`resetallcontrollers`](InputChannel#event:resetallcontrollers), [`nrpndataentrycoarse`](InputChannel#event:nrpndataentrycoarse), [`nrpndataentryfine`](InputChannel#event:nrpndataentryfine), [`nrpndatabuttonincrement`](InputChannel#event:nrpndatabuttonincrement), [`nrpndatabuttondecrement`](InputChannel#event:nrpndatabuttondecrement), [`rpndataentrycoarse`](InputChannel#event:rpndataentrycoarse), [`rpndataentryfine`](InputChannel#event:rpndataentryfine), [`rpndatabuttonincrement`](InputChannel#event:rpndatabuttonincrement), [`rpndatabuttondecrement`](InputChannel#event:rpndatabuttondecrement)
 
-### `new InputChannel(...)` {#constructor}
+### `Constructor`
 
 
   **Parameters**
