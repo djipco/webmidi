@@ -10,7 +10,7 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
 
 
-### `new EventEmitter(...)`
+### `new EventEmitter(...)` {#exports.EventEmitter}
 
 
   **Parameters**
@@ -27,7 +27,7 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
 ## Properties
 
-### `.ANY_EVENT`
+### `.ANY_EVENT` {#ANY_EVENT}
 
 
 Identifier to use when trying to add or remove a listener that should be triggered when any
@@ -37,7 +37,7 @@ events occur.
   **Attributes**: static
 
 
-### `.eventCount`
+### `.eventCount` {#eventCount}
 
 
 The number of unique events that have registered listeners
@@ -49,7 +49,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventMap`
+### `.eventMap` {#eventMap}
 
 
 An object containing a property for each event with at least one registered listener. Each
@@ -59,7 +59,7 @@ event property contains an array of all the `Listener` objects registered for th
 **Attributes**: read-only<br />
 
 
-### `.eventNames`
+### `.eventNames` {#eventNames}
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -72,7 +72,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventsSuspended`
+### `.eventsSuspended` {#eventsSuspended}
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole

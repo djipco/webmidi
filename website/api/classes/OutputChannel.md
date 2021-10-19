@@ -12,7 +12,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 **Extends**: EventEmitter
 
 
-### `new OutputChannel(...)`
+### `new OutputChannel(...)` {#exports.OutputChannel}
 
 
   **Parameters**
@@ -30,7 +30,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ## Properties
 
-### `.eventCount`
+### `.eventCount` {#eventCount}
 
 
 The number of unique events that have registered listeners
@@ -42,7 +42,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventMap`
+### `.eventMap` {#eventMap}
 
 
 An object containing a property for each event with at least one registered listener. Each
@@ -52,7 +52,7 @@ event property contains an array of all the `Listener` objects registered for th
 **Attributes**: read-only<br />
 
 
-### `.eventNames`
+### `.eventNames` {#eventNames}
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -65,7 +65,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventsSuspended`
+### `.eventsSuspended` {#eventsSuspended}
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
@@ -74,7 +74,7 @@ emitter
 **Type**: boolean<br />
 
 
-### `.number`
+### `.number` {#number}
 
 **Since**: 3.0<br />
 
@@ -83,7 +83,7 @@ This channel's MIDI number (1-16)
 **Type**: number<br />
 
 
-### `.octaveOffset`
+### `.octaveOffset` {#octaveOffset}
 
 **Since**: 3.0<br />
 
@@ -97,7 +97,7 @@ and with the value defined on the parent [Output](Output) object.
 **Type**: number<br />
 
 
-### `.output`
+### `.output` {#output}
 
 **Since**: 3.0<br />
 

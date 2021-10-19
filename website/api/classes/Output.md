@@ -11,7 +11,7 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 
 **Fires**: [`opened`](Output#event:opened), [`disconnected`](Output#event:disconnected), [`closed`](Output#event:closed)
 
-### `new Output(...)`
+### `new Output(...)` {#exports.Output}
 
 
   **Parameters**
@@ -28,7 +28,7 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 
 ## Properties
 
-### `.channels`
+### `.channels` {#channels}
 
 
 Array containing the 16 [OutputChannel](OutputChannel) objects available for this `Output`. The
@@ -37,7 +37,7 @@ channels are numbered 1 through 16.
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
 
-### `.connection`
+### `.connection` {#connection}
 
 
 Output port's connection state: `"pending"`, `"open"` or `"closed"`.
@@ -46,7 +46,7 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 **Attributes**: read-only<br />
 
 
-### `.eventCount`
+### `.eventCount` {#eventCount}
 
 
 The number of unique events that have registered listeners
@@ -58,7 +58,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventMap`
+### `.eventMap` {#eventMap}
 
 
 An object containing a property for each event with at least one registered listener. Each
@@ -68,7 +68,7 @@ event property contains an array of all the `Listener` objects registered for th
 **Attributes**: read-only<br />
 
 
-### `.eventNames`
+### `.eventNames` {#eventNames}
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -81,7 +81,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventsSuspended`
+### `.eventsSuspended` {#eventsSuspended}
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
@@ -90,7 +90,7 @@ emitter
 **Type**: boolean<br />
 
 
-### `.id`
+### `.id` {#id}
 
 
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
@@ -101,7 +101,7 @@ the same port.
 **Attributes**: read-only<br />
 
 
-### `.manufacturer`
+### `.manufacturer` {#manufacturer}
 
 
 Name of the manufacturer of the device that makes this output port available.
@@ -110,7 +110,7 @@ Name of the manufacturer of the device that makes this output port available.
 **Attributes**: read-only<br />
 
 
-### `.name`
+### `.name` {#name}
 
 
 Name of the MIDI output
@@ -119,7 +119,7 @@ Name of the MIDI output
 **Attributes**: read-only<br />
 
 
-### `.octaveOffset`
+### `.octaveOffset` {#octaveOffset}
 
 **Since**: 3.0<br />
 
@@ -132,7 +132,7 @@ Note that this value is combined with the global offset value defined on the `We
 **Type**: number<br />
 
 
-### `.state`
+### `.state` {#state}
 
 
 State of the output port: `"connected"` or `"disconnected"`.
@@ -141,7 +141,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 **Attributes**: read-only<br />
 
 
-### `.type`
+### `.type` {#type}
 
 
 Type of the output port (`"output"`)
@@ -1830,7 +1830,7 @@ try {
 
 ## Events
 
-### `"closed"`<a id="event:closed"></a>
+### `"closed"`<a id="event:closed"></a> {#event:closed}
 
 Event emitted when the [Output](Output) has been closed by calling the
 [close()](Output#close) method.
@@ -1846,7 +1846,7 @@ Event emitted when the [Output](Output) has been closed by calling the
   |**`target`** |Output|The object that triggered the event|
 
 
-### `"disconnected"`<a id="event:disconnected"></a>
+### `"disconnected"`<a id="event:disconnected"></a> {#event:disconnected}
 
 Event emitted when the [Output](Output) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
@@ -1868,7 +1868,7 @@ when the MIDI device is unplugged.
   |**`target.type`** |string|`"output"`|
 
 
-### `"opened"`<a id="event:opened"></a>
+### `"opened"`<a id="event:opened"></a> {#event:opened}
 
 Event emitted when the [Output](Output) has been opened by calling the
 [open()](Output#open) method.

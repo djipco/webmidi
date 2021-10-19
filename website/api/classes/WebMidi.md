@@ -17,7 +17,7 @@ module) version, you get an already-instantiated object when you import the modu
 
 ## Properties
 
-### `.defaults`
+### `.defaults` {#defaults}
 
 
 Object containing system-wide default values that can be changed to customize how the library
@@ -36,7 +36,7 @@ works.
     |**`defaults.note.duration`** |number|A number representing the default duration of notes (in seconds). Initial value is Infinity.|
 
 
-### `.enabled`
+### `.enabled` {#enabled}
 
 
 Indicates whether access to the host's MIDI subsystem is active or not.
@@ -45,7 +45,7 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 **Attributes**: read-only<br />
 
 
-### `.eventCount`
+### `.eventCount` {#eventCount}
 
 
 The number of unique events that have registered listeners
@@ -57,7 +57,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventMap`
+### `.eventMap` {#eventMap}
 
 
 An object containing a property for each event with at least one registered listener. Each
@@ -67,7 +67,7 @@ event property contains an array of all the `Listener` objects registered for th
 **Attributes**: read-only<br />
 
 
-### `.eventNames`
+### `.eventNames` {#eventNames}
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -80,7 +80,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventsSuspended`
+### `.eventsSuspended` {#eventsSuspended}
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
@@ -89,7 +89,7 @@ emitter
 **Type**: boolean<br />
 
 
-### `.inputs`
+### `.inputs` {#inputs}
 
 
 An array of all currently available MIDI inputs.
@@ -98,7 +98,7 @@ An array of all currently available MIDI inputs.
 **Attributes**: read-only<br />
 
 
-### `.interface`
+### `.interface` {#interface}
 
 
 The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
@@ -109,7 +109,7 @@ unless you know what you are doing.
 **Attributes**: read-only, nullable<br />
 
 
-### `.isBrowser`
+### `.isBrowser` {#isBrowser}
 
 
 Indicates whether the current environment is a browser environment or not. If you need to check
@@ -119,7 +119,7 @@ NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
 **Type**: boolean<br />
 
 
-### `.isNode`
+### `.isNode` {#isNode}
 
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
@@ -130,7 +130,7 @@ same time.
 **Type**: boolean<br />
 
 
-### `.octaveOffset`
+### `.octaveOffset` {#octaveOffset}
 
 **Since**: 2.1<br />
 
@@ -148,7 +148,7 @@ number sent will be 72 (instead of 60).
 **Type**: number<br />
 
 
-### `.outputs`
+### `.outputs` {#outputs}
 
 
 An array of all currently available MIDI outputs as [`Output`](Output) objects.
@@ -157,7 +157,7 @@ An array of all currently available MIDI outputs as [`Output`](Output) objects.
 **Attributes**: read-only<br />
 
 
-### `.supported`
+### `.supported` {#supported}
 
 
 Indicates whether the environment provides support for the Web MIDI API or not.
@@ -172,7 +172,7 @@ property will be `true` even though actual support might not be there.
 **Attributes**: read-only<br />
 
 
-### `.sysexEnabled`
+### `.sysexEnabled` {#sysexEnabled}
 
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
@@ -182,7 +182,7 @@ enabled via the [`enable()`](#enable) method.
 **Attributes**: read-only<br />
 
 
-### `.time`
+### `.time` {#time}
 
 
 The elapsed time, in milliseconds, since the time
@@ -197,7 +197,7 @@ browser might only be accurate to one millisecond.
 **Attributes**: read-only<br />
 
 
-### `.validation`
+### `.validation` {#validation}
 
 
 Indicates whether argument validation and backwards-compatibility checks are performed
@@ -756,7 +756,7 @@ try {
 
 ## Events
 
-### `"connected"`<a id="event:connected"></a>
+### `"connected"`<a id="event:connected"></a> {#event:connected}
 
 Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
@@ -773,7 +773,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
-### `"disabled"`<a id="event:disabled"></a>
+### `"disabled"`<a id="event:disabled"></a> {#event:disabled}
 
 Event emitted once `WebMidi` has been successfully disabled.
 
@@ -788,7 +788,7 @@ Event emitted once `WebMidi` has been successfully disabled.
   |**`type`** |string|`"disabled"`|
 
 
-### `"disconnected"`<a id="event:disconnected"></a>
+### `"disconnected"`<a id="event:disconnected"></a> {#event:disconnected}
 
 Event emitted when an [`Input`](Input) or [`Output`](Output) becomes unavailable. This event
 is typically fired whenever a MIDI device is unplugged. Please note that it may fire several
@@ -811,7 +811,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target.type`** |string|`input` or `output`|
 
 
-### `"enabled"`<a id="event:enabled"></a>
+### `"enabled"`<a id="event:enabled"></a> {#event:enabled}
 
 Event emitted once `WebMidi` has been fully enabled
 
@@ -826,7 +826,7 @@ Event emitted once `WebMidi` has been fully enabled
   |**`type`** |string|`"enabled"`|
 
 
-### `"error"`<a id="event:error"></a>
+### `"error"`<a id="event:error"></a> {#event:error}
 
 Event emitted when an error occurs trying to enable `WebMidi`
 
@@ -842,7 +842,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
   |**`error`** |*|Actual error that occurred|
 
 
-### `"midiaccessgranted"`<a id="event:midiaccessgranted"></a>
+### `"midiaccessgranted"`<a id="event:midiaccessgranted"></a> {#event:midiaccessgranted}
 
 Event emitted once the MIDI interface has been successfully created (which implies user has
 granted access to MIDI).

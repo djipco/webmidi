@@ -13,7 +13,7 @@ Note that a single device may expose several inputs and/or outputs.
 
 **Fires**: [`opened`](Input#event:opened), [`disconnected`](Input#event:disconnected), [`closed`](Input#event:closed), [`midimessage`](Input#event:midimessage), [`sysex`](Input#event:sysex), [`timecode`](Input#event:timecode), [`songposition`](Input#event:songposition), [`songselect`](Input#event:songselect), [`tunerequest`](Input#event:tunerequest), [`clock`](Input#event:clock), [`start`](Input#event:start), [`continue`](Input#event:continue), [`stop`](Input#event:stop), [`activesensing`](Input#event:activesensing), [`reset`](Input#event:reset), [`unknownmidimessage`](Input#event:unknownmidimessage)
 
-### `new Input(...)`
+### `new Input(...)` {#exports.Input}
 
 
   **Parameters**
@@ -30,7 +30,7 @@ Note that a single device may expose several inputs and/or outputs.
 
 ## Properties
 
-### `.channels`
+### `.channels` {#channels}
 
 
 Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
@@ -39,7 +39,7 @@ channels are numbered 1 through 16.
 **Type**: Array.&lt;InputChannel&gt;<br />
 
 
-### `.connection`
+### `.connection` {#connection}
 
 
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
@@ -48,7 +48,7 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 **Attributes**: read-only<br />
 
 
-### `.eventCount`
+### `.eventCount` {#eventCount}
 
 
 The number of unique events that have registered listeners
@@ -60,7 +60,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventMap`
+### `.eventMap` {#eventMap}
 
 
 An object containing a property for each event with at least one registered listener. Each
@@ -70,7 +70,7 @@ event property contains an array of all the `Listener` objects registered for th
 **Attributes**: read-only<br />
 
 
-### `.eventNames`
+### `.eventNames` {#eventNames}
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -83,7 +83,7 @@ tied to a specific event.
 **Attributes**: read-only<br />
 
 
-### `.eventsSuspended`
+### `.eventsSuspended` {#eventsSuspended}
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
@@ -92,7 +92,7 @@ emitter
 **Type**: boolean<br />
 
 
-### `.id`
+### `.id` {#id}
 
 
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
@@ -103,7 +103,7 @@ the same port.
 **Attributes**: read-only<br />
 
 
-### `.manufacturer`
+### `.manufacturer` {#manufacturer}
 
 
 Name of the manufacturer of the device that makes this input port available.
@@ -112,7 +112,7 @@ Name of the manufacturer of the device that makes this input port available.
 **Attributes**: read-only<br />
 
 
-### `.name`
+### `.name` {#name}
 
 
 Name of the MIDI input
@@ -121,7 +121,7 @@ Name of the MIDI input
 **Attributes**: read-only<br />
 
 
-### `.octaveOffset`
+### `.octaveOffset` {#octaveOffset}
 
 **Since**: 3.0<br />
 
@@ -137,7 +137,7 @@ Note that this value is combined with the global offset value defined on the `We
 **Type**: number<br />
 
 
-### `.state`
+### `.state` {#state}
 
 
 State of the input port: `"connected"` or `"disconnected"`.
@@ -146,7 +146,7 @@ State of the input port: `"connected"` or `"disconnected"`.
 **Attributes**: read-only<br />
 
 
-### `.type`
+### `.type` {#type}
 
 
 Port type. In the case of `Input`, this is always: `"input"`.
@@ -698,7 +698,7 @@ try {
 
 ## Events
 
-### `"activesensing"`<a id="event:activesensing"></a>
+### `"activesensing"`<a id="event:activesensing"></a> {#event:activesensing}
 
 Input-wide (system) event emitted when an **active sensing** message has been received.
 
@@ -717,7 +717,7 @@ Input-wide (system) event emitted when an **active sensing** message has been re
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"clock"`<a id="event:clock"></a>
+### `"clock"`<a id="event:clock"></a> {#event:clock}
 
 Input-wide (system) event emitted when a **timing clock** message has been received.
 
@@ -736,7 +736,7 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"closed"`<a id="event:closed"></a>
+### `"closed"`<a id="event:closed"></a> {#event:closed}
 
 Event emitted when the [Input](Input) has been closed by calling the [Input#close](Input#close)
 method.
@@ -752,7 +752,7 @@ method.
   |**`target`** |Input|The object that triggered the event|
 
 
-### `"continue"`<a id="event:continue"></a>
+### `"continue"`<a id="event:continue"></a> {#event:continue}
 
 Input-wide (system) event emitted when a **continue** message has been received.
 
@@ -771,7 +771,7 @@ Input-wide (system) event emitted when a **continue** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"disconnected"`<a id="event:disconnected"></a>
+### `"disconnected"`<a id="event:disconnected"></a> {#event:disconnected}
 
 Event emitted when the [Input](Input) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
@@ -793,7 +793,7 @@ when the MIDI device is unplugged.
   |**`target.type`** |string|`"input"`|
 
 
-### `"midimessage"`<a id="event:midimessage"></a>
+### `"midimessage"`<a id="event:midimessage"></a> {#event:midimessage}
 
 Event emitted when any MIDI message is received on an `Input`
 
@@ -814,7 +814,7 @@ Event emitted when any MIDI message is received on an `Input`
   |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 
-### `"opened"`<a id="event:opened"></a>
+### `"opened"`<a id="event:opened"></a> {#event:opened}
 
 Event emitted when the [Input](Input) has been opened by calling the [Input#open](Input#open)
 method.
@@ -830,7 +830,7 @@ method.
   |**`target`** |Input|The object that triggered the event|
 
 
-### `"reset"`<a id="event:reset"></a>
+### `"reset"`<a id="event:reset"></a> {#event:reset}
 
 Input-wide (system) event emitted when a **reset** message has been received.
 
@@ -849,7 +849,7 @@ Input-wide (system) event emitted when a **reset** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"songposition"`<a id="event:songposition"></a>
+### `"songposition"`<a id="event:songposition"></a> {#event:songposition}
 
 Input-wide (system) event emitted when a **song position** message has been received.
 
@@ -868,7 +868,7 @@ Input-wide (system) event emitted when a **song position** message has been rece
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"songselect"`<a id="event:songselect"></a>
+### `"songselect"`<a id="event:songselect"></a> {#event:songselect}
 
 Input-wide (system) event emitted when a **song select** message has been received.
 
@@ -888,7 +888,7 @@ Input-wide (system) event emitted when a **song select** message has been receiv
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"start"`<a id="event:start"></a>
+### `"start"`<a id="event:start"></a> {#event:start}
 
 Input-wide (system) event emitted when a **start** message has been received.
 
@@ -907,7 +907,7 @@ Input-wide (system) event emitted when a **start** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"stop"`<a id="event:stop"></a>
+### `"stop"`<a id="event:stop"></a> {#event:stop}
 
 Input-wide (system) event emitted when a **stop** message has been received.
 
@@ -926,7 +926,7 @@ Input-wide (system) event emitted when a **stop** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"sysex"`<a id="event:sysex"></a>
+### `"sysex"`<a id="event:sysex"></a> {#event:sysex}
 
 Input-wide (system) event emitted when a **system exclusive** message has been received.
 You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
@@ -952,7 +952,7 @@ WebMidi.enable({sysex: true})
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array.|
 
 
-### `"timecode"`<a id="event:timecode"></a>
+### `"timecode"`<a id="event:timecode"></a> {#event:timecode}
 
 Input-wide (system) event emitted when a **time code quarter frame** message has been
 received.
@@ -972,7 +972,7 @@ received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"tunerequest"`<a id="event:tunerequest"></a>
+### `"tunerequest"`<a id="event:tunerequest"></a> {#event:tunerequest}
 
 Input-wide (system) event emitted when a **tune request** message has been received.
 
@@ -991,7 +991,7 @@ Input-wide (system) event emitted when a **tune request** message has been recei
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"unknownmidimessage"`<a id="event:unknownmidimessage"></a>
+### `"unknownmidimessage"`<a id="event:unknownmidimessage"></a> {#event:unknownmidimessage}
 
 Input-wide (system) event emitted when an unknown MIDI message has been received. It could
 be, for example, one of the undefined/reserved messages.
