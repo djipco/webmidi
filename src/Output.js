@@ -444,6 +444,8 @@ export class Output extends EventEmitter {
    */
   setSongPosition(value, options = {}) {
 
+    // @todo allow passing in 2-entries array for msb/lsb
+
     value = Math.floor(value) || 0;
 
     var msb = (value >> 7) & 0x7F;

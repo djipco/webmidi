@@ -11,7 +11,7 @@ import {Enumerations} from "./Enumerations.js";
  * [channels]{@link Output#channels} property.
  *
  * @param {Output} output The output this channel belongs to
- * @param {number} number The channel number (1-16)
+ * @param {number} number The MIDI channel number (1-16)
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -1121,6 +1121,8 @@ export class OutputChannel extends EventEmitter {
    */
   setMasterTuning(value, options = {}) {
 
+    // @todo allow passing value as msb/lsb pair (the same as pitch bend range)
+
     value = parseFloat(value) || 0.0;
 
     if (WebMidi.validation) {
@@ -1169,6 +1171,9 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setModulationRange(semitones, cents, options = {}) {
+
+    // @todo allow passing value as msb/lsb pair (the same as pitch bend range)
+    // when passing a single argument, semitones and cents shoud be combined
 
     if (WebMidi.validation) {
 
@@ -1302,6 +1307,8 @@ export class OutputChannel extends EventEmitter {
    */
   setPitchBend(value, options = {}) {
 
+    // @todo standardize the way msb/lsb are passed in
+
     if (WebMidi.validation) {
 
       if (options.rawValue && Array.isArray(value)) {
@@ -1387,6 +1394,8 @@ export class OutputChannel extends EventEmitter {
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
   setPitchBendRange(semitones, cents, options = {}) {
+
+    // @todo use single value as parameter or pair of msb/lsb
 
     if (WebMidi.validation) {
 
@@ -1485,7 +1494,7 @@ export class OutputChannel extends EventEmitter {
    *  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
    *  * Roll Angle (0x3D, 0x08): `"rollangle"`
    *
-   * @param parameter {string|number[]} A string identifying the parameter's name (see above) or a
+   * @param rpn {string|number[]} A string identifying the parameter's name (see above) or a
    * two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the
    * registered parameter.
    *
