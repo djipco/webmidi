@@ -12,7 +12,7 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 ## Methods
 
 
-### `.buildNote(...)`
+### `.buildNote(...)` {#buildNote}
 
 **Since**: version 3.0.0<br />
 
@@ -46,7 +46,7 @@ If the input is a note number or identifier, it is possible to specify options b
   * TypeError The input could not be parsed to a note
 
 
-### `.buildNoteArray(...)`
+### `.buildNoteArray(...)` {#buildNoteArray}
 
 **Since**: 3.0.0<br />
 
@@ -82,7 +82,7 @@ input.
   * TypeError An element could not be parsed as a note.
 
 
-### `.from7bitToFloat(...)`
+### `.from7bitToFloat(...)` {#from7bitToFloat}
 
 
 Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
@@ -110,7 +110,7 @@ input value cannot be converted to an integer, the method returns 0.
 
 
 
-### `.fromFloatTo7Bit(...)`
+### `.fromFloatTo7Bit(...)` {#fromFloatTo7Bit}
 
 
 Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
@@ -138,7 +138,7 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 
-### `.fromFloatToMsbLsb(...)`
+### `.fromFloatToMsbLsb(...)` {#fromFloatToMsbLsb}
 
 
 Extracts 7bit MSB and LSB values from the supplied float.
@@ -159,7 +159,7 @@ Extracts 7bit MSB and LSB values from the supplied float.
 
 
 
-### `.fromMsbLsbToFloat(...)`
+### `.fromMsbLsbToFloat(...)` {#fromMsbLsbToFloat}
 
 
 Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
@@ -184,7 +184,7 @@ is within between 0 and 1 even if the result is greater than 1 or smaller than 0
 
 
 
-### `.getNoteDetails(...)`
+### `.getNoteDetails(...)` {#getNoteDetails}
 
 **Since**: 3.0.0<br />
 
@@ -213,7 +213,7 @@ When a number is specified, the translation to note is done using a value of 60 
   * TypeError Invalid note identifier
 
 
-### `.getPropertyByValue(...)`
+### `.getPropertyByValue(...)` {#getPropertyByValue}
 
 
 Returns the name of the first property of the supplied object whose value is equal to the one
@@ -238,7 +238,7 @@ supplied.
 
 
 
-### `.guessNoteNumber(...)`
+### `.guessNoteNumber(...)` {#guessNoteNumber}
 
 **Since**: 3.0.0<br />
 
@@ -270,7 +270,7 @@ successfully be parsed to a note number.
 
 
 
-### `.offsetNumber(...)`
+### `.offsetNumber(...)` {#offsetNumber}
 
 
 Returns the supplied MIDI note number offset by the requested octave and semitone values. If
@@ -297,7 +297,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
   * `Error` : Invalid note number
 
 
-### `.sanitizeChannels(...)`
+### `.sanitizeChannels(...)` {#sanitizeChannels}
 
 **Since**: 3.0.0<br />
 
@@ -326,7 +326,7 @@ integers between 1 and 16 are silently ignored.
 
 
 
-### `.toNoteIdentifier(...)`
+### `.toNoteIdentifier(...)` {#toNoteIdentifier}
 
 **Since**: 3.0.0<br />
 
@@ -353,7 +353,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
   * RangeError Invalid octaveOffset value
 
 
-### `.toNoteNumber(...)`
+### `.toNoteNumber(...)` {#toNoteNumber}
 
 **Since**: 3.0.0<br />
 
@@ -389,7 +389,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
   * TypeError Invalid note identifier
 
 
-### `.toTimestamp(...)`
+### `.toTimestamp(...)` {#toTimestamp}
 
 **Since**: 3.0.0<br />
 

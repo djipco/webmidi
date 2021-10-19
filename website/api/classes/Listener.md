@@ -106,7 +106,7 @@ The object that the event is attached to (or that emitted the event)
 ## Methods
 
 
-### `.remove()`
+### `.remove()` {#remove}
 
 
 Removes the listener from its target.

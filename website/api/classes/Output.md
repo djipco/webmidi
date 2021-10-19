@@ -156,7 +156,7 @@ Type of the output port (`"output"`)
 ## Methods
 
 
-### `.addListener(...)`
+### `.addListener(...)` {#addListener}
 
 
 Adds a listener for the specified event. It returns the [**Listener**](Listener) object
@@ -192,7 +192,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   * `TypeError` : The `callback` parameter must be a function.
 
 
-### `.addOneTimeListener(...)`
+### `.addOneTimeListener(...)` {#addOneTimeListener}
 
 
 Adds a one-time listener for the specified event. The listener will be executed once and then
@@ -228,7 +228,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   * `TypeError` : The `callback` parameter must be a function.
 
 
-### `.clear()`
+### `.clear()` {#clear}
 
 
 Clears all messages that have been queued but not yet delivered.
@@ -246,7 +246,7 @@ https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 
 
-### `.close()`
+### `.close()` {#close}
 
 **Attributes**: async
 
@@ -259,7 +259,7 @@ the connection status by looking at the [connection](Output#connection) property
 
 
 
-### `.decrementRegisteredParameter(...)`
+### `.decrementRegisteredParameter(...)` {#decrementRegisteredParameter}
 
 
 Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
@@ -302,7 +302,7 @@ names that can be used with this method:
   * TypeError The specified parameter is not available.
 
 
-### `.destroy()`
+### `.destroy()` {#destroy}
 
 **Attributes**: async
 
@@ -314,7 +314,7 @@ subsystem is unlinked.
 
 
 
-### `.emit(...)`
+### `.emit(...)` {#emit}
 
 
 Executes the callback functions of all the `Listener` objects registered for a given event. The
@@ -358,7 +358,7 @@ functions
   * `TypeError` : The `event` parameter must be a string.
 
 
-### `.getListenerCount(...)`
+### `.getListenerCount(...)` {#getListenerCount}
 
 
 Returns the number of listeners registered for a specific event.
@@ -383,7 +383,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 
 
-### `.getListeners(...)`
+### `.getListeners(...)` {#getListeners}
 
 
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
@@ -408,7 +408,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 
 
-### `.hasListener(...)`
+### `.hasListener(...)` {#hasListener}
 
 
 Returns `true` if the specified event has at least one registered listener. If no event is
@@ -433,7 +433,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 
 
-### `.incrementRegisteredParameter(...)`
+### `.incrementRegisteredParameter(...)` {#incrementRegisteredParameter}
 
 
 Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
@@ -474,7 +474,7 @@ names that can be used with this method:
 
 
 
-### `.open()`
+### `.open()` {#open}
 
 **Attributes**: async
 
@@ -487,7 +487,7 @@ Opens the output for usage.
 
 
 
-### `.playNote(...)`
+### `.playNote(...)` {#playNote}
 
 
 Plays a note or an array of notes on one or more channels of this output. The first parameter
@@ -537,7 +537,7 @@ functionally equivalent to a **note off** message.
 
 
 
-### `.removeListener(...)`
+### `.removeListener(...)` {#removeListener}
 
 
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
@@ -566,7 +566,7 @@ callback to match or one or more of the additional options.
 
 
 
-### `.resetAllControllers(...)`
+### `.resetAllControllers(...)` {#resetAllControllers}
 
 
 Sends a **reset all controllers** channel mode message. This resets all controllers, such as
@@ -588,7 +588,7 @@ the pitch bend, to their default value.
 
 
 
-### `.send(...)`
+### `.send(...)` {#send}
 
 
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
@@ -623,7 +623,7 @@ from the MIDI Manufacturers Association.
   * `RangeError` : The first byte (status) must be an integer between 128 and 255.
 
 
-### `.sendActiveSensing(...)`
+### `.sendActiveSensing(...)` {#sendActiveSensing}
 
 
 Sends an **active sensing** real-time message. This tells the device connected to this port
@@ -647,7 +647,7 @@ was no other activity on the MIDI port.
 
 
 
-### `.sendChannelMode(...)`
+### `.sendChannelMode(...)` {#sendChannelMode}
 
 
 Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
@@ -699,7 +699,7 @@ To make it easier, all channel mode messages have a matching helper method:
   * `RangeError` : Value must be an integer between 0 and 127.
 
 
-### `.sendClock(...)`
+### `.sendClock(...)` {#sendClock}
 
 
 Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
@@ -722,7 +722,7 @@ for every quarter note.
 
 
 
-### `.sendContinue(...)`
+### `.sendContinue(...)` {#sendContinue}
 
 
 Sends a **continue** real-time message. This resumes song playback where it was previously
@@ -746,7 +746,7 @@ start, use the [sendStart()](#Output+sendStart)` method.
 
 
 
-### `.sendControlChange(...)`
+### `.sendControlChange(...)` {#sendControlChange}
 
 
 Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
@@ -856,7 +856,7 @@ specification.
   * `RangeError` : Invalid controller name.
 
 
-### `.sendNoteOff(...)`
+### `.sendNoteOff(...)` {#sendNoteOff}
 
 
 Sends a **note off** message for the specified MIDI note number on the specified channel(s).
@@ -890,7 +890,7 @@ values:
 
 
 
-### `.sendNoteOn(...)`
+### `.sendNoteOn(...)` {#sendNoteOn}
 
 
 Sends a **note on** message for the specified MIDI note number on the specified channel(s). The
@@ -927,7 +927,7 @@ functionally equivalent to a **note off** message.
 
 
 
-### `.sendReset(...)`
+### `.sendReset(...)` {#sendReset}
 
 
 Sends a **reset** real-time message. This tells the device connected to this output that it
@@ -950,7 +950,7 @@ should reset itself to a default state.
 
 
 
-### `.sendStart(...)`
+### `.sendStart(...)` {#sendStart}
 
 
 Sends a **start** real-time message. A MIDI Start message starts the playback of the current
@@ -974,7 +974,7 @@ song at beat 0. To start playback elsewhere in the song, use the
 
 
 
-### `.sendStop(...)`
+### `.sendStop(...)` {#sendStop}
 
 
 Sends a **stop** real-time message. This tells the device connected to this output to stop
@@ -997,7 +997,7 @@ playback immediately (or at the scheduled time).
 
 
 
-### `.sendSysex(...)`
+### `.sendSysex(...)` {#sendSysex}
 
 
 Sends a MIDI [system exclusive](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
@@ -1072,7 +1072,7 @@ not allowed.
 than 0xFF.
 
 
-### `.sendTimecodeQuarterFrame(...)`
+### `.sendTimecodeQuarterFrame(...)` {#sendTimecodeQuarterFrame}
 
 
 Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
@@ -1097,7 +1097,7 @@ on the data. It is up to the developer to format the data according to the
 
 
 
-### `.sendTuneRequest(...)`
+### `.sendTuneRequest(...)` {#sendTuneRequest}
 
 **Since**: 3.0.0<br />
 
@@ -1120,7 +1120,7 @@ Sends a MIDI **tune request** real-time message.
 
 
 
-### `.setChannelAftertouch(...)`
+### `.setChannelAftertouch(...)` {#setChannelAftertouch}
 
 **Since**: 3.0.0<br />
 
@@ -1147,7 +1147,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
 
 
 
-### `.setKeyAftertouch(...)`
+### `.setKeyAftertouch(...)` {#setKeyAftertouch}
 
 **Since**: 3.0.0<br />
 
@@ -1176,7 +1176,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
 
 
-### `.setLocalControl(...)`
+### `.setLocalControl(...)` {#setLocalControl}
 
 **Since**: 3.0.0<br />
 
@@ -1203,7 +1203,7 @@ its out port.
 
 
 
-### `.setMasterTuning(...)`
+### `.setMasterTuning(...)` {#setMasterTuning}
 
 **Since**: 3.0.0<br />
 
@@ -1237,7 +1237,7 @@ a **Master Fine Tuning** RPN messages.
 than 64.
 
 
-### `.setModulationRange(...)`
+### `.setModulationRange(...)` {#setModulationRange}
 
 **Since**: 3.0.0<br />
 
@@ -1268,7 +1268,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
   * `RangeError` : The lsb value must be between 0 and 127
 
 
-### `.setNonRegisteredParameter(...)`
+### `.setNonRegisteredParameter(...)` {#setNonRegisteredParameter}
 
 
 Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
@@ -1325,7 +1325,7 @@ For further implementation details, refer to the manufacturer"s documentation.
   * `RangeError` : The msb value must be between 0 and 127
 
 
-### `.setOmniMode(...)`
+### `.setOmniMode(...)` {#setOmniMode}
 
 **Since**: 3.0.0<br />
 
@@ -1357,7 +1357,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
   * `RangeError` : Value must be an integer between 0 and 127.
 
 
-### `.setPitchBend(...)`
+### `.setPitchBend(...)` {#setPitchBend}
 
 **Since**: 3.0.0<br />
 
@@ -1383,7 +1383,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
 
 
-### `.setPitchBendRange(...)`
+### `.setPitchBendRange(...)` {#setPitchBendRange}
 
 **Since**: 3.0.0<br />
 
@@ -1415,7 +1415,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
   * `RangeError` : The lsb value must be between 0 and 127.
 
 
-### `.setPolyphonicMode(...)`
+### `.setPolyphonicMode(...)` {#setPolyphonicMode}
 
 **Since**: 3.0.0<br />
 
@@ -1442,7 +1442,7 @@ multiple notes are being played.
 
 
 
-### `.setProgram(...)`
+### `.setProgram(...)` {#setProgram}
 
 **Since**: 3.0.0<br />
 
@@ -1474,7 +1474,7 @@ that use a numbering scheme starting at 1.
 than 0xFF.
 
 
-### `.setRegisteredParameter(...)`
+### `.setRegisteredParameter(...)` {#setRegisteredParameter}
 
 
 Sets the specified MIDI registered parameter to the desired value. The value is defined with
@@ -1529,7 +1529,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
 
 
-### `.setSong(...)`
+### `.setSong(...)` {#setSong}
 
 **Since**: 3.0.0<br />
 
@@ -1559,7 +1559,7 @@ use a numbering scheme starting at 1.
   * The song number must be between 1 and 128.
 
 
-### `.setSongPosition(...)`
+### `.setSongPosition(...)` {#setSongPosition}
 
 **Since**: 3.0.0<br />
 
@@ -1584,7 +1584,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
 
 
-### `.setTuningBank(...)`
+### `.setTuningBank(...)` {#setTuningBank}
 
 **Since**: 3.0.0<br />
 
@@ -1616,7 +1616,7 @@ that use a numbering scheme starting at 1.
   * `RangeError` : The bank value must be between 1 and 128.
 
 
-### `.setTuningProgram(...)`
+### `.setTuningProgram(...)` {#setTuningProgram}
 
 **Since**: 3.0.0<br />
 
@@ -1648,7 +1648,7 @@ that use a numbering scheme starting at 1.
   * `RangeError` : The program value must be between 1 and 128.
 
 
-### `.stopNote(...)`
+### `.stopNote(...)` {#stopNote}
 
 
 This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
@@ -1668,7 +1668,7 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
 
 
-### `.suspendEvent(...)`
+### `.suspendEvent(...)` {#suspendEvent}
 
 
 Suspends execution of all callbacks functions registered for the specified event type.
@@ -1694,7 +1694,7 @@ simply set its `eventsSuspended` property to `true`.
 
 
 
-### `.turnNotesOff(...)`
+### `.turnNotesOff(...)` {#turnNotesOff}
 
 **Since**: 3.0.0<br />
 
@@ -1718,7 +1718,7 @@ fade out just as if their key had been released. This is different from the
 
 
 
-### `.turnSoundOff(...)`
+### `.turnSoundOff(...)` {#turnSoundOff}
 
 **Since**: 3.0.0<br />
 
@@ -1741,7 +1741,7 @@ channel but will not prevent new sounds from being triggered.
 
 
 
-### `.unsuspendEvent(...)`
+### `.unsuspendEvent(...)` {#unsuspendEvent}
 
 
 Resumes execution of all suspended callback functions registered for the specified event type.
@@ -1765,7 +1765,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 
 
-### `.waitFor(...)`
+### `.waitFor(...)` {#waitFor}
 
 **Attributes**: async
 

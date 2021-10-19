@@ -216,7 +216,7 @@ improves performance but should only be done once the project has been thoroughl
 ## Methods
 
 
-### `.addListener(...)`
+### `.addListener(...)` {#addListener}
 
 
 Adds a listener for the specified event. It returns the [**Listener**](Listener) object
@@ -252,7 +252,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   * `TypeError` : The `callback` parameter must be a function.
 
 
-### `.addOneTimeListener(...)`
+### `.addOneTimeListener(...)` {#addOneTimeListener}
 
 
 Adds a one-time listener for the specified event. The listener will be executed once and then
@@ -288,7 +288,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   * `TypeError` : The `callback` parameter must be a function.
 
 
-### `.disable()`
+### `.disable()` {#disable}
 
 **Since**: 2.0.0<br />
 **Attributes**: async
@@ -305,7 +305,7 @@ are also destroyed.
   * `Error` : The Web MIDI API is not supported by your environment.
 
 
-### `.emit(...)`
+### `.emit(...)` {#emit}
 
 
 Executes the callback functions of all the `Listener` objects registered for a given event. The
@@ -349,7 +349,7 @@ functions
   * `TypeError` : The `event` parameter must be a string.
 
 
-### `.enable(...)`
+### `.enable(...)` {#enable}
 
 **Attributes**: async
 
@@ -424,7 +424,7 @@ chainability
   * `Error` : Jazz-Plugin must be installed to use WebMIDIAPIShim.
 
 
-### `.getInputById(...)`
+### `.getInputById(...)` {#getInputById}
 
 **Since**: 2.0.0<br />
 
@@ -453,7 +453,7 @@ if no matching input can be found.
   * `Error` : WebMidi is not enabled.
 
 
-### `.getInputByName(...)`
+### `.getInputByName(...)` {#getInputByName}
 
 **Since**: 2.0.0<br />
 
@@ -480,7 +480,7 @@ specified name.
   * `Error` : WebMidi is not enabled.
 
 
-### `.getListenerCount(...)`
+### `.getListenerCount(...)` {#getListenerCount}
 
 
 Returns the number of listeners registered for a specific event.
@@ -505,7 +505,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 
 
-### `.getListeners(...)`
+### `.getListeners(...)` {#getListeners}
 
 
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
@@ -530,7 +530,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 
 
-### `.getOutputById(...)`
+### `.getOutputById(...)` {#getOutputById}
 
 **Since**: 2.0.0<br />
 
@@ -560,7 +560,7 @@ matching output can be found, the method returns `false`.
   * `Error` : WebMidi is not enabled.
 
 
-### `.getOutputByName(...)`
+### `.getOutputByName(...)` {#getOutputByName}
 
 **Since**: 2.0.0<br />
 
@@ -587,7 +587,7 @@ the specified name.
   * `Error` : WebMidi is not enabled.
 
 
-### `.hasListener(...)`
+### `.hasListener(...)` {#hasListener}
 
 
 Returns `true` if the specified event has at least one registered listener. If no event is
@@ -612,7 +612,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 
 
-### `.removeListener(...)`
+### `.removeListener(...)` {#removeListener}
 
 
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
@@ -641,7 +641,7 @@ callback to match or one or more of the additional options.
 
 
 
-### `.suspendEvent(...)`
+### `.suspendEvent(...)` {#suspendEvent}
 
 
 Suspends execution of all callbacks functions registered for the specified event type.
@@ -667,7 +667,7 @@ simply set its `eventsSuspended` property to `true`.
 
 
 
-### `.unsuspendEvent(...)`
+### `.unsuspendEvent(...)` {#unsuspendEvent}
 
 
 Resumes execution of all suspended callback functions registered for the specified event type.
@@ -691,7 +691,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 
 
-### `.waitFor(...)`
+### `.waitFor(...)` {#waitFor}
 
 **Attributes**: async
 

@@ -161,7 +161,7 @@ Port type. In the case of `Input`, this is always: `"input"`.
 ## Methods
 
 
-### `.addListener(...)`
+### `.addListener(...)` {#addListener}
 
 
 Adds an event listener that will trigger a function callback when the specified event happens.
@@ -283,7 +283,7 @@ There are 6 families of events you can listen to:
   * `Error` : For channel-specific events, 'options.channels' must be defined.
 
 
-### `.addOneTimeListener(...)`
+### `.addOneTimeListener(...)` {#addOneTimeListener}
 
 
 Adds a one-time event listener that will trigger a function callback when the specified event
@@ -391,7 +391,7 @@ There are 6 families of events you can listen to:
   * `Error` : For channel-specific events, 'options.channels' must be defined.
 
 
-### `.close()`
+### `.close()` {#close}
 
 **Attributes**: async
 
@@ -405,7 +405,7 @@ the input is opened again by calling [Input.open()](#Input+open).
 
 
 
-### `.destroy()`
+### `.destroy()` {#destroy}
 
 **Attributes**: async
 
@@ -417,7 +417,7 @@ MIDI subsystem.
 
 
 
-### `.emit(...)`
+### `.emit(...)` {#emit}
 
 
 Executes the callback functions of all the `Listener` objects registered for a given event. The
@@ -461,7 +461,7 @@ functions
   * `TypeError` : The `event` parameter must be a string.
 
 
-### `.getListenerCount(...)`
+### `.getListenerCount(...)` {#getListenerCount}
 
 
 Returns the number of listeners registered for a specific event.
@@ -486,7 +486,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 
 
-### `.getListeners(...)`
+### `.getListeners(...)` {#getListeners}
 
 
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
@@ -511,7 +511,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 
 
-### `.hasListener(...)`
+### `.hasListener(...)` {#hasListener}
 
 
 Checks if the specified event type is already defined to trigger the listener function. For
@@ -540,7 +540,7 @@ listener defined.
   * Error For channel-specific events, 'options.channels' must be defined.
 
 
-### `.open()`
+### `.open()` {#open}
 
 **Attributes**: async
 
@@ -554,7 +554,7 @@ WebMidi is enabled.
 
 
 
-### `.removeListener(...)`
+### `.removeListener(...)` {#removeListener}
 
 
 Removes the specified listener for the specified event. If no listener is specified, all
@@ -583,7 +583,7 @@ By default, channel-specific listeners will be removed from all channels unless 
 
 
 
-### `.suspendEvent(...)`
+### `.suspendEvent(...)` {#suspendEvent}
 
 
 Suspends execution of all callbacks functions registered for the specified event type.
@@ -609,7 +609,7 @@ simply set its `eventsSuspended` property to `true`.
 
 
 
-### `.unsuspendEvent(...)`
+### `.unsuspendEvent(...)` {#unsuspendEvent}
 
 
 Resumes execution of all suspended callback functions registered for the specified event type.
@@ -633,7 +633,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 
 
-### `.waitFor(...)`
+### `.waitFor(...)` {#waitFor}
 
 **Attributes**: async
 

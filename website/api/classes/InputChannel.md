@@ -149,7 +149,7 @@ all buffered control change messages will be discarded as incomplete.
 ## Methods
 
 
-### `.addListener(...)`
+### `.addListener(...)` {#addListener}
 
 
 Adds a listener for the specified event. It returns the [**Listener**](Listener) object
@@ -185,7 +185,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   * `TypeError` : The `callback` parameter must be a function.
 
 
-### `.addOneTimeListener(...)`
+### `.addOneTimeListener(...)` {#addOneTimeListener}
 
 
 Adds a one-time listener for the specified event. The listener will be executed once and then
@@ -221,7 +221,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   * `TypeError` : The `callback` parameter must be a function.
 
 
-### `.destroy()`
+### `.destroy()` {#destroy}
 
 
 Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
@@ -232,7 +232,7 @@ input.
 
 
 
-### `.emit(...)`
+### `.emit(...)` {#emit}
 
 
 Executes the callback functions of all the `Listener` objects registered for a given event. The
@@ -276,7 +276,7 @@ functions
   * `TypeError` : The `event` parameter must be a string.
 
 
-### `.getCcNameByNumber(...)`
+### `.getCcNameByNumber(...)` {#getCcNameByNumber}
 
 **Since**: 2.0.0<br />
 
@@ -304,7 +304,7 @@ found.
   * `RangeError` : Invalid control change number.
 
 
-### `.getChannelModeByNumber(...)`
+### `.getChannelModeByNumber(...)` {#getChannelModeByNumber}
 
 **Since**: 2.0.0<br />
 
@@ -328,7 +328,7 @@ found.
 
 
 
-### `.getListenerCount(...)`
+### `.getListenerCount(...)` {#getListenerCount}
 
 
 Returns the number of listeners registered for a specific event.
@@ -353,7 +353,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 
 
-### `.getListeners(...)`
+### `.getListeners(...)` {#getListeners}
 
 
 Returns an array of all the `Listener` objects that will be triggered for a specific event.
@@ -378,7 +378,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 
 
-### `.getNoteState(...)`
+### `.getNoteState(...)` {#getNoteState}
 
 **Since**: version 3.0.0<br />
 
@@ -402,7 +402,7 @@ If a note identifier or Note object is passed in, the method will take into acco
 
 
 
-### `.hasListener(...)`
+### `.hasListener(...)` {#hasListener}
 
 
 Returns `true` if the specified event has at least one registered listener. If no event is
@@ -427,7 +427,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 
 
-### `.removeListener(...)`
+### `.removeListener(...)` {#removeListener}
 
 
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
@@ -456,7 +456,7 @@ callback to match or one or more of the additional options.
 
 
 
-### `.suspendEvent(...)`
+### `.suspendEvent(...)` {#suspendEvent}
 
 
 Suspends execution of all callbacks functions registered for the specified event type.
@@ -482,7 +482,7 @@ simply set its `eventsSuspended` property to `true`.
 
 
 
-### `.unsuspendEvent(...)`
+### `.unsuspendEvent(...)` {#unsuspendEvent}
 
 
 Resumes execution of all suspended callback functions registered for the specified event type.
@@ -506,7 +506,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
 
 
-### `.waitFor(...)`
+### `.waitFor(...)` {#waitFor}
 
 **Attributes**: async
 
