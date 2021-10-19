@@ -1830,7 +1830,11 @@ try {
 
 ## Events
 
-### `"closed"` {#event-closed}
+### `"closed"` {#event&#58;closed}
+
+
+
+
 
 Event emitted when the [Output](Output) has been closed by calling the
 [close()](Output#close) method.
@@ -1846,7 +1850,11 @@ Event emitted when the [Output](Output) has been closed by calling the
   |**`target`** |Output|The object that triggered the event|
 
 
-### `"disconnected"` {#event-disconnected}
+### `"disconnected"` {#event&#58;disconnected}
+
+
+
+
 
 Event emitted when the [Output](Output) becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
@@ -1868,7 +1876,11 @@ when the MIDI device is unplugged.
   |**`target.type`** |string|`"output"`|
 
 
-### `"opened"` {#event-opened}
+### `"opened"` {#event&#58;opened}
+
+
+
+
 
 Event emitted when the [Output](Output) has been opened by calling the
 [open()](Output#open) method.
