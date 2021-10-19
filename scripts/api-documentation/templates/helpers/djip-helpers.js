@@ -40,6 +40,11 @@ function inlineLinks (text, options) {
 }
 exports.inlineLinks = inlineLinks;
 
+function curly(object, open) {
+  return open ? "{" : "}";
+};
+exports.curly = curly;
+
 function eq(v1, v2) { return v1 === v2; }
 exports.eq = eq;
 function ne(v1, v2) { return v1 !== v2; }

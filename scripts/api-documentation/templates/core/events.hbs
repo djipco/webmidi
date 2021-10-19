@@ -13,7 +13,10 @@
 
 {{#each this}}
 {{! Name and anchor }}
-### `"{{this.name}}"`<a id="event:{{this.name}}"></a>
+### `"{{this.name}}"` {{curly true}}#event-{{this.name}}{{curly}}
+
+<a id="event:{{this.name}}"></a>
+
 
 {{! Description }}
 {{{inlineLinks description}}}

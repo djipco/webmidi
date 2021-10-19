@@ -14,7 +14,7 @@
 {{#each this}}
 
 {{! Name }}
-### `.{{this.name}}({{#if params}}...{{/if}})`
+### `.{{this.name}}({{#if params}}...{{/if}})` {{curly true}}#{{this.name}}{{curly}}
 
 {{! Since }}
 {{#if this.since}}
