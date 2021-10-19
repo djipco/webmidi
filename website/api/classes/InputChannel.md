@@ -420,7 +420,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`event`**] |string||The event to check|
-    |[**`callback`**] |function||The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
+    |[**`callback`**] |function||The actual function that was added to the event or the `Listener` object returned by `addListener()`.|
 
 
 **Returns**: `boolean`
