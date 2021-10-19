@@ -756,7 +756,7 @@ try {
 
 ## Events
 
-### `"connected"`<a id="event:connected"></a> {#event:connected}
+### `"connected"` {#event:connected} <a id="event:connected"></a>
 
 Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
 typically fired whenever a MIDI device is plugged in. Please note that it may fire several
@@ -773,7 +773,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
-### `"disabled"`<a id="event:disabled"></a> {#event:disabled}
+### `"disabled"` {#event:disabled} <a id="event:disabled"></a>
 
 Event emitted once `WebMidi` has been successfully disabled.
 
@@ -788,7 +788,7 @@ Event emitted once `WebMidi` has been successfully disabled.
   |**`type`** |string|`"disabled"`|
 
 
-### `"disconnected"`<a id="event:disconnected"></a> {#event:disconnected}
+### `"disconnected"` {#event:disconnected} <a id="event:disconnected"></a>
 
 Event emitted when an [`Input`](Input) or [`Output`](Output) becomes unavailable. This event
 is typically fired whenever a MIDI device is unplugged. Please note that it may fire several
@@ -811,7 +811,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target.type`** |string|`input` or `output`|
 
 
-### `"enabled"`<a id="event:enabled"></a> {#event:enabled}
+### `"enabled"` {#event:enabled} <a id="event:enabled"></a>
 
 Event emitted once `WebMidi` has been fully enabled
 
@@ -826,7 +826,7 @@ Event emitted once `WebMidi` has been fully enabled
   |**`type`** |string|`"enabled"`|
 
 
-### `"error"`<a id="event:error"></a> {#event:error}
+### `"error"` {#event:error} <a id="event:error"></a>
 
 Event emitted when an error occurs trying to enable `WebMidi`
 
@@ -842,7 +842,7 @@ Event emitted when an error occurs trying to enable `WebMidi`
   |**`error`** |*|Actual error that occurred|
 
 
-### `"midiaccessgranted"`<a id="event:midiaccessgranted"></a> {#event:midiaccessgranted}
+### `"midiaccessgranted"` {#event:midiaccessgranted} <a id="event:midiaccessgranted"></a>
 
 Event emitted once the MIDI interface has been successfully created (which implies user has
 granted access to MIDI).
