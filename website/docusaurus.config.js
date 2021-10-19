@@ -93,11 +93,6 @@ module.exports = {
         },
 
 
-
-
-
-
-
       ]
     },
     footer: {
