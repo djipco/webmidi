@@ -8,7 +8,7 @@ to, the callback function and so on.
 
 
 
-### `new Listener(...)` {#exports.Listener}
+### `new Listener(...)` {#constructor}
 
 
   **Parameters**

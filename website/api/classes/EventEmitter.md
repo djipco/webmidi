@@ -10,7 +10,7 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
 
 
-### `new EventEmitter(...)` {#exports.EventEmitter}
+### `new EventEmitter(...)` {#constructor}
 
 
   **Parameters**

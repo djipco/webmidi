@@ -25,7 +25,7 @@ method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
 
 
 
-### `new Note(...)` {#exports.Note}
+### `new Note(...)` {#constructor}
 
 
   **Parameters**
