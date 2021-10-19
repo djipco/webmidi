@@ -756,10 +756,9 @@ try {
 
 ## Events
 
-### `"connected"` {#event&#58;connected}
+### `"connected"` {#event-connected}
 
-
-
+<a id="event:connected"></a>
 
 
 Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
@@ -777,10 +776,9 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
-### `"disabled"` {#event&#58;disabled}
+### `"disabled"` {#event-disabled}
 
-
-
+<a id="event:disabled"></a>
 
 
 Event emitted once `WebMidi` has been successfully disabled.
@@ -796,10 +794,9 @@ Event emitted once `WebMidi` has been successfully disabled.
   |**`type`** |string|`"disabled"`|
 
 
-### `"disconnected"` {#event&#58;disconnected}
+### `"disconnected"` {#event-disconnected}
 
-
-
+<a id="event:disconnected"></a>
 
 
 Event emitted when an [`Input`](Input) or [`Output`](Output) becomes unavailable. This event
@@ -823,10 +820,9 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
   |**`target.type`** |string|`input` or `output`|
 
 
-### `"enabled"` {#event&#58;enabled}
+### `"enabled"` {#event-enabled}
 
-
-
+<a id="event:enabled"></a>
 
 
 Event emitted once `WebMidi` has been fully enabled
@@ -842,10 +838,9 @@ Event emitted once `WebMidi` has been fully enabled
   |**`type`** |string|`"enabled"`|
 
 
-### `"error"` {#event&#58;error}
+### `"error"` {#event-error}
 
-
-
+<a id="event:error"></a>
 
 
 Event emitted when an error occurs trying to enable `WebMidi`
@@ -862,10 +857,9 @@ Event emitted when an error occurs trying to enable `WebMidi`
   |**`error`** |*|Actual error that occurred|
 
 
-### `"midiaccessgranted"` {#event&#58;midiaccessgranted}
+### `"midiaccessgranted"` {#event-midiaccessgranted}
 
-
-
+<a id="event:midiaccessgranted"></a>
 
 
 Event emitted once the MIDI interface has been successfully created (which implies user has
