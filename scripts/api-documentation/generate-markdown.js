@@ -29,6 +29,7 @@ Handlebars.registerHelper({
   gte: djipHelpers.gte,
   and: djipHelpers.and,
   or: djipHelpers.or,
+  curly: djipHelpers.curly,
 });
 
 async function generate() {
@@ -38,22 +39,25 @@ async function generate() {
   files = files.map(file => path.resolve(SOURCE_DIR, file));
   files.push(DJIPEVENTS);
 
+  // Compute JSON from JSDoc
   const data = jsdoc2md.getTemplateDataSync({files: files});
 
-  // Parse each input file and save parsed output
-  files.forEach(filepath => {
+  // Build list of classes (explicitly adding Listener and EventEmitter)
+  let classes = files.map(file => path.basename(file, ".js")).filter(file => file !== "djipevents");
+  classes.push("Listener", "EventEmitter");
+
+  // Parse each class file and save parsed output
+  classes.forEach(filepath => {
 
     const basename = path.basename(filepath, ".js");
     const filtered = data.filter(x => x.memberof === basename || x.id === basename);
 
-    // Save markdown files (except for djipevents)
-    if (basename !== path.basename(DJIPEVENTS, ".js")) {
-      fs.writeFileSync(
-        path.resolve(TARGET_PATH, `${basename}.md`),
-        parseFile(filtered)
-      );
-      console.info(`Saved markdown file to ${basename}.md`);
-    }
+    // Save markdown files
+    fs.writeFileSync(
+      path.resolve(TARGET_PATH, `${basename}.md`),
+      parseFile(filtered)
+    );
+    console.info(`Saved markdown file to ${basename}.md`);
 
   });
 
@@ -113,9 +117,9 @@ function parseFile(data) {
   output += Handlebars.compile(hbs)(filtered);
 
   // Strip out links to Listener class
-  output = output.replaceAll("[**Listener**](Listener)", "`Listener`");
-  output = output.replaceAll("[Listener](Listener)", "`Listener`");
-  output = output.replaceAll("[**arguments**](Listener#arguments)", "`arguments`");
+  // output = output.replaceAll("[**Listener**](Listener)", "`Listener`");
+  // output = output.replaceAll("[Listener](Listener)", "`Listener`");
+  // output = output.replaceAll("[**arguments**](Listener#arguments)", "`arguments`");
 
   return output;
 
