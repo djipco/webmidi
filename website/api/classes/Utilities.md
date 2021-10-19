@@ -138,11 +138,32 @@ the input value cannot be converted to a number, the method returns 0.
 
 
 
+### `.fromFloatToMsbLsb(...)`
+
+
+Extracts 7bit MSB and LSB values from the supplied float.
+
+
+  **Parameters**
+
+  > Signature: `fromFloatToMsbLsb(value)`
+
+  | Parameter    | Type      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`value`** |number||A float between 0 and 1|
+
+
+**Returns**: `Object`
+
+**Attributes**: static
+
+
+
 ### `.fromMsbLsbToFloat(...)`
 
 
 Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
-is within between 0 and 127 even if the result is greater than 1 or smaller than 0.
+is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
 
 
   **Parameters**

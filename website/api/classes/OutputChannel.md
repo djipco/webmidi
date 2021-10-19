@@ -22,7 +22,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`output`** |Output||The output this channel belongs to|
-    |**`number`** |number||The channel number (1-16)|
+    |**`number`** |number||The MIDI channel number (1-16)|
 
 
 
@@ -115,7 +115,7 @@ The parent [Output](Output) this channel belongs to
 ### `.addListener(...)`
 
 
-Adds a listener for the specified event. It returns the [**Listener**](Listener) object
+Adds a listener for the specified event. It returns the `Listener` object
 that was created and attached to the event.
 
 To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
@@ -136,7 +136,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
     |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array|
     |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
-    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired.|
+    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the [**Listener**](Listener) object and can be retrieved or modified as desired.|
 
 
 **Returns**: `Listener`
@@ -1140,11 +1140,11 @@ Another set of extra parameters have been later added for 3D sound controllers. 
 
   **Parameters**
 
-  > Signature: `setRegisteredParameter(parameter, [data], [options])`
+  > Signature: `setRegisteredParameter(rpn, [data], [options])`
 
   | Parameter    | Type      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`parameter`** |string||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
+    |**`rpn`** |string||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
     |[**`data`**] |number|[]|An single integer or an array of integers with a maximum length of 2 specifying the desired data.|
     |[**`options`**] |Object|{}||
     |[**`options.time`**] |number||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
