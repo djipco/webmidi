@@ -571,7 +571,7 @@ try {
 
 ## Events
 
-### `"allnotesoff"` {#event:allnotesoff} <a id="event:allnotesoff"></a>
+### `"allnotesoff"` {#event:allnotesoff}
 
 Event emitted when an "all notes off" channel-mode MIDI message has been received.
 
@@ -587,7 +587,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
-### `"allsoundoff"` {#event:allsoundoff} <a id="event:allsoundoff"></a>
+### `"allsoundoff"` {#event:allsoundoff}
 
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
 
@@ -603,7 +603,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
-### `"channelaftertouch"` {#event:channelaftertouch} <a id="event:channelaftertouch"></a>
+### `"channelaftertouch"` {#event:channelaftertouch}
 
 Event emitted when a control change MIDI message has been received.
 
@@ -621,7 +621,7 @@ Event emitted when a control change MIDI message has been received.
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
 
-### `"controlchange"` {#event:controlchange} <a id="event:controlchange"></a>
+### `"controlchange"` {#event:controlchange}
 
 Event emitted when a **control change** MIDI message has been received.
 
@@ -642,7 +642,7 @@ Event emitted when a **control change** MIDI message has been received.
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
 
-### `"keyaftertouch"` {#event:keyaftertouch} <a id="event:keyaftertouch"></a>
+### `"keyaftertouch"` {#event:keyaftertouch}
 
 Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
@@ -663,7 +663,7 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
   |**`rawValue`** |number|The aftertouch amount expressed as an integer (between 0 and 127).|
 
 
-### `"localcontrol"` {#event:localcontrol} <a id="event:localcontrol"></a>
+### `"localcontrol"` {#event:localcontrol}
 
 Event emitted when a "local control" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (local control on) of `false` (local control
@@ -682,7 +682,7 @@ off).
   |**`value`** |boolean|For local control on, the value is `true`. For local control off, the value is `false`.|
 
 
-### `"midimessage"` {#event:midimessage} <a id="event:midimessage"></a>
+### `"midimessage"` {#event:midimessage}
 
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
@@ -702,7 +702,7 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
   |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 
-### `"monomode"` {#event:monomode} <a id="event:monomode"></a>
+### `"monomode"` {#event:monomode}
 
 Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
 the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
@@ -721,7 +721,7 @@ poly mode on).
   |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
 
 
-### `"noteoff"` {#event:noteoff} <a id="event:noteoff"></a>
+### `"noteoff"` {#event:noteoff}
 
 Event emitted when a **note off** MIDI message has been received on the channel.
 
@@ -740,7 +740,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
   |**`rawValue`** |number|The release velocity amount expressed as an integer (between 0 and 127).|
 
 
-### `"noteon"` {#event:noteon} <a id="event:noteon"></a>
+### `"noteon"` {#event:noteon}
 
 Event emitted when a **note on** MIDI message has been received.
 
@@ -762,7 +762,7 @@ Event emitted when a **note on** MIDI message has been received.
   |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
 
 
-### `"omnimode"` {#event:omnimode} <a id="event:omnimode"></a>
+### `"omnimode"` {#event:omnimode}
 
 Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
 property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
@@ -780,7 +780,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
   |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
 
 
-### `"pitchbend"` {#event:pitchbend} <a id="event:pitchbend"></a>
+### `"pitchbend"` {#event:pitchbend}
 
 Event emitted when a pitch bend MIDI message has been received.
 
@@ -798,7 +798,7 @@ Event emitted when a pitch bend MIDI message has been received.
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 16383).|
 
 
-### `"programchange"` {#event:programchange} <a id="event:programchange"></a>
+### `"programchange"` {#event:programchange}
 
 Event emitted when a **program change** MIDI message has been received.
 
@@ -816,7 +816,7 @@ Event emitted when a **program change** MIDI message has been received.
   |**`rawValue`** |number|The value expressed as an integer between 0 and 127..|
 
 
-### `"resetallcontrollers"` {#event:resetallcontrollers} <a id="event:resetallcontrollers"></a>
+### `"resetallcontrollers"` {#event:resetallcontrollers}
 
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
 
@@ -832,7 +832,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
-### `"nrpn:databuttondecrement"` {#event:nrpn:databuttondecrement} <a id="event:nrpn:databuttondecrement"></a>
+### `"nrpn:databuttondecrement"` {#event:nrpn:databuttondecrement}
 
 Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
 
@@ -852,7 +852,7 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"nrpn:databuttonincrement"` {#event:nrpn:databuttonincrement} <a id="event:nrpn:databuttonincrement"></a>
+### `"nrpn:databuttonincrement"` {#event:nrpn:databuttonincrement}
 
 Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
 
@@ -872,7 +872,7 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"nrpn:dataentrycoarse"` {#event:nrpn:dataentrycoarse} <a id="event:nrpn:dataentrycoarse"></a>
+### `"nrpn:dataentrycoarse"` {#event:nrpn:dataentrycoarse}
 
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
 
@@ -892,7 +892,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"nrpn:dataentryfine"` {#event:nrpn:dataentryfine} <a id="event:nrpn:dataentryfine"></a>
+### `"nrpn:dataentryfine"` {#event:nrpn:dataentryfine}
 
 Event emitted when a 'dataentryfine' NRPN message has been received on the input.
 
@@ -912,7 +912,7 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"rpn:databuttondecrement"` {#event:rpn:databuttondecrement} <a id="event:rpn:databuttondecrement"></a>
+### `"rpn:databuttondecrement"` {#event:rpn:databuttondecrement}
 
 Event emitted when a 'databuttondecrement' RPN message has been received on the input.
 
@@ -932,7 +932,7 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"rpn:databuttonincrement"` {#event:rpn:databuttonincrement} <a id="event:rpn:databuttonincrement"></a>
+### `"rpn:databuttonincrement"` {#event:rpn:databuttonincrement}
 
 Event emitted when a 'databuttonincrement' RPN message has been received on the input.
 
@@ -952,7 +952,7 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"rpn:dataentrycoarse"` {#event:rpn:dataentrycoarse} <a id="event:rpn:dataentrycoarse"></a>
+### `"rpn:dataentrycoarse"` {#event:rpn:dataentrycoarse}
 
 Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
 
@@ -972,7 +972,7 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"rpn:dataentryfine"` {#event:rpn:dataentryfine} <a id="event:rpn:dataentryfine"></a>
+### `"rpn:dataentryfine"` {#event:rpn:dataentryfine}
 
 Event emitted when a 'dataentryfine' RPN message has been received on the input.
 
