@@ -240,11 +240,11 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
     |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array|
     |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
-    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the [**Listener**](Listener) object and can be retrieved or modified as desired.|
+    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
 
 
 **Returns**: `Listener`
-> The newly created [**Listener**](Listener) object.
+> The newly created `Listener` object.
 
 
 **Throws**:
@@ -256,7 +256,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 
 Adds a one-time listener for the specified event. The listener will be executed once and then
-destroyed. It returns the [**Listener**](Listener) object that was created and attached
+destroyed. It returns the `Listener` object that was created and attached
 to the event.
 
 To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
@@ -276,11 +276,11 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
     |[**`options.context`**] |Object|this|The context to invoke the callback function in.|
     |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array|
     |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired.|
+    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
 
 
 **Returns**: `Listener`
-> The newly created [**Listener**](Listener) object.
+> The newly created `Listener` object.
 
 
 **Throws**:
