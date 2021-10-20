@@ -759,9 +759,9 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"noteoff"`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`target`** |InputChannel|The object that triggered the event (the [`InputChannel`](InputChannel) object).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment ([`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp)) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`note`** |object|A [`Note`](Note) object containing information such as note name, octave and release velocity.|
   |**`value`** |number|The release velocity amount expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The release velocity amount expressed as an integer (between 0 and 127).|
