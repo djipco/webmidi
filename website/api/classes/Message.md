@@ -2,7 +2,7 @@
 # Message
 
 The `Message` class represents a single MIDI message. It has several properties that make it
-easy to make sense of the binaru data it contains.
+easy to make sense of the binary data it contains.
 
 **Since**: 3.0.0
 
@@ -125,6 +125,15 @@ byte so only the actual data is included.
 The MIDI status byte of the message as an integer between 0 and 255.
 
 **Type**: number<br />
+**Attributes**: read-only<br />
+
+
+### `.type` {#type}
+
+
+The type of message as a string (`noteon`, `controlchange`, `sysex`, etc.)
+
+**Type**: string<br />
 **Attributes**: read-only<br />
 
 
