@@ -20,10 +20,10 @@ available.
 
 :::
 
-## Core Objects
+## Core Classes
 
-These objects are the ones end-users are most likely to be dealing with while developing their MIDI 
-projects. Note that all these objects are already instantiated within WebMidi.js.
+These classes are the ones developers are most likely to be dealing with while working on their MIDI 
+projects. Note that all these classes are pre-instantiated within WebMidi.js.
 
 * [**WebMidi**](classes/WebMidi)
 * [**Input**](classes/Input)
@@ -32,15 +32,25 @@ projects. Note that all these objects are already instantiated within WebMidi.js
 * [**OutputChannel**](classes/OutputChannel)
 * [**Message**](classes/Message)
 
-The exception is the `Note` class which you can instantiate when you need to store a musical note:
+The exception is the [`Note`](classes/Note) class which you can instantiate when you need to store a 
+musical note:
 
 * [**Note**](classes/Note)
 
 ## Support Classes
 
-These classes are mostly for internal use but you might find them useful in some contexts. The 
-`Enumerations` contains static enums of MIDI messages, registered parameters, etc. The `Utilities`
-class contains various static methods. 
+These classes are mostly for internal use, but you might find them useful in some contexts. The 
+[`Enumerations`](classes/Enumerations) class contains static enums of MIDI messages, registered 
+parameters, etc. The [`Utilities`](classes/Utilities) class contains various static methods. 
 
 * [**Enumerations**](classes/Enumerations)
 * [**Utilities**](classes/Utilities)
+
+## DjipEvents Classes
+
+The `EventEmitter` and `Listener` classes from the [DjipEvents](https://github.com/djipco/djipevents)
+module are extended by various WebMidi.js classes. So, in the interest of completeness, we include
+their full documentation here and cross-reference it with the core classes
+
+* [**EventEmitter**](classes/EventEmitter)
+* [**Listener**](classes/Listener)
