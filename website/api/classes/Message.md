@@ -131,7 +131,7 @@ The MIDI status byte of the message as an integer between 0 and 255.
 ### `.type` {#type}
 
 
-The type of message as a string (`noteon`, `controlchange`, `sysex`, etc.)
+The type of message as a string (`"noteon"`, `"controlchange"`, `"sysex"`, etc.)
 
 **Type**: string<br />
 **Attributes**: read-only<br />
