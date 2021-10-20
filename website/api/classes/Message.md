@@ -28,7 +28,7 @@ easy to make sense of the binary data it contains.
 ### `.channel` {#channel}
 
 
-The MIDI channel number (1-16) that the message is targeting. This is only for
+The MIDI channel number (`1` - `16`) that the message is targeting. This is only for
 channel-specific messages. For system messages, this will be left undefined.
 
 **Type**: number<br />
@@ -39,7 +39,7 @@ channel-specific messages. For system messages, this will be left undefined.
 
 
 An integer identifying the MIDI command. For channel-specific messages, the value will be
-between 8 and 14. For system messages, the value will be between 240 and 255.
+between `8` and `14`. For system messages, the value will be between `240` and `255`.
 
 **Type**: number<br />
 **Attributes**: read-only<br />
