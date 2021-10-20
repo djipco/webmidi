@@ -6011,7 +6011,6 @@ class Forwarder {
 
     if (this.types && !this.types.includes(message.type)) return; // Abort if this channel should not be forwarded
 
-    console.log(this.channels, message.channel);
     if (this.channels && message.channel && !this.channels.includes(message.channel)) return; // Forward
 
     this.destinations.forEach(destination => destination.send(message));
