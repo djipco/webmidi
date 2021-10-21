@@ -35,9 +35,10 @@ according to certain conditions.
 ### `.channels` {#channels}
 
 
-An array of message types that must be matched in order for messages to be forwarded.
+An array of MIDI channel numbers that the message must match in order to be forwarded. If
+this option is left undefined, messages from all channels will be forwarded.
 
-**Type**: <br />
+**Type**: Array.&lt;number&gt;<br />
 
 
 ### `.destinations` {#destinations}
