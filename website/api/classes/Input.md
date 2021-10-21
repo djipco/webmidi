@@ -20,9 +20,9 @@ Note that a single device may expose several inputs and/or outputs.
 
   > `new Input(midiInput)`
 
-  | Parameter    | Type      | Default      | Description  |
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`midiInput`** |MIDIInput||`MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).|
+    |**`midiInput`** |   MIDIInput      ||`MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).|
 
 
 

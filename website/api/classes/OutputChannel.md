@@ -19,10 +19,10 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
   > `new OutputChannel(output, number)`
 
-  | Parameter    | Type      | Default      | Description  |
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`output`** |Output||The output this channel belongs to|
-    |**`number`** |number||The MIDI channel number (1-16)|
+    |**`output`** |   Output      ||The output this channel belongs to|
+    |**`number`** |   number      ||The MIDI channel number (1-16)|
 
 
 

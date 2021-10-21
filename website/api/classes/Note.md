@@ -32,15 +32,15 @@ method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
 
   > `new Note(value, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |string||The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).|
-    |[**`options`**] |object|{}||
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-    |[**`options.attack`**] |number|0.5|The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
-    |[**`options.release`**] |number|0.5|The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
-    |[**`options.rawAttack`**] |number|64|The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
-    |[**`options.rawRelease`**] |number|64|The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
+    |**`value`** |   stringnumber      ||The value used to create the note. If an identifier string is used, it must start with the note letter, optionally followed by an accidental and followed by the octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).|
+    |[**`options`**] |   object      |{}||
+    |[**`options.duration`**] |   number      |Infinity|The number of milliseconds before the note should be explicitly stopped.|
+    |[**`options.attack`**] |   number      |0.5|The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.release`**] |   number      |0.5|The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
+    |[**`options.rawAttack`**] |   number      |64|The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.rawRelease`**] |   number      |64|The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
 
 
 **Throws**:

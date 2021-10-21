@@ -18,9 +18,9 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 
   > `new Output(midiOutput)`
 
-  | Parameter    | Type      | Default      | Description  |
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`midiOutput`** |MIDIOutput||[`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput) object as provided by the MIDI subsystem.|
+    |**`midiOutput`** |   MIDIOutput      ||[`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput) object as provided by the MIDI subsystem.|
 
 
 

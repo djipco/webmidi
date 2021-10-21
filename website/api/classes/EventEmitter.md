@@ -17,9 +17,9 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
   > `new EventEmitter([eventsSuspended])`
 
-  | Parameter    | Type      | Default      | Description  |
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`eventsSuspended`**] |boolean|false|Whether the `EventEmitter` is initially in a suspended state (i.e. not executing callbacks).|
+    |[**`eventsSuspended`**] |   boolean      |false|Whether the `EventEmitter` is initially in a suspended state (i.e. not executing callbacks).|
 
 
 
