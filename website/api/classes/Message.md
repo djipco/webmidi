@@ -15,9 +15,13 @@ easy to make sense of the binary data it contains.
 
   > `new Message(data)`
 
+  <div class="parameter-table-container">
+
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`data`** | Uint8Array<br /> ||The raw data of the MIDI message as a [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array) of integers between `0` and `255`.|
+
+  </div>
 
 
 

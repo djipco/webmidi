@@ -15,6 +15,8 @@ to, the callback function and so on.
 
   > `new Listener(event, target, callback, [options])`
 
+  <div class="parameter-table-container">
+
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event being listened to|
@@ -24,6 +26,8 @@ to, the callback function and so on.
     |[**`options.context`**] | Object<br /> |target|The context to invoke the listener in (a.k.a. the value of `this` inside the callback function).|
     |[**`options.remaining`**] | number<br /> |Infinity|The remaining number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments that will be passed separately to the callback function upon execution. The array is stored in the `arguments` property and can be retrieved or modified as desired.|
+
+  </div>
 
 
 **Throws**:

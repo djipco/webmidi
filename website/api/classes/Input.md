@@ -20,9 +20,13 @@ Note that a single device may expose several inputs and/or outputs.
 
   > `new Input(midiInput)`
 
+  <div class="parameter-table-container">
+
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`midiInput`** | MIDIInput<br /> ||`MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).|
+
+  </div>
 
 
 
@@ -262,17 +266,21 @@ There are 6 families of events you can listen to:
 
   > Signature: `addListener(event, listener, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The type of the event.|
-    |**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-    |[**`options`**] |object|{}||
-    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-    |[**`options.context`**] |object|this|The value of `this` in the callback function.|
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
-    |[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
+    |**`event`** | string<br /> ||The type of the event.|
+    |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+    |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array.|
+    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+
+  </div>
 
 
 **Returns**: `Array.<Listener>`
@@ -371,16 +379,20 @@ There are 6 families of events you can listen to:
 
   > Signature: `addOneTimeListener(event, listener, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The type of the event.|
-    |**`listener`** |function||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
-    |[**`options`**] |object|{}||
-    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
-    |[**`options.context`**] |object|this|The value of `this` in the callback function.|
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array.|
+    |**`event`** | string<br /> ||The type of the event.|
+    |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+    |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array.|
+
+  </div>
 
 
 **Returns**: `Array.<Listener>`
@@ -446,10 +458,14 @@ listeners (added with `EventEmitter.ANY_EVENT`).
 
   > Signature: `emit(event, ...args)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event|
-    |**`args`** |*||Arbitrary number of arguments to pass along to the callback functions|
+    |**`event`** | string<br /> ||The event|
+    |**`args`** | *<br /> ||Arbitrary number of arguments to pass along to the callback functions|
+
+  </div>
 
 
 **Returns**: `Array`
@@ -475,9 +491,13 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
   > Signature: `getListenerCount(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event|
+
+  </div>
 
 
 **Returns**: `number`
@@ -500,9 +520,13 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
   > Signature: `getListeners(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event to get listeners for|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for|
+
+  </div>
 
 
 **Returns**: `Array.<Listener>`
@@ -523,12 +547,16 @@ defined.
 
   > Signature: `hasListener(event, listener, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The type of the event.|
-    |**`listener`** |function||The callback function to check for.|
-    |[**`options`**] |object|{}||
-    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+    |**`event`** | string<br /> ||The type of the event.|
+    |**`listener`** | function<br /> ||The callback function to check for.|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
+
+  </div>
 
 
 **Returns**: `boolean`
@@ -569,14 +597,18 @@ By default, channel-specific listeners will be removed from all channels unless 
 
   > Signature: `removeListener([type], [listener], [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`type`**] |string||The type of the event.|
-    |[**`listener`**] |function||The callback function to check for.|
-    |[**`options`**] |object|{}||
-    |[**`options.channels`**] |number||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
-    |[**`options.context`**] |*||Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`type`**] | string<br /> ||The type of the event.|
+    |[**`listener`**] | function<br /> ||The callback function to check for.|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to match. This parameter is ignored for input-wide events.|
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
+
+  </div>
 
 
 
@@ -600,9 +632,13 @@ simply set its `eventsSuspended` property to `true`.
 
   > Signature: `suspendEvent(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+
+  </div>
 
 
 
@@ -624,9 +660,13 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
   > Signature: `unsuspendEvent(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+
+  </div>
 
 
 
@@ -683,11 +723,15 @@ try {
 
   > Signature: `waitFor(event, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event to wait for|
-    |[**`options`**] |Object|{}||
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
+
+  </div>
 
 
 

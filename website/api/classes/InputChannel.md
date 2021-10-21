@@ -20,10 +20,14 @@ property.
 
   > `new InputChannel(input, number)`
 
+  <div class="parameter-table-container">
+
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`input`** | Input<br /> ||The `Input` object this channel belongs to|
     |**`number`** | number<br /> ||The MIDI channel's number (1-16)|
+
+  </div>
 
 
 
@@ -164,16 +168,20 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
   > Signature: `addListener(event, callback, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event to listen to|
-    |**`callback`** |EventEmitter~callback||The callback function to execute when the event occurs.|
-    |[**`options`**] |Object|{}||
-    |[**`options.context`**] |Object|this|The value of `this` in the callback function.|
-    |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array|
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] |boolean|Infinity|The number of times after which the callback should automatically be removed.|
-    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array|
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
+    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**]{@link Listener#arguments} property of the [**Listener**]{@link Listener} object and can be retrieved or modified as desired.|
+
+  </div>
 
 
 **Returns**: `Listener`
@@ -201,15 +209,19 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
   > Signature: `addOneTimeListener(event, callback, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event to listen to|
-    |**`callback`** |EventEmitter~callback||The callback function to execute when the event occurs|
-    |[**`options`**] |Object|{}||
-    |[**`options.context`**] |Object|this|The context to invoke the callback function in.|
-    |[**`options.prepend`**] |boolean|false|Whether the listener should be added at the beginning of the listeners array|
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.arguments`**] |array||An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**](Listener#arguments) property of the [**Listener**](Listener) object and can be retrieved or modified as desired.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array|
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**]{@link Listener#arguments} property of the [**Listener**]{@link Listener} object and can be retrieved or modified as desired.|
+
+  </div>
 
 
 **Returns**: `Listener`
@@ -261,10 +273,14 @@ listeners (added with `EventEmitter.ANY_EVENT`).
 
   > Signature: `emit(event, ...args)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event|
-    |**`args`** |*||Arbitrary number of arguments to pass along to the callback functions|
+    |**`event`** | string<br /> ||The event|
+    |**`args`** | *<br /> ||Arbitrary number of arguments to pass along to the callback functions|
+
+  </div>
 
 
 **Returns**: `Array`
@@ -290,9 +306,13 @@ In this case, the method returns `false`.
 
   > Signature: `getCcNameByNumber(number)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`number`** |number||An integer representing the control change message|
+    |**`number`** | number<br /> ||An integer representing the control change message|
+
+  </div>
 
 
 **Returns**: `string` or `undefined`
@@ -316,9 +336,13 @@ returns `false`.
 
   > Signature: `getChannelModeByNumber(number)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`number`** |number||An integer representing the channel mode message.|
+    |**`number`** | number<br /> ||An integer representing the channel mode message.|
+
+  </div>
 
 
 **Returns**: `string` or `false`
@@ -342,9 +366,13 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
   > Signature: `getListenerCount(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event|
+
+  </div>
 
 
 **Returns**: `number`
@@ -367,9 +395,13 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
   > Signature: `getListeners(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event to get listeners for|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for|
+
+  </div>
 
 
 **Returns**: `Array.<Listener>`
@@ -393,9 +425,13 @@ If a note identifier or Note object is passed in, the method will take into acco
 
   > Signature: `getNoteState([input])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`input`**] |number|||
+    |[**`input`**] | number<br />string<br />Note<br /> |||
+
+  </div>
 
 
 **Returns**: `boolean`
@@ -417,10 +453,14 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
   > Signature: `hasListener([event], [callback])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] |string||The event to check|
-    |[**`callback`**] |function||The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
+    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> ||The event to check|
+    |[**`callback`**] | function<br />Listener<br /> ||The actual function that was added to the event or the {@link Listener} object returned by `addListener()`.|
+
+  </div>
 
 
 **Returns**: `boolean`
@@ -443,13 +483,17 @@ callback to match or one or more of the additional options.
 
   > Signature: `removeListener([event], [callback], [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] |string||The event name.|
-    |[**`callback`**] |EventEmitter~callback||Only remove the listeners that match this exact callback function.|
-    |[**`options`**] |Object|{}||
-    |[**`options.context`**] |*||Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] |number||Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`event`**] | string<br /> ||The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
+
+  </div>
 
 
 
@@ -473,9 +517,13 @@ simply set its `eventsSuspended` property to `true`.
 
   > Signature: `suspendEvent(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+
+  </div>
 
 
 
@@ -497,9 +545,13 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
   > Signature: `unsuspendEvent(event)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+
+  </div>
 
 
 
@@ -556,11 +608,15 @@ try {
 
   > Signature: `waitFor(event, [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** |string||The event to wait for|
-    |[**`options`**] |Object|{}||
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
+
+  </div>
 
 
 

@@ -28,14 +28,18 @@ If the input is a note number or identifier, it is possible to specify options b
 
   > Signature: `buildNote([input], [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`input`**] |number|||
-    |[**`options`**] |object|{}||
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-    |[**`options.attack`**] |number|64|The note's attack velocity as an integer between 0 and 127.|
-    |[**`options.release`**] |number|64|The note's release velocity as an integer between 0 and 127.|
-    |[**`options.octaveOffset`**] |number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+    |[**`input`**] | number<br />string<br />Note<br /> |||
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the note should be explicitly stopped.|
+    |[**`options.attack`**] | number<br /> |64|The note's attack velocity as an integer between 0 and 127.|
+    |[**`options.release`**] | number<br /> |64|The note's release velocity as an integer between 0 and 127.|
+    |[**`options.octaveOffset`**] | number<br /> |0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+
+  </div>
 
 
 **Returns**: `Note`
@@ -62,16 +66,20 @@ input.
 
   > Signature: `buildNoteArray([notes], [options])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`notes`**] |number|||
-    |[**`options`**] |object|{}||
-    |[**`options.duration`**] |number|Infinity|The number of milliseconds before the note should be explicitly stopped.|
-    |[**`options.attack`**] |number|0.5|The note's attack velocity as a decimal number between 0 and 1.|
-    |[**`options.release`**] |number|0.5|The note's release velocity as a decimal number between 0 and 1.|
-    |[**`options.rawAttack`**] |number|64|The note's attack velocity as an integer between 0 and 127.|
-    |[**`options.rawRelease`**] |number|64|The note's release velocity as an integer between 0 and 127.|
-    |[**`options.octaveOffset`**] |number|0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+    |[**`notes`**] | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> |||
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the note should be explicitly stopped.|
+    |[**`options.attack`**] | number<br /> |0.5|The note's attack velocity as a decimal number between 0 and 1.|
+    |[**`options.release`**] | number<br /> |0.5|The note's release velocity as a decimal number between 0 and 1.|
+    |[**`options.rawAttack`**] | number<br /> |64|The note's attack velocity as an integer between 0 and 127.|
+    |[**`options.rawRelease`**] | number<br /> |64|The note's release velocity as an integer between 0 and 127.|
+    |[**`options.octaveOffset`**] | number<br /> |0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
+
+  </div>
 
 
 **Returns**: `Array.<Note>`
@@ -97,9 +105,13 @@ input value cannot be converted to an integer, the method returns 0.
 
   > Signature: `from7bitToFloat(value)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |||A positive integer between 0 and 127 (inclusive)|
+    |**`value`** |  ||A positive integer between 0 and 127 (inclusive)|
+
+  </div>
 
 
 **Returns**: `number`
@@ -125,9 +137,13 @@ the input value cannot be converted to a number, the method returns 0.
 
   > Signature: `fromFloatTo7Bit(value)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |||A positive integer between 0 and 127 (inclusive)|
+    |**`value`** |  ||A positive integer between 0 and 127 (inclusive)|
+
+  </div>
 
 
 **Returns**: `number`
@@ -148,9 +164,13 @@ Extracts 7bit MSB and LSB values from the supplied float.
 
   > Signature: `fromFloatToMsbLsb(value)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |number||A float between 0 and 1|
+    |**`value`** | number<br /> ||A float between 0 and 1|
+
+  </div>
 
 
 **Returns**: `Object`
@@ -170,10 +190,14 @@ is within between 0 and 1 even if the result is greater than 1 or smaller than 0
 
   > Signature: `fromMsbLsbToFloat(msb, [lsb])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`msb`** |number||The most significant byte as a integer between 0 and 127.|
-    |[**`lsb`**] |number|0|The least significant byte as a integer between 0 and 127.|
+    |**`msb`** | number<br /> ||The most significant byte as a integer between 0 and 127.|
+    |[**`lsb`**] | number<br /> |0|The least significant byte as a integer between 0 and 127.|
+
+  </div>
 
 
 **Returns**: `number`
@@ -200,9 +224,13 @@ When a number is specified, the translation to note is done using a value of 60 
 
   > Signature: `getNoteDetails(value)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |string||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127).|
+    |**`value`** | string<br />number<br /> ||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127).|
+
+  </div>
 
 
 **Returns**: `Object`
@@ -224,10 +252,14 @@ supplied.
 
   > Signature: `getPropertyByValue(object, value)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`object`** |object|||
-    |**`value`** |*|||
+    |**`object`** | object<br /> |||
+    |**`value`** | *<br /> |||
+
+  </div>
 
 
 **Returns**: `string`
@@ -256,9 +288,13 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
   > Signature: `guessNoteNumber(input)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`input`** |string||A string or number to extract the MIDI note number from.|
+    |**`input`** | string<br />number<br /> ||A string or number to extract the MIDI note number from.|
+
+  </div>
 
 
 **Returns**: `number` or `false`
@@ -282,9 +318,13 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
   > Signature: `offsetNumber(offset)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`offset`** ||||
+    |**`offset`** |  |||
+
+  </div>
 
 
 **Returns**: `number`
@@ -313,9 +353,13 @@ integers between 1 and 16 are silently ignored.
 
   > Signature: `sanitizeChannels([channel])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`channel`**] |number||An integer or an array of integers to parse as channel numbers.|
+    |[**`channel`**] | number<br />Array.&lt;number&gt;<br /> ||An integer or an array of integers to parse as channel numbers.|
+
+  </div>
 
 
 **Returns**: `Array`
@@ -338,10 +382,14 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
   > Signature: `toNoteIdentifier(number, octaveOffset)`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`number`** |number||The MIDI note number to convert to a note identifier|
-    |**`octaveOffset`** |number||An offset to apply to the resulting octave|
+    |**`number`** | number<br /> ||The MIDI note number to convert to a note identifier|
+    |**`octaveOffset`** | number<br /> ||An offset to apply to the resulting octave|
+
+  </div>
 
 
 **Returns**: `string`
@@ -372,10 +420,14 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
   > Signature: `toNoteNumber(identifier, [octaveOffset])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`identifier`** |string||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
-    |[**`octaveOffset`**] |number|0|A integer to offset the octave by.|
+    |**`identifier`** | string<br /> ||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
+    |[**`octaveOffset`**] | number<br /> |0|A integer to offset the octave by.|
+
+  </div>
 
 
 **Returns**: `number`
@@ -404,9 +456,13 @@ returned.
 
   > Signature: `toTimestamp([time])`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`time`**] |number||The time string (e.g. `"+2000"`) or number to parse|
+    |[**`time`**] | number<br />string<br /> ||The time string (e.g. `"+2000"`) or number to parse|
+
+  </div>
 
 
 **Returns**: `number` or `false`
