@@ -22,8 +22,8 @@ property.
 
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`input`** |   Input      ||The `Input` object this channel belongs to|
-    |**`number`** |   number      ||The MIDI channel's number (1-16)|
+    |**`input`** | Input<br /> ||The `Input` object this channel belongs to|
+    |**`number`** | number<br /> ||The MIDI channel's number (1-16)|
 
 
 

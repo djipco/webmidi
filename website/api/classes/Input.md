@@ -22,7 +22,7 @@ Note that a single device may expose several inputs and/or outputs.
 
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`midiInput`** |   MIDIInput      ||`MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).|
+    |**`midiInput`** | MIDIInput<br /> ||`MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).|
 
 
 
