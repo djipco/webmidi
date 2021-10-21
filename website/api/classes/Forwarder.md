@@ -74,8 +74,8 @@ An array of message types that must be matched in order for messages to be forwa
 ### `.forward(...)` {#forward}
 
 
-Sends the specified message to the forwarder's destination(s) if it matches the type(s) and
-channel(s).
+Sends the specified message to the forwarder's destination(s) if it matches the specified
+type(s) and channel(s).
 
 
   **Parameters**
@@ -86,7 +86,7 @@ channel(s).
 
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`message`** | Message<br /> |||
+    |**`message`** | Message<br /> ||The MIDI message to forward.|
 
   </div>
 
