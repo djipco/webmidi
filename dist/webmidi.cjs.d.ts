@@ -39,6 +39,14 @@ export class Enumerations {
         pitchbend: number;
     };
     /**
+     * An array of the 16 MIDI channel numbers (`1` to `16`):
+     *
+     * @enum {number[]}
+     * @readonly
+     * @static
+     */
+    static get MIDI_CHANNEL_NUMBERS(): number[];
+    /**
      * Enumeration of all channel mode messages and their associated numerical value:
      *
      * - `allsoundoff`: 120
@@ -3646,27 +3654,32 @@ declare class InputChannel {
     private get nrpnEventsEnabled();
 }
 /**
- * The `Forwarder` class allows the forwarding of MIDI messages to an [`Output`](Output) object
- * according to certain conditions.
+ * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
+ * [`Output`](Output) objects granted the message matches certain conditions.
  *
  * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
- * to forward messages to.
+ * to forward the message to.
  *
  * @param {object} [options={}]
  * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.), or
- * an array of such types, that the message must match in order to be forwarded. If this option is
- * not specified, all types of messages will be forwarded. Valid messages are either
- * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * an array of such types, that the message type must match in order to be forwarded. If this option
+ * is not specified, all types of messages will be forwarded. Valid messages are the ones found in
+ * either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
  * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.channels] A MIDI channel number or an array of channel numbers that the
- * message must match in order to be forwarded. If this option is not specified, messages from all
- * channels will be forwarded.
+ * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
+ * MIDI channel number or an array of channel numbers that the message must match in order to be
+ * forwarded. By default all MIDI channels are included (`1` to `16`).
  *
  * @license Apache-2.0
  * @since 3.0.0
  */
 declare class Forwarder {
     constructor(destinations: any, options?: {});
+    /**
+     * An array of [`Output`](Output) objects to forward the messages to.
+     * @type {Output[]}
+     */
+    destinations: Output[];
     /**
      * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
      * for messages to be forwarded. By default, this array includes all
@@ -3682,12 +3695,7 @@ declare class Forwarder {
      */
     channels: number[];
     /**
-     * An array of [`Output`](Output) objects to forward the messages to.
-     * @type {Output[]}
-     */
-    destinations: Output[];
-    /**
-     * Indicates whether message forwarding should be suspended or not
+     * Indicates whether message forwarding is suspended or not in this forwarder
      * @type {boolean}
      */
     suspended: boolean;
