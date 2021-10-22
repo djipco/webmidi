@@ -92,7 +92,7 @@ type(s) and channel(s).
 
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`message`** | Message<br /> ||The MIDI message to forward.|
+    |**`message`** | Message<br /> ||The [`Message`](Message) object to forward.|
 
   </div>
 
