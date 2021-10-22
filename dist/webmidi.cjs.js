@@ -5974,7 +5974,7 @@ class Forwarder {
      * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
      * @type {string[]}
      */
-    this.types = [...Enumerations.MIDI_SYSTEM_MESSAGES.keys, ...Enumerations.MIDI_CHANNEL_MESSAGES.keys];
+    this.types = [...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES), ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)];
     console.log(this.types);
     /**
      * An array of MIDI channel numbers that the message must match in order to be forwarded. By
