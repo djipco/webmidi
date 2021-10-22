@@ -6284,6 +6284,8 @@ class Input extends e {
     } // Forward message if forwarders have been defined
 
 
+    console.log("c", message);
+
     this._forwarders.forEach(forwarder => forwarder.forward(message));
   }
   /**
