@@ -165,6 +165,30 @@ Port type. In the case of `Input`, this is always: `"input"`.
 ## Methods
 
 
+### `.addForwarder(...)` {#addForwarder}
+
+
+
+
+
+  **Parameters**
+
+  > Signature: `addForwarder(output, options)`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`output`** |  |||
+    |**`options`** |  |||
+
+  </div>
+
+
+**Returns**: `Forwarder`
+
+
+
 ### `.addListener(...)` {#addListener}
 
 

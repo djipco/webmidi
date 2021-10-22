@@ -21,8 +21,8 @@ according to certain conditions.
   | ------------ | ------------ | ------------ | ------------ |
     |**`destinations`** | Output<br />Array.&lt;Output&gt;<br /> ||An [`Output`](Output) object, or an array of such objects, to forward messages to.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.type`**] | string<br />Array.&lt;string&gt;<br /> ||A message type (`"noteon"`, `"controlchange"`, etc.), or an array of such types, that the message must match in order to be forwarded. If this option is not specified, all types of messages will be forwarded. Valid messages are either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).|
-    |[**`options.channel`**] | number<br /> ||A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. If this option is not specified, messages from all channels will be forwarded.|
+    |[**`options.types`**] | string<br />Array.&lt;string&gt;<br /> ||A message type (`"noteon"`, `"controlchange"`, etc.), or an array of such types, that the message must match in order to be forwarded. If this option is not specified, all types of messages will be forwarded. Valid messages are either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).|
+    |[**`options.channels`**] | number<br /> ||A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. If this option is not specified, messages from all channels will be forwarded.|
 
   </div>
 
@@ -35,8 +35,8 @@ according to certain conditions.
 ### `.channels` {#channels}
 
 
-An array of MIDI channel numbers that the message must match in order to be forwarded. If
-this option is left undefined, messages from all channels will be forwarded.
+An array of MIDI channel numbers that the message must match in order to be forwarded. By
+default, this array includes all MIDI channels (`1` to `16`).
 
 **Type**: Array.&lt;number&gt;<br />
 
@@ -60,7 +60,10 @@ Indicates whether message forwarding should be suspended or not
 ### `.types` {#types}
 
 
-An array of message types that must be matched in order for messages to be forwarded.
+An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
+for messages to be forwarded. By default, this array includes all
+[`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
+[`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
 
 **Type**: Array.&lt;string&gt;<br />
 
