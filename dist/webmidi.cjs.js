@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.20
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on October 20th, 2021.
+ * Build generated on October 22nd, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -5945,19 +5945,20 @@ class Output extends e {
 }
 
 /**
- * The `Forwarder` class holds the properties and methods necessary to forward a MIDI message
- * that matches certain conditions via an [`Output`](Output) object.
+ * The `Forwarder` class allows the forwarding of MIDI messages to an [`Output`](Output) object
+ * according to certain conditions.
  *
- * @param {Output|Output[]} destinations An [`Output`](Output) object or an array of
- * [`Output`](Output) objects to forward messages to.
+ * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+ * to forward messages to.
  *
- * @param {object} options
- * @param {string|string[]} options.type The type of message that should be forwarded or an array of
- * such types. If this option is not specified, all types of messages will be forwarded. Valid
- * messages are either [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
- * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} options.channels A single MIDI channel number (`1` to `16`) or an array of MIDI
- * channel numbers that should be forwarded. If this option is not specified, messages from all
+ * @param {object} [options={}]
+ * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.), or
+ * an array of such types, that the message must match in order to be forwarded. If this option is
+ * not specified, all types of messages will be forwarded. Valid messages are either
+ * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+ * @param {number} [options.channels] A MIDI channel number or an array of channel numbers that the
+ * message must match in order to be forwarded. If this option is not specified, messages from all
  * channels will be forwarded.
  *
  * @license Apache-2.0
@@ -5977,33 +5978,47 @@ class Forwarder {
           throw new TypeError("Destinations must be of type 'Output'.");
         }
       }); // Validate types
-      // Validate channels
+
+      options.types.forEach(type => {
+        if (!Enumerations.MIDI_SYSTEM_MESSAGES.includes(type) && !Enumerations.MIDI_CHANNEL_MESSAGES.includes(type)) {
+          throw new TypeError("Type must be a valid channel or system message type.");
+        }
+      }); // Validate channels
     }
     /**
-     *
-     * @type {*[]}
+     * An array of [`Output`](Output) objects to forward the messages to.
+     * @type {Output[]}
      */
 
 
     this.destinations = destinations;
     /**
-     *
-     * @type {any}
+     * An array of message types that must be matched in order for messages to be forwarded.
+     * @type {string[]}
      */
 
     this.types = options.types;
     /**
-     *
+     * An array of MIDI channel numbers that the message must match in order to be forwarded. If
+     * this option is left undefined, messages from all channels will be forwarded.
+     * @type {number[]}
      */
 
     this.channels = options.channels;
     /**
-     *
+     * Indicates whether message forwarding should be suspended or not
      * @type {boolean}
      */
 
     this.suspended = false;
   }
+  /**
+   * Sends the specified message to the forwarder's destination(s) if it matches the specified
+   * type(s) and channel(s).
+   *
+   * @param {Message} message The MIDI message to forward.
+   */
+
 
   forward(message) {
     // Abort if forwarding is currently suspended
@@ -6701,6 +6716,13 @@ class Input extends e {
       super.removeListener(event, listener, options);
     }
   }
+  /**
+   *
+   * @param output
+   * @param options
+   * @returns {Forwarder}
+   */
+
 
   addForwarder(output, options = {}) {
     let forwarder; // Unless 'output' is a forwarder, create a new forwarder
