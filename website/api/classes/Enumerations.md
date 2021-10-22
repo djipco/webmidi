@@ -40,6 +40,11 @@ Enumeration of all channel mode messages and their associated numerical value:
 - `omnimodeon`: 125
 - `monomodeon`: 126
 - `polymodeon`: 127
+### `.MIDI_CHANNEL_NUMBERS`
+**Type**: Array.&lt;number&gt;<br />
+**Attributes**: static
+
+An array of the 16 MIDI channel numbers (`1` to `16`):
 ### `.MIDI_CONTROL_CHANGE_MESSAGES`
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
