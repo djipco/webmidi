@@ -1,8 +1,8 @@
 
 # Forwarder
 
-The `Forwarder` class allows the forwarding of a MIDI message to predetermined list of
-[`Output`](Output) objects according to certain conditions.
+The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
+[`Output`](Output) objects granted the message matches certain conditions.
 
 **Since**: 3.0.0
 
