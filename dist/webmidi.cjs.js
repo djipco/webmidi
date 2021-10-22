@@ -6746,10 +6746,24 @@ class Input extends e {
     }
   }
   /**
+   * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
+   * specified output destination(s). This is akin to the hardware MIDI THRU port with the added
+   * benefit of being able to filter which data is forwarded.
    *
-   * @param output
-   * @param options
-   * @returns {Forwarder}
+   * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+   * to forward messages to.
+   * @param {object} [options={}]
+   * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.),
+   * or an array of such types, that the message type must match in order to be forwarded. If this
+   * option is not specified, all types of messages will be forwarded. Valid messages are the ones
+   * found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+   * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
+   * MIDI channel number or an array of channel numbers that the message must match in order to be
+   * forwarded. By default all MIDI channels are included (`1` to `16`).
+   *
+   * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
+   * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
    */
 
 
@@ -6766,10 +6780,23 @@ class Input extends e {
 
     return forwarder;
   }
+  /**
+   * Removes the specified forwarder.
+   * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
+   * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+   */
+
 
   removeForwarder(forwarder) {
     this._forwarders = this._forwarders.filter(item => item !== forwarder);
   }
+  /**
+   * Checks whether the specified forwarded has already been attached to this input.
+   * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check (the
+   * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+   * @returns {boolean}
+   */
+
 
   hasForwarder(forwarder) {
     return this._forwarders.includes(forwarder);
@@ -8349,6 +8376,7 @@ const wm = new WebMidi();
 wm.constructor = null;
 
 exports.Enumerations = Enumerations;
+exports.Forwarder = Forwarder;
 exports.Message = Message;
 exports.Note = Note;
 exports.Utilities = Utilities;
