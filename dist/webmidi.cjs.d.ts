@@ -3668,21 +3668,24 @@ declare class InputChannel {
 declare class Forwarder {
     constructor(destinations: any, options?: {});
     /**
-     * An array of [`Output`](Output) objects to forward the messages to.
-     * @type {Output[]}
-     */
-    destinations: Output[];
-    /**
-     * An array of message types that must be matched in order for messages to be forwarded.
+     * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
+     * for messages to be forwarded. By default, this array includes all
+     * [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
+     * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
      * @type {string[]}
      */
     types: string[];
     /**
-     * An array of MIDI channel numbers that the message must match in order to be forwarded. If
-     * this option is left undefined, messages from all channels will be forwarded.
+     * An array of MIDI channel numbers that the message must match in order to be forwarded. By
+     * default, this array includes all MIDI channels (`1` to `16`).
      * @type {number[]}
      */
     channels: number[];
+    /**
+     * An array of [`Output`](Output) objects to forward the messages to.
+     * @type {Output[]}
+     */
+    destinations: Output[];
     /**
      * Indicates whether message forwarding should be suspended or not
      * @type {boolean}
