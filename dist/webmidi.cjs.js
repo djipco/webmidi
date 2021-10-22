@@ -5980,7 +5980,7 @@ class Forwarder {
       }); // Validate types
 
       options.types.forEach(type => {
-        if (!Enumerations.MIDI_SYSTEM_MESSAGES.includes(type) && !Enumerations.MIDI_CHANNEL_MESSAGES.includes(type)) {
+        if (!Utilities.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, type), !Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, type)) {
           throw new TypeError("Type must be a valid channel or system message type.");
         }
       }); // Validate channels
