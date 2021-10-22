@@ -6050,7 +6050,7 @@ class Forwarder {
 
 
   forward(message) {
-    console.log(message); // Abort if forwarding is currently suspended
+    console.log(message.type); // Abort if forwarding is currently suspended
 
     if (this.suspended) return; // Abort if this message type should not be forwarded
 
