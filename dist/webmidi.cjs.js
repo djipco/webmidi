@@ -6040,7 +6040,6 @@ class Forwarder {
     this.destinations = destinations;
     if (options.types) this.forwardedTypes = options.types;
     if (options.channels) this.forwardedChannels = options.channels;
-    console.log(this.forwardedChannels);
   }
   /**
    * Sends the specified message to the forwarder's destination(s) if it matches the specified
@@ -6283,8 +6282,6 @@ class Input extends e {
       this.channels[message.channel]._processMidiMessageEvent(event);
     } // Forward message if forwarders have been defined
 
-
-    console.log("midimessage", message);
 
     this._forwarders.forEach(forwarder => forwarder.forward(message));
   }
