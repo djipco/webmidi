@@ -6050,7 +6050,7 @@ class Forwarder {
 
 
   forward(message) {
-    console.log(message.type); // Abort if forwarding is currently suspended
+    console.log("forward", message.type); // Abort if forwarding is currently suspended
 
     if (this.suspended) return; // Abort if this message type should not be forwarded
 
@@ -6284,7 +6284,7 @@ class Input extends e {
     } // Forward message if forwarders have been defined
 
 
-    console.log("c", message);
+    console.log("midimessage", message);
 
     this._forwarders.forEach(forwarder => forwarder.forward(message));
   }
