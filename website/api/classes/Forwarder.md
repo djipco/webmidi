@@ -2,9 +2,10 @@
 # Forwarder
 
 The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
-[`Output`](Output) objects granted the message matches certain conditions. While it can be
-manually instantiated, you are more likely to come across a `Forwarder` object as the return
-value for the [`Input.addForwarder()`](Input#addForwarder) method.
+[`Output`](Output) objects granted the message matches certain conditions.
+
+While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
+object as the return value for the [`Input.addForwarder()`](Input#addForwarder) method.
 
 **Since**: 3.0.0
 
