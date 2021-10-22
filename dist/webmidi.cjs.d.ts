@@ -3687,13 +3687,13 @@ declare class Forwarder {
      * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
      * @type {string[]}
      */
-    types: string[];
+    forwardedTypes: string[];
     /**
      * An array of MIDI channel numbers that the message must match in order to be forwarded. By
      * default, this array includes all MIDI channels (`1` to `16`).
      * @type {number[]}
      */
-    channels: number[];
+    forwardedChannels: number[];
     /**
      * Indicates whether message forwarding is suspended or not in this forwarder
      * @type {boolean}
