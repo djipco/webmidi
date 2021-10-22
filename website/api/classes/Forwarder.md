@@ -38,7 +38,7 @@ object as the return value of the [`Input.addForwarder()`](Input#addForwarder) m
 ### `.destinations` {#destinations}
 
 
-An array of [`Output`](Output) objects to forward the messages to.
+An array of [`Output`](Output) objects to forward the message to.
 
 **Type**: Array.&lt;Output&gt;<br />
 
@@ -66,7 +66,7 @@ for messages to be forwarded. By default, this array includes all
 ### `.suspended` {#suspended}
 
 
-Indicates whether message forwarding is suspended or not in this forwarder
+Indicates whether message forwarding is currently suspended or not in this forwarder.
 
 **Type**: boolean<br />
 
