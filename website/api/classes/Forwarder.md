@@ -22,7 +22,7 @@ according to certain conditions.
     |**`destinations`** | Output<br />Array.&lt;Output&gt;<br /> ||An [`Output`](Output) object, or an array of such objects, to forward messages to.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.types`**] | string<br />Array.&lt;string&gt;<br /> ||A message type (`"noteon"`, `"controlchange"`, etc.), or an array of such types, that the message must match in order to be forwarded. If this option is not specified, all types of messages will be forwarded. Valid messages are either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).|
-    |[**`options.channels`**] | number<br /> ||A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. If this option is not specified, messages from all channels will be forwarded.|
+    |[**`options.channels`**] | number<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. If this option is not specified, messages from all channels will be forwarded.|
 
   </div>
 
