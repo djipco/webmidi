@@ -5992,14 +5992,14 @@ class Forwarder {
      * @type {string[]}
      */
 
-    this.types = [...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES), ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)];
+    this.forwardedTypes = [...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES), ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)];
     /**
      * An array of MIDI channel numbers that the message must match in order to be forwarded. By
      * default, this array includes all MIDI channels (`1` to `16`).
      * @type {number[]}
      */
 
-    this.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    this.forwardedChannels = Enumerations.MIDI_CHANNEL_NUMBERS;
     /**
      * Indicates whether message forwarding is suspended or not in this forwarder
      * @type {boolean}
@@ -6038,8 +6038,8 @@ class Forwarder {
     }
 
     this.destinations = destinations;
-    if (options.types) this.types = options.types;
-    if (options.channels) this.channels = options.channels;
+    if (options.types) this.forwardedTypes = options.types;
+    if (options.channels) this.forwardedChannels = options.channels;
   }
   /**
    * Sends the specified message to the forwarder's destination(s) if it matches the specified
@@ -6050,12 +6050,13 @@ class Forwarder {
 
 
   forward(message) {
-    // Abort if forwarding is currently suspended
+    console.log(message); // Abort if forwarding is currently suspended
+
     if (this.suspended) return; // Abort if this message type should not be forwarded
 
-    if (this.types && !this.types.includes(message.type)) return; // Abort if this channel should not be forwarded
+    if (!this.forwardedTypes.includes(message.type)) return; // Abort if this channel should not be forwarded
 
-    if (this.channels && message.channel && !this.channels.includes(message.channel)) return; // Forward
+    if (message.channel && !this.forwardedChannels.includes(message.channel)) return; // Forward
 
     this.destinations.forEach(destination => destination.send(message));
   }
