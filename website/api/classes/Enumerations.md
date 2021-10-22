@@ -12,7 +12,7 @@ enumerations are static and should be referenced using the class name. For examp
 
 ## Enums
 
-### `.MIDI_CHANNEL_MESSAGES`
+### `.MIDI_CHANNEL_MESSAGES` {#MIDI_CHANNEL_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
@@ -26,7 +26,7 @@ Enumeration of all MIDI channel messages and their associated 4-bit numerical va
 - `programchange`: 0xC (12)
 - `channelaftertouch`: 0xD (13)
 - `pitchbend`: 0xE (14)
-### `.MIDI_CHANNEL_MODE_MESSAGES`
+### `.MIDI_CHANNEL_MODE_MESSAGES` {#MIDI_CHANNEL_MODE_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
@@ -40,12 +40,12 @@ Enumeration of all channel mode messages and their associated numerical value:
 - `omnimodeon`: 125
 - `monomodeon`: 126
 - `polymodeon`: 127
-### `.MIDI_CHANNEL_NUMBERS`
+### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: static
 
 An array of the 16 MIDI channel numbers (`1` to `16`):
-### `.MIDI_CONTROL_CHANGE_MESSAGES`
+### `.MIDI_CONTROL_CHANGE_MESSAGES` {#MIDI_CONTROL_CHANGE_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
@@ -120,7 +120,7 @@ some control change numbers do not have a predefined purpose and are absent from
 - `omnimodeon`: 125
 - `monomodeon`: 126
 - `polymodeon`: 127
-### `.MIDI_REGISTERED_PARAMETERS`
+### `.MIDI_REGISTERED_PARAMETERS` {#MIDI_REGISTERED_PARAMETERS}
 **Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
 **Attributes**: static
 
@@ -143,7 +143,7 @@ only a limited number of them:
 - `referencedistanceratio`: [0x3D, 0x06]
 - `panspreadangle`: [0x3D, 0x07]
 - `rollangle`: [0x3D, 0x08]
-### `.MIDI_SYSTEM_MESSAGES`
+### `.MIDI_SYSTEM_MESSAGES` {#MIDI_SYSTEM_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
