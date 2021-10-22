@@ -35,11 +35,15 @@
 
   > Signature: `{{this.name}}({{methodSignature this}})`
 
-  | Parameter    | Type      | Default      | Description  |
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
   {{#each params}}
-    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} |{{this.type.names.[0]}}|{{this.defaultvalue}}|{{{stripNewlines (inlineLinks this.description)}}}|
+    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} | {{#each this.type.names}}{{this}}<br />{{/each}} |{{this.defaultvalue}}|{{{stripNewlines this.description}}}|
   {{/each}}
+
+  </div>
 
 {{/if}}
 

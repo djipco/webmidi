@@ -91,3 +91,27 @@ li a.recommended {
 li a.dropdown__link.external svg {
   display: inline;
 }
+
+
+// Styles applicable to parameter tables in API ////////////////////////////////////////////////////
+.parameter-table-container {
+  table {
+
+    display: table;
+    width: 100%;
+
+    th:first-of-type {
+      width: 18%;
+    }
+    th:nth-of-type(2) {
+      width: 18%;
+    }
+    th:nth-of-type(3) {
+      width: 18%;
+    }
+    th:nth-of-type(4) {
+      width: 46%;
+    }
+
+  }
+}
