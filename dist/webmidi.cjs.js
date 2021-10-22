@@ -6040,6 +6040,7 @@ class Forwarder {
     this.destinations = destinations;
     if (options.types) this.forwardedTypes = options.types;
     if (options.channels) this.forwardedChannels = options.channels;
+    console.log(this.forwardedChannels);
   }
   /**
    * Sends the specified message to the forwarder's destination(s) if it matches the specified
@@ -6050,8 +6051,7 @@ class Forwarder {
 
 
   forward(message) {
-    console.log("forward", message.type); // Abort if forwarding is currently suspended
-
+    // Abort if forwarding is currently suspended
     if (this.suspended) return; // Abort if this message type should not be forwarded
 
     if (!this.forwardedTypes.includes(message.type)) return; // Abort if this channel should not be forwarded
