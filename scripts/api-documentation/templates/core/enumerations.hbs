@@ -13,7 +13,7 @@
 
 {{#each this}}
 {{! Name }}
-### `.{{this.name}}`
+### `.{{this.name}}` {{curly true}}#{{this.name}}{{curly}}
 **Type**: {{this.type.names.[0]}}<br />
 {{! Attributes }}
 {{#if (eq this.scope "static")}}
