@@ -5967,6 +5967,22 @@ class Output extends e {
 
 class Forwarder {
   constructor(destinations, options = {}) {
+    /**
+     * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
+     * for messages to be forwarded. By default, this array includes all
+     * [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
+     * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @type {string[]}
+     */
+    this.types = [...Enumerations.MIDI_SYSTEM_MESSAGES.keys, ...Enumerations.MIDI_CHANNEL_MESSAGES.keys];
+    console.log(this.types);
+    /**
+     * An array of MIDI channel numbers that the message must match in order to be forwarded. By
+     * default, this array includes all MIDI channels (`1` to `16`).
+     * @type {number[]}
+     */
+
+    this.channels = options.channels;
     if (!Array.isArray(destinations)) destinations = [destinations];
     if (options.types && !Array.isArray(options.types)) options.types = [options.types];
     if (options.channels && !Array.isArray(options.channels)) options.channels = [options.channels];
@@ -5992,19 +6008,6 @@ class Forwarder {
 
 
     this.destinations = destinations;
-    /**
-     * An array of message types that must be matched in order for messages to be forwarded.
-     * @type {string[]}
-     */
-
-    this.types = options.types;
-    /**
-     * An array of MIDI channel numbers that the message must match in order to be forwarded. If
-     * this option is left undefined, messages from all channels will be forwarded.
-     * @type {number[]}
-     */
-
-    this.channels = options.channels;
     /**
      * Indicates whether message forwarding should be suspended or not
      * @type {boolean}
