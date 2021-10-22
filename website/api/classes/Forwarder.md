@@ -2,7 +2,9 @@
 # Forwarder
 
 The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
-[`Output`](Output) objects granted the message matches certain conditions.
+[`Output`](Output) objects granted the message matches certain conditions. While it can be
+manually instantiated, you are more likely to come across a `Forwarder` object as the return
+value for the [`Input.addForwarder()`](Input#addForwarder) method.
 
 **Since**: 3.0.0
 
@@ -32,15 +34,6 @@ The `Forwarder` class allows the forwarding of a MIDI message to a predetermined
 
 ## Properties
 
-### `.channels` {#channels}
-
-
-An array of MIDI channel numbers that the message must match in order to be forwarded. By
-default, this array includes all MIDI channels (`1` to `16`).
-
-**Type**: Array.&lt;number&gt;<br />
-
-
 ### `.destinations` {#destinations}
 
 
@@ -49,15 +42,16 @@ An array of [`Output`](Output) objects to forward the messages to.
 **Type**: Array.&lt;Output&gt;<br />
 
 
-### `.suspended` {#suspended}
+### `.forwardedChannels` {#forwardedChannels}
 
 
-Indicates whether message forwarding should be suspended or not
+An array of MIDI channel numbers that the message must match in order to be forwarded. By
+default, this array includes all MIDI channels (`1` to `16`).
 
-**Type**: boolean<br />
+**Type**: Array.&lt;number&gt;<br />
 
 
-### `.types` {#types}
+### `.forwardedTypes` {#forwardedTypes}
 
 
 An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
@@ -66,6 +60,14 @@ for messages to be forwarded. By default, this array includes all
 [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
 
 **Type**: Array.&lt;string&gt;<br />
+
+
+### `.suspended` {#suspended}
+
+
+Indicates whether message forwarding is suspended or not in this forwarder
+
+**Type**: boolean<br />
 
 
 
