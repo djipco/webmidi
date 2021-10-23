@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.20
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on October 20th, 2021.
+ * Build generated on October 22nd, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -26,12 +26,12 @@ class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListene
  * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
  * output, by calling [`Output.playNote()`]{@link Output#playNote}.
  *
- * The note has [`attack`](#attack) and [`release`](#release) velocities set at 0.5 by default.
+ * The note has [`attack`](#attack) and [`release`](#release) velocities set at `0.5` by default.
  * These can be changed by passing in the appropriate option. It is also possible to set a
  * system-wide default for attack and release velocities by using the
  * [`WebMidi.defaults`](WebMidi#defaults) property.
  *
- * If you prefer to work with raw MIDI values (0-127), you can use [`rawAttack`](#rawAttack) and
+ * If you prefer to work with raw MIDI values (`0` to `127`), you can use [`rawAttack`](#rawAttack) and
  * [`rawRelease`](#rawRelease) to both get and set the values.
  *
  * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
@@ -817,6 +817,17 @@ class Enumerations {
       pitchbend: 0xE          // 14
     };
 
+  }
+
+  /**
+   * An array of the 16 MIDI channel numbers (`1` to `16`):
+   *
+   * @enum {number[]}
+   * @readonly
+   * @static
+   */
+  static get MIDI_CHANNEL_NUMBERS() {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
   }
 
   /**
@@ -6263,20 +6274,25 @@ class Output extends e {
 }
 
 /**
- * The `Forwarder` class holds the properties and methods necessary to forward a MIDI message
- * that matches certain conditions via an [`Output`](Output) object.
+ * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
+ * [`Output`](Output) objects as long as the message matches certain conditions.
  *
- * @param {Output|Output[]} destinations An [`Output`](Output) object or an array of
- * [`Output`](Output) objects to forward messages to.
+ * While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
+ * object as the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
  *
- * @param {object} options
- * @param {string|string[]} options.type The type of message that should be forwarded or an array of
- * such types. If this option is not specified, all types of messages will be forwarded. Valid
- * messages are either [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
- * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} options.channel A single MIDI channel number (`1` to `16`) or an array of MIDI
- * channel numbers that should be forwarded. If this option is not specified, messages from all
- * channels will be forwarded.
+ * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+ * to forward the message to.
+ *
+ * @param {object} [options={}]
+ * @param {string|string[]} [options.forwardedTypes] A MIDI message type (`"noteon"`,
+ * `"controlchange"`, etc.), or an array of such types, that the specified message must match in
+ * order to be forwarded. If this option is not specified, all types of messages will be forwarded.
+ * Valid messages are the ones found in either
+ * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+ * @param {number} [options.forwardedChannels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+ * A MIDI channel number or an array of channel numbers that the message must match in order to be
+ * forwarded. By default all MIDI channels are included (`1` to `16`).
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -6285,6 +6301,38 @@ class Forwarder {
 
   constructor(destinations, options = {}) {
 
+    /**
+     * An array of [`Output`](Output) objects to forward the message to.
+     * @type {Output[]}
+     */
+    this.destinations = [];
+
+    /**
+     * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
+     * for messages to be forwarded. By default, this array includes all
+     * [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
+     * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @type {string[]}
+     */
+    this.forwardedTypes = [
+      ...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES),
+      ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)
+    ];
+
+    /**
+     * An array of MIDI channel numbers that the message must match in order to be forwarded. By
+     * default, this array includes all MIDI channels (`1` to `16`).
+     * @type {number[]}
+     */
+    this.forwardedChannels = Enumerations.MIDI_CHANNEL_NUMBERS;
+
+    /**
+     * Indicates whether message forwarding is currently suspended or not in this forwarder.
+     * @type {boolean}
+     */
+    this.suspended = false;
+
+    // Make sure parameters are arrays
     if (!Array.isArray(destinations)) destinations = [destinations];
     if (options.types && !Array.isArray(options.types)) options.types = [options.types];
     if (options.channels && !Array.isArray(options.channels)) options.channels = [options.channels];
@@ -6299,52 +6347,59 @@ class Forwarder {
       });
 
       // Validate types
+      if (options.types) {
+
+        options.types.forEach(type => {
+          if (
+            ! Enumerations.MIDI_SYSTEM_MESSAGES.hasOwnProperty(type) &&
+            ! Enumerations.MIDI_CHANNEL_MESSAGES.hasOwnProperty(type)
+          ) {
+            throw new TypeError("Type must be a valid message type.");
+          }
+        });
+
+      }
 
       // Validate channels
+      if (options.channels == undefined) {
+
+        options.channels.forEach(channel => {
+          if (! Enumerations.MIDI_CHANNEL_NUMBERS.includes(channel) ) {
+            throw new TypeError("MIDI channel must be between 1 and 16.");
+          }
+        });
+
+      }
 
     }
 
-    /**
-     *
-     * @type {*[]}
-     */
     this.destinations = destinations;
-
-    /**
-     *
-     * @type {any}
-     */
-    this.types = options.types;
-
-    /**
-     *
-     */
-    this.channels = options.channels;
-
-    /**
-     *
-     * @type {boolean}
-     */
-    this.suspended = false;
+    if (options.types) this.forwardedTypes = options.types;
+    if (options.channels) this.forwardedChannels = options.channels;
 
   }
 
+  /**
+   * Sends the specified message to the forwarder's destination(s) if it matches the specified
+   * type(s) and channel(s).
+   *
+   * @param {Message} message The [`Message`](Message) object to forward.
+   */
   forward(message) {
 
     // Abort if forwarding is currently suspended
     if (this.suspended) return;
 
     // Abort if this message type should not be forwarded
-    if (this.types && !this.types.includes(message.type)) return;
+    if (!this.forwardedTypes.includes(message.type)) return;
 
     // Abort if this channel should not be forwarded
-    if (this.channels && message.channel && !this.channels.includes(message.channel)) return;
+    if (message.channel && !this.forwardedChannels.includes(message.channel)) return;
 
     // Forward
     this.destinations.forEach(destination => destination.send(message));
 
   }
-
 
 }
 
@@ -6519,6 +6574,7 @@ class Input extends e {
    * @private
    */
   _onMidiMessage(e) {
+
 
     // Create Message object from MIDI data
     const message = new Message(e.data);
@@ -7052,6 +7108,26 @@ class Input extends e {
 
   }
 
+  /**
+   * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
+   * specified output destination(s). This is akin to the hardware MIDI THRU port with the added
+   * benefit of being able to filter which data is forwarded.
+   *
+   * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+   * to forward messages to.
+   * @param {object} [options={}]
+   * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.),
+   * or an array of such types, that the message type must match in order to be forwarded. If this
+   * option is not specified, all types of messages will be forwarded. Valid messages are the ones
+   * found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+   * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
+   * MIDI channel number or an array of channel numbers that the message must match in order to be
+   * forwarded. By default all MIDI channels are included (`1` to `16`).
+   *
+   * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
+   * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
+   */
   addForwarder(output, options = {}) {
 
     let forwarder;
@@ -7068,10 +7144,21 @@ class Input extends e {
 
   }
 
+  /**
+   * Removes the specified forwarder.
+   * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
+   * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+   */
   removeForwarder(forwarder) {
     this._forwarders = this._forwarders.filter(item => item !== forwarder);
   }
 
+  /**
+   * Checks whether the specified forwarded has already been attached to this input.
+   * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check (the
+   * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+   * @returns {boolean}
+   */
   hasForwarder(forwarder) {
     return this._forwarders.includes(forwarder);
   }
@@ -8707,4 +8794,4 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
-export { Enumerations, Message, Note, Utilities, wm as WebMidi };
+export { Enumerations, Forwarder, Message, Note, Utilities, wm as WebMidi };
