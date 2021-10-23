@@ -6032,7 +6032,7 @@ class Forwarder {
       } // Validate channels
 
 
-      if (options.channels === undefined) {
+      if (options.channels !== undefined) {
         options.channels.forEach(channel => {
           if (!Enumerations.MIDI_CHANNEL_NUMBERS.includes(channel)) {
             throw new TypeError("MIDI channel must be between 1 and 16.");
