@@ -8,12 +8,12 @@ import {Utilities} from "./Utilities.js";
  * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
  * output, by calling [`Output.playNote()`]{@link Output#playNote}.
  *
- * The note has [`attack`](#attack) and [`release`](#release) velocities set at 0.5 by default.
+ * The note has [`attack`](#attack) and [`release`](#release) velocities set at `0.5` by default.
  * These can be changed by passing in the appropriate option. It is also possible to set a
  * system-wide default for attack and release velocities by using the
  * [`WebMidi.defaults`](WebMidi#defaults) property.
  *
- * If you prefer to work with raw MIDI values (0-127), you can use [`rawAttack`](#rawAttack) and
+ * If you prefer to work with raw MIDI values (`0` to `127`), you can use [`rawAttack`](#rawAttack) and
  * [`rawRelease`](#rawRelease) to both get and set the values.
  *
  * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
