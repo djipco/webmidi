@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.20
+ * WebMidi.js v3.0.0-alpha.21
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on October 22nd, 2021.
@@ -6284,13 +6284,12 @@ class Output extends e {
  * to forward the message to.
  *
  * @param {object} [options={}]
- * @param {string|string[]} [options.forwardedTypes] A MIDI message type (`"noteon"`,
- * `"controlchange"`, etc.), or an array of such types, that the specified message must match in
- * order to be forwarded. If this option is not specified, all types of messages will be forwarded.
- * Valid messages are the ones found in either
- * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * @param {string|string[]} [options.types] A MIDI message type (`"noteon"`, `"controlchange"`,
+ * etc.), or an array of such types, that the specified message must match in order to be forwarded.
+ * If this option is not specified, all types of messages will be forwarded. Valid messages are the
+ * ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
  * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.forwardedChannels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+ * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
  * A MIDI channel number or an array of channel numbers that the message must match in order to be
  * forwarded. By default all MIDI channels are included (`1` to `16`).
  *
@@ -6314,7 +6313,7 @@ class Forwarder {
      * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
      * @type {string[]}
      */
-    this.forwardedTypes = [
+    this.types = [
       ...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES),
       ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)
     ];
@@ -6324,7 +6323,7 @@ class Forwarder {
      * default, this array includes all MIDI channels (`1` to `16`).
      * @type {number[]}
      */
-    this.forwardedChannels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    this.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
 
     /**
      * Indicates whether message forwarding is currently suspended or not in this forwarder.
@@ -6347,7 +6346,7 @@ class Forwarder {
       });
 
       // Validate types
-      if (options.types) {
+      if (options.types !== undefined) {
 
         options.types.forEach(type => {
           if (
@@ -6361,7 +6360,7 @@ class Forwarder {
       }
 
       // Validate channels
-      if (options.channels == undefined) {
+      if (options.channels !== undefined) {
 
         options.channels.forEach(channel => {
           if (! Enumerations.MIDI_CHANNEL_NUMBERS.includes(channel) ) {
@@ -6374,8 +6373,8 @@ class Forwarder {
     }
 
     this.destinations = destinations;
-    if (options.types) this.forwardedTypes = options.types;
-    if (options.channels) this.forwardedChannels = options.channels;
+    if (options.types) this.types = options.types;
+    if (options.channels) this.channels = options.channels;
 
   }
 
@@ -6391,10 +6390,10 @@ class Forwarder {
     if (this.suspended) return;
 
     // Abort if this message type should not be forwarded
-    if (!this.forwardedTypes.includes(message.type)) return;
+    if (!this.types.includes(message.type)) return;
 
     // Abort if this channel should not be forwarded
-    if (message.channel && !this.forwardedChannels.includes(message.channel)) return;
+    if (message.channel && !this.channels.includes(message.channel)) return;
 
     // Forward
     this.destinations.forEach(destination => destination.send(message));
@@ -6478,6 +6477,7 @@ class Input extends e {
     this.removeListener();
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
+    this._forwarders = [];
     if (this._midiInput) {
       this._midiInput.onstatechange = null;
       this._midiInput.onmidimessage = null;
@@ -7669,7 +7669,7 @@ class Message {
       this.command = this.statusByte;
     }
 
-    // Assign type (depending in whether the message is channel-specific or system)
+    // Assign type (depending on whether the message is channel-specific or system)
     if (this.isChannelMessage) {
       this.type = Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
