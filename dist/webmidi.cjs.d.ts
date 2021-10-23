@@ -317,19 +317,23 @@ export class Enumerations {
 }
 /**
  * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
- * [`Output`](Output) objects granted the message matches certain conditions.
+ * [`Output`](Output) objects as long as the message matches certain conditions.
+ *
+ * While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
+ * object as the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
  *
  * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
  * to forward the message to.
  *
  * @param {object} [options={}]
- * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.), or
- * an array of such types, that the message type must match in order to be forwarded. If this option
- * is not specified, all types of messages will be forwarded. Valid messages are the ones found in
- * either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * @param {string|string[]} [options.forwardedTypes] A MIDI message type (`"noteon"`,
+ * `"controlchange"`, etc.), or an array of such types, that the specified message must match in
+ * order to be forwarded. If this option is not specified, all types of messages will be forwarded.
+ * Valid messages are the ones found in either
+ * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
  * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
- * MIDI channel number or an array of channel numbers that the message must match in order to be
+ * @param {number} [options.forwardedChannels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+ * A MIDI channel number or an array of channel numbers that the message must match in order to be
  * forwarded. By default all MIDI channels are included (`1` to `16`).
  *
  * @license Apache-2.0
@@ -338,7 +342,7 @@ export class Enumerations {
 export class Forwarder {
     constructor(destinations: any, options?: {});
     /**
-     * An array of [`Output`](Output) objects to forward the messages to.
+     * An array of [`Output`](Output) objects to forward the message to.
      * @type {Output[]}
      */
     destinations: Output[];
@@ -357,7 +361,7 @@ export class Forwarder {
      */
     forwardedChannels: number[];
     /**
-     * Indicates whether message forwarding is suspended or not in this forwarder
+     * Indicates whether message forwarding is currently suspended or not in this forwarder.
      * @type {boolean}
      */
     suspended: boolean;
@@ -365,7 +369,7 @@ export class Forwarder {
      * Sends the specified message to the forwarder's destination(s) if it matches the specified
      * type(s) and channel(s).
      *
-     * @param {Message} message The MIDI message to forward.
+     * @param {Message} message The [`Message`](Message) object to forward.
      */
     forward(message: Message): void;
 }
