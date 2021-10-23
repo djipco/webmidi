@@ -32,10 +32,12 @@ projects. Note that all these classes are pre-instantiated within WebMidi.js.
 * [**OutputChannel**](classes/OutputChannel)
 * [**Message**](classes/Message)
 
-The exception is the [`Note`](classes/Note) class which you can instantiate when you need to store a 
-musical note:
+The exception are the [`Note`](classes/Note) class which you can instantiate when you need to store 
+a musical note and the [`Forwarder`](classes/Forwarder) class used to forward messages from an input
+to an output:
 
 * [**Note**](classes/Note)
+* [**Forwarder**](classes/Forwarder)
 
 ## Support Classes
 

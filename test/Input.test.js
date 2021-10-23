@@ -1,7 +1,7 @@
 const expect = require("chai").expect;
 const midi = require("midi");
 const sinon = require("sinon");
-const {WebMidi, Enumerations} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Enumerations, Forwarder} = require("../dist/webmidi.cjs.js");
 
 // The virtual port is an "external" device so an output is seen as an input by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
@@ -9,19 +9,32 @@ let VIRTUAL_INPUT = new midi.Output();
 let VIRTUAL_INPUT_NAME = "Virtual Input";
 let WEBMIDI_INPUT;
 
+// The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
+// confusion, the naming scheme adopts WebMidi's perspective.
+let VIRTUAL_OUTPUT = new midi.Input();
+let VIRTUAL_OUTPUT_NAME = "Virtual Output";
+let WEBMIDI_OUTPUT;
+
 describe("Input Object", function() {
 
   before(function () {
+
     VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
+
+    VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
+    VIRTUAL_OUTPUT.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
+
   });
 
   after(function () {
     VIRTUAL_INPUT.closePort();
+    VIRTUAL_OUTPUT.closePort();
   });
 
   beforeEach("Check support and enable WebMidi.js", async function () {
     await WebMidi.enable({sysex: true});
     WEBMIDI_INPUT = WebMidi.getInputByName(VIRTUAL_INPUT_NAME);
+    WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
   });
 
   afterEach("Disable WebMidi.js", async function () {
@@ -868,6 +881,189 @@ describe("Input Object", function() {
       expect(spy.calledOnce).to.be.true;
       expect(spy.args[0][0]).to.equal(event);
       expect(spy.args[0][2]).to.equal(listener);
+
+    });
+
+  });
+
+  describe("addForwarder()", function() {
+
+    it("should add a forwarder and return it", function() {
+
+      // Arrange
+
+      // Act
+      const forwarder = WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT);
+
+      // Assert
+      expect(WEBMIDI_INPUT.hasForwarder(forwarder)).to.be.true;
+
+    });
+
+    it("should forward message to specified output", function(done) {
+
+      // Arrange
+      const data = [0x90, 64, 127];
+      WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT);
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      VIRTUAL_INPUT.sendMessage(data);
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(data);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
+
+    it("should forward message to specified output (with channel filter)", function(done) {
+
+      // Arrange
+      let target = [0x99, 64, 127]; // noteon on channel 10
+      const data = [
+        [0x90, 64, 127], // noteon on channel 1
+        [0x81, 64, 127], // noteoff on channel 2
+        target,
+      ];
+      WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {channels: 10});
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      data.forEach(item => VIRTUAL_INPUT.sendMessage(item));
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(target);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
+
+    it("should not forward message to filtered outputs (with channel filter)", function(done) {
+
+      // Arrange
+      const channel = 10;
+      WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {channels: channel});
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+        .filter(x => x !== channel).forEach(i => {
+          VIRTUAL_INPUT.sendMessage([0x90 + i - 1, 64, 127]);
+        });
+
+      // Assert
+      const id = setTimeout(() => {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }, 750);
+
+      function assert(deltaTime, message) {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        clearTimeout(id);
+        done(new Error("Callback should not have been triggered. " + message));
+      }
+
+    });
+
+    it("should forward message to specified output (with type filter)", function(done) {
+
+      // Arrange
+      let type = "controlchange";
+      const target = [0xB2, 64, 127];
+      const data = [
+        [0x90, 64, 127],  // noteon on channel 1
+        [0x81, 64, 127],  // noteoff on channel 2
+        target            // control change on channel 3
+      ];
+      WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {types: type});
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      data.forEach(item => VIRTUAL_INPUT.sendMessage(item));
+
+      // Assert
+      function assert(deltaTime, message) {
+        expect(message).to.have.ordered.members(target);
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }
+
+    });
+
+    it("should not forward message to filtered outputs (with type filter)", function(done) {
+
+      // Arrange
+      const target = {name: "pitchbend", number: 0xE0}; // pitchbend
+      const messages = [
+        0x80,
+        0x90,
+        0xA0,
+        0xB0,
+        0xC0,
+        0xD0,
+        0xE0
+      ];
+      WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {types: target.name});
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      messages.filter(x => x !== target.number).forEach(i => {
+        VIRTUAL_INPUT.sendMessage([i, 64, 127]);
+      });
+
+      // Assert
+      const id = setTimeout(() => {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        done();
+      }, 750);
+
+      function assert(deltaTime, message) {
+        VIRTUAL_OUTPUT.removeAllListeners();
+        clearTimeout(id);
+        done(new Error("Callback should not have been triggered. " + message));
+      }
+
+    });
+
+  });
+
+  describe("removeForwarder()", function() {
+
+    it("should remove specified forwarder", function() {
+
+      // Arrange
+      const forwarder = WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT);
+
+      // Act
+      WEBMIDI_INPUT.removeForwarder(forwarder);
+
+      // Assert
+      expect(WEBMIDI_INPUT.hasForwarder(forwarder)).to.be.false;
+
+    });
+
+  });
+
+  describe("hasForwarder()", function() {
+
+    it("should correctly report prsence of forwarder", function() {
+
+      // Arrange
+      const forwarder1 = WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT);
+      const forwarder2 = WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT);
+
+      // Act
+      WEBMIDI_INPUT.removeForwarder(forwarder1);
+
+      // Assert
+      expect(WEBMIDI_INPUT.hasForwarder(forwarder1)).to.be.false;
+      expect(WEBMIDI_INPUT.hasForwarder(forwarder2)).to.be.true;
+      expect(WEBMIDI_INPUT.hasForwarder(new Forwarder(WEBMIDI_OUTPUT))).to.be.false;
 
     });
 

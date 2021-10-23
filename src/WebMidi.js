@@ -1116,3 +1116,4 @@ export {Note} from "./Note.js";
 export {Utilities} from "./Utilities.js";
 export {Enumerations} from "./Enumerations.js";
 export {Message} from "./Message.js";
+export {Forwarder} from "./Forwarder.js";

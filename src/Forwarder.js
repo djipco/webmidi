@@ -4,19 +4,22 @@ import {WebMidi} from "./WebMidi.js";
 
 /**
  * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
- * [`Output`](Output) objects granted the message matches certain conditions.
+ * [`Output`](Output) objects as long as the message matches certain conditions.
+ *
+ * While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
+ * object as the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
  *
  * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
  * to forward the message to.
  *
  * @param {object} [options={}]
- * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.), or
- * an array of such types, that the message type must match in order to be forwarded. If this option
- * is not specified, all types of messages will be forwarded. Valid messages are the ones found in
- * either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * @param {string|string[]} [options.types] A MIDI message type (`"noteon"`, `"controlchange"`,
+ * etc.), or an array of such types, that the specified message must match in order to be forwarded.
+ * If this option is not specified, all types of messages will be forwarded. Valid messages are the
+ * ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
  * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
- * MIDI channel number or an array of channel numbers that the message must match in order to be
+ * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+ * A MIDI channel number or an array of channel numbers that the message must match in order to be
  * forwarded. By default all MIDI channels are included (`1` to `16`).
  *
  * @license Apache-2.0
@@ -27,7 +30,7 @@ export class Forwarder {
   constructor(destinations, options = {}) {
 
     /**
-     * An array of [`Output`](Output) objects to forward the messages to.
+     * An array of [`Output`](Output) objects to forward the message to.
      * @type {Output[]}
      */
     this.destinations = [];
@@ -39,7 +42,7 @@ export class Forwarder {
      * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
      * @type {string[]}
      */
-    this.forwardedTypes = [
+    this.types = [
       ...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES),
       ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)
     ];
@@ -49,10 +52,10 @@ export class Forwarder {
      * default, this array includes all MIDI channels (`1` to `16`).
      * @type {number[]}
      */
-    this.forwardedChannels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    this.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
 
     /**
-     * Indicates whether message forwarding is suspended or not in this forwarder
+     * Indicates whether message forwarding is currently suspended or not in this forwarder.
      * @type {boolean}
      */
     this.suspended = false;
@@ -72,7 +75,7 @@ export class Forwarder {
       });
 
       // Validate types
-      if (options.types) {
+      if (options.types !== undefined) {
 
         options.types.forEach(type => {
           if (
@@ -86,11 +89,11 @@ export class Forwarder {
       }
 
       // Validate channels
-      if (options.channels) {
+      if (options.channels !== undefined) {
 
         options.channels.forEach(channel => {
           if (! Enumerations.MIDI_CHANNEL_NUMBERS.includes(channel) ) {
-            throw new TypeError("MIDI channel must be bet between 1 and 16.");
+            throw new TypeError("MIDI channel must be between 1 and 16.");
           }
         });
 
@@ -99,8 +102,8 @@ export class Forwarder {
     }
 
     this.destinations = destinations;
-    if (options.types) this.forwardedTypes = options.types;
-    if (options.channels) this.forwardedChannels = options.channels;
+    if (options.types) this.types = options.types;
+    if (options.channels) this.channels = options.channels;
 
   }
 
@@ -108,7 +111,7 @@ export class Forwarder {
    * Sends the specified message to the forwarder's destination(s) if it matches the specified
    * type(s) and channel(s).
    *
-   * @param {Message} message The MIDI message to forward.
+   * @param {Message} message The [`Message`](Message) object to forward.
    */
   forward(message) {
 
@@ -116,10 +119,10 @@ export class Forwarder {
     if (this.suspended) return;
 
     // Abort if this message type should not be forwarded
-    if (!this.forwardedTypes.includes(message.type)) return;
+    if (!this.types.includes(message.type)) return;
 
     // Abort if this channel should not be forwarded
-    if (message.channel && !this.forwardedChannels.includes(message.channel)) return;
+    if (message.channel && !this.channels.includes(message.channel)) return;
 
     // Forward
     this.destinations.forEach(destination => destination.send(message));
