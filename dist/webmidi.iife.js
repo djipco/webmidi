@@ -938,6 +938,18 @@
       };
     }
     /**
+     * An array of the 16 MIDI channel numbers (`1` to `16`):
+     *
+     * @enum {number[]}
+     * @readonly
+     * @static
+     */
+
+
+    static get MIDI_CHANNEL_NUMBERS() {
+      return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+    }
+    /**
      * Enumeration of all channel mode messages and their associated numerical value:
      *
      * - `allsoundoff`: 120
@@ -5944,21 +5956,25 @@
   }
 
   /**
-   * The `Forwarder` class allows the forwarding of MIDI messages to an [`Output`](Output) object
-   * according to certain conditions.
+   * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
+   * [`Output`](Output) objects as long as the message matches certain conditions.
+   *
+   * While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
+   * object as the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
    *
    * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
-   * to forward messages to.
+   * to forward the message to.
    *
    * @param {object} [options={}]
-   * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.), or
-   * an array of such types, that the message must match in order to be forwarded. If this option is
-   * not specified, all types of messages will be forwarded. Valid messages are either
+   * @param {string|string[]} [options.forwardedTypes] A MIDI message type (`"noteon"`,
+   * `"controlchange"`, etc.), or an array of such types, that the specified message must match in
+   * order to be forwarded. If this option is not specified, all types of messages will be forwarded.
+   * Valid messages are the ones found in either
    * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
    * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-   * @param {number} [options.channels] A MIDI channel number or an array of channel numbers that the
-   * message must match in order to be forwarded. If this option is not specified, messages from all
-   * channels will be forwarded.
+   * @param {number} [options.forwardedChannels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+   * A MIDI channel number or an array of channel numbers that the message must match in order to be
+   * forwarded. By default all MIDI channels are included (`1` to `16`).
    *
    * @license Apache-2.0
    * @since 3.0.0
@@ -5966,6 +5982,34 @@
 
   class Forwarder {
     constructor(destinations, options = {}) {
+      /**
+       * An array of [`Output`](Output) objects to forward the message to.
+       * @type {Output[]}
+       */
+      this.destinations = [];
+      /**
+       * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
+       * for messages to be forwarded. By default, this array includes all
+       * [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
+       * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+       * @type {string[]}
+       */
+
+      this.forwardedTypes = [...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES), ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)];
+      /**
+       * An array of MIDI channel numbers that the message must match in order to be forwarded. By
+       * default, this array includes all MIDI channels (`1` to `16`).
+       * @type {number[]}
+       */
+
+      this.forwardedChannels = Enumerations.MIDI_CHANNEL_NUMBERS;
+      /**
+       * Indicates whether message forwarding is currently suspended or not in this forwarder.
+       * @type {boolean}
+       */
+
+      this.suspended = false; // Make sure parameters are arrays
+
       if (!Array.isArray(destinations)) destinations = [destinations];
       if (options.types && !Array.isArray(options.types)) options.types = [options.types];
       if (options.channels && !Array.isArray(options.channels)) options.channels = [options.channels];
@@ -5978,45 +6022,33 @@
           }
         }); // Validate types
 
-        options.types.forEach(type => {
-          if (!Utilities.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, type) && !Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, type)) {
-            console.log(type, Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, type));
-            throw new TypeError("Type must be a valid message type.");
-          }
-        }); // Validate channels
-      }
-      /**
-       * An array of [`Output`](Output) objects to forward the messages to.
-       * @type {Output[]}
-       */
+        if (options.types) {
+          options.types.forEach(type => {
+            if (!Enumerations.MIDI_SYSTEM_MESSAGES.hasOwnProperty(type) && !Enumerations.MIDI_CHANNEL_MESSAGES.hasOwnProperty(type)) {
+              throw new TypeError("Type must be a valid message type.");
+            }
+          });
+        } // Validate channels
 
+
+        if (options.channels == undefined) {
+          options.channels.forEach(channel => {
+            if (!Enumerations.MIDI_CHANNEL_NUMBERS.includes(channel)) {
+              throw new TypeError("MIDI channel must be between 1 and 16.");
+            }
+          });
+        }
+      }
 
       this.destinations = destinations;
-      /**
-       * An array of message types that must be matched in order for messages to be forwarded.
-       * @type {string[]}
-       */
-
-      this.types = options.types;
-      /**
-       * An array of MIDI channel numbers that the message must match in order to be forwarded. If
-       * this option is left undefined, messages from all channels will be forwarded.
-       * @type {number[]}
-       */
-
-      this.channels = options.channels;
-      /**
-       * Indicates whether message forwarding should be suspended or not
-       * @type {boolean}
-       */
-
-      this.suspended = false;
+      if (options.types) this.forwardedTypes = options.types;
+      if (options.channels) this.forwardedChannels = options.channels;
     }
     /**
      * Sends the specified message to the forwarder's destination(s) if it matches the specified
      * type(s) and channel(s).
      *
-     * @param {Message} message The MIDI message to forward.
+     * @param {Message} message The [`Message`](Message) object to forward.
      */
 
 
@@ -6024,9 +6056,9 @@
       // Abort if forwarding is currently suspended
       if (this.suspended) return; // Abort if this message type should not be forwarded
 
-      if (this.types && !this.types.includes(message.type)) return; // Abort if this channel should not be forwarded
+      if (!this.forwardedTypes.includes(message.type)) return; // Abort if this channel should not be forwarded
 
-      if (this.channels && message.channel && !this.channels.includes(message.channel)) return; // Forward
+      if (message.channel && !this.forwardedChannels.includes(message.channel)) return; // Forward
 
       this.destinations.forEach(destination => destination.send(message));
     }
@@ -6717,10 +6749,24 @@
       }
     }
     /**
+     * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
+     * specified output destination(s). This is akin to the hardware MIDI THRU port with the added
+     * benefit of being able to filter which data is forwarded.
      *
-     * @param output
-     * @param options
-     * @returns {Forwarder}
+     * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+     * to forward messages to.
+     * @param {object} [options={}]
+     * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.),
+     * or an array of such types, that the message type must match in order to be forwarded. If this
+     * option is not specified, all types of messages will be forwarded. Valid messages are the ones
+     * found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+     * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
+     * MIDI channel number or an array of channel numbers that the message must match in order to be
+     * forwarded. By default all MIDI channels are included (`1` to `16`).
+     *
+     * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
+     * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
      */
 
 
@@ -6737,10 +6783,23 @@
 
       return forwarder;
     }
+    /**
+     * Removes the specified forwarder.
+     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
+     * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+     */
+
 
     removeForwarder(forwarder) {
       this._forwarders = this._forwarders.filter(item => item !== forwarder);
     }
+    /**
+     * Checks whether the specified forwarded has already been attached to this input.
+     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check (the
+     * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+     * @returns {boolean}
+     */
+
 
     hasForwarder(forwarder) {
       return this._forwarders.includes(forwarder);
@@ -8311,6 +8370,7 @@
   wm.constructor = null;
 
   exports.Enumerations = Enumerations;
+  exports.Forwarder = Forwarder;
   exports.Message = Message;
   exports.Note = Note;
   exports.Utilities = Utilities;
