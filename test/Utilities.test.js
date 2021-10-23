@@ -1192,4 +1192,10 @@ describe("Utilities Object", function() {
 
   });
 
+  describe("getPropertyByValue()", function() {
+
+    it("should return the correct property");
+
+  });
+
 });
