@@ -5967,13 +5967,12 @@ class Output extends e {
  * to forward the message to.
  *
  * @param {object} [options={}]
- * @param {string|string[]} [options.forwardedTypes] A MIDI message type (`"noteon"`,
- * `"controlchange"`, etc.), or an array of such types, that the specified message must match in
- * order to be forwarded. If this option is not specified, all types of messages will be forwarded.
- * Valid messages are the ones found in either
- * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * @param {string|string[]} [options.types] A MIDI message type (`"noteon"`, `"controlchange"`,
+ * etc.), or an array of such types, that the specified message must match in order to be forwarded.
+ * If this option is not specified, all types of messages will be forwarded. Valid messages are the
+ * ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
  * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.forwardedChannels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+ * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
  * A MIDI channel number or an array of channel numbers that the message must match in order to be
  * forwarded. By default all MIDI channels are included (`1` to `16`).
  *
@@ -5996,14 +5995,14 @@ class Forwarder {
      * @type {string[]}
      */
 
-    this.forwardedTypes = [...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES), ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)];
+    this.types = [...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES), ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)];
     /**
      * An array of MIDI channel numbers that the message must match in order to be forwarded. By
      * default, this array includes all MIDI channels (`1` to `16`).
      * @type {number[]}
      */
 
-    this.forwardedChannels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    this.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     /**
      * Indicates whether message forwarding is currently suspended or not in this forwarder.
      * @type {boolean}
@@ -6042,8 +6041,8 @@ class Forwarder {
     }
 
     this.destinations = destinations;
-    if (options.types) this.forwardedTypes = options.types;
-    if (options.channels) this.forwardedChannels = options.channels;
+    if (options.types) this.types = options.types;
+    if (options.channels) this.channels = options.channels;
   }
   /**
    * Sends the specified message to the forwarder's destination(s) if it matches the specified
@@ -6057,9 +6056,9 @@ class Forwarder {
     // Abort if forwarding is currently suspended
     if (this.suspended) return; // Abort if this message type should not be forwarded
 
-    if (!this.forwardedTypes.includes(message.type)) return; // Abort if this channel should not be forwarded
+    if (!this.types.includes(message.type)) return; // Abort if this channel should not be forwarded
 
-    if (message.channel && !this.forwardedChannels.includes(message.channel)) return; // Forward
+    if (message.channel && !this.channels.includes(message.channel)) return; // Forward
 
     this.destinations.forEach(destination => destination.send(message));
   }
@@ -6140,6 +6139,7 @@ class Input extends e {
     this.removeListener();
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
+    this._forwarders = [];
 
     if (this._midiInput) {
       this._midiInput.onstatechange = null;
