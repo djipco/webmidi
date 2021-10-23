@@ -39,6 +39,17 @@ export class Enumerations {
   }
 
   /**
+   * An array of the 16 MIDI channel numbers (`1` to `16`):
+   *
+   * @enum {number[]}
+   * @readonly
+   * @static
+   */
+  static get MIDI_CHANNEL_NUMBERS() {
+    return [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+  }
+
+  /**
    * Enumeration of all channel mode messages and their associated numerical value:
    *
    * - `allsoundoff`: 120
