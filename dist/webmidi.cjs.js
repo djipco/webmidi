@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.20
+ * WebMidi.js v3.0.0-alpha.21
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on October 22nd, 2021.
@@ -7314,7 +7314,7 @@ class Message {
     } else {
       this.isSystemMessage = true;
       this.command = this.statusByte;
-    } // Assign type (depending in whether the message is channel-specific or system)
+    } // Assign type (depending on whether the message is channel-specific or system)
 
 
     if (this.isChannelMessage) {
