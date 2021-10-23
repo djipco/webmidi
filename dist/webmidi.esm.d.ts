@@ -1,4 +1,4 @@
-// Type definitions for WebMidi.js 3.0.0-alpha.20
+// Type definitions for WebMidi.js 3.0.0-alpha.21
 // Project: https://webmidijs.org
 // Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -325,13 +325,12 @@ export class Enumerations {
  * to forward the message to.
  *
  * @param {object} [options={}]
- * @param {string|string[]} [options.forwardedTypes] A MIDI message type (`"noteon"`,
- * `"controlchange"`, etc.), or an array of such types, that the specified message must match in
- * order to be forwarded. If this option is not specified, all types of messages will be forwarded.
- * Valid messages are the ones found in either
- * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * @param {string|string[]} [options.types] A MIDI message type (`"noteon"`, `"controlchange"`,
+ * etc.), or an array of such types, that the specified message must match in order to be forwarded.
+ * If this option is not specified, all types of messages will be forwarded. Valid messages are the
+ * ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
  * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.forwardedChannels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+ * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
  * A MIDI channel number or an array of channel numbers that the message must match in order to be
  * forwarded. By default all MIDI channels are included (`1` to `16`).
  *
@@ -352,13 +351,13 @@ export class Forwarder {
      * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
      * @type {string[]}
      */
-    forwardedTypes: string[];
+    types: string[];
     /**
      * An array of MIDI channel numbers that the message must match in order to be forwarded. By
      * default, this array includes all MIDI channels (`1` to `16`).
      * @type {number[]}
      */
-    forwardedChannels: number[];
+    channels: number[];
     /**
      * Indicates whether message forwarding is currently suspended or not in this forwarder.
      * @type {boolean}
