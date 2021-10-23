@@ -28,7 +28,7 @@ Create an HTML document and include the library:
   <head>
     <meta charset="UTF-8">
     <title>WebMidi.js Quick Start</title>
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@3.0.0-alpha.16/dist/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@3.0.0-alpha.21/dist/webmidi.iife.js"></script>
   </head>
   
   <body>
