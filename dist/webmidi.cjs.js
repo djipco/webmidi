@@ -6023,7 +6023,7 @@ class Forwarder {
         }
       }); // Validate types
 
-      if (options.types) {
+      if (options.types !== undefined) {
         options.types.forEach(type => {
           if (!Enumerations.MIDI_SYSTEM_MESSAGES.hasOwnProperty(type) && !Enumerations.MIDI_CHANNEL_MESSAGES.hasOwnProperty(type)) {
             throw new TypeError("Type must be a valid message type.");
