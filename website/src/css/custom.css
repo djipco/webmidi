@@ -8,6 +8,7 @@
   --ifm-color-primary-lighter: #fadb63;
   --ifm-color-primary-lightest: #fce590;
   --ifm-code-font-size: 95%;
+  --ifm-code-padding-horizontal: 0.2rem;
 }
 
 .docusaurus-highlight-code-line {
