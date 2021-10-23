@@ -187,12 +187,13 @@ export class InputChannel extends EventEmitter {
        * @type {object}
        * @property {string} type `"noteoff"`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
+       * @property {InputChannel} target The object that triggered the event (the
+       * [`InputChannel`](InputChannel) object).
+       * @property {Message} message A [`Message`](Message) object containing information about the incoming
        * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
+       * @property {number} timestamp The moment
+       * ([`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp))
+       * when the event occurred (in milliseconds since the navigation start of the document).
        *
        * @property {object} note A [`Note`](Note) object containing information such as note name,
        * octave and release velocity.
