@@ -102,7 +102,7 @@ describe("InputChannel Object", function() {
       expect(e.target).to.equal(channel);
 
       index++;
-      if (index >= 127) done();
+      if (index > 127) done();
 
     }
 
@@ -158,7 +158,7 @@ describe("InputChannel Object", function() {
       expect(e.target).to.equal(channel);
 
       index++;
-      if (index >= 127) done();
+      if (index > 127) done();
 
     }
 
@@ -212,7 +212,7 @@ describe("InputChannel Object", function() {
       expect(e.target).to.equal(channel);
 
       index++;
-      if (index >= 127) done();
+      if (index > 127) done();
 
     }
 
