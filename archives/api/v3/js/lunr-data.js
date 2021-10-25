@@ -905,6 +905,100 @@ window.lunrData = {
           "variabl",
           "via"
         ],
+        "Forwarder.html": [
+          "allow",
+          "certain",
+          "certainli",
+          "class",
+          "come",
+          "condit",
+          "forward",
+          "input.addforward",
+          "instanti",
+          "list",
+          "long",
+          "manual",
+          "match",
+          "messag",
+          "method",
+          "midi",
+          "more",
+          "object",
+          "output",
+          "predetermin",
+          "return",
+          "valu"
+        ],
+        "Forwarder.html#channels": [
+          "1",
+          "16",
+          "array",
+          "array.&lt;number&gt",
+          "channel",
+          "default",
+          "forward",
+          "forwarder#channel",
+          "includ",
+          "match",
+          "member",
+          "messag",
+          "midi",
+          "number",
+          "order"
+        ],
+        "Forwarder.html#destinations": [
+          "array",
+          "array.&lt;output&gt",
+          "destin",
+          "forward",
+          "forwarder#destin",
+          "member",
+          "messag",
+          "object",
+          "output"
+        ],
+        "Forwarder.html#suspended": [
+          "boolean",
+          "current",
+          "forward",
+          "forwarder#suspend",
+          "indic",
+          "member",
+          "messag",
+          "suspend",
+          "whether"
+        ],
+        "Forwarder.html#types": [
+          "array",
+          "array.&lt;string&gt",
+          "controlchang",
+          "default",
+          "enumerations.midi_channel_messag",
+          "enumerations.midi_system_messag",
+          "etc",
+          "forward",
+          "forwarder#typ",
+          "includ",
+          "match",
+          "member",
+          "messag",
+          "noteon",
+          "order",
+          "type"
+        ],
+        "Forwarder.html#forward": [
+          "channel(",
+          "destination(",
+          "forward",
+          "forwarder#forward",
+          "forwarder'",
+          "function",
+          "match",
+          "messag",
+          "send",
+          "specifi",
+          "type("
+        ],
         "Input.html": [
           "access",
           "accord",
@@ -7805,7 +7899,7 @@ window.lunrData = {
           "within"
         ]
       },
-      "length": 271
+      "length": 277
     },
     "tokenStore": {
       "root": {
@@ -9168,6 +9262,10 @@ window.lunrData = {
                 "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
                 "tf": 0.33783783783783783
               },
+              "Forwarder.html#channels": {
+                "ref": "Forwarder.html#channels",
+                "tf": 3.3333333333333335
+              },
               "Input.html#channels": {
                 "ref": "Input.html#channels",
                 "tf": 8.333333333333332
@@ -9281,6 +9379,10 @@ window.lunrData = {
             "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
               "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
               "tf": 0.5617977528089888
+            },
+            "Forwarder.html#channels": {
+              "ref": "Forwarder.html#channels",
+              "tf": 3.3333333333333335
             },
             "Input.html#channels": {
               "ref": "Input.html#channels",
@@ -11189,6 +11291,10 @@ window.lunrData = {
                       "ref": "EventEmitter.html#unsuspendEvent",
                       "tf": 1.4705882352941175
                     },
+                    "Forwarder.html": {
+                      "ref": "Forwarder.html",
+                      "tf": 1.9230769230769231
+                    },
                     "Input.html#suspendEvent": {
                       "ref": "Input.html#suspendEvent",
                       "tf": 1.0869565217391304
@@ -11421,6 +11527,18 @@ window.lunrData = {
                       "ref": "EventEmitter.html#getListeners",
                       "tf": 2.083333333333333
                     },
+                    "Forwarder.html#channels": {
+                      "ref": "Forwarder.html#channels",
+                      "tf": 6.666666666666667
+                    },
+                    "Forwarder.html#destinations": {
+                      "ref": "Forwarder.html#destinations",
+                      "tf": 10
+                    },
+                    "Forwarder.html#types": {
+                      "ref": "Forwarder.html#types",
+                      "tf": 6.666666666666667
+                    },
                     "Input.html": {
                       "ref": "Input.html",
                       "tf": 1.5625
@@ -11642,6 +11760,10 @@ window.lunrData = {
                                                   "ref": "Enumerations.html#.MIDI_CHANNEL_NUMBERS",
                                                   "tf": 25
                                                 },
+                                                "Forwarder.html#channels": {
+                                                  "ref": "Forwarder.html#channels",
+                                                  "tf": 50
+                                                },
                                                 "Message.html#data": {
                                                   "ref": "Message.html#data",
                                                   "tf": 33.33333333333333
@@ -11725,6 +11847,10 @@ window.lunrData = {
                                                 "EventEmitter.html#eventNames": {
                                                   "ref": "EventEmitter.html#eventNames",
                                                   "tf": 33.33333333333333
+                                                },
+                                                "Forwarder.html#types": {
+                                                  "ref": "Forwarder.html#types",
+                                                  "tf": 50
                                                 },
                                                 "Input.html#eventNames": {
                                                   "ref": "Input.html#eventNames",
@@ -11826,6 +11952,73 @@ window.lunrData = {
                                 }
                               }
                             },
+                            "o": {
+                              "docs": {},
+                              "u": {
+                                "docs": {},
+                                "t": {
+                                  "docs": {},
+                                  "p": {
+                                    "docs": {},
+                                    "u": {
+                                      "docs": {},
+                                      "t": {
+                                        "docs": {},
+                                        "&": {
+                                          "docs": {},
+                                          "g": {
+                                            "docs": {},
+                                            "t": {
+                                              "docs": {
+                                                "Forwarder.html#destinations": {
+                                                  "ref": "Forwarder.html#destinations",
+                                                  "tf": 50
+                                                }
+                                              }
+                                            }
+                                          }
+                                        },
+                                        "c": {
+                                          "docs": {},
+                                          "h": {
+                                            "docs": {},
+                                            "a": {
+                                              "docs": {},
+                                              "n": {
+                                                "docs": {},
+                                                "n": {
+                                                  "docs": {},
+                                                  "e": {
+                                                    "docs": {},
+                                                    "l": {
+                                                      "docs": {},
+                                                      "&": {
+                                                        "docs": {},
+                                                        "g": {
+                                                          "docs": {},
+                                                          "t": {
+                                                            "docs": {
+                                                              "Output.html#channels": {
+                                                                "ref": "Output.html#channels",
+                                                                "tf": 50
+                                                              }
+                                                            }
+                                                          }
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "i": {
                               "docs": {},
                               "n": {
@@ -11899,59 +12092,6 @@ window.lunrData = {
                                                   "InputChannel.html#notesState": {
                                                     "ref": "InputChannel.html#notesState",
                                                     "tf": 50
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "o": {
-                              "docs": {},
-                              "u": {
-                                "docs": {},
-                                "t": {
-                                  "docs": {},
-                                  "p": {
-                                    "docs": {},
-                                    "u": {
-                                      "docs": {},
-                                      "t": {
-                                        "docs": {},
-                                        "c": {
-                                          "docs": {},
-                                          "h": {
-                                            "docs": {},
-                                            "a": {
-                                              "docs": {},
-                                              "n": {
-                                                "docs": {},
-                                                "n": {
-                                                  "docs": {},
-                                                  "e": {
-                                                    "docs": {},
-                                                    "l": {
-                                                      "docs": {},
-                                                      "&": {
-                                                        "docs": {},
-                                                        "g": {
-                                                          "docs": {},
-                                                          "t": {
-                                                            "docs": {
-                                                              "Output.html#channels": {
-                                                                "ref": "Output.html#channels",
-                                                                "tf": 50
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
                                                   }
                                                 }
                                               }
@@ -13402,6 +13542,10 @@ window.lunrData = {
                 "docs": {},
                 "c": {
                   "docs": {
+                    "Forwarder.html#suspended": {
+                      "ref": "Forwarder.html#suspended",
+                      "tf": 7.142857142857142
+                    },
                     "InputChannel.html#parameterNumberEventsEnabled": {
                       "ref": "InputChannel.html#parameterNumberEventsEnabled",
                       "tf": 1.1904761904761905
@@ -13453,6 +13597,14 @@ window.lunrData = {
                       "EventEmitter.html#hasListener": {
                         "ref": "EventEmitter.html#hasListener",
                         "tf": 1.6129032258064515
+                      },
+                      "Forwarder.html#channels": {
+                        "ref": "Forwarder.html#channels",
+                        "tf": 3.3333333333333335
+                      },
+                      "Forwarder.html#types": {
+                        "ref": "Forwarder.html#types",
+                        "tf": 3.3333333333333335
                       },
                       "InputChannel.html#hasListener": {
                         "ref": "InputChannel.html#hasListener",
@@ -14016,6 +14168,61 @@ window.lunrData = {
                     "WebMidi.html#getOutputByName": {
                       "ref": "WebMidi.html#getOutputByName",
                       "tf": 2
+                    }
+                  },
+                  ".": {
+                    "docs": {},
+                    "a": {
+                      "docs": {},
+                      "d": {
+                        "docs": {},
+                        "d": {
+                          "docs": {},
+                          "f": {
+                            "docs": {},
+                            "o": {
+                              "docs": {},
+                              "r": {
+                                "docs": {},
+                                "w": {
+                                  "docs": {},
+                                  "a": {
+                                    "docs": {},
+                                    "r": {
+                                      "docs": {},
+                                      "d": {
+                                        "docs": {
+                                          "Forwarder.html": {
+                                            "ref": "Forwarder.html",
+                                            "tf": 1.9230769230769231
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
+                    "o": {
+                      "docs": {},
+                      "p": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "n": {
+                            "docs": {
+                              "Input.html#close": {
+                                "ref": "Input.html#close",
+                                "tf": 3.571428571428571
+                              }
+                            }
+                          }
+                        }
+                      }
                     }
                   },
                   "#": {
@@ -15520,26 +15727,6 @@ window.lunrData = {
                       }
                     }
                   },
-                  ".": {
-                    "docs": {},
-                    "o": {
-                      "docs": {},
-                      "p": {
-                        "docs": {},
-                        "e": {
-                          "docs": {},
-                          "n": {
-                            "docs": {
-                              "Input.html#close": {
-                                "ref": "Input.html#close",
-                                "tf": 3.571428571428571
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
                   "'": {
                     "docs": {
                       "InputChannel.html": {
@@ -15587,6 +15774,10 @@ window.lunrData = {
                       "docs": {},
                       "i": {
                         "docs": {
+                          "Forwarder.html": {
+                            "ref": "Forwarder.html",
+                            "tf": 1.9230769230769231
+                          },
                           "Input.html": {
                             "ref": "Input.html",
                             "tf": 3.125
@@ -16597,6 +16788,10 @@ window.lunrData = {
                   "EventEmitter.html#getListeners": {
                     "ref": "EventEmitter.html#getListeners",
                     "tf": 2.083333333333333
+                  },
+                  "Forwarder.html": {
+                    "ref": "Forwarder.html",
+                    "tf": 1.9230769230769231
                   },
                   "Input.html#getListeners": {
                     "ref": "Input.html#getListeners",
@@ -17815,6 +18010,32 @@ window.lunrData = {
                 }
               }
             },
+            "n": {
+              "docs": {},
+              "g": {
+                "docs": {
+                  "Forwarder.html": {
+                    "ref": "Forwarder.html",
+                    "tf": 1.9230769230769231
+                  }
+                },
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {
+                      "Output.html#setLocalControl": {
+                        "ref": "Output.html#setLocalControl",
+                        "tf": 2.7777777777777777
+                      },
+                      "OutputChannel.html#setLocalControl": {
+                        "ref": "OutputChannel.html#setLocalControl",
+                        "tf": 2.7777777777777777
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "g": {
               "docs": {},
               "i": {
@@ -17836,27 +18057,6 @@ window.lunrData = {
                   "Output.html#close": {
                     "ref": "Output.html#close",
                     "tf": 2.380952380952381
-                  }
-                }
-              }
-            },
-            "n": {
-              "docs": {},
-              "g": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "Output.html#setLocalControl": {
-                        "ref": "Output.html#setLocalControl",
-                        "tf": 2.7777777777777777
-                      },
-                      "OutputChannel.html#setLocalControl": {
-                        "ref": "OutputChannel.html#setLocalControl",
-                        "tf": 2.7777777777777777
-                      }
-                    }
                   }
                 }
               }
@@ -18202,6 +18402,14 @@ window.lunrData = {
                   "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
                     "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
                     "tf": 1.6853932584269662
+                  },
+                  "Forwarder.html": {
+                    "ref": "Forwarder.html",
+                    "tf": 1.9230769230769231
+                  },
+                  "Forwarder.html#channels": {
+                    "ref": "Forwarder.html#channels",
+                    "tf": 6.666666666666667
                   },
                   "Input.html": {
                     "ref": "Input.html",
@@ -19103,6 +19311,22 @@ window.lunrData = {
                         "ref": "EventEmitter.html#eventsSuspended",
                         "tf": 110
                       },
+                      "Forwarder.html#channels": {
+                        "ref": "Forwarder.html#channels",
+                        "tf": 110
+                      },
+                      "Forwarder.html#destinations": {
+                        "ref": "Forwarder.html#destinations",
+                        "tf": 110
+                      },
+                      "Forwarder.html#suspended": {
+                        "ref": "Forwarder.html#suspended",
+                        "tf": 110
+                      },
+                      "Forwarder.html#types": {
+                        "ref": "Forwarder.html#types",
+                        "tf": 110
+                      },
                       "Input.html#channels": {
                         "ref": "Input.html#channels",
                         "tf": 110
@@ -19479,6 +19703,30 @@ window.lunrData = {
                       "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
                         "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
                         "tf": 3.3707865168539324
+                      },
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 3.8461538461538463
+                      },
+                      "Forwarder.html#channels": {
+                        "ref": "Forwarder.html#channels",
+                        "tf": 3.3333333333333335
+                      },
+                      "Forwarder.html#destinations": {
+                        "ref": "Forwarder.html#destinations",
+                        "tf": 10
+                      },
+                      "Forwarder.html#suspended": {
+                        "ref": "Forwarder.html#suspended",
+                        "tf": 7.142857142857142
+                      },
+                      "Forwarder.html#types": {
+                        "ref": "Forwarder.html#types",
+                        "tf": 6.666666666666667
+                      },
+                      "Forwarder.html#forward": {
+                        "ref": "Forwarder.html#forward",
+                        "tf": 55.55555555555556
                       },
                       "Input.html#addForwarder": {
                         "ref": "Input.html#addForwarder",
@@ -20154,6 +20402,10 @@ window.lunrData = {
                         "ref": "EventEmitter.html#~callback",
                         "tf": 1.0638297872340425
                       },
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 1.9230769230769231
+                      },
                       "Input.html#waitFor": {
                         "ref": "Input.html#waitFor",
                         "tf": 0.5434782608695652
@@ -20673,6 +20925,10 @@ window.lunrData = {
                     "ref": "EventEmitter.html#removeListener",
                     "tf": 2.857142857142857
                   },
+                  "Forwarder.html": {
+                    "ref": "Forwarder.html",
+                    "tf": 1.9230769230769231
+                  },
                   "InputChannel.html#removeListener": {
                     "ref": "InputChannel.html#removeListener",
                     "tf": 2.857142857142857
@@ -20867,6 +21123,22 @@ window.lunrData = {
                       "ref": "EventEmitter.html#~callback",
                       "tf": 1.0638297872340425
                     },
+                    "Forwarder.html": {
+                      "ref": "Forwarder.html",
+                      "tf": 1.9230769230769231
+                    },
+                    "Forwarder.html#channels": {
+                      "ref": "Forwarder.html#channels",
+                      "tf": 3.3333333333333335
+                    },
+                    "Forwarder.html#types": {
+                      "ref": "Forwarder.html#types",
+                      "tf": 3.3333333333333335
+                    },
+                    "Forwarder.html#forward": {
+                      "ref": "Forwarder.html#forward",
+                      "tf": 5.555555555555555
+                    },
                     "Input.html#addForwarder": {
                       "ref": "Input.html#addForwarder",
                       "tf": 2.272727272727273
@@ -21020,6 +21292,17 @@ window.lunrData = {
               "docs": {},
               "u": {
                 "docs": {},
+                "a": {
+                  "docs": {},
+                  "l": {
+                    "docs": {
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 1.9230769230769231
+                      }
+                    }
+                  }
+                },
                 "f": {
                   "docs": {},
                   "a": {
@@ -22049,6 +22332,29 @@ window.lunrData = {
                           "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
                             "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
                             "tf": 0.33783783783783783
+                          }
+                        }
+                      }
+                    }
+                  },
+                  "t": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "r": {
+                        "docs": {},
+                        "m": {
+                          "docs": {},
+                          "i": {
+                            "docs": {},
+                            "n": {
+                              "docs": {
+                                "Forwarder.html": {
+                                  "ref": "Forwarder.html",
+                                  "tf": 1.9230769230769231
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -25420,6 +25726,10 @@ window.lunrData = {
                         "ref": "EventEmitter.html#waitFor",
                         "tf": 0.5434782608695652
                       },
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 1.9230769230769231
+                      },
                       "Input.html#emit": {
                         "ref": "Input.html#emit",
                         "tf": 1.4285714285714286
@@ -27833,6 +28143,10 @@ window.lunrData = {
                           "ref": "EventEmitter.html#eventsSuspended",
                           "tf": 6.25
                         },
+                        "Forwarder.html#suspended": {
+                          "ref": "Forwarder.html#suspended",
+                          "tf": 7.142857142857142
+                        },
                         "Input.html#eventsSuspended": {
                           "ref": "Input.html#eventsSuspended",
                           "tf": 6.25
@@ -29076,6 +29390,10 @@ window.lunrData = {
                   "docs": {},
                   "n": {
                     "docs": {
+                      "Forwarder.html#destinations": {
+                        "ref": "Forwarder.html#destinations",
+                        "tf": 700
+                      },
                       "Input.html#addForwarder": {
                         "ref": "Input.html#addForwarder",
                         "tf": 25
@@ -29093,6 +29411,10 @@ window.lunrData = {
                               "docs": {},
                               "(": {
                                 "docs": {
+                                  "Forwarder.html#forward": {
+                                    "ref": "Forwarder.html#forward",
+                                    "tf": 5.555555555555555
+                                  },
                                   "Input.html#addForwarder": {
                                     "ref": "Input.html#addForwarder",
                                     "tf": 2.272727272727273
@@ -29197,6 +29519,14 @@ window.lunrData = {
                     "docs": {},
                     "t": {
                       "docs": {
+                        "Forwarder.html#channels": {
+                          "ref": "Forwarder.html#channels",
+                          "tf": 3.3333333333333335
+                        },
+                        "Forwarder.html#types": {
+                          "ref": "Forwarder.html#types",
+                          "tf": 3.3333333333333335
+                        },
                         "Input.html#octaveOffset": {
                           "ref": "Input.html#octaveOffset",
                           "tf": 1.1111111111111112
@@ -31251,6 +31581,10 @@ window.lunrData = {
                       "ref": "EventEmitter.html",
                       "tf": 114
                     },
+                    "Forwarder.html": {
+                      "ref": "Forwarder.html",
+                      "tf": 111.92307692307692
+                    },
                     "Input.html": {
                       "ref": "Input.html",
                       "tf": 111.5625
@@ -31585,6 +31919,10 @@ window.lunrData = {
                                   "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
                                     "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                                     "tf": 1.5151515151515151
+                                  },
+                                  "Forwarder.html#types": {
+                                    "ref": "Forwarder.html#types",
+                                    "tf": 3.3333333333333335
                                   },
                                   "Input.html#addListener": {
                                     "ref": "Input.html#addListener",
@@ -31935,6 +32273,20 @@ window.lunrData = {
                   }
                 }
               },
+              "d": {
+                "docs": {},
+                "i": {
+                  "docs": {},
+                  "t": {
+                    "docs": {
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 1.9230769230769231
+                      }
+                    }
+                  }
+                }
+              },
               "n": {
                 "docs": {},
                 "e": {
@@ -32156,6 +32508,18 @@ window.lunrData = {
                   }
                 }
               },
+              "e": {
+                "docs": {
+                  "Forwarder.html": {
+                    "ref": "Forwarder.html",
+                    "tf": 1.9230769230769231
+                  },
+                  "WebMidi.html#octaveOffset": {
+                    "ref": "WebMidi.html#octaveOffset",
+                    "tf": 1.8518518518518516
+                  }
+                }
+              },
               "p": {
                 "docs": {},
                 "l": {
@@ -32242,14 +32606,6 @@ window.lunrData = {
                         "tf": 2.1739130434782608
                       }
                     }
-                  }
-                }
-              },
-              "e": {
-                "docs": {
-                  "WebMidi.html#octaveOffset": {
-                    "ref": "WebMidi.html#octaveOffset",
-                    "tf": 1.8518518518518516
                   }
                 }
               }
@@ -32462,6 +32818,10 @@ window.lunrData = {
                         "Enumerations.html#.MIDI_CHANNEL_NUMBERS": {
                           "ref": "Enumerations.html#.MIDI_CHANNEL_NUMBERS",
                           "tf": 7.142857142857142
+                        },
+                        "Forwarder.html#channels": {
+                          "ref": "Forwarder.html#channels",
+                          "tf": 706.6666666666666
                         },
                         "Input.html#channels": {
                           "ref": "Input.html#channels",
@@ -32809,20 +33169,12 @@ window.lunrData = {
                           }
                         }
                       },
-                      "'": {
-                        "docs": {
-                          "InputChannel.html#number": {
-                            "ref": "InputChannel.html#number",
-                            "tf": 10
-                          },
-                          "OutputChannel.html#number": {
-                            "ref": "OutputChannel.html#number",
-                            "tf": 10
-                          }
-                        }
-                      },
                       "(": {
                         "docs": {
+                          "Forwarder.html#forward": {
+                            "ref": "Forwarder.html#forward",
+                            "tf": 5.555555555555555
+                          },
                           "Output.html#sendChannelMode": {
                             "ref": "Output.html#sendChannelMode",
                             "tf": 0.78125
@@ -32874,6 +33226,18 @@ window.lunrData = {
                           "OutputChannel.html#setPitchBendRange": {
                             "ref": "OutputChannel.html#setPitchBendRange",
                             "tf": 1.3888888888888888
+                          }
+                        }
+                      },
+                      "'": {
+                        "docs": {
+                          "InputChannel.html#number": {
+                            "ref": "InputChannel.html#number",
+                            "tf": 10
+                          },
+                          "OutputChannel.html#number": {
+                            "ref": "OutputChannel.html#number",
+                            "tf": 10
                           }
                         }
                       }
@@ -33203,6 +33567,10 @@ window.lunrData = {
                           "ref": "EventEmitter.html#waitFor",
                           "tf": 0.5434782608695652
                         },
+                        "Forwarder.html": {
+                          "ref": "Forwarder.html",
+                          "tf": 1.9230769230769231
+                        },
                         "Input.html#waitFor": {
                           "ref": "Input.html#waitFor",
                           "tf": 0.5434782608695652
@@ -33230,6 +33598,17 @@ window.lunrData = {
                         "WebMidi.html#waitFor": {
                           "ref": "WebMidi.html#waitFor",
                           "tf": 0.5434782608695652
+                        }
+                      },
+                      "l": {
+                        "docs": {},
+                        "i": {
+                          "docs": {
+                            "Forwarder.html": {
+                              "ref": "Forwarder.html",
+                              "tf": 1.9230769230769231
+                            }
+                          }
                         }
                       }
                     }
@@ -33285,6 +33664,10 @@ window.lunrData = {
                         "EventEmitter.html#eventsSuspended": {
                           "ref": "EventEmitter.html#eventsSuspended",
                           "tf": 6.25
+                        },
+                        "Forwarder.html#suspended": {
+                          "ref": "Forwarder.html#suspended",
+                          "tf": 7.142857142857142
                         },
                         "Input.html#eventsSuspended": {
                           "ref": "Input.html#eventsSuspended",
@@ -34222,6 +34605,10 @@ window.lunrData = {
                                                                           "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
                                                                             "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                                                                             "tf": 1150
+                                                                          },
+                                                                          "Forwarder.html#types": {
+                                                                            "ref": "Forwarder.html#types",
+                                                                            "tf": 3.3333333333333335
                                                                           }
                                                                         }
                                                                       }
@@ -34443,6 +34830,10 @@ window.lunrData = {
                                                                         "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
                                                                           "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
                                                                           "tf": 1150
+                                                                        },
+                                                                        "Forwarder.html#types": {
+                                                                          "ref": "Forwarder.html#types",
+                                                                          "tf": 3.3333333333333335
                                                                         }
                                                                       }
                                                                     }
@@ -37310,6 +37701,10 @@ window.lunrData = {
             "docs": {},
             "c": {
               "docs": {
+                "Forwarder.html#types": {
+                  "ref": "Forwarder.html#types",
+                  "tf": 3.3333333333333335
+                },
                 "InputChannel.html#getNoteState": {
                   "ref": "InputChannel.html#getNoteState",
                   "tf": 1.7857142857142856
@@ -38269,6 +38664,10 @@ window.lunrData = {
                         "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                         "tf": 1.5151515151515151
                       },
+                      "Forwarder.html#types": {
+                        "ref": "Forwarder.html#types",
+                        "tf": 3.3333333333333335
+                      },
                       "Input.html#addListener": {
                         "ref": "Input.html#addListener",
                         "tf": 0.5263157894736842
@@ -38998,6 +39397,10 @@ window.lunrData = {
                       "EventEmitter.html#~callback": {
                         "ref": "EventEmitter.html#~callback",
                         "tf": 1.0638297872340425
+                      },
+                      "Forwarder.html#channels": {
+                        "ref": "Forwarder.html#channels",
+                        "tf": 3.3333333333333335
                       },
                       "Input.html#channels": {
                         "ref": "Input.html#channels",
@@ -40621,6 +41024,10 @@ window.lunrData = {
                           "ref": "EventEmitter.html#unsuspendEvent",
                           "tf": 1.4705882352941175
                         },
+                        "Forwarder.html#suspended": {
+                          "ref": "Forwarder.html#suspended",
+                          "tf": 707.1428571428571
+                        },
                         "Input.html#eventsSuspended": {
                           "ref": "Input.html#eventsSuspended",
                           "tf": 6.25
@@ -42126,64 +42533,14 @@ window.lunrData = {
                 }
               }
             },
-            "v": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "Input.html": {
-                      "ref": "Input.html",
-                      "tf": 1.5625
-                    },
-                    "InputChannel.html#destroy": {
-                      "ref": "InputChannel.html#destroy",
-                      "tf": 5.555555555555555
-                    },
-                    "Message.html": {
-                      "ref": "Message.html",
-                      "tf": 3.3333333333333335
-                    }
-                  }
-                }
-              }
-            },
-            "q": {
-              "docs": {},
-              "u": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "c": {
-                      "docs": {
-                        "InputChannel.html#parameterNumberEventsEnabled": {
-                          "ref": "InputChannel.html#parameterNumberEventsEnabled",
-                          "tf": 2.380952380952381
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
             "n": {
               "docs": {},
-              "s": {
-                "docs": {
-                  "Message.html": {
-                    "ref": "Message.html",
-                    "tf": 3.3333333333333335
-                  },
-                  "Output.html#sendActiveSensing": {
-                    "ref": "Output.html#sendActiveSensing",
-                    "tf": 4.545454545454546
-                  }
-                }
-              },
               "d": {
                 "docs": {
+                  "Forwarder.html#forward": {
+                    "ref": "Forwarder.html#forward",
+                    "tf": 5.555555555555555
+                  },
                   "Note.html": {
                     "ref": "Note.html",
                     "tf": 0.5617977528089888
@@ -42780,6 +43137,18 @@ window.lunrData = {
                   }
                 }
               },
+              "s": {
+                "docs": {
+                  "Message.html": {
+                    "ref": "Message.html",
+                    "tf": 3.3333333333333335
+                  },
+                  "Output.html#sendActiveSensing": {
+                    "ref": "Output.html#sendActiveSensing",
+                    "tf": 4.545454545454546
+                  }
+                }
+              },
               "t": {
                 "docs": {
                   "Output.html#playNote": {
@@ -42813,6 +43182,48 @@ window.lunrData = {
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
                     "tf": 2.7777777777777777
+                  }
+                }
+              }
+            },
+            "v": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Input.html": {
+                      "ref": "Input.html",
+                      "tf": 1.5625
+                    },
+                    "InputChannel.html#destroy": {
+                      "ref": "InputChannel.html#destroy",
+                      "tf": 5.555555555555555
+                    },
+                    "Message.html": {
+                      "ref": "Message.html",
+                      "tf": 3.3333333333333335
+                    }
+                  }
+                }
+              }
+            },
+            "q": {
+              "docs": {},
+              "u": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "n": {
+                    "docs": {},
+                    "c": {
+                      "docs": {
+                        "InputChannel.html#parameterNumberEventsEnabled": {
+                          "ref": "InputChannel.html#parameterNumberEventsEnabled",
+                          "tf": 2.380952380952381
+                        }
+                      }
+                    }
                   }
                 }
               }
@@ -43510,6 +43921,10 @@ window.lunrData = {
                         "EventEmitter.html#waitFor": {
                           "ref": "EventEmitter.html#waitFor",
                           "tf": 1.6304347826086956
+                        },
+                        "Forwarder.html#forward": {
+                          "ref": "Forwarder.html#forward",
+                          "tf": 11.11111111111111
                         },
                         "Input.html#addForwarder": {
                           "ref": "Input.html#addForwarder",
@@ -45967,6 +46382,10 @@ window.lunrData = {
                     "ref": "EventEmitter.html#unsuspendEvent",
                     "tf": 1.4705882352941175
                   },
+                  "Forwarder.html#types": {
+                    "ref": "Forwarder.html#types",
+                    "tf": 703.3333333333334
+                  },
                   "Input.html#type": {
                     "ref": "Input.html#type",
                     "tf": 691.6666666666667
@@ -46043,6 +46462,14 @@ window.lunrData = {
                           "tf": 110
                         }
                       }
+                    }
+                  }
+                },
+                "(": {
+                  "docs": {
+                    "Forwarder.html#forward": {
+                      "ref": "Forwarder.html#forward",
+                      "tf": 5.555555555555555
                     }
                   }
                 }
@@ -48239,6 +48666,10 @@ window.lunrData = {
                           "ref": "EventEmitter.html#hasListener",
                           "tf": 25
                         },
+                        "Forwarder.html#suspended": {
+                          "ref": "Forwarder.html#suspended",
+                          "tf": 50
+                        },
                         "Input.html#eventsSuspended": {
                           "ref": "Input.html#eventsSuspended",
                           "tf": 50
@@ -48928,6 +49359,14 @@ window.lunrData = {
                         "ref": "EventEmitter.html#getListeners",
                         "tf": 2.083333333333333
                       },
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 3.8461538461538463
+                      },
+                      "Forwarder.html#destinations": {
+                        "ref": "Forwarder.html#destinations",
+                        "tf": 10
+                      },
                       "Input.html": {
                         "ref": "Input.html",
                         "tf": 3.125
@@ -49418,6 +49857,14 @@ window.lunrData = {
                 "docs": {},
                 "r": {
                   "docs": {
+                    "Forwarder.html#channels": {
+                      "ref": "Forwarder.html#channels",
+                      "tf": 3.3333333333333335
+                    },
+                    "Forwarder.html#types": {
+                      "ref": "Forwarder.html#types",
+                      "tf": 3.3333333333333335
+                    },
                     "InputChannel.html#parameterNumberEventsEnabled": {
                       "ref": "InputChannel.html#parameterNumberEventsEnabled",
                       "tf": 1.1904761904761905
@@ -50390,6 +50837,14 @@ window.lunrData = {
                   "docs": {},
                   "t": {
                     "docs": {
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 1.9230769230769231
+                      },
+                      "Forwarder.html#destinations": {
+                        "ref": "Forwarder.html#destinations",
+                        "tf": 10
+                      },
                       "Input.html": {
                         "ref": "Input.html",
                         "tf": 1.5625
@@ -54627,6 +55082,10 @@ window.lunrData = {
                     "ref": "EventEmitter.html#emit",
                     "tf": 0.7142857142857143
                   },
+                  "Forwarder.html": {
+                    "ref": "Forwarder.html",
+                    "tf": 1.9230769230769231
+                  },
                   "Input.html#octaveOffset": {
                     "ref": "Input.html#octaveOffset",
                     "tf": 2.2222222222222223
@@ -55435,6 +55894,30 @@ window.lunrData = {
                     "docs": {},
                     "d": {
                       "docs": {
+                        "Forwarder.html": {
+                          "ref": "Forwarder.html",
+                          "tf": 1905.7692307692307
+                        },
+                        "Forwarder.html#channels": {
+                          "ref": "Forwarder.html#channels",
+                          "tf": 3.3333333333333335
+                        },
+                        "Forwarder.html#destinations": {
+                          "ref": "Forwarder.html#destinations",
+                          "tf": 10
+                        },
+                        "Forwarder.html#suspended": {
+                          "ref": "Forwarder.html#suspended",
+                          "tf": 14.285714285714285
+                        },
+                        "Forwarder.html#types": {
+                          "ref": "Forwarder.html#types",
+                          "tf": 3.3333333333333335
+                        },
+                        "Forwarder.html#forward": {
+                          "ref": "Forwarder.html#forward",
+                          "tf": 700
+                        },
                         "Input.html#addForwarder": {
                           "ref": "Input.html#addForwarder",
                           "tf": 31.818181818181817
@@ -55446,6 +55929,138 @@ window.lunrData = {
                         "Input.html#removeForwarder": {
                           "ref": "Input.html#removeForwarder",
                           "tf": 66.66666666666666
+                        }
+                      },
+                      "e": {
+                        "docs": {},
+                        "r": {
+                          "docs": {},
+                          "#": {
+                            "docs": {},
+                            "c": {
+                              "docs": {},
+                              "h": {
+                                "docs": {},
+                                "a": {
+                                  "docs": {},
+                                  "n": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {},
+                                      "e": {
+                                        "docs": {},
+                                        "l": {
+                                          "docs": {
+                                            "Forwarder.html#channels": {
+                                              "ref": "Forwarder.html#channels",
+                                              "tf": 1150
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "d": {
+                              "docs": {},
+                              "e": {
+                                "docs": {},
+                                "s": {
+                                  "docs": {},
+                                  "t": {
+                                    "docs": {},
+                                    "i": {
+                                      "docs": {},
+                                      "n": {
+                                        "docs": {
+                                          "Forwarder.html#destinations": {
+                                            "ref": "Forwarder.html#destinations",
+                                            "tf": 1150
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "s": {
+                              "docs": {},
+                              "u": {
+                                "docs": {},
+                                "s": {
+                                  "docs": {},
+                                  "p": {
+                                    "docs": {},
+                                    "e": {
+                                      "docs": {},
+                                      "n": {
+                                        "docs": {},
+                                        "d": {
+                                          "docs": {
+                                            "Forwarder.html#suspended": {
+                                              "ref": "Forwarder.html#suspended",
+                                              "tf": 1150
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "t": {
+                              "docs": {},
+                              "y": {
+                                "docs": {},
+                                "p": {
+                                  "docs": {
+                                    "Forwarder.html#types": {
+                                      "ref": "Forwarder.html#types",
+                                      "tf": 1150
+                                    }
+                                  }
+                                }
+                              }
+                            },
+                            "f": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "w": {
+                                    "docs": {},
+                                    "a": {
+                                      "docs": {},
+                                      "r": {
+                                        "docs": {},
+                                        "d": {
+                                          "docs": {
+                                            "Forwarder.html#forward": {
+                                              "ref": "Forwarder.html#forward",
+                                              "tf": 1150
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
+                          "'": {
+                            "docs": {
+                              "Forwarder.html#forward": {
+                                "ref": "Forwarder.html#forward",
+                                "tf": 5.555555555555555
+                              }
+                            }
+                          }
                         }
                       }
                     }
@@ -55576,6 +56191,10 @@ window.lunrData = {
                           "EventEmitter.html#~callback": {
                             "ref": "EventEmitter.html#~callback",
                             "tf": 2.127659574468085
+                          },
+                          "Forwarder.html#forward": {
+                            "ref": "Forwarder.html#forward",
+                            "tf": 110
                           },
                           "Input.html#eventsSuspended": {
                             "ref": "Input.html#eventsSuspended",
@@ -57716,7 +58335,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 7223
+      "length": 7305
     },
     "corpusTokens": [
       "0",
@@ -57909,6 +58528,7 @@ window.lunrData = {
       "array.&lt;note&gt",
       "array.&lt;number&gt",
       "array.&lt;number&gt;&gt",
+      "array.&lt;output&gt",
       "array.&lt;outputchannel&gt",
       "array.&lt;string&gt",
       "assign",
@@ -57977,6 +58597,7 @@ window.lunrData = {
       "celestelevel",
       "cent",
       "certain",
+      "certainli",
       "chang",
       "channel",
       "channel'",
@@ -58005,6 +58626,7 @@ window.lunrData = {
       "compat",
       "complet",
       "compos",
+      "condit",
       "confirm",
       "connect",
       "consid",
@@ -58179,6 +58801,12 @@ window.lunrData = {
       "form",
       "format",
       "forward",
+      "forwarder#channel",
+      "forwarder#destin",
+      "forwarder#forward",
+      "forwarder#suspend",
+      "forwarder#typ",
+      "forwarder'",
       "found",
       "frame",
       "free",
@@ -58297,6 +58925,7 @@ window.lunrData = {
       "input#unsuspendev",
       "input#waitfor",
       "input'",
+      "input.addforward",
       "input.open",
       "inputchannel",
       "inputchannel#addlisten",
@@ -58381,6 +59010,7 @@ window.lunrData = {
       "localcontrol",
       "localhost",
       "logic",
+      "long",
       "longer",
       "look",
       "low",
@@ -58392,6 +59022,7 @@ window.lunrData = {
       "lt;static",
       "lt;static&gt",
       "make",
+      "manual",
       "manufactur",
       "manufacturer\"",
       "manufacturer'",
@@ -58689,6 +59320,7 @@ window.lunrData = {
       "preced",
       "precis",
       "predefin",
+      "predetermin",
       "prefer",
       "prepend",
       "present",
@@ -58933,6 +59565,7 @@ window.lunrData = {
       "turnsoundoff",
       "two",
       "type",
+      "type(",
       "typedef",
       "uint8array",
       "undefin",
@@ -59334,6 +59967,67 @@ window.lunrData = {
       "tags": "EventEmitter~callback",
       "summary": "",
       "description": "The callback function is executed when the associated event is triggered via emit(). The emit() method relays all additional arguments it received to the callback functions. Since emit() can be passed a variable number of arguments, it is up to the developer to make sure the arguments match those of the associated callback. In addition, the callback also separately receives all the arguments present in the listener's arguments property. This makes it easy to pass data from where the listener is added to where the listener is executed."
+    },
+    "Forwarder.html": {
+      "id": "Forwarder.html",
+      "kind": "class",
+      "title": "Forwarder",
+      "longname": "Forwarder",
+      "name": "Forwarder",
+      "tags": "Forwarder",
+      "summary": "",
+      "description": "The Forwarder class allows the forwarding of a MIDI message to a predetermined list of Output objects as long as the message matches certain conditions. While it certainly can be manually instantiated, you are more likely to come across a Forwarder object as the return value of the Input.addForwarder() method.",
+      "body": ""
+    },
+    "Forwarder.html#channels": {
+      "id": "Forwarder.html#channels",
+      "kind": "member",
+      "title": "channels :Array.&lt;number&gt;",
+      "longname": "Forwarder#channels",
+      "name": "channels",
+      "tags": "Forwarder#channels channels",
+      "summary": "",
+      "description": "An array of MIDI channel numbers that the message must match in order to be forwarded. By default, this array includes all MIDI channels (1 to 16)."
+    },
+    "Forwarder.html#destinations": {
+      "id": "Forwarder.html#destinations",
+      "kind": "member",
+      "title": "destinations :Array.&lt;Output&gt;",
+      "longname": "Forwarder#destinations",
+      "name": "destinations",
+      "tags": "Forwarder#destinations destinations",
+      "summary": "",
+      "description": "An array of Output objects to forward the message to."
+    },
+    "Forwarder.html#suspended": {
+      "id": "Forwarder.html#suspended",
+      "kind": "member",
+      "title": "suspended :boolean",
+      "longname": "Forwarder#suspended",
+      "name": "suspended",
+      "tags": "Forwarder#suspended suspended",
+      "summary": "",
+      "description": "Indicates whether message forwarding is currently suspended or not in this forwarder."
+    },
+    "Forwarder.html#types": {
+      "id": "Forwarder.html#types",
+      "kind": "member",
+      "title": "types :Array.&lt;string&gt;",
+      "longname": "Forwarder#types",
+      "name": "types",
+      "tags": "Forwarder#types types",
+      "summary": "",
+      "description": "An array of message types (\"noteon\", \"controlchange\", etc.) that must be matched in order for messages to be forwarded. By default, this array includes all Enumerations.MIDI_SYSTEM_MESSAGES and Enumerations.MIDI_CHANNEL_MESSAGES."
+    },
+    "Forwarder.html#forward": {
+      "id": "Forwarder.html#forward",
+      "kind": "function",
+      "title": "forward( message )",
+      "longname": "Forwarder#forward",
+      "name": "forward",
+      "tags": "Forwarder#forward forward",
+      "summary": "",
+      "description": "Sends the specified message to the forwarder's destination(s) if it matches the specified type(s) and channel(s)."
     },
     "Input.html": {
       "id": "Input.html",

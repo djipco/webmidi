@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-		<title>Listener</title>
+		<title>Forwarder</title>
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -98,7 +98,7 @@
 	<!-- end:navbar.hbs -->		<div class="page-header">
 			<div class="container">
 				<span class="kind">class</span>
-				<h1><span class="name">Listener</span></h1>
+				<h1><span class="name">Forwarder</span></h1>
 			</div>
 		</div>
 	<div class="container content">
@@ -107,18 +107,19 @@
 						<ol class="breadcrumb">
 							<li><a href="index.html">Home</a></li>
 							<li><a href="list_class.html">Classes</a></li>
-							<li class="active">Listener</li>
+							<li class="active">Forwarder</li>
 						</ol>
 					<section>
 							<dl class="symbol primary">
 								<dt class="symbol-title class collapsible-symbol expanded">
-			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Listener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">target</span>, <span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h2>
+			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Forwarder</span><span class="signature-params">( <span class="signature-param">destinations</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h2>
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Listener</code> class represents a single event listener object. Such objects keep all relevant
-			contextual information such as the event being listened to, the object the listener was attached
-			to, the callback function and so on.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Forwarder</code> class allows the forwarding of a MIDI message to a predetermined list of
+			<a href="Output"><code>Output</code></a> objects as long as the message matches certain conditions.</p>
+			<p>While it certainly can be manually instantiated, you are more likely to come across a <code>Forwarder</code>
+			object as the return value of the <a href="Input#addForwarder"><code>Input.addForwarder()</code></a> method.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -133,35 +134,18 @@
 					</thead>
 					<tbody>
 						<tr>
-								<td><code>event</code></td>
-							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+								<td><code>destinations</code></td>
+							<td><span class="param-type"><a href="Output.html">Output</a></span> | <span class="param-type">Array.&lt;<a href="Output.html">Output</a>></span></td>
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The event being listened to</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="EventEmitter.html">EventEmitter</a></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>The <code>EventEmitter</code> object that the listener is attached to</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>callback</code></td>
-							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>The function to call when the listener is triggered</p>
+									<p>An <a href="Output"><code>Output</code></a> object, or an array of such objects,
+			to forward the message to.</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
+							<td><span class="param-type">object</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
 								<td>{}</td>
 							<td class="last">
@@ -177,34 +161,26 @@
 											</thead>
 											<tbody>
 												<tr>
-														<td><code>context</code></td>
-													<td><span class="param-type">Object</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>target</td>
-													<td class="last">
-															<p>The context to invoke the listener in (a.k.a. the
-									value of <code>this</code> inside the callback function).</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>remaining</code></td>
-													<td><span class="param-type">number</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>Infinity</td>
-													<td class="last">
-															<p>The remaining number of times after which the
-									callback should automatically be removed.</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>arguments</code></td>
-													<td><span class="param-type">array</span></td>
+														<td><code>types</code></td>
+													<td><span class="param-type">string</span> | <span class="param-type">Array.&lt;string></span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td></td>
 													<td class="last">
-															<p>An array of arguments that will be passed separately to the
-									callback function upon execution. The array is stored in the <code>arguments</code> property and can be
-									retrieved or modified as desired.</p>
+															<p>A MIDI message type (<code>&quot;noteon&quot;</code>, <code>&quot;controlchange&quot;</code>,
+									etc.), or an array of such types, that the specified message must match in order to be forwarded.
+									If this option is not specified, all types of messages will be forwarded. Valid messages are the
+									ones found in either <a href="Enumerations#MIDI_SYSTEM_MESSAGES"><code>MIDI_SYSTEM_MESSAGES</code></a> or
+									<a href="Enumerations#MIDI_CHANNEL_MESSAGES"><code>MIDI_CHANNEL_MESSAGES</code></a>.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>channels</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]</td>
+													<td class="last">
+															<p>A MIDI channel number or an array of channel numbers that the message must match in order to be
+									forwarded. By default all MIDI channels are included (<code>1</code> to <code>16</code>).</p>
 													</td>
 												</tr>
 											</tbody>
@@ -214,47 +190,41 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+							<!-- since -->
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
+								<label class="col-sm-3 control-label">Since</label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+									<p class="form-control-static">3.0.0</p>
 								</div>
 							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- license -->
 							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">ReferenceError</span></label>
+								<label class="col-sm-3 control-label">License</label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The <code>target</code> parameter is mandatory.</p></div>
+									<p class="form-control-static">Apache-2.0</p>
 								</div>
 							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The <code>callback</code> must be a function.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
 			
 							<!-- source -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-478">line 478</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-28">line 28</a></p>
 								</div>
 							</div>
 			
@@ -270,7 +240,7 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title class public">
-			<h4 id="Listener" class="class public"><a href="Listener.html"><span class="signature-new">new&nbsp;</span><span class="name">Listener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">target</span>, <span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></a></h4>
+			<h4 id="Forwarder" class="class public"><a href="Forwarder.html"><span class="signature-new">new&nbsp;</span><span class="name">Forwarder</span><span class="signature-params">( <span class="signature-param">destinations</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></a></h4>
 		</dt>
 <dd class="symbol-details class public">
 	<div class="symbol-details-inner">
@@ -281,18 +251,19 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="arguments" class="member public"><span class="name">arguments</span><span class="signature-type"> :array</span></h4>
+			<h4 id="channels" class="member public"><span class="name">channels</span><span class="signature-type"> :Array.&lt;number></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Arguments to pass separately to the callback function upon execution</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of MIDI channel numbers that the message must match in order to be forwarded. By
+			default, this array includes all MIDI channels (<code>1</code> to <code>16</code>).</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">array</span></div>
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;number></span></div>
 								</div>
 							</div>
 			
@@ -313,7 +284,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-574">line 574</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-55">line 55</a></p>
 								</div>
 							</div>
 			
@@ -325,18 +296,18 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="callback" class="member public"><span class="name">callback</span><span class="signature-type"> :function</span></h4>
+			<h4 id="destinations" class="member public"><span class="name">destinations</span><span class="signature-type"> :Array.&lt;<a href="Output.html">Output</a>></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The callback function</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of <a href="Output"><code>Output</code></a> objects to forward the message to.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">function</span></div>
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;<a href="Output.html">Output</a>></span></div>
 								</div>
 							</div>
 			
@@ -357,184 +328,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-549">line 549</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="context" class="member public"><span class="name">context</span><span class="signature-type"> :Object</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The context to execute the context function in (a.k.a. the value of <code>this</code> inside the
-			callback function)</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-556">line 556</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="count" class="member public"><span class="name">count</span><span class="signature-type"> :number</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The number of times the listener function was executed</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-568">line 568</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="event" class="member public"><span class="name">event</span><span class="signature-type"> :string</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The event name</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">string</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-537">line 537</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="remaining" class="member public"><span class="name">remaining</span><span class="signature-type"> :number</span></h4>
-		</dt>
-<dd class="symbol-details member public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The remaining number of times after which the callback should automatically be removed.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">number</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-562">line 562</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-36">line 36</a></p>
 								</div>
 							</div>
 			
@@ -550,7 +344,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Whether this listener is currently suspended</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether message forwarding is currently suspended or not in this forwarder.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -578,7 +372,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-580">line 580</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-61">line 61</a></p>
 								</div>
 							</div>
 			
@@ -590,18 +384,21 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title member public collapsible-symbol">
-			<h4 id="target" class="member public"><span class="name">target</span><span class="signature-type"> :<a href="EventEmitter.html">EventEmitter</a></span></h4>
+			<h4 id="types" class="member public"><span class="name">types</span><span class="signature-type"> :Array.&lt;string></span></h4>
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The object that the event is attached to (or that emitted the event)</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of message types (<code>&quot;noteon&quot;</code>, <code>&quot;controlchange&quot;</code>, etc.) that must be matched in order
+			for messages to be forwarded. By default, this array includes all
+			<a href="Enumerations#MIDI_SYSTEM_MESSAGES"><code>Enumerations.MIDI_SYSTEM_MESSAGES</code></a> and
+			<a href="Enumerations#MIDI_CHANNEL_MESSAGES"><code>Enumerations.MIDI_CHANNEL_MESSAGES</code></a>.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type"><a href="EventEmitter.html">EventEmitter</a></span></div>
+									<div class="form-control-static type-names"><span class="param-type">Array.&lt;string></span></div>
 								</div>
 							</div>
 			
@@ -622,7 +419,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-543">line 543</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-45">line 45</a></p>
 								</div>
 							</div>
 			
@@ -637,12 +434,34 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="remove" class="function public"><span class="name">remove</span><span class="signature-params">()</span><span class="signature-type"></span></h4>
+			<h4 id="forward" class="function public"><span class="name">forward</span><span class="signature-params">( <span class="signature-param">message</span>&nbsp;)</span><span class="signature-type"></span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes the listener from its target.</p></div>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends the specified message to the forwarder's destination(s) if it matches the specified
+			type(s) and channel(s).</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>message</code></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
+							<td class="last">
+									<p>The <a href="Message"><code>Message</code></a> object to forward.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
 			
@@ -662,7 +481,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-587">line 587</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-116">line 116</a></p>
 								</div>
 							</div>
 			

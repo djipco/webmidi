@@ -1,9 +1,10 @@
+<!-- start:source.tmpl.hbs -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width">
-		<title>Globals</title>
+		<title>src/Forwarder.js</title>
 		<!--[if lt IE 9]>
 		<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
 		<![endif]-->
@@ -42,7 +43,7 @@
 			</style>
 		<script type="text/javascript">
 			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
-			window.DOCLET_TOC_ENABLED = true;
+			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
 </head>
@@ -97,25 +98,150 @@
 	</header>
 	<!-- end:navbar.hbs -->		<div class="page-header">
 			<div class="container">
-				<span class="kind">global</span>
-				<h1><span class="name">Globals</span></h1>
-				<div class="summary"><p>All documented globals.</p></div>			</div>
+				<span class="kind">source</span>
+				<h1><span class="name">src/Forwarder.js</span></h1>
+			</div>
 		</div>
 	<div class="container content">
 		<div class="row">
-			<div class="col-md-9 main-content">
-						<ol class="breadcrumb">
-							<li><a href="index.html">Home</a></li>
-							<li class="active">Globals</li>
-						</ol>
-					<section>
-							<article class="secondary">
-							</article>
-					</section>
+			<div class="col-md-12 main-content">
+		<section class="source-section">
+			<article></article>
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {Enumerations} from "./Enumerations.js";
+import {Output} from "./Output.js";
+import {WebMidi} from "./WebMidi.js";
+
+/**
+ * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
+ * [`Output`](Output) objects as long as the message matches certain conditions.
+ *
+ * While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
+ * object as the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
+ *
+ * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+ * to forward the message to.
+ *
+ * @param {object} [options={}]
+ * @param {string|string[]} [options.types] A MIDI message type (`"noteon"`, `"controlchange"`,
+ * etc.), or an array of such types, that the specified message must match in order to be forwarded.
+ * If this option is not specified, all types of messages will be forwarded. Valid messages are the
+ * ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+ * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+ * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+ * A MIDI channel number or an array of channel numbers that the message must match in order to be
+ * forwarded. By default all MIDI channels are included (`1` to `16`).
+ *
+ * @license Apache-2.0
+ * @since 3.0.0
+ */
+export class Forwarder {
+
+  constructor(destinations, options = {}) {
+
+    /**
+     * An array of [`Output`](Output) objects to forward the message to.
+     * @type {Output[]}
+     */
+    this.destinations = [];
+
+    /**
+     * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
+     * for messages to be forwarded. By default, this array includes all
+     * [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
+     * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @type {string[]}
+     */
+    this.types = [
+      ...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES),
+      ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)
+    ];
+
+    /**
+     * An array of MIDI channel numbers that the message must match in order to be forwarded. By
+     * default, this array includes all MIDI channels (`1` to `16`).
+     * @type {number[]}
+     */
+    this.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+
+    /**
+     * Indicates whether message forwarding is currently suspended or not in this forwarder.
+     * @type {boolean}
+     */
+    this.suspended = false;
+
+    // Make sure parameters are arrays
+    if (!Array.isArray(destinations)) destinations = [destinations];
+    if (options.types &amp;&amp; !Array.isArray(options.types)) options.types = [options.types];
+    if (options.channels &amp;&amp; !Array.isArray(options.channels)) options.channels = [options.channels];
+
+    if (WebMidi.validation) {
+
+      // Validate destinations
+      destinations.forEach(destination => {
+        if ( !(destination instanceof Output) ) {
+          throw new TypeError("Destinations must be of type 'Output'.");
+        }
+      });
+
+      // Validate types
+      if (options.types !== undefined) {
+
+        options.types.forEach(type => {
+          if (
+            ! Enumerations.MIDI_SYSTEM_MESSAGES.hasOwnProperty(type) &amp;&amp;
+            ! Enumerations.MIDI_CHANNEL_MESSAGES.hasOwnProperty(type)
+          ) {
+            throw new TypeError("Type must be a valid message type.");
+          }
+        });
+
+      }
+
+      // Validate channels
+      if (options.channels !== undefined) {
+
+        options.channels.forEach(channel => {
+          if (! Enumerations.MIDI_CHANNEL_NUMBERS.includes(channel) ) {
+            throw new TypeError("MIDI channel must be between 1 and 16.");
+          }
+        });
+
+      }
+
+    }
+
+    this.destinations = destinations;
+    if (options.types) this.types = options.types;
+    if (options.channels) this.channels = options.channels;
+
+  }
+
+  /**
+   * Sends the specified message to the forwarder's destination(s) if it matches the specified
+   * type(s) and channel(s).
+   *
+   * @param {Message} message The [`Message`](Message) object to forward.
+   */
+  forward(message) {
+
+    // Abort if forwarding is currently suspended
+    if (this.suspended) return;
+
+    // Abort if this message type should not be forwarded
+    if (!this.types.includes(message.type)) return;
+
+    // Abort if this channel should not be forwarded
+    if (message.channel &amp;&amp; !this.channels.includes(message.channel)) return;
+
+    // Forward
+    this.destinations.forEach(destination => destination.send(message));
+
+  }
+
+}
+</code></pre>
+		</section>
 			</div>
-				<div class="col-md-3 side-content">
-					<nav class="toc hidden-print hidden-sm hidden-xs"></nav>
-				</div>
 		</div>
 	</div>
 	<footer>
@@ -156,3 +282,4 @@
 	
 </body>
 </html>
+<!-- end:source.tmpl.hbs -->
