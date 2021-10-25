@@ -4210,98 +4210,93 @@ declare class Input {
      */
     private getChannelModeByNumber;
     /**
-     * Adds an event listener that will trigger a function callback when the specified event happens.
-     * The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
-     * {@link InputChannel} objects and are tied to a specific MIDI channel while input-wide events
-     * are dispatched by the {@link Input} object itself and are not tied to a specific channel.
+     * Adds an event listener that will trigger a function callback when the specified event is
+     * dispatched. The event can be **channel-specific** or **input-wide**. Usually, if you add a
+     * listener to an `Input` object, it is because you want to listen to an input-wide event.
+     * However, for convenience you can also listen to channel-specific events directly on the
+     * `Input`. This allows you to react to a channel-specific event no matter which channel it
+     * actually comes in on.
      *
-     * When listening for an input-wide event, you must specify the event to listen for and the
-     * callback function to trigger when the event happens:
+     * Usually, if you want to listen to a channel-specific event, you are better off adding your
+     * listener to an [`InputChannel`](InputChannel) object. An array of all 16
+     * [`InputChannel`](InputChannel) objects for the input is available in the
+     * [`channels`](#channels) property.
      *
-     * ```
+     * When listening for an event, you simply need to specify the event name and the function to
+     * execute:
+     *
+     * ```javascript
      * WebMidi.inputs[0].addListener("midimessage", someFunction);
      * ```
      *
-     * To listen for a channel-bound event, you must also specify the event to listen for and the
-     * function to trigger but you have to add the channels you wish to listen on in the `options`
-     * parameter:
+     * The code above will add a listener for the `"midimessage"` event and call `someFunction` when
+     * the event is triggered on any of the MIDI channels.
      *
-     * ```
-     * WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
-     * ```
+     * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
+     * instance that actually gets a listener added and not the [`Input`](Input) instance.
      *
-     * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
-     * event is triggered on MIDI channels `1`, `2` or `3`.
-     *
-     * Note that, when adding events to channels, it is the {@link InputChannel} instance that
-     * actually gets a listener added and not the `{@link Input} instance.
-     *
-     * Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-     * on the {@link InputChannel} object itself.
-     *
-     * There are 6 families of events you can listen to:
+     * There are 8 families of events you can listen to:
      *
      * 1. **MIDI System Common** Events (input-wide)
      *
-     *    * [songposition]{@link Input#event:songposition}
-     *    * [songselect]{@link Input#event:songselect}
-     *    * [sysex]{@link Input#event:sysex}
-     *    * [timecode]{@link Input#event:timecode}
-     *    * [tunerequest]{@link Input#event:tunerequest}
+     *    * [`"songposition"`]{@link Input#event:songposition}
+     *    * [`"songselect"`]{@link Input#event:songselect}
+     *    * [`"sysex"`]{@link Input#event:sysex}
+     *    * [`"timecode"`]{@link Input#event:timecode}
+     *    * [`"tunerequest"`]{@link Input#event:tunerequest}
      *
      * 2. **MIDI System Real-Time** Events (input-wide)
      *
-     *    * [clock]{@link Input#event:clock}
-     *    * [start]{@link Input#event:start}
-     *    * [continue]{@link Input#event:continue}
-     *    * [stop]{@link Input#event:stop}
-     *    * [activesensing]{@link Input#event:activesensing}
-     *    * [reset]{@link Input#event:reset}
+     *    * [`"clock"`]{@link Input#event:clock}
+     *    * [`"start"`]{@link Input#event:start}
+     *    * [`"continue"`]{@link Input#event:continue}
+     *    * [`"stop"`]{@link Input#event:stop}
+     *    * [`"activesensing"`]{@link Input#event:activesensing}
+     *    * [`"reset"`]{@link Input#event:reset}
      *
      * 3. **State Change** Events (input-wide)
      *
-     *    * [opened]{@link Input#event:opened}
-     *    * [closed]{@link Input#event:closed}
-     *    * [disconnected]{@link Input#event:disconnected}
+     *    * [`"opened"`]{@link Input#event:opened}
+     *    * [`"closed"`]{@link Input#event:closed}
+     *    * [`"disconnected"`]{@link Input#event:disconnected}
      *
      * 4. **Catch-All** Events (input-wide)
      *
-     *    * [midimessage]{@link Input#event:midimessage}
-     *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
+     *    * [`"midimessage"`]{@link Input#event:midimessage}
+     *    * [`"unknownmidimessage"`]{@link Input#event:unknownmidimessage}
      *
      * 5. **Channel Voice** Events (channel-specific)
      *
-     *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
-     *    * [controlchange]{@link InputChannel#event:controlchange}
-     *    * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
-     *    * [noteoff]{@link InputChannel#event:noteoff}
-     *    * [noteon]{@link InputChannel#event:noteon}
-     *    * [nrpn]{@link InputChannel#event:nrpn}
-     *    * [pitchbend]{@link InputChannel#event:pitchbend}
-     *    * [programchange]{@link InputChannel#event:programchange}
+     *    * [`"channelaftertouch"`]{@link InputChannel#event:channelaftertouch}
+     *    * [`"controlchange"`]{@link InputChannel#event:controlchange}
+     *    * [`"keyaftertouch"`]{@link InputChannel#event:keyaftertouch}
+     *    * [`"noteoff"`]{@link InputChannel#event:noteoff}
+     *    * [`"noteon"`]{@link InputChannel#event:noteon}
+     *    * [`"pitchbend"`]{@link InputChannel#event:pitchbend}
+     *    * [`"programchange"`]{@link InputChannel#event:programchange}
      *
      * 6. **Channel Mode** Events (channel-specific)
      *
-     *    * allnotesoff
-     *    * allsoundoff
-     *    * localcontrol
-     *    * monomode
-     *    * omnimode
-     *    * resetallcontrollers
+     *    * [`"allnotesoff"`]{@link InputChannel#event:allnotesoff}
+     *    * [`"allsoundoff"`]{@link InputChannel#event:allsoundoff}
+     *    * [`"localcontrol"`]{@link InputChannel#event:localcontrol}
+     *    * [`"monomode"`]{@link InputChannel#event:monomode}
+     *    * [`"omnimode"`]{@link InputChannel#event:omnimode}
+     *    * [`"resetallcontrollers"`]{@link InputChannel#event:resetallcontrollers}
      *
      * 7. **NRPN** Events (channel-specific)
      *
-     *    * nrpndataentrycoarse
-     *    * nrpndataentryfine
-     *    * nrpndatabuttonincrement
-     *    * nrpndatabuttondecrement
+     *    * [`"nrpn:dataentrycoarse"`]{@link InputChannel#event:nrpn:dataentrycoarse}
+     *    * [`"nrpn:dataentryfine"`]{@link InputChannel#event:nrpn:dataentryfine}
+     *    * [`"nrpn:databuttonincrement"`]{@link InputChannel#event:nrpn:databuttonincrement}
+     *    * [`"nrpn:databuttondecrement"`]{@link InputChannel#event:nrpn:databuttondecrement}
      *
      * 8. **RPN** Events (channel-specific)
      *
-     *    * rpndataentrycoarse
-     *    * rpndataentryfine
-     *    * rpndatabuttonincrement
-     *    * rpndatabuttondecrement
+     *    * [`"rpn:dataentrycoarse"`]{@link InputChannel#event:rpn:dataentrycoarse}
+     *    * [`"rpn:dataentryfine"`]{@link InputChannel#event:rpn:dataentryfine}
+     *    * [`"rpn:databuttonincrement"`]{@link InputChannel#event:rpn:databuttonincrement}
+     *    * [`"rpn:databuttondecrement"`]{@link InputChannel#event:rpn:databuttondecrement}
      *
      * @param event {string} The type of the event.
      *
@@ -4316,8 +4311,8 @@ declare class Input {
      * and can be retrieved or modified as desired.
      *
      * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
-     * input-wide events.
+     * such integers representing the MIDI channel(s) to listen on. If no channel is specified, all
+     * channels will be used. This parameter is ignored for input-wide events.
      *
      * @param {object} [options.context=this] The value of `this` in the callback function.
      *
@@ -4476,9 +4471,9 @@ declare class Input {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to check. This parameter is ignored for
-     * input-wide events.
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of such
+     * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
+     * events.
      *
      * @returns {boolean} Boolean value indicating whether or not the channel(s) already have this
      * listener defined.
