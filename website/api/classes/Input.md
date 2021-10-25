@@ -211,14 +211,6 @@ listener to an [`InputChannel`](InputChannel) object. An array of all 16
 [`InputChannel`](InputChannel) objects for the input is available in the
 [`channels`](#channels) property.
 
-Channel-specific events are tied to a
-specific MIDI channel. You can listen to channel-specific
-
-
-dispatched
-by [InputChannel](InputChannel) objects and are tied to a specific MIDI channel while input-wide events
-are dispatched by the [Input](Input) object itself and are not tied to a specific channel.
-
 When listening for an input-wide event, you must specify the event to listen for and the
 callback function to trigger when the event happens:
 
@@ -226,7 +218,7 @@ callback function to trigger when the event happens:
 WebMidi.inputs[0].addListener("midimessage", someFunction);
 ```
 
-To listen for a channel-bound event, you must also specify the event to listen for and the
+To listen for a channel-specific event, you must also specify the event to listen for and the
 function to trigger but you have to add the channels you wish to listen on in the `options`
 parameter:
 
