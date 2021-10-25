@@ -40,6 +40,7 @@ const config = {
   source: {
     include: [
       "./src/Enumerations.js",
+      "./src/Forwarder.js",
       "./src/Input.js",
       "./src/InputChannel.js",
       "./src/Message.js",
