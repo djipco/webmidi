@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -376,7 +376,7 @@ export class Utilities {
    *
    * @param [input] {number|string|Note}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
@@ -426,7 +426,7 @@ export class Utilities {
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
-   * @param {Object} [options={}]
+   * @param {object} [options={}]
    *
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
@@ -478,7 +478,7 @@ export class Utilities {
    * @returns {number} A number between 0 and 1 (inclusive)
    * @static
    */
-  static toNormalized(value) {
+  static from7bitToFloat(value) {
     if (value === Infinity) value = 127;
     value = parseInt(value) || 0;
     return Math.min(Math.max(value / 127, 0), 1);
@@ -496,10 +496,51 @@ export class Utilities {
    * @returns {number} A number between 0 and 1 (inclusive)
    * @static
    */
-  static to7Bit(value) {
+  static fromFloatTo7Bit(value) {
     if (value === Infinity) value = 1;
     value = parseFloat(value) || 0;
     return Math.min(Math.max(Math.round(value * 127), 0), 127);
+  }
+
+  /**
+   * Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
+   * is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
+   *
+   * @param msb {number} The most significant byte as a integer between 0 and 127.
+   * @param [lsb=0] {number} The least significant byte as a integer between 0 and 127.
+   * @returns {number} A float between 0 and 1.
+   */
+  static fromMsbLsbToFloat(msb, lsb = 0) {
+
+    if (WebMidi.validation) {
+      msb = Math.min(Math.max(parseInt(msb) || 0, 0), 127);
+      lsb = Math.min(Math.max(parseInt(lsb) || 0, 0), 127);
+    }
+
+    const value = ((msb &lt;&lt; 7) + lsb) / 16383;
+    return Math.min(Math.max(value, 0), 1);
+
+  }
+
+  /**
+   * Extracts 7bit MSB and LSB values from the supplied float.
+   *
+   * @param value {number} A float between 0 and 1
+   * @returns {{lsb: number, msb: number}}
+   */
+  static fromFloatToMsbLsb(value) {
+
+    if (WebMidi.validation) {
+      value = Math.min(Math.max(parseFloat(value) || 0, 0), 1);
+    }
+
+    const multiplied = Math.round(value * 16383);
+
+    return {
+      msb: multiplied >> 7,
+      lsb: multiplied &amp; 0x7F
+    };
+
   }
 
   /**
@@ -530,7 +571,7 @@ export class Utilities {
    * Returns the name of the first property of the supplied object whose value is equal to the one
    * supplied.
    *
-   * @param object {Object}
+   * @param object {object}
    * @param value {*}
    * @returns {string} The name of the matching property
    * @static
@@ -546,8 +587,8 @@ export class Utilities {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 18:30:29 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 7:53:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

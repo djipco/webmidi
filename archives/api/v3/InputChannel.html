@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = true;
 		</script>
@@ -219,30 +219,6 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpndatabuttondecrement">InputChannel#nrpndatabuttondecrement</a></label>
-								<div class="col-sm-9">
-									<div class="form-control-static fires-summary"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpndatabuttonincrement">InputChannel#nrpndatabuttonincrement</a></label>
-								<div class="col-sm-9">
-									<div class="form-control-static fires-summary"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpndataentrycoarse">InputChannel#nrpndataentrycoarse</a></label>
-								<div class="col-sm-9">
-									<div class="form-control-static fires-summary"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpndataentryfine">InputChannel#nrpndataentryfine</a></label>
-								<div class="col-sm-9">
-									<div class="form-control-static fires-summary"></div>
-								</div>
-							</div>
-							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:omnimode">InputChannel#omnimode</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
@@ -267,25 +243,49 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpndatabuttondecrement">InputChannel#rpndatabuttondecrement</a></label>
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndataentrycoarse</label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpndatabuttonincrement">InputChannel#rpndatabuttonincrement</a></label>
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndataentryfine</label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpndataentrycoarse">InputChannel#rpndataentrycoarse</a></label>
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndatabuttonincrement</label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpndataentryfine">InputChannel#rpndataentryfine</a></label>
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndatabuttondecrement</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndataentrycoarse</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndataentryfine</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndatabuttonincrement</label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndatabuttondecrement</label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
@@ -391,7 +391,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1017">line 1017</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1019">line 1019</a></p>
 								</div>
 							</div>
 			
@@ -681,7 +681,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-979">line 979</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-981">line 981</a></p>
 								</div>
 							</div>
 			
@@ -777,7 +777,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-988">line 988</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-990">line 990</a></p>
 								</div>
 							</div>
 			
@@ -834,7 +834,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-960">line 960</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-962">line 962</a></p>
 								</div>
 							</div>
 			
@@ -896,71 +896,6 @@
 									</dl>
 									<h3>Methods</h3>
 									<dl class="symbol">
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="_isRpnOrNrpnController" class="function public"><span class="name">_isRpnOrNrpnController</span><span class="signature-params">( <span class="signature-param">controller</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{boolean}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether the specified controller can be part of an RPN or NRPN sequence</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>controller</code></td>
-							<td></td>
-							<td class="last">
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">boolean</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-662">line 662</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
 											<hr/>
 											<dt class="symbol-title function public inherited collapsible-symbol">
 			<h4 id="addListener" class="function public inherited"><span class="name">addListener</span><span class="signature-params">( <span class="signature-param">event</span>, <span class="signature-param">callback</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="Listener.html">Listener</a>}</span></h4>
@@ -1543,7 +1478,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-909">line 909</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-911">line 911</a></p>
 								</div>
 							</div>
 			
@@ -1618,7 +1553,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-872">line 872</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-874">line 874</a></p>
 								</div>
 							</div>
 			
@@ -1861,7 +1796,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-931">line 931</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-933">line 933</a></p>
 								</div>
 							</div>
 			
@@ -2448,7 +2383,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -2469,7 +2404,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-493">line 493</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-494">line 494</a></p>
 								</div>
 							</div>
 			
@@ -2537,7 +2472,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -2558,7 +2493,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-437">line 437</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-438">line 438</a></p>
 								</div>
 							</div>
 			
@@ -2640,7 +2575,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -2661,7 +2596,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-379">line 379</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-380">line 380</a></p>
 								</div>
 							</div>
 			
@@ -2722,7 +2657,7 @@
 						</tr>
 						<tr>
 								<td><code>controller</code></td>
-							<td><span class="param-type">Object</span></td>
+							<td><span class="param-type">object</span></td>
 							<td class="last">
 										<table class="params table table-striped">
 											<thead>
@@ -2735,14 +2670,14 @@
 											<tbody>
 												<tr>
 														<td><code>number</code></td>
-													<td><span class="param-type">Object</span></td>
+													<td><span class="param-type">object</span></td>
 													<td class="last">
 															<p>The number of the controller.</p>
 													</td>
 												</tr>
 												<tr>
 														<td><code>name</code></td>
-													<td><span class="param-type">Object</span></td>
+													<td><span class="param-type">object</span></td>
 													<td class="last">
 															<p>The usual name or function of the controller.</p>
 													</td>
@@ -2774,7 +2709,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -2795,7 +2730,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-314">line 314</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-315">line 315</a></p>
 								</div>
 							</div>
 			
@@ -2902,7 +2837,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -2923,7 +2858,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-269">line 269</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-270">line 270</a></p>
 								</div>
 							</div>
 			
@@ -3001,7 +2936,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -3022,7 +2957,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-469">line 469</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-470">line 470</a></p>
 								</div>
 							</div>
 			
@@ -3131,7 +3066,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -3229,7 +3164,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -3250,7 +3185,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-535">line 535</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-536">line 536</a></p>
 								</div>
 							</div>
 			
@@ -3289,15 +3224,15 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that triggered the event (the
+			<a href="InputChannel"><code>InputChannel</code></a> object).</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the incoming
 			MIDI message.</p>
 							</td>
 						</tr>
@@ -3305,13 +3240,14 @@
 								<td><code>timestamp</code></td>
 							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
+									<p>The moment
+			(<a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>)
+			when the event occurred (in milliseconds since the navigation start of the document).</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type">Object</span></td>
+							<td><span class="param-type">object</span></td>
 							<td class="last">
 									<p>A <a href="Note"><code>Note</code></a> object containing information such as note name,
 			octave and release velocity.</p>
@@ -3341,7 +3277,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -3474,7 +3410,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -3495,475 +3431,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-227">line 227</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpndatabuttondecrement" class="event public"><span class="name">nrpndatabuttondecrement</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttondecrement' NRPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;nrpndatabuttondecrement&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-737">line 737</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpndatabuttonincrement" class="event public"><span class="name">nrpndatabuttonincrement</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttonincrement' NRPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;nrpndatabuttonincrement&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-717">line 717</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpndataentrycoarse" class="event public"><span class="name">nrpndataentrycoarse</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;nrpndataentrycoarse&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-677">line 677</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpndataentryfine" class="event public"><span class="name">nrpndataentryfine</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentryfine' NRPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;nrpndataentryfine&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-697">line 697</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-228">line 228</a></p>
 								</div>
 							</div>
 			
@@ -4039,7 +3507,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4060,7 +3528,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-509">line 509</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-510">line 510</a></p>
 								</div>
 							</div>
 			
@@ -4142,7 +3610,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4163,7 +3631,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-402">line 402</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-403">line 403</a></p>
 								</div>
 							</div>
 			
@@ -4245,7 +3713,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4266,7 +3734,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-356">line 356</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-357">line 357</a></p>
 								</div>
 							</div>
 			
@@ -4334,7 +3802,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4355,7 +3823,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-453">line 453</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-454">line 454</a></p>
 								</div>
 							</div>
 			
@@ -4367,7 +3835,475 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpndatabuttondecrement" class="event public"><span class="name">rpndatabuttondecrement</span></h4>
+			<h4 id="event:nrpn:databuttondecrement" class="event public"><span class="name">nrpn:databuttondecrement</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttondecrement' NRPN message has been received on the input.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>&quot;nrpn:databuttondecrement&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The non-registered parameter number (0-16383)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-739">line 739</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn:databuttonincrement" class="event public"><span class="name">nrpn:databuttonincrement</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttonincrement' NRPN message has been received on the input.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>&quot;nrpn:databuttonincrement&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The non-registered parameter number (0-16383)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-719">line 719</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn:dataentrycoarse" class="event public"><span class="name">nrpn:dataentrycoarse</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>&quot;nrpn:dataentrycoarse&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The non-registered parameter number (0-16383)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-679">line 679</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn:dataentryfine" class="event public"><span class="name">nrpn:dataentryfine</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentryfine' NRPN message has been received on the input.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>&quot;nrpn:dataentryfine&quot;</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The non-registered parameter number (0-16383)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-699">line 699</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:rpn:databuttondecrement" class="event public"><span class="name">rpn:databuttondecrement</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -4387,7 +4323,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;rpndatabuttondecrement&quot;</code></p>
+									<p><code>&quot;rpn:databuttondecrement&quot;</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -4449,7 +4385,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4470,7 +4406,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-812">line 812</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-814">line 814</a></p>
 								</div>
 							</div>
 			
@@ -4482,7 +4418,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpndatabuttonincrement" class="event public"><span class="name">rpndatabuttonincrement</span></h4>
+			<h4 id="event:rpn:databuttonincrement" class="event public"><span class="name">rpn:databuttonincrement</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -4502,7 +4438,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;rpndatabuttonincrement&quot;</code></p>
+									<p><code>&quot;rpn:databuttonincrement&quot;</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -4564,7 +4500,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4585,7 +4521,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-794">line 794</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-796">line 796</a></p>
 								</div>
 							</div>
 			
@@ -4597,7 +4533,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpndataentrycoarse" class="event public"><span class="name">rpndataentrycoarse</span></h4>
+			<h4 id="event:rpn:dataentrycoarse" class="event public"><span class="name">rpn:dataentrycoarse</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -4617,7 +4553,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;rpndataentrycoarse&quot;</code></p>
+									<p><code>&quot;rpn:dataentrycoarse&quot;</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -4679,7 +4615,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4700,7 +4636,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-758">line 758</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-760">line 760</a></p>
 								</div>
 							</div>
 			
@@ -4712,7 +4648,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpndataentryfine" class="event public"><span class="name">rpndataentryfine</span></h4>
+			<h4 id="event:rpn:dataentryfine" class="event public"><span class="name">rpn:dataentryfine</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -4732,7 +4668,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;rpndataentryfine&quot;</code></p>
+									<p><code>&quot;rpn:dataentryfine&quot;</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -4794,7 +4730,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Type</label>
 								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">Object</span></div>
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
 								</div>
 							</div>
 			
@@ -4815,7 +4751,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-776">line 776</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-778">line 778</a></p>
 								</div>
 							</div>
 			
@@ -4835,8 +4771,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 18:30:29 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 7:53:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

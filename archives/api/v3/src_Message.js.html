@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -111,10 +111,11 @@ import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `Message` class represents a single MIDI message. It has several properties that make it
- * easy to make sense of the binaru data it contains.
+ * easy to make sense of the binary data it contains.
  *
- * @param {Uint8Array} data The raw data of the MIDI message as a Uint8Array of integers between 0
- * and 255.
+ * @param {Uint8Array} data The raw data of the MIDI message as a
+ * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+ * of integers between `0` and `255`.
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -124,8 +125,9 @@ export class Message {
   constructor(data) {
 
     /**
-     * A Uint8Array containing the bytes of the MIDI message. Each byte is an integer between 0 and
-     * 255.
+     * A
+     * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+     * containing the bytes of the MIDI message. Each byte is an integer between `0` and `255`.
      *
      * @type {Uint8Array}
      * @readonly
@@ -133,8 +135,8 @@ export class Message {
     this.rawData = data;
 
     /**
-     * An array containing the bytes of the MIDI message. Each byte is an integer is between 0 and
-     * 255.
+     * An array containing the bytes of the MIDI message. Each byte is an integer between `0` and
+     * `255`.
      *
      * @type {number[]}
      * @readonly
@@ -142,7 +144,7 @@ export class Message {
     this.data = Array.from(this.rawData);
 
     /**
-     * The MIDI status byte of the message as an integer between 0 and 255.
+     * The MIDI status byte of the message as an integer between `0` and `255`.
      *
      * @type {number}
      * @readonly
@@ -150,9 +152,11 @@ export class Message {
     this.statusByte = this.rawData[0];
 
     /**
-     * A Uint8Array of the data byte(s) of the MIDI message. When the message is a system exclusive
-     * message (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end
-     * byte so only the actual data is included.
+     * A
+     * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+     * of the data byte(s) of the MIDI message. When the message is a system exclusive message
+     * (sysex), `rawDataBytes` explicitly excludes the manufacturer ID and the sysex end byte so
+     * only the actual data is included.
      *
      * @type {Uint8Array}
      * @readonly
@@ -188,7 +192,7 @@ export class Message {
 
     /**
      * An integer identifying the MIDI command. For channel-specific messages, the value will be
-     * between 8 and 14. For system messages, the value will be between 240 and 255.
+     * between `8` and `14`. For system messages, the value will be between `240` and `255`.
      *
      * @type {number}
      * @readonly
@@ -196,7 +200,7 @@ export class Message {
     this.command = undefined;
 
     /**
-     * The MIDI channel number (1-16) that the message is targeting. This is only for
+     * The MIDI channel number (`1` - `16`) that the message is targeting. This is only for
      * channel-specific messages. For system messages, this will be left undefined.
      *
      * @type {number}
@@ -216,6 +220,14 @@ export class Message {
      */
     this.manufacturerId = undefined;
 
+    /**
+     * The type of message as a string (`"noteon"`, `"controlchange"`, `"sysex"`, etc.)
+     *
+     * @type {string}
+     * @readonly
+     */
+    this.type = undefined;
+
     // Assign values to property that vary according to whether they are channel-specific or system
     if (this.statusByte &lt; 240) {
       this.isChannelMessage = true;
@@ -226,7 +238,7 @@ export class Message {
       this.command = this.statusByte;
     }
 
-    // Assign type (depending in whether the message is channel-specific or system)
+    // Assign type (depending on whether the message is channel-specific or system)
     if (this.isChannelMessage) {
       this.type = Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
@@ -258,8 +270,8 @@ export class Message {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 18:30:29 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 7:53:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -243,7 +243,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#midimessage
      *
-     * @type {Object}
+     * @type {object}
      *
      * @property {Input} target The `InputChannel` that triggered the event.
      * @property {Message} message A `Message` object containing information about the incoming MIDI
@@ -292,17 +292,18 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#noteoff
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"noteoff"`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
+       * @property {InputChannel} target The object that triggered the event (the
+       * [`InputChannel`](InputChannel) object).
+       * @property {Message} message A [`Message`](Message) object containing information about the incoming
        * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
+       * @property {number} timestamp The moment
+       * ([`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp))
+       * when the event occurred (in milliseconds since the navigation start of the document).
        *
-       * @property {Object} note A [`Note`](Note) object containing information such as note name,
+       * @property {object} note A [`Note`](Note) object containing information such as note name,
        * octave and release velocity.
        * @property {number} value The release velocity amount expressed as a float between 0 and 1.
        * @property {number} rawValue The release velocity amount expressed as an integer (between 0
@@ -320,7 +321,7 @@ export class InputChannel extends EventEmitter {
         }
       );
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -337,7 +338,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#noteon
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"noteon"`
        *
        * @property {InputChannel} channel The `InputChannel` object that triggered the event.
@@ -364,7 +365,7 @@ export class InputChannel extends EventEmitter {
         { rawAttack: data2 }
       );
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // Those are kept for backwards-compatibility but are gone from the documentation. They will
@@ -379,7 +380,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#keyaftertouch
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"keyaftertouch"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -406,7 +407,7 @@ export class InputChannel extends EventEmitter {
       event.key = Utilities.toNoteNumber(event.identifier);
       event.rawKey = data1;
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // This is kept for backwards-compatibility but is gone from the documentation. It will be
@@ -424,7 +425,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#controlchange
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"controlchange"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -434,9 +435,9 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Object} controller
-       * @property {Object} controller.number The number of the controller.
-       * @property {Object} controller.name The usual name or function of the controller.
+       * @property {object} controller
+       * @property {object} controller.number The number of the controller.
+       * @property {object} controller.name The usual name or function of the controller.
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -445,7 +446,7 @@ export class InputChannel extends EventEmitter {
         name: this.getCcNameByNumber(data1)
       };
 
-      event.value = Utilities.toNormalized(data2);
+      event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
 
       // Trigger channel mode message events (if appropriate)
@@ -466,7 +467,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#programchange
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"programchange"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -489,7 +490,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#channelaftertouch
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"channelaftertouch"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -502,7 +503,7 @@ export class InputChannel extends EventEmitter {
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
-      event.value = Utilities.toNormalized(data1);
+      event.value = Utilities.from7bitToFloat(data1);
       event.rawValue = data1;
 
     } else if (event.type === "pitchbend") {
@@ -512,7 +513,7 @@ export class InputChannel extends EventEmitter {
        *
        * @event InputChannel#pitchbend
        *
-       * @type {Object}
+       * @type {object}
        * @property {string} type `"pitchbend"`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -547,7 +548,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#allsoundoff
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"allsoundoff"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -563,7 +564,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#resetallcontrollers
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"resetallcontrollers"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -581,7 +582,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#localcontrol
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"localcontrol"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -603,7 +604,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#allnotesoff
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"allnotesoff"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -620,7 +621,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#omnimode
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"omnimode"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -647,7 +648,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#monomode
      *
-     * @type {Object}
+     * @type {object}
      * @property {string} type `"monomode"`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -766,6 +767,7 @@ export class InputChannel extends EventEmitter {
    * Indicates whether the specified controller can be part of an RPN or NRPN sequence
    * @param controller
    * @returns {boolean}
+   * @private
    */
   _isRpnOrNrpnController(controller) {
 
@@ -785,11 +787,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndataentrycoarse
+     * @event InputChannel#nrpn:dataentrycoarse
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndataentrycoarse"`
+     * @property {string} type `"nrpn:dataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -805,11 +807,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentryfine' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndataentryfine
+     * @event InputChannel#nrpn:dataentryfine
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndataentryfine"`
+     * @property {string} type `"nrpn:dataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -825,11 +827,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndatabuttonincrement
+     * @event InputChannel#nrpn:databuttonincrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndatabuttonincrement"`
+     * @property {string} type `"nrpn:databuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -845,11 +847,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
      *
-     * @event InputChannel#nrpndatabuttondecrement
+     * @event InputChannel#nrpn:databuttondecrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"nrpndatabuttondecrement"`
+     * @property {string} type `"nrpn:databuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -866,11 +868,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndataentrycoarse
+     * @event InputChannel#rpn:dataentrycoarse
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndataentrycoarse"`
+     * @property {string} type `"rpn:dataentrycoarse"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -884,11 +886,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'dataentryfine' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndataentryfine
+     * @event InputChannel#rpn:dataentryfine
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndataentryfine"`
+     * @property {string} type `"rpn:dataentryfine"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -902,11 +904,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttonincrement' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndatabuttonincrement
+     * @event InputChannel#rpn:databuttonincrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndatabuttonincrement"`
+     * @property {string} type `"rpn:databuttonincrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -920,11 +922,11 @@ export class InputChannel extends EventEmitter {
     /**
      * Event emitted when a 'databuttondecrement' RPN message has been received on the input.
      *
-     * @event InputChannel#rpndatabuttondecrement
+     * @event InputChannel#rpn:databuttondecrement
      *
-     * @type {Object}
+     * @type {object}
      *
-     * @property {string} type `"rpndatabuttondecrement"`
+     * @property {string} type `"rpn:databuttondecrement"`
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -940,13 +942,13 @@ export class InputChannel extends EventEmitter {
       timestamp: e.timestamp,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
-      value: Utilities.toNormalized(e.message.dataBytes[1]),
+      value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
       rawValue: e.message.dataBytes[1],
       type: type === "rpn" ? "rpn" : "nrpn"
     };
 
     // Retrieve controller type and append to event type
-    event.type += Utilities.getPropertyByValue(
+    event.type += ":" + Utilities.getPropertyByValue(
       Enumerations.MIDI_CONTROL_CHANGE_MESSAGES,
       e.message.dataBytes[0]
     );
@@ -1144,16 +1146,16 @@ export class InputChannel extends EventEmitter {
       "resetallcontrollers",
 
       // NRPN events
-      "nrpndataentrycoarse",
-      "nrpndataentryfine",
-      "nrpndatabuttonincrement",
-      "nrpndatabuttondecrement",
+      "nrpn:dataentrycoarse",
+      "nrpn:dataentryfine",
+      "nrpn:databuttonincrement",
+      "nrpn:databuttondecrement",
 
       // RPN events
-      "rpndataentrycoarse",
-      "rpndataentryfine",
-      "rpndatabuttonincrement",
-      "rpndatabuttondecrement"
+      "rpn:dataentrycoarse",
+      "rpn:dataentryfine",
+      "rpn:databuttonincrement",
+      "rpn:databuttondecrement"
 
     ];
   }
@@ -1165,8 +1167,8 @@ export class InputChannel extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 18:30:29 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 7:53:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

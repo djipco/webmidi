@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -117,16 +117,19 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Note</code> class represents a single musical note such as <code>&quot;D3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Gb7&quot;</code>, etc.</p>
 			<p><code>Note</code> objects can be played back on a single channel by calling
-			<a href="OutputChannel.html#playNote">OutputChannel.playNote()</a> or on multiple channels of the same
-			output by calling <a href="Output.html#playNote">Output.playNote()</a>.</p>
-			<p>The note has attack and release velocities set at 0.5 by default. These can be changed by passing
-			in the appropriate option. It is also possible to set a system-wide default for attack and
-			release velocities by using the <code>WebMidi.defaults</code> property.</p>
-			<p>The note may have a duration. If it does, playback will be automatically stopped when the
-			duration has elapsed by sending a <strong>noteoff</strong> event. By default, the duration is set to
+			<a href="OutputChannel.html#playNote"><code>OutputChannel.playNote()</code></a> or, on multiple channels of the same
+			output, by calling <a href="Output.html#playNote"><code>Output.playNote()</code></a>.</p>
+			<p>The note has <a href="#attack"><code>attack</code></a> and <a href="#release"><code>release</code></a> velocities set at <code>0.5</code> by default.
+			These can be changed by passing in the appropriate option. It is also possible to set a
+			system-wide default for attack and release velocities by using the
+			<a href="WebMidi#defaults"><code>WebMidi.defaults</code></a> property.</p>
+			<p>If you prefer to work with raw MIDI values (<code>0</code> to <code>127</code>), you can use <a href="#rawAttack"><code>rawAttack</code></a> and
+			<a href="#rawRelease"><code>rawRelease</code></a> to both get and set the values.</p>
+			<p>The note may have a <a href="#duration"><code>duration</code></a>. If it does, playback will be automatically stopped
+			when the duration has elapsed by sending a <code>&quot;noteoff&quot;</code> event. By default, the duration is set to
 			<code>Infinity</code>. In this case, it will never stop playing unless explicitly stopped by calling a
-			method such as <a href="OutputChannel.html#stopNote">OutputChannel.stopNote()</a>,
-			<a href="Output.html#stopNote">Output.stopNote()</a> or similar.</p></div>
+			method such as <a href="OutputChannel.html#stopNote"><code>OutputChannel.stopNote()</code></a>,
+			<a href="Output.html#stopNote"><code>Output.stopNote()</code></a> or similar.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -154,7 +157,7 @@
 						</tr>
 						<tr>
 								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
+							<td><span class="param-type">object</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
 								<td>{}</td>
 							<td class="last">
@@ -308,7 +311,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-58">line 58</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-62">line 62</a></p>
 								</div>
 							</div>
 			
@@ -374,7 +377,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-131">line 131</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-137">line 137</a></p>
 								</div>
 							</div>
 			
@@ -425,7 +428,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-192">line 192</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-198">line 198</a></p>
 								</div>
 							</div>
 			
@@ -477,7 +480,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-171">line 171</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-177">line 177</a></p>
 								</div>
 							</div>
 			
@@ -528,7 +531,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-88">line 88</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-94">line 94</a></p>
 								</div>
 							</div>
 			
@@ -579,7 +582,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-110">line 110</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-116">line 116</a></p>
 								</div>
 							</div>
 			
@@ -631,7 +634,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-253">line 253</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-265">line 265</a></p>
 								</div>
 							</div>
 			
@@ -682,7 +685,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-150">line 150</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-156">line 156</a></p>
 								</div>
 							</div>
 			
@@ -733,7 +736,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-233">line 233</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-239">line 239</a></p>
 								</div>
 							</div>
 			
@@ -784,7 +787,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-242">line 242</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-251">line 251</a></p>
 								</div>
 							</div>
 			
@@ -835,7 +838,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-212">line 212</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-218">line 218</a></p>
 								</div>
 							</div>
 			
@@ -919,7 +922,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-266">line 266</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-278">line 278</a></p>
 								</div>
 							</div>
 			
@@ -939,8 +942,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.18 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 13th 2021 @ 18:30:29 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 7:53:16 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
