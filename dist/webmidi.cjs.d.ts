@@ -1161,6 +1161,19 @@ export class Utilities {
      * @static
      */
     static getPropertyByValue(object: object, value: any): string;
+    /**
+     * Returns the name of a control change message matching the specified number. Some valid control
+     * change numbers do not have a specific name or purpose assigned in the MIDI
+     * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+     * In this case, the method returns `undefined`.
+     *
+     * @param {number} number An integer representing the control change message
+     * @returns {string|undefined} The matching control change name or `undefined` if not match was
+     * found.
+     *
+     * @static
+     */
+    static getCcNameByNumber(number: number): string | undefined;
 }
 declare const wm: WebMidi;
 /**
@@ -4211,29 +4224,47 @@ declare class Input {
     private getChannelModeByNumber;
     /**
      * Adds an event listener that will trigger a function callback when the specified event is
-     * dispatched. The event can be **channel-specific** or **input-wide**. Usually, if you add a
-     * listener to an `Input` object, it is because you want to listen to an input-wide event.
-     * However, for convenience you can also listen to channel-specific events directly on the
-     * `Input`. This allows you to react to a channel-specific event no matter which channel it
-     * actually comes in on.
+     * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
      *
-     * Usually, if you want to listen to a channel-specific event, you are better off adding your
-     * listener to an [`InputChannel`](InputChannel) object. An array of all 16
-     * [`InputChannel`](InputChannel) objects for the input is available in the
-     * [`channels`](#channels) property.
+     * Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
+     * at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
+     * events target a specific channel. Usually, in this case, you would add the listener to the
+     * [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
+     * channel-specific events directly on an `Input`. This allows you to react to a channel-specific
+     * event no matter which channel it actually came through.
      *
      * When listening for an event, you simply need to specify the event name and the function to
      * execute:
      *
      * ```javascript
-     * WebMidi.inputs[0].addListener("midimessage", someFunction);
+     * const listener = WebMidi.inputs[0].addListener("midimessage", e => {
+     *   console.log(e);
+     * });
      * ```
      *
-     * The code above will add a listener for the `"midimessage"` event and call `someFunction` when
-     * the event is triggered on any of the MIDI channels.
+     * Calling the function with an input-wide event (such as
+     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
+     * that was created.
+     *
+     * If you call the function with a channel-specific event (such as
+     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
+     * [`Listener`](Listener) objects that were created (one for each channel):
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
+     * ```
+     *
+     * You can also specify which channels you want to add the listener to:
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+     * ```
+     *
+     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
      *
      * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
-     * instance that actually gets a listener added and not the [`Input`](Input) instance.
+     * instance that actually gets a listener added and not the [`Input`](Input) instance. You can
+     * check that by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
      *
      * There are 8 families of events you can listen to:
      *
@@ -4310,9 +4341,10 @@ declare class Input {
      * callback function. This array is stored in the `arguments` property of the `Listener` object
      * and can be retrieved or modified as desired.
      *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to listen on. If no channel is specified, all
-     * channels will be used. This parameter is ignored for input-wide events.
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
+     * listen on. If no channel is specified, all channels will be used. This parameter is ignored for
+     * input-wide events.
      *
      * @param {object} [options.context=this] The value of `this` in the callback function.
      *
@@ -4644,15 +4676,15 @@ declare class Input {
  * @fires InputChannel#omnimode
  * @fires InputChannel#resetallcontrollers
  *
- * @fires InputChannel#nrpndataentrycoarse
- * @fires InputChannel#nrpndataentryfine
- * @fires InputChannel#nrpndatabuttonincrement
- * @fires InputChannel#nrpndatabuttondecrement
+ * @fires InputChannel#event:nrpn-dataentrycoarse
+ * @fires InputChannel#event:nrpn-dataentryfine
+ * @fires InputChannel#event:nrpn-databuttonincrement
+ * @fires InputChannel#event:nrpn-databuttondecrement
  *
- * @fires InputChannel#rpndataentrycoarse
- * @fires InputChannel#rpndataentryfine
- * @fires InputChannel#rpndatabuttonincrement
- * @fires InputChannel#rpndatabuttondecrement
+ * @fires InputChannel#event:rpn-dataentrycoarse
+ * @fires InputChannel#event:rpn-dataentryfine
+ * @fires InputChannel#event:rpn-databuttonincrement
+ * @fires InputChannel#event:rpn-databuttondecrement
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -4754,20 +4786,10 @@ declare class InputChannel {
      */
     getChannelModeByNumber(number: number): string | false;
     /**
-     * Returns the name of a control change message matching the specified number. Some valid control
-     * change numbers do not have a specific name or purpose assigned in the MIDI
-     * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-     * In this case, the method returns `false`.
-     *
-     * @param {number} number An integer representing the control change message
-     * @returns {string|undefined} The matching control change name or `undefined` if not match was
-     * found.
-     *
-     * @throws {RangeError} Invalid control change number.
-     *
-     * @since 2.0.0
+     * @deprecated since version 3.
+     * @private
      */
-    getCcNameByNumber(number: number): string | undefined;
+    private getCcNameByNumber;
     /**
      * Return the playing status of the specified note. The `note` parameter can be an unsigned
      * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
