@@ -309,8 +309,10 @@ There are 8 families of events you can listen to:
   </div>
 
 
-**Returns**: `Array.<Listener>`
-> An array of all `Listener` objects that were created.
+**Returns**: `Listener` or `Array.<Listener>`
+> If the event is input-wide, a single [`Listener`](Listener)
+object is returned. If the event is channel-specific, an array of all the
+[`Listener`](Listener) objects is returned (one for each channel).
 
 
 **Throws**:
