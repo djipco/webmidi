@@ -1269,6 +1269,29 @@ class Utilities {
   static getCcNameByNumber(number) {
     return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
   }
+  /**
+   * Returns the channel mode name matching the specified number. If no match is found, the function
+   * returns `false`.
+   *
+   * @param {number} number An integer representing the channel mode message.
+   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+   * found.
+   *
+   * @since 2.0.0
+   */
+
+
+  static getChannelModeByNumber(number) {
+    if (!(number >= 120 && number <= 127)) return false;
+
+    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
+      if (Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
+        return cm;
+      }
+    }
+
+    return false;
+  }
 
 }
 
@@ -2047,31 +2070,18 @@ class InputChannel extends e {
     this.emit(event.type, event);
   }
   /**
-   * Returns the channel mode name matching the specified number. If no match is found, the function
-   * returns `false`.
-   *
-   * @param {number} number An integer representing the channel mode message.
-   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
-   * found.
-   *
-   * @since 2.0.0
+   * @deprecated since version 3.
+   * @private
    */
 
 
   getChannelModeByNumber(number) {
     if (wm.validation) {
+      console.warn("The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class.");
       number = Math.floor(number);
     }
 
-    if (!(number >= 120 && number <= 127)) return false;
-
-    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
-      if (Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) && number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]) {
-        return cm;
-      }
-    }
-
-    return false;
+    return Utilities.getChannelModeByNumber(number);
   }
   /**
    * @deprecated since version 3.
@@ -2081,6 +2091,7 @@ class InputChannel extends e {
 
   getCcNameByNumber(number) {
     if (wm.validation) {
+      console.warn("The 'getCcNameByNumber()' method has been moved to the 'Utilities' class.");
       number = parseInt(number);
       if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
     }
@@ -6361,13 +6372,13 @@ class Input extends e {
   }
   /**
    * @private
-   * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+   * @deprecated since v3.0.0 (moved to 'Utilities' class)
    */
 
 
   getChannelModeByNumber() {
     if (wm.validation) {
-      console.warn("The 'getChannelModeByNumber()' method has been moved to the 'InputChannel' class.");
+      console.warn("The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class.");
     }
   }
   /**
