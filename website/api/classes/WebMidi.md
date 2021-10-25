@@ -12,7 +12,7 @@ module) version, you get an already-instantiated object when you import the modu
 
 **Extends**: EventEmitter
 
-**Fires**: [`WebMidi#event:connected`](WebMidi#event:connected), [`WebMidi#event:disabled`](WebMidi#event:disabled), [`WebMidi#event:disconnected`](WebMidi#event:disconnected), [`WebMidi#event:enabled`](WebMidi#event:enabled), [`WebMidi#event:midiaccessgranted`](WebMidi#event:midiaccessgranted)
+**Fires**: [`event:connected`](WebMidi#event:connected), [`event:disabled`](WebMidi#event:disabled), [`event:disconnected`](WebMidi#event:disconnected), [`event:enabled`](WebMidi#event:enabled), [`event:midiaccessgranted`](WebMidi#event:midiaccessgranted)
 ***
 
 ## Properties
