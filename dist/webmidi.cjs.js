@@ -1897,13 +1897,14 @@ class InputChannel extends e {
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
     /**
-     * Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
+     * Event emitted when an NRPN message is received on the input.
      *
-     * @event InputChannel.nrpn-dataentrycoarse
+     * @event InputChannel#nrpn
      *
      * @type {object}
      *
-     * @property {string} type `"nrpn-dataentrycoarse"`
+     * @property {string} type `"nrpn"`
+     * @property {string} subtype The precise type of NRPN message that was received.
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -1917,127 +1918,14 @@ class InputChannel extends e {
      */
 
     /**
-     * Event emitted when a 'dataentryfine' NRPN message has been received on the input.
+     * Event emitted when an RPN message isn received on the input.
      *
-     * @event InputChannel#nrpn-dataentryfine
-     *
-     * @type {object}
-     *
-     * @property {string} type `"nrpn-dataentryfine"`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {number} parameter The non-registered parameter number (0-16383)
-     * @property {number} parameterMsb The MSB portion of the non-registered parameter number
-     * (0-127)
-     * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
-     * (0-127)
-     * @property {number} value The received value as a normalized number between 0 and 1.
-     * @property {number} rawValue The value as received (0-127)
-     */
-
-    /**
-     * Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
-     *
-     * @event InputChannel#nrpn-databuttonincrement
+     * @event InputChannel#rpn
      *
      * @type {object}
      *
-     * @property {string} type `"nrpn-databuttonincrement"`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {number} parameter The non-registered parameter number (0-16383)
-     * @property {number} parameterMsb The MSB portion of the non-registered parameter number
-     * (0-127)
-     * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
-     * (0-127)
-     * @property {number} value The received value as a normalized number between 0 and 1.
-     * @property {number} rawValue The value as received (0-127)
-     */
-
-    /**
-     * Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
-     *
-     * @event InputChannel#nrpn-databuttondecrement
-     *
-     * @type {object}
-     *
-     * @property {string} type `"nrpn-databuttondecrement"`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {number} parameter The non-registered parameter number (0-16383)
-     * @property {number} parameterMsb The MSB portion of the non-registered parameter number
-     * (0-127)
-     * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
-     * (0-127)
-     * @property {number} value The received value as a normalized number between 0 and 1.
-     * @property {number} rawValue The value as received (0-127)
-     */
-
-    /**
-     * Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
-     *
-     * @event InputChannel#rpn-dataentrycoarse
-     *
-     * @type {object}
-     *
-     * @property {string} type `"rpn-dataentrycoarse"`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} parameter The registered parameter's name
-     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The received value as a normalized number between 0 and 1.
-     * @property {number} rawValue The value as received (0-127)
-     */
-
-    /**
-     * Event emitted when a 'dataentryfine' RPN message has been received on the input.
-     *
-     * @event InputChannel#rpn-dataentryfine
-     *
-     * @type {object}
-     *
-     * @property {string} type `"rpn-dataentryfine"`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} parameter The registered parameter's name
-     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The received value as a normalized number between 0 and 1.
-     * @property {number} rawValue The value as received (0-127)
-     */
-
-    /**
-     * Event emitted when a 'databuttonincrement' RPN message has been received on the input.
-     *
-     * @event InputChannel#rpn-databuttonincrement
-     *
-     * @type {object}
-     *
-     * @property {string} type `"rpn-databuttonincrement"`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
-     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-     * milliseconds since the navigation start of the document).
-     * @property {string} parameter The registered parameter's name
-     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-     * @property {number} value The received value as a normalized number between 0 and 1.
-     * @property {number} rawValue The value as received (0-127)
-     */
-
-    /**
-     * Event emitted when a 'databuttondecrement' RPN message has been received on the input.
-     *
-     * @event InputChannel#rpn-databuttondecrement
-     *
-     * @type {object}
-     *
-     * @property {string} type `"rpn-databuttondecrement"`
+     * @property {string} type `"rpn"`
+     * @property {string} subtype The precise type of RPN message that was received.
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
@@ -2057,7 +1945,7 @@ class InputChannel extends e {
       type: type === "rpn" ? "rpn" : "nrpn"
     }; // Retrieve controller type and append to event type
 
-    event.type += ":" + Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
+    event.subtype = Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Identify the parameter (by name for RPN and by number for NRPN)
 
     if (type === "rpn") {
       event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
