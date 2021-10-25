@@ -222,7 +222,8 @@ Calling the function with an input-wide event (such as
 [`"midimessage"`](#event:midimessage)), will return the [`Listener`](Listener) object
 that was created.
 
-If you call the function with a channel-specific event, it will return an array of all
+If you call the function with a channel-specific event (such as
+[`"noteon"`](InputChannel#event:noteon)), it will return an array of all
 [`Listener`](Listener) objects that were created (one for each channel):
 
 ```javascript
