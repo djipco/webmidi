@@ -200,7 +200,7 @@ is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later
 
 
 Adds an event listener that will trigger a function callback when the specified event is
-dispatched. The event can be **channel-specific** or **input-wide**.
+dispatched. The event usually is **input-wide** but can also be **channel-specific**.
 
 Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
 at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
