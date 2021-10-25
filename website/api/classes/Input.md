@@ -202,9 +202,9 @@ is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later
 Adds an event listener that will trigger a function callback when the specified event is
 dispatched. The event can be **channel-specific** or **input-wide**. Usually, if you add a
 listener to an `Input` object, it is because you want to listen to an input-wide event.
-However, for convenience you can listen to channel-specific events directly on the `Input`.
-This allows you to react to a channel-specific event no matter which channel it actually comes
-in on.
+However, for convenience you can also listen to channel-specific events directly on the
+`Input`. This allows you to react to a channel-specific event no matter which channel it
+actually comes in on.
 
 If you want to listen to a channel-specific event, you are usually better off adding your
 listener to an [`InputChannel`](InputChannel) object. An array of all 16
