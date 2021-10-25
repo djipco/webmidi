@@ -200,29 +200,43 @@ is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later
 
 
 Adds an event listener that will trigger a function callback when the specified event is
-dispatched. The event can be **channel-specific** or **input-wide**. Usually, if you add a
-listener to an `Input` object, it is because you want to listen to an input-wide event.
-However, for convenience you can also listen to channel-specific events directly on the
-`Input`. This allows you to react to a channel-specific event no matter which channel it
-actually comes in on.
+dispatched. The event can be **channel-specific** or **input-wide**.
 
-Usually, if you want to listen to a channel-specific event, you are better off adding your
-listener to an [`InputChannel`](InputChannel) object. An array of all 16
-[`InputChannel`](InputChannel) objects for the input is available in the
-[`channels`](#channels) property.
+Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
+at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
+events target a specific channel. Usually, in this case, you would add the listener at the
+[`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
+channel-specific events directly on an `Input`. This allows you to react to a channel-specific
+event no matter which channel it actually comes in on.
 
 When listening for an event, you simply need to specify the event name and the function to
 execute:
 
 ```javascript
-WebMidi.inputs[0].addListener("midimessage", someFunction);
+const listener = WebMidi.inputs[0].addListener("midimessage", someFunction);
 ```
 
-The code above will add a listener for the `"midimessage"` event and call `someFunction` when
-the event is triggered on any of the MIDI channels.
+Calling the function with an input-wide event, will return the [`Listener`](Listener) object
+that was created.
+
+If you call the function with a channel-specific event, it will return an array of all
+[`Listener`](Listener) objects that were created (one for each channel):
+
+```javascript
+const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
+```
+
+You can also specify which channels you want to add the listener to:
+
+```javascript
+const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+```
+
+In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
 
 Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
-instance that actually gets a listener added and not the [`Input`](Input) instance.
+instance that actually gets a listener added and not the [`Input`](Input) instance. You can
+check that by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
 
 There are 8 families of events you can listen to:
 
