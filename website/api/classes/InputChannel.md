@@ -627,8 +627,8 @@ try {
 
 ## Events
 
-<!--### `"nrpn:dataentrycoarse"` {{#event:nrpn:dataentrycoarse}}-->
-### `"nrpn:dataentrycoarse"` {#event:nrpn:dataentrycoarse}
+<!--### `"nrpn:dataentrycoarse"` {{#event:nrpn-dataentrycoarse}}-->
+### `"nrpn:dataentrycoarse"` {#event:nrpn-dataentrycoarse}
 
 <!--<a id="event:nrpn:dataentrycoarse"></a>-->
 
@@ -968,8 +968,8 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
-<!--### `"nrpn:databuttondecrement"` {{#event:nrpn:databuttondecrement}}-->
-### `"nrpn:databuttondecrement"` {#event:nrpn:databuttondecrement}
+<!--### `"nrpn:databuttondecrement"` {{#event:nrpn-databuttondecrement}}-->
+### `"nrpn:databuttondecrement"` {#event:nrpn-databuttondecrement}
 
 <!--<a id="event:nrpn:databuttondecrement"></a>-->
 
@@ -992,8 +992,8 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-<!--### `"nrpn:databuttonincrement"` {{#event:nrpn:databuttonincrement}}-->
-### `"nrpn:databuttonincrement"` {#event:nrpn:databuttonincrement}
+<!--### `"nrpn:databuttonincrement"` {{#event:nrpn-databuttonincrement}}-->
+### `"nrpn:databuttonincrement"` {#event:nrpn-databuttonincrement}
 
 <!--<a id="event:nrpn:databuttonincrement"></a>-->
 
@@ -1016,8 +1016,8 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-<!--### `"nrpn:dataentryfine"` {{#event:nrpn:dataentryfine}}-->
-### `"nrpn:dataentryfine"` {#event:nrpn:dataentryfine}
+<!--### `"nrpn:dataentryfine"` {{#event:nrpn-dataentryfine}}-->
+### `"nrpn:dataentryfine"` {#event:nrpn-dataentryfine}
 
 <!--<a id="event:nrpn:dataentryfine"></a>-->
 
@@ -1040,8 +1040,8 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-<!--### `"rpn:databuttondecrement"` {{#event:rpn:databuttondecrement}}-->
-### `"rpn:databuttondecrement"` {#event:rpn:databuttondecrement}
+<!--### `"rpn:databuttondecrement"` {{#event:rpn-databuttondecrement}}-->
+### `"rpn:databuttondecrement"` {#event:rpn-databuttondecrement}
 
 <!--<a id="event:rpn:databuttondecrement"></a>-->
 
@@ -1064,8 +1064,8 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-<!--### `"rpn:databuttonincrement"` {{#event:rpn:databuttonincrement}}-->
-### `"rpn:databuttonincrement"` {#event:rpn:databuttonincrement}
+<!--### `"rpn:databuttonincrement"` {{#event:rpn-databuttonincrement}}-->
+### `"rpn:databuttonincrement"` {#event:rpn-databuttonincrement}
 
 <!--<a id="event:rpn:databuttonincrement"></a>-->
 
@@ -1088,8 +1088,8 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-<!--### `"rpn:dataentrycoarse"` {{#event:rpn:dataentrycoarse}}-->
-### `"rpn:dataentrycoarse"` {#event:rpn:dataentrycoarse}
+<!--### `"rpn:dataentrycoarse"` {{#event:rpn-dataentrycoarse}}-->
+### `"rpn:dataentrycoarse"` {#event:rpn-dataentrycoarse}
 
 <!--<a id="event:rpn:dataentrycoarse"></a>-->
 
@@ -1112,8 +1112,8 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-<!--### `"rpn:dataentryfine"` {{#event:rpn:dataentryfine}}-->
-### `"rpn:dataentryfine"` {#event:rpn:dataentryfine}
+<!--### `"rpn:dataentryfine"` {{#event:rpn-dataentryfine}}-->
+### `"rpn:dataentryfine"` {#event:rpn-dataentryfine}
 
 <!--<a id="event:rpn:dataentryfine"></a>-->
 
