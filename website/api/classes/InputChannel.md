@@ -11,7 +11,7 @@ property.
 
 **Extends**: EventEmitter
 
-**Fires**: [`midimessage`](#event:midimessage), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`keyaftertouch`](#event:keyaftertouch), [`controlchange`](#event:controlchange), [`programchange`](#event:programchange), [`channelaftertouch`](#event:channelaftertouch), [`pitchbend`](#event:pitchbend), [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`localcontrol`](#event:localcontrol), [`monomode`](#event:monomode), [`omnimode`](#event:omnimode), [`resetallcontrollers`](#event:resetallcontrollers), [`nrpn-dataentrycoarse`](#event:nrpn-dataentrycoarse), [`nrpn-dataentryfine`](#event:nrpn-dataentryfine), [`nrpn-databuttonincrement`](#event:nrpn-databuttonincrement), [`nrpn-databuttondecrement`](#event:nrpn-databuttondecrement), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse), [`rpn-dataentryfine`](#event:rpn-dataentryfine), [`rpn-databuttonincrement`](#event:rpn-databuttonincrement), [`rpn-databuttondecrement`](#event:rpn-databuttondecrement)
+**Fires**: [`midimessage`](#event:midimessage), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`keyaftertouch`](#event:keyaftertouch), [`controlchange`](#event:controlchange), [`programchange`](#event:programchange), [`channelaftertouch`](#event:channelaftertouch), [`pitchbend`](#event:pitchbend), [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`localcontrol`](#event:localcontrol), [`monomode`](#event:monomode), [`omnimode`](#event:omnimode), [`resetallcontrollers`](#event:resetallcontrollers), [`nrpn`](#event:nrpn), [`rpn`](#event:rpn)
 
 ### `Constructor`
 
@@ -794,7 +794,15 @@ Event emitted when a **note on** MIDI message has been received.
 <a id="event:nrpn"></a>
 
 
-Event emitted when an NRPN message is received on the input.
+Event emitted when an NRPN message is received on the input. Four types of NRPN messages can
+be received:
+
+  * `"dataentrycoarse"`
+  * `"dataentryfine"`
+  * `"databuttonincrement"`
+  * `"databuttondecrement"`
+
+The parameter to which the message applies can be found in the event's `parameter` property.
 
 
 
@@ -900,7 +908,17 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 <a id="event:rpn"></a>
 
 
-Event emitted when an RPN message isn received on the input.
+Event emitted when an RPN message is received on the input. Four types of RPN messages can
+be received:
+
+  * `"dataentrycoarse"`
+  * `"dataentryfine"`
+  * `"databuttonincrement"`
+  * `"databuttondecrement"`
+
+The parameter to which the message applies can be found in the event's `parameter` property.
+It is one of the ones defined in
+[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
 
 
 
