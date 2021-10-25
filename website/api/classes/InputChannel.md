@@ -848,9 +848,9 @@ Event emitted when a **note on** MIDI message has been received.
   |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
 
 
-### `"nrpn%dataentrycoarse"` {#nrpn%dataentrycoarse}
+### `"nrpn@dataentrycoarse"` {#nrpn@dataentrycoarse}
 
-<a id="event:nrpn%dataentrycoarse"></a>
+<a id="event:nrpn@dataentrycoarse"></a>
 
 
 Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
@@ -861,7 +861,7 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn%dataentrycoarse"`|
+  |**`type`** |string|`"nrpn@dataentrycoarse"`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`parameter`** |number|The non-registered parameter number (0-16383)|
