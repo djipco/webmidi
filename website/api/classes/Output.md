@@ -2023,9 +2023,10 @@ try {
 ## Events
 
 <!--### `"closed"` {{#event:closed}}-->
-### `"closed"` {#event:closed}
+### `"closed"`
+<!--### `"closed"` {#event:closed}-->
 
-<!--<a id="event:closed"></a>-->
+<a id="event:closed"></a>
 
 
 Event emitted when the [Output](Output) has been closed by calling the
@@ -2043,9 +2044,10 @@ Event emitted when the [Output](Output) has been closed by calling the
 
 
 <!--### `"disconnected"` {{#event:disconnected}}-->
-### `"disconnected"` {#event:disconnected}
+### `"disconnected"`
+<!--### `"disconnected"` {#event:disconnected}-->
 
-<!--<a id="event:disconnected"></a>-->
+<a id="event:disconnected"></a>
 
 
 Event emitted when the [Output](Output) becomes unavailable. This event is typically fired
@@ -2069,9 +2071,10 @@ when the MIDI device is unplugged.
 
 
 <!--### `"opened"` {{#event:opened}}-->
-### `"opened"` {#event:opened}
+### `"opened"`
+<!--### `"opened"` {#event:opened}-->
 
-<!--<a id="event:opened"></a>-->
+<a id="event:opened"></a>
 
 
 Event emitted when the [Output](Output) has been opened by calling the
