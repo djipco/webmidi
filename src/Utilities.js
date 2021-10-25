@@ -1,5 +1,6 @@
 import {Note} from "./Note.js";
 import {WebMidi} from "./WebMidi.js";
+import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `Utilities` class contains general-purpose utility methods. All methods are static and
@@ -144,7 +145,7 @@ export class Utilities {
 
     // In order to preserve backwards-compatibility, we let this assignment as it is.
     if (channels.indexOf("all") > -1) {
-      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     }
 
     return channels
