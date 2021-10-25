@@ -206,9 +206,9 @@ However, for convenience you can also listen to channel-specific events directly
 `Input`. This allows you to react to a channel-specific event no matter which channel it
 actually comes in on.
 
-If you want to listen to a channel-specific event, you are usually better off adding your
+Usually, if you want to listen to a channel-specific event, you are better off adding your
 listener to an [`InputChannel`](InputChannel) object. An array of all 16
-[`InputChannel`](InputChannel) objects for that input is available in the
+[`InputChannel`](InputChannel) objects for the input is available in the
 [`channels`](#channels) property.
 
 Channel-specific events are tied to a
