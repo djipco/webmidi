@@ -835,8 +835,6 @@ try {
 ## Events
 
 ### `"activesensing"` {#event-activesensing}
-### `"activesensing"`
-<!--### `"activesensing"` #event-activesensing-->
 
 <a id="event:activesensing"></a>
 
@@ -859,8 +857,6 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 
 
 ### `"clock"` {#event-clock}
-### `"clock"`
-<!--### `"clock"` #event-clock-->
 
 <a id="event:clock"></a>
 
@@ -883,8 +879,6 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 
 
 ### `"closed"` {#event-closed}
-### `"closed"`
-<!--### `"closed"` #event-closed-->
 
 <a id="event:closed"></a>
 
@@ -904,8 +898,6 @@ method.
 
 
 ### `"continue"` {#event-continue}
-### `"continue"`
-<!--### `"continue"` #event-continue-->
 
 <a id="event:continue"></a>
 
@@ -928,8 +920,6 @@ Input-wide (system) event emitted when a **continue** message has been received.
 
 
 ### `"disconnected"` {#event-disconnected}
-### `"disconnected"`
-<!--### `"disconnected"` #event-disconnected-->
 
 <a id="event:disconnected"></a>
 
@@ -955,8 +945,6 @@ when the MIDI device is unplugged.
 
 
 ### `"midimessage"` {#event-midimessage}
-### `"midimessage"`
-<!--### `"midimessage"` #event-midimessage-->
 
 <a id="event:midimessage"></a>
 
@@ -981,8 +969,6 @@ Event emitted when any MIDI message is received on an `Input`
 
 
 ### `"opened"` {#event-opened}
-### `"opened"`
-<!--### `"opened"` #event-opened-->
 
 <a id="event:opened"></a>
 
@@ -1002,8 +988,6 @@ method.
 
 
 ### `"reset"` {#event-reset}
-### `"reset"`
-<!--### `"reset"` #event-reset-->
 
 <a id="event:reset"></a>
 
@@ -1026,8 +1010,6 @@ Input-wide (system) event emitted when a **reset** message has been received.
 
 
 ### `"songposition"` {#event-songposition}
-### `"songposition"`
-<!--### `"songposition"` #event-songposition-->
 
 <a id="event:songposition"></a>
 
@@ -1050,8 +1032,6 @@ Input-wide (system) event emitted when a **song position** message has been rece
 
 
 ### `"songselect"` {#event-songselect}
-### `"songselect"`
-<!--### `"songselect"` #event-songselect-->
 
 <a id="event:songselect"></a>
 
@@ -1075,8 +1055,6 @@ Input-wide (system) event emitted when a **song select** message has been receiv
 
 
 ### `"start"` {#event-start}
-### `"start"`
-<!--### `"start"` #event-start-->
 
 <a id="event:start"></a>
 
@@ -1099,8 +1077,6 @@ Input-wide (system) event emitted when a **start** message has been received.
 
 
 ### `"stop"` {#event-stop}
-### `"stop"`
-<!--### `"stop"` #event-stop-->
 
 <a id="event:stop"></a>
 
@@ -1123,8 +1099,6 @@ Input-wide (system) event emitted when a **stop** message has been received.
 
 
 ### `"sysex"` {#event-sysex}
-### `"sysex"`
-<!--### `"sysex"` #event-sysex-->
 
 <a id="event:sysex"></a>
 
@@ -1154,8 +1128,6 @@ WebMidi.enable({sysex: true})
 
 
 ### `"timecode"` {#event-timecode}
-### `"timecode"`
-<!--### `"timecode"` #event-timecode-->
 
 <a id="event:timecode"></a>
 
@@ -1179,8 +1151,6 @@ received.
 
 
 ### `"tunerequest"` {#event-tunerequest}
-### `"tunerequest"`
-<!--### `"tunerequest"` #event-tunerequest-->
 
 <a id="event:tunerequest"></a>
 
@@ -1203,8 +1173,6 @@ Input-wide (system) event emitted when a **tune request** message has been recei
 
 
 ### `"unknownmidimessage"` {#event-unknownmidimessage}
-### `"unknownmidimessage"`
-<!--### `"unknownmidimessage"` #event-unknownmidimessage-->
 
 <a id="event:unknownmidimessage"></a>
 

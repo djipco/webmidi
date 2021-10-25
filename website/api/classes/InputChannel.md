@@ -628,8 +628,6 @@ try {
 ## Events
 
 ### `"nrpn-dataentrycoarse"` {#event-nrpn-dataentrycoarse}
-### `"nrpn-dataentrycoarse"`
-<!--### `"nrpn-dataentrycoarse"` #event-nrpn-dataentrycoarse-->
 
 <a id="event:nrpn-dataentrycoarse"></a>
 
@@ -653,8 +651,6 @@ Event emitted when a 'dataentrycoarse' NRPN message has been received on the inp
 
 
 ### `"allnotesoff"` {#event-allnotesoff}
-### `"allnotesoff"`
-<!--### `"allnotesoff"` #event-allnotesoff-->
 
 <a id="event:allnotesoff"></a>
 
@@ -674,8 +670,6 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 
 ### `"allsoundoff"` {#event-allsoundoff}
-### `"allsoundoff"`
-<!--### `"allsoundoff"` #event-allsoundoff-->
 
 <a id="event:allsoundoff"></a>
 
@@ -695,8 +689,6 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 
 ### `"channelaftertouch"` {#event-channelaftertouch}
-### `"channelaftertouch"`
-<!--### `"channelaftertouch"` #event-channelaftertouch-->
 
 <a id="event:channelaftertouch"></a>
 
@@ -718,8 +710,6 @@ Event emitted when a control change MIDI message has been received.
 
 
 ### `"controlchange"` {#event-controlchange}
-### `"controlchange"`
-<!--### `"controlchange"` #event-controlchange-->
 
 <a id="event:controlchange"></a>
 
@@ -744,8 +734,6 @@ Event emitted when a **control change** MIDI message has been received.
 
 
 ### `"keyaftertouch"` {#event-keyaftertouch}
-### `"keyaftertouch"`
-<!--### `"keyaftertouch"` #event-keyaftertouch-->
 
 <a id="event:keyaftertouch"></a>
 
@@ -770,8 +758,6 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 
 ### `"localcontrol"` {#event-localcontrol}
-### `"localcontrol"`
-<!--### `"localcontrol"` #event-localcontrol-->
 
 <a id="event:localcontrol"></a>
 
@@ -794,8 +780,6 @@ off).
 
 
 ### `"midimessage"` {#event-midimessage}
-### `"midimessage"`
-<!--### `"midimessage"` #event-midimessage-->
 
 <a id="event:midimessage"></a>
 
@@ -819,8 +803,6 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 
 ### `"monomode"` {#event-monomode}
-### `"monomode"`
-<!--### `"monomode"` #event-monomode-->
 
 <a id="event:monomode"></a>
 
@@ -843,8 +825,6 @@ poly mode on).
 
 
 ### `"noteoff"` {#event-noteoff}
-### `"noteoff"`
-<!--### `"noteoff"` #event-noteoff-->
 
 <a id="event:noteoff"></a>
 
@@ -867,8 +847,6 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 
 ### `"noteon"` {#event-noteon}
-### `"noteon"`
-<!--### `"noteon"` #event-noteon-->
 
 <a id="event:noteon"></a>
 
@@ -894,8 +872,6 @@ Event emitted when a **note on** MIDI message has been received.
 
 
 ### `"nrpn-databuttondecrement"` {#event-nrpn-databuttondecrement}
-### `"nrpn-databuttondecrement"`
-<!--### `"nrpn-databuttondecrement"` #event-nrpn-databuttondecrement-->
 
 <a id="event:nrpn-databuttondecrement"></a>
 
@@ -919,8 +895,6 @@ Event emitted when a 'databuttondecrement' NRPN message has been received on the
 
 
 ### `"nrpn-databuttonincrement"` {#event-nrpn-databuttonincrement}
-### `"nrpn-databuttonincrement"`
-<!--### `"nrpn-databuttonincrement"` #event-nrpn-databuttonincrement-->
 
 <a id="event:nrpn-databuttonincrement"></a>
 
@@ -944,8 +918,6 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 
 ### `"nrpn-dataentryfine"` {#event-nrpn-dataentryfine}
-### `"nrpn-dataentryfine"`
-<!--### `"nrpn-dataentryfine"` #event-nrpn-dataentryfine-->
 
 <a id="event:nrpn-dataentryfine"></a>
 
@@ -969,8 +941,6 @@ Event emitted when a 'dataentryfine' NRPN message has been received on the input
 
 
 ### `"omnimode"` {#event-omnimode}
-### `"omnimode"`
-<!--### `"omnimode"` #event-omnimode-->
 
 <a id="event:omnimode"></a>
 
@@ -992,8 +962,6 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 
 ### `"pitchbend"` {#event-pitchbend}
-### `"pitchbend"`
-<!--### `"pitchbend"` #event-pitchbend-->
 
 <a id="event:pitchbend"></a>
 
@@ -1015,8 +983,6 @@ Event emitted when a pitch bend MIDI message has been received.
 
 
 ### `"programchange"` {#event-programchange}
-### `"programchange"`
-<!--### `"programchange"` #event-programchange-->
 
 <a id="event:programchange"></a>
 
@@ -1038,8 +1004,6 @@ Event emitted when a **program change** MIDI message has been received.
 
 
 ### `"resetallcontrollers"` {#event-resetallcontrollers}
-### `"resetallcontrollers"`
-<!--### `"resetallcontrollers"` #event-resetallcontrollers-->
 
 <a id="event:resetallcontrollers"></a>
 
@@ -1059,8 +1023,6 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 
 ### `"rpn-databuttondecrement"` {#event-rpn-databuttondecrement}
-### `"rpn-databuttondecrement"`
-<!--### `"rpn-databuttondecrement"` #event-rpn-databuttondecrement-->
 
 <a id="event:rpn-databuttondecrement"></a>
 
@@ -1084,8 +1046,6 @@ Event emitted when a 'databuttondecrement' RPN message has been received on the 
 
 
 ### `"rpn-databuttonincrement"` {#event-rpn-databuttonincrement}
-### `"rpn-databuttonincrement"`
-<!--### `"rpn-databuttonincrement"` #event-rpn-databuttonincrement-->
 
 <a id="event:rpn-databuttonincrement"></a>
 
@@ -1109,8 +1069,6 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 
 ### `"rpn-dataentrycoarse"` {#event-rpn-dataentrycoarse}
-### `"rpn-dataentrycoarse"`
-<!--### `"rpn-dataentrycoarse"` #event-rpn-dataentrycoarse-->
 
 <a id="event:rpn-dataentrycoarse"></a>
 
@@ -1134,8 +1092,6 @@ Event emitted when a 'dataentrycoarse' RPN message has been received on the inpu
 
 
 ### `"rpn-dataentryfine"` {#event-rpn-dataentryfine}
-### `"rpn-dataentryfine"`
-<!--### `"rpn-dataentryfine"` #event-rpn-dataentryfine-->
 
 <a id="event:rpn-dataentryfine"></a>
 
