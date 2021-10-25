@@ -2022,6 +2022,7 @@ try {
 
 ## Events
 
+<!--### `"closed"` {{#event-closed}}-->
 ### `"closed"` {#event-closed}
 
 <!--<a id="event:closed"></a>-->
@@ -2041,6 +2042,7 @@ Event emitted when the [Output](Output) has been closed by calling the
   |**`target`** |Output|The object that triggered the event|
 
 
+<!--### `"disconnected"` {{#event-disconnected}}-->
 ### `"disconnected"` {#event-disconnected}
 
 <!--<a id="event:disconnected"></a>-->
@@ -2066,6 +2068,7 @@ when the MIDI device is unplugged.
   |**`target.type`** |string|`"output"`|
 
 
+<!--### `"opened"` {{#event-opened}}-->
 ### `"opened"` {#event-opened}
 
 <!--<a id="event:opened"></a>-->
