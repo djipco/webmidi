@@ -229,30 +229,27 @@ WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
 The code above will add a listener for the `"noteon"` event and call `someFunction` when the
 event is triggered on MIDI channels `1`, `2` or `3`.
 
-Note that, when adding events to channels, it is the [InputChannel](InputChannel) instance that
-actually gets a listener added and not the `[Input](Input) instance.
-
-Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-on the [InputChannel](InputChannel) object itself.
+Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
+that actually gets a listener added and not the [`Input`](Input) instance.
 
 There are 6 families of events you can listen to:
 
 1. **MIDI System Common** Events (input-wide)
 
-   * [songposition](Input#event:songposition)
-   * [songselect](Input#event:songselect)
-   * [sysex](Input#event:sysex)
-   * [timecode](Input#event:timecode)
-   * [tunerequest](Input#event:tunerequest)
+   * [`"songposition"`](Input#event:songposition)
+   * [`"songselect"`](Input#event:songselect)
+   * [`"sysex"`](Input#event:sysex)
+   * [`"timecode"`](Input#event:timecode)
+   * [`"tunerequest"`](Input#event:tunerequest)
 
 2. **MIDI System Real-Time** Events (input-wide)
 
-   * [clock](Input#event:clock)
-   * [start](Input#event:start)
-   * [continue](Input#event:continue)
-   * [stop](Input#event:stop)
-   * [activesensing](Input#event:activesensing)
-   * [reset](Input#event:reset)
+   * [`"clock"`](Input#event:clock)
+   * [`"start"`](Input#event:start)
+   * [`"continue"`](Input#event:continue)
+   * [`"stop"`](Input#event:stop)
+   * [`"activesensing"`](Input#event:activesensing)
+   * [`"reset"`](Input#event:reset)
 
 3. **State Change** Events (input-wide)
 
