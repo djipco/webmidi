@@ -976,52 +976,6 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"nrpn:dataentrycoarse"` {#nrpn-dataentrycoarse}
-
-<a id="event:nrpn:dataentrycoarse"></a>
-
-
-Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn:dataentrycoarse"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |number|The non-registered parameter number (0-16383)|
-  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `"nrpn:dataentryfine"` {#nrpn-dataentryfine}
-
-<a id="event:nrpn:dataentryfine"></a>
-
-
-Event emitted when a 'dataentryfine' NRPN message has been received on the input.
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn:dataentryfine"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |number|The non-registered parameter number (0-16383)|
-  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
 ### `"rpn:databuttondecrement"` {#rpn-databuttondecrement}
 
 <a id="event:rpn:databuttondecrement"></a>
