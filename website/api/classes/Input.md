@@ -213,10 +213,13 @@ When listening for an event, you simply need to specify the event name and the f
 execute:
 
 ```javascript
-const listener = WebMidi.inputs[0].addListener("midimessage", someFunction);
+const listener = WebMidi.inputs[0].addListener("midimessage", e => {
+  console.log(e);
+});
 ```
 
-Calling the function with an input-wide event, will return the [`Listener`](Listener) object
+Calling the function with an input-wide event (such as
+[`"midimessage"`](#event:midimessage)), will return the [`Listener`](Listener) object
 that was created.
 
 If you call the function with a channel-specific event, it will return an array of all
