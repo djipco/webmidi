@@ -11,7 +11,7 @@ property.
 
 **Extends**: EventEmitter
 
-**Fires**: [`midimessage`](InputChannel#event:midimessage), [`noteoff`](InputChannel#event:noteoff), [`noteon`](InputChannel#event:noteon), [`keyaftertouch`](InputChannel#event:keyaftertouch), [`controlchange`](InputChannel#event:controlchange), [`programchange`](InputChannel#event:programchange), [`channelaftertouch`](InputChannel#event:channelaftertouch), [`pitchbend`](InputChannel#event:pitchbend), [`allnotesoff`](InputChannel#event:allnotesoff), [`allsoundoff`](InputChannel#event:allsoundoff), [`localcontrol`](InputChannel#event:localcontrol), [`monomode`](InputChannel#event:monomode), [`omnimode`](InputChannel#event:omnimode), [`resetallcontrollers`](InputChannel#event:resetallcontrollers), [`nrpn@dataentrycoarse`](InputChannel#event:nrpn@dataentrycoarse), [`nrpn@dataentryfine`](InputChannel#event:nrpn@dataentryfine), [`nrpn@databuttonincrement`](InputChannel#event:nrpn@databuttonincrement), [`nrpn@databuttondecrement`](InputChannel#event:nrpn@databuttondecrement), [`rpn@dataentrycoarse`](InputChannel#event:rpn@dataentrycoarse), [`rpn@dataentryfine`](InputChannel#event:rpn@dataentryfine), [`rpn@databuttonincrement`](InputChannel#event:rpn@databuttonincrement), [`rpn@databuttondecrement`](InputChannel#event:rpn@databuttondecrement)
+**Fires**: [`midimessage`](InputChannel#event:midimessage), [`noteoff`](InputChannel#event:noteoff), [`noteon`](InputChannel#event:noteon), [`keyaftertouch`](InputChannel#event:keyaftertouch), [`controlchange`](InputChannel#event:controlchange), [`programchange`](InputChannel#event:programchange), [`channelaftertouch`](InputChannel#event:channelaftertouch), [`pitchbend`](InputChannel#event:pitchbend), [`allnotesoff`](InputChannel#event:allnotesoff), [`allsoundoff`](InputChannel#event:allsoundoff), [`localcontrol`](InputChannel#event:localcontrol), [`monomode`](InputChannel#event:monomode), [`omnimode`](InputChannel#event:omnimode), [`resetallcontrollers`](InputChannel#event:resetallcontrollers), [`dataentrycoarse`](InputChannel#nrpn~event:dataentrycoarse), [`dataentryfine`](InputChannel#nrpn~event:dataentryfine), [`databuttonincrement`](InputChannel#nrpn~event:databuttonincrement), [`databuttondecrement`](InputChannel#nrpn~event:databuttondecrement), [`dataentrycoarse`](InputChannel#rpn~event:dataentrycoarse), [`dataentryfine`](InputChannel#rpn~event:dataentryfine), [`databuttonincrement`](InputChannel#rpn~event:databuttonincrement), [`databuttondecrement`](InputChannel#rpn~event:databuttondecrement)
 
 ### `Constructor`
 
@@ -848,29 +848,6 @@ Event emitted when a **note on** MIDI message has been received.
   |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
 
 
-### `"nrpn@dataentrycoarse"` {#nrpn-dataentrycoarse}
-
-<a id="event:nrpn@dataentrycoarse"></a>
-
-
-Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn@dataentrycoarse"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |number|The non-registered parameter number (0-16383)|
-  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
 ### `"omnimode"` {#omnimode}
 
 <a id="event:omnimode"></a>
@@ -951,6 +928,29 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+
+
+### `"nrpn@dataentrycoarse"` {#nrpn@dataentrycoarse}
+
+<a id="event:nrpn@dataentrycoarse"></a>
+
+
+Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`"nrpn~dataentrycoarse"`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |number|The non-registered parameter number (0-16383)|
+  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
 
 
 
