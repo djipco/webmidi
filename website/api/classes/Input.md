@@ -211,28 +211,20 @@ listener to an [`InputChannel`](InputChannel) object. An array of all 16
 [`InputChannel`](InputChannel) objects for the input is available in the
 [`channels`](#channels) property.
 
-When listening for an input-wide event, you must specify the event to listen for and the
-callback function to trigger when the event happens:
+When listening for an event, you simply need to specify the event name and the function to
+execute:
 
 ```javascript
 WebMidi.inputs[0].addListener("midimessage", someFunction);
 ```
 
-To listen for a channel-specific event, you must also specify the event to listen for and the
-function to trigger but you have to add the channels you wish to listen on in the `options`
-parameter:
+The code above will add a listener for the `"midimessage"` event and call `someFunction` when
+the event is triggered on any of the MIDI channels.
 
-```javascript
-WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
-```
+Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
+instance that actually gets a listener added and not the [`Input`](Input) instance.
 
-The code above will add a listener for the `"noteon"` event and call `someFunction` when the
-event is triggered on MIDI channels `1`, `2` or `3`.
-
-Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
-that actually gets a listener added and not the [`Input`](Input) instance.
-
-There are 6 families of events you can listen to:
+There are 8 families of events you can listen to:
 
 1. **MIDI System Common** Events (input-wide)
 
@@ -269,7 +261,6 @@ There are 6 families of events you can listen to:
    * [`"keyaftertouch"`](InputChannel#event:keyaftertouch)
    * [`"noteoff"`](InputChannel#event:noteoff)
    * [`"noteon"`](InputChannel#event:noteon)
-   * [`"nrpn"`](InputChannel#event:nrpn)
    * [`"pitchbend"`](InputChannel#event:pitchbend)
    * [`"programchange"`](InputChannel#event:programchange)
 
@@ -309,7 +300,7 @@ There are 6 families of events you can listen to:
     |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. If no channel is specified, all channels will be used. This parameter is ignored for input-wide events.|
     |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array.|
