@@ -214,7 +214,7 @@ listener to an [`InputChannel`](InputChannel) object. An array of all 16
 When listening for an input-wide event, you must specify the event to listen for and the
 callback function to trigger when the event happens:
 
-```
+```javascript
 WebMidi.inputs[0].addListener("midimessage", someFunction);
 ```
 
@@ -222,7 +222,7 @@ To listen for a channel-specific event, you must also specify the event to liste
 function to trigger but you have to add the channels you wish to listen on in the `options`
 parameter:
 
-```
+```javascript
 WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
 ```
 
