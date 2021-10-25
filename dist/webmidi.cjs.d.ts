@@ -1174,6 +1174,17 @@ export class Utilities {
      * @static
      */
     static getCcNameByNumber(number: number): string | undefined;
+    /**
+     * Returns the channel mode name matching the specified number. If no match is found, the function
+     * returns `false`.
+     *
+     * @param {number} number An integer representing the channel mode message.
+     * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+     * found.
+     *
+     * @since 2.0.0
+     */
+    static getChannelModeByNumber(number: number): string | false;
 }
 declare const wm: WebMidi;
 /**
@@ -4219,7 +4230,7 @@ declare class Input {
     close(): Promise<Input>;
     /**
      * @private
-     * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+     * @deprecated since v3.0.0 (moved to 'Utilities' class)
      */
     private getChannelModeByNumber;
     /**
@@ -4775,16 +4786,10 @@ declare class InputChannel {
     private _isRpnOrNrpnController;
     _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
     /**
-     * Returns the channel mode name matching the specified number. If no match is found, the function
-     * returns `false`.
-     *
-     * @param {number} number An integer representing the channel mode message.
-     * @returns {string|false} The name of the matching channel mode or `false` if not match could be
-     * found.
-     *
-     * @since 2.0.0
+     * @deprecated since version 3.
+     * @private
      */
-    getChannelModeByNumber(number: number): string | false;
+    private getChannelModeByNumber;
     /**
      * @deprecated since version 3.
      * @private
