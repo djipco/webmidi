@@ -45,7 +45,7 @@ module.exports = {
           position: "left",
           items: [
             {
-              label: "3.0.0-alpha.16",
+              label: "3.0.0-alpha.21",
               to: "api/index",
             },
             {
@@ -167,9 +167,8 @@ module.exports = {
     image: "og-card.png",
     announcementBar: {
       id: "github-banner",
-      content: "Give WebMidi.js a <a target='_blank' href='https://github.com/djipco/webmidi'>" +
-        "star</a> ⭐ or <a target='_blank' href='https://github.com/djipco/webmidi'>sponsor</a> " +
-        "💜 it on <a target='_blank' href='https://github.com/djipco/webmidi'>GitHub</a>! "
+      content: "<a target='_blank' href='https://github.com/sponsors/djipco'>" +
+        "<strong>Sponsor</strong></a> ❤️ WebMidi.js on GitHub!"
     },
     gtag: {
       trackingID: "UA-162785934-1",
