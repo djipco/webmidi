@@ -199,9 +199,24 @@ is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later
 ### `.addListener(...)` {#addListener}
 
 
-Adds an event listener that will trigger a function callback when the specified event happens.
-The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
-[InputChannel](InputChannel) objects and are tied to a specific MIDI channel while input-wide events
+Adds an event listener that will trigger a function callback when the specified event is
+dispatched. The event can be **channel-specific** or **input-wide**. Usually, if you add a
+listener to an `Input` object, it is because you want to listen to an input-wide event.
+However, for convenience you can listen to channel-specific events directly on the `Input`.
+This allows you to react to a channel-specific event no matter which channel it actually comes
+in on.
+
+If you want to listen to a channel-specific event, you are usually better off adding your
+listener to an [`InputChannel`](InputChannel) object. An array of all 16
+[`InputChannel`](InputChannel) objects for that input is available in the
+[`channels`](#channels) property.
+
+Channel-specific events are tied to a
+specific MIDI channel. You can listen to channel-specific
+
+
+dispatched
+by [InputChannel](InputChannel) objects and are tied to a specific MIDI channel while input-wide events
 are dispatched by the [Input](Input) object itself and are not tied to a specific channel.
 
 When listening for an input-wide event, you must specify the event to listen for and the
