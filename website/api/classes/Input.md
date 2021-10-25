@@ -834,9 +834,9 @@ try {
 
 ## Events
 
-### `"activesensing"` {{#event-activesensing}}
+### `"activesensing"` {#event-activesensing}
 ### `"activesensing"`
-<!--### `"activesensing"` {#event-activesensing}-->
+<!--### `"activesensing"` #event-activesensing-->
 
 <a id="event:activesensing"></a>
 
@@ -858,9 +858,9 @@ Input-wide (system) event emitted when an **active sensing** message has been re
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"clock"` {{#event-clock}}
+### `"clock"` {#event-clock}
 ### `"clock"`
-<!--### `"clock"` {#event-clock}-->
+<!--### `"clock"` #event-clock-->
 
 <a id="event:clock"></a>
 
@@ -882,9 +882,9 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"closed"` {{#event-closed}}
+### `"closed"` {#event-closed}
 ### `"closed"`
-<!--### `"closed"` {#event-closed}-->
+<!--### `"closed"` #event-closed-->
 
 <a id="event:closed"></a>
 
@@ -903,9 +903,9 @@ method.
   |**`target`** |Input|The object that triggered the event|
 
 
-### `"continue"` {{#event-continue}}
+### `"continue"` {#event-continue}
 ### `"continue"`
-<!--### `"continue"` {#event-continue}-->
+<!--### `"continue"` #event-continue-->
 
 <a id="event:continue"></a>
 
@@ -927,9 +927,9 @@ Input-wide (system) event emitted when a **continue** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"disconnected"` {{#event-disconnected}}
+### `"disconnected"` {#event-disconnected}
 ### `"disconnected"`
-<!--### `"disconnected"` {#event-disconnected}-->
+<!--### `"disconnected"` #event-disconnected-->
 
 <a id="event:disconnected"></a>
 
@@ -954,9 +954,9 @@ when the MIDI device is unplugged.
   |**`target.type`** |string|`"input"`|
 
 
-### `"midimessage"` {{#event-midimessage}}
+### `"midimessage"` {#event-midimessage}
 ### `"midimessage"`
-<!--### `"midimessage"` {#event-midimessage}-->
+<!--### `"midimessage"` #event-midimessage-->
 
 <a id="event:midimessage"></a>
 
@@ -980,9 +980,9 @@ Event emitted when any MIDI message is received on an `Input`
   |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 
-### `"opened"` {{#event-opened}}
+### `"opened"` {#event-opened}
 ### `"opened"`
-<!--### `"opened"` {#event-opened}-->
+<!--### `"opened"` #event-opened-->
 
 <a id="event:opened"></a>
 
@@ -1001,9 +1001,9 @@ method.
   |**`target`** |Input|The object that triggered the event|
 
 
-### `"reset"` {{#event-reset}}
+### `"reset"` {#event-reset}
 ### `"reset"`
-<!--### `"reset"` {#event-reset}-->
+<!--### `"reset"` #event-reset-->
 
 <a id="event:reset"></a>
 
@@ -1025,9 +1025,9 @@ Input-wide (system) event emitted when a **reset** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"songposition"` {{#event-songposition}}
+### `"songposition"` {#event-songposition}
 ### `"songposition"`
-<!--### `"songposition"` {#event-songposition}-->
+<!--### `"songposition"` #event-songposition-->
 
 <a id="event:songposition"></a>
 
@@ -1049,9 +1049,9 @@ Input-wide (system) event emitted when a **song position** message has been rece
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"songselect"` {{#event-songselect}}
+### `"songselect"` {#event-songselect}
 ### `"songselect"`
-<!--### `"songselect"` {#event-songselect}-->
+<!--### `"songselect"` #event-songselect-->
 
 <a id="event:songselect"></a>
 
@@ -1074,9 +1074,9 @@ Input-wide (system) event emitted when a **song select** message has been receiv
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"start"` {{#event-start}}
+### `"start"` {#event-start}
 ### `"start"`
-<!--### `"start"` {#event-start}-->
+<!--### `"start"` #event-start-->
 
 <a id="event:start"></a>
 
@@ -1098,9 +1098,9 @@ Input-wide (system) event emitted when a **start** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"stop"` {{#event-stop}}
+### `"stop"` {#event-stop}
 ### `"stop"`
-<!--### `"stop"` {#event-stop}-->
+<!--### `"stop"` #event-stop-->
 
 <a id="event:stop"></a>
 
@@ -1122,9 +1122,9 @@ Input-wide (system) event emitted when a **stop** message has been received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"sysex"` {{#event-sysex}}
+### `"sysex"` {#event-sysex}
 ### `"sysex"`
-<!--### `"sysex"` {#event-sysex}-->
+<!--### `"sysex"` #event-sysex-->
 
 <a id="event:sysex"></a>
 
@@ -1153,9 +1153,9 @@ WebMidi.enable({sysex: true})
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array.|
 
 
-### `"timecode"` {{#event-timecode}}
+### `"timecode"` {#event-timecode}
 ### `"timecode"`
-<!--### `"timecode"` {#event-timecode}-->
+<!--### `"timecode"` #event-timecode-->
 
 <a id="event:timecode"></a>
 
@@ -1178,9 +1178,9 @@ received.
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"tunerequest"` {{#event-tunerequest}}
+### `"tunerequest"` {#event-tunerequest}
 ### `"tunerequest"`
-<!--### `"tunerequest"` {#event-tunerequest}-->
+<!--### `"tunerequest"` #event-tunerequest-->
 
 <a id="event:tunerequest"></a>
 
@@ -1202,9 +1202,9 @@ Input-wide (system) event emitted when a **tune request** message has been recei
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
-### `"unknownmidimessage"` {{#event-unknownmidimessage}}
+### `"unknownmidimessage"` {#event-unknownmidimessage}
 ### `"unknownmidimessage"`
-<!--### `"unknownmidimessage"` {#event-unknownmidimessage}-->
+<!--### `"unknownmidimessage"` #event-unknownmidimessage-->
 
 <a id="event:unknownmidimessage"></a>
 
