@@ -6477,7 +6477,9 @@ class Input extends e {
    *
    * @throws {Error} For channel-specific events, 'options.channels' must be defined.
    *
-   * @returns {Listener[]} An array of all `Listener` objects that were created.
+   * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
+   * object is returned. If the event is channel-specific, an array of all the
+   * [`Listener`](Listener) objects is returned (one for each channel).
    */
 
 
@@ -6492,21 +6494,20 @@ class Input extends e {
           channels: channels
         };
       }
-    } // If no channel defined, use all.
+    } // Check if the event is channel-specific or input-wide
 
 
-    if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-    let listeners = []; // Check if the event is channel-specific or input-wide
-
-    if (!InputChannel.EVENTS.includes(event)) {
-      listeners.push(super.addListener(event, listener, options));
-    } else {
+    if (InputChannel.EVENTS.includes(event)) {
+      // If no channel defined, use all.
+      if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+      let listeners = [];
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
         listeners.push(this.channels[ch].addListener(event, listener, options));
       });
+      return listeners;
+    } else {
+      return super.addListener(event, listener, options);
     }
-
-    return listeners;
   }
   /**
    * Adds a one-time event listener that will trigger a function callback when the specified event
