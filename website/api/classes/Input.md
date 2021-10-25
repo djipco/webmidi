@@ -204,10 +204,10 @@ dispatched. The event usually is **input-wide** but can also be **channel-specif
 
 Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
 at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
-events target a specific channel. Usually, in this case, you would add the listener at the
+events target a specific channel. Usually, in this case, you would add the listener to the
 [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
 channel-specific events directly on an `Input`. This allows you to react to a channel-specific
-event no matter which channel it actually comes in on.
+event no matter which channel it actually came through.
 
 When listening for an event, you simply need to specify the event name and the function to
 execute:
