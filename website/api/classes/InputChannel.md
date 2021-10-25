@@ -848,7 +848,7 @@ Event emitted when a **note on** MIDI message has been received.
   |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
 
 
-### `"nrpn@dataentrycoarse"` {#nrpn@dataentrycoarse}
+### `"nrpn@dataentrycoarse"` {#nrpn-dataentrycoarse}
 
 <a id="event:nrpn@dataentrycoarse"></a>
 
