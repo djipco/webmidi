@@ -11,7 +11,7 @@ Note that a single device may expose several inputs and/or outputs.
 
 **Extends**: EventEmitter
 
-**Fires**: [`event:opened`](Input#event:opened), [`event:disconnected`](Input#event:disconnected), [`event:closed`](Input#event:closed), [`event:midimessage`](Input#event:midimessage), [`event:sysex`](Input#event:sysex), [`event:timecode`](Input#event:timecode), [`event:songposition`](Input#event:songposition), [`event:songselect`](Input#event:songselect), [`event:tunerequest`](Input#event:tunerequest), [`event:clock`](Input#event:clock), [`event:start`](Input#event:start), [`event:continue`](Input#event:continue), [`event:stop`](Input#event:stop), [`event:activesensing`](Input#event:activesensing), [`event:reset`](Input#event:reset), [`event:unknownmidimessage`](Input#event:unknownmidimessage)
+**Fires**: [`opened`](#event:opened), [`disconnected`](#event:disconnected), [`closed`](#event:closed), [`midimessage`](#event:midimessage), [`sysex`](#event:sysex), [`timecode`](#event:timecode), [`songposition`](#event:songposition), [`songselect`](#event:songselect), [`tunerequest`](#event:tunerequest), [`clock`](#event:clock), [`start`](#event:start), [`continue`](#event:continue), [`stop`](#event:stop), [`activesensing`](#event:activesensing), [`reset`](#event:reset), [`unknownmidimessage`](#event:unknownmidimessage)
 
 ### `Constructor`
 
