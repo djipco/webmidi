@@ -208,6 +208,67 @@ is within between 0 and 1 even if the result is greater than 1 or smaller than 0
 
 
 
+### `.getCcNameByNumber(...)` {#getCcNameByNumber}
+
+
+Returns the name of a control change message matching the specified number. Some valid control
+change numbers do not have a specific name or purpose assigned in the MIDI
+[spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+In this case, the method returns `undefined`.
+
+
+  **Parameters**
+
+  > Signature: `getCcNameByNumber(number)`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`number`** | number<br /> ||An integer representing the control change message|
+
+  </div>
+
+
+**Returns**: `string` or `undefined`
+> The matching control change name or `undefined` if not match was
+found.
+
+
+**Attributes**: static
+
+
+
+### `.getChannelModeByNumber(...)` {#getChannelModeByNumber}
+
+**Since**: 2.0.0<br />
+
+Returns the channel mode name matching the specified number. If no match is found, the function
+returns `false`.
+
+
+  **Parameters**
+
+  > Signature: `getChannelModeByNumber(number)`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`number`** | number<br /> ||An integer representing the channel mode message.|
+
+  </div>
+
+
+**Returns**: `string` or `false`
+> The name of the matching channel mode or `false` if not match could be
+found.
+
+
+**Attributes**: static
+
+
+
 ### `.getNoteDetails(...)` {#getNoteDetails}
 
 **Since**: 3.0.0<br />

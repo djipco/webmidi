@@ -292,66 +292,6 @@ functions
   * `TypeError` : The `event` parameter must be a string.
 
 
-### `.getCcNameByNumber(...)` {#getCcNameByNumber}
-
-**Since**: 2.0.0<br />
-
-Returns the name of a control change message matching the specified number. Some valid control
-change numbers do not have a specific name or purpose assigned in the MIDI
-[spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-In this case, the method returns `false`.
-
-
-  **Parameters**
-
-  > Signature: `getCcNameByNumber(number)`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type         | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`number`** | number<br /> ||An integer representing the control change message|
-
-  </div>
-
-
-**Returns**: `string` or `undefined`
-> The matching control change name or `undefined` if not match was
-found.
-
-
-**Throws**:
-  * `RangeError` : Invalid control change number.
-
-
-### `.getChannelModeByNumber(...)` {#getChannelModeByNumber}
-
-**Since**: 2.0.0<br />
-
-Returns the channel mode name matching the specified number. If no match is found, the function
-returns `false`.
-
-
-  **Parameters**
-
-  > Signature: `getChannelModeByNumber(number)`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type         | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`number`** | number<br /> ||An integer representing the channel mode message.|
-
-  </div>
-
-
-**Returns**: `string` or `false`
-> The name of the matching channel mode or `false` if not match could be
-found.
-
-
-
-
 ### `.getListenerCount(...)` {#getListenerCount}
 
 
@@ -627,29 +567,6 @@ try {
 
 ## Events
 
-### `"nrpn-dataentrycoarse"` {#event-nrpn-dataentrycoarse}
-
-<a id="event:nrpn-dataentrycoarse"></a>
-
-
-Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn-dataentrycoarse"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |number|The non-registered parameter number (0-16383)|
-  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
 ### `"allnotesoff"` {#event-allnotesoff}
 
 <a id="event:allnotesoff"></a>
@@ -723,6 +640,7 @@ Event emitted when a **control change** MIDI message has been received.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"controlchange"`|
+  |**`subtype`** |string|The type of control change message that was received.|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -871,35 +789,12 @@ Event emitted when a **note on** MIDI message has been received.
   |**`rawValue`** |number|The attack velocity amount expressed as an integer (between 0 and 127).|
 
 
-### `"nrpn-databuttondecrement"` {#event-nrpn-databuttondecrement}
+### `"nrpn"` {#event-nrpn}
 
-<a id="event:nrpn-databuttondecrement"></a>
-
-
-Event emitted when a 'databuttondecrement' NRPN message has been received on the input.
+<a id="event:nrpn"></a>
 
 
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn-databuttondecrement"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |number|The non-registered parameter number (0-16383)|
-  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `"nrpn-databuttonincrement"` {#event-nrpn-databuttonincrement}
-
-<a id="event:nrpn-databuttonincrement"></a>
-
-
-Event emitted when a 'databuttonincrement' NRPN message has been received on the input.
+Event emitted when an NRPN message is received on the input.
 
 
 
@@ -907,30 +802,8 @@ Event emitted when a 'databuttonincrement' NRPN message has been received on the
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn-databuttonincrement"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |number|The non-registered parameter number (0-16383)|
-  |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `"nrpn-dataentryfine"` {#event-nrpn-dataentryfine}
-
-<a id="event:nrpn-dataentryfine"></a>
-
-
-Event emitted when a 'dataentryfine' NRPN message has been received on the input.
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn-dataentryfine"`|
+  |**`type`** |string|`"nrpn"`|
+  |**`subtype`** |string|The precise type of NRPN message that was received.|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`parameter`** |number|The non-registered parameter number (0-16383)|
@@ -1022,35 +895,12 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
-### `"rpn-databuttondecrement"` {#event-rpn-databuttondecrement}
+### `"rpn"` {#event-rpn}
 
-<a id="event:rpn-databuttondecrement"></a>
-
-
-Event emitted when a 'databuttondecrement' RPN message has been received on the input.
+<a id="event:rpn"></a>
 
 
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"rpn-databuttondecrement"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |string|The registered parameter's name|
-  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `"rpn-databuttonincrement"` {#event-rpn-databuttonincrement}
-
-<a id="event:rpn-databuttonincrement"></a>
-
-
-Event emitted when a 'databuttonincrement' RPN message has been received on the input.
+Event emitted when an RPN message isn received on the input.
 
 
 
@@ -1058,53 +908,8 @@ Event emitted when a 'databuttonincrement' RPN message has been received on the 
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"rpn-databuttonincrement"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |string|The registered parameter's name|
-  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `"rpn-dataentrycoarse"` {#event-rpn-dataentrycoarse}
-
-<a id="event:rpn-dataentrycoarse"></a>
-
-
-Event emitted when a 'dataentrycoarse' RPN message has been received on the input.
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"rpn-dataentrycoarse"`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`parameter`** |string|The registered parameter's name|
-  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `"rpn-dataentryfine"` {#event-rpn-dataentryfine}
-
-<a id="event:rpn-dataentryfine"></a>
-
-
-Event emitted when a 'dataentryfine' RPN message has been received on the input.
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"rpn-dataentryfine"`|
+  |**`type`** |string|`"rpn"`|
+  |**`subtype`** |string|The precise type of RPN message that was received.|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`parameter`** |string|The registered parameter's name|
