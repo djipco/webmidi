@@ -410,79 +410,30 @@ describe("Input Object", function() {
 
     });
 
-    it("should throw if event is input-specific but no ch. is defined (normal)", function () {
-
+    it("should add listener to all channels when none is specified (normal)", function () {
       // Arrange
-      let events = [
-        "noteoff",
-        "noteon",
-        "keyaftertouch",
-        "controlchange",
-
-        "nrpn:dataentrycoarse",
-        "nrpn:dataentryfine",
-        "nrpn:databuttonincrement",
-        "nrpn:databuttondecrement",
-
-        "rpn:dataentrycoarse",
-        "rpn:dataentryfine",
-        "rpn:databuttonincrement",
-        "rpn:databuttondecrement",
-
-        "programchange",
-        "channelaftertouch",
-        "pitchbend"
-      ];
 
       // Act
-      events.forEach(assert);
+      const listener = WEBMIDI_INPUT.addListener("noteon", () => {});
 
       // Assert
-      function assert(event) {
-        expect(() => {
-          WEBMIDI_INPUT.addListener(event, assert);
-        }).to.throw();
-      }
+      expect(listener.length).to.equal(16);
 
     });
 
-    it("should throw if event is input-specific but no ch. is defined (legacy)", function () {
+    it("should add listener to all channels when none is specified (legacy)", function () {
 
       // Arrange
-      let events = [
-        "noteoff",
-        "noteon",
-        "keyaftertouch",
-        "controlchange",
-
-        "nrpn:dataentrycoarse",
-        "nrpn:dataentryfine",
-        "nrpn:databuttonincrement",
-        "nrpn:databuttondecrement",
-
-        "rpn:dataentrycoarse",
-        "rpn:dataentryfine",
-        "rpn:databuttonincrement",
-        "rpn:databuttondecrement",
-
-        "programchange",
-        "channelaftertouch",
-        "pitchbend"
-      ];
 
       // Act
-      events.forEach(assert);
+      const listener = WEBMIDI_INPUT.addListener("noteon", undefined, () => {});
 
       // Assert
-      function assert(event) {
-        expect(() => {
-          WEBMIDI_INPUT.addListener(event, undefined, assert);
-        }).to.throw();
-      }
+      expect(listener.length).to.equal(16);
 
     });
 
-    it("should return array of 'Listener' (of length 1) for system messages (normal)", function() {
+    it("should return a single 'Listener' for system messages (normal)", function() {
 
       // Arrange
       let callbacks = [];
@@ -496,13 +447,13 @@ describe("Input Object", function() {
 
       // Assert
       Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
-        expect(listeners[index].length).to.equal(1);
-        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+        expect(Array.isArray(listeners[index])).to.be.false;
+        expect(listeners[index].callback === callbacks[index]).to.be.true;
       });
 
     });
 
-    it("should return array of 'Listener' (of length 1) for system messages (legacy)", function() {
+    it("should return a single 'Listener' for system messages (normal)", function() {
 
       // Arrange
       let callbacks = [];
@@ -516,8 +467,8 @@ describe("Input Object", function() {
 
       // Assert
       Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES).forEach(function(key, index) {
-        expect(listeners[index].length).to.equal(1);
-        expect(listeners[index][0].callback === callbacks[index]).to.be.true;
+        expect(Array.isArray(listeners[index])).to.be.false;
+        expect(listeners[index].callback === callbacks[index]).to.be.true;
       });
 
     });
