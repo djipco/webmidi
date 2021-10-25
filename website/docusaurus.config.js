@@ -89,7 +89,13 @@ module.exports = {
           href: "https://github.com/djipco/webmidi",
           position: "right",
           className: "header-github-link",
-          "aria-label": "GitHub repository"
+          "aria-label": "GitHub Repo"
+        },
+        {
+          href: "https://twitter.com/webmidijs",
+          position: "right",
+          className: "header-twitter-link",
+          "aria-label": "Twitter Feed"
         },
 
 
