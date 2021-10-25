@@ -4327,7 +4327,9 @@ declare class Input {
      *
      * @throws {Error} For channel-specific events, 'options.channels' must be defined.
      *
-     * @returns {Listener[]} An array of all `Listener` objects that were created.
+     * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
+     * object is returned. If the event is channel-specific, an array of all the
+     * [`Listener`](Listener) objects is returned (one for each channel).
      */
     addListener(event: string, listener: Function, options?: {
         arguments?: any[];
@@ -4336,7 +4338,7 @@ declare class Input {
         duration?: number;
         prepend?: boolean;
         remaining?: boolean;
-    }): any[];
+    }): any | any[];
     /**
      * Adds a one-time event listener that will trigger a function callback when the specified event
      * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
