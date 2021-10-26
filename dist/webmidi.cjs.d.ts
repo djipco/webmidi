@@ -3026,6 +3026,13 @@ declare class WebMidi {
      */
     get time(): number;
     /**
+     * The version of the library
+     *
+     * @readonly
+     * @type string
+     */
+    get version(): string;
+    /**
      * @private
      * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
      */
@@ -4687,15 +4694,8 @@ declare class Input {
  * @fires InputChannel#omnimode
  * @fires InputChannel#resetallcontrollers
  *
- * @fires InputChannel#event:nrpn-dataentrycoarse
- * @fires InputChannel#event:nrpn-dataentryfine
- * @fires InputChannel#event:nrpn-databuttonincrement
- * @fires InputChannel#event:nrpn-databuttondecrement
- *
- * @fires InputChannel#event:rpn-dataentrycoarse
- * @fires InputChannel#event:rpn-dataentryfine
- * @fires InputChannel#event:rpn-databuttonincrement
- * @fires InputChannel#event:rpn-databuttondecrement
+ * @fires InputChannel#event:nrpn
+ * @fires InputChannel#event:rpn
  *
  * @extends EventEmitter
  * @license Apache-2.0
