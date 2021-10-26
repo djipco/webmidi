@@ -11,8 +11,8 @@ Note that a single device may expose several inputs and/or outputs.
 **Important**: while the `Input` class does not directly fire channel-specific MIDI messages
 (such as [`"noteon"`](InputChannel#event:noteon),
 [`¨controlchange¨`](InputChannel#event:controlchange), etc.), you can still use its
-[`addListener()`](addListener) method to add listeners to multiple [`InputChannel`]() objects at
-once.
+[`addListener()`](addListener) method to add listeners to multiple [`InputChannel`](InputChannel)
+objects at once.
 
 
 **Extends**: EventEmitter
