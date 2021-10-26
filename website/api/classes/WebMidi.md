@@ -10,7 +10,8 @@ simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS)
 module) version, you get an already-instantiated object when you import the module.
 
 
-**Extends**: EventEmitter
+**Extends**: [`EventEmitter`](EventEmitter)
+<!--**Extends**: EventEmitter-->
 
 **Fires**: [`connected`](#event:connected), [`disabled`](#event:disabled), [`disconnected`](#event:disconnected), [`enabled`](#event:enabled), [`midiaccessgranted`](#event:midiaccessgranted)
 ***

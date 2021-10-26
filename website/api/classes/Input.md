@@ -15,7 +15,8 @@ Note that a single device may expose several inputs and/or outputs.
 [`InputChannel`](InputChannel) objects at once.
 
 
-**Extends**: EventEmitter
+**Extends**: [`EventEmitter`](EventEmitter)
+<!--**Extends**: EventEmitter-->
 
 **Fires**: [`opened`](#event:opened), [`disconnected`](#event:disconnected), [`closed`](#event:closed), [`midimessage`](#event:midimessage), [`sysex`](#event:sysex), [`timecode`](#event:timecode), [`songposition`](#event:songposition), [`songselect`](#event:songselect), [`tunerequest`](#event:tunerequest), [`clock`](#event:clock), [`start`](#event:start), [`continue`](#event:continue), [`stop`](#event:stop), [`activesensing`](#event:activesensing), [`reset`](#event:reset), [`unknownmidimessage`](#event:unknownmidimessage)
 

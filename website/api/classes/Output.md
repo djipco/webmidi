@@ -7,7 +7,8 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 [`WebMidi.outputs`](WebMidi#outputs) array.
 
 
-**Extends**: EventEmitter
+**Extends**: [`EventEmitter`](EventEmitter)
+<!--**Extends**: EventEmitter-->
 
 **Fires**: [`opened`](#event:opened), [`disconnected`](#event:disconnected), [`closed`](#event:closed)
 
