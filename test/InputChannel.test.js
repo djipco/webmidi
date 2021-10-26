@@ -501,11 +501,12 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch nrpndataentrycoarse", function (done) {
+  it("should dispatch nrpn dataentrycoarse", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpn:dataentrycoarse";
+    let event = "nrpn";
+    let subtype = "dataentrycoarse";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -523,6 +524,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       done();
     }
@@ -533,7 +535,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpn:dataentryfine";
+    let event = "nrpn";
+    let subtype = "dataentryfine";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -551,6 +554,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       done();
     }
@@ -561,7 +565,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpn:databuttonincrement";
+    let event = "nrpn";
+    let subtype = "databuttonincrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -579,6 +584,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       done();
     }
@@ -589,7 +595,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpn:databuttondecrement";
+    let event = "nrpn";
+    let subtype = "databuttondecrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -607,6 +614,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       done();
     }
@@ -617,7 +625,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "nrpn:databuttondecrement";
+    let event = "nrpn";
+    let subtype = "databuttondecrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -639,6 +648,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       done();
     }
@@ -649,7 +659,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpn:dataentrycoarse";
+    let event = "rpn";
+    let subtype = "dataentrycoarse";
     let status = 0xB0;      // control change
     let parameter = "pitchbendrange";
     let parameterMsb = 0;
@@ -668,6 +679,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
@@ -679,7 +691,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpn:dataentryfine";
+    let event = "rpn";
+    let subtype = "dataentryfine";
     let status = 0xB0;      // control change
     let parameter = "channelfinetuning";
     let parameterMsb = 0;
@@ -698,6 +711,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
@@ -709,7 +723,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpn:databuttonincrement";
+    let event = "rpn";
+    let subtype = "databuttonincrement";
     let status = 0xB0;      // control change
     let parameter = "tuningbank";
     let parameterMsb = 0;
@@ -728,6 +743,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
@@ -739,7 +755,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpn:databuttondecrement";
+    let event = "rpn";
+    let subtype = "databuttondecrement";
     let status = 0xB0;      // control change
     let parameter = "referencedistanceratio";
     let parameterMsb = 0x3D;
@@ -758,6 +775,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
@@ -769,7 +787,8 @@ describe("InputChannel Object", function() {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
-    let event = "rpn:databuttondecrement";
+    let event = "rpn";
+    let subtype = "databuttondecrement";
     let status = 0xB0;      // control change
     let parameter = "referencedistanceratio";
     let parameterMsb = 0x3D;
@@ -792,6 +811,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
+      expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
       expect(e.parameter).to.equal(parameter);
       done();
