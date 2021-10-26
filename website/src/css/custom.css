@@ -35,6 +35,10 @@ iframe {
   display: none;
 }
 
+a:link {
+  font-weight: bold;
+}
+
 .header-github-link {
   padding: 4px;
 }
