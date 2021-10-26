@@ -210,6 +210,15 @@ improves performance but should only be done once the project has been thoroughl
 **Type**: boolean<br />
 
 
+### `.version` {#version}
+
+
+The version of the library
+
+**Type**: string<br />
+**Attributes**: read-only<br />
+
+
 
 ***
 
