@@ -1160,6 +1160,30 @@ export class Utilities {
      * @static
      */
     static getPropertyByValue(object: object, value: any): string;
+    /**
+     * Returns the name of a control change message matching the specified number. Some valid control
+     * change numbers do not have a specific name or purpose assigned in the MIDI
+     * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+     * In this case, the method returns `undefined`.
+     *
+     * @param {number} number An integer representing the control change message
+     * @returns {string|undefined} The matching control change name or `undefined` if not match was
+     * found.
+     *
+     * @static
+     */
+    static getCcNameByNumber(number: number): string | undefined;
+    /**
+     * Returns the channel mode name matching the specified number. If no match is found, the function
+     * returns `false`.
+     *
+     * @param {number} number An integer representing the channel mode message.
+     * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+     * found.
+     *
+     * @since 2.0.0
+     */
+    static getChannelModeByNumber(number: number): string | false;
 }
 declare const wm: WebMidi;
 /**
@@ -3001,6 +3025,13 @@ declare class WebMidi {
      */
     get time(): number;
     /**
+     * The version of the library
+     *
+     * @readonly
+     * @type string
+     */
+    get version(): string;
+    /**
      * @private
      * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
      */
@@ -4205,102 +4236,115 @@ declare class Input {
     close(): Promise<Input>;
     /**
      * @private
-     * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+     * @deprecated since v3.0.0 (moved to 'Utilities' class)
      */
     private getChannelModeByNumber;
     /**
-     * Adds an event listener that will trigger a function callback when the specified event happens.
-     * The event can be **channel-bound** or **input-wide**. Channel-bound events are dispatched by
-     * {@link InputChannel} objects and are tied to a specific MIDI channel while input-wide events
-     * are dispatched by the {@link Input} object itself and are not tied to a specific channel.
+     * Adds an event listener that will trigger a function callback when the specified event is
+     * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
      *
-     * When listening for an input-wide event, you must specify the event to listen for and the
-     * callback function to trigger when the event happens:
+     * Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
+     * at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
+     * events target a specific channel. Usually, in this case, you would add the listener to the
+     * [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
+     * channel-specific events directly on an `Input`. This allows you to react to a channel-specific
+     * event no matter which channel it actually came through.
      *
+     * When listening for an event, you simply need to specify the event name and the function to
+     * execute:
+     *
+     * ```javascript
+     * const listener = WebMidi.inputs[0].addListener("midimessage", e => {
+     *   console.log(e);
+     * });
      * ```
-     * WebMidi.inputs[0].addListener("midimessage", someFunction);
+     *
+     * Calling the function with an input-wide event (such as
+     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
+     * that was created.
+     *
+     * If you call the function with a channel-specific event (such as
+     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
+     * [`Listener`](Listener) objects that were created (one for each channel):
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
      * ```
      *
-     * To listen for a channel-bound event, you must also specify the event to listen for and the
-     * function to trigger but you have to add the channels you wish to listen on in the `options`
-     * parameter:
+     * You can also specify which channels you want to add the listener to:
      *
-     * ```
-     * WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
      * ```
      *
-     * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
-     * event is triggered on MIDI channels `1`, `2` or `3`.
+     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
      *
-     * Note that, when adding events to channels, it is the {@link InputChannel} instance that
-     * actually gets a listener added and not the `{@link Input} instance.
+     * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
+     * instance that actually gets a listener added and not the [`Input`](Input) instance. You can
+     * check that by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
      *
-     * Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-     * on the {@link InputChannel} object itself.
-     *
-     * There are 6 families of events you can listen to:
+     * There are 8 families of events you can listen to:
      *
      * 1. **MIDI System Common** Events (input-wide)
      *
-     *    * [songposition]{@link Input#event:songposition}
-     *    * [songselect]{@link Input#event:songselect}
-     *    * [sysex]{@link Input#event:sysex}
-     *    * [timecode]{@link Input#event:timecode}
-     *    * [tunerequest]{@link Input#event:tunerequest}
+     *    * [`"songposition"`]{@link Input#event:songposition}
+     *    * [`"songselect"`]{@link Input#event:songselect}
+     *    * [`"sysex"`]{@link Input#event:sysex}
+     *    * [`"timecode"`]{@link Input#event:timecode}
+     *    * [`"tunerequest"`]{@link Input#event:tunerequest}
      *
      * 2. **MIDI System Real-Time** Events (input-wide)
      *
-     *    * [clock]{@link Input#event:clock}
-     *    * [start]{@link Input#event:start}
-     *    * [continue]{@link Input#event:continue}
-     *    * [stop]{@link Input#event:stop}
-     *    * [activesensing]{@link Input#event:activesensing}
-     *    * [reset]{@link Input#event:reset}
+     *    * [`"clock"`]{@link Input#event:clock}
+     *    * [`"start"`]{@link Input#event:start}
+     *    * [`"continue"`]{@link Input#event:continue}
+     *    * [`"stop"`]{@link Input#event:stop}
+     *    * [`"activesensing"`]{@link Input#event:activesensing}
+     *    * [`"reset"`]{@link Input#event:reset}
      *
      * 3. **State Change** Events (input-wide)
      *
-     *    * [opened]{@link Input#event:opened}
-     *    * [closed]{@link Input#event:closed}
-     *    * [disconnected]{@link Input#event:disconnected}
+     *    * [`"opened"`]{@link Input#event:opened}
+     *    * [`"closed"`]{@link Input#event:closed}
+     *    * [`"disconnected"`]{@link Input#event:disconnected}
      *
      * 4. **Catch-All** Events (input-wide)
      *
-     *    * [midimessage]{@link Input#event:midimessage}
-     *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
+     *    * [`"midimessage"`]{@link Input#event:midimessage}
+     *    * [`"unknownmidimessage"`]{@link Input#event:unknownmidimessage}
      *
      * 5. **Channel Voice** Events (channel-specific)
      *
-     *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
-     *    * [controlchange]{@link InputChannel#event:controlchange}
-     *    * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
-     *    * [noteoff]{@link InputChannel#event:noteoff}
-     *    * [noteon]{@link InputChannel#event:noteon}
-     *    * [nrpn]{@link InputChannel#event:nrpn}
-     *    * [pitchbend]{@link InputChannel#event:pitchbend}
-     *    * [programchange]{@link InputChannel#event:programchange}
+     *    * [`"channelaftertouch"`]{@link InputChannel#event:channelaftertouch}
+     *    * [`"controlchange"`]{@link InputChannel#event:controlchange}
+     *    * [`"keyaftertouch"`]{@link InputChannel#event:keyaftertouch}
+     *    * [`"noteoff"`]{@link InputChannel#event:noteoff}
+     *    * [`"noteon"`]{@link InputChannel#event:noteon}
+     *    * [`"pitchbend"`]{@link InputChannel#event:pitchbend}
+     *    * [`"programchange"`]{@link InputChannel#event:programchange}
      *
      * 6. **Channel Mode** Events (channel-specific)
      *
-     *    * allnotesoff
-     *    * allsoundoff
-     *    * localcontrol
-     *    * monomode
-     *    * omnimode
-     *    * resetallcontrollers
+     *    * [`"allnotesoff"`]{@link InputChannel#event:allnotesoff}
+     *    * [`"allsoundoff"`]{@link InputChannel#event:allsoundoff}
+     *    * [`"localcontrol"`]{@link InputChannel#event:localcontrol}
+     *    * [`"monomode"`]{@link InputChannel#event:monomode}
+     *    * [`"omnimode"`]{@link InputChannel#event:omnimode}
+     *    * [`"resetallcontrollers"`]{@link InputChannel#event:resetallcontrollers}
      *
      * 7. **NRPN** Events (channel-specific)
      *
-     *    * nrpndataentrycoarse
-     *    * nrpndataentryfine
-     *    * nrpndatabuttonincrement
-     *    * nrpndatabuttondecrement
+     *    * [`"nrpn:dataentrycoarse"`]{@link InputChannel#event:nrpn:dataentrycoarse}
+     *    * [`"nrpn:dataentryfine"`]{@link InputChannel#event:nrpn:dataentryfine}
+     *    * [`"nrpn:databuttonincrement"`]{@link InputChannel#event:nrpn:databuttonincrement}
+     *    * [`"nrpn:databuttondecrement"`]{@link InputChannel#event:nrpn:databuttondecrement}
      *
      * 8. **RPN** Events (channel-specific)
      *
-     *    * rpndataentrycoarse
-     *    * rpndataentryfine
-     *    * rpndatabuttonincrement
-     *    * rpndatabuttondecrement
+     *    * [`"rpn:dataentrycoarse"`]{@link InputChannel#event:rpn:dataentrycoarse}
+     *    * [`"rpn:dataentryfine"`]{@link InputChannel#event:rpn:dataentryfine}
+     *    * [`"rpn:databuttonincrement"`]{@link InputChannel#event:rpn:databuttonincrement}
+     *    * [`"rpn:databuttondecrement"`]{@link InputChannel#event:rpn:databuttondecrement}
      *
      * @param event {string} The type of the event.
      *
@@ -4314,8 +4358,9 @@ declare class Input {
      * callback function. This array is stored in the `arguments` property of the `Listener` object
      * and can be retrieved or modified as desired.
      *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
+     * listen on. If no channel is specified, all channels will be used. This parameter is ignored for
      * input-wide events.
      *
      * @param {object} [options.context=this] The value of `this` in the callback function.
@@ -4331,7 +4376,9 @@ declare class Input {
      *
      * @throws {Error} For channel-specific events, 'options.channels' must be defined.
      *
-     * @returns {Listener[]} An array of all `Listener` objects that were created.
+     * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
+     * object is returned. If the event is channel-specific, an array of all the
+     * [`Listener`](Listener) objects is returned (one for each channel).
      */
     addListener(event: string, listener: Function, options?: {
         arguments?: any[];
@@ -4340,7 +4387,7 @@ declare class Input {
         duration?: number;
         prepend?: boolean;
         remaining?: boolean;
-    }): any[];
+    }): any | any[];
     /**
      * Adds a one-time event listener that will trigger a function callback when the specified event
      * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
@@ -4475,9 +4522,9 @@ declare class Input {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to check. This parameter is ignored for
-     * input-wide events.
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of such
+     * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
+     * events.
      *
      * @returns {boolean} Boolean value indicating whether or not the channel(s) already have this
      * listener defined.
@@ -4646,15 +4693,8 @@ declare class Input {
  * @fires InputChannel#omnimode
  * @fires InputChannel#resetallcontrollers
  *
- * @fires InputChannel#nrpndataentrycoarse
- * @fires InputChannel#nrpndataentryfine
- * @fires InputChannel#nrpndatabuttonincrement
- * @fires InputChannel#nrpndatabuttondecrement
- *
- * @fires InputChannel#rpndataentrycoarse
- * @fires InputChannel#rpndataentryfine
- * @fires InputChannel#rpndatabuttonincrement
- * @fires InputChannel#rpndatabuttondecrement
+ * @fires InputChannel#event:nrpn
+ * @fires InputChannel#event:rpn
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -4745,31 +4785,15 @@ declare class InputChannel {
     private _isRpnOrNrpnController;
     _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
     /**
-     * Returns the channel mode name matching the specified number. If no match is found, the function
-     * returns `false`.
-     *
-     * @param {number} number An integer representing the channel mode message.
-     * @returns {string|false} The name of the matching channel mode or `false` if not match could be
-     * found.
-     *
-     * @since 2.0.0
+     * @deprecated since version 3.
+     * @private
      */
-    getChannelModeByNumber(number: number): string | false;
+    private getChannelModeByNumber;
     /**
-     * Returns the name of a control change message matching the specified number. Some valid control
-     * change numbers do not have a specific name or purpose assigned in the MIDI
-     * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-     * In this case, the method returns `false`.
-     *
-     * @param {number} number An integer representing the control change message
-     * @returns {string|undefined} The matching control change name or `undefined` if not match was
-     * found.
-     *
-     * @throws {RangeError} Invalid control change number.
-     *
-     * @since 2.0.0
+     * @deprecated since version 3.
+     * @private
      */
-    getCcNameByNumber(number: number): string | undefined;
+    private getCcNameByNumber;
     /**
      * Return the playing status of the specified note. The `note` parameter can be an unsigned
      * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
