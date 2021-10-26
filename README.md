@@ -257,7 +257,7 @@ Here is a link to the full **[API Reference](https://webmidijs.org/docs/)**. You
 also find  the API reference in portable format inside the `docs` folder.
 
 By the way, legacy 
-[documentation for version 1.0.0-beta.15](https://webmidijs.org/docs/v1.0.0-beta.15/index.html) will 
+[documentation for version 1.0.0-beta.15](https://webmidijs.org/docs/v1.x/index.html) will 
 also remain available online as long as necessary.
 
 ## More code examples
