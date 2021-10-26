@@ -473,4 +473,49 @@ export class Utilities {
     return Object.keys(object).find(key => object[key] === value);
   }
 
+  /**
+   * Returns the name of a control change message matching the specified number. Some valid control
+   * change numbers do not have a specific name or purpose assigned in the MIDI
+   * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+   * In this case, the method returns `undefined`.
+   *
+   * @param {number} number An integer representing the control change message
+   * @returns {string|undefined} The matching control change name or `undefined` if not match was
+   * found.
+   *
+   * @static
+   */
+  static getCcNameByNumber(number) {
+    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
+  }
+
+  /**
+   * Returns the channel mode name matching the specified number. If no match is found, the function
+   * returns `false`.
+   *
+   * @param {number} number An integer representing the channel mode message.
+   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+   * found.
+   *
+   * @since 2.0.0
+   */
+  static getChannelModeByNumber(number) {
+
+    if ( !(number >= 120 && number <= 127) ) return false;
+
+    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
+
+      if (
+        Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]
+      ) {
+        return cm;
+      }
+
+    }
+
+    return false;
+
+  }
+
 }

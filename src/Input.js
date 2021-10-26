@@ -302,12 +302,12 @@ export class Input extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+   * @deprecated since v3.0.0 (moved to 'Utilities' class)
    */
   getChannelModeByNumber() {
     if (WebMidi.validation) {
       console.warn(
-        "The 'getChannelModeByNumber()' method has been moved to the 'InputChannel' class."
+        "The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class."
       );
     }
   }
