@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.21
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on October 25th, 2021.
+ * Build generated on October 26th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,11 +17,10 @@
  * the License.
  */
 
+/* Version: 3.0.0-alpha.21 - October 26, 2021 09:39:34 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
-
-require('util');
 
 class e {
   constructor(e = !1) {
@@ -1322,15 +1321,8 @@ class Utilities {
  * @fires InputChannel#omnimode
  * @fires InputChannel#resetallcontrollers
  *
- * @fires InputChannel#event:nrpn-dataentrycoarse
- * @fires InputChannel#event:nrpn-dataentryfine
- * @fires InputChannel#event:nrpn-databuttonincrement
- * @fires InputChannel#event:nrpn-databuttondecrement
- *
- * @fires InputChannel#event:rpn-dataentrycoarse
- * @fires InputChannel#event:rpn-dataentryfine
- * @fires InputChannel#event:rpn-databuttonincrement
- * @fires InputChannel#event:rpn-databuttondecrement
+ * @fires InputChannel#event:nrpn
+ * @fires InputChannel#event:rpn
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -1897,7 +1889,15 @@ class InputChannel extends e {
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
     /**
-     * Event emitted when an NRPN message is received on the input.
+     * Event emitted when an NRPN message is received on the input. Four types of NRPN messages can
+     * be received:
+     *
+     *   * `"dataentrycoarse"`
+     *   * `"dataentryfine"`
+     *   * `"databuttonincrement"`
+     *   * `"databuttondecrement"`
+     *
+     * The parameter to which the message applies can be found in the event's `parameter` property.
      *
      * @event InputChannel#nrpn
      *
@@ -1918,7 +1918,17 @@ class InputChannel extends e {
      */
 
     /**
-     * Event emitted when an RPN message isn received on the input.
+     * Event emitted when an RPN message is received on the input. Four types of RPN messages can
+     * be received:
+     *
+     *   * `"dataentrycoarse"`
+     *   * `"dataentryfine"`
+     *   * `"databuttonincrement"`
+     *   * `"databuttondecrement"`
+     *
+     * The parameter to which the message applies can be found in the event's `parameter` property.
+     * It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
      *
      * @event InputChannel#rpn
      *
@@ -2084,9 +2094,8 @@ class InputChannel extends e {
   static get EVENTS() {
     return [// MIDI channel message events
     "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
-    "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // NRPN events
-    "nrpn-dataentrycoarse", "nrpn-dataentryfine", "nrpn-databuttonincrement", "nrpn-databuttondecrement", // RPN events
-    "rpn-dataentrycoarse", "rpn-dataentryfine", "rpn-databuttonincrement", "rpn-databuttondecrement"];
+    "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // RPN/NRPN events
+    "nrpn", "rpn"];
   }
 
 }
@@ -8210,6 +8219,17 @@ class WebMidi extends e {
 
   get time() {
     return performance.now();
+  }
+  /**
+   * The version of the library
+   *
+   * @readonly
+   * @type string
+   */
+
+
+  get version() {
+    return "{version}";
   }
   /**
    * @private
