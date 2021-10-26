@@ -213,7 +213,7 @@ improves performance but should only be done once the project has been thoroughl
 ### `.version` {#version}
 
 
-The version of the library
+The version of the library as a [semver](https://semver.org/) string.
 
 **Type**: string<br />
 **Attributes**: read-only<br />
