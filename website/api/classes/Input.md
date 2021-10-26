@@ -8,6 +8,10 @@ array.
 
 Note that a single device may expose several inputs and/or outputs.
 
+**Important**: while the `Input` class does not directly fire channel-specific MIDI messages
+([`¨noteon¨`][InputChannel#event:noteon], [`¨controlchange¨`][InputChannel#event:controlchange],
+etc.)
+
 
 **Extends**: EventEmitter
 
