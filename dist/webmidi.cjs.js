@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - October 26, 2021 09:39:34 */
+/* Version: 3.0.0-alpha.21 - October 26, 2021 09:40:47 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8229,7 +8229,7 @@ class WebMidi extends e {
 
 
   get version() {
-    return "{version}";
+    return "3.0.0-alpha.21";
   }
   /**
    * @private
