@@ -30,6 +30,7 @@ Handlebars.registerHelper({
   and: djipHelpers.and,
   or: djipHelpers.or,
   curly: djipHelpers.curly,
+  createEventAnchor: djipHelpers.createEventAnchor,
 });
 
 async function generate() {

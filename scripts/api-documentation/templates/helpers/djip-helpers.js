@@ -66,3 +66,8 @@ function methodSignature(context) {
   return ddata.methodSig.call(context);
 }
 exports.methodSignature = methodSignature;
+
+function createEventAnchor(name) {
+  return "#event-" + name.replace(":", "-");
+}
+exports.createEventAnchor = createEventAnchor;

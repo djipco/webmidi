@@ -27,5 +27,5 @@
 
 {{! Fires }}
 {{#if fires}}
-**Fires**: {{#each fires}}[`{{eventName this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/each}}
+**Fires**: {{#each fires}}[`{{eventName this}}`](#event:{{eventName this}}){{#unless @last}}, {{/unless}}{{/each}}
 {{/if}}
