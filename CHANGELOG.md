@@ -61,6 +61,8 @@ of all notes (0-127).
 - It is now possible to add a forwarder to an `Input` that will forward MIDI messages to a specified
 output. Also, the inbound messages can be filtered for forwarding by message type and channel.
 
+- Add `WebMidi.version`
+
 ### Changed
 
 - [BREAKING CHANGE] Passing `undefined` as the `channel` value to `addListener()` no longer means

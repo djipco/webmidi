@@ -1,6 +1,7 @@
 const expect = require("chai").expect;
 const {WebMidi, Utilities} = require("../dist/webmidi.cjs.js");
 const midi = require("midi");
+const semver = require("semver");
 
 // The virtual port from the 'midi' library is an "external" device so an output is seen as an input
 // by WebMidi. To avoid confusion, the naming scheme adopts WebMidi's perspective.
@@ -46,6 +47,10 @@ describe("WebMidi Object", function() {
     expect(WebMidi.inputs.length).to.equal(0);
     expect(WebMidi.outputs.length).to.equal(0);
 
+  });
+
+  it("should report valid version", function() {
+    expect(semver.valid(WebMidi.version)).to.not.be.null;
   });
 
   // THIS WORKS BY ITSELF BUT STOPS WORKING WHEN THE OTHER TESTS ARE RUN!

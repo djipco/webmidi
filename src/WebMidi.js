@@ -1009,6 +1009,16 @@ class WebMidi extends EventEmitter {
   }
 
   /**
+   * The version of the library as a [semver](https://semver.org/) string.
+   *
+   * @readonly
+   * @type string
+   */
+  get version() {
+    return "[VI]{version}[/VI]";
+  }
+
+  /**
    * @private
    * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
    */
