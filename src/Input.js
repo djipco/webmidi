@@ -13,6 +13,12 @@ import {Enumerations} from "./Enumerations.js";
  *
  * Note that a single device may expose several inputs and/or outputs.
  *
+ * **Important**: while the `Input` class does not directly fire channel-specific MIDI messages
+ * (such as [`noteon`](InputChannel#event:noteon),
+ * [`controlchange`](InputChannel#event:controlchange), etc.), you can still use its
+ * [`addListener()`](addListener) method to listen to such events on multiple
+ * [`InputChannel`](InputChannel) objects at once.
+ *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
