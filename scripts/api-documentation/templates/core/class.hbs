@@ -22,7 +22,8 @@
 
 {{! Extends }}
 {{#if augments}}
-**Extends**: {{#each augments}}{{#if (eq this "EventEmitter")}}{{this}}{{else if (eq this "Listener")}}{{this}}{{else}}[`{{this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/if}}{{/each}}
+**Extends**: {{#each augments}}[`{{this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/each}}
+<!--**Extends**: {{#each augments}}{{#if (eq this "EventEmitter")}}{{this}}{{else if (eq this "Listener")}}{{this}}{{else}}[`{{this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/if}}{{/each}}-->
 {{/if}}
 
 {{! Fires }}
