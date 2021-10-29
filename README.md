@@ -411,7 +411,7 @@ If you use this software for research or academic purposes, please cite the proj
 references (or wherever appropriate). Here's an example of how to cite it 
 ([APA Style](https://apastyle.apa.org/)):
 
->Côté, J. P. (2020). WebMidi.js v2.5.3 [Computer Software]. Retrieved from 
+>Côté, J. P. (2020). WebMidi.js v3.0.0 [Computer Software]. Retrieved from 
 https://github.com/djipco/webmidi
 
 Here are a few examples of academic papers citing WebMidi.js:
