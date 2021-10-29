@@ -216,8 +216,7 @@ topic should be made clearer, do not hesitate to
 documentation is compiled from jsdoc comments in the source code files).
 
 Here is a link to the full
-**[API Reference](https://webmidijs.org/docs/)**. You can also find the API reference inside the 
-`docs` folder.
+**[API Reference](https://webmidijs.org/docs/)**.
 
 ## More Code Examples
 
