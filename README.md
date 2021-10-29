@@ -231,15 +231,6 @@ WebMidi.enable().then(() => {
     console.log(WebMidi.outputs);
 });
 ```
-#### Retrieve ports returned by promise
-
-```javascript
-WebMidi.enable().then(ports => {
-    console.log("WebMidi.js has been enabled!");
-    console.log("Inputs: ", ports.inputs);
-    console.log("Outputs: ", ports.outputs);
-})
-```
 #### Retrieve the current time
 
 This can be useful if you want to schedule playback of a note somewhere in the future. The time is
@@ -354,16 +345,6 @@ The value is between -1 and 1 (a value of 0 means no bend).
 WebMidi.outputs[0].channels[8]
     .setPitchBend(-0.25)
     .playNote("F4");
-```
-
-#### Retrieve Input by Name, ID or Index
-
-The value is between -1 and 1 (a value of 0 means no bend).
-
-```javascript
-let output1 = WebMidi.getInputById("123456789");
-let output2 = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
-let output3 = WebMidi.inputs[0];
 ```
 
 #### Listen to event on single channel
