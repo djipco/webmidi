@@ -212,7 +212,8 @@ channel.addListener('pitchbend', e => {
 The [API for WebMidi.js](https://webmidijs.org/docs/) is fully documented and I take 
 pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
 topic should be made clearer, do not hesitate to 
-[file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
+[file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR (the API
+documentation is compiled from jsdoc comments in the source code files).
 
 Here is a link to the full
 **[API Reference](https://webmidijs.org/docs/)**. You can also find the API reference inside the 
