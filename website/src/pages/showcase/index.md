@@ -90,7 +90,7 @@ Created by: **ambewas**
 A set of React components to build things with the Web Audio and Web MIDI APIs.
 
 
-## [Sema](https://sema.codes/) <br>
+## [Sema](https://sema.codes/)
 Created by: **Francisco Bernardo, Chris Kiefer & Thor Magnusson**
 
 Sema is a playground where you can rapidly prototype live coding mini-languages for signal
