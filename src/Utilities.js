@@ -77,7 +77,7 @@ export class Utilities {
    * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
    * number (0-127).
    *
-   * @returns {{octave: number, letter: string, accidental: string}}
+   * @returns {{accidental: string, identifier: string, name: string, octave: number }}
    *
    * @throws TypeError Invalid note identifier
    *
@@ -97,10 +97,10 @@ export class Utilities {
     accidental = accidental === "" ? undefined : accidental;
 
     const fragments = {
-      name: name,
       accidental: accidental,
-      octave: octave,
-      identifier: name + (accidental || "") + octave
+      identifier: name + (accidental || "") + octave,
+      name: name,
+      octave: octave
     };
 
     return fragments;
