@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.21
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on October 26th, 2021.
+ * Build generated on November 1st, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - October 26, 2021 09:47:42 */
+/* Version: 3.0.0-alpha.21 - November 1, 2021 19:42:43 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -5992,6 +5992,12 @@ class Forwarder {
  *
  * Note that a single device may expose several inputs and/or outputs.
  *
+ * **Important**: while the `Input` class does not directly fire channel-specific MIDI messages
+ * (such as [`noteon`](InputChannel#event:noteon),
+ * [`controlchange`](InputChannel#event:controlchange), etc.), you can still use its
+ * [`addListener()`](addListener) method to listen to such events on multiple
+ * [`InputChannel`](InputChannel) objects at once.
+ *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
@@ -8221,7 +8227,7 @@ class WebMidi extends e {
     return performance.now();
   }
   /**
-   * The version of the library
+   * The version of the library as a [semver](https://semver.org/) string.
    *
    * @readonly
    * @type string
