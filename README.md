@@ -9,8 +9,8 @@
   <a href="https://github.com/djipco/webmidi/tree/develop#installation"><strong>INSTALLATION</strong></a> — 
   <a href="https://github.com/djipco/webmidi/tree/develop#quick-start"><strong>QUICK START</strong></a> — 
   <a href="https://github.com/djipco/webmidi/tree/develop#more-code-examples"><strong>EXAMPLES</strong></a> — 
-  <a href="https://webmidijs.org/docs/"><strong>API DOCUMENTATION</strong></a> — 
-  <a href="https://webmidijs.org/forum/"><strong>FORUM</strong></a> — 
+  <a href="https://webmidijs.org/docs/v3.x/"><strong>API DOCUMENTATION</strong></a> — 
+  <a href="https://github.com/djipco/webmidi/discussions"><strong>DISCUSSIONS</strong></a> — 
   <a href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter"><strong>NEWSLETTER</strong></a>
 </p>
 
@@ -27,7 +27,7 @@ to inbound MIDI messages by adding listeners for events such as `"noteon"`, `"pi
 WebMidi.js is a passion project but it still takes quite a bit of time to develop and maintain. 
 I would like to sincerely thank 👏 these sponsors for their support: 
 
-[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman")
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
 
 If you would like to support the project, you can press the 
 [Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
@@ -212,11 +212,11 @@ channel.addListener('pitchbend', e => {
 The [API for WebMidi.js](https://webmidijs.org/docs/) is fully documented and I take 
 pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
 topic should be made clearer, do not hesitate to 
-[file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR. 
+[file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR (the API
+documentation is compiled from jsdoc comments in the source code files).
 
 Here is a link to the full
-**[API Reference](https://webmidijs.org/docs/)**. You can also find the API reference inside the 
-`docs` folder.
+**[API Reference](https://webmidijs.org/docs/)**.
 
 ## More Code Examples
 
@@ -230,15 +230,6 @@ WebMidi.enable().then(() => {
     console.log(WebMidi.inputs);
     console.log(WebMidi.outputs);
 });
-```
-#### Retrieve ports returned by promise
-
-```javascript
-WebMidi.enable().then(ports => {
-    console.log("WebMidi.js has been enabled!");
-    console.log("Inputs: ", ports.inputs);
-    console.log("Outputs: ", ports.outputs);
-})
 ```
 #### Retrieve the current time
 
@@ -356,16 +347,6 @@ WebMidi.outputs[0].channels[8]
     .playNote("F4");
 ```
 
-#### Retrieve Input by Name, ID or Index
-
-The value is between -1 and 1 (a value of 0 means no bend).
-
-```javascript
-let output1 = WebMidi.getInputById("123456789");
-let output2 = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
-let output3 = WebMidi.inputs[0];
-```
-
 #### Listen to event on single channel
 
 ```javascript
@@ -430,7 +411,7 @@ If you use this software for research or academic purposes, please cite the proj
 references (or wherever appropriate). Here's an example of how to cite it 
 ([APA Style](https://apastyle.apa.org/)):
 
->Côté, J. P. (2020). WebMidi.js v2.5.3 [Computer Software]. Retrieved from 
+>Côté, J. P. (2020). WebMidi.js v3.0.0 [Computer Software]. Retrieved from 
 https://github.com/djipco/webmidi
 
 Here are a few examples of academic papers citing WebMidi.js:
