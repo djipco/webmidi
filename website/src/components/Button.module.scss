@@ -1,0 +1,70 @@
+$ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+.button {
+  background-color: var(--color-accent);
+  width: fit-content;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+
+  a {
+    display: block;
+    padding: var(--spacing-sm) var(--spacing-lg);
+    font-weight: bold;
+    font-family: var(--font-secondary);
+    font-size: 1.56rem;
+    color: var(--color-text-primary);
+    text-decoration: none;
+
+    position: relative;
+    z-index: 2;
+  }
+  .buttonBg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  &.button-bg-full {
+    .buttonBg {
+      background-color: var(--color-accent-lighter);
+
+      z-index: 1;
+      top: 0;
+      left: -100%;
+      transition: all 0.3s $ease-in-out-circ;
+    }
+    &:hover {
+      .buttonBg {
+        left: 0;
+        transition: all 0.3s $ease-in-out-circ;
+      }
+    }
+  }
+  &.button-bg-empty {
+    background-color: rgba(0, 0, 0, 0%);
+    border: solid 4px var(--color-accent);
+    a {
+      color: var(--color-accent);
+      transition: all 0.3s $ease-in-out-circ;
+    }
+    .buttonBg {
+      background-color: var(--color-accent-lighter);
+
+      z-index: 1;
+      top: 0;
+      left: -100%;
+      transition: all 0.3s $ease-in-out-circ;
+    }
+    &:hover {
+      a {
+        color: var(--color-white);
+        transition: all 0.3s $ease-in-out-circ;
+      }
+      .buttonBg {
+        left: 0;
+        transition: all 0.3s $ease-in-out-circ;
+      }
+    }
+  }
+}
+
+
