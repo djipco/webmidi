@@ -15,7 +15,57 @@
   --ifm-code-font-size: 95%;
   //--ifm-link-color: var(--ifm-color-primary-darkest);
   //--ifm-background-color: #eee;
+
+  // Base color
+  --color-white: #ffffff;
+  --color-black: #1c1e21;
+
+  // Project Color
+  --color-text-primary: var(--color-black);
+  --color-text-secondary: var(--color-white);
+  --color-text-tertiary: #999;
+
+  --color-bg-primary: #ffffff;
+  --color-bg-primary-darker: #efefef;
+  --color-bg-secondary: #eeeae0;
+  --color-bg-tertiary: #f7f7f7;
+
+  --color-accent: #ffd000;
+  --color-accent-lighter: #ffe571;
+  --color-accent-darker: #e0ba0f;
+
+  // Dimensions
+  --spacing-xs: 15px;
+  --spacing-sm: 20px;
+  --spacing-md: 30px;
+  --spacing-lg: 50px;
+  --spacing-xl: 100px;
+  --spacing-xxl: 175px;
+  --spacing-xxxl: 250px;
+
+  --font-primary: "Lato", sans-serif;
+  --font-secondary: "Exo", sans-serif;
+
+  --font-size-content-desktop: 1.125rem;
+  --font-size-content-mobile: 1rem;
+
+  --font-size-button: 1.25rem;
+
+  /// Grosseur des textes
+  --font-size-h1-desktop: 5rem;
+  --font-size-h1-mobile: 2.5rem;
+  --font-size-h2-desktop: 2.5rem;
+  --font-size-h2-mobile: 2rem;
+  --font-size-h3-desktop: 1.5rem;
+  --font-size-h3-mobile: 1.125rem;
+
+
 }
+$breakpoint-xs: 375px;
+$breakpoint-sm: 768px;
+$breakpoint-md: 1024px;
+$breakpoint-lg: 1440px;
+$breakpoint-xl: 1920px;
 
 .docusaurus-highlight-code-line {
   background-color: rgba(0, 0, 0, 0.1);
@@ -77,3 +127,41 @@ html[data-theme=dark] .header-github-link:before {
 div[role=banner] {
   background-color: var(--ifm-color-primary);
 }
+
+
+/* ==========================================================================
+   HEADINGS / ELEMENT
+   ========================================================================== */
+
+h1 {
+  font-family: var(--font-secondary);
+  font-weight: 900;
+  font-style: italic;
+  font-size: var(--font-size-h1-desktop);
+
+  @media screen and (min-width: $breakpoint-md) {
+    font-size: var(--font-size-h1-desktop);
+  }
+}
+
+h2 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: var(--font-size-h2-mobile);
+
+  @media screen and (min-width: $breakpoint-md) {
+    font-size: var(--font-size-h2-desktop);
+  }
+}
+
+h3 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: var(--font-size-h3-mobile);
+
+  @media screen and (min-width: $breakpoint-md) {
+    font-size: var(--font-size-h3-desktop);
+  }
+}
+
+

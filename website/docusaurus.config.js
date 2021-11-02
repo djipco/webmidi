@@ -180,7 +180,10 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: [
+            require.resolve("./src/css/custom.scss"),
+            require.resolve("./src/css/index.scss"),
+          ],
         },
         docs: {
           path: "docs",
@@ -204,6 +207,12 @@ module.exports = {
         routeBasePath: "api",
         sidebarPath: require.resolve("./sidebars.js"),
       },
+    ],
+    [
+      "docusaurus-plugin-sass",
+      {
+
+      }
     ],
   ],
 

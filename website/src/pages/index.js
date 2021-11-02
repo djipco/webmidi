@@ -1,11 +1,22 @@
 import React from "react";
-import clsx from "clsx";
+//import clsx from "clsx";
 import Layout from "@theme/Layout";
-import Link from "@docusaurus/Link";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import styles from "./index.module.css";
-import HomepageFeatures from "../components/HomepageFeatures";
+//import styles from "./index.module.scss";
+//import HomepageFeatures from "../components/HomepageFeatures";
+import Button from "../components/Button";
 
+
+function Column({children, type,}) {
+  return (
+    <div className={type} >
+      {children}
+    </div>
+
+  );
+}
+
+/*
 function HomepageHeader() {
   const {siteConfig} = useDocusaurusContext();
   return (
@@ -13,17 +24,101 @@ function HomepageHeader() {
       <div className="container">
         <h1 className="hero__title">{siteConfig.title}</h1>
         <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <div className={styles.buttons}>
-          <Link
-            className="button button--secondary button--lg"
-            to="/docs/">
-            Get started - 5 minutes! ⏱️
-          </Link>
-        </div>
+        <Column>
+          <div className={styles.buttons}>
+            <Button
+              type="button-bg-full"
+              href="#"
+              target="_self"
+            >Explorer
+            </Button>
+            <Button
+              type="button-bg-empty"
+              href="#"
+              target="_self"
+            >Explorer
+            </Button>
+          </div>
+        </Column>
       </div>
+
+
     </header>
   );
 }
+*/
+
+function HomepageHero() {
+  const {siteConfig} = useDocusaurusContext();
+  return (
+    <section className="hero">
+      <div className="container">
+        <Column>
+
+          <div className="texts">
+            <h1>{siteConfig.title}</h1>
+            <span>{siteConfig.tagline}</span>
+          </div>
+          <div className="cta">
+            <Button
+              componentClass={"akdonaww"}
+              type="button-bg-full"
+              href="#"
+              target="_self"
+            >Get startted - 5 minutes!
+            </Button>
+            <Button
+              componentClass={"akdonaww"}
+              type="button-bg-empty"
+              href="#"
+              target="_self"
+            >DOCS
+            </Button>
+          </div>
+
+        </Column>
+      </div>
+    </section>
+  );
+}
+
+function News({children,}) {
+  return (
+    <section className={"news"}>
+      <div className="container">
+        <p>
+          {children}
+        </p>
+      </div>
+    </section>
+  );
+}
+
+function Presentation({children,}) {
+  return (
+    <section className={"presentation"}>
+      <div className="container">
+        <h2>Whats is Webmidi.js</h2>
+        <Column
+          type="col-2"
+        >
+          <p>
+            The <span className="bold">Web MIDI API</span> is a really exciting
+            addition to the web platform that allows web developers to
+            interact with <span className="bold">MIDI</span> musical instruments
+            and devices.
+          </p>
+
+          <div className="media"></div>
+        </Column>
+      </div>
+    </section>
+  );
+}
+
+
+
+
 
 export default function Home() {
   const {siteConfig} = useDocusaurusContext();
@@ -31,9 +126,11 @@ export default function Home() {
     <Layout
       title={`${siteConfig.title}`}
       description="A JavaScript library to kickstart your MIDI projects on the web and in Node.js.">
-      <HomepageHeader />
+      <HomepageHero />
       <main>
-        <HomepageFeatures />
+        {/* eslint-disable-next-line max-len */}
+        <News>Version 3.0 is coming soon . Subscribe to our newsletter to know when it will be available</News>
+        <Presentation />
       </main>
     </Layout>
   );
