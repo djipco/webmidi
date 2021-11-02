@@ -5,16 +5,9 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 //import styles from "./index.module.scss";
 //import HomepageFeatures from "../components/HomepageFeatures";
 import Button from "../components/Button";
+import Column from "../components/Column";
 
 
-function Column({children, type,}) {
-  return (
-    <div className={type} >
-      {children}
-    </div>
-
-  );
-}
 
 /*
 function HomepageHeader() {
