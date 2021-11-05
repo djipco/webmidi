@@ -938,4 +938,30 @@ It is one of the ones defined in
   |**`rawValue`** |number|The value as received (0-127)|
 
 
+### `"rpn:dataentrycoarse"` {#event-rpn-dataentrycoarse}
+
+<a id="event:rpn:dataentrycoarse"></a>
+
+
+Event emitted when an **RPN data entry coarse** message is received on the input. The
+specific parameter to which the message applies can be found in the event's `parameter`
+property. It is one of the ones defined in
+[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`rpn:dataentrycoarse`|
+  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`parameter`** |string|The registered parameter's name|
+  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
+
 
