@@ -18,7 +18,7 @@ Note that a single device may expose several inputs and/or outputs.
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`opened`](#event:opened), [`disconnected`](#event:disconnected), [`closed`](#event:closed), [`midimessage`](#event:midimessage), [`sysex`](#event:sysex), [`timecode`](#event:timecode), [`songposition`](#event:songposition), [`songselect`](#event:songselect), [`tunerequest`](#event:tunerequest), [`clock`](#event:clock), [`start`](#event:start), [`continue`](#event:continue), [`stop`](#event:stop), [`activesensing`](#event:activesensing), [`reset`](#event:reset), [`unknownmidimessage`](#event:unknownmidimessage)
+**Fires**: [`activesensing`](#event:activesensing), [`clock`](#event:clock), [`closed`](#event:closed), [`continue`](#event:continue), [`disconnected`](#event:disconnected), [`midimessage`](#event:midimessage), [`opened`](#event:opened), [`reset`](#event:reset), [`songposition`](#event:songposition), [`songselect`](#event:songselect), [`start`](#event:start), [`stop`](#event:stop), [`sysex`](#event:sysex), [`timecode`](#event:timecode), [`tunerequest`](#event:tunerequest), [`unknownmidimessage`](#event:unknownmidimessage)
 
 ### `Constructor`
 

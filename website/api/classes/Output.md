@@ -10,7 +10,7 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`opened`](#event:opened), [`disconnected`](#event:disconnected), [`closed`](#event:closed)
+**Fires**: [`closed`](#event:closed), [`disconnected`](#event:disconnected), [`opened`](#event:opened)
 
 ### `Constructor`
 

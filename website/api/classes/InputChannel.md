@@ -12,7 +12,7 @@ property.
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`midimessage`](#event:midimessage), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`keyaftertouch`](#event:keyaftertouch), [`controlchange`](#event:controlchange), [`programchange`](#event:programchange), [`channelaftertouch`](#event:channelaftertouch), [`pitchbend`](#event:pitchbend), [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`localcontrol`](#event:localcontrol), [`monomode`](#event:monomode), [`omnimode`](#event:omnimode), [`resetallcontrollers`](#event:resetallcontrollers), [`nrpn`](#event:nrpn), [`rpn`](#event:rpn), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse)
+**Fires**: [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`channelaftertouch`](#event:channelaftertouch), [`controlchange`](#event:controlchange), [`keyaftertouch`](#event:keyaftertouch), [`localcontrol`](#event:localcontrol), [`midimessage`](#event:midimessage), [`monomode`](#event:monomode), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`nrpn`](#event:nrpn), [`omnimode`](#event:omnimode), [`pitchbend`](#event:pitchbend), [`programchange`](#event:programchange), [`resetallcontrollers`](#event:resetallcontrollers), [`rpn`](#event:rpn), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse)
 
 ### `Constructor`
 
