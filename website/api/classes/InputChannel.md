@@ -12,7 +12,7 @@ property.
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`midimessage`](#event:midimessage), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`keyaftertouch`](#event:keyaftertouch), [`controlchange`](#event:controlchange), [`programchange`](#event:programchange), [`channelaftertouch`](#event:channelaftertouch), [`pitchbend`](#event:pitchbend), [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`localcontrol`](#event:localcontrol), [`monomode`](#event:monomode), [`omnimode`](#event:omnimode), [`resetallcontrollers`](#event:resetallcontrollers), [`nrpn`](#event:nrpn), [`rpn`](#event:rpn)
+**Fires**: [`midimessage`](#event:midimessage), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`keyaftertouch`](#event:keyaftertouch), [`controlchange`](#event:controlchange), [`programchange`](#event:programchange), [`channelaftertouch`](#event:channelaftertouch), [`pitchbend`](#event:pitchbend), [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`localcontrol`](#event:localcontrol), [`monomode`](#event:monomode), [`omnimode`](#event:omnimode), [`resetallcontrollers`](#event:resetallcontrollers), [`nrpn`](#event:nrpn), [`rpn`](#event:rpn), [`dataentrycoarse`](#event:dataentrycoarse)
 
 ### `Constructor`
 
