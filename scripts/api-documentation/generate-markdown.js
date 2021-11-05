@@ -87,6 +87,11 @@ function parseFile(data) {
     }
   });
 
+  // Sort 'fires' if present
+  data.forEach(element => {
+    if (Array.isArray(element.fires)) element.fires.sort();
+  });
+
   // Class
   filtered = data.filter(el => el.kind === "class")[0];
   hbs = fs.readFileSync(path.resolve(TEMPLATE_DIR, `core/class.hbs`), {encoding: "utf-8"});
