@@ -12,7 +12,7 @@ property.
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`midimessage`](#event:midimessage), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`keyaftertouch`](#event:keyaftertouch), [`controlchange`](#event:controlchange), [`programchange`](#event:programchange), [`channelaftertouch`](#event:channelaftertouch), [`pitchbend`](#event:pitchbend), [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`localcontrol`](#event:localcontrol), [`monomode`](#event:monomode), [`omnimode`](#event:omnimode), [`resetallcontrollers`](#event:resetallcontrollers), [`nrpn`](#event:nrpn), [`rpn`](#event:rpn), [`dataentrycoarse`](#event:dataentrycoarse)
+**Fires**: [`midimessage`](#event:midimessage), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`keyaftertouch`](#event:keyaftertouch), [`controlchange`](#event:controlchange), [`programchange`](#event:programchange), [`channelaftertouch`](#event:channelaftertouch), [`pitchbend`](#event:pitchbend), [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`localcontrol`](#event:localcontrol), [`monomode`](#event:monomode), [`omnimode`](#event:omnimode), [`resetallcontrollers`](#event:resetallcontrollers), [`nrpn`](#event:nrpn), [`rpn`](#event:rpn), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse)
 
 ### `Constructor`
 
@@ -938,9 +938,9 @@ It is one of the ones defined in
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `"rpn:dataentrycoarse"` {#event-rpn-dataentrycoarse}
+### `"rpn-dataentrycoarse"` {#event-rpn-dataentrycoarse}
 
-<a id="event:rpn:dataentrycoarse"></a>
+<a id="event:rpn-dataentrycoarse"></a>
 
 
 Event emitted when an **RPN data entry coarse** message is received on the input. The
@@ -954,7 +954,7 @@ property. It is one of the ones defined in
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`rpn:dataentrycoarse`|
+  |**`type`** |string|`rpn-dataentrycoarse`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`parameter`** |string|The registered parameter's name|
