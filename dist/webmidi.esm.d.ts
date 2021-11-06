@@ -827,7 +827,7 @@ export class Note {
      * @since 3.0.0
      */
     get identifier(): string;
-    _name: any;
+    _name: string;
     _accidental: string;
     _octave: number;
     set name(arg: string);
@@ -934,7 +934,7 @@ export class Utilities {
      * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
      * number (0-127).
      *
-     * @returns {{octave: number, letter: string, accidental: string}}
+     * @returns {{accidental: string, identifier: string, name: string, octave: number }}
      *
      * @throws TypeError Invalid note identifier
      *
@@ -942,9 +942,10 @@ export class Utilities {
      * @static
      */
     static getNoteDetails(value: string | number): {
-        octave: number;
-        letter: string;
         accidental: string;
+        identifier: string;
+        name: string;
+        octave: number;
     };
     /**
      * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
@@ -3025,7 +3026,7 @@ declare class WebMidi {
      */
     get time(): number;
     /**
-     * The version of the library
+     * The version of the library as a [semver](https://semver.org/) string.
      *
      * @readonly
      * @type string
@@ -4154,6 +4155,12 @@ declare class OutputChannel {
  *
  * Note that a single device may expose several inputs and/or outputs.
  *
+ * **Important**: while the `Input` class does not directly fire channel-specific MIDI messages
+ * (such as [`noteon`](InputChannel#event:noteon),
+ * [`controlchange`](InputChannel#event:controlchange), etc.), you can still use its
+ * [`addListener()`](addListener) method to listen to such events on multiple
+ * [`InputChannel`](InputChannel) objects at once.
+ *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
@@ -4694,7 +4701,15 @@ declare class Input {
  * @fires InputChannel#resetallcontrollers
  *
  * @fires InputChannel#event:nrpn
+ * @fires InputChannel#nrpn-dataentrycoarse
+ * @fires InputChannel#nrpn-dataentryfine
+ * @fires InputChannel#nrpn-databuttonincrement
+ * @fires InputChannel#nrpn-databuttondecrement
  * @fires InputChannel#event:rpn
+ * @fires InputChannel#rpn-dataentrycoarse
+ * @fires InputChannel#rpn-dataentryfine
+ * @fires InputChannel#rpn-databuttonincrement
+ * @fires InputChannel#rpn-databuttondecrement
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -4771,7 +4786,7 @@ declare class InputChannel {
     private _parseEventForStandardMessages;
     _parseChannelModeMessage(e: any): void;
     /**
-     * Parses inbound events to identify NRPN sequences.
+     * Parses inbound events to identify RPN/NRPN sequences.
      * @param e Event
      * @private
      */
