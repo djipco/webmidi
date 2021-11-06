@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - November 5, 2021 20:18:42 */
+/* Version: 3.0.0-alpha.21 - November 5, 2021 20:37:21 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2091,10 +2091,10 @@ class InputChannel extends e {
      * Event emitted when any NRPN message is received on the input. There are four types of NRPN
      * messages:
      *
-     *   * `"dataentrycoarse"`
-     *   * `"dataentryfine"`
-     *   * `"databuttonincrement"`
-     *   * `"databuttondecrement"`
+     *   * data entry coarse
+     *   * data entry fine
+     *   * data button increment
+     *   * data button decrement
      *
      * The parameter to which the message applies can be found in the event's `parameter` property.
      *
@@ -2120,10 +2120,10 @@ class InputChannel extends e {
      * Event emitted when any RPN message is received on the input. There are four types of RPN
      * messages:
      *
-     *   * `"dataentrycoarse"`
-     *   * `"dataentryfine"`
-     *   * `"databuttonincrement"`
-     *   * `"databuttondecrement"`
+     *   * data entry coarse
+     *   * data entry fine
+     *   * data button increment
+     *   * data button decrement
      *
      * The parameter to which the message applies can be found in the event's `parameter` property.
      * It is one of the ones defined in
