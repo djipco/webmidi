@@ -798,10 +798,10 @@ Event emitted when a **note on** MIDI message has been received.
 Event emitted when any NRPN message is received on the input. There are four types of NRPN
 messages:
 
-  * `"dataentrycoarse"`
-  * `"dataentryfine"`
-  * `"databuttonincrement"`
-  * `"databuttondecrement"`
+  * data entry coarse
+  * data entry fine
+  * data button increment
+  * data button decrement
 
 The parameter to which the message applies can be found in the event's `parameter` property.
 
@@ -1016,10 +1016,10 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 Event emitted when any RPN message is received on the input. There are four types of RPN
 messages:
 
-  * `"dataentrycoarse"`
-  * `"dataentryfine"`
-  * `"databuttonincrement"`
-  * `"databuttondecrement"`
+  * data entry coarse
+  * data entry fine
+  * data button increment
+  * data button decrement
 
 The parameter to which the message applies can be found in the event's `parameter` property.
 It is one of the ones defined in

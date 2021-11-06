@@ -253,64 +253,66 @@ There are 8 families of events you can listen to:
 
 1. **MIDI System Common** Events (input-wide)
 
-   * [`"songposition"`](Input#event:songposition)
-   * [`"songselect"`](Input#event:songselect)
-   * [`"sysex"`](Input#event:sysex)
-   * [`"timecode"`](Input#event:timecode)
-   * [`"tunerequest"`](Input#event:tunerequest)
+   * [`songposition`](Input#event:songposition)
+   * [`songselect`](Input#event:songselect)
+   * [`sysex`](Input#event:sysex)
+   * [`timecode`](Input#event:timecode)
+   * [`tunerequest`](Input#event:tunerequest)
 
 2. **MIDI System Real-Time** Events (input-wide)
 
-   * [`"clock"`](Input#event:clock)
-   * [`"start"`](Input#event:start)
-   * [`"continue"`](Input#event:continue)
-   * [`"stop"`](Input#event:stop)
-   * [`"activesensing"`](Input#event:activesensing)
-   * [`"reset"`](Input#event:reset)
+   * [`clock`](Input#event:clock)
+   * [`start`](Input#event:start)
+   * [`continue`](Input#event:continue)
+   * [`stop`](Input#event:stop)
+   * [`activesensing`](Input#event:activesensing)
+   * [`reset`](Input#event:reset)
 
 3. **State Change** Events (input-wide)
 
-   * [`"opened"`](Input#event:opened)
-   * [`"closed"`](Input#event:closed)
-   * [`"disconnected"`](Input#event:disconnected)
+   * [`opened`](Input#event:opened)
+   * [`closed`](Input#event:closed)
+   * [`disconnected`](Input#event:disconnected)
 
 4. **Catch-All** Events (input-wide)
 
-   * [`"midimessage"`](Input#event:midimessage)
-   * [`"unknownmidimessage"`](Input#event:unknownmidimessage)
+   * [`midimessage`](Input#event:midimessage)
+   * [`unknownmidimessage`](Input#event:unknownmidimessage)
 
 5. **Channel Voice** Events (channel-specific)
 
-   * [`"channelaftertouch"`](InputChannel#event:channelaftertouch)
-   * [`"controlchange"`](InputChannel#event:controlchange)
-   * [`"keyaftertouch"`](InputChannel#event:keyaftertouch)
-   * [`"noteoff"`](InputChannel#event:noteoff)
-   * [`"noteon"`](InputChannel#event:noteon)
-   * [`"pitchbend"`](InputChannel#event:pitchbend)
-   * [`"programchange"`](InputChannel#event:programchange)
+   * [`channelaftertouch`](InputChannel#event:channelaftertouch)
+   * [`controlchange`](InputChannel#event:controlchange)
+   * [`keyaftertouch`](InputChannel#event:keyaftertouch)
+   * [`noteoff`](InputChannel#event:noteoff)
+   * [`noteon`](InputChannel#event:noteon)
+   * [`pitchbend`](InputChannel#event:pitchbend)
+   * [`programchange`](InputChannel#event:programchange)
 
 6. **Channel Mode** Events (channel-specific)
 
-   * [`"allnotesoff"`](InputChannel#event:allnotesoff)
-   * [`"allsoundoff"`](InputChannel#event:allsoundoff)
-   * [`"localcontrol"`](InputChannel#event:localcontrol)
-   * [`"monomode"`](InputChannel#event:monomode)
-   * [`"omnimode"`](InputChannel#event:omnimode)
-   * [`"resetallcontrollers"`](InputChannel#event:resetallcontrollers)
+   * [`allnotesoff`](InputChannel#event:allnotesoff)
+   * [`allsoundoff`](InputChannel#event:allsoundoff)
+   * [`localcontrol`](InputChannel#event:localcontrol)
+   * [`monomode`](InputChannel#event:monomode)
+   * [`omnimode`](InputChannel#event:omnimode)
+   * [`resetallcontrollers`](InputChannel#event:resetallcontrollers)
 
 7. **NRPN** Events (channel-specific)
 
-   * [`"nrpn:dataentrycoarse"`](InputChannel#event:nrpn:dataentrycoarse)
-   * [`"nrpn:dataentryfine"`](InputChannel#event:nrpn:dataentryfine)
-   * [`"nrpn:databuttonincrement"`](InputChannel#event:nrpn:databuttonincrement)
-   * [`"nrpn:databuttondecrement"`](InputChannel#event:nrpn:databuttondecrement)
+   * [`nrpn`](InputChannel#event:nrpn)
+   * [`nrpn-dataentrycoarse`](InputChannel#event:nrpn-dataentrycoarse)
+   * [`nrpn-dataentryfine`](InputChannel#event:nrpn-dataentryfine)
+   * [`nrpn-databuttonincrement`](InputChannel#event:nrpn-databuttonincrement)
+   * [`nrpn-databuttondecrement`](InputChannel#event:nrpn-databuttondecrement)
 
 8. **RPN** Events (channel-specific)
 
-   * [`"rpn:dataentrycoarse"`](InputChannel#event:rpn:dataentrycoarse)
-   * [`"rpn:dataentryfine"`](InputChannel#event:rpn:dataentryfine)
-   * [`"rpn:databuttonincrement"`](InputChannel#event:rpn:databuttonincrement)
-   * [`"rpn:databuttondecrement"`](InputChannel#event:rpn:databuttondecrement)
+   * [`rpn`](InputChannel#event:rpn)
+   * [`rpn-dataentrycoarse`](InputChannel#event:rpn-dataentrycoarse)
+   * [`rpn-dataentryfine`](InputChannel#event:rpn-dataentryfine)
+   * [`rpn-databuttonincrement`](InputChannel#event:rpn-databuttonincrement)
+   * [`rpn-databuttondecrement`](InputChannel#event:rpn-databuttondecrement)
 
 
   **Parameters**
