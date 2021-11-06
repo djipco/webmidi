@@ -46,29 +46,35 @@ function HomepageHero() {
   return (
     <section className="hero">
       <div className="container">
-        <Column>
+        <Column
+          type="col-2"
+        >
 
           <div className="texts">
             <h1>{siteConfig.title}</h1>
             <span>{siteConfig.tagline}</span>
+            <div className="cta">
+              <Button
+                componentClass={"akdonaww"}
+                type="button-bg-full"
+                href="#"
+                target="_self"
+              >Get startted - 5 minutes!
+              </Button>
+              <Button
+                componentClass={"akdonaww"}
+                type="button-bg-empty"
+                href="#"
+                target="_self"
+              >DOCS
+              </Button>
+            </div>
           </div>
-          <div className="cta">
-            <Button
-              componentClass={"akdonaww"}
-              type="button-bg-full"
-              href="#"
-              target="_self"
-            >Get startted - 5 minutes!
-            </Button>
-            <Button
-              componentClass={"akdonaww"}
-              type="button-bg-empty"
-              href="#"
-              target="_self"
-            >DOCS
-            </Button>
-          </div>
-
+          <img
+            className="img"
+            src="../../static/img/front-page/animation-placeholder.jpg"
+            alt="placeholer-animaion"
+          />
         </Column>
       </div>
     </section>

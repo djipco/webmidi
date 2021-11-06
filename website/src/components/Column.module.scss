@@ -3,4 +3,10 @@
   grid-template-columns: 48% 48%;
   justify-content: space-between;
   align-items: center;
+
+  @media screen and(max-width: 1000px){
+    display: grid;
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
 }

@@ -3,6 +3,9 @@
 // Global custom stylesheet for Docusaurus. The 'classic' template bundles Infima. Infima is a CSS
 // framework designed for content-centric websites.
 
+// Import
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,400;0,900;1,900&family=Lato:wght@400;700&display=swap");
+
 // Default Infima variables ////////////////////////////////////////////////////////////////////////
 :root {
   --ifm-color-primary: #f9d137;
@@ -58,6 +61,10 @@
   --font-size-h2-mobile: 2rem;
   --font-size-h3-desktop: 1.5rem;
   --font-size-h3-mobile: 1.125rem;
+
+  @media screen and(max-width: 500px){
+    --font-size-h1-desktop: 3.5rem;
+  }
 
 
 }

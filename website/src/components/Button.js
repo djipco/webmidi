@@ -23,7 +23,7 @@ export default function Button(props) {
     <div
       className={`
         ${component}
-        ${styles.button}
+        ${styles.Button}
         ${type}_src-components-${component}-module
         ${componentClass}
       `}
