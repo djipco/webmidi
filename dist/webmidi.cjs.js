@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - November 5, 2021 20:37:21 */
+/* Version: 3.0.0-alpha.21 - November 5, 2021 20:53:21 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1597,7 +1597,12 @@ class InputChannel extends e {
       };
       event.subtype = event.controller.name || "controller" + data1;
       event.value = Utilities.from7bitToFloat(data2);
-      event.rawValue = data2; // Trigger channel mode message events (if appropriate)
+      event.rawValue = data2; // Emit specific controlchange-xxx event
+
+      const specificEvent = Object.assign({}, event);
+      specificEvent.type = `${event.type}-${event.subtype}`;
+      delete specificEvent.subtype;
+      this.emit(specificEvent.type, specificEvent); // Trigger channel mode message events (if appropriate)
 
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
 
@@ -6515,64 +6520,66 @@ class Input extends e {
    *
    * 1. **MIDI System Common** Events (input-wide)
    *
-   *    * [`"songposition"`]{@link Input#event:songposition}
-   *    * [`"songselect"`]{@link Input#event:songselect}
-   *    * [`"sysex"`]{@link Input#event:sysex}
-   *    * [`"timecode"`]{@link Input#event:timecode}
-   *    * [`"tunerequest"`]{@link Input#event:tunerequest}
+   *    * [`songposition`]{@link Input#event:songposition}
+   *    * [`songselect`]{@link Input#event:songselect}
+   *    * [`sysex`]{@link Input#event:sysex}
+   *    * [`timecode`]{@link Input#event:timecode}
+   *    * [`tunerequest`]{@link Input#event:tunerequest}
    *
    * 2. **MIDI System Real-Time** Events (input-wide)
    *
-   *    * [`"clock"`]{@link Input#event:clock}
-   *    * [`"start"`]{@link Input#event:start}
-   *    * [`"continue"`]{@link Input#event:continue}
-   *    * [`"stop"`]{@link Input#event:stop}
-   *    * [`"activesensing"`]{@link Input#event:activesensing}
-   *    * [`"reset"`]{@link Input#event:reset}
+   *    * [`clock`]{@link Input#event:clock}
+   *    * [`start`]{@link Input#event:start}
+   *    * [`continue`]{@link Input#event:continue}
+   *    * [`stop`]{@link Input#event:stop}
+   *    * [`activesensing`]{@link Input#event:activesensing}
+   *    * [`reset`]{@link Input#event:reset}
    *
    * 3. **State Change** Events (input-wide)
    *
-   *    * [`"opened"`]{@link Input#event:opened}
-   *    * [`"closed"`]{@link Input#event:closed}
-   *    * [`"disconnected"`]{@link Input#event:disconnected}
+   *    * [`opened`]{@link Input#event:opened}
+   *    * [`closed`]{@link Input#event:closed}
+   *    * [`disconnected`]{@link Input#event:disconnected}
    *
    * 4. **Catch-All** Events (input-wide)
    *
-   *    * [`"midimessage"`]{@link Input#event:midimessage}
-   *    * [`"unknownmidimessage"`]{@link Input#event:unknownmidimessage}
+   *    * [`midimessage`]{@link Input#event:midimessage}
+   *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
    *
    * 5. **Channel Voice** Events (channel-specific)
    *
-   *    * [`"channelaftertouch"`]{@link InputChannel#event:channelaftertouch}
-   *    * [`"controlchange"`]{@link InputChannel#event:controlchange}
-   *    * [`"keyaftertouch"`]{@link InputChannel#event:keyaftertouch}
-   *    * [`"noteoff"`]{@link InputChannel#event:noteoff}
-   *    * [`"noteon"`]{@link InputChannel#event:noteon}
-   *    * [`"pitchbend"`]{@link InputChannel#event:pitchbend}
-   *    * [`"programchange"`]{@link InputChannel#event:programchange}
+   *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
+   *    * [`controlchange`]{@link InputChannel#event:controlchange}
+   *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
+   *    * [`noteoff`]{@link InputChannel#event:noteoff}
+   *    * [`noteon`]{@link InputChannel#event:noteon}
+   *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
+   *    * [`programchange`]{@link InputChannel#event:programchange}
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [`"allnotesoff"`]{@link InputChannel#event:allnotesoff}
-   *    * [`"allsoundoff"`]{@link InputChannel#event:allsoundoff}
-   *    * [`"localcontrol"`]{@link InputChannel#event:localcontrol}
-   *    * [`"monomode"`]{@link InputChannel#event:monomode}
-   *    * [`"omnimode"`]{@link InputChannel#event:omnimode}
-   *    * [`"resetallcontrollers"`]{@link InputChannel#event:resetallcontrollers}
+   *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
+   *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
+   *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
+   *    * [`monomode`]{@link InputChannel#event:monomode}
+   *    * [`omnimode`]{@link InputChannel#event:omnimode}
+   *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
    *
    * 7. **NRPN** Events (channel-specific)
    *
-   *    * [`"nrpn:dataentrycoarse"`]{@link InputChannel#event:nrpn:dataentrycoarse}
-   *    * [`"nrpn:dataentryfine"`]{@link InputChannel#event:nrpn:dataentryfine}
-   *    * [`"nrpn:databuttonincrement"`]{@link InputChannel#event:nrpn:databuttonincrement}
-   *    * [`"nrpn:databuttondecrement"`]{@link InputChannel#event:nrpn:databuttondecrement}
+   *    * [`nrpn`]{@link InputChannel#event:nrpn}
+   *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
+   *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
+   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
+   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
-   *    * [`"rpn:dataentrycoarse"`]{@link InputChannel#event:rpn:dataentrycoarse}
-   *    * [`"rpn:dataentryfine"`]{@link InputChannel#event:rpn:dataentryfine}
-   *    * [`"rpn:databuttonincrement"`]{@link InputChannel#event:rpn:databuttonincrement}
-   *    * [`"rpn:databuttondecrement"`]{@link InputChannel#event:rpn:databuttondecrement}
+   *    * [`rpn`]{@link InputChannel#event:rpn}
+   *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
+   *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
+   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
+   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
    *
    * @param event {string} The type of the event.
    *
