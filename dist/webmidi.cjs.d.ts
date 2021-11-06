@@ -4331,6 +4331,9 @@ declare class Input {
      *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
      *    * [`programchange`]{@link InputChannel#event:programchange}
      *
+     *    Note: you can listen for a specific control change message by using an event name like this:
+     *    `controlchange-23`, `controlchange-99`, `controlchange-122`, etc.
+     *
      * 6. **Channel Mode** Events (channel-specific)
      *
      *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
@@ -4691,10 +4694,12 @@ declare class Input {
  * @fires InputChannel#noteoff
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
- * @fires InputChannel#controlchange
  * @fires InputChannel#programchange
+ * @fires InputChannel#event:controlchange-xxx
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
+ * @fires InputChannel#controlchange
+ *
  *
  * @fires InputChannel#allnotesoff
  * @fires InputChannel#allsoundoff
