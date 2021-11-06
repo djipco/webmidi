@@ -652,9 +652,9 @@ Event emitted when a **control change** MIDI message has been received.
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
 
-### `"controlchange"` {#event-controlchange}
+### `"controlchange-xxx"` {#event-controlchange-xxx}
 
-<a id="event:controlchange"></a>
+<a id="event:controlchange-xxx"></a>
 
 
 Event emitted when a **control change** MIDI message has been received and that message is
