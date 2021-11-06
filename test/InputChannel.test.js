@@ -501,7 +501,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch nrpn dataentrycoarse", function (done) {
+  it("should dispatch general and specific events for nrpn-dataentrycoarse", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -512,7 +512,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 34;
     let value = 56;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
@@ -522,7 +523,11 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -531,7 +536,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch nrpndataentryfine", function (done) {
+  it("should dispatch nrpn-dataentryfine", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -542,7 +547,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 34;
     let value = 56;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
@@ -552,7 +558,11 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -561,7 +571,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch nrpndatabuttonincrement", function (done) {
+  it("should dispatch nrpn-databuttonincrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -572,7 +582,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 34;
     let value = 56;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
@@ -582,7 +593,11 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -591,7 +606,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch nrpndatabuttondecrement", function (done) {
+  it("should dispatch nrpn-databuttondecrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -602,7 +617,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 34;
     let value = 56;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
@@ -612,7 +628,11 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -632,7 +652,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 34;
     let value = 56;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
@@ -646,7 +667,11 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -655,7 +680,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch rpndataentrycoarse", function (done) {
+  it("should dispatch rpn-dataentrycoarse", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -667,7 +692,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 0;
     let value = 123;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
@@ -677,7 +703,12 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -687,7 +718,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch rpndataentryfine", function (done) {
+  it("should dispatch rpn-dataentryfine", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -699,7 +730,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 1;
     let value = 123;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
@@ -709,7 +741,12 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -719,7 +756,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch rpndatabuttonincrement", function (done) {
+  it("should dispatch rpn-databuttonincrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -731,7 +768,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 4;
     let value = 123;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
@@ -741,7 +779,12 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
@@ -751,7 +794,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch rpndatabuttondecrement", function (done) {
+  it("should dispatch rpn-databuttondecrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -763,7 +806,8 @@ describe("InputChannel Object", function() {
     let parameterLsb = 0x06;
     let value = 123;
 
-    channel.addListener(event, assert);
+    channel.addListener(`${event}-${subtype}`, assert1);
+    channel.addListener(event, assert2);
 
     // Act
     VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
@@ -773,7 +817,12 @@ describe("InputChannel Object", function() {
     VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
 
     // Assert
-    function assert(e) {
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+    }
+    function assert2(e) {
       expect(e.type).to.equal(event);
       expect(e.subtype).to.equal(subtype);
       expect(e.rawValue).to.equal(value);
