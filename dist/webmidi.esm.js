@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.21
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on October 26th, 2021.
+ * Build generated on November 5th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - October 26, 2021 09:47:51 */
+/* Version: 3.0.0-alpha.21 - November 5, 2021 20:37:34 */
 class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListener(n,r,i={}){if("string"==typeof n&&n.length<1||n instanceof String&&n.length<1||"string"!=typeof n&&!(n instanceof String)&&n!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if("function"!=typeof r)throw new TypeError("The callback must be a function.");const s=new t(n,this,r,i);return this.eventMap[n]||(this.eventMap[n]=[]),i.prepend?this.eventMap[n].unshift(s):this.eventMap[n].push(s),s}addOneTimeListener(e,t,n={}){n.remaining=1,this.addListener(e,t,n);}static get ANY_EVENT(){return Symbol.for("Any event")}hasListener(n,r){if(void 0===n)return !!(this.eventMap[e.ANY_EVENT]&&this.eventMap[e.ANY_EVENT].length>0)||Object.entries(this.eventMap).some(([,e])=>e.length>0);if(this.eventMap[n]&&this.eventMap[n].length>0){if(r instanceof t){return this.eventMap[n].filter(e=>e===r).length>0}if("function"==typeof r){return this.eventMap[n].filter(e=>e.callback===r).length>0}return null==r}return !1}get eventNames(){return Object.keys(this.eventMap)}getListeners(e){return this.eventMap[e]||[]}suspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!0;});}unsuspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!1;});}getListenerCount(e){return this.getListeners(e).length}emit(t,...n){if("string"!=typeof t&&!(t instanceof String))throw new TypeError("The 'event' parameter must be a string.");if(this.eventsSuspended)return;let r=[],i=this.eventMap[e.ANY_EVENT]||[];return this.eventMap[t]&&(i=i.concat(this.eventMap[t])),i.forEach(e=>{if(e.suspended)return;let t=[...n];Array.isArray(e.arguments)&&(t=t.concat(e.arguments)),e.remaining>0&&(r.push(e.callback.apply(e.context,t)),e.count++),--e.remaining<1&&e.remove();}),r}removeListener(e,t,n={}){if(void 0===e)return void(this.eventMap={});if(!this.eventMap[e])return;let r=this.eventMap[e].filter(e=>t&&e.callback!==t||n.remaining&&n.remaining!==e.remaining||n.context&&n.context!==e.context);r.length?this.eventMap[e]=r:delete this.eventMap[e];}async waitFor(e,t={}){return t.duration=parseInt(t.duration),(isNaN(t.duration)||t.duration<=0)&&(t.duration=1/0),new Promise((n,r)=>{let i,s=this.addListener(e,()=>{clearTimeout(i),n();},{remaining:1});t.duration!==1/0&&(i=setTimeout(()=>{s.remove(),r("The duration expired before the event was emitted.");},t.duration));})}get eventCount(){return Object.keys(this.eventMap).length}}class t{constructor(t,n,r,i={}){if("string"!=typeof t&&!(t instanceof String)&&t!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if(!n)throw new ReferenceError("The 'target' parameter is mandatory.");if("function"!=typeof r)throw new TypeError("The 'callback' must be a function.");void 0===i.arguments||Array.isArray(i.arguments)||(i.arguments=[i.arguments]),(i=Object.assign({context:n,remaining:1/0,arguments:void 0,duration:1/0},i)).duration!==1/0&&setTimeout(()=>this.remove(),i.duration),this.event=t,this.target=n,this.callback=r,this.context=i.context,this.remaining=parseInt(i.remaining)>=1?parseInt(i.remaining):1/0,this.count=0,this.arguments=i.arguments,this.suspended=!1;}remove(){this.target.removeListener(this.event,this.callback,{context:this.context,remaining:this.remaining});}}
 
 /**
@@ -734,7 +734,7 @@ class Utilities {
    * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
    * number (0-127).
    *
-   * @returns {{octave: number, letter: string, accidental: string}}
+   * @returns {{accidental: string, identifier: string, name: string, octave: number }}
    *
    * @throws TypeError Invalid note identifier
    *
@@ -754,10 +754,10 @@ class Utilities {
     accidental = accidental === "" ? undefined : accidental;
 
     const fragments = {
-      name: name,
       accidental: accidental,
-      octave: octave,
-      identifier: name + (accidental || "") + octave
+      identifier: name + (accidental || "") + octave,
+      name: name,
+      octave: octave
     };
 
     return fragments;
@@ -1205,7 +1205,15 @@ class Utilities {
  * @fires InputChannel#resetallcontrollers
  *
  * @fires InputChannel#event:nrpn
+ * @fires InputChannel#nrpn-dataentrycoarse
+ * @fires InputChannel#nrpn-dataentryfine
+ * @fires InputChannel#nrpn-databuttonincrement
+ * @fires InputChannel#nrpn-databuttondecrement
  * @fires InputChannel#event:rpn
+ * @fires InputChannel#rpn-dataentrycoarse
+ * @fires InputChannel#rpn-dataentryfine
+ * @fires InputChannel#rpn-databuttonincrement
+ * @fires InputChannel#rpn-databuttondecrement
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -1734,7 +1742,7 @@ class InputChannel extends e {
   }
 
   /**
-   * Parses inbound events to identify NRPN sequences.
+   * Parses inbound events to identify RPN/NRPN sequences.
    * @param e Event
    * @private
    */
@@ -1845,14 +1853,216 @@ class InputChannel extends e {
 
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
 
+    type = type === "nrpn" ? "nrpn" : "rpn";
+
     /**
-     * Event emitted when an NRPN message is received on the input. Four types of NRPN messages can
-     * be received:
+     * Event emitted when an **RPN data entry coarse** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
      *
-     *   * `"dataentrycoarse"`
-     *   * `"dataentryfine"`
-     *   * `"databuttonincrement"`
-     *   * `"databuttondecrement"`
+     * @event InputChannel#rpn-dataentrycoarse
+     *
+     * @type {object}
+     *
+     * @property {string} type `rpn-dataentrycoarse`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    /**
+     * Event emitted when an **RPN data entry fine** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+     *
+     * @event InputChannel#rpn-dataentryfine
+     *
+     * @type {object}
+     *
+     * @property {string} type `rpn-dataentryfine`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    /**
+     * Event emitted when an **RPN data button increment** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+     *
+     * @event InputChannel#rpn-databuttonincrement
+     *
+     * @type {object}
+     *
+     * @property {string} type `rpn-databuttonincrement`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    /**
+     * Event emitted when an **RPN data button decrement** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+     *
+     * @event InputChannel#rpn-databuttondecrement
+     *
+     * @type {object}
+     *
+     * @property {string} type `rpn-databuttondecrement`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    /**
+     * Event emitted when an **NRPN data entry coarse** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+     *
+     * @event InputChannel#nrpn-dataentrycoarse
+     *
+     * @type {object}
+     *
+     * @property {string} type `nrpn-dataentrycoarse`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    /**
+     * Event emitted when an **NRPN data entry fine** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+     *
+     * @event InputChannel#nrpn-dataentryfine
+     *
+     * @type {object}
+     *
+     * @property {string} type `nrpn-dataentryfine`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    /**
+     * Event emitted when an **NRPN data button increment** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+     *
+     * @event InputChannel#nrpn-databuttonincrement
+     *
+     * @type {object}
+     *
+     * @property {string} type `nrpn-databuttonincrement`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    /**
+     * Event emitted when an **NRPN data button decrement** message is received on the input. The
+     * specific parameter to which the message applies can be found in the event's `parameter`
+     * property. It is one of the ones defined in
+     * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+     *
+     * @event InputChannel#nrpn-databuttondecrement
+     *
+     * @type {object}
+     *
+     * @property {string} type `nrpn-databuttondecrement`
+     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+     * milliseconds since the navigation start of the document).
+     * @property {string} parameter The registered parameter's name
+     * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+     * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+     * @property {number} value The received value as a normalized number between 0 and 1.
+     * @property {number} rawValue The value as received (0-127)
+     */
+
+    const event = {
+      target: e.target,
+      timestamp: e.timestamp,
+      parameterMsb: paramMsb,
+      parameterLsb: paramLsb,
+      value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
+      rawValue: e.message.dataBytes[1],
+    };
+
+    // Identify the parameter (by name for RPN and by number for NRPN)
+    if (type === "rpn") {
+
+      event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
+        return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &&
+          Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
+      });
+
+    } else {
+      event.parameter = (paramMsb << 7) + paramLsb;
+    }
+
+    // Type and subtype
+    const subtype = Utilities.getPropertyByValue(
+      Enumerations.MIDI_CONTROL_CHANGE_MESSAGES,
+      e.message.dataBytes[0]
+    );
+
+    // Emit specific event
+    event.type = `${type}-${subtype}`;
+    this.emit(event.type, event);
+
+
+    /**
+     * Event emitted when any NRPN message is received on the input. There are four types of NRPN
+     * messages:
+     *
+     *   * data entry coarse
+     *   * data entry fine
+     *   * data button increment
+     *   * data button decrement
      *
      * The parameter to which the message applies can be found in the event's `parameter` property.
      *
@@ -1875,13 +2085,13 @@ class InputChannel extends e {
      */
 
     /**
-     * Event emitted when an RPN message is received on the input. Four types of RPN messages can
-     * be received:
+     * Event emitted when any RPN message is received on the input. There are four types of RPN
+     * messages:
      *
-     *   * `"dataentrycoarse"`
-     *   * `"dataentryfine"`
-     *   * `"databuttonincrement"`
-     *   * `"databuttondecrement"`
+     *   * data entry coarse
+     *   * data entry fine
+     *   * data button increment
+     *   * data button decrement
      *
      * The parameter to which the message applies can be found in the event's `parameter` property.
      * It is one of the ones defined in
@@ -1903,34 +2113,9 @@ class InputChannel extends e {
      * @property {number} rawValue The value as received (0-127)
      */
 
-    const event = {
-      target: e.target,
-      timestamp: e.timestamp,
-      parameterMsb: paramMsb,
-      parameterLsb: paramLsb,
-      value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
-      rawValue: e.message.dataBytes[1],
-      type: type === "rpn" ? "rpn" : "nrpn"
-    };
-
-    // Retrieve controller type and append to event type
-    event.subtype = Utilities.getPropertyByValue(
-      Enumerations.MIDI_CONTROL_CHANGE_MESSAGES,
-      e.message.dataBytes[0]
-    );
-
-    // Identify the parameter (by name for RPN and by number for NRPN)
-    if (type === "rpn") {
-
-      event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
-        return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb &&
-          Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
-      });
-
-    } else {
-      event.parameter = (paramMsb << 7) + paramLsb;
-    }
-
+    // Emit general event
+    event.type = type;
+    event.subtype = subtype;
     this.emit(event.type, event);
 
   }
@@ -6326,6 +6511,12 @@ class Forwarder {
  *
  * Note that a single device may expose several inputs and/or outputs.
  *
+ * **Important**: while the `Input` class does not directly fire channel-specific MIDI messages
+ * (such as [`noteon`](InputChannel#event:noteon),
+ * [`controlchange`](InputChannel#event:controlchange), etc.), you can still use its
+ * [`addListener()`](addListener) method to listen to such events on multiple
+ * [`InputChannel`](InputChannel) objects at once.
+ *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
@@ -8621,7 +8812,7 @@ class WebMidi extends e {
   }
 
   /**
-   * The version of the library
+   * The version of the library as a [semver](https://semver.org/) string.
    *
    * @readonly
    * @type string
