@@ -1,0 +1,11 @@
+.InformationBar{
+    background-color: var(--color-black);
+    padding: var(--spacing-xl) 0;
+    color: var(--color-white);
+  text-align: center;
+    p {
+      font-size: 1.87rem;
+      line-height: 120%;
+      margin:0;
+    }
+}

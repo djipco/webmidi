@@ -6,6 +6,7 @@ import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 //import HomepageFeatures from "../components/HomepageFeatures";
 import Button from "../components/Button";
 import Column from "../components/Column";
+import InformationBar from "../components/InformationBar";
 
 
 
@@ -81,18 +82,6 @@ function HomepageHero() {
   );
 }
 
-function News({children,}) {
-  return (
-    <section className={"news"}>
-      <div className="container">
-        <p>
-          {children}
-        </p>
-      </div>
-    </section>
-  );
-}
-
 function Presentation({children,}) {
   return (
     <section className={"presentation"}>
@@ -128,7 +117,9 @@ export default function Home() {
       <HomepageHero />
       <main>
         {/* eslint-disable-next-line max-len */}
-        <News>Version 3.0 is coming soon . Subscribe to our newsletter to know when it will be available</News>
+        <InformationBar>
+          Version 3.0 is coming soon. Subscribe to our newsletter to know when it will be available
+        </InformationBar>
         <Presentation />
       </main>
     </Layout>
