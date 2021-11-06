@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - November 5, 2021 20:53:21 */
+/* Version: 3.0.0-alpha.21 - November 5, 2021 21:18:54 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1600,7 +1600,7 @@ class InputChannel extends e {
       event.rawValue = data2; // Emit specific controlchange-xxx event
 
       const specificEvent = Object.assign({}, event);
-      specificEvent.type = `${event.type}-${event.subtype}`;
+      specificEvent.type = `${event.type}-${data1}`;
       delete specificEvent.subtype;
       this.emit(specificEvent.type, specificEvent); // Trigger channel mode message events (if appropriate)
 
