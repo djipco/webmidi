@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - November 5, 2021 21:18:54 */
+/* Version: 3.0.0-alpha.21 - November 5, 2021 21:39:06 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1309,10 +1309,12 @@ class Utilities {
  * @fires InputChannel#noteoff
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
- * @fires InputChannel#controlchange
  * @fires InputChannel#programchange
+ * @fires InputChannel#event:controlchange-xxx
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
+ * @fires InputChannel#controlchange
+ *
  *
  * @fires InputChannel#allnotesoff
  * @fires InputChannel#allsoundoff
@@ -1597,7 +1599,31 @@ class InputChannel extends e {
       };
       event.subtype = event.controller.name || "controller" + data1;
       event.value = Utilities.from7bitToFloat(data2);
-      event.rawValue = data2; // Emit specific controlchange-xxx event
+      event.rawValue = data2;
+      /**
+       * Event emitted when a **control change** MIDI message has been received and that message is
+       * targeting the controller numbered "xxx". Of course, "xxx" should be replaced by a valid
+       * controller number (0-127).
+       *
+       * @event InputChannel#controlchange-xxx
+       *
+       * @type {object}
+       * @property {string} type `controlchange-xxx`
+       * @property {string} subtype The type of control change message that was received.
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       *
+       * @property {object} controller
+       * @property {object} controller.number The number of the controller.
+       * @property {object} controller.name The usual name or function of the controller.
+       * @property {number} value The value expressed as a float between 0 and 1.
+       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+       */
 
       const specificEvent = Object.assign({}, event);
       specificEvent.type = `${event.type}-${data1}`;
@@ -6555,6 +6581,9 @@ class Input extends e {
    *    * [`noteon`]{@link InputChannel#event:noteon}
    *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
    *    * [`programchange`]{@link InputChannel#event:programchange}
+   *
+   *    Note: you can listen for a specific control change message by using an event name like this:
+   *    `controlchange-23`, `controlchange-99`, `controlchange-122`, etc.
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
