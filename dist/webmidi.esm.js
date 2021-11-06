@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.21 - November 5, 2021 20:37:34 */
+/* Version: 3.0.0-alpha.21 - November 5, 2021 21:39:20 */
 class e{constructor(e=!1){this.eventMap={},this.eventsSuspended=1==e;}addListener(n,r,i={}){if("string"==typeof n&&n.length<1||n instanceof String&&n.length<1||"string"!=typeof n&&!(n instanceof String)&&n!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if("function"!=typeof r)throw new TypeError("The callback must be a function.");const s=new t(n,this,r,i);return this.eventMap[n]||(this.eventMap[n]=[]),i.prepend?this.eventMap[n].unshift(s):this.eventMap[n].push(s),s}addOneTimeListener(e,t,n={}){n.remaining=1,this.addListener(e,t,n);}static get ANY_EVENT(){return Symbol.for("Any event")}hasListener(n,r){if(void 0===n)return !!(this.eventMap[e.ANY_EVENT]&&this.eventMap[e.ANY_EVENT].length>0)||Object.entries(this.eventMap).some(([,e])=>e.length>0);if(this.eventMap[n]&&this.eventMap[n].length>0){if(r instanceof t){return this.eventMap[n].filter(e=>e===r).length>0}if("function"==typeof r){return this.eventMap[n].filter(e=>e.callback===r).length>0}return null==r}return !1}get eventNames(){return Object.keys(this.eventMap)}getListeners(e){return this.eventMap[e]||[]}suspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!0;});}unsuspendEvent(e){this.getListeners(e).forEach(e=>{e.suspended=!1;});}getListenerCount(e){return this.getListeners(e).length}emit(t,...n){if("string"!=typeof t&&!(t instanceof String))throw new TypeError("The 'event' parameter must be a string.");if(this.eventsSuspended)return;let r=[],i=this.eventMap[e.ANY_EVENT]||[];return this.eventMap[t]&&(i=i.concat(this.eventMap[t])),i.forEach(e=>{if(e.suspended)return;let t=[...n];Array.isArray(e.arguments)&&(t=t.concat(e.arguments)),e.remaining>0&&(r.push(e.callback.apply(e.context,t)),e.count++),--e.remaining<1&&e.remove();}),r}removeListener(e,t,n={}){if(void 0===e)return void(this.eventMap={});if(!this.eventMap[e])return;let r=this.eventMap[e].filter(e=>t&&e.callback!==t||n.remaining&&n.remaining!==e.remaining||n.context&&n.context!==e.context);r.length?this.eventMap[e]=r:delete this.eventMap[e];}async waitFor(e,t={}){return t.duration=parseInt(t.duration),(isNaN(t.duration)||t.duration<=0)&&(t.duration=1/0),new Promise((n,r)=>{let i,s=this.addListener(e,()=>{clearTimeout(i),n();},{remaining:1});t.duration!==1/0&&(i=setTimeout(()=>{s.remove(),r("The duration expired before the event was emitted.");},t.duration));})}get eventCount(){return Object.keys(this.eventMap).length}}class t{constructor(t,n,r,i={}){if("string"!=typeof t&&!(t instanceof String)&&t!==e.ANY_EVENT)throw new TypeError("The 'event' parameter must be a string or EventEmitter.ANY_EVENT.");if(!n)throw new ReferenceError("The 'target' parameter is mandatory.");if("function"!=typeof r)throw new TypeError("The 'callback' must be a function.");void 0===i.arguments||Array.isArray(i.arguments)||(i.arguments=[i.arguments]),(i=Object.assign({context:n,remaining:1/0,arguments:void 0,duration:1/0},i)).duration!==1/0&&setTimeout(()=>this.remove(),i.duration),this.event=t,this.target=n,this.callback=r,this.context=i.context,this.remaining=parseInt(i.remaining)>=1?parseInt(i.remaining):1/0,this.count=0,this.arguments=i.arguments,this.suspended=!1;}remove(){this.target.removeListener(this.event,this.callback,{context:this.context,remaining:this.remaining});}}
 
 /**
@@ -1192,10 +1192,12 @@ class Utilities {
  * @fires InputChannel#noteoff
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
- * @fires InputChannel#controlchange
  * @fires InputChannel#programchange
+ * @fires InputChannel#event:controlchange-xxx
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
+ * @fires InputChannel#controlchange
+ *
  *
  * @fires InputChannel#allnotesoff
  * @fires InputChannel#allsoundoff
@@ -1514,9 +1516,37 @@ class InputChannel extends e {
       };
 
       event.subtype = event.controller.name || "controller" + data1;
-
       event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
+
+      /**
+       * Event emitted when a **control change** MIDI message has been received and that message is
+       * targeting the controller numbered "xxx". Of course, "xxx" should be replaced by a valid
+       * controller number (0-127).
+       *
+       * @event InputChannel#controlchange-xxx
+       *
+       * @type {object}
+       * @property {string} type `controlchange-xxx`
+       * @property {string} subtype The type of control change message that was received.
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       *
+       * @property {object} controller
+       * @property {object} controller.number The number of the controller.
+       * @property {object} controller.name The usual name or function of the controller.
+       * @property {number} value The value expressed as a float between 0 and 1.
+       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+       */
+      const specificEvent = Object.assign({}, event);
+      specificEvent.type = `${event.type}-${data1}`;
+      delete specificEvent.subtype;
+      this.emit(specificEvent.type, specificEvent);
 
       // Trigger channel mode message events (if appropriate)
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event);
@@ -6862,64 +6892,69 @@ class Input extends e {
    *
    * 1. **MIDI System Common** Events (input-wide)
    *
-   *    * [`"songposition"`]{@link Input#event:songposition}
-   *    * [`"songselect"`]{@link Input#event:songselect}
-   *    * [`"sysex"`]{@link Input#event:sysex}
-   *    * [`"timecode"`]{@link Input#event:timecode}
-   *    * [`"tunerequest"`]{@link Input#event:tunerequest}
+   *    * [`songposition`]{@link Input#event:songposition}
+   *    * [`songselect`]{@link Input#event:songselect}
+   *    * [`sysex`]{@link Input#event:sysex}
+   *    * [`timecode`]{@link Input#event:timecode}
+   *    * [`tunerequest`]{@link Input#event:tunerequest}
    *
    * 2. **MIDI System Real-Time** Events (input-wide)
    *
-   *    * [`"clock"`]{@link Input#event:clock}
-   *    * [`"start"`]{@link Input#event:start}
-   *    * [`"continue"`]{@link Input#event:continue}
-   *    * [`"stop"`]{@link Input#event:stop}
-   *    * [`"activesensing"`]{@link Input#event:activesensing}
-   *    * [`"reset"`]{@link Input#event:reset}
+   *    * [`clock`]{@link Input#event:clock}
+   *    * [`start`]{@link Input#event:start}
+   *    * [`continue`]{@link Input#event:continue}
+   *    * [`stop`]{@link Input#event:stop}
+   *    * [`activesensing`]{@link Input#event:activesensing}
+   *    * [`reset`]{@link Input#event:reset}
    *
    * 3. **State Change** Events (input-wide)
    *
-   *    * [`"opened"`]{@link Input#event:opened}
-   *    * [`"closed"`]{@link Input#event:closed}
-   *    * [`"disconnected"`]{@link Input#event:disconnected}
+   *    * [`opened`]{@link Input#event:opened}
+   *    * [`closed`]{@link Input#event:closed}
+   *    * [`disconnected`]{@link Input#event:disconnected}
    *
    * 4. **Catch-All** Events (input-wide)
    *
-   *    * [`"midimessage"`]{@link Input#event:midimessage}
-   *    * [`"unknownmidimessage"`]{@link Input#event:unknownmidimessage}
+   *    * [`midimessage`]{@link Input#event:midimessage}
+   *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
    *
    * 5. **Channel Voice** Events (channel-specific)
    *
-   *    * [`"channelaftertouch"`]{@link InputChannel#event:channelaftertouch}
-   *    * [`"controlchange"`]{@link InputChannel#event:controlchange}
-   *    * [`"keyaftertouch"`]{@link InputChannel#event:keyaftertouch}
-   *    * [`"noteoff"`]{@link InputChannel#event:noteoff}
-   *    * [`"noteon"`]{@link InputChannel#event:noteon}
-   *    * [`"pitchbend"`]{@link InputChannel#event:pitchbend}
-   *    * [`"programchange"`]{@link InputChannel#event:programchange}
+   *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
+   *    * [`controlchange`]{@link InputChannel#event:controlchange}
+   *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
+   *    * [`noteoff`]{@link InputChannel#event:noteoff}
+   *    * [`noteon`]{@link InputChannel#event:noteon}
+   *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
+   *    * [`programchange`]{@link InputChannel#event:programchange}
+   *
+   *    Note: you can listen for a specific control change message by using an event name like this:
+   *    `controlchange-23`, `controlchange-99`, `controlchange-122`, etc.
    *
    * 6. **Channel Mode** Events (channel-specific)
    *
-   *    * [`"allnotesoff"`]{@link InputChannel#event:allnotesoff}
-   *    * [`"allsoundoff"`]{@link InputChannel#event:allsoundoff}
-   *    * [`"localcontrol"`]{@link InputChannel#event:localcontrol}
-   *    * [`"monomode"`]{@link InputChannel#event:monomode}
-   *    * [`"omnimode"`]{@link InputChannel#event:omnimode}
-   *    * [`"resetallcontrollers"`]{@link InputChannel#event:resetallcontrollers}
+   *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
+   *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
+   *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
+   *    * [`monomode`]{@link InputChannel#event:monomode}
+   *    * [`omnimode`]{@link InputChannel#event:omnimode}
+   *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
    *
    * 7. **NRPN** Events (channel-specific)
    *
-   *    * [`"nrpn:dataentrycoarse"`]{@link InputChannel#event:nrpn:dataentrycoarse}
-   *    * [`"nrpn:dataentryfine"`]{@link InputChannel#event:nrpn:dataentryfine}
-   *    * [`"nrpn:databuttonincrement"`]{@link InputChannel#event:nrpn:databuttonincrement}
-   *    * [`"nrpn:databuttondecrement"`]{@link InputChannel#event:nrpn:databuttondecrement}
+   *    * [`nrpn`]{@link InputChannel#event:nrpn}
+   *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
+   *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
+   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
+   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
-   *    * [`"rpn:dataentrycoarse"`]{@link InputChannel#event:rpn:dataentrycoarse}
-   *    * [`"rpn:dataentryfine"`]{@link InputChannel#event:rpn:dataentryfine}
-   *    * [`"rpn:databuttonincrement"`]{@link InputChannel#event:rpn:databuttonincrement}
-   *    * [`"rpn:databuttondecrement"`]{@link InputChannel#event:rpn:databuttondecrement}
+   *    * [`rpn`]{@link InputChannel#event:rpn}
+   *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
+   *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
+   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
+   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
    *
    * @param event {string} The type of the event.
    *
