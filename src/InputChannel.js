@@ -19,10 +19,139 @@ import {Enumerations} from "./Enumerations.js";
  * @fires InputChannel#noteoff
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
- * @fires InputChannel#controlchange
  * @fires InputChannel#programchange
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
+ * @fires InputChannel#controlchange
+ *
+ * @fires InputChannel#event:controlchange-0
+ * @fires InputChannel#event:controlchange-1
+ * @fires InputChannel#event:controlchange-2
+ * @fires InputChannel#event:controlchange-3
+ * @fires InputChannel#event:controlchange-4
+ * @fires InputChannel#event:controlchange-5
+ * @fires InputChannel#event:controlchange-6
+ * @fires InputChannel#event:controlchange-7
+ * @fires InputChannel#event:controlchange-8
+ * @fires InputChannel#event:controlchange-9
+ * @fires InputChannel#event:controlchange-10
+ * @fires InputChannel#event:controlchange-11
+ * @fires InputChannel#event:controlchange-12
+ * @fires InputChannel#event:controlchange-13
+ * @fires InputChannel#event:controlchange-14
+ * @fires InputChannel#event:controlchange-15
+ * @fires InputChannel#event:controlchange-16
+ * @fires InputChannel#event:controlchange-17
+ * @fires InputChannel#event:controlchange-18
+ * @fires InputChannel#event:controlchange-19
+ * @fires InputChannel#event:controlchange-20
+ * @fires InputChannel#event:controlchange-21
+ * @fires InputChannel#event:controlchange-22
+ * @fires InputChannel#event:controlchange-23
+ * @fires InputChannel#event:controlchange-24
+ * @fires InputChannel#event:controlchange-25
+ * @fires InputChannel#event:controlchange-26
+ * @fires InputChannel#event:controlchange-27
+ * @fires InputChannel#event:controlchange-28
+ * @fires InputChannel#event:controlchange-29
+ * @fires InputChannel#event:controlchange-30
+ * @fires InputChannel#event:controlchange-31
+ * @fires InputChannel#event:controlchange-32
+ * @fires InputChannel#event:controlchange-33
+ * @fires InputChannel#event:controlchange-34
+ * @fires InputChannel#event:controlchange-35
+ * @fires InputChannel#event:controlchange-36
+ * @fires InputChannel#event:controlchange-37
+ * @fires InputChannel#event:controlchange-38
+ * @fires InputChannel#event:controlchange-39
+ * @fires InputChannel#event:controlchange-40
+ * @fires InputChannel#event:controlchange-41
+ * @fires InputChannel#event:controlchange-42
+ * @fires InputChannel#event:controlchange-43
+ * @fires InputChannel#event:controlchange-44
+ * @fires InputChannel#event:controlchange-45
+ * @fires InputChannel#event:controlchange-46
+ * @fires InputChannel#event:controlchange-47
+ * @fires InputChannel#event:controlchange-48
+ * @fires InputChannel#event:controlchange-49
+ * @fires InputChannel#event:controlchange-50
+ * @fires InputChannel#event:controlchange-51
+ * @fires InputChannel#event:controlchange-52
+ * @fires InputChannel#event:controlchange-53
+ * @fires InputChannel#event:controlchange-54
+ * @fires InputChannel#event:controlchange-55
+ * @fires InputChannel#event:controlchange-56
+ * @fires InputChannel#event:controlchange-57
+ * @fires InputChannel#event:controlchange-58
+ * @fires InputChannel#event:controlchange-59
+ * @fires InputChannel#event:controlchange-60
+ * @fires InputChannel#event:controlchange-61
+ * @fires InputChannel#event:controlchange-62
+ * @fires InputChannel#event:controlchange-63
+ * @fires InputChannel#event:controlchange-64
+ * @fires InputChannel#event:controlchange-65
+ * @fires InputChannel#event:controlchange-66
+ * @fires InputChannel#event:controlchange-67
+ * @fires InputChannel#event:controlchange-68
+ * @fires InputChannel#event:controlchange-69
+ * @fires InputChannel#event:controlchange-70
+ * @fires InputChannel#event:controlchange-71
+ * @fires InputChannel#event:controlchange-72
+ * @fires InputChannel#event:controlchange-73
+ * @fires InputChannel#event:controlchange-74
+ * @fires InputChannel#event:controlchange-75
+ * @fires InputChannel#event:controlchange-76
+ * @fires InputChannel#event:controlchange-77
+ * @fires InputChannel#event:controlchange-78
+ * @fires InputChannel#event:controlchange-79
+ * @fires InputChannel#event:controlchange-80
+ * @fires InputChannel#event:controlchange-81
+ * @fires InputChannel#event:controlchange-82
+ * @fires InputChannel#event:controlchange-83
+ * @fires InputChannel#event:controlchange-84
+ * @fires InputChannel#event:controlchange-85
+ * @fires InputChannel#event:controlchange-86
+ * @fires InputChannel#event:controlchange-87
+ * @fires InputChannel#event:controlchange-88
+ * @fires InputChannel#event:controlchange-89
+ * @fires InputChannel#event:controlchange-90
+ * @fires InputChannel#event:controlchange-91
+ * @fires InputChannel#event:controlchange-92
+ * @fires InputChannel#event:controlchange-93
+ * @fires InputChannel#event:controlchange-94
+ * @fires InputChannel#event:controlchange-95
+ * @fires InputChannel#event:controlchange-96
+ * @fires InputChannel#event:controlchange-97
+ * @fires InputChannel#event:controlchange-98
+ * @fires InputChannel#event:controlchange-99
+ * @fires InputChannel#event:controlchange-100
+ * @fires InputChannel#event:controlchange-101
+ * @fires InputChannel#event:controlchange-102
+ * @fires InputChannel#event:controlchange-103
+ * @fires InputChannel#event:controlchange-104
+ * @fires InputChannel#event:controlchange-105
+ * @fires InputChannel#event:controlchange-106
+ * @fires InputChannel#event:controlchange-107
+ * @fires InputChannel#event:controlchange-108
+ * @fires InputChannel#event:controlchange-109
+ * @fires InputChannel#event:controlchange-110
+ * @fires InputChannel#event:controlchange-111
+ * @fires InputChannel#event:controlchange-112
+ * @fires InputChannel#event:controlchange-113
+ * @fires InputChannel#event:controlchange-114
+ * @fires InputChannel#event:controlchange-115
+ * @fires InputChannel#event:controlchange-116
+ * @fires InputChannel#event:controlchange-117
+ * @fires InputChannel#event:controlchange-118
+ * @fires InputChannel#event:controlchange-119
+ * @fires InputChannel#event:controlchange-120
+ * @fires InputChannel#event:controlchange-121
+ * @fires InputChannel#event:controlchange-122
+ * @fires InputChannel#event:controlchange-123
+ * @fires InputChannel#event:controlchange-124
+ * @fires InputChannel#event:controlchange-125
+ * @fires InputChannel#event:controlchange-126
+ * @fires InputChannel#event:controlchange-127
  *
  * @fires InputChannel#allnotesoff
  * @fires InputChannel#allsoundoff
@@ -341,9 +470,14 @@ export class InputChannel extends EventEmitter {
       };
 
       event.subtype = event.controller.name || "controller" + data1;
-
       event.value = Utilities.from7bitToFloat(data2);
       event.rawValue = data2;
+
+      // Emit specific controlchange-xxx event
+      const specificEvent = Object.assign({}, event);
+      specificEvent.type = `${event.type}-${data1}`;
+      delete specificEvent.subtype;
+      this.emit(specificEvent.type, specificEvent);
 
       // Trigger channel mode message events (if appropriate)
       if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event);
