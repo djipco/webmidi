@@ -2,45 +2,9 @@ import React from "react";
 //import clsx from "clsx";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-//import styles from "./index.module.scss";
-//import HomepageFeatures from "../components/HomepageFeatures";
 import Button from "../components/Button";
 import Column from "../components/Column";
 import InformationBar from "../components/InformationBar";
-
-
-
-/*
-function HomepageHeader() {
-  const {siteConfig} = useDocusaurusContext();
-  return (
-    <header className={clsx("hero hero--primary", styles.heroBanner)}>
-      <div className="container">
-        <h1 className="hero__title">{siteConfig.title}</h1>
-        <p className="hero__subtitle">{siteConfig.tagline}</p>
-        <Column>
-          <div className={styles.buttons}>
-            <Button
-              type="button-bg-full"
-              href="#"
-              target="_self"
-            >Explorer
-            </Button>
-            <Button
-              type="button-bg-empty"
-              href="#"
-              target="_self"
-            >Explorer
-            </Button>
-          </div>
-        </Column>
-      </div>
-
-
-    </header>
-  );
-}
-*/
 
 function HomepageHero() {
   const {siteConfig} = useDocusaurusContext();
@@ -50,22 +14,19 @@ function HomepageHero() {
         <Column
           type="col-2"
         >
-
           <div className="texts">
             <h1>{siteConfig.title}</h1>
             <span>{siteConfig.tagline}</span>
             <div className="cta">
               <Button
-                componentClass={"akdonaww"}
                 type="button-bg-full"
-                href="#"
+                href="./docs/getting-started"
                 target="_self"
-              >Get startted - 5 minutes!
+              >Get started - 5 minutes!
               </Button>
               <Button
-                componentClass={"akdonaww"}
                 type="button-bg-empty"
-                href="#"
+                href="./docs"
                 target="_self"
               >DOCS
               </Button>
@@ -82,7 +43,7 @@ function HomepageHero() {
   );
 }
 
-function Presentation({children,}) {
+function Presentation() {
   return (
     <section className={"presentation"}>
       <div className="container">
@@ -91,21 +52,19 @@ function Presentation({children,}) {
           type="col-2"
         >
           <p>
-            The <span className="bold">Web MIDI API</span> is a really exciting
+            The <strong>Web MIDI API</strong> is a really exciting
             addition to the web platform that allows web developers to
-            interact with <span className="bold">MIDI</span> musical instruments
-            and devices.
+            interact with <strong>MIDI musical instruments</strong> and devices.
           </p>
 
-          <div className="media"></div>
+          <div className="media">
+            <img src="../../static/img/front-page/presentation-illustration-keyboard-dark.png" alt=""/>
+          </div>
         </Column>
       </div>
     </section>
   );
 }
-
-
-
 
 
 export default function Home() {
@@ -118,7 +77,8 @@ export default function Home() {
       <main>
         {/* eslint-disable-next-line max-len */}
         <InformationBar>
-          Version 3.0 is coming soon. Subscribe to our newsletter to know when it will be available
+          <strong>Version 3.0 is coming soon</strong>. <a href="">Subscribe to our newsletter</a> to know when it will be available
+
         </InformationBar>
         <Presentation />
       </main>

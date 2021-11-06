@@ -13,7 +13,6 @@ import styles from "./Button.module.scss";
 export default function Button(props) {
   const component = "Button";
   const{
-    componentClass,
     children,
     href,
     type,
@@ -25,12 +24,11 @@ export default function Button(props) {
         ${component}
         ${styles.Button}
         ${type}_src-components-${component}-module
-        ${componentClass}
       `}
-      href={href}
-      target={target}
+
+
     >
-      <a href="#">{children}</a>
+      <a href={href} target={target}>{children}</a>
       <div className={`${styles.buttonBg}`} />
     </div>
   );

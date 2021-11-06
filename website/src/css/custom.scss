@@ -28,10 +28,9 @@
   --color-text-secondary: var(--color-white);
   --color-text-tertiary: #999;
 
-  --color-bg-primary: #ffffff;
-  --color-bg-primary-darker: #efefef;
-  --color-bg-secondary: #eeeae0;
-  --color-bg-tertiary: #f7f7f7;
+  --color-bg-primary: var(--color-white);
+  --color-bg-secondary: var(--color-black);
+  --color-bg-tertiary: #F8F8F8;
 
   --color-accent: #ffd000;
   --color-accent-lighter: #ffe571;
@@ -66,8 +65,16 @@
     --font-size-h1-desktop: 3.5rem;
   }
 
-
 }
+  html[data-theme='dark']:root{
+    --color-text-primary: var(--color-white);
+    --color-text-secondary: var(--color-black);
+
+    --color-bg-primary: var(--color-black);
+    --color-bg-secondary: #222428;
+    --color-bg-tertiary: #222428;
+  }
+
 $breakpoint-xs: 375px;
 $breakpoint-sm: 768px;
 $breakpoint-md: 1024px;
@@ -81,9 +88,6 @@ $breakpoint-xl: 1920px;
   padding: 0 var(--ifm-pre-padding);
 }
 
-html[data-theme='dark'] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
-}
 
 .navbar__brand {
   height: 3rem;
@@ -94,15 +98,13 @@ iframe {
   height: 100vh;
 }
 
-
-
 .docs-wrapper main .container article .markdown header:nth-child(2) {
   display: none;
 }
 
-
-
-
+html[data-theme='dark'] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
+}
 
 .header-github-link {
   margin-right: 0.5em;
@@ -170,5 +172,3 @@ h3 {
     font-size: var(--font-size-h3-desktop);
   }
 }
-
-
