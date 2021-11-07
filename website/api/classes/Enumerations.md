@@ -262,11 +262,11 @@ simply states that they are undefined/reserved.
 
 **Custom WebMidi.js Messages**
 
+These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
+or forwarded.
+
 | Function               | Hexadecimal | Decimal |
 |------------------------|-------------|---------|
 | `midimessage`          |             |  0      |
 | `unknownsystemmessage` |             |  -1     |
-
-These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
-or forwarded.
 
