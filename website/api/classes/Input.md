@@ -355,9 +355,9 @@ object is returned. If the event is channel-specific, an array of all the
 
 Adds a one-time event listener that will trigger a function callback when the specified event
 happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
-dispatched by [InputChannel](InputChannel) objects and are tied to a specific MIDI channel while
-input-wide events are dispatched by the [Input](Input) object itself and are not tied to a
-specific channel.
+dispatched by [`InputChannel`](InputChannel) objects and are tied to a specific MIDI
+channel while input-wide events are dispatched by the [`Input`](Input) object itself and
+are not tied to a specific channel.
 
 Calling the function with an input-wide event (such as
 [`"midimessage"`](#event:midimessage)), will return the [`Listener`](Listener) object
@@ -377,7 +377,7 @@ You can also specify which channels you want to add the listener to:
 const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
 ```
 
-In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
+In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.
 
 The code above will add a listener for the `"noteon"` event and call `someFunction` when the
 event is triggered on MIDI channels `1`, `2` or `3`.
@@ -474,7 +474,7 @@ There are 8 families of events you can listen to:
     |**`event`** | string<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the `arguments` property of the `Listener` object and can be retrieved or modified as desired.|
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
     |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
