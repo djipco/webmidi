@@ -240,7 +240,9 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   </div>
 
 
-**Returns**: `Listener`
+**Return Value**:
+
+> Returns: `Listener`
 > The newly created [**Listener**](Listener) object.
 
 
@@ -280,7 +282,9 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   </div>
 
 
-**Returns**: `Listener`
+**Return Value**:
+
+> Returns: `Listener`
 > The newly created [**Listener**](Listener) object.
 
 
@@ -300,7 +304,9 @@ listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `W
 are also destroyed.
 
 
-**Returns**: `Promise`
+**Return Value**:
+
+> Returns: `Promise`
 
 **Throws**:
   * `Error` : The Web MIDI API is not supported by your environment.
@@ -345,7 +351,9 @@ listeners (added with `EventEmitter.ANY_EVENT`).
   </div>
 
 
-**Returns**: `Array`
+**Return Value**:
+
+> Returns: `Array`
 > An array containing the return value of each of the executed listener
 functions
 
@@ -423,7 +431,9 @@ WebMidi.enable().then(ports => {
   </div>
 
 
-**Returns**: `Promise.<WebMidi>`
+**Return Value**:
+
+> Returns: `Promise.<WebMidi>`
 > The promise is fulfilled with the `WebMidi` object fro
 chainability
 
@@ -457,7 +467,9 @@ kind of IDs as Jazz-Plugin.
   </div>
 
 
-**Returns**: `Input` or `false`
+**Return Value**:
+
+> Returns: `Input` or `false`
 > An [`Input`](Input) object matching the specified ID string or `false`
 if no matching input can be found.
 
@@ -488,7 +500,9 @@ input names in the same way as the Jazz-Plugin does.
   </div>
 
 
-**Returns**: `Input` or `false`
+**Return Value**:
+
+> Returns: `Input` or `false`
 > The [`Input`](Input) that was found or `false` if no input contained the
 specified name.
 
@@ -520,7 +534,9 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
   </div>
 
 
-**Returns**: `number`
+**Return Value**:
+
+> Returns: `number`
 > The number of listeners registered for the specified event.
 
 
@@ -549,7 +565,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
   </div>
 
 
-**Returns**: `Array.<Listener>`
+**Return Value**:
+
+> Returns: `Array.<Listener>`
 > An array of `Listener` objects
 
 
@@ -580,7 +598,9 @@ kind of IDs as Jazz-Plugin.
   </div>
 
 
-**Returns**: `Output` or `false`
+**Return Value**:
+
+> Returns: `Output` or `false`
 > An [`Output`](Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.
 
@@ -611,7 +631,9 @@ input names in the same way as the Jazz-Plugin does.
   </div>
 
 
-**Returns**: `Output` or `false`
+**Return Value**:
+
+> Returns: `Output` or `false`
 > The [`Output`](Output) that was found or `false` if no output matched
 the specified name.
 
@@ -645,7 +667,9 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
   </div>
 
 
-**Returns**: `boolean`
+**Return Value**:
+
+> Returns: `boolean`
 
 
 

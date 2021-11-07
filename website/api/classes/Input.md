@@ -187,7 +187,9 @@ the added benefit of being able to filter which data is forwarded.
   </div>
 
 
-**Returns**: `Forwarder`
+**Return Value**:
+
+> Returns: `Forwarder`
 > The [`Forwarder`](Forwarder) object created to handle the forwarding. This
 is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
 
@@ -330,13 +332,15 @@ There are 8 families of events you can listen to:
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. If no channel is specified, all channels will be used. This parameter is ignored for input-wide events.|
     |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array.|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus be triggered before others.|
     |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
 
   </div>
 
 
-**Returns**: `Listener` or `Array.<Listener>`
+**Return Value**:
+
+> Returns: `Listener` or `Array.<Listener>`
 > If the event is input-wide, a single [`Listener`](Listener)
 object is returned. If the event is channel-specific, an array of all the
 [`Listener`](Listener) objects is returned (one for each channel).
@@ -477,7 +481,9 @@ There are 8 families of events you can listen to:
   </div>
 
 
-**Returns**: `Array.<Listener>`
+**Return Value**:
+
+> Returns: `Array.<Listener>`
 > An array of all [`Listener`](Listener) objects that were created.
 
 
@@ -491,7 +497,9 @@ Closes the input. When an input is closed, it cannot be used to listen to MIDI m
 the input is opened again by calling [`Input.open()`](Input#open).
 
 
-**Returns**: `Promise.<Input>`
+**Return Value**:
+
+> Returns: `Promise.<Input>`
 > The promise is fulfilled with the `Input` object
 
 
@@ -505,7 +513,9 @@ Destroys the `Input` by removing all listeners, emptying the [`channels`](#chann
 unlinking the MIDI subsystem.
 
 
-**Returns**: `Promise.<void>`
+**Return Value**:
+
+> Returns: `Promise.<void>`
 
 
 
@@ -548,7 +558,9 @@ listeners (added with `EventEmitter.ANY_EVENT`).
   </div>
 
 
-**Returns**: `Array`
+**Return Value**:
+
+> Returns: `Array`
 > An array containing the return value of each of the executed listener
 functions
 
@@ -580,7 +592,9 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
   </div>
 
 
-**Returns**: `number`
+**Return Value**:
+
+> Returns: `number`
 > The number of listeners registered for the specified event.
 
 
@@ -609,7 +623,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
   </div>
 
 
-**Returns**: `Array.<Listener>`
+**Return Value**:
+
+> Returns: `Array.<Listener>`
 > An array of `Listener` objects
 
 
@@ -634,7 +650,9 @@ Checks whether the specified forwarded has already been attached to this input.
   </div>
 
 
-**Returns**: `boolean`
+**Return Value**:
+
+> Returns: `boolean`
 
 
 
@@ -662,7 +680,9 @@ have the listener defined.
   </div>
 
 
-**Returns**: `boolean`
+**Return Value**:
+
+> Returns: `boolean`
 > Boolean value indicating whether or not the `Input` or
 [`InputChannel`](InputChannel) already has this listener defined.
 
@@ -677,7 +697,9 @@ Opens the input for usage. This is usually unnecessary as the port is open autom
 WebMidi is enabled.
 
 
-**Returns**: `Promise.<Input>`
+**Return Value**:
+
+> Returns: `Promise.<Input>`
 > The promise is fulfilled with the `Input` object
 
 

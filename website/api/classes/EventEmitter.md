@@ -116,7 +116,9 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   </div>
 
 
-**Returns**: `Listener`
+**Return Value**:
+
+> Returns: `Listener`
 > The newly created [**Listener**](Listener) object.
 
 
@@ -156,7 +158,9 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   </div>
 
 
-**Returns**: `Listener`
+**Return Value**:
+
+> Returns: `Listener`
 > The newly created [**Listener**](Listener) object.
 
 
@@ -204,7 +208,9 @@ listeners (added with `EventEmitter.ANY_EVENT`).
   </div>
 
 
-**Returns**: `Array`
+**Return Value**:
+
+> Returns: `Array`
 > An array containing the return value of each of the executed listener
 functions
 
@@ -236,7 +242,9 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
   </div>
 
 
-**Returns**: `number`
+**Return Value**:
+
+> Returns: `number`
 > The number of listeners registered for the specified event.
 
 
@@ -265,7 +273,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
   </div>
 
 
-**Returns**: `Array.<Listener>`
+**Return Value**:
+
+> Returns: `Array.<Listener>`
 > An array of `Listener` objects
 
 
@@ -296,7 +306,9 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
   </div>
 
 
-**Returns**: `boolean`
+**Return Value**:
+
+> Returns: `boolean`
 
 
 

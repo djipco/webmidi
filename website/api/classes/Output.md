@@ -180,7 +180,9 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   </div>
 
 
-**Returns**: `Listener`
+**Return Value**:
+
+> Returns: `Listener`
 > The newly created [**Listener**](Listener) object.
 
 
@@ -220,7 +222,9 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
   </div>
 
 
-**Returns**: `Listener`
+**Return Value**:
+
+> Returns: `Listener`
 > The newly created [**Listener**](Listener) object.
 
 
@@ -241,7 +245,9 @@ You can check out the current status of this feature for Chromium (Chrome) here:
 https://bugs.chromium.org/p/chromium/issues/detail?id=471798
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -256,7 +262,9 @@ until the output is opened again by calling [Output.open()](#Output+open). You c
 the connection status by looking at the [connection](Output#connection) property.
 
 
-**Returns**: `Promise.<void>`
+**Return Value**:
+
+> Returns: `Promise.<void>`
 
 
 
@@ -299,7 +307,9 @@ names that can be used with this method:
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -315,7 +325,9 @@ Destroys the `Output`. All listeners are removed, all channels are destroyed and
 subsystem is unlinked.
 
 
-**Returns**: `Promise.<void>`
+**Return Value**:
+
+> Returns: `Promise.<void>`
 
 
 
@@ -358,7 +370,9 @@ listeners (added with `EventEmitter.ANY_EVENT`).
   </div>
 
 
-**Returns**: `Array`
+**Return Value**:
+
+> Returns: `Array`
 > An array containing the return value of each of the executed listener
 functions
 
@@ -390,7 +404,9 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
   </div>
 
 
-**Returns**: `number`
+**Return Value**:
+
+> Returns: `number`
 > The number of listeners registered for the specified event.
 
 
@@ -419,7 +435,9 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
   </div>
 
 
-**Returns**: `Array.<Listener>`
+**Return Value**:
+
+> Returns: `Array.<Listener>`
 > An array of `Listener` objects
 
 
@@ -450,7 +468,9 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
   </div>
 
 
-**Returns**: `boolean`
+**Return Value**:
+
+> Returns: `boolean`
 
 
 
@@ -493,7 +513,9 @@ names that can be used with this method:
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -506,7 +528,9 @@ names that can be used with this method:
 Opens the output for usage.
 
 
-**Returns**: `Promise.<Output>`
+**Return Value**:
+
+> Returns: `Promise.<Output>`
 > The promise is fulfilled with the `Output`
 
 
@@ -560,7 +584,9 @@ functionally equivalent to a **note off** message.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -621,7 +647,9 @@ the pitch bend, to their default value.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 
 
 
@@ -656,7 +684,9 @@ from the MIDI Manufacturers Association.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -686,7 +716,9 @@ was no other activity on the MIDI port.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -738,7 +770,9 @@ To make it easier, all channel mode messages have a matching helper method:
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -769,7 +803,9 @@ for every quarter note.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -797,7 +833,9 @@ start, use the [sendStart()](#Output+sendStart)` method.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -908,7 +946,9 @@ specification.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -949,7 +989,9 @@ values:
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -990,7 +1032,9 @@ functionally equivalent to a **note off** message.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1017,7 +1061,9 @@ should reset itself to a default state.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1045,7 +1091,9 @@ song at beat 0. To start playback elsewhere in the song, use the
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1072,7 +1120,9 @@ playback immediately (or at the scheduled time).
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1146,7 +1196,9 @@ system exclusive messages to 64Kb or less.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1180,7 +1232,9 @@ on the data. It is up to the developer to format the data according to the
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1207,7 +1261,9 @@ Sends a MIDI **tune request** real-time message.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1238,7 +1294,9 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1271,7 +1329,9 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1302,7 +1362,9 @@ its out port.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1337,7 +1399,9 @@ a **Master Fine Tuning** RPN messages.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1372,7 +1436,9 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1433,7 +1499,9 @@ For further implementation details, refer to the manufacturer"s documentation.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1468,7 +1536,9 @@ It should be noted that support for OMNI mode is not as common as it used to be.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1502,7 +1572,9 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1535,7 +1607,9 @@ means that the pitch bend range will be 12 semitones above and below the nominal
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1569,7 +1643,9 @@ multiple notes are being played.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1602,7 +1678,9 @@ that use a numbering scheme starting at 1.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1664,7 +1742,9 @@ Another set of extra parameters have been later added for 3D sound controllers. 
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1696,7 +1776,9 @@ use a numbering scheme starting at 1.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1727,7 +1809,9 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1761,7 +1845,9 @@ that use a numbering scheme starting at 1.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1797,7 +1883,9 @@ that use a numbering scheme starting at 1.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 > Returns the `Output` object so methods can be chained.
 
 
@@ -1825,7 +1913,9 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 
 
 
@@ -1883,7 +1973,9 @@ fade out just as if their key had been released. This is different from the
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 
 
 
@@ -1910,7 +2002,9 @@ channel but will not prevent new sounds from being triggered.
   </div>
 
 
-**Returns**: `Output`
+**Return Value**:
+
+> Returns: `Output`
 
 
 
