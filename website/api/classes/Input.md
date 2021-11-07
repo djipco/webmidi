@@ -657,7 +657,7 @@ input.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`forwarder`** | Forwarder<br /> ||The [`Forwarder`](Forwarder) to check (the [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).|
+    |**`forwarder`** | Forwarder<br /> ||The [`Forwarder`](Forwarder) to check for (the [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).|
 
   </div>
 
@@ -672,7 +672,7 @@ input.
 ### `.hasListener(...)` {#hasListener}
 
 
-Checks if the specified event type is already defined to trigger the specified listener
+Checks if the specified event type is already defined to trigger the specified callback
 function. For channel-specific events, the function will return `true` only if all channels
 have the listener defined.
 
@@ -707,7 +707,7 @@ Boolean value indicating whether or not the `Input` or
 
 **Attributes**: async
 
-Opens the input for usage. This is usually unnecessary as the port is open automatically when
+Opens the input for usage. This is usually unnecessary as the port is opened automatically when
 WebMidi is enabled.
 
 
@@ -715,7 +715,7 @@ WebMidi is enabled.
 
 > Returns: `Promise.<Input>`<br />
 
-The promise is fulfilled with the `Input` object
+The promise is fulfilled with the `Input` object.
 
 
 
@@ -723,7 +723,7 @@ The promise is fulfilled with the `Input` object
 ### `.removeForwarder(...)` {#removeForwarder}
 
 
-Removes the specified forwarder.
+Removes the specified [`Forwarder`](Forwarder) object from the input.
 
 
   **Parameters**
@@ -748,7 +748,8 @@ Removes the specified forwarder.
 
 Removes the specified listener for the specified event. If no listener is specified, all
 listeners for the specified event will be removed. If no event is specified, all listeners for
-the `Input` as well as all listeners for all `InputChannels` will be removed.
+the `Input` as well as all listeners for all [`InputChannel`](InputChannel) objects will
+be removed.
 
 By default, channel-specific listeners will be removed from all channels unless the
 `options.channel` narrows it down.
@@ -918,11 +919,9 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`target`** |Input|The `Input` that triggered the event.|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`]{@link Message} object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"activesensing"`|
-  |**`event.data`** |Array|The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead).|
-  |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
 ### `"clock"` {#event-clock}
@@ -1071,11 +1070,9 @@ Input-wide (system) event emitted when a **reset** message has been received.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`target`** |Input|The `Input` that triggered the event.|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`]{@link Message} object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"reset"`|
-  |**`event.data`** |Array|The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead).|
-  |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
 ### `"songposition"` {#event-songposition}
@@ -1257,11 +1254,9 @@ be, for example, one of the undefined/reserved messages.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`target`** |Input|The `Input` that triggered the event.|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`]{@link Message} object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"unknownmidimessage"`|
-  |**`event.data`** |Array|The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead).|
-  |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
 
 
 
