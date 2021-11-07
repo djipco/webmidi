@@ -5,8 +5,8 @@
 
 export var __esModule: boolean;
 /**
- * The `Enumerations` class contains enumerations of elements used throughout the library. All
- * enumerations are static and should be referenced using the class name. For example:
+ * The `Enumerations` class contains enumerations and lists of elements used throughout the library.
+ * All properties are static and should be referenced using the class name. For example:
  * `Enumerations.MIDI_CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
@@ -14,16 +14,18 @@ export var __esModule: boolean;
  */
 export class Enumerations {
     /**
-     * Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
+     * Enumeration of all MIDI channel message names and their associated 4-bit numerical value:
      *
-     * - `noteoff`: 0x8 (8)
-     * - `noteon`: 0x9 (9)
-     * - `keyaftertouch`: 0xA (10)
-     * - `controlchange`: 0xB (11)
-     * - `nrpn`: 0xB (11)
-     * - `programchange`: 0xC (12)
-     * - `channelaftertouch`: 0xD (13)
-     * - `pitchbend`: 0xE (14)
+     * | Message Name        | Hexadecimal Value  |  Decimal Value |
+     * |---------------------|--------------------|----------------|
+     * | `noteoff`           | 0x8                | 8              |
+     * | `noteon`            | 0x9                | 9              |
+     * | `keyaftertouch`     | 0xA                | 10             |
+     * | `controlchange`     | 0xB                | 11             |
+     * | `nrpn`              | 0xB                | 11             |
+     * | `programchange`     | 0xC                | 12             |
+     * | `channelaftertouch` | 0xD                | 13             |
+     * | `pitchbend`         | 0xE                | 14             |
      *
      * @enum {Object.<string, number>}
      * @readonly
@@ -39,24 +41,27 @@ export class Enumerations {
         pitchbend: number;
     };
     /**
-     * An array of the 16 MIDI channel numbers (`1` to `16`):
+     * An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
      *
-     * @enum {number[]}
+     * @type {number[]}
      * @readonly
      * @static
      */
     static get MIDI_CHANNEL_NUMBERS(): number[];
     /**
-     * Enumeration of all channel mode messages and their associated numerical value:
+     * Enumeration of all MIDI channel mode message names and their associated numerical value:
      *
-     * - `allsoundoff`: 120
-     * - `resetallcontrollers`: 121
-     * - `localcontrol`: 122
-     * - `allnotesoff`: 123
-     * - `omnimodeoff`: 124
-     * - `omnimodeon`: 125
-     * - `monomodeon`: 126
-     * - `polymodeon`: 127
+     *
+     * | Message Name          | Hexadecimal Value  |  Decimal Value |
+     * |-----------------------|--------------------|----------------|
+     * | `allsoundoff`         | 0x78               | 120            |
+     * | `resetallcontrollers` | 0x79               | 121            |
+     * | `localcontrol`        | 0x7A               | 122            |
+     * | `allnotesoff`         | 0x7B               | 123            |
+     * | `omnimodeoff`         | 0x7C               | 124            |
+     * | `omnimodeon`          | 0x7D               | 125            |
+     * | `monomodeon`          | 0x7E               | 126            |
+     * | `polymodeon`          | 0x7F               | 127            |
      *
      * @enum {Object.<string, number>}
      * @readonly
@@ -73,77 +78,81 @@ export class Enumerations {
         polymodeon: number;
     };
     /**
-     * Enumeration of most control change messages and their associated numerical value. Note that
-     * some control change numbers do not have a predefined purpose and are absent from this list.
+     * Enumeration of all control change messages identifying the control function associated to its
+     * control number.
      *
-     * - `bankselectcoarse`: 0
-     * - `modulationwheelcoarse`: 1
-     * - `breathcontrollercoarse`: 2
-     * - `footcontrollercoarse`: 4
-     * - `portamentotimecoarse`: 5
-     * - `dataentrycoarse`: 6
-     * - `volumecoarse`: 7
-     * - `balancecoarse`: 8
-     * - `pancoarse`: 10
-     * - `expressioncoarse`: 11
-     * - `effectcontrol1coarse`: 12
-     * - `effectcontrol2coarse`: 13
-     * - `generalpurposeslider1`: 16
-     * - `generalpurposeslider2`: 17
-     * - `generalpurposeslider3`: 18
-     * - `generalpurposeslider4`: 19
-     * - `bankselectfine`: 32
-     * - `modulationwheelfine`: 33
-     * - `breathcontrollerfine`: 34
-     * - `footcontrollerfine`: 36
-     * - `portamentotimefine`: 37
-     * - `dataentryfine`: 38
-     * - `volumefine`: 39
-     * - `balancefine`: 40
-     * - `panfine`: 42
-     * - `expressionfine`: 43
-     * - `effectcontrol1fine`: 44
-     * - `effectcontrol2fine`: 45
-     * - `holdpedal`: 64
-     * - `portamento`: 65
-     * - `sustenutopedal`: 66
-     * - `softpedal`: 67
-     * - `legatopedal`: 68
-     * - `hold2pedal`: 69
-     * - `soundvariation`: 70
-     * - `resonance`: 71
-     * - `soundreleasetime`: 72
-     * - `soundattacktime`: 73
-     * - `brightness`: 74
-     * - `soundcontrol6`: 75
-     * - `soundcontrol7`: 76
-     * - `soundcontrol8`:`77
-     * - `soundcontrol9`: 78
-     * - `soundcontrol10`: 79
-     * - `generalpurposebutton1`: 80
-     * - `generalpurposebutton2`: 81
-     * - `generalpurposebutton3`: 82
-     * - `generalpurposebutton4`: 83
-     * - `reverblevel`: 91
-     * - `tremololevel`: 92
-     * - `choruslevel`: 93
-     * - `celestelevel`: 94
-     * - `phaserlevel`: 95
-     * - `databuttonincrement`: 96
-     * - `databuttondecrement`: 97
-     * - `nonregisteredparametercoarse`: 98
-     * - `nonregisteredparameterfine`: 99
-     * - `registeredparametercoarse`: 100
-     * - `registeredparameterfine`: 101
+     * Not all numbers have a preassigned control function. For those that don't, the control function
+     * is identified as the word "controller" followed by the number (e.g. `controller123`).
      *
-     * - `allsoundoff`: 120
-     * - `resetallcontrollers`: 121
-     * - `localcontrol`: 122
-     * - `allnotesoff`: 123
-     * - `omnimodeoff`: 124
-     * - `omnimodeon`: 125
-     * - `monomodeon`: 126
-     * - `polymodeon`: 127
+     * | Control Function               | Control Number |
+     * |--------------------------------|----------------|
+     * | `bankselectcoarse`             | 0              |
+     * | `modulationwheelcoarse`        | 1              |
+     * | `breathcontrollercoarse`       | 2              |
+     * | `footcontrollercoarse`         | 4              |
+     * | `portamentotimecoarse`         | 5              |
+     * | `dataentrycoarse`              | 6              |
+     * | `volumecoarse`                 | 7              |
+     * | `balancecoarse`                | 8              |
+     * | `pancoarse`                    | 10             |
+     * | `expressioncoarse`             | 11             |
+     * | `effectcontrol1coarse`         | 12             |
+     * | `effectcontrol2coarse`         | 13             |
+     * | `generalpurposeslider1`        | 16             |
+     * | `generalpurposeslider2`        | 17             |
+     * | `generalpurposeslider3`        | 18             |
+     * | `generalpurposeslider4`        | 19             |
+     * | `bankselectfine`               | 32             |
+     * | `modulationwheelfine`          | 33             |
+     * | `breathcontrollerfine`         | 34             |
+     * | `footcontrollerfine`           | 36             |
+     * | `portamentotimefine`           | 37             |
+     * | `dataentryfine`                | 38             |
+     * | `volumefine`                   | 39             |
+     * | `balancefine`                  | 40             |
+     * | `panfine`                      | 42             |
+     * | `expressionfine`               | 43             |
+     * | `effectcontrol1fine`           | 44             |
+     * | `effectcontrol2fine`           | 45             |
+     * | `holdpedal`                    | 64             |
+     * | `portamento`                   | 65             |
+     * | `sustenutopedal`               | 66             |
+     * | `softpedal`                    | 67             |
+     * | `legatopedal`                  | 68             |
+     * | `hold2pedal`                   | 69             |
+     * | `soundvariation`               | 70             |
+     * | `resonance`                    | 71             |
+     * | `soundreleasetime`             | 72             |
+     * | `soundattacktime`              | 73             |
+     * | `brightness`                   | 74             |
+     * | `soundcontrol6`                | 75             |
+     * | `soundcontrol7`                | 76             |
+     * | `soundcontrol8`                | 77             |
+     * | `soundcontrol9`                | 78             |
+     * | `soundcontrol10`               | 79             |
+     * | `generalpurposebutton1`        | 80             |
+     * | `generalpurposebutton2`        | 81             |
+     * | `generalpurposebutton3`        | 82             |
+     * | `generalpurposebutton4`        | 83             |
+     * | `reverblevel`                  | 91             |
+     * | `tremololevel`                 | 92             |
+     * | `choruslevel`                  | 93             |
+     * | `celestelevel`                 | 94             |
+     * | `phaserlevel`                  | 95             |
+     * | `databuttonincrement`          | 96             |
+     * | `databuttondecrement`          | 97             |
+     * | `nonregisteredparametercoarse` | 98             |
+     * | `nonregisteredparameterfine`   | 99             |
+     * | `registeredparametercoarse`    | 100            |
+     * | `registeredparameterfine`      | 101            |
+     * | `allsoundoff`                  | 120            |
+     * | `resetallcontrollers`          | 121            |
+     * | `localcontrol`                 | 122            |
+     * | `allnotesoff`                  | 123            |
+     * | `omnimodeoff`                  | 124            |
+     * | `omnimodeon`                   | 125            |
+     * | `monomodeon`                   | 126            |
+     * | `polymodeon`                   | 127            |
      *
      * @enum {Object.<string, number>}
      * @readonly
@@ -153,31 +162,67 @@ export class Enumerations {
         bankselectcoarse: number;
         modulationwheelcoarse: number;
         breathcontrollercoarse: number;
+        controller3: number;
         footcontrollercoarse: number;
         portamentotimecoarse: number;
         dataentrycoarse: number;
         volumecoarse: number;
         balancecoarse: number;
+        controller9: number;
         pancoarse: number;
         expressioncoarse: number;
         effectcontrol1coarse: number;
         effectcontrol2coarse: number;
+        controller14: number;
+        controller15: number;
         generalpurposeslider1: number;
         generalpurposeslider2: number;
         generalpurposeslider3: number;
         generalpurposeslider4: number;
+        controller20: number;
+        controller21: number;
+        controller22: number;
+        controller23: number;
+        controller24: number;
+        controller25: number;
+        controller26: number;
+        controller27: number;
+        controller28: number;
+        controller29: number;
+        controller30: number;
+        controller31: number;
         bankselectfine: number;
         modulationwheelfine: number;
         breathcontrollerfine: number;
+        controller35: number;
         footcontrollerfine: number;
         portamentotimefine: number;
         dataentryfine: number;
         volumefine: number;
         balancefine: number;
+        controller41: number;
         panfine: number;
         expressionfine: number;
         effectcontrol1fine: number;
         effectcontrol2fine: number;
+        controller46: number;
+        controller47: number;
+        controller48: number;
+        controller49: number;
+        controller50: number;
+        controller51: number;
+        controller52: number;
+        controller53: number;
+        controller54: number;
+        controller55: number;
+        controller56: number;
+        controller57: number;
+        controller58: number;
+        controller59: number;
+        controller60: number;
+        controller61: number;
+        controller62: number;
+        controller63: number;
         holdpedal: number;
         portamento: number;
         sustenutopedal: number;
@@ -198,6 +243,13 @@ export class Enumerations {
         generalpurposebutton2: number;
         generalpurposebutton3: number;
         generalpurposebutton4: number;
+        controller84: number;
+        controller85: number;
+        controller86: number;
+        controller87: number;
+        controller88: number;
+        controller89: number;
+        controller90: number;
         reverblevel: number;
         tremololevel: number;
         choruslevel: number;
@@ -209,6 +261,24 @@ export class Enumerations {
         nonregisteredparameterfine: number;
         registeredparametercoarse: number;
         registeredparameterfine: number;
+        controller102: number;
+        controller103: number;
+        controller104: number;
+        controller105: number;
+        controller106: number;
+        controller107: number;
+        controller108: number;
+        controller109: number;
+        controller110: number;
+        controller111: number;
+        controller112: number;
+        controller113: number;
+        controller114: number;
+        controller115: number;
+        controller116: number;
+        controller117: number;
+        controller118: number;
+        controller119: number;
         allsoundoff: number;
         resetallcontrollers: number;
         localcontrol: number;
@@ -4159,7 +4229,7 @@ declare class OutputChannel {
  * **Important**: while the `Input` class does not directly fire channel-specific MIDI messages
  * (such as [`noteon`](InputChannel#event:noteon),
  * [`controlchange`](InputChannel#event:controlchange), etc.), you can still use its
- * [`addListener()`](addListener) method to listen to such events on multiple
+ * [`addListener()`](#addListener) method to listen to such events on multiple
  * [`InputChannel`](InputChannel) objects at once.
  *
  * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
@@ -4695,7 +4765,7 @@ declare class Input {
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
  * @fires InputChannel#programchange
- * @fires InputChannel#event:controlchange-xxx
+ * @fires InputChannel#event:controlchange-controllerxxx
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
  * @fires InputChannel#controlchange
