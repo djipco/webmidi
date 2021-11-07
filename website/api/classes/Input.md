@@ -629,7 +629,7 @@ Checks whether the specified forwarded has already been attached to this input.
 
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`forwarder`** | Forwarder<br /> ||The [`Forwarder`](Forwarder) to check (the [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.|
+    |**`forwarder`** | Forwarder<br /> ||The [`Forwarder`](Forwarder) to check (the [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).|
 
   </div>
 
