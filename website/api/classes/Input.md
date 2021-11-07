@@ -501,8 +501,8 @@ the input is opened again by calling [`Input.open()`](#Input+open).
 
 **Attributes**: async
 
-Destroys the `Input` by removing all listeners, emptying the `channels` array and unlinking the
-MIDI subsystem.
+Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
+unlinking the MIDI subsystem.
 
 
 **Returns**: `Promise.<void>`
