@@ -46,16 +46,19 @@ Enumeration of all MIDI channel message names and their associated 4-bit numeric
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
-Enumeration of all channel mode messages and their associated numerical value:
+Enumeration of all MIDI channel mode message names and their associated numerical value:
 
-- `allsoundoff`: 120
-- `resetallcontrollers`: 121
-- `localcontrol`: 122
-- `allnotesoff`: 123
-- `omnimodeoff`: 124
-- `omnimodeon`: 125
-- `monomodeon`: 126
-- `polymodeon`: 127
+
+| Message Name          | Hexadecimal Value  |  Decimal Value |
+|-----------------------|--------------------|----------------|
+| `allsoundoff`         | 0x78               | 120            |
+| `resetallcontrollers` | 0x79               | 121            |
+| `localcontrol`        | 0x7A               | 122            |
+| `allnotesoff`         | 0x7B               | 123            |
+| `omnimodeoff`         | 0x7C               | 124            |
+| `omnimodeon`          | 0x7D               | 125            |
+| `monomodeon`          | 0x7E               | 126            |
+| `polymodeon`          | 0x7F               | 127            |
 ### `.MIDI_CONTROL_CHANGE_MESSAGES` {#MIDI_CONTROL_CHANGE_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
