@@ -233,7 +233,7 @@ Enumeration of all valid MIDI system messages and matching numerical values. Web
 uses two additional custom messages.
 
 
-**System common messages**
+**System Common Messages**
 
 | Function               | Hexadecimal Value | Decimal Value   |
 |------------------------|-------------------|-----------------|
@@ -246,7 +246,7 @@ uses two additional custom messages.
 
 The `sysexend` message is never actually received. It simply ends a sysex stream.
 
-**System real-time messages**
+**System Real-Time Messages**
 
 | Function               | Hexadecimal Value | Decimal Value   |
 |------------------------|-------------------|-----------------|
@@ -261,7 +261,7 @@ Values 249 and 253 are relayed by the Web MIDI API but they do not serve any spe
 The [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
 simply states that they are undefined/reserved.
 
-**Custom WebMidi.js messages**
+**Custom WebMidi.js Messages**
 
 | Function               | Hexadecimal Value | Decimal Value   |
 |------------------------|-------------------|-----------------|
