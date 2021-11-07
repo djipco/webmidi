@@ -170,7 +170,7 @@ an invalid value is supplied, 0 will be used.
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `number`
 > An integer between 0 and 127

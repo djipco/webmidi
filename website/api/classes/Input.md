@@ -187,7 +187,7 @@ the added benefit of being able to filter which data is forwarded.
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Forwarder`
 > The [`Forwarder`](Forwarder) object created to handle the forwarding. This
@@ -338,7 +338,7 @@ There are 8 families of events you can listen to:
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Listener` or `Array.<Listener>`
 > If the event is input-wide, a single [`Listener`](Listener)
@@ -481,7 +481,7 @@ There are 8 families of events you can listen to:
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Array.<Listener>`
 > An array of all [`Listener`](Listener) objects that were created.
@@ -497,7 +497,7 @@ Closes the input. When an input is closed, it cannot be used to listen to MIDI m
 the input is opened again by calling [`Input.open()`](Input#open).
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Promise.<Input>`
 > The promise is fulfilled with the `Input` object
@@ -513,7 +513,7 @@ Destroys the `Input` by removing all listeners, emptying the [`channels`](#chann
 unlinking the MIDI subsystem.
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Promise.<void>`
 
@@ -558,7 +558,7 @@ listeners (added with `EventEmitter.ANY_EVENT`).
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Array`
 > An array containing the return value of each of the executed listener
@@ -592,7 +592,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `number`
 > The number of listeners registered for the specified event.
@@ -623,7 +623,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Array.<Listener>`
 > An array of `Listener` objects
@@ -650,7 +650,7 @@ Checks whether the specified forwarded has already been attached to this input.
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `boolean`
 
@@ -680,7 +680,7 @@ have the listener defined.
   </div>
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `boolean`
 > Boolean value indicating whether or not the `Input` or
@@ -697,7 +697,7 @@ Opens the input for usage. This is usually unnecessary as the port is open autom
 WebMidi is enabled.
 
 
-**Return Value**:
+**Return Value**
 
 > Returns: `Promise.<Input>`
 > The promise is fulfilled with the `Input` object
