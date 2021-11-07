@@ -1,8 +1,8 @@
 
 # Enumerations
 
-The `Enumerations` class contains enumerations of elements used throughout the library. All
-enumerations are static and should be referenced using the class name. For example:
+The `Enumerations` class contains enumerations and listd of elements used throughout the library.
+All properties are static and should be referenced using the class name. For example:
 `Enumerations.MIDI_CHANNEL_MESSAGES`.
 
 **Since**: 3.0.0
@@ -16,7 +16,14 @@ enumerations are static and should be referenced using the class name. For examp
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
-Enumeration of all MIDI channel messages and their associated 4-bit numerical value:
+Enumeration of all MIDI channel message names and their associated 4-bit numerical value:
+
+| Message Name  | Hexadecimal Value  |  Decimal Value |
+|---|---|---|
+| `noteoff`     | 0x8                | 8              |
+| `noteon`      | 0x9                | 9              |
+
+
 
 - `noteoff`: 0x8 (8)
 - `noteon`: 0x9 (9)
