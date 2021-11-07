@@ -282,7 +282,7 @@ describe("InputChannel Object", function() {
     let index = 0;
 
     for (let i = 0; i <= 127; i++) {
-      channel.addListener(`${event}-${i}`, assert);
+      channel.addListener(`${event}-controller${i}`, assert);
     }
 
     // Act
@@ -293,7 +293,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
 
-      expect(e.type).to.equal(`${event}-${index}`);
+      expect(e.type).to.equal(`${event}-controller${index}`);
       expect(e.controller.number).to.equal(index);
       expect(e.rawValue).to.equal(value);
       expect(e.target).to.equal(channel);
@@ -1022,33 +1022,6 @@ describe("InputChannel Object", function() {
       // Assert
       results.forEach(result => {
         expect(result).to.be.a("string");
-      });
-
-    });
-
-    it("should return 'undefined' for numbers with no predefined purpose", function () {
-
-      // Arrange
-      let channel = WEBMIDI_INPUT.channels[1];
-      let values = [
-        3, 9,
-        14, 15,
-        20, 21, 22, 23, 24, 25, 26, 27, 28, 29,
-        30, 31,
-        85, 86, 87, 89, 90,
-        102, 103, 104, 105, 106, 107, 108, 109,
-        110, 111, 112, 113, 114, 115, 116, 117, 118, 119
-      ];
-      let results = [];
-
-      // Act
-      values.forEach(value => {
-        results.push(channel.getCcNameByNumber(value));
-      });
-
-      // Assert
-      results.forEach(result => {
-        expect(result).to.be.undefined;
       });
 
     });
