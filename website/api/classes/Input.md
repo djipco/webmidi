@@ -99,8 +99,7 @@ specific event.
 **Type**: boolean<br />
 
 
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
+Whether or not the execution of callbacks is currently suspended for this emitter.
 
 
 ### `.id` {#id}
@@ -538,9 +537,9 @@ a given event. The callback functions are passed the additional arguments passed
 (if any) followed by the arguments present in the [`arguments`](Listener#arguments) property of
 the [`Listener`](Listener) object (if any).
 
-If the [`eventsSuspended`](#eventsSuspended) property or the
-[`suspended`](Listener#suspended) property of the [`Listener`](Listener) is `true`,
-the callback functions will not be executed.
+If the [`eventsSuspended`](#eventsSuspended) property is `true` or the
+[`Listener.suspended`](Listener#suspended) property is `true`, the callback functions
+will not be executed.
 
 This function returns an array containing the return values of each of the callbacks.
 

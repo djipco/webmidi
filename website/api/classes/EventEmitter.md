@@ -35,8 +35,8 @@ It is intended to be an abstract class meant to be extended by (or mixed into) o
 **Type**: Symbol<br />
 
 
-Identifier to use when trying to add or remove a listener that should be triggered when any
-events occur.
+Identifier to use when adding or removing a listener that should be triggered when any events
+occur.
 
 
 ### `.eventCount` {#eventCount}
@@ -78,8 +78,7 @@ specific event.
 **Type**: boolean<br />
 
 
-Whether or not the execution of function callbacks is currently suspended for this whole
-emitter
+Whether or not the execution of callbacks is currently suspended for this emitter.
 
 
 
@@ -156,7 +155,7 @@ global listener will also be triggered by non-registered events.
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
-    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
@@ -184,9 +183,9 @@ a given event. The callback functions are passed the additional arguments passed
 (if any) followed by the arguments present in the [`arguments`](Listener#arguments) property of
 the [`Listener`](Listener) object (if any).
 
-If the [`eventsSuspended`](#eventsSuspended) property or the
-[`suspended`](Listener#suspended) property of the [`Listener`](Listener) is `true`,
-the callback functions will not be executed.
+If the [`eventsSuspended`](#eventsSuspended) property is `true` or the
+[`Listener.suspended`](Listener#suspended) property is `true`, the callback functions
+will not be executed.
 
 This function returns an array containing the return values of each of the callbacks.
 
