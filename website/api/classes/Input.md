@@ -137,8 +137,8 @@ number 60) is placed on the 4th octave (C4).
 If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
 `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
 
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-(if any).
+Note that this value is combined with the global offset value defined in the
+[`WebMidi.octaveOffset`](WebMidi#octaveOffset) property (if any).
 
 
 ### `.state` {#state}
