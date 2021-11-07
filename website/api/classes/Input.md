@@ -382,7 +382,7 @@ Note that, when adding events to channels, it is the [`InputChannel`](InputChann
 that actually gets a listener added and not the `Input` instance.
 
 Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-on the [InputChannel](InputChannel) object itself.
+on the [`InputChannel`](InputChannel) object itself.
 
 There are 8 families of events you can listen to:
 
