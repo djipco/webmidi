@@ -18,10 +18,16 @@ All properties are static and should be referenced using the class name. For exa
 
 Enumeration of all MIDI channel message names and their associated 4-bit numerical value:
 
-| Message Name  | Hexadecimal Value  |  Decimal Value |
-|---|---|---|
-| `noteoff`     | 0x8                | 8              |
-| `noteon`      | 0x9                | 9              |
+| Message Name        | Hexadecimal Value  |  Decimal Value |
+|---------------------|--------------------|----------------|
+| `noteoff`           | 0x8                | 8              |
+| `noteon`            | 0x9                | 9              |
+| `keyaftertouch`     | 0xA                | 10             |
+| `controlchange`     | 0xB                | 11             |
+| `nrpn`              | 0xB                | 11             |
+| `programchange`     | 0xC                | 12             |
+| `channelaftertouch` | 0xD                | 13             |
+| `pitchbend`         | 0xE                | 14             |
 
 
 
