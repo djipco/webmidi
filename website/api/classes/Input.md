@@ -167,8 +167,8 @@ The port type. In the case of the `Input` object, this is always: `input`.
 
 
 Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
-specified output destination(s). This is akin to the hardware MIDI THRU port with the added
-benefit of being able to filter which data is forwarded.
+specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
+the added benefit of being able to filter which data is forwarded.
 
 
   **Parameters**
