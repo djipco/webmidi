@@ -13,7 +13,7 @@
 
 {{#each this}}
 {{! Name and anchor }}
-### `"{{this.name}}"` {{curly true}}{{createEventAnchor this.name}}{{curly}}
+### `{{this.name}}` {{curly true}}{{createEventAnchor this.name}}{{curly}}
 
 <a id="event:{{this.name}}"></a>
 
@@ -34,7 +34,7 @@
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
 {{#each properties}}
-  |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines this.description}}}|
+  |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines (inlineLinks this.description)}}}|
 {{/each}}
 
 {{/if}}

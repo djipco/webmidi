@@ -23,7 +23,7 @@
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
   {{#each params}}
-    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} | {{#each this.type.names}}{{this}}<br />{{/each}} |{{this.defaultvalue}}|{{{stripNewlines this.description}}}|
+    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} | {{#each this.type.names}}{{this}}<br />{{/each}} |{{this.defaultvalue}}|{{{stripNewlines (inlineLinks this.description)}}}|
   {{/each}}
 
   </div>
@@ -34,7 +34,7 @@
 {{#if this.exceptions}}
 **Throws**:
 {{#each this.exceptions}}
-* {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{this.description}}
+* {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{inlineLinks this.description}}
 {{/each}}
 {{/if}}
 

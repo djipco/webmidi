@@ -37,7 +37,7 @@
   | Property     | Type         | Description  |
   | ------------ | ------------ | ------------ |
   {{#each properties}}
-    |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines this.description}}}|
+    |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines (inlineLinks this.description)}}}|
   {{/each}}
 
 {{/if}}

@@ -37,10 +37,10 @@
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
   {{#each params}}
-    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} | {{#each this.type.names}}{{this}}<br />{{/each}} |{{this.defaultvalue}}|{{{stripNewlines this.description}}}|
+    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} | {{#each this.type.names}}{{this}}<br />{{/each}} |{{this.defaultvalue}}|{{{stripNewlines (inlineLinks this.description)}}}|
   {{/each}}
 
   </div>
@@ -49,16 +49,19 @@
 
 {{! Returns }}
 {{#if returns}}
-**Returns**: {{#each returns~}}
+**Return Value**
+
+{{! Return value description }}
+> Returns: {{#each returns~}}
 {{#if type~}}
 {{#each type.names~}}
 `{{{this}}}`{{#unless @last}} or {{/unless}}
-{{~/each}}
+{{~/each}}<br />
 {{/if~}}
+
 {{~#if description}}
 
-{{! Description }}
-> {{{inlineLinks description}}}
+{{{inlineLinks description}}}
 {{/if~}}
 {{~/each}}
 {{/if}}
