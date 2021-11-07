@@ -950,7 +950,7 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 
 
 Event emitted when the [`Input`](Input) has been closed by calling the
-[`close`](#close) method.
+[`close()`](#close) method.
 
 
 
@@ -959,8 +959,8 @@ Event emitted when the [`Input`](Input) has been closed by calling the
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"closed"`|
-  |**`target`** |Input|The object that triggered the event|
+  |**`type`** |string|`closed`|
+  |**`target`** |Input|The The [`Input`](Input) that triggered the event.|
 
 
 ### `"continue"` {#event-continue}
@@ -988,8 +988,8 @@ Input-wide (system) event emitted when a **continue** message has been received.
 <a id="event:disconnected"></a>
 
 
-Event emitted when the [Input](Input) becomes unavailable. This event is typically fired
-when the MIDI device is unplugged.
+Event emitted when the The [`Input`](Input) becomes unavailable. This event is typically
+fired when the MIDI device is unplugged.
 
 
 
@@ -1005,7 +1005,7 @@ when the MIDI device is unplugged.
   |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
   |**`target.name`** |string|Name of the device that provided the input|
   |**`target.state`** |string|`"disconnected"`|
-  |**`target.type`** |string|`"input"`|
+  |**`target.type`** |string|`input`|
 
 
 ### `"midimessage"` {#event-midimessage}
@@ -1037,8 +1037,8 @@ Event emitted when any MIDI message is received on an `Input`
 <a id="event:opened"></a>
 
 
-Event emitted when the [Input](Input) has been opened by calling the [Input#open](Input#open)
-method.
+Event emitted when the [`Input`](Input)  has been opened by calling the
+[`open()`](#open) method.
 
 
 
@@ -1047,8 +1047,8 @@ method.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"opened"`|
-  |**`target`** |Input|The object that triggered the event|
+  |**`type`** |string|`opened`|
+  |**`target`** |Input|The [`Input`](Input)  that triggered the event.|
 
 
 ### `"reset"` {#event-reset}
