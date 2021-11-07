@@ -20,7 +20,7 @@ to, the callback function and so on.
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event being listened to|
-    |**`target`** | EventEmitter<br /> ||The `EventEmitter` object that the listener is attached to|
+    |**`target`** | EventEmitter<br /> ||The [`EventEmitter`](EventEmitter) object that the listener is attached to.|
     |**`callback`** | EventEmitter~callback<br /> ||The function to call when the listener is triggered|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |target|The context to invoke the listener in (a.k.a. the value of `this` inside the callback function).|
