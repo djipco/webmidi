@@ -429,6 +429,9 @@ export class Enumerations {
      *
      * **Custom WebMidi.js Messages**
      *
+     * These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
+     * or forwarded.
+     *
      * | Function               | Hexadecimal | Decimal |
      * |------------------------|-------------|---------|
      * | `midimessage`          |             |  0      |
@@ -4096,7 +4099,7 @@ declare class Input {
     _forwarders: any[];
     /**
      * Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
-     * unlinking the MIDI subsystem.
+     * unlinking the MIDI subsystem. This is mostly for internal use.
      *
      * @returns {Promise<void>}
      */
@@ -4119,15 +4122,18 @@ declare class Input {
      */
     private _parseEvent;
     /**
-     * Opens the input for usage. This is usually unnecessary as the port is open automatically when
+     * Opens the input for usage. This is usually unnecessary as the port is opened automatically when
      * WebMidi is enabled.
      *
-     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object.
      */
     open(): Promise<Input>;
     /**
      * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
      * the input is opened again by calling [`Input.open()`](Input#open).
+     *
+     * **Note**: if what you want to do is stop events from being dispatched, you should use
+     * [`eventsSuspended`](#eventsSuspended) instead.
      *
      * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
      */
@@ -4178,8 +4184,8 @@ declare class Input {
      * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
      *
      * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
-     * instance that actually gets a listener added and not the [`Input`](Input) instance. You can
-     * check that by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
+     * instance that actually gets a listener added and not the `Input` instance. You can check that
+     * by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
      *
      * There are 8 families of events you can listen to:
      *
@@ -4264,8 +4270,8 @@ declare class Input {
      * @param {object} [options={}]
      *
      * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the `arguments` property of the `Listener` object
-     * and can be retrieved or modified as desired.
+     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
+     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
      *
      * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
      * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
@@ -4278,7 +4284,7 @@ declare class Input {
      * automatically expires.
      *
      * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array.
+     * of the listeners array and thus be triggered before others.
      *
      * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
      * should automatically be removed.
@@ -4298,9 +4304,9 @@ declare class Input {
     /**
      * Adds a one-time event listener that will trigger a function callback when the specified event
      * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
-     * dispatched by {@link InputChannel} objects and are tied to a specific MIDI channel while
-     * input-wide events are dispatched by the {@link Input} object itself and are not tied to a
-     * specific channel.
+     * dispatched by [`InputChannel`]{@link InputChannel} objects and are tied to a specific MIDI
+     * channel while input-wide events are dispatched by the `Input` object itself and are not tied
+     * to a specific channel.
      *
      * Calling the function with an input-wide event (such as
      * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
@@ -4320,7 +4326,7 @@ declare class Input {
      * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
      * ```
      *
-     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
+     * In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.
      *
      * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
      * event is triggered on MIDI channels `1`, `2` or `3`.
@@ -4414,8 +4420,8 @@ declare class Input {
      * @param {object} [options={}]
      *
      * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the `arguments` property of the `Listener` object
-     * and can be retrieved or modified as desired.
+     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
+     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
      *
      * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
      * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
@@ -4427,7 +4433,7 @@ declare class Input {
      * automatically expires.
      *
      * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array.
+     * of the listeners array and thus be triggered before others.
      *
      * @returns {Listener[]} An array of all [`Listener`](Listener) objects that were created.
      */
@@ -4446,9 +4452,9 @@ declare class Input {
      */
     private on;
     /**
-     * Checks if the specified event type is already defined to trigger the listener function. For
-     * channel-specific events, the function will return `true` only if all channels have the listener
-     * defined.
+     * Checks if the specified event type is already defined to trigger the specified callback
+     * function. For channel-specific events, the function will return `true` only if all channels
+     * have the listener defined.
      *
      * @param event {string} The type of the event.
      *
@@ -4460,8 +4466,8 @@ declare class Input {
      * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
      * events.
      *
-     * @returns {boolean} Boolean value indicating whether or not the channel(s) already have this
-     * listener defined.
+     * @returns {boolean} Boolean value indicating whether or not the `Input` or
+     * [`InputChannel`](InputChannel) already has this listener defined.
      */
     hasListener(event: string, listener: Function, options?: {
         channels?: number | number[];
@@ -4469,7 +4475,8 @@ declare class Input {
     /**
      * Removes the specified listener for the specified event. If no listener is specified, all
      * listeners for the specified event will be removed. If no event is specified, all listeners for
-     * the `Input` as well as all listeners for all `InputChannels` will be removed.
+     * the `Input` as well as all listeners for all [`InputChannel`]{@link InputChannel} objects will
+     * be removed.
      *
      * By default, channel-specific listeners will be removed from all channels unless the
      * `options.channel` narrows it down.
@@ -4496,14 +4503,14 @@ declare class Input {
     }): any;
     /**
      * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
-     * specified output destination(s). This is akin to the hardware MIDI THRU port with the added
-     * benefit of being able to filter which data is forwarded.
+     * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
+     * the added benefit of being able to filter which data is forwarded.
      *
      * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
      * objects, to forward messages to.
      * @param {object} [options={}]
      * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
-     * types (`"noteon"`, `"controlchange"`, etc.), that the message type must match in order to be
+     * types (`noteon`, `controlchange`, etc.), that the message type must match in order to be
      * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
      * messages are the ones found in either
      * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
@@ -4520,14 +4527,17 @@ declare class Input {
         channels?: number;
     }): Forwarder;
     /**
-     * Removes the specified forwarder.
+     * Removes the specified [`Forwarder`](Forwarder) object from the input.
+     *
      * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
      * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
      */
     removeForwarder(forwarder: Forwarder): void;
     /**
-     * Checks whether the specified forwarded has already been attached to this input.
-     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check (the
+     * Checks whether the specified [`Forwarder`](Forwarder) object has already been attached to this
+     * input.
+     *
+     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check for (the
      * [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).
      * @returns {boolean}
      */
