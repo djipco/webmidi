@@ -44,7 +44,8 @@ If the input is a note number or identifier, it is possible to specify options b
 
 **Return Value**
 
-> Returns: `Note`
+> Returns: `Note`<br />
+
 
 **Attributes**: static
 
@@ -86,7 +87,8 @@ input.
 
 **Return Value**
 
-> Returns: `Array.<Note>`
+> Returns: `Array.<Note>`<br />
+
 
 **Attributes**: static
 
@@ -120,7 +122,8 @@ input value cannot be converted to an integer, the method returns 0.
 
 **Return Value**
 
-> Returns: `number`
+> Returns: `number`<br />
+
 A number between 0 and 1 (inclusive)
 
 
@@ -154,7 +157,8 @@ the input value cannot be converted to a number, the method returns 0.
 
 **Return Value**
 
-> Returns: `number`
+> Returns: `number`<br />
+
 A number between 0 and 1 (inclusive)
 
 
@@ -183,7 +187,8 @@ Extracts 7bit MSB and LSB values from the supplied float.
 
 **Return Value**
 
-> Returns: `Object`
+> Returns: `Object`<br />
+
 
 **Attributes**: static
 
@@ -212,7 +217,8 @@ is within between 0 and 1 even if the result is greater than 1 or smaller than 0
 
 **Return Value**
 
-> Returns: `number`
+> Returns: `number`<br />
+
 A float between 0 and 1.
 
 
@@ -244,7 +250,8 @@ In this case, the method returns `undefined`.
 
 **Return Value**
 
-> Returns: `string` or `undefined`
+> Returns: `string` or `undefined`<br />
+
 The matching control change name or `undefined` if not match was
 found.
 
@@ -276,7 +283,8 @@ returns `false`.
 
 **Return Value**
 
-> Returns: `string` or `false`
+> Returns: `string` or `false`<br />
+
 The name of the matching channel mode or `false` if not match could be
 found.
 
@@ -312,7 +320,8 @@ When a number is specified, the translation to note is done using a value of 60 
 
 **Return Value**
 
-> Returns: `Object`
+> Returns: `Object`<br />
+
 
 **Attributes**: static
 
@@ -343,7 +352,8 @@ supplied.
 
 **Return Value**
 
-> Returns: `string`
+> Returns: `string`<br />
+
 The name of the matching property
 
 
@@ -380,7 +390,8 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
 **Return Value**
 
-> Returns: `number` or `false`
+> Returns: `number` or `false`<br />
+
 A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.
 
@@ -412,7 +423,8 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
 **Return Value**
 
-> Returns: `number`
+> Returns: `number`<br />
+
 An integer between 0 and 127
 
 
@@ -449,7 +461,8 @@ integers between 1 and 16 are silently ignored.
 
 **Return Value**
 
-> Returns: `Array`
+> Returns: `Array`<br />
+
 An array of 0 or more valid MIDI channel numbers.
 
 
@@ -481,7 +494,8 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
 **Return Value**
 
-> Returns: `string`
+> Returns: `string`<br />
+
 
 **Attributes**: static
 
@@ -521,7 +535,8 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
 **Return Value**
 
-> Returns: `number`
+> Returns: `number`<br />
+
 The MIDI note number (an integer between 0 and 127).
 
 
@@ -558,7 +573,8 @@ returned.
 
 **Return Value**
 
-> Returns: `number` or `false`
+> Returns: `number` or `false`<br />
+
 A positive number or `false` (if the time cannot be converted)
 
 
