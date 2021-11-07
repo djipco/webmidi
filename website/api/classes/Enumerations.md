@@ -38,7 +38,6 @@ Enumeration of all MIDI channel message names and their associated 4-bit numeric
 | `noteon`            | 0x9         | 9       |
 | `keyaftertouch`     | 0xA         | 10      |
 | `controlchange`     | 0xB         | 11      |
-| `nrpn`              | 0xB         | 11      |
 | `programchange`     | 0xC         | 12      |
 | `channelaftertouch` | 0xD         | 13      |
 | `pitchbend`         | 0xE         | 14      |
