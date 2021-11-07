@@ -3,21 +3,25 @@ import {Output} from "./Output.js";
 import {WebMidi} from "./WebMidi.js";
 
 /**
- * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
- * [`Output`](Output) objects as long as the message matches certain conditions.
+ * The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When you
+ * call its [`forward()`](#forward) method, it will send the specified [`Message`](Message) object
+ * to all the outputs listed in its [`destinations`](#destinations) property.
  *
- * While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
- * object as the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
+ * If specific channels or message types have been defined in the [`channels`](#channels) or
+ * [`types`](#types) properties, only messages matching the channels/types will be forwarded.
  *
- * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+ * While it can be manually instantiated, you are more likely to come across a `Forwarder` object as
+ * the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
+ *
+ * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such objects,
  * to forward the message to.
  *
  * @param {object} [options={}]
- * @param {string|string[]} [options.types] A MIDI message type (`"noteon"`, `"controlchange"`,
- * etc.), or an array of such types, that the specified message must match in order to be forwarded.
- * If this option is not specified, all types of messages will be forwarded. Valid messages are the
- * ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
- * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+ * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such types
+ * (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to be
+ * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+ * messages are the ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
+ * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
  * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
  * A MIDI channel number or an array of channel numbers that the message must match in order to be
  * forwarded. By default all MIDI channels are included (`1` to `16`).
@@ -27,7 +31,7 @@ import {WebMidi} from "./WebMidi.js";
  */
 export class Forwarder {
 
-  constructor(destinations, options = {}) {
+  constructor(destinations = [], options = {}) {
 
     /**
      * An array of [`Output`](Output) objects to forward the message to.
@@ -125,8 +129,17 @@ export class Forwarder {
     if (message.channel && !this.channels.includes(message.channel)) return;
 
     // Forward
-    this.destinations.forEach(destination => destination.send(message));
+    this.destinations.forEach(destination => {
+
+      if (WebMidi.validation) {
+        if ( !(destination instanceof Output) ) return;
+      }
+
+      destination.send(message);
+
+    });
 
   }
 
 }
+
