@@ -20,7 +20,7 @@ import {Enumerations} from "./Enumerations.js";
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
  * @fires InputChannel#programchange
- * @fires InputChannel#event:controlchange-xxx
+ * @fires InputChannel#event:controlchange-controllerxxx
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
  * @fires InputChannel#controlchange
@@ -170,7 +170,6 @@ export class InputChannel extends EventEmitter {
    * @private
    */
   _parseEventForStandardMessages(e) {
-
 
     const event = Object.assign({}, e);
     event.type = event.message.type || "unknownmidimessage";
@@ -351,10 +350,10 @@ export class InputChannel extends EventEmitter {
        * targeting the controller numbered "xxx". Of course, "xxx" should be replaced by a valid
        * controller number (0-127).
        *
-       * @event InputChannel#controlchange-xxx
+       * @event InputChannel#controlchange-controllerxxx
        *
        * @type {object}
-       * @property {string} type `controlchange-xxx`
+       * @property {string} type `controlchange-controllerxxx`
        * @property {string} subtype The type of control change message that was received.
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
@@ -371,7 +370,7 @@ export class InputChannel extends EventEmitter {
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
       const specificEvent = Object.assign({}, event);
-      specificEvent.type = `${event.type}-${data1}`;
+      specificEvent.type = `${event.type}-controller${data1}`;
       delete specificEvent.subtype;
       this.emit(specificEvent.type, specificEvent);
 
