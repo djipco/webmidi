@@ -233,8 +233,9 @@ Enumeration of all valid MIDI system messages and matching numerical values. Web
 uses two additional custom messages.
 
 
-| System Common Messages                                     |
-| Function             | hexadecimal Value | Decimal Value   |
+**System common messages**
+
+| Function             | Hexadecimal Value | Decimal Value   |
 |----------------------|-------------------|-----------------|
 | `sysex`              | 0xF0              |  240            |
 | `timecode`           | 0xF1              |  241            |
