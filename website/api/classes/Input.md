@@ -2,9 +2,9 @@
 # Input
 
 The `Input` class represents a single MIDI input port. This object is automatically instantiated
-by the library according to the host's MIDI subsystem and should not be directly instantiated.
-Instead, you can access all `Input` objects by referring to the [`WebMidi.inputs`](WebMidi#inputs)
-array. You can also retrieve inputs by using methods such as
+by the library according to the host's MIDI subsystem and does not need to be directly
+instantiated. Instead, you can access all `Input` objects by referring to the
+[`WebMidi.inputs`](WebMidi#inputs) array. You can also retrieve inputs by using methods such as
 [`WebMidi.getInputByName()`](WebMidi#getInputByName) and
 [`WebMidi.getInputById()`](WebMidi#getInputById).
 
