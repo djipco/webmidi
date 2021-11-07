@@ -10,6 +10,21 @@ All properties are static and should be referenced using the class name. For exa
 
 ***
 
+## Properties
+
+### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
+
+
+An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
+
+**Type**: Array.&lt;number&gt;<br />
+**Attributes**: read-only<br />
+  **Attributes**: static
+
+
+
+***
+
 ## Enums
 
 ### `.MIDI_CHANNEL_MESSAGES` {#MIDI_CHANNEL_MESSAGES}
@@ -42,11 +57,6 @@ Enumeration of all channel mode messages and their associated numerical value:
 - `omnimodeon`: 125
 - `monomodeon`: 126
 - `polymodeon`: 127
-### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
-**Type**: Array.&lt;number&gt;<br />
-**Attributes**: static
-
-An array of the 16 MIDI channel numbers (`1` to `16`):
 ### `.MIDI_CONTROL_CHANGE_MESSAGES` {#MIDI_CONTROL_CHANGE_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
