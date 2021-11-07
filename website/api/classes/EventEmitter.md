@@ -113,7 +113,7 @@ also be triggered by non-registered events.
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
-    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`]{@link Listener#arguments} property of the [`Listener`]{@link Listener} object and can be retrieved or modified as desired.|
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
 
@@ -156,7 +156,7 @@ listener will also be triggered by non-registered events.
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`]{@link Listener#arguments} property of the [`Listener`]{@link Listener} object and can be retrieved or modified as desired.|
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
 
@@ -236,7 +236,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} symbol.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -305,7 +305,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> ||The event to check|
-    |[**`callback`**] | function<br />Listener<br /> ||The actual function that was added to the event or the {@link Listener} object returned by `addListener()`.|
+    |[**`callback`**] | function<br />Listener<br /> ||The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
 
