@@ -240,8 +240,8 @@ const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channel
 In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
 
 Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
-instance that actually gets a listener added and not the [`Input`](Input) instance. You can
-check that by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
+instance that actually gets a listener added and not the `Input` instance. You can check that
+by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
 
 There are 8 families of events you can listen to:
 
@@ -356,8 +356,8 @@ object is returned. If the event is channel-specific, an array of all the
 Adds a one-time event listener that will trigger a function callback when the specified event
 happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
 dispatched by [`InputChannel`](InputChannel) objects and are tied to a specific MIDI
-channel while input-wide events are dispatched by the [`Input`](Input) object itself and
-are not tied to a specific channel.
+channel while input-wide events are dispatched by the `Input` object itself and are not tied
+to a specific channel.
 
 Calling the function with an input-wide event (such as
 [`"midimessage"`](#event:midimessage)), will return the [`Listener`](Listener) object
@@ -904,7 +904,7 @@ try {
 
 ## Events
 
-### `"activesensing"` {#event-activesensing}
+### `activesensing` {#event-activesensing}
 
 <a id="event:activesensing"></a>
 
@@ -924,7 +924,7 @@ Input-wide (system) event emitted when an **active sensing** message has been re
   |**`type`** |string|`activesensing`|
 
 
-### `"clock"` {#event-clock}
+### `clock` {#event-clock}
 
 <a id="event:clock"></a>
 
@@ -944,12 +944,12 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
   |**`type`** |string|`clock`|
 
 
-### `"closed"` {#event-closed}
+### `closed` {#event-closed}
 
 <a id="event:closed"></a>
 
 
-Event emitted when the [`Input`](Input) has been closed by calling the
+Event emitted when the `Input` has been closed by calling the
 [`close()`](#close) method.
 
 
@@ -960,10 +960,10 @@ Event emitted when the [`Input`](Input) has been closed by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`closed`|
-  |**`target`** |Input|The [`Input`](Input) that triggered the event.|
+  |**`target`** |Input|The `Input` that triggered the event.|
 
 
-### `"continue"` {#event-continue}
+### `continue` {#event-continue}
 
 <a id="event:continue"></a>
 
@@ -983,12 +983,12 @@ Input-wide (system) event emitted when a **continue** message has been received.
   |**`type`** |string|`continue`|
 
 
-### `"disconnected"` {#event-disconnected}
+### `disconnected` {#event-disconnected}
 
 <a id="event:disconnected"></a>
 
 
-Event emitted when the [`Input`](Input) becomes unavailable. This event is typically fired
+Event emitted when the `Input` becomes unavailable. This event is typically fired
 when the MIDI device is unplugged.
 
 
@@ -998,22 +998,22 @@ when the MIDI device is unplugged.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"disconnected"`|
+  |**`type`** |string|`disconnected`|
   |**`target`** |object|Object with properties describing the {@link Input} that triggered the event. This is not the actual `Input` as it is no longer available.|
   |**`target.connection`** |string|`"closed"`|
   |**`target.id`** |string|ID of the input|
   |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
   |**`target.name`** |string|Name of the device that provided the input|
-  |**`target.state`** |string|`"disconnected"`|
+  |**`target.state`** |string|`disconnected`|
   |**`target.type`** |string|`input`|
 
 
-### `"midimessage"` {#event-midimessage}
+### `midimessage` {#event-midimessage}
 
 <a id="event:midimessage"></a>
 
 
-Event emitted when any MIDI message is received on an `Input`
+Event emitted when any MIDI message is received on an `Input`.
 
 **Since**: 2.1
 
@@ -1022,23 +1022,19 @@ Event emitted when any MIDI message is received on an `Input`
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`target`** |Input|The `Input`that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"midimessage"`|
-  |**`event.data`** |Array|The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead).|
-  |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array (deprecated, use the `message` object instead).|
-  |**`event.statusByte`** |number|The message's status byte  (deprecated, use the `message` object instead).|
-  |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
+  |**`type`** |string|`midimessage`|
 
 
-### `"opened"` {#event-opened}
+### `opened` {#event-opened}
 
 <a id="event:opened"></a>
 
 
-Event emitted when the [`Input`](Input)  has been opened by calling the
-[`open()`](#open) method.
+Event emitted when the `Input` has been opened by calling the [`open()`](#open)
+method.
 
 
 
@@ -1048,10 +1044,10 @@ Event emitted when the [`Input`](Input)  has been opened by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`opened`|
-  |**`target`** |Input|The [`Input`](Input)  that triggered the event.|
+  |**`target`** |Input|The `Input` that triggered the event.|
 
 
-### `"reset"` {#event-reset}
+### `reset` {#event-reset}
 
 <a id="event:reset"></a>
 
@@ -1071,7 +1067,7 @@ Input-wide (system) event emitted when a **reset** message has been received.
   |**`type`** |string|`reset`|
 
 
-### `"songposition"` {#event-songposition}
+### `songposition` {#event-songposition}
 
 <a id="event:songposition"></a>
 
@@ -1091,7 +1087,7 @@ Input-wide (system) event emitted when a **song position** message has been rece
   |**`type`** |string|`songposition`|
 
 
-### `"songselect"` {#event-songselect}
+### `songselect` {#event-songselect}
 
 <a id="event:songselect"></a>
 
@@ -1112,7 +1108,7 @@ Input-wide (system) event emitted when a **song select** message has been receiv
   |**`song`** |string|Song (or sequence) number to select (1-128)|
 
 
-### `"start"` {#event-start}
+### `start` {#event-start}
 
 <a id="event:start"></a>
 
@@ -1132,7 +1128,7 @@ Input-wide (system) event emitted when a **start** message has been received.
   |**`type`** |string|`start`|
 
 
-### `"stop"` {#event-stop}
+### `stop` {#event-stop}
 
 <a id="event:stop"></a>
 
@@ -1152,7 +1148,7 @@ Input-wide (system) event emitted when a **stop** message has been received.
   |**`type`** |string|`stop`|
 
 
-### `"sysex"` {#event-sysex}
+### `sysex` {#event-sysex}
 
 <a id="event:sysex"></a>
 
@@ -1181,7 +1177,7 @@ WebMidi.enable({sysex: true})
   |**`event.rawData`** |Uint8Array|The raw MIDI message as a Uint8Array.|
 
 
-### `"timecode"` {#event-timecode}
+### `timecode` {#event-timecode}
 
 <a id="event:timecode"></a>
 
@@ -1202,7 +1198,7 @@ received.
   |**`type`** |string|`timecode`|
 
 
-### `"tunerequest"` {#event-tunerequest}
+### `tunerequest` {#event-tunerequest}
 
 <a id="event:tunerequest"></a>
 
@@ -1222,7 +1218,7 @@ Input-wide (system) event emitted when a **tune request** message has been recei
   |**`type`** |string|`tunerequest`|
 
 
-### `"unknownmidimessage"` {#event-unknownmidimessage}
+### `unknownmidimessage` {#event-unknownmidimessage}
 
 <a id="event:unknownmidimessage"></a>
 
