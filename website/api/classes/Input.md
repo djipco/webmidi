@@ -274,6 +274,10 @@ There are 8 families of events you can listen to:
 
    * [`channelaftertouch`](InputChannel#event:channelaftertouch)
    * [`controlchange`](InputChannel#event:controlchange)
+     * [`controlchange-controller0`](InputChannel#event:controlchange-controller0)
+     * [`controlchange-controller1`](InputChannel#event:controlchange-controller1)
+     * [`controlchange-controller2`](InputChannel#event:controlchange-controller2)
+     * etc.
    * [`keyaftertouch`](InputChannel#event:keyaftertouch)
    * [`noteoff`](InputChannel#event:noteoff)
    * [`noteon`](InputChannel#event:noteon)
