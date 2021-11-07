@@ -54,7 +54,6 @@
     "library:build-iife": "node scripts/library/build.js -t iife",
     "test-coverage:report-as-text": "nyc --reporter=text mocha",
     "test-coverage:report-as-html": "nyc --reporter=html mocha",
-    "website:build-locally": "npm run --prefix website build",
     "website:generate+serve-locally": "npm run --prefix website start",
     "website:generate+push-to-gh-pages": "npm run --prefix website build && node scripts/website/deploy.js",
     "jsdoc:generate-html+push": "node scripts/api-documentation/generate-html.js",
