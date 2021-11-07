@@ -5,7 +5,7 @@ The `EventEmitter` class provides methods to implement the _observable_ design p
 pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
 emitter.
 
-It is a mostly abstract class meant to be extended by (or mixed into) other objects.
+It is intended to be an abstract class meant to be extended by (or mixed into) other objects.
 
 
 
