@@ -488,7 +488,7 @@ There are 8 families of events you can listen to:
 **Attributes**: async
 
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
-the input is opened again by calling [`Input.open()`](#Input+open).
+the input is opened again by calling [`Input.open()`](Input#open).
 
 
 **Returns**: `Promise.<Input>`
