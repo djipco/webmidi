@@ -628,11 +628,11 @@ callback to match or one or more of the additional options.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br /> ||The event name.|
-    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`event`**] | string<br /> |(any events)|The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> |(any callbacks)|Only remove the listeners that match this exact callback function.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`options.context`**] | *<br /> |(any contexts)|Only remove the listeners that have this exact context.|
+    |[**`options.remaining+(any number)`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
 
   </div>
 
