@@ -11,16 +11,16 @@ export class Enumerations {
   /**
    * Enumeration of all MIDI channel message names and their associated 4-bit numerical value:
    *
-   * | Message Name        | Hexadecimal Value  |  Decimal Value |
-   * |---------------------|--------------------|----------------|
-   * | `noteoff`           | 0x8                | 8              |
-   * | `noteon`            | 0x9                | 9              |
-   * | `keyaftertouch`     | 0xA                | 10             |
-   * | `controlchange`     | 0xB                | 11             |
-   * | `nrpn`              | 0xB                | 11             |
-   * | `programchange`     | 0xC                | 12             |
-   * | `channelaftertouch` | 0xD                | 13             |
-   * | `pitchbend`         | 0xE                | 14             |
+   * | Message Name        | Hexadecimal | Decimal |
+   * |---------------------|-------------|---------|
+   * | `noteoff`           | 0x8         | 8       |
+   * | `noteon`            | 0x9         | 9       |
+   * | `keyaftertouch`     | 0xA         | 10      |
+   * | `controlchange`     | 0xB         | 11      |
+   * | `nrpn`              | 0xB         | 11      |
+   * | `programchange`     | 0xC         | 12      |
+   * | `channelaftertouch` | 0xD         | 13      |
+   * | `pitchbend`         | 0xE         | 14      |
    *
    * @enum {Object.<string, number>}
    * @readonly
@@ -55,16 +55,16 @@ export class Enumerations {
    * Enumeration of all MIDI channel mode message names and their associated numerical value:
    *
    *
-   * | Message Name          | Hexadecimal Value  |  Decimal Value |
-   * |-----------------------|--------------------|----------------|
-   * | `allsoundoff`         | 0x78               | 120            |
-   * | `resetallcontrollers` | 0x79               | 121            |
-   * | `localcontrol`        | 0x7A               | 122            |
-   * | `allnotesoff`         | 0x7B               | 123            |
-   * | `omnimodeoff`         | 0x7C               | 124            |
-   * | `omnimodeon`          | 0x7D               | 125            |
-   * | `monomodeon`          | 0x7E               | 126            |
-   * | `polymodeon`          | 0x7F               | 127            |
+   * | Message Name          | Hexadecimal | Decimal |
+   * |-----------------------|-------------|---------|
+   * | `allsoundoff`         | 0x78        | 120     |
+   * | `resetallcontrollers` | 0x79        | 121     |
+   * | `localcontrol`        | 0x7A        | 122     |
+   * | `allnotesoff`         | 0x7B        | 123     |
+   * | `omnimodeoff`         | 0x7C        | 124     |
+   * | `omnimodeon`          | 0x7D        | 125     |
+   * | `monomodeon`          | 0x7E        | 126     |
+   * | `polymodeon`          | 0x7F        | 127     |
    *
    * @enum {Object.<string, number>}
    * @readonly
@@ -419,41 +419,42 @@ export class Enumerations {
    * Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
    * uses two additional custom messages.
    *
-   *
    * **System Common Messages**
    *
-   * | Function               | Hexadecimal Value | Decimal Value   |
-   * |------------------------|-------------------|-----------------|
-   * | `sysex`                | 0xF0              |  240            |
-   * | `timecode`             | 0xF1              |  241            |
-   * | `songposition`         | 0xF2              |  242            |
-   * | `songselect`           | 0xF3              |  243            |
-   * | `tunerequest`          | 0xF6              |  246            |
-   * | `sysexend`             | 0xF7              |  247            |
+   * | Function               | Hexadecimal | Decimal |
+   * |------------------------|-------------|---------|
+   * | `sysex`                | 0xF0        |  240    |
+   * | `timecode`             | 0xF1        |  241    |
+   * | `songposition`         | 0xF2        |  242    |
+   * | `songselect`           | 0xF3        |  243    |
+   * | `tunerequest`          | 0xF6        |  246    |
+   * | `sysexend`             | 0xF7        |  247    |
    *
    * The `sysexend` message is never actually received. It simply ends a sysex stream.
    *
    * **System Real-Time Messages**
    *
-   * | Function               | Hexadecimal Value | Decimal Value   |
-   * |------------------------|-------------------|-----------------|
-   * | `clock`                | 0xF8              |  248            |
-   * | `start`                | 0xFA              |  250            |
-   * | `continue`             | 0xFB              |  251            |
-   * | `stop`                 | 0xFC              |  252            |
-   * | `activesensing`        | 0xFE              |  254            |
-   * | `reset`                | 0xFF              |  255            |
+   * | Function               | Hexadecimal | Decimal |
+   * |------------------------|-------------|---------|
+   * | `clock`                | 0xF8        |  248    |
+   * | `start`                | 0xFA        |  250    |
+   * | `continue`             | 0xFB        |  251    |
+   * | `stop`                 | 0xFC        |  252    |
+   * | `activesensing`        | 0xFE        |  254    |
+   * | `reset`                | 0xFF        |  255    |
    *
-   * Values 249 and 253 are relayed by the Web MIDI API but they do not serve any specific purpose.
-   * The [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+   * Values 249 and 253 are relayed by the
+   * [Web MIDI API](https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API) but they do not
+   * serve any specific purpose. The
+   * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
    * simply states that they are undefined/reserved.
    *
    * **Custom WebMidi.js Messages**
    *
-   * | Function               | Hexadecimal Value | Decimal Value   |
-   * |------------------------|-------------------|-----------------|
-   * | `midimessage`          |                   |  0              |
-   * | `unknownsystemmessage` |                   |  -1             |
+   * | Function               | Hexadecimal | Decimal |
+   * |------------------------|-------------|---------|
+   * | `midimessage`          |             |  0      |
+   * | `unknownsystemmessage` |             |  -1     |
    *
    * @enum {Object.<string, number>}
    * @readonly
