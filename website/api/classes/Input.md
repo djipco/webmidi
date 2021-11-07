@@ -478,7 +478,7 @@ There are 8 families of events you can listen to:
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to listen on. This parameter is ignored for input-wide events.|
     |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array.|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus be triggered before others.|
 
   </div>
 
@@ -498,6 +498,9 @@ An array of all [`Listener`](Listener) objects that were created.
 
 Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
 the input is opened again by calling [`Input.open()`](Input#open).
+
+**Note**: if what you want to do is stop events from being dispatched, you should use
+[`eventsSuspended`](#eventsSuspended) instead.
 
 
 **Return Value**
