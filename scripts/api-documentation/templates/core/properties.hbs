@@ -1,6 +1,6 @@
 {{!
 
-  This template creates the 'Events' portion of the output . It relies on the following helpers:
+  This template creates the 'properties' portion of the output . It relies on the following helpers:
 
     - inlineLinks
     - stripNewlines
@@ -14,24 +14,21 @@
 {{#each this}}
 {{! Name }}
 ### `.{{this.name}}` {{curly true}}#{{this.name}}{{curly}}
-
 {{! Since }}
 {{#if this.since}}
 **Since**: {{this.since}}<br />
 {{/if}}
 
-{{! Description }}
-{{{inlineLinks description}}}
-
 {{! Type }}
 **Type**: {{this.type.names.[0]}}<br />
 {{#if (or this.readonly this.nullable)}}
 {{! Attributes }}
-**Attributes**: {{#if this.readonly}}read-only{{#if this.nullable}}, nullable{{/if}}{{else}}{{#if this.nullable}}nullable{{/if}}{{/if}}<br />
+**Attributes**: {{#if this.readonly}}read-only{{/if}}{{#if this.nullable}}, nullable{{/if}}{{#if (eq this.scope "static")}}, static{{/if}}<br />
 {{/if}}
-{{#if (eq this.scope "static")}}
-  **Attributes**: static
-{{/if}}
+
+
+{{! Description }}
+{{{inlineLinks description}}}
 
 {{! Properties }}
 {{#if properties}}
