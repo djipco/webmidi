@@ -971,7 +971,7 @@ when the MIDI device is unplugged.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`disconnected`|
-  |**`target`** |object|Object with properties describing the {@link Input} that triggered the event. This is not the actual `Input` as it is no longer available.|
+  |**`target`** |object|Object with properties describing the [Input](Input) that triggered the event. This is not the actual `Input` as it is no longer available.|
   |**`target.connection`** |string|`"closed"`|
   |**`target.id`** |string|ID of the input|
   |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
