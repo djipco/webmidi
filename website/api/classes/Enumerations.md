@@ -230,7 +230,16 @@ there are only a limited number of them:
 **Attributes**: static
 
 Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
-uses two custom messages.
+uses two additional custom messages.
+
+
+| System Common Messages                                     |
+| Function             | hexadecimal Value | Decimal Value   |
+|----------------------|-------------------|-----------------|
+| `sysex`              | 0xF0              |  240            |
+| `timecode`           | 0xF1              |  241            |
+
+
 
 **System common messages**
 - `sysex`: 0xF0 (240)
