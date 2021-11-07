@@ -281,7 +281,8 @@ There are 8 families of events you can listen to:
    * [`programchange`](InputChannel#event:programchange)
 
    Note: you can listen for a specific control change message by using an event name like this:
-   `controlchange-23`, `controlchange-99`, `controlchange-122`, etc.
+   `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
+   etc.
 
 6. **Channel Mode** Events (channel-specific)
 
