@@ -949,8 +949,8 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 <a id="event:closed"></a>
 
 
-Event emitted when the [Input](Input) has been closed by calling the [Input#close](Input#close)
-method.
+Event emitted when the [`Input`](Input) has been closed by calling the
+[`close`](#close) method.
 
 
 
