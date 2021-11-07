@@ -517,7 +517,7 @@ The promise is fulfilled with the `Input` object
 **Attributes**: async
 
 Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
-unlinking the MIDI subsystem.
+unlinking the MIDI subsystem. This is mostly for internal use.
 
 
 **Return Value**
@@ -645,7 +645,8 @@ An array of `Listener` objects
 ### `.hasForwarder(...)` {#hasForwarder}
 
 
-Checks whether the specified forwarded has already been attached to this input.
+Checks whether the specified [`Forwarder`](Forwarder) object has already been attached to this
+input.
 
 
   **Parameters**
