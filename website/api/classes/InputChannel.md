@@ -12,7 +12,7 @@ property.
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`channelaftertouch`](#event:channelaftertouch), [`controlchange`](#event:controlchange), [`controlchange-xxx`](#event:controlchange-xxx), [`keyaftertouch`](#event:keyaftertouch), [`localcontrol`](#event:localcontrol), [`midimessage`](#event:midimessage), [`monomode`](#event:monomode), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`nrpn`](#event:nrpn), [`nrpn-databuttondecrement`](#event:nrpn-databuttondecrement), [`nrpn-databuttonincrement`](#event:nrpn-databuttonincrement), [`nrpn-dataentrycoarse`](#event:nrpn-dataentrycoarse), [`nrpn-dataentryfine`](#event:nrpn-dataentryfine), [`omnimode`](#event:omnimode), [`pitchbend`](#event:pitchbend), [`programchange`](#event:programchange), [`resetallcontrollers`](#event:resetallcontrollers), [`rpn`](#event:rpn), [`rpn-databuttondecrement`](#event:rpn-databuttondecrement), [`rpn-databuttonincrement`](#event:rpn-databuttonincrement), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse), [`rpn-dataentryfine`](#event:rpn-dataentryfine)
+**Fires**: [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`channelaftertouch`](#event:channelaftertouch), [`controlchange`](#event:controlchange), [`controlchange-controllerxxx`](#event:controlchange-controllerxxx), [`keyaftertouch`](#event:keyaftertouch), [`localcontrol`](#event:localcontrol), [`midimessage`](#event:midimessage), [`monomode`](#event:monomode), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`nrpn`](#event:nrpn), [`nrpn-databuttondecrement`](#event:nrpn-databuttondecrement), [`nrpn-databuttonincrement`](#event:nrpn-databuttonincrement), [`nrpn-dataentrycoarse`](#event:nrpn-dataentrycoarse), [`nrpn-dataentryfine`](#event:nrpn-dataentryfine), [`omnimode`](#event:omnimode), [`pitchbend`](#event:pitchbend), [`programchange`](#event:programchange), [`resetallcontrollers`](#event:resetallcontrollers), [`rpn`](#event:rpn), [`rpn-databuttondecrement`](#event:rpn-databuttondecrement), [`rpn-databuttonincrement`](#event:rpn-databuttonincrement), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse), [`rpn-dataentryfine`](#event:rpn-dataentryfine)
 
 ### `Constructor`
 
@@ -651,9 +651,9 @@ Event emitted when a **control change** MIDI message has been received.
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
 
-### `"controlchange-xxx"` {#event-controlchange-xxx}
+### `"controlchange-controllerxxx"` {#event-controlchange-controllerxxx}
 
-<a id="event:controlchange-xxx"></a>
+<a id="event:controlchange-controllerxxx"></a>
 
 
 Event emitted when a **control change** MIDI message has been received and that message is
@@ -666,7 +666,7 @@ controller number (0-127).
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`controlchange-xxx`|
+  |**`type`** |string|`controlchange-controllerxxx`|
   |**`subtype`** |string|The type of control change message that was received.|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
