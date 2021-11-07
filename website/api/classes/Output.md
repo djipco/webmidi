@@ -439,7 +439,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -448,7 +448,7 @@ events. To get the list of global listeners, specifically use
 
 > Returns: `Array.<Listener>`<br />
 
-An array of [`Listener`](Listener) objects
+An array of [`Listener`](Listener) objects.
 
 
 
@@ -474,8 +474,8 @@ Note: to specifically check for global listeners added with
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> ||The event to check|
-    |[**`callback`**] | function<br />Listener<br /> ||The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
+    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> |(any event)|The event to check|
+    |[**`callback`**] | function<br />Listener<br /> |(any callback)|The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
 
