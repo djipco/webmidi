@@ -2,20 +2,16 @@
 
 ## Who created this?
 
-WebMidi.js is a passion project of Jean-Philippe Côté (a.k.a djip.co). Jean-Philippe is an academic
-and artist with particular interests in creative coding, interactive arts and music technology. You 
-can reach out to him in different ways:
+**WEBMIDI.js** is a passion project of mine. I am Jean-Philippe Côté (a.k.a. 
+[djip.co](https://djip.co)), an academic and artist with particular interests in creative coding, 
+interactive arts and music technology. You can reach out to me in different ways:
 
-* **[@webmidijs](https://twitter.com/webmidijs)** on Twitter
-* **[@djipco](https://twitter.com/djipco)** on Twitter
+* Twitter: **[@djipco](https://twitter.com/djipco)**
+* Website: **[Website](https://djip.co/)**
+* GitHub: **[GitHub](https://github.com/djipco/)**
 
-You can also check out his:
-
-* [Website](https://djip.co/)
-* [GitHub](https://github.com/djipco/)
-
-One of my students, **Jean-Marie Gariépy**, has also been helping out with the preparation of 
-version 3. 👏
+One of mu students, **Jean-Marie Gariépy** has also been helping out in various capacities with the
+creation of this website. 👏
 
 ## Sponsoring the project
 
@@ -24,16 +20,14 @@ you need is a GitHub account. If you see value in this library, please consider 
 
 ## Licensing
 
-Starting with version 3.0.0, this library is licensed under the **Apache License, Version 2.0** (the
-"License"). You may not use this library except in compliance with the License. You may obtain a
-copy of the License at:
+Starting with version 3.0.0, this library is licensed under the **Apache License, Version 2.0**. You
+may not use this library except in compliance with this license. You may obtain a at:
 
   * [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
-Unless required by applicable law or agreed to in writing, software distributed under the License is
-distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
-implied. See the License for the specific language governing permissions and limitations under the
-License.
+Unless required by applicable law or agreed to in writing, software distributed under this license
+is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
+implied. See the above lcense for the specific language governing permissions and limitations.
 
 © 2015-2021, Jean-Philippe Côté.
 
