@@ -641,9 +641,9 @@ Checks whether the specified forwarded has already been attached to this input.
 ### `.hasListener(...)` {#hasListener}
 
 
-Checks if the specified event type is already defined to trigger the listener function. For
-channel-specific events, the function will return `true` only if all channels have the listener
-defined.
+Checks if the specified event type is already defined to trigger the specified listener
+function. For channel-specific events, the function will return `true` only if all channels
+have the listener defined.
 
 
   **Parameters**
@@ -663,8 +663,8 @@ defined.
 
 
 **Returns**: `boolean`
-> Boolean value indicating whether or not the channel(s) already have this
-listener defined.
+> Boolean value indicating whether or not the `Input` or
+[`InputChannel`](InputChannel) already has this listener defined.
 
 
 
