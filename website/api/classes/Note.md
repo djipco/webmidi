@@ -162,7 +162,7 @@ an invalid value is supplied, 0 will be used.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`octaveOffset`**] | number<br /> |0|An integer to offset the note number by octave.|
     |[**`semitoneOffset`**] | number<br /> |0|An integer to offset the note number by semitone.|

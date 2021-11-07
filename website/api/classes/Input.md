@@ -177,7 +177,7 @@ the added benefit of being able to filter which data is forwarded.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`destinations`**] | Output<br />Array.&lt;Output&gt;<br /> |\[\]|An [`Output`](Output) object, or an array of such objects, to forward messages to.|
     |[**`options`**] | object<br /> |{}||
@@ -321,7 +321,7 @@ There are 8 families of events you can listen to:
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
@@ -463,7 +463,7 @@ There are 8 families of events you can listen to:
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
@@ -540,7 +540,7 @@ listeners (added with `EventEmitter.ANY_EVENT`).
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br /> ||The event|
     |**`args`** | *<br /> ||Arbitrary number of arguments to pass along to the callback functions|
@@ -573,7 +573,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event|
 
@@ -602,7 +602,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for|
 
@@ -627,7 +627,7 @@ Checks whether the specified forwarded has already been attached to this input.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`forwarder`** | Forwarder<br /> ||The [`Forwarder`](Forwarder) to check (the [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).|
 
@@ -652,7 +652,7 @@ have the listener defined.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||The callback function to check for.|
@@ -695,7 +695,7 @@ Removes the specified forwarder.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`forwarder`** | Forwarder<br /> ||The [`Forwarder`](Forwarder) to remove (the [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.|
 
@@ -723,7 +723,7 @@ By default, channel-specific listeners will be removed from all channels unless 
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`type`**] | string<br /> ||The type of the event.|
     |[**`listener`**] | function<br /> ||The callback function to check for.|
@@ -758,7 +758,7 @@ simply set its `eventsSuspended` property to `true`.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
 
@@ -786,7 +786,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
 
@@ -849,7 +849,7 @@ try {
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||

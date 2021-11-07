@@ -30,7 +30,7 @@ If the input is a note number or identifier, it is possible to specify options b
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`input`**] | number<br />string<br />Note<br /> |||
     |[**`options`**] | object<br /> |{}||
@@ -68,7 +68,7 @@ input.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`notes`**] | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> |||
     |[**`options`**] | object<br /> |{}||
@@ -107,7 +107,7 @@ input value cannot be converted to an integer, the method returns 0.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |  ||A positive integer between 0 and 127 (inclusive)|
 
@@ -139,7 +139,7 @@ the input value cannot be converted to a number, the method returns 0.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** |  ||A positive integer between 0 and 127 (inclusive)|
 
@@ -166,7 +166,7 @@ Extracts 7bit MSB and LSB values from the supplied float.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | number<br /> ||A float between 0 and 1|
 
@@ -192,7 +192,7 @@ is within between 0 and 1 even if the result is greater than 1 or smaller than 0
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`msb`** | number<br /> ||The most significant byte as a integer between 0 and 127.|
     |[**`lsb`**] | number<br /> |0|The least significant byte as a integer between 0 and 127.|
@@ -223,7 +223,7 @@ In this case, the method returns `undefined`.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`number`** | number<br /> ||An integer representing the control change message|
 
@@ -253,7 +253,7 @@ returns `false`.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`number`** | number<br /> ||An integer representing the channel mode message.|
 
@@ -287,7 +287,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | string<br />number<br /> ||A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note number (0-127).|
 
@@ -315,7 +315,7 @@ supplied.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`object`** | object<br /> |||
     |**`value`** | *<br /> |||
@@ -351,7 +351,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`input`** | string<br />number<br /> ||A string or number to extract the MIDI note number from.|
 
@@ -381,7 +381,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`offset`** |  |||
 
@@ -416,7 +416,7 @@ integers between 1 and 16 are silently ignored.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`channel`**] | number<br />Array.&lt;number&gt;<br /> ||An integer or an array of integers to parse as channel numbers.|
 
@@ -445,7 +445,7 @@ octave number. The octave can be offset by using the `octaveOffset` parameter.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`number`** | number<br /> ||The MIDI note number to convert to a note identifier|
     |**`octaveOffset`** | number<br /> ||An offset to apply to the resulting octave|
@@ -483,7 +483,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`identifier`** | string<br /> ||The identifier in the form of a letter, followed by an optional "#", "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.|
     |[**`octaveOffset`**] | number<br /> |0|A integer to offset the octave by.|
@@ -519,7 +519,7 @@ returned.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`time`**] | number<br />string<br /> ||The time string (e.g. `"+2000"`) or number to parse|
 

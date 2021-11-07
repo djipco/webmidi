@@ -90,7 +90,7 @@ type(s) and channel(s).
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`message`** | Message<br /> ||The [`Message`](Message) object to forward.|
 

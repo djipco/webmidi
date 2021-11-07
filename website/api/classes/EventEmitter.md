@@ -102,7 +102,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
@@ -143,7 +143,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
@@ -196,7 +196,7 @@ listeners (added with `EventEmitter.ANY_EVENT`).
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br /> ||The event|
     |**`args`** | *<br /> ||Arbitrary number of arguments to pass along to the callback functions|
@@ -229,7 +229,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event|
 
@@ -258,7 +258,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for|
 
@@ -288,7 +288,7 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> ||The event to check|
     |[**`callback`**] | function<br />Listener<br /> ||The actual function that was added to the event or the {@link Listener} object returned by `addListener()`.|
@@ -318,7 +318,7 @@ callback to match or one or more of the additional options.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`event`**] | string<br /> ||The event name.|
     |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
@@ -352,7 +352,7 @@ simply set its `eventsSuspended` property to `true`.
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
 
@@ -380,7 +380,7 @@ it allows the selective unsuspension of global listeners while leaving other cal
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
 
@@ -443,7 +443,7 @@ try {
 
   <div class="parameter-table-container">
 
-  | Parameter    | Type         | Default      | Description  |
+  | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
