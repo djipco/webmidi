@@ -8,12 +8,13 @@ array. You can also retrieve inputs by using methods such as
 [`WebMidi.getInputByName()`](WebMidi#getInputByName) and
 [`WebMidi.getInputById()`](WebMidi#getInputById).
 
-Note that a single device may expose several inputs and/or outputs.
+Note that a single MIDI device may expose several inputs and/or outputs.
 
-**Important**: while the `Input` class does not directly fire channel-specific MIDI messages
-(such as [`noteon`](InputChannel#event:noteon),
-[`controlchange`](InputChannel#event:controlchange), etc.), you can still use its
-[`addListener()`](#addListener) method to listen to such events on multiple
+**Important**: the `Input` class does not directly fire channel-specific MIDI messages
+(such as [`noteon`](InputChannel#event:noteon) or
+[`controlchange`](InputChannel#event:controlchange), etc.). The [`InputChannel`](InputChannel)
+object fires those. However, you can use the
+[`Input.addListener()`](#addListener) method to listen to such events on multiple
 [`InputChannel`](InputChannel) objects at once.
 
 
