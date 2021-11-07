@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0-alpha.22
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on November 6th, 2021.
+ * Build generated on November 7th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.22 - November 6, 2021 21:56:13 */
+/* Version: 3.0.0-alpha.22 - November 7, 2021 12:41:05 */
 (function (exports) {
   'use strict';
 
@@ -132,7 +132,7 @@
         remaining: 1 / 0,
         arguments: void 0,
         duration: 1 / 0
-      }, i)).duration !== 1 / 0 && setTimeout(() => this.remove(), i.duration), this.event = t, this.target = n, this.callback = r, this.context = i.context, this.remaining = parseInt(i.remaining) >= 1 ? parseInt(i.remaining) : 1 / 0, this.count = 0, this.arguments = i.arguments, this.suspended = !1;
+      }, i)).duration !== 1 / 0 && setTimeout(() => this.remove(), i.duration), this.arguments = i.arguments, this.callback = r, this.context = i.context, this.count = 0, this.event = t, this.remaining = parseInt(i.remaining) >= 1 ? parseInt(i.remaining) : 1 / 0, this.suspended = !1, this.target = n;
     }
 
     remove() {
@@ -140,300 +140,6 @@
         context: this.context,
         remaining: this.remaining
       });
-    }
-
-  }
-
-  /**
-   * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
-   *
-   * `Note` objects can be played back on a single channel by calling
-   * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
-   * output, by calling [`Output.playNote()`]{@link Output#playNote}.
-   *
-   * The note has [`attack`](#attack) and [`release`](#release) velocities set at `0.5` by default.
-   * These can be changed by passing in the appropriate option. It is also possible to set a
-   * system-wide default for attack and release velocities by using the
-   * [`WebMidi.defaults`](WebMidi#defaults) property.
-   *
-   * If you prefer to work with raw MIDI values (`0` to `127`), you can use [`rawAttack`](#rawAttack) and
-   * [`rawRelease`](#rawRelease) to both get and set the values.
-   *
-   * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
-   * when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
-   * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
-   * method such as [`OutputChannel.stopNote()`]{@link OutputChannel#stopNote},
-   * [`Output.stopNote()`]{@link Output#stopNote} or similar.
-   *
-   * @param value {string|number} The value used to create the note. If an identifier string is used,
-   * it must start with the note letter, optionally followed by an accidental and followed by the
-   * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
-   * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
-   *
-   * @param {object} [options={}]
-   *
-   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
-   * explicitly stopped.
-   *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
-   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
-   * `attack` and `rawAttack` are specified, the latter has precedence.
-   *
-   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
-   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
-   * `release` and `rawRelease` are specified, the latter has precedence.
-   *
-   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
-   * `attack` and `rawAttack` are specified, the latter has precedence.
-   *
-   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
-   * `release` and `rawRelease` are specified, the latter has precedence.
-   *
-   * @throws {Error} Invalid note identifier
-   * @throws {RangeError} Invalid name value
-   * @throws {RangeError} Invalid accidental value
-   * @throws {RangeError} Invalid octave value
-   * @throws {RangeError} Invalid duration value
-   * @throws {RangeError} Invalid attack value
-   * @throws {RangeError} Invalid release value
-   *
-   * @license Apache-2.0
-   * @since 3.0.0
-   */
-
-  class Note {
-    constructor(value, options = {}) {
-      // Assign property defaults
-      this.duration = wm.defaults.note.duration;
-      this.attack = wm.defaults.note.attack;
-      this.release = wm.defaults.note.release; // Assign property values from options (validation occurs in setter)
-
-      if (options.duration != undefined) this.duration = options.duration;
-      if (options.attack != undefined) this.attack = options.attack;
-      if (options.rawAttack != undefined) this.attack = Utilities.from7bitToFloat(options.rawAttack);
-      if (options.release != undefined) this.release = options.release;
-
-      if (options.rawRelease != undefined) {
-        this.release = Utilities.from7bitToFloat(options.rawRelease);
-      } // Assign note depending on the way it was specified (name or number)
-
-
-      if (Number.isInteger(value)) {
-        this.identifier = Utilities.toNoteIdentifier(value);
-      } else {
-        this.identifier = value;
-      }
-    }
-    /**
-     * The name, optional accidental and octave of the note, as a string.
-     * @type {string}
-     * @since 3.0.0
-     */
-
-
-    get identifier() {
-      return this._name + (this._accidental || "") + this._octave;
-    }
-
-    set identifier(value) {
-      const fragments = Utilities.getNoteDetails(value);
-
-      if (wm.validation) {
-        if (!value) throw new Error("Invalid note identifier");
-      }
-
-      this._name = fragments.name;
-      this._accidental = fragments.accidental;
-      this._octave = fragments.octave;
-    }
-    /**
-     * The name (letter) of the note
-     * @type {string}
-     * @since 3.0.0
-     */
-
-
-    get name() {
-      return this._name;
-    }
-
-    set name(value) {
-      if (wm.validation) {
-        value = value.toUpperCase();
-
-        if (!["C", "D", "E", "F", "G", "A", "B"].includes(value)) {
-          throw new Error("Invalid name value");
-        }
-      }
-
-      this._name = value;
-    }
-    /**
-     * The accidental (#, ##, b or bb) of the note
-     * @type {string}
-     * @since 3.0.0
-     */
-
-
-    get accidental() {
-      return this._accidental;
-    }
-
-    set accidental(value) {
-      if (wm.validation) {
-        value = value.toLowerCase();
-        if (!["#", "##", "b", "bb"].includes(value)) throw new Error("Invalid accidental value");
-      }
-
-      this._accidental = value;
-    }
-    /**
-     * The octave of the note
-     * @type {number}
-     * @since 3.0.0
-     */
-
-
-    get octave() {
-      return this._octave;
-    }
-
-    set octave(value) {
-      if (wm.validation) {
-        value = parseInt(value);
-        if (isNaN(value)) throw new Error("Invalid octave value");
-      }
-
-      this._octave = value;
-    }
-    /**
-     * The duration of the note as a positive decimal number representing the number of milliseconds
-     * that the note should play for.
-     *
-     * @type {number}
-     * @since 3.0.0
-     */
-
-
-    get duration() {
-      return this._duration;
-    }
-
-    set duration(value) {
-      if (wm.validation) {
-        value = parseFloat(value);
-
-        if (isNaN(value) || value === null || value < 0) {
-          throw new RangeError("Invalid duration value.");
-        }
-      }
-
-      this._duration = value;
-    }
-    /**
-     * The attack velocity of the note as an integer between 0 and 127.
-     * @type {number}
-     * @since 3.0.0
-     */
-
-
-    get attack() {
-      return this._attack;
-    }
-
-    set attack(value) {
-      if (wm.validation) {
-        value = parseFloat(value);
-
-        if (isNaN(value) || !(value >= 0 && value <= 1)) {
-          throw new RangeError("Invalid attack value.");
-        }
-      }
-
-      this._attack = value;
-    }
-    /**
-     * The release velocity of the note as an integer between 0 and 127.
-     * @type {number}
-     * @since 3.0.0
-     */
-
-
-    get release() {
-      return this._release;
-    }
-
-    set release(value) {
-      if (wm.validation) {
-        value = parseFloat(value);
-
-        if (isNaN(value) || !(value >= 0 && value <= 1)) {
-          throw new RangeError("Invalid release value.");
-        }
-      }
-
-      this._release = value;
-    }
-    /**
-     * The attack velocity of the note as a positive integer between 0 and 127.
-     * @type {number}
-     * @since 3.0.0
-     */
-
-
-    get rawAttack() {
-      return Utilities.fromFloatTo7Bit(this._attack);
-    }
-
-    set rawAttack(value) {
-      this._attack = Utilities.from7bitToFloat(value);
-    }
-    /**
-     * The release velocity of the note as a positive integer between 0 and 127.
-     * @type {number}
-     * @since 3.0.0
-     */
-
-
-    get rawRelease() {
-      return Utilities.fromFloatTo7Bit(this._release);
-    }
-
-    set rawRelease(value) {
-      this._release = Utilities.from7bitToFloat(value);
-    }
-    /**
-     * The MIDI number of the note. This number is derived from the note identifier using C4 as a
-     * reference for middle C.
-     *
-     * @type {number}
-     * @since 3.0.0
-     */
-
-
-    get number() {
-      return Utilities.toNoteNumber(this.identifier);
-    }
-    /**
-     * Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less
-     * than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If
-     * an invalid value is supplied, 0 will be used.
-     *
-     * @param [octaveOffset] {number} An integer to offset the note number by octave.
-     * @param [semitoneOffset] {number} An integer to offset the note number by semitone.
-     * @returns {number} An integer between 0 and 127
-     */
-
-
-    getOffsetNumber(octaveOffset = 0, semitoneOffset = 0) {
-      if (wm.validation) {
-        octaveOffset = parseInt(octaveOffset) || 0;
-        semitoneOffset = parseInt(semitoneOffset) || 0;
-      }
-
-      return Math.min(Math.max(this.number + octaveOffset * 12 + semitoneOffset, 0), 127);
     }
 
   }
@@ -888,6 +594,9 @@
      *
      * **Custom WebMidi.js Messages**
      *
+     * These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
+     * or forwarded.
+     *
      * | Function               | Hexadecimal | Decimal |
      * |------------------------|-------------|---------|
      * | `midimessage`          |             |  0      |
@@ -933,6 +642,300 @@
         midimessage: 0,
         unknownsystemmessage: -1
       };
+    }
+
+  }
+
+  /**
+   * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
+   *
+   * `Note` objects can be played back on a single channel by calling
+   * [`OutputChannel.playNote()`]{@link OutputChannel#playNote} or, on multiple channels of the same
+   * output, by calling [`Output.playNote()`]{@link Output#playNote}.
+   *
+   * The note has [`attack`](#attack) and [`release`](#release) velocities set at `0.5` by default.
+   * These can be changed by passing in the appropriate option. It is also possible to set a
+   * system-wide default for attack and release velocities by using the
+   * [`WebMidi.defaults`](WebMidi#defaults) property.
+   *
+   * If you prefer to work with raw MIDI values (`0` to `127`), you can use [`rawAttack`](#rawAttack) and
+   * [`rawRelease`](#rawRelease) to both get and set the values.
+   *
+   * The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
+   * when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
+   * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
+   * method such as [`OutputChannel.stopNote()`]{@link OutputChannel#stopNote},
+   * [`Output.stopNote()`]{@link Output#stopNote} or similar.
+   *
+   * @param value {string|number} The value used to create the note. If an identifier string is used,
+   * it must start with the note letter, optionally followed by an accidental and followed by the
+   * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
+   * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
+   *
+   * @param {object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+   * explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @throws {Error} Invalid note identifier
+   * @throws {RangeError} Invalid name value
+   * @throws {RangeError} Invalid accidental value
+   * @throws {RangeError} Invalid octave value
+   * @throws {RangeError} Invalid duration value
+   * @throws {RangeError} Invalid attack value
+   * @throws {RangeError} Invalid release value
+   *
+   * @license Apache-2.0
+   * @since 3.0.0
+   */
+
+  class Note {
+    constructor(value, options = {}) {
+      // Assign property defaults
+      this.duration = wm.defaults.note.duration;
+      this.attack = wm.defaults.note.attack;
+      this.release = wm.defaults.note.release; // Assign property values from options (validation occurs in setter)
+
+      if (options.duration != undefined) this.duration = options.duration;
+      if (options.attack != undefined) this.attack = options.attack;
+      if (options.rawAttack != undefined) this.attack = Utilities.from7bitToFloat(options.rawAttack);
+      if (options.release != undefined) this.release = options.release;
+
+      if (options.rawRelease != undefined) {
+        this.release = Utilities.from7bitToFloat(options.rawRelease);
+      } // Assign note depending on the way it was specified (name or number)
+
+
+      if (Number.isInteger(value)) {
+        this.identifier = Utilities.toNoteIdentifier(value);
+      } else {
+        this.identifier = value;
+      }
+    }
+    /**
+     * The name, optional accidental and octave of the note, as a string.
+     * @type {string}
+     * @since 3.0.0
+     */
+
+
+    get identifier() {
+      return this._name + (this._accidental || "") + this._octave;
+    }
+
+    set identifier(value) {
+      const fragments = Utilities.getNoteDetails(value);
+
+      if (wm.validation) {
+        if (!value) throw new Error("Invalid note identifier");
+      }
+
+      this._name = fragments.name;
+      this._accidental = fragments.accidental;
+      this._octave = fragments.octave;
+    }
+    /**
+     * The name (letter) of the note
+     * @type {string}
+     * @since 3.0.0
+     */
+
+
+    get name() {
+      return this._name;
+    }
+
+    set name(value) {
+      if (wm.validation) {
+        value = value.toUpperCase();
+
+        if (!["C", "D", "E", "F", "G", "A", "B"].includes(value)) {
+          throw new Error("Invalid name value");
+        }
+      }
+
+      this._name = value;
+    }
+    /**
+     * The accidental (#, ##, b or bb) of the note
+     * @type {string}
+     * @since 3.0.0
+     */
+
+
+    get accidental() {
+      return this._accidental;
+    }
+
+    set accidental(value) {
+      if (wm.validation) {
+        value = value.toLowerCase();
+        if (!["#", "##", "b", "bb"].includes(value)) throw new Error("Invalid accidental value");
+      }
+
+      this._accidental = value;
+    }
+    /**
+     * The octave of the note
+     * @type {number}
+     * @since 3.0.0
+     */
+
+
+    get octave() {
+      return this._octave;
+    }
+
+    set octave(value) {
+      if (wm.validation) {
+        value = parseInt(value);
+        if (isNaN(value)) throw new Error("Invalid octave value");
+      }
+
+      this._octave = value;
+    }
+    /**
+     * The duration of the note as a positive decimal number representing the number of milliseconds
+     * that the note should play for.
+     *
+     * @type {number}
+     * @since 3.0.0
+     */
+
+
+    get duration() {
+      return this._duration;
+    }
+
+    set duration(value) {
+      if (wm.validation) {
+        value = parseFloat(value);
+
+        if (isNaN(value) || value === null || value < 0) {
+          throw new RangeError("Invalid duration value.");
+        }
+      }
+
+      this._duration = value;
+    }
+    /**
+     * The attack velocity of the note as an integer between 0 and 127.
+     * @type {number}
+     * @since 3.0.0
+     */
+
+
+    get attack() {
+      return this._attack;
+    }
+
+    set attack(value) {
+      if (wm.validation) {
+        value = parseFloat(value);
+
+        if (isNaN(value) || !(value >= 0 && value <= 1)) {
+          throw new RangeError("Invalid attack value.");
+        }
+      }
+
+      this._attack = value;
+    }
+    /**
+     * The release velocity of the note as an integer between 0 and 127.
+     * @type {number}
+     * @since 3.0.0
+     */
+
+
+    get release() {
+      return this._release;
+    }
+
+    set release(value) {
+      if (wm.validation) {
+        value = parseFloat(value);
+
+        if (isNaN(value) || !(value >= 0 && value <= 1)) {
+          throw new RangeError("Invalid release value.");
+        }
+      }
+
+      this._release = value;
+    }
+    /**
+     * The attack velocity of the note as a positive integer between 0 and 127.
+     * @type {number}
+     * @since 3.0.0
+     */
+
+
+    get rawAttack() {
+      return Utilities.fromFloatTo7Bit(this._attack);
+    }
+
+    set rawAttack(value) {
+      this._attack = Utilities.from7bitToFloat(value);
+    }
+    /**
+     * The release velocity of the note as a positive integer between 0 and 127.
+     * @type {number}
+     * @since 3.0.0
+     */
+
+
+    get rawRelease() {
+      return Utilities.fromFloatTo7Bit(this._release);
+    }
+
+    set rawRelease(value) {
+      this._release = Utilities.from7bitToFloat(value);
+    }
+    /**
+     * The MIDI number of the note. This number is derived from the note identifier using C4 as a
+     * reference for middle C.
+     *
+     * @type {number}
+     * @since 3.0.0
+     */
+
+
+    get number() {
+      return Utilities.toNoteNumber(this.identifier);
+    }
+    /**
+     * Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less
+     * than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If
+     * an invalid value is supplied, 0 will be used.
+     *
+     * @param [octaveOffset] {number} An integer to offset the note number by octave.
+     * @param [semitoneOffset] {number} An integer to offset the note number by semitone.
+     * @returns {number} An integer between 0 and 127
+     */
+
+
+    getOffsetNumber(octaveOffset = 0, semitoneOffset = 0) {
+      if (wm.validation) {
+        octaveOffset = parseInt(octaveOffset) || 0;
+        semitoneOffset = parseInt(semitoneOffset) || 0;
+      }
+
+      return Math.min(Math.max(this.number + octaveOffset * 12 + semitoneOffset, 0), 127);
     }
 
   }
@@ -1430,1026 +1433,6 @@
       }
 
       return false;
-    }
-
-  }
-
-  /**
-   * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
-   * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
-   *
-   * All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
-   * property.
-   *
-   * @param {Input} input The `Input` object this channel belongs to
-   * @param {number} number The MIDI channel's number (1-16)
-   *
-   * @fires InputChannel#midimessage
-   *
-   * @fires InputChannel#noteoff
-   * @fires InputChannel#noteon
-   * @fires InputChannel#keyaftertouch
-   * @fires InputChannel#programchange
-   * @fires InputChannel#event:controlchange-controllerxxx
-   * @fires InputChannel#channelaftertouch
-   * @fires InputChannel#pitchbend
-   * @fires InputChannel#controlchange
-   *
-   *
-   * @fires InputChannel#allnotesoff
-   * @fires InputChannel#allsoundoff
-   * @fires InputChannel#localcontrol
-   * @fires InputChannel#monomode
-   * @fires InputChannel#omnimode
-   * @fires InputChannel#resetallcontrollers
-   *
-   * @fires InputChannel#event:nrpn
-   * @fires InputChannel#nrpn-dataentrycoarse
-   * @fires InputChannel#nrpn-dataentryfine
-   * @fires InputChannel#nrpn-databuttonincrement
-   * @fires InputChannel#nrpn-databuttondecrement
-   * @fires InputChannel#event:rpn
-   * @fires InputChannel#rpn-dataentrycoarse
-   * @fires InputChannel#rpn-dataentryfine
-   * @fires InputChannel#rpn-databuttonincrement
-   * @fires InputChannel#rpn-databuttondecrement
-   *
-   * @extends EventEmitter
-   * @license Apache-2.0
-   * @since 3.0.0
-   */
-
-  class InputChannel extends e {
-    constructor(input, number) {
-      super();
-      /**
-       * @type {Input}
-       * @private
-       */
-
-      this._input = input;
-      /**
-       * @type {number}
-       * @private
-       */
-
-      this._number = number;
-      /**
-       * @type {number}
-       * @private
-       */
-
-      this._octaveOffset = 0;
-      /**
-       * An array of messages that form the current NRPN sequence
-       * @private
-       * @type {Message[]}
-       */
-
-      this._nrpnBuffer = [];
-      /**
-       * An array of messages that form the current RPN sequence
-       * @private
-       * @type {Message[]}
-       */
-
-      this._rpnBuffer = [];
-      /**
-       * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
-       * are composed of a sequence of specific **control change** messages. When a valid sequence of
-       * such control change messages is received, an `nrpn` event will fire.
-       *
-       * If an invalid or
-       * out-of-order control change message is received, it will fall through the collector logic and
-       * all buffered control change messages will be discarded as incomplete.
-       *
-       * @type {boolean}
-       */
-
-      this.parameterNumberEventsEnabled = true;
-      /**
-       * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
-       * `true` for a currently playing note and `false` otherwise.
-       * @type {boolean[]}
-       */
-
-      this.notesState = new Array(128).fill(false);
-    }
-    /**
-     * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
-     * input.
-     */
-
-
-    destroy() {
-      this._input = null;
-      this._number = null;
-      this._octaveOffset = 0;
-      this._nrpnBuffer = [];
-      this.notesState = new Array(128).fill(false);
-      this.parameterNumberEventsEnabled = false;
-      this.removeListener();
-    }
-    /**
-     * @param e MIDIMessageEvent
-     * @private
-     */
-
-
-    _processMidiMessageEvent(e) {
-      // Create and emit a new 'midimessage' event based on the incoming one
-      const event = Object.assign({}, e);
-      event.target = this;
-      event.type = "midimessage";
-      /**
-       * Event emitted when a MIDI message of any kind is received by an `InputChannel`
-       *
-       * @event InputChannel#midimessage
-       *
-       * @type {object}
-       *
-       * @property {Input} target The `InputChannel` that triggered the event.
-       * @property {Message} message A `Message` object containing information about the incoming MIDI
-       * message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `"midimessage"`
-       *
-       * @property {Array} data The MIDI message as an array of 8 bit values (deprecated, use
-       * the `message` object instead).
-       * @property {Uint8Array} rawData The raw MIDI message as a Uint8Array  (deprecated, use
-       * the `message` object instead).
-       * @property {number} event.statusByte The message's status byte  (deprecated, use the `message`
-       * object instead).
-       * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
-       * integers. This will be null for `sysex` messages (deprecated, use the `message` object
-       * instead).
-       */
-
-      this.emit(event.type, event); // Parse the inbound event for regular MIDI messages
-
-      this._parseEventForStandardMessages(event);
-    }
-    /**
-     * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
-     * @param e Event
-     * @private
-     */
-
-
-    _parseEventForStandardMessages(e) {
-      const event = Object.assign({}, e);
-      event.type = event.message.type || "unknownmidimessage";
-      const data1 = e.message.dataBytes[0];
-      const data2 = e.message.dataBytes[1];
-
-      if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
-        this.notesState[data1] = false;
-        /**
-         * Event emitted when a **note off** MIDI message has been received on the channel.
-         *
-         * @event InputChannel#noteoff
-         *
-         * @type {object}
-         * @property {string} type `"noteoff"`
-         *
-         * @property {InputChannel} target The object that triggered the event (the
-         * [`InputChannel`](InputChannel) object).
-         * @property {Message} message A [`Message`](Message) object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment
-         * ([`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp))
-         * when the event occurred (in milliseconds since the navigation start of the document).
-         *
-         * @property {object} note A [`Note`](Note) object containing information such as note name,
-         * octave and release velocity.
-         * @property {number} value The release velocity amount expressed as a float between 0 and 1.
-         * @property {number} rawValue The release velocity amount expressed as an integer (between 0
-         * and 127).
-         */
-        // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
-
-        event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
-          rawAttack: 0,
-          rawRelease: data2
-        });
-        event.value = Utilities.from7bitToFloat(data2);
-        event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
-        // be removed in future versions (@deprecated).
-
-        event.velocity = event.note.release;
-        event.rawVelocity = event.note.rawRelease;
-      } else if (event.type === "noteon") {
-        this.notesState[data1] = true;
-        /**
-         * Event emitted when a **note on** MIDI message has been received.
-         *
-         * @event InputChannel#noteon
-         *
-         * @type {object}
-         * @property {string} type `"noteon"`
-         *
-         * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-         * @property {Array} data The MIDI message as an array of 8 bit values.
-         * @property {InputChannel} input The [`Input`](Input) object where through which the message
-         * was received.
-         * @property {Uint8Array} rawData The raw MIDI message as a `Uint8Array`.
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {Note} note A [`Note`](Note) object containing information such as note name,
-         * octave and attack velocity.
-         *
-         * @property {number} value The attack velocity amount expressed as a float between 0 and 1.
-         * @property {number} rawValue The attack velocity amount expressed as an integer (between 0
-         * and 127).
-         */
-
-        event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
-          rawAttack: data2
-        });
-        event.value = Utilities.from7bitToFloat(data2);
-        event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
-        // be removed in future versions (@deprecated).
-
-        event.velocity = event.note.attack;
-        event.rawVelocity = event.note.rawAttack;
-      } else if (event.type === "keyaftertouch") {
-        /**
-         * Event emitted when a **key-specific aftertouch** MIDI message has been received.
-         *
-         * @event InputChannel#keyaftertouch
-         *
-         * @type {object}
-         * @property {string} type `"keyaftertouch"`
-         *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {Message} message A `Message` object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {string} identifier The note identifier of the key to apply the aftertouch to.
-         * This includes any octave offset applied at the channel, input or global level.
-         * @property {number} key The MIDI note number of the key to apply the aftertouch to. This
-         * includes any octave offset applied at the channel, input or global level.
-         * @property {number} rawKey The MIDI note number of the key to apply the aftertouch to. This
-         * excludes any octave offset defined at the channel, input or global level.
-         * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
-         * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
-         * 127).
-         */
-        event.identifier = Utilities.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
-        event.key = Utilities.toNoteNumber(event.identifier);
-        event.rawKey = data1;
-        event.value = Utilities.from7bitToFloat(data2);
-        event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
-        // removed from future versions (@deprecated).
-
-        event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
-      } else if (event.type === "controlchange") {
-        /**
-         * Event emitted when a **control change** MIDI message has been received.
-         *
-         * @event InputChannel#controlchange
-         *
-         * @type {object}
-         * @property {string} type `"controlchange"`
-         * @property {string} subtype The type of control change message that was received.
-         *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {Message} message A `Message` object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {object} controller
-         * @property {object} controller.number The number of the controller.
-         * @property {object} controller.name The usual name or function of the controller.
-         * @property {number} value The value expressed as a float between 0 and 1.
-         * @property {number} rawValue The value expressed as an integer (between 0 and 127).
-         */
-        event.controller = {
-          number: data1,
-          name: Utilities.getCcNameByNumber(data1)
-        };
-        event.subtype = event.controller.name || "controller" + data1;
-        event.value = Utilities.from7bitToFloat(data2);
-        event.rawValue = data2;
-        /**
-         * Event emitted when a **control change** MIDI message has been received and that message is
-         * targeting the controller numbered "xxx". Of course, "xxx" should be replaced by a valid
-         * controller number (0-127).
-         *
-         * @event InputChannel#controlchange-controllerxxx
-         *
-         * @type {object}
-         * @property {string} type `controlchange-controllerxxx`
-         * @property {string} subtype The type of control change message that was received.
-         *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {Message} message A `Message` object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {object} controller
-         * @property {object} controller.number The number of the controller.
-         * @property {object} controller.name The usual name or function of the controller.
-         * @property {number} value The value expressed as a float between 0 and 1.
-         * @property {number} rawValue The value expressed as an integer (between 0 and 127).
-         */
-
-        const specificEvent = Object.assign({}, event);
-        specificEvent.type = `${event.type}-controller${data1}`;
-        delete specificEvent.subtype;
-        this.emit(specificEvent.type, specificEvent); // Trigger channel mode message events (if appropriate)
-
-        if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
-
-        if (this.parameterNumberEventsEnabled && this._isRpnOrNrpnController(event.message.dataBytes[0])) {
-          this._parseEventForParameterNumber(event);
-        }
-      } else if (event.type === "programchange") {
-        /**
-         * Event emitted when a **program change** MIDI message has been received.
-         *
-         * @event InputChannel#programchange
-         *
-         * @type {object}
-         * @property {string} type `"programchange"`
-         *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {Message} message A `Message` object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {number} value The value expressed as an integer between 1 and 128.
-         * @property {number} rawValue The value expressed as an integer between 0 and 127..
-         */
-        event.value = data1 + 1;
-        event.rawValue = data1;
-      } else if (event.type === "channelaftertouch") {
-        /**
-         * Event emitted when a control change MIDI message has been received.
-         *
-         * @event InputChannel#channelaftertouch
-         *
-         * @type {object}
-         * @property {string} type `"channelaftertouch"`
-         *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {Message} message A `Message` object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {number} value The value expressed as a float between 0 and 1.
-         * @property {number} rawValue The value expressed as an integer (between 0 and 127).
-         */
-        event.value = Utilities.from7bitToFloat(data1);
-        event.rawValue = data1;
-      } else if (event.type === "pitchbend") {
-        /**
-         * Event emitted when a pitch bend MIDI message has been received.
-         *
-         * @event InputChannel#pitchbend
-         *
-         * @type {object}
-         * @property {string} type `"pitchbend"`
-         *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
-         * @property {Message} message A `Message` object containing information about the incoming
-         * MIDI message.
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         *
-         * @property {number} value The value expressed as a float between 0 and 1.
-         * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
-         */
-        event.value = ((data2 << 7) + data1 - 8192) / 8192;
-        event.rawValue = (data2 << 7) + data1;
-      } else {
-        event.type = "unknownmessage";
-      }
-
-      this.emit(event.type, event);
-    }
-
-    _parseChannelModeMessage(e) {
-      // Make a shallow copy of the incoming event so we can use it as the new event.
-      const event = Object.assign({}, e);
-      event.type = event.controller.name;
-      /**
-       * Event emitted when an "all sound off" channel-mode MIDI message has been received.
-       *
-       * @event InputChannel#allsoundoff
-       *
-       * @type {object}
-       * @property {string} type `"allsoundoff"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       */
-
-      /**
-       * Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
-       *
-       * @event InputChannel#resetallcontrollers
-       *
-       * @type {object}
-       * @property {string} type `"resetallcontrollers"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       */
-
-      /**
-       * Event emitted when a "local control" channel-mode MIDI message has been received. The value
-       * property of the event is set to either `true` (local control on) of `false` (local control
-       * off).
-       *
-       * @event InputChannel#localcontrol
-       *
-       * @type {object}
-       * @property {string} type `"localcontrol"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       *
-       * @property {boolean} value For local control on, the value is `true`. For local control off,
-       * the value is `false`.
-       */
-
-      if (event.type === "localcontrol") {
-        event.value = event.message.data[2] === 127 ? true : false;
-      }
-      /**
-       * Event emitted when an "all notes off" channel-mode MIDI message has been received.
-       *
-       * @event InputChannel#allnotesoff
-       *
-       * @type {object}
-       * @property {string} type `"allnotesoff"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       */
-
-      /**
-       * Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
-       * property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
-       *
-       * @event InputChannel#omnimode
-       *
-       * @type {object}
-       * @property {string} type `"omnimode"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       *
-       * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
-       */
-
-
-      if (event.type === "omnimodeon") {
-        event.type = "omnimode";
-        event.value = true;
-      } else if (event.type === "omnimodeoff") {
-        event.type = "omnimode";
-        event.value = false;
-      }
-      /**
-       * Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
-       * the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
-       * poly mode on).
-       *
-       * @event InputChannel#monomode
-       *
-       * @type {object}
-       * @property {string} type `"monomode"`
-       *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       *
-       * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
-       */
-
-
-      if (event.type === "monomodeon") {
-        event.type = "monomode";
-        event.value = true;
-      } else if (event.type === "polymodeon") {
-        event.type = "monomode";
-        event.value = false;
-      }
-
-      this.emit(event.type, event);
-    }
-    /**
-     * Parses inbound events to identify RPN/NRPN sequences.
-     * @param e Event
-     * @private
-     */
-
-
-    _parseEventForParameterNumber(event) {
-      // To make it more legible
-      const controller = event.message.dataBytes[0];
-      const value = event.message.dataBytes[1];
-      const list = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES; // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
-
-      if (controller === list.nonregisteredparameterfine || // 99
-      controller === list.registeredparameterfine // 101
-      ) {
-          this._nrpnBuffer = [];
-          this._rpnBuffer = [];
-
-          if (controller === list.nonregisteredparameterfine) {
-            // 99
-            this._nrpnBuffer = [event.message];
-          } else {
-            // 101
-            // 127 is a reset so we ignore it
-            if (value !== 127) this._rpnBuffer = [event.message];
-          } // B. Check if the message is the end of an RPN (100) or NRPN (98) parameter declaration.
-
-        } else if (controller === list.nonregisteredparametercoarse || // 98
-      controller === list.registeredparametercoarse // 100
-      ) {
-          if (controller === list.nonregisteredparametercoarse) {
-            // 98
-            // Flush the other buffer (they are mutually exclusive)
-            this._rpnBuffer = []; // Check if we are in sequence
-
-            if (this._nrpnBuffer.length === 1) {
-              this._nrpnBuffer.push(event.message);
-            } else {
-              this._nrpnBuffer = []; // out of sequence
-            }
-          } else {
-            // 100
-            // Flush the other buffer (they are mutually exclusive)
-            this._nrpnBuffer = []; // 127 is a reset so we ignore it
-
-            if (this._rpnBuffer.length === 1 && value !== 127) {
-              this._rpnBuffer.push(event.message);
-            } else {
-              this._rpnBuffer = []; // out of sequence or reset
-            }
-          } // C. Check if the message is for data entry (6, 38, 96 or 97). Those messages trigger events.
-
-        } else if (controller === list.dataentrycoarse || // 6
-      controller === list.dataentryfine || // 38
-      controller === list.databuttonincrement || // 96
-      controller === list.databuttondecrement // 97
-      ) {
-          if (this._rpnBuffer.length === 2) {
-            this._dispatchParameterNumberEvent("rpn", this._rpnBuffer[0].dataBytes[1], this._rpnBuffer[1].dataBytes[1], event);
-          } else if (this._nrpnBuffer.length === 2) {
-            this._dispatchParameterNumberEvent("nrpn", this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
-          } else {
-            this._nrpnBuffer = [];
-            this._rpnBuffer = [];
-          }
-        }
-    }
-    /**
-     * Indicates whether the specified controller can be part of an RPN or NRPN sequence
-     * @param controller
-     * @returns {boolean}
-     * @private
-     */
-
-
-    _isRpnOrNrpnController(controller) {
-      return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse || //   6
-      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine || //  38
-      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement || //  96
-      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement || //  97
-      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse || //  98
-      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine || //  99
-      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse || // 100
-      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine; // 101
-    }
-
-    _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
-      type = type === "nrpn" ? "nrpn" : "rpn";
-      /**
-       * Event emitted when an **RPN data entry coarse** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#rpn-dataentrycoarse
-       *
-       * @type {object}
-       *
-       * @property {string} type `rpn-dataentrycoarse`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when an **RPN data entry fine** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#rpn-dataentryfine
-       *
-       * @type {object}
-       *
-       * @property {string} type `rpn-dataentryfine`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when an **RPN data button increment** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#rpn-databuttonincrement
-       *
-       * @type {object}
-       *
-       * @property {string} type `rpn-databuttonincrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when an **RPN data button decrement** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#rpn-databuttondecrement
-       *
-       * @type {object}
-       *
-       * @property {string} type `rpn-databuttondecrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when an **NRPN data entry coarse** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#nrpn-dataentrycoarse
-       *
-       * @type {object}
-       *
-       * @property {string} type `nrpn-dataentrycoarse`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when an **NRPN data entry fine** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#nrpn-dataentryfine
-       *
-       * @type {object}
-       *
-       * @property {string} type `nrpn-dataentryfine`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when an **NRPN data button increment** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#nrpn-databuttonincrement
-       *
-       * @type {object}
-       *
-       * @property {string} type `nrpn-databuttonincrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when an **NRPN data button decrement** message is received on the input. The
-       * specific parameter to which the message applies can be found in the event's `parameter`
-       * property. It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#nrpn-databuttondecrement
-       *
-       * @type {object}
-       *
-       * @property {string} type `nrpn-databuttondecrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      const event = {
-        target: e.target,
-        timestamp: e.timestamp,
-        parameterMsb: paramMsb,
-        parameterLsb: paramLsb,
-        value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
-        rawValue: e.message.dataBytes[1]
-      }; // Identify the parameter (by name for RPN and by number for NRPN)
-
-      if (type === "rpn") {
-        event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
-          return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb && Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
-        });
-      } else {
-        event.parameter = (paramMsb << 7) + paramLsb;
-      } // Type and subtype
-
-
-      const subtype = Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Emit specific event
-
-      event.type = `${type}-${subtype}`;
-      this.emit(event.type, event);
-      /**
-       * Event emitted when any NRPN message is received on the input. There are four types of NRPN
-       * messages:
-       *
-       *   * data entry coarse
-       *   * data entry fine
-       *   * data button increment
-       *   * data button decrement
-       *
-       * The parameter to which the message applies can be found in the event's `parameter` property.
-       *
-       * @event InputChannel#nrpn
-       *
-       * @type {object}
-       *
-       * @property {string} type `"nrpn"`
-       * @property {string} subtype The precise type of NRPN message that was received.
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {number} parameter The non-registered parameter number (0-16383)
-       * @property {number} parameterMsb The MSB portion of the non-registered parameter number
-       * (0-127)
-       * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
-       * (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-
-      /**
-       * Event emitted when any RPN message is received on the input. There are four types of RPN
-       * messages:
-       *
-       *   * data entry coarse
-       *   * data entry fine
-       *   * data button increment
-       *   * data button decrement
-       *
-       * The parameter to which the message applies can be found in the event's `parameter` property.
-       * It is one of the ones defined in
-       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-       *
-       * @event InputChannel#rpn
-       *
-       * @type {object}
-       *
-       * @property {string} type `"rpn"`
-       * @property {string} subtype The precise type of RPN message that was received.
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} parameter The registered parameter's name
-       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
-       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
-       * @property {number} value The received value as a normalized number between 0 and 1.
-       * @property {number} rawValue The value as received (0-127)
-       */
-      // Emit general event
-
-      event.type = type;
-      event.subtype = subtype;
-      this.emit(event.type, event);
-    }
-    /**
-     * @deprecated since version 3.
-     * @private
-     */
-
-
-    getChannelModeByNumber(number) {
-      if (wm.validation) {
-        console.warn("The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class.");
-        number = Math.floor(number);
-      }
-
-      return Utilities.getChannelModeByNumber(number);
-    }
-    /**
-     * @deprecated since version 3.
-     * @private
-     */
-
-
-    getCcNameByNumber(number) {
-      if (wm.validation) {
-        console.warn("The 'getCcNameByNumber()' method has been moved to the 'Utilities' class.");
-        number = parseInt(number);
-        if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
-      }
-
-      return Utilities.getCcNameByNumber(number);
-    }
-    /**
-     * Return the playing status of the specified note. The `note` parameter can be an unsigned
-     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
-     *
-     * If a note identifier or Note object is passed in, the method will take into account any
-     * `octaveOffset` defined.
-     *
-     * @param [input] {number|string|Note}
-     * @returns {boolean}
-     * @since version 3.0.0
-     */
-
-
-    getNoteState(note) {
-      // If it's a note object, we simply use the identifier
-      if (note instanceof Note) note = note.identifier;
-      const number = Utilities.guessNoteNumber(note, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
-      return this.notesState[number];
-    }
-    /**
-     * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
-     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
-     * octave (C4).
-     *
-     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-     *
-     * Note that this value is combined with the global offset value defined on the `WebMidi` object
-     * and with the value defined on the parent `Input` object.
-     *
-     * @type {number}
-     *
-     * @since 3.0
-     */
-
-
-    get octaveOffset() {
-      return this._octaveOffset;
-    }
-
-    set octaveOffset(value) {
-      if (this.validation) {
-        value = parseInt(value);
-        if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
-      }
-
-      this._octaveOffset = value;
-    }
-    /**
-     * The [`Input`](Input) this channel belongs to
-     * @type {Input}
-     * @since 3.0
-     */
-
-
-    get input() {
-      return this._input;
-    }
-    /**
-     * This channel's MIDI number (1-16)
-     * @type {number}
-     * @since 3.0
-     */
-
-
-    get number() {
-      return this._number;
-    }
-    /**
-     * Whether RPN/NRPN events are parsed and dispatched.
-     * @type {boolean}
-     * @since 3.0
-     * @deprecated Use parameterNumberEventsEnabled instead.
-     * @private
-     */
-
-
-    get nrpnEventsEnabled() {
-      return this.parameterNumberEventsEnabled;
-    }
-
-    set nrpnEventsEnabled(value) {
-      if (this.validation) {
-        value = !!value;
-      }
-
-      this.parameterNumberEventsEnabled = value;
-    }
-    /**
-     * Array of channel-specific event names that can be listened to.
-     * @type {string[]}
-     * @readonly
-     */
-
-
-    static get EVENTS() {
-      return [// MIDI channel message events
-      "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
-      "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // RPN/NRPN events
-      "nrpn", "rpn"];
     }
 
   }
@@ -6220,21 +5203,25 @@
   }
 
   /**
-   * The `Forwarder` class allows the forwarding of a MIDI message to a predetermined list of
-   * [`Output`](Output) objects as long as the message matches certain conditions.
+   * The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When you
+   * call its [`forward()`](#forward) method, it will send the specified [`Message`](Message) object
+   * to all the outputs listed in its [`destinations`](#destinations) property.
    *
-   * While it certainly can be manually instantiated, you are more likely to come across a `Forwarder`
-   * object as the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
+   * If specific channels or message types have been defined in the [`channels`](#channels) or
+   * [`types`](#types) properties, only messages matching the channels/types will be forwarded.
    *
-   * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
+   * While it can be manually instantiated, you are more likely to come across a `Forwarder` object as
+   * the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
+   *
+   * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such objects,
    * to forward the message to.
    *
    * @param {object} [options={}]
-   * @param {string|string[]} [options.types] A MIDI message type (`"noteon"`, `"controlchange"`,
-   * etc.), or an array of such types, that the specified message must match in order to be forwarded.
-   * If this option is not specified, all types of messages will be forwarded. Valid messages are the
-   * ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
-   * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such types
+   * (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to be
+   * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+   * messages are the ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
+   * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
    * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
    * A MIDI channel number or an array of channel numbers that the message must match in order to be
    * forwarded. By default all MIDI channels are included (`1` to `16`).
@@ -6244,7 +5231,7 @@
    */
 
   class Forwarder {
-    constructor(destinations, options = {}) {
+    constructor(destinations = [], options = {}) {
       /**
        * An array of [`Output`](Output) objects to forward the message to.
        * @type {Output[]}
@@ -6323,57 +5310,74 @@
 
       if (message.channel && !this.channels.includes(message.channel)) return; // Forward
 
-      this.destinations.forEach(destination => destination.send(message));
+      this.destinations.forEach(destination => {
+        if (wm.validation && !(destination instanceof Output)) return;
+        destination.send(message);
+      });
     }
 
   }
 
   /**
-   * The `Input` class represents a single MIDI input port. This object is automatically instantiated
-   * by the library according to the host's MIDI subsystem and should not be directly instantiated.
-   * Instead, you can access all `Input` objects by referring to the [`WebMidi.inputs`](WebMidi#inputs)
-   * array.
+   * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
+   * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
    *
-   * Note that a single device may expose several inputs and/or outputs.
+   * All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
+   * property.
    *
-   * **Important**: while the `Input` class does not directly fire channel-specific MIDI messages
-   * (such as [`noteon`](InputChannel#event:noteon),
-   * [`controlchange`](InputChannel#event:controlchange), etc.), you can still use its
-   * [`addListener()`](#addListener) method to listen to such events on multiple
-   * [`InputChannel`](InputChannel) objects at once.
+   * @param {Input} input The `Input` object this channel belongs to
+   * @param {number} number The MIDI channel's number (1-16)
    *
-   * @param {MIDIInput} midiInput `MIDIInput` object as provided by the MIDI subsystem (Web MIDI API).
+   * @fires InputChannel#midimessage
    *
-   * @fires Input#opened
-   * @fires Input#disconnected
-   * @fires Input#closed
-   * @fires Input#midimessage
-   * @fires Input#sysex
-   * @fires Input#timecode
-   * @fires Input#songposition
-   * @fires Input#songselect
-   * @fires Input#tunerequest
-   * @fires Input#clock
-   * @fires Input#start
-   * @fires Input#continue
-   * @fires Input#stop
-   * @fires Input#activesensing
-   * @fires Input#reset
-   * @fires Input#unknownmidimessage
+   * @fires InputChannel#noteoff
+   * @fires InputChannel#noteon
+   * @fires InputChannel#keyaftertouch
+   * @fires InputChannel#programchange
+   * @fires InputChannel#event:controlchange-controllerxxx
+   * @fires InputChannel#channelaftertouch
+   * @fires InputChannel#pitchbend
+   * @fires InputChannel#controlchange
+   *
+   *
+   * @fires InputChannel#allnotesoff
+   * @fires InputChannel#allsoundoff
+   * @fires InputChannel#localcontrol
+   * @fires InputChannel#monomode
+   * @fires InputChannel#omnimode
+   * @fires InputChannel#resetallcontrollers
+   *
+   * @fires InputChannel#event:nrpn
+   * @fires InputChannel#nrpn-dataentrycoarse
+   * @fires InputChannel#nrpn-dataentryfine
+   * @fires InputChannel#nrpn-databuttonincrement
+   * @fires InputChannel#nrpn-databuttondecrement
+   * @fires InputChannel#event:rpn
+   * @fires InputChannel#rpn-dataentrycoarse
+   * @fires InputChannel#rpn-dataentryfine
+   * @fires InputChannel#rpn-databuttonincrement
+   * @fires InputChannel#rpn-databuttondecrement
    *
    * @extends EventEmitter
    * @license Apache-2.0
+   * @since 3.0.0
    */
 
-  class Input extends e {
-    constructor(midiInput) {
+  class InputChannel extends e {
+    constructor(input, number) {
       super();
       /**
-       * Reference to the actual MIDIInput object
+       * @type {Input}
        * @private
        */
 
-      this._midiInput = midiInput;
+      this._input = input;
+      /**
+       * @type {number}
+       * @private
+       */
+
+      this._number = number;
       /**
        * @type {number}
        * @private
@@ -6381,768 +5385,884 @@
 
       this._octaveOffset = 0;
       /**
-       * Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
-       * channels are numbered 1 through 16.
-       *
-       * @type {InputChannel[]}
+       * An array of messages that form the current NRPN sequence
+       * @private
+       * @type {Message[]}
        */
 
-      this.channels = [];
-
-      for (let i = 1; i <= 16; i++) this.channels[i] = new InputChannel(this, i);
-
-      this._forwarders = []; // Setup listeners
-
-      this._midiInput.onstatechange = this._onStateChange.bind(this);
-      this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
-    }
-    /**
-     * Destroys the `Input` by removing all listeners, emptying the `channels` array and unlinking the
-     * MIDI subsystem.
-     *
-     * @returns {Promise<void>}
-     */
-
-
-    async destroy() {
-      this.removeListener();
-      this.channels.forEach(ch => ch.destroy());
-      this.channels = [];
-      this._forwarders = [];
-
-      if (this._midiInput) {
-        this._midiInput.onstatechange = null;
-        this._midiInput.onmidimessage = null;
-      }
-
-      await this.close();
-      this._midiInput = null;
-    }
-    /**
-     * Executed when a `"statechange"` event occurs.
-     *
-     * @param e
-     * @private
-     */
-
-
-    _onStateChange(e) {
-      let event = {
-        timestamp: wm.time,
-        target: this
-      };
-
-      if (e.port.connection === "open") {
-        /**
-         * Event emitted when the {@link Input} has been opened by calling the {@link Input#open}
-         * method.
-         *
-         * @event Input#opened
-         * @type {object}
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         * @property {string} type `"opened"`
-         * @property {Input} target The object that triggered the event
-         */
-        event.type = "opened";
-        this.emit("opened", event);
-      } else if (e.port.connection === "closed" && e.port.state === "connected") {
-        /**
-         * Event emitted when the {@link Input} has been closed by calling the {@link Input#close}
-         * method.
-         *
-         * @event Input#closed
-         * @type {object}
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         * @property {string} type `"closed"`
-         * @property {Input} target The object that triggered the event
-         */
-        event.type = "closed";
-        this.emit("closed", event);
-      } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
-        /**
-         * Event emitted when the {@link Input} becomes unavailable. This event is typically fired
-         * when the MIDI device is unplugged.
-         *
-         * @event Input#disconnected
-         * @type {object}
-         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-         * milliseconds since the navigation start of the document).
-         * @property {string} type `"disconnected"`
-         * @property {object} target Object with properties describing the {@link Input} that
-         * triggered the event. This is not the actual `Input` as it is no longer available.
-         * @property {string} target.connection `"closed"`
-         * @property {string} target.id ID of the input
-         * @property {string} target.manufacturer Manufacturer of the device that provided the input
-         * @property {string} target.name Name of the device that provided the input
-         * @property {string} target.state `"disconnected"`
-         * @property {string} target.type `"input"`
-         */
-        event.type = "disconnected";
-        event.target = {
-          connection: e.port.connection,
-          id: e.port.id,
-          manufacturer: e.port.manufacturer,
-          name: e.port.name,
-          state: e.port.state,
-          type: e.port.type
-        };
-        this.emit("disconnected", event);
-      } else if (e.port.connection === "pending" && e.port.state === "disconnected") ; else {
-        console.warn("This statechange event was not caught: ", e.port.connection, e.port.state);
-      }
-    }
-    /**
-     * Executed when a `"midimessage"` event is received
-     * @param e
-     * @private
-     */
-
-
-    _onMidiMessage(e) {
-      // Create Message object from MIDI data
-      const message = new Message(e.data);
+      this._nrpnBuffer = [];
       /**
-       * Event emitted when any MIDI message is received on an `Input`
+       * An array of messages that form the current RPN sequence
+       * @private
+       * @type {Message[]}
+       */
+
+      this._rpnBuffer = [];
+      /**
+       * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
+       * are composed of a sequence of specific **control change** messages. When a valid sequence of
+       * such control change messages is received, an `nrpn` event will fire.
        *
-       * @event Input#midimessage
+       * If an invalid or
+       * out-of-order control change message is received, it will fall through the collector logic and
+       * all buffered control change messages will be discarded as incomplete.
+       *
+       * @type {boolean}
+       */
+
+      this.parameterNumberEventsEnabled = true;
+      /**
+       * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+       * `true` for a currently playing note and `false` otherwise.
+       * @type {boolean[]}
+       */
+
+      this.notesState = new Array(128).fill(false);
+    }
+    /**
+     * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
+     * input.
+     */
+
+
+    destroy() {
+      this._input = null;
+      this._number = null;
+      this._octaveOffset = 0;
+      this._nrpnBuffer = [];
+      this.notesState = new Array(128).fill(false);
+      this.parameterNumberEventsEnabled = false;
+      this.removeListener();
+    }
+    /**
+     * @param e MIDIMessageEvent
+     * @private
+     */
+
+
+    _processMidiMessageEvent(e) {
+      // Create and emit a new 'midimessage' event based on the incoming one
+      const event = Object.assign({}, e);
+      event.target = this;
+      event.type = "midimessage";
+      /**
+       * Event emitted when a MIDI message of any kind is received by an `InputChannel`
+       *
+       * @event InputChannel#midimessage
        *
        * @type {object}
        *
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} target The `InputChannel` that triggered the event.
        * @property {Message} message A `Message` object containing information about the incoming MIDI
        * message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"midimessage"`
        *
-       * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
+       * @property {Array} data The MIDI message as an array of 8 bit values (deprecated, use
        * the `message` object instead).
-       * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array (deprecated, use
+       * @property {Uint8Array} rawData The raw MIDI message as a Uint8Array  (deprecated, use
        * the `message` object instead).
        * @property {number} event.statusByte The message's status byte  (deprecated, use the `message`
        * object instead).
        * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
        * integers. This will be null for `sysex` messages (deprecated, use the `message` object
        * instead).
-       *
-       * @since 2.1
        */
 
-      const event = {
-        target: this,
-        message: message,
-        timestamp: e.timeStamp,
-        type: "midimessage",
-        data: message.data,
-        // @deprecated (will be removed in v4)
-        rawData: message.data,
-        // @deprecated (will be removed in v4)
-        statusByte: message.data[0],
-        // @deprecated (will be removed in v4)
-        dataBytes: message.dataBytes // @deprecated (will be removed in v4)
+      this.emit(event.type, event); // Parse the inbound event for regular MIDI messages
 
-      };
-      this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
-      // system messages.
-
-      if (message.isSystemMessage) {
-        // system messages
-        this._parseEvent(event);
-      } else if (message.isChannelMessage) {
-        // channel messages
-        this.channels[message.channel]._processMidiMessageEvent(event);
-      } // Forward message if forwarders have been defined
-
-
-      this._forwarders.forEach(forwarder => forwarder.forward(message));
+      this._parseEventForStandardMessages(event);
     }
     /**
+     * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
+     * @param e Event
      * @private
      */
 
 
-    _parseEvent(e) {
+    _parseEventForStandardMessages(e) {
+      const event = Object.assign({}, e);
+      event.type = event.message.type || "unknownmidimessage";
+      const data1 = e.message.dataBytes[0];
+      const data2 = e.message.dataBytes[1];
+
+      if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
+        this.notesState[data1] = false;
+        /**
+         * Event emitted when a **note off** MIDI message has been received on the channel.
+         *
+         * @event InputChannel#noteoff
+         *
+         * @type {object}
+         * @property {string} type `"noteoff"`
+         *
+         * @property {InputChannel} target The object that triggered the event (the
+         * [`InputChannel`](InputChannel) object).
+         * @property {Message} message A [`Message`](Message) object containing information about the incoming
+         * MIDI message.
+         * @property {number} timestamp The moment
+         * ([`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp))
+         * when the event occurred (in milliseconds since the navigation start of the document).
+         *
+         * @property {object} note A [`Note`](Note) object containing information such as note name,
+         * octave and release velocity.
+         * @property {number} value The release velocity amount expressed as a float between 0 and 1.
+         * @property {number} rawValue The release velocity amount expressed as an integer (between 0
+         * and 127).
+         */
+        // The object created when a noteoff event arrives is a Note with an attack velocity of 0.
+
+        event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
+          rawAttack: 0,
+          rawRelease: data2
+        });
+        event.value = Utilities.from7bitToFloat(data2);
+        event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
+        // be removed in future versions (@deprecated).
+
+        event.velocity = event.note.release;
+        event.rawVelocity = event.note.rawRelease;
+      } else if (event.type === "noteon") {
+        this.notesState[data1] = true;
+        /**
+         * Event emitted when a **note on** MIDI message has been received.
+         *
+         * @event InputChannel#noteon
+         *
+         * @type {object}
+         * @property {string} type `"noteon"`
+         *
+         * @property {InputChannel} channel The `InputChannel` object that triggered the event.
+         * @property {Array} data The MIDI message as an array of 8 bit values.
+         * @property {InputChannel} input The [`Input`](Input) object where through which the message
+         * was received.
+         * @property {Uint8Array} rawData The raw MIDI message as a `Uint8Array`.
+         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+         * object).
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         *
+         * @property {Note} note A [`Note`](Note) object containing information such as note name,
+         * octave and attack velocity.
+         *
+         * @property {number} value The attack velocity amount expressed as a float between 0 and 1.
+         * @property {number} rawValue The attack velocity amount expressed as an integer (between 0
+         * and 127).
+         */
+
+        event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset), {
+          rawAttack: data2
+        });
+        event.value = Utilities.from7bitToFloat(data2);
+        event.rawValue = data2; // Those are kept for backwards-compatibility but are gone from the documentation. They will
+        // be removed in future versions (@deprecated).
+
+        event.velocity = event.note.attack;
+        event.rawVelocity = event.note.rawAttack;
+      } else if (event.type === "keyaftertouch") {
+        /**
+         * Event emitted when a **key-specific aftertouch** MIDI message has been received.
+         *
+         * @event InputChannel#keyaftertouch
+         *
+         * @type {object}
+         * @property {string} type `"keyaftertouch"`
+         *
+         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+         * object).
+         * @property {Message} message A `Message` object containing information about the incoming
+         * MIDI message.
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         *
+         * @property {string} identifier The note identifier of the key to apply the aftertouch to.
+         * This includes any octave offset applied at the channel, input or global level.
+         * @property {number} key The MIDI note number of the key to apply the aftertouch to. This
+         * includes any octave offset applied at the channel, input or global level.
+         * @property {number} rawKey The MIDI note number of the key to apply the aftertouch to. This
+         * excludes any octave offset defined at the channel, input or global level.
+         * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
+         * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
+         * 127).
+         */
+        event.identifier = Utilities.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+        event.key = Utilities.toNoteNumber(event.identifier);
+        event.rawKey = data1;
+        event.value = Utilities.from7bitToFloat(data2);
+        event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
+        // removed from future versions (@deprecated).
+
+        event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
+      } else if (event.type === "controlchange") {
+        /**
+         * Event emitted when a **control change** MIDI message has been received.
+         *
+         * @event InputChannel#controlchange
+         *
+         * @type {object}
+         * @property {string} type `"controlchange"`
+         * @property {string} subtype The type of control change message that was received.
+         *
+         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+         * object).
+         * @property {Message} message A `Message` object containing information about the incoming
+         * MIDI message.
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         *
+         * @property {object} controller
+         * @property {object} controller.number The number of the controller.
+         * @property {object} controller.name The usual name or function of the controller.
+         * @property {number} value The value expressed as a float between 0 and 1.
+         * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+         */
+        event.controller = {
+          number: data1,
+          name: Utilities.getCcNameByNumber(data1)
+        };
+        event.subtype = event.controller.name || "controller" + data1;
+        event.value = Utilities.from7bitToFloat(data2);
+        event.rawValue = data2;
+        /**
+         * Event emitted when a **control change** MIDI message has been received and that message is
+         * targeting the controller numbered "xxx". Of course, "xxx" should be replaced by a valid
+         * controller number (0-127).
+         *
+         * @event InputChannel#controlchange-controllerxxx
+         *
+         * @type {object}
+         * @property {string} type `controlchange-controllerxxx`
+         * @property {string} subtype The type of control change message that was received.
+         *
+         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+         * object).
+         * @property {Message} message A `Message` object containing information about the incoming
+         * MIDI message.
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         *
+         * @property {object} controller
+         * @property {object} controller.number The number of the controller.
+         * @property {object} controller.name The usual name or function of the controller.
+         * @property {number} value The value expressed as a float between 0 and 1.
+         * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+         */
+
+        const specificEvent = Object.assign({}, event);
+        specificEvent.type = `${event.type}-controller${data1}`;
+        delete specificEvent.subtype;
+        this.emit(specificEvent.type, specificEvent); // Trigger channel mode message events (if appropriate)
+
+        if (event.message.dataBytes[0] >= 120) this._parseChannelModeMessage(event); // Parse the inbound event to see if its part of an RPN/NRPN sequence
+
+        if (this.parameterNumberEventsEnabled && this._isRpnOrNrpnController(event.message.dataBytes[0])) {
+          this._parseEventForParameterNumber(event);
+        }
+      } else if (event.type === "programchange") {
+        /**
+         * Event emitted when a **program change** MIDI message has been received.
+         *
+         * @event InputChannel#programchange
+         *
+         * @type {object}
+         * @property {string} type `"programchange"`
+         *
+         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+         * object).
+         * @property {Message} message A `Message` object containing information about the incoming
+         * MIDI message.
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         *
+         * @property {number} value The value expressed as an integer between 1 and 128.
+         * @property {number} rawValue The value expressed as an integer between 0 and 127..
+         */
+        event.value = data1 + 1;
+        event.rawValue = data1;
+      } else if (event.type === "channelaftertouch") {
+        /**
+         * Event emitted when a control change MIDI message has been received.
+         *
+         * @event InputChannel#channelaftertouch
+         *
+         * @type {object}
+         * @property {string} type `"channelaftertouch"`
+         *
+         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+         * object).
+         * @property {Message} message A `Message` object containing information about the incoming
+         * MIDI message.
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         *
+         * @property {number} value The value expressed as a float between 0 and 1.
+         * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+         */
+        event.value = Utilities.from7bitToFloat(data1);
+        event.rawValue = data1;
+      } else if (event.type === "pitchbend") {
+        /**
+         * Event emitted when a pitch bend MIDI message has been received.
+         *
+         * @event InputChannel#pitchbend
+         *
+         * @type {object}
+         * @property {string} type `"pitchbend"`
+         *
+         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+         * object).
+         * @property {Message} message A `Message` object containing information about the incoming
+         * MIDI message.
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         *
+         * @property {number} value The value expressed as a float between 0 and 1.
+         * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
+         */
+        event.value = ((data2 << 7) + data1 - 8192) / 8192;
+        event.rawValue = (data2 << 7) + data1;
+      } else {
+        event.type = "unknownmessage";
+      }
+
+      this.emit(event.type, event);
+    }
+
+    _parseChannelModeMessage(e) {
       // Make a shallow copy of the incoming event so we can use it as the new event.
       const event = Object.assign({}, e);
-      event.type = event.message.type || "unknownmidimessage"; // Add custom property for 'songselect'
+      event.type = event.controller.name;
+      /**
+       * Event emitted when an "all sound off" channel-mode MIDI message has been received.
+       *
+       * @event InputChannel#allsoundoff
+       *
+       * @type {object}
+       * @property {string} type `"allsoundoff"`
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       */
 
-      if (event.type === "songselect") {
-        event.song = e.data[1] + 1;
-      } // Emit event
+      /**
+       * Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
+       *
+       * @event InputChannel#resetallcontrollers
+       *
+       * @type {object}
+       * @property {string} type `"resetallcontrollers"`
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       */
 
+      /**
+       * Event emitted when a "local control" channel-mode MIDI message has been received. The value
+       * property of the event is set to either `true` (local control on) of `false` (local control
+       * off).
+       *
+       * @event InputChannel#localcontrol
+       *
+       * @type {object}
+       * @property {string} type `"localcontrol"`
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       *
+       * @property {boolean} value For local control on, the value is `true`. For local control off,
+       * the value is `false`.
+       */
+
+      if (event.type === "localcontrol") {
+        event.value = event.message.data[2] === 127 ? true : false;
+      }
+      /**
+       * Event emitted when an "all notes off" channel-mode MIDI message has been received.
+       *
+       * @event InputChannel#allnotesoff
+       *
+       * @type {object}
+       * @property {string} type `"allnotesoff"`
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       */
+
+      /**
+       * Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
+       * property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
+       *
+       * @event InputChannel#omnimode
+       *
+       * @type {object}
+       * @property {string} type `"omnimode"`
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       *
+       * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+       */
+
+
+      if (event.type === "omnimodeon") {
+        event.type = "omnimode";
+        event.value = true;
+      } else if (event.type === "omnimodeoff") {
+        event.type = "omnimode";
+        event.value = false;
+      }
+      /**
+       * Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
+       * the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
+       * poly mode on).
+       *
+       * @event InputChannel#monomode
+       *
+       * @type {object}
+       * @property {string} type `"monomode"`
+       *
+       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
+       * object).
+       * @property {Message} message A `Message` object containing information about the incoming
+       * MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       *
+       * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+       */
+
+
+      if (event.type === "monomodeon") {
+        event.type = "monomode";
+        event.value = true;
+      } else if (event.type === "polymodeon") {
+        event.type = "monomode";
+        event.value = false;
+      }
 
       this.emit(event.type, event);
     }
     /**
-     * Opens the input for usage. This is usually unnecessary as the port is open automatically when
-     * WebMidi is enabled.
-     *
-     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
-     */
-
-
-    async open() {
-      // Explicitly opens the port for usage. This is not mandatory. When the port is not explicitly
-      // opened, it is implicitly opened (asynchronously) when assigning a listener to the
-      // `onmidimessage` property of the `MIDIInput`. We do it explicitly so that 'connected' events
-      // are dispatched immediately and that we are ready to listen.
-      try {
-        await this._midiInput.open();
-      } catch (err) {
-        return Promise.reject(err);
-      }
-
-      return Promise.resolve(this);
-    }
-    /**
-     * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
-     * the input is opened again by calling [Input.open()]{@link Input#open}.
-     *
-     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
-     */
-
-
-    async close() {
-      // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
-      // event.
-      if (!this._midiInput) return Promise.resolve(this);
-
-      try {
-        await this._midiInput.close();
-      } catch (err) {
-        return Promise.reject(err);
-      }
-
-      return Promise.resolve(this);
-    }
-    /**
+     * Parses inbound events to identify RPN/NRPN sequences.
+     * @param e Event
      * @private
-     * @deprecated since v3.0.0 (moved to 'Utilities' class)
      */
 
 
-    getChannelModeByNumber() {
+    _parseEventForParameterNumber(event) {
+      // To make it more legible
+      const controller = event.message.dataBytes[0];
+      const value = event.message.dataBytes[1];
+      const list = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES; // A. Check if the message is the start of an RPN (101) or NRPN (99) parameter declaration.
+
+      if (controller === list.nonregisteredparameterfine || // 99
+      controller === list.registeredparameterfine // 101
+      ) {
+          this._nrpnBuffer = [];
+          this._rpnBuffer = [];
+
+          if (controller === list.nonregisteredparameterfine) {
+            // 99
+            this._nrpnBuffer = [event.message];
+          } else {
+            // 101
+            // 127 is a reset so we ignore it
+            if (value !== 127) this._rpnBuffer = [event.message];
+          } // B. Check if the message is the end of an RPN (100) or NRPN (98) parameter declaration.
+
+        } else if (controller === list.nonregisteredparametercoarse || // 98
+      controller === list.registeredparametercoarse // 100
+      ) {
+          if (controller === list.nonregisteredparametercoarse) {
+            // 98
+            // Flush the other buffer (they are mutually exclusive)
+            this._rpnBuffer = []; // Check if we are in sequence
+
+            if (this._nrpnBuffer.length === 1) {
+              this._nrpnBuffer.push(event.message);
+            } else {
+              this._nrpnBuffer = []; // out of sequence
+            }
+          } else {
+            // 100
+            // Flush the other buffer (they are mutually exclusive)
+            this._nrpnBuffer = []; // 127 is a reset so we ignore it
+
+            if (this._rpnBuffer.length === 1 && value !== 127) {
+              this._rpnBuffer.push(event.message);
+            } else {
+              this._rpnBuffer = []; // out of sequence or reset
+            }
+          } // C. Check if the message is for data entry (6, 38, 96 or 97). Those messages trigger events.
+
+        } else if (controller === list.dataentrycoarse || // 6
+      controller === list.dataentryfine || // 38
+      controller === list.databuttonincrement || // 96
+      controller === list.databuttondecrement // 97
+      ) {
+          if (this._rpnBuffer.length === 2) {
+            this._dispatchParameterNumberEvent("rpn", this._rpnBuffer[0].dataBytes[1], this._rpnBuffer[1].dataBytes[1], event);
+          } else if (this._nrpnBuffer.length === 2) {
+            this._dispatchParameterNumberEvent("nrpn", this._nrpnBuffer[0].dataBytes[1], this._nrpnBuffer[1].dataBytes[1], event);
+          } else {
+            this._nrpnBuffer = [];
+            this._rpnBuffer = [];
+          }
+        }
+    }
+    /**
+     * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+     * @param controller
+     * @returns {boolean}
+     * @private
+     */
+
+
+    _isRpnOrNrpnController(controller) {
+      return controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentrycoarse || //   6
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.dataentryfine || //  38
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttonincrement || //  96
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.databuttondecrement || //  97
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparametercoarse || //  98
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.nonregisteredparameterfine || //  99
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse || // 100
+      controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine; // 101
+    }
+
+    _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
+      type = type === "nrpn" ? "nrpn" : "rpn";
+      /**
+       * Event emitted when an **RPN data entry coarse** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#rpn-dataentrycoarse
+       *
+       * @type {object}
+       *
+       * @property {string} type `rpn-dataentrycoarse`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when an **RPN data entry fine** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#rpn-dataentryfine
+       *
+       * @type {object}
+       *
+       * @property {string} type `rpn-dataentryfine`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when an **RPN data button increment** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#rpn-databuttonincrement
+       *
+       * @type {object}
+       *
+       * @property {string} type `rpn-databuttonincrement`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when an **RPN data button decrement** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#rpn-databuttondecrement
+       *
+       * @type {object}
+       *
+       * @property {string} type `rpn-databuttondecrement`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when an **NRPN data entry coarse** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#nrpn-dataentrycoarse
+       *
+       * @type {object}
+       *
+       * @property {string} type `nrpn-dataentrycoarse`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when an **NRPN data entry fine** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#nrpn-dataentryfine
+       *
+       * @type {object}
+       *
+       * @property {string} type `nrpn-dataentryfine`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when an **NRPN data button increment** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#nrpn-databuttonincrement
+       *
+       * @type {object}
+       *
+       * @property {string} type `nrpn-databuttonincrement`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when an **NRPN data button decrement** message is received on the input. The
+       * specific parameter to which the message applies can be found in the event's `parameter`
+       * property. It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#nrpn-databuttondecrement
+       *
+       * @type {object}
+       *
+       * @property {string} type `nrpn-databuttondecrement`
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      const event = {
+        target: e.target,
+        timestamp: e.timestamp,
+        parameterMsb: paramMsb,
+        parameterLsb: paramLsb,
+        value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
+        rawValue: e.message.dataBytes[1]
+      }; // Identify the parameter (by name for RPN and by number for NRPN)
+
+      if (type === "rpn") {
+        event.parameter = Object.keys(Enumerations.MIDI_REGISTERED_PARAMETERS).find(key => {
+          return Enumerations.MIDI_REGISTERED_PARAMETERS[key][0] === paramMsb && Enumerations.MIDI_REGISTERED_PARAMETERS[key][1] === paramLsb;
+        });
+      } else {
+        event.parameter = (paramMsb << 7) + paramLsb;
+      } // Type and subtype
+
+
+      const subtype = Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, e.message.dataBytes[0]); // Emit specific event
+
+      event.type = `${type}-${subtype}`;
+      this.emit(event.type, event);
+      /**
+       * Event emitted when any NRPN message is received on the input. There are four types of NRPN
+       * messages:
+       *
+       *   * data entry coarse
+       *   * data entry fine
+       *   * data button increment
+       *   * data button decrement
+       *
+       * The parameter to which the message applies can be found in the event's `parameter` property.
+       *
+       * @event InputChannel#nrpn
+       *
+       * @type {object}
+       *
+       * @property {string} type `"nrpn"`
+       * @property {string} subtype The precise type of NRPN message that was received.
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {number} parameter The non-registered parameter number (0-16383)
+       * @property {number} parameterMsb The MSB portion of the non-registered parameter number
+       * (0-127)
+       * @property {number} parameterLsb: The LSB portion of the non-registered parameter number
+       * (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+
+      /**
+       * Event emitted when any RPN message is received on the input. There are four types of RPN
+       * messages:
+       *
+       *   * data entry coarse
+       *   * data entry fine
+       *   * data button increment
+       *   * data button decrement
+       *
+       * The parameter to which the message applies can be found in the event's `parameter` property.
+       * It is one of the ones defined in
+       * [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+       *
+       * @event InputChannel#rpn
+       *
+       * @type {object}
+       *
+       * @property {string} type `"rpn"`
+       * @property {string} subtype The precise type of RPN message that was received.
+       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} parameter The registered parameter's name
+       * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
+       * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
+       * @property {number} value The received value as a normalized number between 0 and 1.
+       * @property {number} rawValue The value as received (0-127)
+       */
+      // Emit general event
+
+      event.type = type;
+      event.subtype = subtype;
+      this.emit(event.type, event);
+    }
+    /**
+     * @deprecated since version 3.
+     * @private
+     */
+
+
+    getChannelModeByNumber(number) {
       if (wm.validation) {
         console.warn("The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class.");
+        number = Math.floor(number);
       }
+
+      return Utilities.getChannelModeByNumber(number);
     }
     /**
-     * Adds an event listener that will trigger a function callback when the specified event is
-     * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
-     *
-     * Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
-     * at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
-     * events target a specific channel. Usually, in this case, you would add the listener to the
-     * [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
-     * channel-specific events directly on an `Input`. This allows you to react to a channel-specific
-     * event no matter which channel it actually came through.
-     *
-     * When listening for an event, you simply need to specify the event name and the function to
-     * execute:
-     *
-     * ```javascript
-     * const listener = WebMidi.inputs[0].addListener("midimessage", e => {
-     *   console.log(e);
-     * });
-     * ```
-     *
-     * Calling the function with an input-wide event (such as
-     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
-     * that was created.
-     *
-     * If you call the function with a channel-specific event (such as
-     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
-     * [`Listener`](Listener) objects that were created (one for each channel):
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
-     * ```
-     *
-     * You can also specify which channels you want to add the listener to:
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
-     * ```
-     *
-     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
-     *
-     * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
-     * instance that actually gets a listener added and not the [`Input`](Input) instance. You can
-     * check that by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
-     *
-     * There are 8 families of events you can listen to:
-     *
-     * 1. **MIDI System Common** Events (input-wide)
-     *
-     *    * [`songposition`]{@link Input#event:songposition}
-     *    * [`songselect`]{@link Input#event:songselect}
-     *    * [`sysex`]{@link Input#event:sysex}
-     *    * [`timecode`]{@link Input#event:timecode}
-     *    * [`tunerequest`]{@link Input#event:tunerequest}
-     *
-     * 2. **MIDI System Real-Time** Events (input-wide)
-     *
-     *    * [`clock`]{@link Input#event:clock}
-     *    * [`start`]{@link Input#event:start}
-     *    * [`continue`]{@link Input#event:continue}
-     *    * [`stop`]{@link Input#event:stop}
-     *    * [`activesensing`]{@link Input#event:activesensing}
-     *    * [`reset`]{@link Input#event:reset}
-     *
-     * 3. **State Change** Events (input-wide)
-     *
-     *    * [`opened`]{@link Input#event:opened}
-     *    * [`closed`]{@link Input#event:closed}
-     *    * [`disconnected`]{@link Input#event:disconnected}
-     *
-     * 4. **Catch-All** Events (input-wide)
-     *
-     *    * [`midimessage`]{@link Input#event:midimessage}
-     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
-     *
-     * 5. **Channel Voice** Events (channel-specific)
-     *
-     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
-     *    * [`controlchange`]{@link InputChannel#event:controlchange}
-     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
-     *    * [`noteoff`]{@link InputChannel#event:noteoff}
-     *    * [`noteon`]{@link InputChannel#event:noteon}
-     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
-     *    * [`programchange`]{@link InputChannel#event:programchange}
-     *
-     *    Note: you can listen for a specific control change message by using an event name like this:
-     *    `controlchange-23`, `controlchange-99`, `controlchange-122`, etc.
-     *
-     * 6. **Channel Mode** Events (channel-specific)
-     *
-     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
-     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
-     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
-     *    * [`monomode`]{@link InputChannel#event:monomode}
-     *    * [`omnimode`]{@link InputChannel#event:omnimode}
-     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
-     *
-     * 7. **NRPN** Events (channel-specific)
-     *
-     *    * [`nrpn`]{@link InputChannel#event:nrpn}
-     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
-     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
-     *
-     * 8. **RPN** Events (channel-specific)
-     *
-     *    * [`rpn`]{@link InputChannel#event:rpn}
-     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
-     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} A callback function to execute when the specified event is detected.
-     * This function will receive an event parameter object. For details on this object's properties,
-     * check out the documentation for the various events (links above).
-     *
-     * @param {object} [options={}]
-     *
-     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the `arguments` property of the `Listener` object
-     * and can be retrieved or modified as desired.
-     *
-     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
-     * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
-     * listen on. If no channel is specified, all channels will be used. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {object} [options.context=this] The value of `this` in the callback function.
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
-     * automatically expires.
-     *
-     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array.
-     *
-     * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
-     * should automatically be removed.
-     *
-     * @throws {Error} For channel-specific events, 'options.channels' must be defined.
-     *
-     * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
-     * object is returned. If the event is channel-specific, an array of all the
-     * [`Listener`](Listener) objects is returned (one for each channel).
-     */
-
-
-    addListener(event, listener, options = {}) {
-      if (wm.validation) {
-        // Legacy compatibility
-        if (typeof options === "function") {
-          let channels = listener != undefined ? [].concat(listener) : undefined; // clone
-
-          listener = options;
-          options = {
-            channels: channels
-          };
-        }
-      } // Check if the event is channel-specific or input-wide
-
-
-      if (InputChannel.EVENTS.includes(event)) {
-        // If no channel defined, use all.
-        if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-        let listeners = [];
-        Utilities.sanitizeChannels(options.channels).forEach(ch => {
-          listeners.push(this.channels[ch].addListener(event, listener, options));
-        });
-        return listeners;
-      } else {
-        return super.addListener(event, listener, options);
-      }
-    }
-    /**
-     * Adds a one-time event listener that will trigger a function callback when the specified event
-     * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
-     * dispatched by {@link InputChannel} objects and are tied to a specific MIDI channel while
-     * input-wide events are dispatched by the {@link Input} object itself and are not tied to a
-     * specific channel.
-     *
-     * When listening for an input-wide event, you must specify the event to listen for and the
-     * callback function to trigger when the event happens:
-     *
-     * ```
-     * WebMidi.inputs[0].addListener("midimessage", someFunction);
-     * ```
-     *
-     * To listen for a channel-bound event, you must also specify the event to listen for and the
-     * function to trigger but you have to add the channels you wish to listen on in the `options`
-     * parameter:
-     *
-     * ```
-     * WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
-     * ```
-     *
-     * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
-     * event is triggered on MIDI channels `1`, `2` or `3`.
-     *
-     * Note that, when adding events to channels, it is the {@link InputChannel} instance that
-     * actually gets a listener added and not the `{@link Input} instance.
-     *
-     * Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-     * on the {@link InputChannel} object itself.
-     *
-     * There are 6 families of events you can listen to:
-     *
-     * 1. **MIDI System Common** Events (input-wide)
-     *
-     *    * [songposition]{@link Input#event:songposition}
-     *    * [songselect]{@link Input#event:songselect}
-     *    * [sysex]{@link Input#event:sysex}
-     *    * [timecode]{@link Input#event:timecode}
-     *    * [tunerequest]{@link Input#event:tunerequest}
-     *
-     * 2. **MIDI System Real-Time** Events (input-wide)
-     *
-     *    * [clock]{@link Input#event:clock}
-     *    * [start]{@link Input#event:start}
-     *    * [continue]{@link Input#event:continue}
-     *    * [stop]{@link Input#event:stop}
-     *    * [activesensing]{@link Input#event:activesensing}
-     *    * [reset]{@link Input#event:reset}
-     *
-     * 3. **State Change** Events (input-wide)
-     *
-     *    * [opened]{@link Input#event:opened}
-     *    * [closed]{@link Input#event:closed}
-     *    * [disconnected]{@link Input#event:disconnected}
-     *
-     * 4. **Catch-All** Events (input-wide)
-     *
-     *    * [midimessage]{@link Input#event:midimessage}
-     *    * [unknownmidimessage]{@link Input#event:unknownmidimessage}
-     *
-     * 5. **Channel Voice** Events (channel-specific)
-     *
-     *    * [channelaftertouch]{@link InputChannel#event:channelaftertouch}
-     *    * [controlchange]{@link InputChannel#event:controlchange}
-     *    * [keyaftertouch]{@link InputChannel#event:keyaftertouch}
-     *    * [noteoff]{@link InputChannel#event:noteoff}
-     *    * [noteon]{@link InputChannel#event:noteon}
-     *    * [nrpn]{@link InputChannel#event:nrpn}
-     *    * [pitchbend]{@link InputChannel#event:pitchbend}
-     *    * [programchange]{@link InputChannel#event:programchange}
-     *
-     * 6. **Channel Mode** Events (channel-specific)
-     *
-     *    * allnotesoff
-     *    * allsoundoff
-     *    * localcontrol
-     *    * monomode
-     *    * omnimode
-     *    * resetallcontrollers
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} A callback function to execute when the specified event is detected.
-     * This function will receive an event parameter object. For details on this object's properties,
-     * check out the documentation for the various events (links above).
-     *
-     * @param {object} [options={}]
-     *
-     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the `arguments` property of the `Listener` object
-     * and can be retrieved or modified as desired.
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {object} [options.context=this] The value of `this` in the callback function.
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
-     * automatically expires.
-     *
-     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array.
-     *
-     * @throws {Error} For channel-specific events, 'options.channels' must be defined.
-     *
-     * @returns {Listener[]} An array of all `Listener` objects that were created.
-     */
-
-
-    addOneTimeListener(event, listener, options = {}) {
-      options.remaining = 1;
-      return this.addListener(event, listener, options);
-    }
-    /**
-     * This is an alias to the [Input.addListener()]{@link Input#addListener} method.
-     * @since 2.0.0
-     * @deprecated since v3.0
+     * @deprecated since version 3.
      * @private
      */
 
 
-    on(event, channel, listener, options) {
-      return this.addListener(event, channel, listener, options);
-    }
-    /**
-     * Checks if the specified event type is already defined to trigger the listener function. For
-     * channel-specific events, the function will return `true` only if all channels have the listener
-     * defined.
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} The callback function to check for.
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of such
-     * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
-     * events.
-     *
-     * @returns {boolean} Boolean value indicating whether or not the channel(s) already have this
-     * listener defined.
-     *
-     * @throws Error For channel-specific events, 'options.channels' must be defined.
-     */
-
-
-    hasListener(event, listener, options = {}) {
+    getCcNameByNumber(number) {
       if (wm.validation) {
-        // Legacy compatibility
-        if (typeof options === "function") {
-          let channels = [].concat(listener); // clone
-
-          listener = options;
-          options = {
-            channels: channels
-          };
-        } // Validation
-
-
-        if (InputChannel.EVENTS.includes(event) && options.channels === undefined) {
-          throw new Error("For channel-specific events, 'options.channels' must be defined.");
-        }
+        console.warn("The 'getCcNameByNumber()' method has been moved to the 'Utilities' class.");
+        number = parseInt(number);
+        if (!(number >= 0 && number <= 127)) throw new RangeError("Invalid control change number.");
       }
 
-      if (InputChannel.EVENTS.includes(event)) {
-        return Utilities.sanitizeChannels(options.channels).every(ch => {
-          return this.channels[ch].hasListener(event, listener);
-        });
-      } else {
-        return super.hasListener(event, listener);
-      }
+      return Utilities.getCcNameByNumber(number);
     }
     /**
-     * Removes the specified listener for the specified event. If no listener is specified, all
-     * listeners for the specified event will be removed. If no event is specified, all listeners for
-     * the `Input` as well as all listeners for all `InputChannels` will be removed.
+     * Return the playing status of the specified note. The `note` parameter can be an unsigned
+     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
      *
-     * By default, channel-specific listeners will be removed from all channels unless the
-     * `options.channel` narrows it down.
+     * If a note identifier or Note object is passed in, the method will take into account any
+     * `octaveOffset` defined.
      *
-     * @param [type] {string} The type of the event.
-     *
-     * @param [listener] {Function} The callback function to check for.
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to match. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {*} [options.context] Only remove the listeners that have this exact context.
-     *
-     * @param {number} [options.remaining] Only remove the listener if it has exactly that many
-     * remaining times to be executed.
-     */
-
-
-    removeListener(event, listener, options = {}) {
-      if (wm.validation) {
-        // Legacy compatibility
-        if (typeof options === "function") {
-          let channels = [].concat(listener); // clone
-
-          listener = options;
-          options = {
-            channels: channels
-          };
-        }
-      }
-
-      if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS; // If the event is not specified, remove everything (channel-specific and input-wide)!
-
-      if (event == undefined) {
-        Utilities.sanitizeChannels(options.channels).forEach(ch => {
-          if (this.channels[ch]) this.channels[ch].removeListener();
-        });
-        return super.removeListener();
-      } // If the event is specified, check if it's channel-specific or input-wide.
-
-
-      if (InputChannel.EVENTS.includes(event)) {
-        Utilities.sanitizeChannels(options.channels).forEach(ch => {
-          this.channels[ch].removeListener(event, listener, options);
-        });
-      } else {
-        super.removeListener(event, listener, options);
-      }
-    }
-    /**
-     * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
-     * specified output destination(s). This is akin to the hardware MIDI THRU port with the added
-     * benefit of being able to filter which data is forwarded.
-     *
-     * @param {Output|Output[]} destinations An [`Output`](Output) object, or an array of such objects,
-     * to forward messages to.
-     * @param {object} [options={}]
-     * @param {string|string[]} [options.types] A message type (`"noteon"`, `"controlchange"`, etc.),
-     * or an array of such types, that the message type must match in order to be forwarded. If this
-     * option is not specified, all types of messages will be forwarded. Valid messages are the ones
-     * found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
-     * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
-     * MIDI channel number or an array of channel numbers that the message must match in order to be
-     * forwarded. By default all MIDI channels are included (`1` to `16`).
-     *
-     * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
-     * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
-     */
-
-
-    addForwarder(output, options = {}) {
-      let forwarder; // Unless 'output' is a forwarder, create a new forwarder
-
-      if (output instanceof Forwarder) {
-        forwarder = output;
-      } else {
-        forwarder = new Forwarder(output, options);
-      }
-
-      this._forwarders.push(forwarder);
-
-      return forwarder;
-    }
-    /**
-     * Removes the specified forwarder.
-     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
-     * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
-     */
-
-
-    removeForwarder(forwarder) {
-      this._forwarders = this._forwarders.filter(item => item !== forwarder);
-    }
-    /**
-     * Checks whether the specified forwarded has already been attached to this input.
-     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check (the
-     * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+     * @param [input] {number|string|Note}
      * @returns {boolean}
+     * @since version 3.0.0
      */
 
 
-    hasForwarder(forwarder) {
-      return this._forwarders.includes(forwarder);
+    getNoteState(note) {
+      // If it's a note object, we simply use the identifier
+      if (note instanceof Note) note = note.identifier;
+      const number = Utilities.guessNoteNumber(note, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
+      return this.notesState[number];
     }
     /**
-     * Name of the MIDI input
-     *
-     * @type {string}
-     * @readonly
-     */
-
-
-    get name() {
-      return this._midiInput.name;
-    }
-    /**
-     * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
-     * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-     * the same port.
-     *
-     * @type {string}
-     * @readonly
-     */
-
-
-    get id() {
-      return this._midiInput.id;
-    }
-    /**
-     * Input port's connection state: `"pending"`, `"open"` or `"closed"`.
-     *
-     * @type {string}
-     * @readonly
-     */
-
-
-    get connection() {
-      return this._midiInput.connection;
-    }
-    /**
-     * Name of the manufacturer of the device that makes this input port available.
-     *
-     * @type {string}
-     * @readonly
-     */
-
-
-    get manufacturer() {
-      return this._midiInput.manufacturer;
-    }
-    /**
-     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-     * number 60) is placed on the 4th octave (C4).
+     * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+     * octave (C4).
      *
      * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
      * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
      *
      * Note that this value is combined with the global offset value defined on the `WebMidi` object
-     * (if any).
+     * and with the value defined on the parent `Input` object.
      *
      * @type {number}
      *
@@ -7163,314 +6283,60 @@
       this._octaveOffset = value;
     }
     /**
-     * State of the input port: `"connected"` or `"disconnected"`.
-     *
-     * @type {string}
-     * @readonly
+     * The [`Input`](Input) this channel belongs to
+     * @type {Input}
+     * @since 3.0
      */
 
 
-    get state() {
-      return this._midiInput.state;
+    get input() {
+      return this._input;
     }
     /**
-     * Port type. In the case of `Input`, this is always: `"input"`.
-     *
-     * @type {string}
-     * @readonly
+     * This channel's MIDI number (1-16)
+     * @type {number}
+     * @since 3.0
      */
 
 
-    get type() {
-      return this._midiInput.type;
+    get number() {
+      return this._number;
     }
     /**
+     * Whether RPN/NRPN events are parsed and dispatched.
      * @type {boolean}
+     * @since 3.0
+     * @deprecated Use parameterNumberEventsEnabled instead.
      * @private
-     * @deprecated since v3.0.0 (moved to 'InputChannel' class)
      */
 
 
     get nrpnEventsEnabled() {
-      if (wm.validation) {
-        console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class.");
-      }
-
-      return false;
+      return this.parameterNumberEventsEnabled;
     }
 
-  } // Events that do not have code below them must be placed outside the class definition (?!)
+    set nrpnEventsEnabled(value) {
+      if (this.validation) {
+        value = !!value;
+      }
 
-  /**
-   * Input-wide (system) event emitted when a **system exclusive** message has been received.
-   * You should note that, to receive `sysex` events, you must call the `WebMidi.enable()`
-   * method with the `sysex` option set to `true`:
-   *
-   * ```js
-   * WebMidi.enable({sysex: true})
-   *  .then(() => console.log("WebMidi has been enabled with sysex support."))
-   *  .catch(err => console.log("WebMidi could not be enabled."))
-   * ```
-   *
-   * @event Input#sysex
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"sysex"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values.
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array.
-   */
+      this.parameterNumberEventsEnabled = value;
+    }
+    /**
+     * Array of channel-specific event names that can be listened to.
+     * @type {string[]}
+     * @readonly
+     */
 
-  /**
-   * Input-wide (system) event emitted when a **time code quarter frame** message has been
-   * received.
-   *
-   * @event Input#timecode
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"timecode"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
 
-  /**
-   * Input-wide (system) event emitted when a **song position** message has been received.
-   *
-   * @event Input#songposition
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"songposition"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
+    static get EVENTS() {
+      return [// MIDI channel message events
+      "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
+      "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // RPN/NRPN events
+      "nrpn", "rpn"];
+    }
 
-  /**
-   * Input-wide (system) event emitted when a **song select** message has been received.
-   *
-   * @event Input#songselect
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"songselect"`
-   * @property {string} song Song (or sequence) number to select (1-128)
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when a **tune request** message has been received.
-   *
-   * @event Input#tunerequest
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"tunerequest"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when a **timing clock** message has been received.
-   *
-   * @event Input#clock
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"clock"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when a **start** message has been received.
-   *
-   * @event Input#start
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"start"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when a **continue** message has been received.
-   *
-   * @event Input#continue
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"continue"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when a **stop** message has been received.
-   *
-   * @event Input#stop
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"stop"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when an **active sensing** message has been received.
-   *
-   * @event Input#activesensing
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"activesensing"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when a **reset** message has been received.
-   *
-   * @event Input#reset
-   *
-   * @type {object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"reset"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
-
-  /**
-   * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
-   * be, for example, one of the undefined/reserved messages.
-   *
-   * @event Input#unknownmidimessage
-   *
-   * @type {Object}
-   *
-   * @property {Input} target The `Input` that triggered the event.
-   * @property {Message} message A `Message` object containing information about the incoming MIDI
-   * message.
-   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-   * milliseconds since the navigation start of the document).
-   * @property {string} type `"unknownmidimessage"`
-   *
-   * @property {Array} event.data The MIDI message as an array of 8 bit values (deprecated, use
-   * the `message` object instead).
-   * @property {Uint8Array} event.rawData The raw MIDI message as a Uint8Array  (deprecated, use
-   * the `message` object instead).
-   *
-   * @since 2.1
-   */
+  }
 
   /**
    * The `Message` class represents a single MIDI message. It has several properties that make it
@@ -7622,6 +6488,1120 @@
     }
 
   }
+
+  /**
+   * The `Input` class represents a single MIDI input port. This object is automatically instantiated
+   * by the library according to the host's MIDI subsystem and does not need to be directly
+   * instantiated. Instead, you can access all `Input` objects by referring to the
+   * [`WebMidi.inputs`](WebMidi#inputs) array. You can also retrieve inputs by using methods such as
+   * [`WebMidi.getInputByName()`](WebMidi#getInputByName) and
+   * [`WebMidi.getInputById()`](WebMidi#getInputById).
+   *
+   * Note that a single MIDI device may expose several inputs and/or outputs.
+   *
+   * **Important**: the `Input` class does not directly fire channel-specific MIDI messages
+   * (such as [`noteon`](InputChannel#event:noteon) or
+   * [`controlchange`](InputChannel#event:controlchange), etc.). The [`InputChannel`](InputChannel)
+   * object does that. However, you can still use the
+   * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
+   * [`InputChannel`](InputChannel) objects at once.
+   *
+   * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+   * object as provided by the MIDI subsystem (Web MIDI API).
+   *
+   * @fires Input#opened
+   * @fires Input#disconnected
+   * @fires Input#closed
+   * @fires Input#midimessage
+   * @fires Input#sysex
+   * @fires Input#timecode
+   * @fires Input#songposition
+   * @fires Input#songselect
+   * @fires Input#tunerequest
+   * @fires Input#clock
+   * @fires Input#start
+   * @fires Input#continue
+   * @fires Input#stop
+   * @fires Input#activesensing
+   * @fires Input#reset
+   * @fires Input#unknownmidimessage
+   *
+   * @extends EventEmitter
+   * @license Apache-2.0
+   */
+
+  class Input extends e {
+    constructor(midiInput) {
+      super();
+      /**
+       * Reference to the actual MIDIInput object
+       * @private
+       */
+
+      this._midiInput = midiInput;
+      /**
+       * @type {number}
+       * @private
+       */
+
+      this._octaveOffset = 0;
+      /**
+       * Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
+       * channels are numbered 1 through 16.
+       *
+       * @type {InputChannel[]}
+       */
+
+      this.channels = [];
+
+      for (let i = 1; i <= 16; i++) this.channels[i] = new InputChannel(this, i);
+
+      this._forwarders = []; // Setup listeners
+
+      this._midiInput.onstatechange = this._onStateChange.bind(this);
+      this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
+    }
+    /**
+     * Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
+     * unlinking the MIDI subsystem. This is mostly for internal use.
+     *
+     * @returns {Promise<void>}
+     */
+
+
+    async destroy() {
+      this.removeListener();
+      this.channels.forEach(ch => ch.destroy());
+      this.channels = [];
+      this._forwarders = [];
+
+      if (this._midiInput) {
+        this._midiInput.onstatechange = null;
+        this._midiInput.onmidimessage = null;
+      }
+
+      await this.close();
+      this._midiInput = null;
+    }
+    /**
+     * Executed when a `"statechange"` event occurs.
+     *
+     * @param e
+     * @private
+     */
+
+
+    _onStateChange(e) {
+      let event = {
+        timestamp: wm.time,
+        target: this
+      };
+
+      if (e.port.connection === "open") {
+        /**
+         * Event emitted when the `Input` has been opened by calling the [`open()`]{@link #open}
+         * method.
+         *
+         * @event Input#opened
+         * @type {object}
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         * @property {string} type `opened`
+         * @property {Input} target The `Input` that triggered the event.
+         */
+        event.type = "opened";
+        this.emit("opened", event);
+      } else if (e.port.connection === "closed" && e.port.state === "connected") {
+        /**
+         * Event emitted when the `Input` has been closed by calling the
+         * [`close()`]{@link #close} method.
+         *
+         * @event Input#closed
+         * @type {object}
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         * @property {string} type `closed`
+         * @property {Input} target The `Input` that triggered the event.
+         */
+        event.type = "closed";
+        this.emit("closed", event);
+      } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
+        /**
+         * Event emitted when the `Input` becomes unavailable. This event is typically fired
+         * when the MIDI device is unplugged.
+         *
+         * @event Input#disconnected
+         * @type {object}
+         * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+         * milliseconds since the navigation start of the document).
+         * @property {string} type `disconnected`
+         * @property {object} target Object with properties describing the {@link Input} that
+         * triggered the event. This is not the actual `Input` as it is no longer available.
+         * @property {string} target.connection `"closed"`
+         * @property {string} target.id ID of the input
+         * @property {string} target.manufacturer Manufacturer of the device that provided the input
+         * @property {string} target.name Name of the device that provided the input
+         * @property {string} target.state `disconnected`
+         * @property {string} target.type `input`
+         */
+        event.type = "disconnected";
+        event.target = {
+          connection: e.port.connection,
+          id: e.port.id,
+          manufacturer: e.port.manufacturer,
+          name: e.port.name,
+          state: e.port.state,
+          type: e.port.type
+        };
+        this.emit("disconnected", event);
+      } else if (e.port.connection === "pending" && e.port.state === "disconnected") ; else {
+        console.warn("This statechange event was not caught: ", e.port.connection, e.port.state);
+      }
+    }
+    /**
+     * Executed when a `"midimessage"` event is received
+     * @param e
+     * @private
+     */
+
+
+    _onMidiMessage(e) {
+      // Create Message object from MIDI data
+      const message = new Message(e.data);
+      /**
+       * Event emitted when any MIDI message is received on an `Input`.
+       *
+       * @event Input#midimessage
+       *
+       * @type {object}
+       *
+       * @property {Input} target The `Input`that triggered the event.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       * @property {string} type `midimessage`
+       *
+       * @since 2.1
+       */
+
+      const event = {
+        target: this,
+        message: message,
+        timestamp: e.timeStamp,
+        type: "midimessage",
+        data: message.data,
+        // @deprecated (will be removed in v4)
+        rawData: message.data,
+        // @deprecated (will be removed in v4)
+        statusByte: message.data[0],
+        // @deprecated (will be removed in v4)
+        dataBytes: message.dataBytes // @deprecated (will be removed in v4)
+
+      };
+      this.emit("midimessage", event); // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
+      // system messages.
+
+      if (message.isSystemMessage) {
+        // system messages
+        this._parseEvent(event);
+      } else if (message.isChannelMessage) {
+        // channel messages
+        this.channels[message.channel]._processMidiMessageEvent(event);
+      } // Forward message if forwarders have been defined
+
+
+      this._forwarders.forEach(forwarder => forwarder.forward(message));
+    }
+    /**
+     * @private
+     */
+
+
+    _parseEvent(e) {
+      // Make a shallow copy of the incoming event so we can use it as the new event.
+      const event = Object.assign({}, e);
+      event.type = event.message.type || "unknownmidimessage"; // Add custom property for 'songselect'
+
+      if (event.type === "songselect") {
+        event.song = e.data[1] + 1;
+      } // Emit event
+
+
+      this.emit(event.type, event);
+    }
+    /**
+     * Opens the input for usage. This is usually unnecessary as the port is opened automatically when
+     * WebMidi is enabled.
+     *
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object.
+     */
+
+
+    async open() {
+      // Explicitly opens the port for usage. This is not mandatory. When the port is not explicitly
+      // opened, it is implicitly opened (asynchronously) when assigning a listener to the
+      // `onmidimessage` property of the `MIDIInput`. We do it explicitly so that 'connected' events
+      // are dispatched immediately and that we are ready to listen.
+      try {
+        await this._midiInput.open();
+      } catch (err) {
+        return Promise.reject(err);
+      }
+
+      return Promise.resolve(this);
+    }
+    /**
+     * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
+     * the input is opened again by calling [`Input.open()`](Input#open).
+     *
+     * **Note**: if what you want to do is stop events from being dispatched, you should use
+     * [`eventsSuspended`](#eventsSuspended) instead.
+     *
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
+     */
+
+
+    async close() {
+      // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
+      // event.
+      if (!this._midiInput) return Promise.resolve(this);
+
+      try {
+        await this._midiInput.close();
+      } catch (err) {
+        return Promise.reject(err);
+      }
+
+      return Promise.resolve(this);
+    }
+    /**
+     * @private
+     * @deprecated since v3.0.0 (moved to 'Utilities' class)
+     */
+
+
+    getChannelModeByNumber() {
+      if (wm.validation) {
+        console.warn("The 'getChannelModeByNumber()' method has been moved to the 'Utilities' class.");
+      }
+    }
+    /**
+     * Adds an event listener that will trigger a function callback when the specified event is
+     * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
+     *
+     * Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
+     * at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
+     * events target a specific channel. Usually, in this case, you would add the listener to the
+     * [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
+     * channel-specific events directly on an `Input`. This allows you to react to a channel-specific
+     * event no matter which channel it actually came through.
+     *
+     * When listening for an event, you simply need to specify the event name and the function to
+     * execute:
+     *
+     * ```javascript
+     * const listener = WebMidi.inputs[0].addListener("midimessage", e => {
+     *   console.log(e);
+     * });
+     * ```
+     *
+     * Calling the function with an input-wide event (such as
+     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
+     * that was created.
+     *
+     * If you call the function with a channel-specific event (such as
+     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
+     * [`Listener`](Listener) objects that were created (one for each channel):
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
+     * ```
+     *
+     * You can also specify which channels you want to add the listener to:
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+     * ```
+     *
+     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
+     *
+     * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
+     * instance that actually gets a listener added and not the `Input` instance. You can check that
+     * by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
+     *
+     * There are 8 families of events you can listen to:
+     *
+     * 1. **MIDI System Common** Events (input-wide)
+     *
+     *    * [`songposition`]{@link Input#event:songposition}
+     *    * [`songselect`]{@link Input#event:songselect}
+     *    * [`sysex`]{@link Input#event:sysex}
+     *    * [`timecode`]{@link Input#event:timecode}
+     *    * [`tunerequest`]{@link Input#event:tunerequest}
+     *
+     * 2. **MIDI System Real-Time** Events (input-wide)
+     *
+     *    * [`clock`]{@link Input#event:clock}
+     *    * [`start`]{@link Input#event:start}
+     *    * [`continue`]{@link Input#event:continue}
+     *    * [`stop`]{@link Input#event:stop}
+     *    * [`activesensing`]{@link Input#event:activesensing}
+     *    * [`reset`]{@link Input#event:reset}
+     *
+     * 3. **State Change** Events (input-wide)
+     *
+     *    * [`opened`]{@link Input#event:opened}
+     *    * [`closed`]{@link Input#event:closed}
+     *    * [`disconnected`]{@link Input#event:disconnected}
+     *
+     * 4. **Catch-All** Events (input-wide)
+     *
+     *    * [`midimessage`]{@link Input#event:midimessage}
+     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
+     *
+     * 5. **Channel Voice** Events (channel-specific)
+     *
+     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
+     *    * [`controlchange`]{@link InputChannel#event:controlchange}
+     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
+     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
+     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
+     *      * (...)
+     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
+     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
+     *    * [`noteoff`]{@link InputChannel#event:noteoff}
+     *    * [`noteon`]{@link InputChannel#event:noteon}
+     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
+     *    * [`programchange`]{@link InputChannel#event:programchange}
+     *
+     *    Note: you can listen for a specific control change message by using an event name like this:
+     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
+     *    etc.
+     *
+     * 6. **Channel Mode** Events (channel-specific)
+     *
+     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
+     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
+     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
+     *    * [`monomode`]{@link InputChannel#event:monomode}
+     *    * [`omnimode`]{@link InputChannel#event:omnimode}
+     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
+     *
+     * 7. **NRPN** Events (channel-specific)
+     *
+     *    * [`nrpn`]{@link InputChannel#event:nrpn}
+     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
+     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
+     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
+     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+     *
+     * 8. **RPN** Events (channel-specific)
+     *
+     *    * [`rpn`]{@link InputChannel#event:rpn}
+     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
+     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
+     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
+     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+     *
+     * @param event {string} The type of the event.
+     *
+     * @param listener {function} A callback function to execute when the specified event is detected.
+     * This function will receive an event parameter object. For details on this object's properties,
+     * check out the documentation for the various events (links above).
+     *
+     * @param {object} [options={}]
+     *
+     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
+     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
+     *
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
+     * listen on. If no channel is specified, all channels will be used. This parameter is ignored for
+     * input-wide events.
+     *
+     * @param {object} [options.context=this] The value of `this` in the callback function.
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+     * automatically expires.
+     *
+     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+     * of the listeners array and thus be triggered before others.
+     *
+     * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+     * should automatically be removed.
+     *
+     * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
+     * object is returned. If the event is channel-specific, an array of all the
+     * [`Listener`](Listener) objects is returned (one for each channel).
+     */
+
+
+    addListener(event, listener, options = {}) {
+      if (wm.validation) {
+        // Legacy compatibility
+        if (typeof options === "function") {
+          let channels = listener != undefined ? [].concat(listener) : undefined; // clone
+
+          listener = options;
+          options = {
+            channels: channels
+          };
+        }
+      } // Check if the event is channel-specific or input-wide
+
+
+      if (InputChannel.EVENTS.includes(event)) {
+        // If no channel defined, use all.
+        if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+        let listeners = [];
+        Utilities.sanitizeChannels(options.channels).forEach(ch => {
+          listeners.push(this.channels[ch].addListener(event, listener, options));
+        });
+        return listeners;
+      } else {
+        return super.addListener(event, listener, options);
+      }
+    }
+    /**
+     * Adds a one-time event listener that will trigger a function callback when the specified event
+     * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
+     * dispatched by [`InputChannel`]{@link InputChannel} objects and are tied to a specific MIDI
+     * channel while input-wide events are dispatched by the `Input` object itself and are not tied
+     * to a specific channel.
+     *
+     * Calling the function with an input-wide event (such as
+     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
+     * that was created.
+     *
+     * If you call the function with a channel-specific event (such as
+     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
+     * [`Listener`](Listener) objects that were created (one for each channel):
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
+     * ```
+     *
+     * You can also specify which channels you want to add the listener to:
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
+     * ```
+     *
+     * In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.
+     *
+     * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
+     * event is triggered on MIDI channels `1`, `2` or `3`.
+     *
+     * Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
+     * that actually gets a listener added and not the `Input` instance.
+     *
+     * Note: if you want to add a listener to a single MIDI channel you should probably do so directly
+     * on the [`InputChannel`](InputChannel) object itself.
+     *
+     * There are 8 families of events you can listen to:
+     *
+     * 1. **MIDI System Common** Events (input-wide)
+     *
+     *    * [`songposition`]{@link Input#event:songposition}
+     *    * [`songselect`]{@link Input#event:songselect}
+     *    * [`sysex`]{@link Input#event:sysex}
+     *    * [`timecode`]{@link Input#event:timecode}
+     *    * [`tunerequest`]{@link Input#event:tunerequest}
+     *
+     * 2. **MIDI System Real-Time** Events (input-wide)
+     *
+     *    * [`clock`]{@link Input#event:clock}
+     *    * [`start`]{@link Input#event:start}
+     *    * [`continue`]{@link Input#event:continue}
+     *    * [`stop`]{@link Input#event:stop}
+     *    * [`activesensing`]{@link Input#event:activesensing}
+     *    * [`reset`]{@link Input#event:reset}
+     *
+     * 3. **State Change** Events (input-wide)
+     *
+     *    * [`opened`]{@link Input#event:opened}
+     *    * [`closed`]{@link Input#event:closed}
+     *    * [`disconnected`]{@link Input#event:disconnected}
+     *
+     * 4. **Catch-All** Events (input-wide)
+     *
+     *    * [`midimessage`]{@link Input#event:midimessage}
+     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
+     *
+     * 5. **Channel Voice** Events (channel-specific)
+     *
+     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
+     *    * [`controlchange`]{@link InputChannel#event:controlchange}
+     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
+     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
+     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
+     *      * (...)
+     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
+     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
+     *    * [`noteoff`]{@link InputChannel#event:noteoff}
+     *    * [`noteon`]{@link InputChannel#event:noteon}
+     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
+     *    * [`programchange`]{@link InputChannel#event:programchange}
+     *
+     *    Note: you can listen for a specific control change message by using an event name like this:
+     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
+     *    etc.
+     *
+     * 6. **Channel Mode** Events (channel-specific)
+     *
+     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
+     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
+     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
+     *    * [`monomode`]{@link InputChannel#event:monomode}
+     *    * [`omnimode`]{@link InputChannel#event:omnimode}
+     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
+     *
+     * 7. **NRPN** Events (channel-specific)
+     *
+     *    * [`nrpn`]{@link InputChannel#event:nrpn}
+     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
+     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
+     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
+     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+     *
+     * 8. **RPN** Events (channel-specific)
+     *
+     *    * [`rpn`]{@link InputChannel#event:rpn}
+     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
+     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
+     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
+     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+     *
+     * @param event {string} The type of the event.
+     *
+     * @param listener {function} A callback function to execute when the specified event is detected.
+     * This function will receive an event parameter object. For details on this object's properties,
+     * check out the documentation for the various events (links above).
+     *
+     * @param {object} [options={}]
+     *
+     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
+     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
+     *
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
+     * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
+     * input-wide events.
+     *
+     * @param {object} [options.context=this] The value of `this` in the callback function.
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+     * automatically expires.
+     *
+     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+     * of the listeners array and thus be triggered before others.
+     *
+     * @returns {Listener[]} An array of all [`Listener`](Listener) objects that were created.
+     */
+
+
+    addOneTimeListener(event, listener, options = {}) {
+      options.remaining = 1;
+      return this.addListener(event, listener, options);
+    }
+    /**
+     * This is an alias to the [Input.addListener()]{@link Input#addListener} method.
+     * @since 2.0.0
+     * @deprecated since v3.0
+     * @private
+     */
+
+
+    on(event, channel, listener, options) {
+      return this.addListener(event, channel, listener, options);
+    }
+    /**
+     * Checks if the specified event type is already defined to trigger the specified callback
+     * function. For channel-specific events, the function will return `true` only if all channels
+     * have the listener defined.
+     *
+     * @param event {string} The type of the event.
+     *
+     * @param listener {function} The callback function to check for.
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of such
+     * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
+     * events.
+     *
+     * @returns {boolean} Boolean value indicating whether or not the `Input` or
+     * [`InputChannel`](InputChannel) already has this listener defined.
+     */
+
+
+    hasListener(event, listener, options = {}) {
+      if (wm.validation) {
+        // Legacy compatibility
+        if (typeof options === "function") {
+          let channels = [].concat(listener); // clone
+
+          listener = options;
+          options = {
+            channels: channels
+          };
+        }
+      }
+
+      if (InputChannel.EVENTS.includes(event)) {
+        // If no channel defined, use all.
+        if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+        return Utilities.sanitizeChannels(options.channels).every(ch => {
+          return this.channels[ch].hasListener(event, listener);
+        });
+      } else {
+        return super.hasListener(event, listener);
+      }
+    }
+    /**
+     * Removes the specified listener for the specified event. If no listener is specified, all
+     * listeners for the specified event will be removed. If no event is specified, all listeners for
+     * the `Input` as well as all listeners for all [`InputChannel`]{@link InputChannel} objects will
+     * be removed.
+     *
+     * By default, channel-specific listeners will be removed from all channels unless the
+     * `options.channel` narrows it down.
+     *
+     * @param [type] {string} The type of the event.
+     *
+     * @param [listener] {Function} The callback function to check for.
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
+     * such integers representing the MIDI channel(s) to match. This parameter is ignored for
+     * input-wide events.
+     *
+     * @param {*} [options.context] Only remove the listeners that have this exact context.
+     *
+     * @param {number} [options.remaining] Only remove the listener if it has exactly that many
+     * remaining times to be executed.
+     */
+
+
+    removeListener(event, listener, options = {}) {
+      if (wm.validation) {
+        // Legacy compatibility
+        if (typeof options === "function") {
+          let channels = [].concat(listener); // clone
+
+          listener = options;
+          options = {
+            channels: channels
+          };
+        }
+      }
+
+      if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS; // If the event is not specified, remove everything (channel-specific and input-wide)!
+
+      if (event == undefined) {
+        Utilities.sanitizeChannels(options.channels).forEach(ch => {
+          if (this.channels[ch]) this.channels[ch].removeListener();
+        });
+        return super.removeListener();
+      } // If the event is specified, check if it's channel-specific or input-wide.
+
+
+      if (InputChannel.EVENTS.includes(event)) {
+        Utilities.sanitizeChannels(options.channels).forEach(ch => {
+          this.channels[ch].removeListener(event, listener, options);
+        });
+      } else {
+        super.removeListener(event, listener, options);
+      }
+    }
+    /**
+     * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
+     * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
+     * the added benefit of being able to filter which data is forwarded.
+     *
+     * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+     * objects, to forward messages to.
+     * @param {object} [options={}]
+     * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
+     * types (`noteon`, `controlchange`, etc.), that the message type must match in order to be
+     * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+     * messages are the ones found in either
+     * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+     * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
+     * MIDI channel number or an array of channel numbers that the message must match in order to be
+     * forwarded. By default all MIDI channels are included (`1` to `16`).
+     *
+     * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
+     * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
+     */
+
+
+    addForwarder(output, options = {}) {
+      let forwarder; // Unless 'output' is a forwarder, create a new forwarder
+
+      if (output instanceof Forwarder) {
+        forwarder = output;
+      } else {
+        forwarder = new Forwarder(output, options);
+      }
+
+      this._forwarders.push(forwarder);
+
+      return forwarder;
+    }
+    /**
+     * Removes the specified [`Forwarder`](Forwarder) object from the input.
+     *
+     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
+     * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+     */
+
+
+    removeForwarder(forwarder) {
+      this._forwarders = this._forwarders.filter(item => item !== forwarder);
+    }
+    /**
+     * Checks whether the specified [`Forwarder`](Forwarder) object has already been attached to this
+     * input.
+     *
+     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check for (the
+     * [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).
+     * @returns {boolean}
+     */
+
+
+    hasForwarder(forwarder) {
+      return this._forwarders.includes(forwarder);
+    }
+    /**
+     * Name of the MIDI input.
+     *
+     * @type {string}
+     * @readonly
+     */
+
+
+    get name() {
+      return this._midiInput.name;
+    }
+    /**
+     * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
+     * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+     * the same port.
+     *
+     * @type {string}
+     * @readonly
+     */
+
+
+    get id() {
+      return this._midiInput.id;
+    }
+    /**
+     * Input port's connection state: `pending`, `open` or `closed`.
+     *
+     * @type {string}
+     * @readonly
+     */
+
+
+    get connection() {
+      return this._midiInput.connection;
+    }
+    /**
+     * Name of the manufacturer of the device that makes this input port available.
+     *
+     * @type {string}
+     * @readonly
+     */
+
+
+    get manufacturer() {
+      return this._midiInput.manufacturer;
+    }
+    /**
+     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+     * number 60) is placed on the 4th octave (C4).
+     *
+     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     *
+     * Note that this value is combined with the global offset value defined in the
+     * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) property (if any).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+
+
+    get octaveOffset() {
+      return this._octaveOffset;
+    }
+
+    set octaveOffset(value) {
+      if (this.validation) {
+        value = parseInt(value);
+        if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
+      }
+
+      this._octaveOffset = value;
+    }
+    /**
+     * State of the input port: `connected` or `disconnected`.
+     *
+     * @type {string}
+     * @readonly
+     */
+
+
+    get state() {
+      return this._midiInput.state;
+    }
+    /**
+     * The port type. In the case of the `Input` object, this is always: `input`.
+     *
+     * @type {string}
+     * @readonly
+     */
+
+
+    get type() {
+      return this._midiInput.type;
+    }
+    /**
+     * @type {boolean}
+     * @private
+     * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+     */
+
+
+    get nrpnEventsEnabled() {
+      if (wm.validation) {
+        console.warn("The 'nrpnEventsEnabled' property has been moved to the 'InputChannel' class.");
+      }
+
+      return false;
+    }
+
+  } // Events that do not have code below them must be placed outside the class definition (?!)
+
+  /**
+   * Input-wide (system) event emitted when a **system exclusive** message has been received.
+   * You should note that, to receive `sysex` events, you must call the
+   * [`WebMidi.enable()`](WebMidi#enable()) method with the `sysex` option set to `true`:
+   *
+   * ```js
+   * WebMidi.enable({sysex: true})
+   *  .then(() => console.log("WebMidi has been enabled with sysex support."))
+   * ```
+   *
+   * @event Input#sysex
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `sysex`
+   *
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **time code quarter frame** message has been
+   * received.
+   *
+   * @event Input#timecode
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `timecode`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **song position** message has been received.
+   *
+   * @event Input#songposition
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `songposition`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **song select** message has been received.
+   *
+   * @event Input#songselect
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `songselect`
+   * @property {string} song Song (or sequence) number to select (1-128)
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **tune request** message has been received.
+   *
+   * @event Input#tunerequest
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `tunerequest`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **timing clock** message has been received.
+   *
+   * @event Input#clock
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `clock`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **start** message has been received.
+   *
+   * @event Input#start
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `start`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **continue** message has been received.
+   *
+   * @event Input#continue
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `continue`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **stop** message has been received.
+   *
+   * @event Input#stop
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `stop`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when an **active sensing** message has been received.
+   *
+   * @event Input#activesensing
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `activesensing`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when a **reset** message has been received.
+   *
+   * @event Input#reset
+   *
+   * @type {object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `reset`
+   *
+   * @since 2.1
+   */
+
+  /**
+   * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+   * be, for example, one of the undefined/reserved messages.
+   *
+   * @event Input#unknownmidimessage
+   *
+   * @type {Object}
+   *
+   * @property {Input} target The `Input` that triggered the event.
+   * @property {Message} message A [`Message`](Message) object containing information about the
+   * incoming MIDI message.
+   * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+   * milliseconds since the navigation start of the document).
+   * @property {string} type `unknownmidimessage`
+   *
+   * @since 2.1
+   */
 
   /**
    * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
