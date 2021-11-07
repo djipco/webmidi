@@ -76,8 +76,7 @@
     "test:WebMidi": "mocha test/WebMidi.test.js"
   },
   "dependencies": {
-    "djipevents": "^1.0.0-beta.4",
-    "typescript": "^4.3.5"
+    "djipevents": "^1.0.0"
   },
   "optionalDependencies": {
     "jzz": "^1.2.3"
@@ -126,6 +125,7 @@
     "sinon-browser-only": "^1.12.1",
     "system-commands": "^1.1.7",
     "test-value": "^3.0.0",
+    "typescript": "^4.4.4",
     "util": "^0.12.4"
   }
 }
