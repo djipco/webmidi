@@ -667,8 +667,6 @@ defined.
 listener defined.
 
 
-**Throws**:
-  * Error For channel-specific events, 'options.channels' must be defined.
 
 
 ### `.open()` {#open}
