@@ -45,7 +45,7 @@ module.exports = {
           position: "left",
           items: [
             {
-              label: "3.0.0-alpha.21",
+              label: "3.0.0-alpha.21 🚧",
               to: "api/index",
             },
             {
@@ -70,8 +70,14 @@ module.exports = {
               className: "external"
             },
             {
+              label: "Newsletter Subscription",
+              href: "https://mailchi.mp/eeffe50651bd/webmidijs-newsletter",
+              className: "external"
+            },
+            {
               label: "Forum (Archived)",
-              href: "https://webmidijs.org/forum/"
+              href: "https://webmidijs.org/forum/",
+              className: "external"
             }
           ]
         },
