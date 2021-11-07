@@ -31,7 +31,8 @@ to, the callback function and so on.
 
 
 **Throws**:
-* `TypeError` : The &#x60;event&#x60; parameter must be a string or &#x60;EventEmitter.ANY_EVENT&#x60;.
+* `TypeError` : The &#x60;event&#x60; parameter must be a string or
+[&#x60;EventEmitter.ANY_EVENT&#x60;](EventEmitter#ANY_EVENT).
 * `ReferenceError` : The &#x60;target&#x60; parameter is mandatory.
 * `TypeError` : The &#x60;callback&#x60; must be a function.
 

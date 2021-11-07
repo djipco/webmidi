@@ -74,8 +74,9 @@ for the event.
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
+Note: this excludes global events registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) because they are not tied to a
+specific event.
 
 
 ### `.eventsSuspended` {#eventsSuspended}
@@ -218,8 +219,8 @@ Adds a listener for the specified event. It returns the [`Listener`](Listener) o
 that was created and attached to the event.
 
 To attach a global listener that will be triggered for any events, use
-[`EventEmitter.ANY_EVENT`](#ANY_EVENT) as the first parameter. Note that a global listener will
-also be triggered by non-registered events.
+[`EventEmitter.ANY_EVENT`](#ANY_EVENT) as the first parameter. Note that a global
+listener will also be triggered by non-registered events.
 
 
   **Parameters**
@@ -230,11 +231,11 @@ also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to.|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
-    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array|
+    |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
@@ -250,7 +251,8 @@ The newly created [`Listener`](Listener) object.
 
 
 **Throws**:
-  * `TypeError` : The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
+  * `TypeError` : The `event` parameter must be a string or
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT).
   * `TypeError` : The `callback` parameter must be a function.
 
 
@@ -262,8 +264,8 @@ destroyed. It returns the [`Listener`](Listener) object that was created and att
 to the event.
 
 To attach a global listener that will be triggered for any events, use
-[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter. Note that a global
-listener will also be triggered by non-registered events.
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter. Note that a
+global listener will also be triggered by non-registered events.
 
 
   **Parameters**
@@ -289,11 +291,12 @@ listener will also be triggered by non-registered events.
 
 > Returns: `Listener`<br />
 
-The newly created [**Listener**](Listener) object.
+The newly created [`Listener`](Listener) object.
 
 
 **Throws**:
-  * `TypeError` : The `event` parameter must be a string or `EventEmitter.ANY_EVENT`.
+  * `TypeError` : The `event` parameter must be a string or
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT).
   * `TypeError` : The `callback` parameter must be a function.
 
 
@@ -657,10 +660,12 @@ the specified name.
 
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
-includes global listeners registered to [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT)).
+includes global listeners registered to
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT)).
 
-Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
-`EventEmitter.ANY_EVENT` as the parameter.
+Note: to specifically check for global listeners added with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT), use
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the parameter.
 
 
   **Parameters**
@@ -689,8 +694,8 @@ Note: to specifically check for global listeners added with `EventEmitter.ANY_EV
 
 Removes all the listeners that match the specified criterias. If no parameters are passed, all
 listeners will be removed. If only the `event` parameter is passed, all listeners for that
-event will be removed. You can remove global listeners by using `EventEmitter.ANY_EVENT` as the
-first parameter.
+event will be removed. You can remove global listeners by using
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter.
 
 To use more granular options, you must at least define the `event`. Then, you can specify the
 callback to match or one or more of the additional options.
@@ -725,11 +730,11 @@ Suspends execution of all callbacks functions registered for the specified event
 You can suspend execution of callbacks registered with
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) by passing
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) to `suspendEvent()`. Beware that this
-will not suspend all callbacks but only those registered with `EventEmitter.ANY_EVENT`. While
-this may seem counter-intuitive at first glance, it allows the selective suspension of global
-listeners while leaving other liseners alone. If you truly want to suspends all callbacks for a
-specific [`EventEmitter`](EventEmitter), simply set its `eventsSuspended` property to
-`true`.
+will not suspend all callbacks but only those registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT). While this may seem counter-intuitive
+at first glance, it allows the selective suspension of global listeners while leaving other
+liseners alone. If you truly want to suspends all callbacks for a specific
+[`EventEmitter`](EventEmitter), simply set its `eventsSuspended` property to `true`.
 
 
   **Parameters**
@@ -757,9 +762,10 @@ Resumes execution of all suspended callback functions registered for the specifi
 You can resume execution of callbacks registered with
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) by passing
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) to `unsuspendEvent()`. Beware that
-this will not resume all callbacks but only those registered with `EventEmitter.ANY_EVENT`.
-While this may seem counter-intuitive,it allows the selective unsuspension of global listeners
-while leaving other callbacks alone.
+this will not resume all callbacks but only those registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT). While this may seem
+counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+callbacks alone.
 
 
   **Parameters**

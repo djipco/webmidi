@@ -90,8 +90,9 @@ for the event.
 An array of all the unique event names for which the emitter has at least one registered
 listener.
 
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
+Note: this excludes global events registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) because they are not tied to a
+specific event.
 
 
 ### `.eventsSuspended` {#eventsSuspended}
@@ -784,11 +785,11 @@ Suspends execution of all callbacks functions registered for the specified event
 You can suspend execution of callbacks registered with
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) by passing
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) to `suspendEvent()`. Beware that this
-will not suspend all callbacks but only those registered with `EventEmitter.ANY_EVENT`. While
-this may seem counter-intuitive at first glance, it allows the selective suspension of global
-listeners while leaving other liseners alone. If you truly want to suspends all callbacks for a
-specific [`EventEmitter`](EventEmitter), simply set its `eventsSuspended` property to
-`true`.
+will not suspend all callbacks but only those registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT). While this may seem counter-intuitive
+at first glance, it allows the selective suspension of global listeners while leaving other
+liseners alone. If you truly want to suspends all callbacks for a specific
+[`EventEmitter`](EventEmitter), simply set its `eventsSuspended` property to `true`.
 
 
   **Parameters**
@@ -816,9 +817,10 @@ Resumes execution of all suspended callback functions registered for the specifi
 You can resume execution of callbacks registered with
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) by passing
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) to `unsuspendEvent()`. Beware that
-this will not resume all callbacks but only those registered with `EventEmitter.ANY_EVENT`.
-While this may seem counter-intuitive,it allows the selective unsuspension of global listeners
-while leaving other callbacks alone.
+this will not resume all callbacks but only those registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT). While this may seem
+counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+callbacks alone.
 
 
   **Parameters**
