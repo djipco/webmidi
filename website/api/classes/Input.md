@@ -277,7 +277,8 @@ There are 8 families of events you can listen to:
      * [`controlchange-controller0`](InputChannel#event:controlchange-controller0)
      * [`controlchange-controller1`](InputChannel#event:controlchange-controller1)
      * [`controlchange-controller2`](InputChannel#event:controlchange-controller2)
-     * etc.
+     * (...)
+     * [`controlchange-controller127`](InputChannel#event:controlchange-controller127)
    * [`keyaftertouch`](InputChannel#event:keyaftertouch)
    * [`noteoff`](InputChannel#event:noteoff)
    * [`noteon`](InputChannel#event:noteon)
