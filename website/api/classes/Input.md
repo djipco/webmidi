@@ -342,8 +342,6 @@ object is returned. If the event is channel-specific, an array of all the
 [`Listener`](Listener) objects is returned (one for each channel).
 
 
-**Throws**:
-  * `Error` : For channel-specific events, 'options.channels' must be defined.
 
 
 ### `.addOneTimeListener(...)` {#addOneTimeListener}
@@ -483,8 +481,6 @@ There are 8 families of events you can listen to:
 > An array of all `Listener` objects that were created.
 
 
-**Throws**:
-  * `Error` : For channel-specific events, 'options.channels' must be defined.
 
 
 ### `.close()` {#close}
