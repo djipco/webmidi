@@ -173,23 +173,6 @@ export class OutputChannel extends EventEmitter {
 
     return this;
 
-
-
-
-
-    //
-    // Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
-    //   this.send(
-    //     [
-    //       (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
-    //       n.getOffsetNumber(offset),
-    //       n.rawAttack
-    //     ],
-    //     {time: Utilities.toTimestamp(options.time)}
-    //   );
-    // });
-
-
   }
 
   /**
