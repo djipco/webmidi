@@ -370,7 +370,7 @@ const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
 You can also specify which channels you want to add the listener to:
 
 ```javascript
-const listeners = WebMidi.inputs[0].addLisaddOneTimeListenertener("noteon", someFunction, {channels: [1, 2, 3]});
+const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
 ```
 
 In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
