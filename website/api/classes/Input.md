@@ -355,20 +355,25 @@ dispatched by [InputChannel](InputChannel) objects and are tied to a specific MI
 input-wide events are dispatched by the [Input](Input) object itself and are not tied to a
 specific channel.
 
-When listening for an input-wide event, you must specify the event to listen for and the
-callback function to trigger when the event happens:
+Calling the function with an input-wide event (such as
+[`"midimessage"`](#event:midimessage)), will return the [`Listener`](Listener) object
+that was created.
+
+If you call the function with a channel-specific event (such as
+[`"noteon"`](InputChannel#event:noteon)), it will return an array of all
+[`Listener`](Listener) objects that were created (one for each channel):
 
 ```javascript
-WebMidi.inputs[0].addListener("midimessage", someFunction);
+const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
 ```
 
-To listen for a channel-bound event, you must also specify the event to listen for and the
-function to trigger but you have to add the channels you wish to listen on in the `options`
-parameter:
+You can also specify which channels you want to add the listener to:
 
 ```javascript
-WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+const listeners = WebMidi.inputs[0].addLisaddOneTimeListenertener("noteon", someFunction, {channels: [1, 2, 3]});
 ```
+
+In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
 
 The code above will add a listener for the `"noteon"` event and call `someFunction` when the
 event is triggered on MIDI channels `1`, `2` or `3`.
