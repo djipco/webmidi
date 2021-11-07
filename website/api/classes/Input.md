@@ -960,7 +960,7 @@ Event emitted when the [`Input`](Input) has been closed by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`closed`|
-  |**`target`** |Input|The The [`Input`](Input) that triggered the event.|
+  |**`target`** |Input|The [`Input`](Input) that triggered the event.|
 
 
 ### `"continue"` {#event-continue}
@@ -988,8 +988,8 @@ Input-wide (system) event emitted when a **continue** message has been received.
 <a id="event:disconnected"></a>
 
 
-Event emitted when the The [`Input`](Input) becomes unavailable. This event is typically
-fired when the MIDI device is unplugged.
+Event emitted when the [`Input`](Input) becomes unavailable. This event is typically fired
+when the MIDI device is unplugged.
 
 
 
