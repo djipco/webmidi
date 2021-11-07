@@ -33,15 +33,19 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 
 ### `.ANY_EVENT` {#ANY_EVENT}
 
+**Type**: Symbol<br />
+
 
 Identifier to use when trying to add or remove a listener that should be triggered when any
 events occur.
 
-**Type**: Symbol<br />
-  **Attributes**: static
-
 
 ### `.eventCount` {#eventCount}
+
+**Type**: number<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 The number of unique events that have registered listeners
@@ -49,21 +53,25 @@ The number of unique events that have registered listeners
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: number<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventMap` {#eventMap}
+
+**Type**: Object<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-**Type**: Object<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventNames` {#eventNames}
+
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -72,17 +80,14 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventsSuspended` {#eventsSuspended}
+
+**Type**: boolean<br />
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
-
-**Type**: boolean<br />
 
 
 

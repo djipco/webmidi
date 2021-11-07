@@ -37,38 +37,38 @@ object as the return value of the [`Input.addForwarder()`](Input#addForwarder) m
 
 ### `.channels` {#channels}
 
+**Type**: Array.&lt;number&gt;<br />
+
 
 An array of MIDI channel numbers that the message must match in order to be forwarded. By
 default, this array includes all MIDI channels (`1` to `16`).
 
-**Type**: Array.&lt;number&gt;<br />
-
 
 ### `.destinations` {#destinations}
-
-
-An array of [`Output`](Output) objects to forward the message to.
 
 **Type**: Array.&lt;Output&gt;<br />
 
 
+An array of [`Output`](Output) objects to forward the message to.
+
+
 ### `.suspended` {#suspended}
-
-
-Indicates whether message forwarding is currently suspended or not in this forwarder.
 
 **Type**: boolean<br />
 
 
+Indicates whether message forwarding is currently suspended or not in this forwarder.
+
+
 ### `.types` {#types}
+
+**Type**: Array.&lt;string&gt;<br />
 
 
 An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
 for messages to be forwarded. By default, this array includes all
 [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
 [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-
-**Type**: Array.&lt;string&gt;<br />
 
 
 

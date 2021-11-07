@@ -41,67 +41,67 @@ to, the callback function and so on.
 
 ### `.arguments` {#arguments}
 
+**Type**: array<br />
+
 
 Arguments to pass separately to the callback function upon execution
-
-**Type**: array<br />
 
 
 ### `.callback` {#callback}
 
-
-The callback function
-
 **Type**: function<br />
 
 
+The callback function
+
+
 ### `.context` {#context}
+
+**Type**: Object<br />
 
 
 The context to execute the context function in (a.k.a. the value of `this` inside the
 callback function)
 
-**Type**: Object<br />
-
 
 ### `.count` {#count}
+
+**Type**: number<br />
 
 
 The number of times the listener function was executed
 
-**Type**: number<br />
-
 
 ### `.event` {#event}
-
-
-The event name
 
 **Type**: string<br />
 
 
+The event name
+
+
 ### `.remaining` {#remaining}
-
-
-The remaining number of times after which the callback should automatically be removed.
 
 **Type**: number<br />
 
 
+The remaining number of times after which the callback should automatically be removed.
+
+
 ### `.suspended` {#suspended}
-
-
-Whether this listener is currently suspended
 
 **Type**: boolean<br />
 
 
+Whether this listener is currently suspended
+
+
 ### `.target` {#target}
+
+**Type**: EventEmitter<br />
 
 
 The object that the event is attached to (or that emitted the event)
-
-**Type**: EventEmitter<br />
 
 
 

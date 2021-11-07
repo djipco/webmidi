@@ -37,27 +37,36 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ### `.eventCount` {#eventCount}
 
+**Type**: number<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
+
 
 The number of unique events that have registered listeners
 
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: number<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventMap` {#eventMap}
+
+**Type**: Object<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-**Type**: Object<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventNames` {#eventNames}
+
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -66,31 +75,30 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventsSuspended` {#eventsSuspended}
+
+**Type**: boolean<br />
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-**Type**: boolean<br />
-
 
 ### `.number` {#number}
-
 **Since**: 3.0<br />
-
-This channel's MIDI number (1-16)
 
 **Type**: number<br />
 
 
-### `.octaveOffset` {#octaveOffset}
+This channel's MIDI number (1-16)
 
+
+### `.octaveOffset` {#octaveOffset}
 **Since**: 3.0<br />
+
+**Type**: number<br />
+
 
 An integer to offset the reported octave of outgoing note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
@@ -99,16 +107,14 @@ octave (C4).
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent [Output](Output) object.
 
-**Type**: number<br />
-
 
 ### `.output` {#output}
-
 **Since**: 3.0<br />
 
-The parent [Output](Output) this channel belongs to
-
 **Type**: Output<br />
+
+
+The parent [Output](Output) this channel belongs to
 
 
 

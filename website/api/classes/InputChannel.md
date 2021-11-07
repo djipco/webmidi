@@ -38,15 +38,21 @@ property.
 
 ### `.EVENTS` {#EVENTS}
 
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-onlystatic<br />
+
 
 Array of channel-specific event names that can be listened to.
 
-**Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-  **Attributes**: static
-
 
 ### `.eventCount` {#eventCount}
+
+**Type**: number<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 The number of unique events that have registered listeners
@@ -54,21 +60,25 @@ The number of unique events that have registered listeners
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: number<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventMap` {#eventMap}
+
+**Type**: Object<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-**Type**: Object<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventNames` {#eventNames}
+
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -77,49 +87,48 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventsSuspended` {#eventsSuspended}
+
+**Type**: boolean<br />
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-**Type**: boolean<br />
-
 
 ### `.input` {#input}
-
 **Since**: 3.0<br />
-
-The [`Input`](Input) this channel belongs to
 
 **Type**: Input<br />
 
 
+The [`Input`](Input) this channel belongs to
+
+
 ### `.notesState` {#notesState}
+
+**Type**: Array.&lt;boolean&gt;<br />
 
 
 Contains the current playing state of all MIDI notes of this channel (0-127). The state is
 `true` for a currently playing note and `false` otherwise.
 
-**Type**: Array.&lt;boolean&gt;<br />
-
 
 ### `.number` {#number}
-
 **Since**: 3.0<br />
-
-This channel's MIDI number (1-16)
 
 **Type**: number<br />
 
 
-### `.octaveOffset` {#octaveOffset}
+This channel's MIDI number (1-16)
 
+
+### `.octaveOffset` {#octaveOffset}
 **Since**: 3.0<br />
+
+**Type**: number<br />
+
 
 An integer to offset the reported octave of incoming note-specific messages (`noteon`,
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
@@ -131,10 +140,10 @@ If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reporte
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 and with the value defined on the parent `Input` object.
 
-**Type**: number<br />
-
 
 ### `.parameterNumberEventsEnabled` {#parameterNumberEventsEnabled}
+
+**Type**: boolean<br />
 
 
 Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
@@ -144,8 +153,6 @@ such control change messages is received, an `nrpn` event will fire.
 If an invalid or
 out-of-order control change message is received, it will fall through the collector logic and
 all buffered control change messages will be discarded as incomplete.
-
-**Type**: boolean<br />
 
 
 

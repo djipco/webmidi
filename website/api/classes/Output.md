@@ -35,23 +35,30 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 
 ### `.channels` {#channels}
 
+**Type**: Array.&lt;OutputChannel&gt;<br />
+
 
 Array containing the 16 [OutputChannel](OutputChannel) objects available for this `Output`. The
 channels are numbered 1 through 16.
 
-**Type**: Array.&lt;OutputChannel&gt;<br />
-
 
 ### `.connection` {#connection}
-
-
-Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 **Type**: string<br />
 **Attributes**: read-only<br />
 
+**Attributes**: read-only<br />
+
+
+Output port's connection state: `"pending"`, `"open"` or `"closed"`.
+
 
 ### `.eventCount` {#eventCount}
+
+**Type**: number<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 The number of unique events that have registered listeners
@@ -59,21 +66,25 @@ The number of unique events that have registered listeners
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: number<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventMap` {#eventMap}
+
+**Type**: Object<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-**Type**: Object<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventNames` {#eventNames}
+
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -82,51 +93,56 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventsSuspended` {#eventsSuspended}
+
+**Type**: boolean<br />
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-**Type**: boolean<br />
-
 
 ### `.id` {#id}
+
+**Type**: string<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
 the same port.
 
+
+### `.manufacturer` {#manufacturer}
+
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
-### `.manufacturer` {#manufacturer}
+**Attributes**: read-only<br />
 
 
 Name of the manufacturer of the device that makes this output port available.
 
+
+### `.name` {#name}
+
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-
-### `.name` {#name}
+**Attributes**: read-only<br />
 
 
 Name of the MIDI output
 
-**Type**: string<br />
-**Attributes**: read-only<br />
-
 
 ### `.octaveOffset` {#octaveOffset}
-
 **Since**: 3.0<br />
+
+**Type**: number<br />
+
 
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
@@ -134,25 +150,27 @@ is placed on the 4th octave (C4).
 Note that this value is combined with the global offset value defined on the `WebMidi` object
 (if any).
 
-**Type**: number<br />
-
 
 ### `.state` {#state}
+
+**Type**: string<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 State of the output port: `"connected"` or `"disconnected"`.
 
-**Type**: string<br />
-**Attributes**: read-only<br />
-
 
 ### `.type` {#type}
 
-
-Type of the output port (`"output"`)
-
 **Type**: string<br />
 **Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
+
+
+Type of the output port (`"output"`)
 
 
 

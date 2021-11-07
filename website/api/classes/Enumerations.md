@@ -1,7 +1,7 @@
 
 # Enumerations
 
-The `Enumerations` class contains enumerations and listd of elements used throughout the library.
+The `Enumerations` class contains enumerations and lists of elements used throughout the library.
 All properties are static and should be referenced using the class name. For example:
 `Enumerations.MIDI_CHANNEL_MESSAGES`.
 
@@ -14,12 +14,13 @@ All properties are static and should be referenced using the class name. For exa
 
 ### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
 
-
-An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
-
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only<br />
-  **Attributes**: static
+
+**Attributes**: read-onlystatic<br />
+
+
+An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
 
 
 

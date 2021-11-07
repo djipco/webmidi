@@ -20,11 +20,11 @@ module) version, you get an already-instantiated object when you import the modu
 
 ### `.defaults` {#defaults}
 
+**Type**: object<br />
+
 
 Object containing system-wide default values that can be changed to customize how the library
 works.
-
-**Type**: object<br />
 
 
   **Properties**
@@ -39,14 +39,21 @@ works.
 
 ### `.enabled` {#enabled}
 
-
-Indicates whether access to the host's MIDI subsystem is active or not.
-
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
+**Attributes**: read-only<br />
+
+
+Indicates whether access to the host's MIDI subsystem is active or not.
+
 
 ### `.eventCount` {#eventCount}
+
+**Type**: number<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 The number of unique events that have registered listeners
@@ -54,21 +61,25 @@ The number of unique events that have registered listeners
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: number<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventMap` {#eventMap}
+
+**Type**: Object<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
 
-**Type**: Object<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventNames` {#eventNames}
+
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 An array of all the unique event names for which the emitter has at least one registered
@@ -77,50 +88,53 @@ listener.
 Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
 tied to a specific event.
 
-**Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 
 ### `.eventsSuspended` {#eventsSuspended}
+
+**Type**: boolean<br />
 
 
 Whether or not the execution of function callbacks is currently suspended for this whole
 emitter
 
-**Type**: boolean<br />
-
 
 ### `.inputs` {#inputs}
-
-
-An array of all currently available MIDI inputs.
 
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
+**Attributes**: read-only<br />
+
+
+An array of all currently available MIDI inputs.
+
 
 ### `.interface` {#interface}
+
+**Type**: MIDIAccess<br />
+**Attributes**: read-only, nullable<br />
+
+**Attributes**: read-only, nullable<br />
 
 
 The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
 instance used to talk to the lower-level Web MIDI API. This should not be used directly
 unless you know what you are doing.
 
-**Type**: MIDIAccess<br />
-**Attributes**: read-only, nullable<br />
-
 
 ### `.isBrowser` {#isBrowser}
+
+**Type**: boolean<br />
 
 
 Indicates whether the current environment is a browser environment or not. If you need to check
 if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
 NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
 
-**Type**: boolean<br />
-
 
 ### `.isNode` {#isNode}
+
+**Type**: boolean<br />
 
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
@@ -128,12 +142,12 @@ browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electro
 NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
 same time.
 
-**Type**: boolean<br />
-
 
 ### `.octaveOffset` {#octaveOffset}
-
 **Since**: 2.1<br />
+
+**Type**: number<br />
+
 
 An integer to offset the octave of notes received from external devices or sent to external
 devices.
@@ -146,19 +160,24 @@ By the same token, when [`OutputChannel.playNote()`](OutputChannel#playNote) is 
 MIDI note number being sent will be offset. If `octaveOffset` is set to `-1`, the MIDI note
 number sent will be 72 (instead of 60).
 
-**Type**: number<br />
-
 
 ### `.outputs` {#outputs}
-
-
-An array of all currently available MIDI outputs as [`Output`](Output) objects.
 
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
+**Attributes**: read-only<br />
+
+
+An array of all currently available MIDI outputs as [`Output`](Output) objects.
+
 
 ### `.supported` {#supported}
+
+**Type**: boolean<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 Indicates whether the environment provides support for the Web MIDI API or not.
@@ -169,21 +188,25 @@ the
 function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this
 property will be `true` even though actual support might not be there.
 
+
+### `.sysexEnabled` {#sysexEnabled}
+
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
-
-### `.sysexEnabled` {#sysexEnabled}
+**Attributes**: read-only<br />
 
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the [`enable()`](#enable) method.
 
-**Type**: boolean<br />
-**Attributes**: read-only<br />
-
 
 ### `.time` {#time}
+
+**Type**: DOMHighResTimeStamp<br />
+**Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
 
 
 The elapsed time, in milliseconds, since the time
@@ -194,11 +217,10 @@ floating-point number, it has sub-millisecond accuracy. According to the
 time should be accurate to 5 µs (microseconds). However, due to various constraints, the
 browser might only be accurate to one millisecond.
 
-**Type**: DOMHighResTimeStamp<br />
-**Attributes**: read-only<br />
-
 
 ### `.validation` {#validation}
+
+**Type**: boolean<br />
 
 
 Indicates whether argument validation and backwards-compatibility checks are performed
@@ -208,16 +230,16 @@ This is an advanced setting that should be used carefully. Setting `validation` 
 improves performance but should only be done once the project has been thoroughly tested with
 `validation` turned on.
 
-**Type**: boolean<br />
-
 
 ### `.version` {#version}
 
-
-The version of the library as a [semver](https://semver.org/) string.
-
 **Type**: string<br />
 **Attributes**: read-only<br />
+
+**Attributes**: read-only<br />
+
+
+The version of the library as a [semver](https://semver.org/) string.
 
 
 

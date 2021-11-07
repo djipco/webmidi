@@ -61,95 +61,95 @@ method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
 ## Properties
 
 ### `.accidental` {#accidental}
-
 **Since**: 3.0.0<br />
-
-The accidental (#, ##, b or bb) of the note
 
 **Type**: string<br />
 
 
+The accidental (#, ##, b or bb) of the note
+
+
 ### `.attack` {#attack}
-
 **Since**: 3.0.0<br />
-
-The attack velocity of the note as an integer between 0 and 127.
 
 **Type**: number<br />
 
 
-### `.duration` {#duration}
+The attack velocity of the note as an integer between 0 and 127.
 
+
+### `.duration` {#duration}
 **Since**: 3.0.0<br />
+
+**Type**: number<br />
+
 
 The duration of the note as a positive decimal number representing the number of milliseconds
 that the note should play for.
 
-**Type**: number<br />
-
 
 ### `.identifier` {#identifier}
-
 **Since**: 3.0.0<br />
+
+**Type**: string<br />
+
 
 The name, optional accidental and octave of the note, as a string.
 
-**Type**: string<br />
-
 
 ### `.name` {#name}
-
 **Since**: 3.0.0<br />
+
+**Type**: string<br />
+
 
 The name (letter) of the note
 
-**Type**: string<br />
-
 
 ### `.number` {#number}
-
 **Since**: 3.0.0<br />
+
+**Type**: number<br />
+
 
 The MIDI number of the note. This number is derived from the note identifier using C4 as a
 reference for middle C.
 
-**Type**: number<br />
-
 
 ### `.octave` {#octave}
-
 **Since**: 3.0.0<br />
+
+**Type**: number<br />
+
 
 The octave of the note
 
-**Type**: number<br />
-
 
 ### `.rawAttack` {#rawAttack}
-
 **Since**: 3.0.0<br />
+
+**Type**: number<br />
+
 
 The attack velocity of the note as a positive integer between 0 and 127.
 
-**Type**: number<br />
-
 
 ### `.rawRelease` {#rawRelease}
-
 **Since**: 3.0.0<br />
+
+**Type**: number<br />
+
 
 The release velocity of the note as a positive integer between 0 and 127.
 
-**Type**: number<br />
-
 
 ### `.release` {#release}
-
 **Since**: 3.0.0<br />
 
-The release velocity of the note as an integer between 0 and 127.
-
 **Type**: number<br />
+
+
+The release velocity of the note as an integer between 0 and 127.
 
 
 
