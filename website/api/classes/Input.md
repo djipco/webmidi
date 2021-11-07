@@ -190,7 +190,7 @@ the added benefit of being able to filter which data is forwarded.
 **Return Value**
 
 > Returns: `Forwarder`
-> The [`Forwarder`](Forwarder) object created to handle the forwarding. This
+The [`Forwarder`](Forwarder) object created to handle the forwarding. This
 is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
 
 
@@ -341,7 +341,7 @@ There are 8 families of events you can listen to:
 **Return Value**
 
 > Returns: `Listener` or `Array.<Listener>`
-> If the event is input-wide, a single [`Listener`](Listener)
+If the event is input-wide, a single [`Listener`](Listener)
 object is returned. If the event is channel-specific, an array of all the
 [`Listener`](Listener) objects is returned (one for each channel).
 
@@ -484,7 +484,7 @@ There are 8 families of events you can listen to:
 **Return Value**
 
 > Returns: `Array.<Listener>`
-> An array of all [`Listener`](Listener) objects that were created.
+An array of all [`Listener`](Listener) objects that were created.
 
 
 
@@ -500,7 +500,7 @@ the input is opened again by calling [`Input.open()`](Input#open).
 **Return Value**
 
 > Returns: `Promise.<Input>`
-> The promise is fulfilled with the `Input` object
+The promise is fulfilled with the `Input` object
 
 
 
@@ -561,7 +561,7 @@ listeners (added with `EventEmitter.ANY_EVENT`).
 **Return Value**
 
 > Returns: `Array`
-> An array containing the return value of each of the executed listener
+An array containing the return value of each of the executed listener
 functions
 
 
@@ -595,7 +595,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 **Return Value**
 
 > Returns: `number`
-> The number of listeners registered for the specified event.
+The number of listeners registered for the specified event.
 
 
 
@@ -626,7 +626,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 **Return Value**
 
 > Returns: `Array.<Listener>`
-> An array of `Listener` objects
+An array of `Listener` objects
 
 
 
@@ -683,7 +683,7 @@ have the listener defined.
 **Return Value**
 
 > Returns: `boolean`
-> Boolean value indicating whether or not the `Input` or
+Boolean value indicating whether or not the `Input` or
 [`InputChannel`](InputChannel) already has this listener defined.
 
 
@@ -700,7 +700,7 @@ WebMidi is enabled.
 **Return Value**
 
 > Returns: `Promise.<Input>`
-> The promise is fulfilled with the `Input` object
+The promise is fulfilled with the `Input` object
 
 
 

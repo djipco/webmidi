@@ -243,7 +243,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 **Return Value**
 
 > Returns: `Listener`
-> The newly created [**Listener**](Listener) object.
+The newly created [**Listener**](Listener) object.
 
 
 **Throws**:
@@ -285,7 +285,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 **Return Value**
 
 > Returns: `Listener`
-> The newly created [**Listener**](Listener) object.
+The newly created [**Listener**](Listener) object.
 
 
 **Throws**:
@@ -354,7 +354,7 @@ listeners (added with `EventEmitter.ANY_EVENT`).
 **Return Value**
 
 > Returns: `Array`
-> An array containing the return value of each of the executed listener
+An array containing the return value of each of the executed listener
 functions
 
 
@@ -434,7 +434,7 @@ WebMidi.enable().then(ports => {
 **Return Value**
 
 > Returns: `Promise.<WebMidi>`
-> The promise is fulfilled with the `WebMidi` object fro
+The promise is fulfilled with the `WebMidi` object fro
 chainability
 
 
@@ -470,7 +470,7 @@ kind of IDs as Jazz-Plugin.
 **Return Value**
 
 > Returns: `Input` or `false`
-> An [`Input`](Input) object matching the specified ID string or `false`
+An [`Input`](Input) object matching the specified ID string or `false`
 if no matching input can be found.
 
 
@@ -503,7 +503,7 @@ input names in the same way as the Jazz-Plugin does.
 **Return Value**
 
 > Returns: `Input` or `false`
-> The [`Input`](Input) that was found or `false` if no input contained the
+The [`Input`](Input) that was found or `false` if no input contained the
 specified name.
 
 
@@ -537,7 +537,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 **Return Value**
 
 > Returns: `number`
-> The number of listeners registered for the specified event.
+The number of listeners registered for the specified event.
 
 
 
@@ -568,7 +568,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 **Return Value**
 
 > Returns: `Array.<Listener>`
-> An array of `Listener` objects
+An array of `Listener` objects
 
 
 
@@ -601,7 +601,7 @@ kind of IDs as Jazz-Plugin.
 **Return Value**
 
 > Returns: `Output` or `false`
-> An [`Output`](Output) object matching the specified ID string. If no
+An [`Output`](Output) object matching the specified ID string. If no
 matching output can be found, the method returns `false`.
 
 
@@ -634,7 +634,7 @@ input names in the same way as the Jazz-Plugin does.
 **Return Value**
 
 > Returns: `Output` or `false`
-> The [`Output`](Output) that was found or `false` if no output matched
+The [`Output`](Output) that was found or `false` if no output matched
 the specified name.
 
 

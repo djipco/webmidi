@@ -121,7 +121,7 @@ input value cannot be converted to an integer, the method returns 0.
 **Return Value**
 
 > Returns: `number`
-> A number between 0 and 1 (inclusive)
+A number between 0 and 1 (inclusive)
 
 
 **Attributes**: static
@@ -155,7 +155,7 @@ the input value cannot be converted to a number, the method returns 0.
 **Return Value**
 
 > Returns: `number`
-> A number between 0 and 1 (inclusive)
+A number between 0 and 1 (inclusive)
 
 
 **Attributes**: static
@@ -213,7 +213,7 @@ is within between 0 and 1 even if the result is greater than 1 or smaller than 0
 **Return Value**
 
 > Returns: `number`
-> A float between 0 and 1.
+A float between 0 and 1.
 
 
 **Attributes**: static
@@ -245,7 +245,7 @@ In this case, the method returns `undefined`.
 **Return Value**
 
 > Returns: `string` or `undefined`
-> The matching control change name or `undefined` if not match was
+The matching control change name or `undefined` if not match was
 found.
 
 
@@ -277,7 +277,7 @@ returns `false`.
 **Return Value**
 
 > Returns: `string` or `false`
-> The name of the matching channel mode or `false` if not match could be
+The name of the matching channel mode or `false` if not match could be
 found.
 
 
@@ -344,7 +344,7 @@ supplied.
 **Return Value**
 
 > Returns: `string`
-> The name of the matching property
+The name of the matching property
 
 
 **Attributes**: static
@@ -381,7 +381,7 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 **Return Value**
 
 > Returns: `number` or `false`
-> A valid MIDI note number (0-127) or `false` if the input could not
+A valid MIDI note number (0-127) or `false` if the input could not
 successfully be parsed to a note number.
 
 
@@ -413,7 +413,7 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 **Return Value**
 
 > Returns: `number`
-> An integer between 0 and 127
+An integer between 0 and 127
 
 
 **Attributes**: static
@@ -450,7 +450,7 @@ integers between 1 and 16 are silently ignored.
 **Return Value**
 
 > Returns: `Array`
-> An array of 0 or more valid MIDI channel numbers.
+An array of 0 or more valid MIDI channel numbers.
 
 
 **Attributes**: static
@@ -522,7 +522,7 @@ The resulting note number can be offset by using the `octaveOffset` parameter.
 **Return Value**
 
 > Returns: `number`
-> The MIDI note number (an integer between 0 and 127).
+The MIDI note number (an integer between 0 and 127).
 
 
 **Attributes**: static
@@ -559,7 +559,7 @@ returned.
 **Return Value**
 
 > Returns: `number` or `false`
-> A positive number or `false` (if the time cannot be converted)
+A positive number or `false` (if the time cannot be converted)
 
 
 **Attributes**: static
