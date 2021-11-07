@@ -40,10 +40,11 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 **Attributes**: read-only<br />
 
 
-The number of unique events that have registered listeners
+The number of unique events that have registered listeners.
 
-Note: this excludes global events registered with `EventEmitter.ANY_EVENT` because they are not
-tied to a specific event.
+Note: this excludes global events registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) because they are not tied to a
+specific event.
 
 
 ### `.eventMap` {#eventMap}
@@ -52,7 +53,8 @@ tied to a specific event.
 
 
 An object containing a property for each event with at least one registered listener. Each
-event property contains an array of all the `Listener` objects registered for the event.
+event property contains an array of all the [`Listener`](Listener) objects registered
+for the event.
 
 
 ### `.eventNames` {#eventNames}
@@ -113,12 +115,12 @@ The parent [Output](Output) this channel belongs to
 ### `.addListener(...)` {#addListener}
 
 
-Adds a listener for the specified event. It returns the [**Listener**](Listener) object
+Adds a listener for the specified event. It returns the [`Listener`](Listener) object
 that was created and attached to the event.
 
-To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
-as the first parameter. Note that a global listener will also be triggered by non-registered
-events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
+To attach a global listener that will be triggered for any events, use
+[`EventEmitter.ANY_EVENT`](#ANY_EVENT) as the first parameter. Note that a global listener will
+also be triggered by non-registered events.
 
 
   **Parameters**
@@ -145,7 +147,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
 
 > Returns: `Listener`<br />
 
-The newly created [**Listener**](Listener) object.
+The newly created [`Listener`](Listener) object.
 
 
 **Throws**:
@@ -157,12 +159,12 @@ The newly created [**Listener**](Listener) object.
 
 
 Adds a one-time listener for the specified event. The listener will be executed once and then
-destroyed. It returns the [**Listener**](Listener) object that was created and attached
+destroyed. It returns the [`Listener`](Listener) object that was created and attached
 to the event.
 
-To attach a global listener that will be triggered for any events, use `EventEmitter.ANY_EVENT`
-as the first parameter. Note that a global listener will also be triggered by non-registered
-events. For example, this will trigger global listeners: `myEmitter.emit('bogus')`.
+To attach a global listener that will be triggered for any events, use
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter. Note that a global
+listener will also be triggered by non-registered events.
 
 
   **Parameters**
@@ -179,7 +181,7 @@ events. For example, this will trigger global listeners: `myEmitter.emit('bogus'
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [**arguments**]{@link Listener#arguments} property of the [**Listener**]{@link Listener} object and can be retrieved or modified as desired.|
+    |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`]{@link Listener#arguments} property of the [`Listener`]{@link Listener} object and can be retrieved or modified as desired.|
 
   </div>
 
@@ -248,26 +250,19 @@ Returns the `OutputChannel` object so methods can be chained.
 ### `.emit(...)` {#emit}
 
 
-Executes the callback functions of all the `Listener` objects registered for a given event. The
-callback functions are passed the additional arguments specifed for `emit()` (if any) followed
-by the arguments present in the `arguments` property of the `Listener` object (if any). For
-example:
+Executes the callback function of all the [`Listener`](Listener) objects registered for
+a given event. The callback functions are passed the additional arguments passed to `emit()`
+(if any) followed by the arguments present in the [`arguments`](Listener#arguments) property of
+the [`Listener`](Listener) object (if any).
 
-```javascript
-let myEmitter = new EventEmitter();
-myEmitter.addListener("test", fn, {arguments: ["a", "b", "c"]});
-myEmitter.emit("test", "y", "z");
-```
-
-In this example, the function will be called as such: `fn("y", "z", "a", "b", "c");`
-
-If the `eventsSuspended` property of the `EventEmitter` or the `suspended` property of the
-`Listener` is `true`, the callback functions will not be executed.
+If the [`eventsSuspended`](#eventsSuspended) property or the
+[`suspended`](Listener#suspended) property of the [`Listener`](Listener) is `true`,
+the callback functions will not be executed.
 
 This function returns an array containing the return values of each of the callbacks.
 
 It should be noted that the regular listeners are triggered first followed by the global
-listeners (added with `EventEmitter.ANY_EVENT`).
+listeners (those added with [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT)).
 
 
   **Parameters**
@@ -289,7 +284,7 @@ listeners (added with `EventEmitter.ANY_EVENT`).
 > Returns: `Array`<br />
 
 An array containing the return value of each of the executed listener
-functions
+functions.
 
 
 **Throws**:
@@ -301,9 +296,10 @@ functions
 
 Returns the number of listeners registered for a specific event.
 
-Please note that global events (those added with `EventEmitter.ANY_EVENT`) do not count
-towards the remaining number for a "regular" event. To get the number of global listeners,
-specifically use `EventEmitter.ANY_EVENT` as the parameter.
+Please note that global events (those added with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT)) do not count towards the remaining
+number for a "regular" event. To get the number of global listeners, specifically use
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the parameter.
 
 
   **Parameters**
@@ -314,7 +310,7 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} symbol.|
 
   </div>
 
@@ -323,7 +319,8 @@ specifically use `EventEmitter.ANY_EVENT` as the parameter.
 
 > Returns: `number`<br />
 
-The number of listeners registered for the specified event.
+An integer representing the number of listeners registered for the specified
+event.
 
 
 
@@ -331,11 +328,13 @@ The number of listeners registered for the specified event.
 ### `.getListeners(...)` {#getListeners}
 
 
-Returns an array of all the `Listener` objects that will be triggered for a specific event.
+Returns an array of all the [`Listener`](Listener) objects that have been registered for
+a specific event.
 
-Please note that global events (those added with `EventEmitter.ANY_EVENT`) are not returned for
-"regular" events. To get the list of global listeners, specifically use
-`EventEmitter.ANY_EVENT` as the parameter.
+Please note that global events (those added with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT)) are not returned for "regular"
+events. To get the list of global listeners, specifically use
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the parameter.
 
 
   **Parameters**
@@ -355,7 +354,7 @@ Please note that global events (those added with `EventEmitter.ANY_EVENT`) are n
 
 > Returns: `Array.<Listener>`<br />
 
-An array of `Listener` objects
+An array of [`Listener`](Listener) objects
 
 
 
@@ -365,7 +364,7 @@ An array of `Listener` objects
 
 Returns `true` if the specified event has at least one registered listener. If no event is
 specified, the method returns `true` if any event has at least one listener registered (this
-includes global listeners registered to `EventEmitter.ANY_EVENT`).
+includes global listeners registered to [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT)).
 
 Note: to specifically check for global listeners added with `EventEmitter.ANY_EVENT`, use
 `EventEmitter.ANY_EVENT` as the parameter.
@@ -1453,12 +1452,14 @@ This is an alias to the [sendNoteOff()](#OutputChannel+sendNoteOff) method.
 
 Suspends execution of all callbacks functions registered for the specified event type.
 
-You can suspend execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
-`EventEmitter.ANY_EVENT` to `suspendEvent()`. Beware that this will not suspend all callbacks
-but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive
-at first glance, it allows the selective suspension of global listeners while leaving other
-liseners alone. If you truly want to suspends all callbacks for a specific `EventEmitter`,
-simply set its `eventsSuspended` property to `true`.
+You can suspend execution of callbacks registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) by passing
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) to `suspendEvent()`. Beware that this
+will not suspend all callbacks but only those registered with `EventEmitter.ANY_EVENT`. While
+this may seem counter-intuitive at first glance, it allows the selective suspension of global
+listeners while leaving other liseners alone. If you truly want to suspends all callbacks for a
+specific [`EventEmitter`](EventEmitter), simply set its `eventsSuspended` property to
+`true`.
 
 
   **Parameters**
@@ -1544,10 +1545,12 @@ Returns the `OutputChannel` object so methods can be chained.
 
 Resumes execution of all suspended callback functions registered for the specified event type.
 
-You can resume execution of callbacks registered with `EventEmitter.ANY_EVENT` by passing
-`EventEmitter.ANY_EVENT` to `unsuspendEvent()`. Beware that this will not resume all callbacks
-but only those registered with `EventEmitter.ANY_EVENT`. While this may seem counter-intuitive,
-it allows the selective unsuspension of global listeners while leaving other callbacks alone.
+You can resume execution of callbacks registered with
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) by passing
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) to `unsuspendEvent()`. Beware that
+this will not resume all callbacks but only those registered with `EventEmitter.ANY_EVENT`.
+While this may seem counter-intuitive,it allows the selective unsuspension of global listeners
+while leaving other callbacks alone.
 
 
   **Parameters**
@@ -1572,45 +1575,14 @@ it allows the selective unsuspension of global listeners while leaving other cal
 **Attributes**: async
 
 The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
-when the specified event occurs. The event can be a regular event or `EventEmitter.ANY_EVENT`
-(if you want to resolve as soon as any event is emitted).
-
-```javascript
-// then/catch syntax
-const ee = new EventEmitter();
-ee.waitFor("ready").then(() => console.log("Ready!"));
-```
-
-```javascript
-// async/await syntax
-const ee = new EventEmitter();
-await ee.waitFor("ready");
-console.log("Ready!");
-```
+when the specified event occurs. The event can be a regular event or
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) (if you want to resolve as soon as any
+event is emitted).
 
 If the `duration` option is set, the promise will only be fulfilled if the event is emitted
 within the specified duration. If the event has not been fulfilled after the specified
 duration, the promise is rejected. This makes it super easy to wait for an event and timeout
 after a certain time if the event is not triggered.
-
-```javascript
-// then/catch syntax
-const ee = new EventEmitter();
-ee.waitFor("ready", {duration: 100})
-.then(() => console.log("Ready!"))
-.catch(err => console.log(err);
-```
-
-```javascript
-// async/await syntax
-const ee = new EventEmitter();
-try {
- await ee.waitFor("ready", {duration: 100});
- console.log("Ready!");
-} catch(err) {
-  console.log(err);
-}
-```
 
 
   **Parameters**
