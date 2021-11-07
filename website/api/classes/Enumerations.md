@@ -203,25 +203,28 @@ is identified as the word "controller" followed by the number (e.g. `controller1
 **Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
 **Attributes**: static
 
-Enumeration of all registered parameters and their associated pair of numerical values. MIDI
-registered parameters extend the original list of control change messages. Currently, there are
-only a limited number of them:
+Enumeration of all MIDI registered parameters and their associated pair of numerical values.
+MIDI registered parameters extend the original list of control change messages. Currently,
+there are only a limited number of them:
 
-- `pitchbendrange`: [0x00, 0x00]
-- `channelfinetuning`: [0x00, 0x01]
-- `channelcoarsetuning`: [0x00, 0x02]
-- `tuningprogram`: [0x00, 0x03]
-- `tuningbank`: [0x00, 0x04]
-- `modulationrange`: [0x00, 0x05]
-- `azimuthangle`: [0x3D, 0x00]
-- `elevationangle`: [0x3D, 0x01]
-- `gain`: [0x3D, 0x02]
-- `distanceratio`: [0x3D, 0x03]
-- `maximumdistance`: [0x3D, 0x04]
-- `maximumdistancegain`: [0x3D, 0x05]
-- `referencedistanceratio`: [0x3D, 0x06]
-- `panspreadangle`: [0x3D, 0x07]
-- `rollangle`: [0x3D, 0x08]
+
+| Control Function             | [LSB, MSB]   |
+|------------------------------|--------------|
+| `pitchbendrange`             | [0x00, 0x00] |
+| `channelfinetuning`          | [0x00, 0x01] |
+| `channelcoarsetuning`        | [0x00, 0x02] |
+| `tuningprogram`              | [0x00, 0x03] |
+| `tuningbank`                 | [0x00, 0x04] |
+| `modulationrange`            | [0x00, 0x05] |
+| `azimuthangle`               | [0x3D, 0x00] |
+| `elevationangle`             | [0x3D, 0x01] |
+| `gain`                       | [0x3D, 0x02] |
+| `distanceratio`              | [0x3D, 0x03] |
+| `maximumdistance`            | [0x3D, 0x04] |
+| `maximumdistancegain`        | [0x3D, 0x05] |
+| `referencedistanceratio`     | [0x3D, 0x06] |
+| `panspreadangle`             | [0x3D, 0x07] |
+| `rollangle`                  | [0x3D, 0x08] |
 ### `.MIDI_SYSTEM_MESSAGES` {#MIDI_SYSTEM_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
