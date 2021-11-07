@@ -378,8 +378,8 @@ In this case, `listeners` is an array containing 3 [`Listener`](Listener) object
 The code above will add a listener for the `"noteon"` event and call `someFunction` when the
 event is triggered on MIDI channels `1`, `2` or `3`.
 
-Note that, when adding events to channels, it is the [InputChannel](InputChannel) instance that
-actually gets a listener added and not the `[Input](Input) instance.
+Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
+that actually gets a listener added and not the `Input` instance.
 
 Note: if you want to add a listener to a single MIDI channel you should probably do so directly
 on the [InputChannel](InputChannel) object itself.
