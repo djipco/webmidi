@@ -450,6 +450,9 @@ export class Enumerations {
    *
    * **Custom WebMidi.js Messages**
    *
+   * These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
+   * or forwarded.
+   *
    * | Function               | Hexadecimal | Decimal |
    * |------------------------|-------------|---------|
    * | `midimessage`          |             |  0      |
