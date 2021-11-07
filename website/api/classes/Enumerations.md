@@ -1,8 +1,8 @@
 
 # Enumerations
 
-The `Enumerations` class contains enumerations and lists of elements used throughout the library.
-All properties are static and should be referenced using the class name. For example:
+The `Enumerations` class contains enumerations and arrays of elements used throughout the
+library. All properties are static and should be referenced using the class name. For example:
 `Enumerations.MIDI_CHANNEL_MESSAGES`.
 
 **Since**: 3.0.0
@@ -232,7 +232,6 @@ there are only a limited number of them:
 Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
 uses two additional custom messages.
 
-
 **System Common Messages**
 
 | Function               | Hexadecimal Value | Decimal Value   |
@@ -257,8 +256,10 @@ The `sysexend` message is never actually received. It simply ends a sysex stream
 | `activesensing`        | 0xFE              |  254            |
 | `reset`                | 0xFF              |  255            |
 
-Values 249 and 253 are relayed by the Web MIDI API but they do not serve any specific purpose.
-The [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+Values 249 and 253 are relayed by the
+[Web MIDI API](https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API) but they do not
+serve any specific purpose. The
+[MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
 simply states that they are undefined/reserved.
 
 **Custom WebMidi.js Messages**
