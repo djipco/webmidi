@@ -45,8 +45,6 @@ events occur.
 **Type**: number<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 The number of unique events that have registered listeners
 
@@ -59,8 +57,6 @@ tied to a specific event.
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
@@ -69,8 +65,6 @@ event property contains an array of all the `Listener` objects registered for th
 ### `.eventNames` {#eventNames}
 
 **Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 

@@ -34,8 +34,6 @@ easy to make sense of the binary data it contains.
 **Type**: number<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 The MIDI channel number (`1` - `16`) that the message is targeting. This is only for
 channel-specific messages. For system messages, this will be left undefined.
@@ -44,8 +42,6 @@ channel-specific messages. For system messages, this will be left undefined.
 ### `.command` {#command}
 
 **Type**: number<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -58,8 +54,6 @@ between `8` and `14`. For system messages, the value will be between `240` and `
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 An array containing the bytes of the MIDI message. Each byte is an integer between `0` and
 `255`.
@@ -68,8 +62,6 @@ An array containing the bytes of the MIDI message. Each byte is an integer betwe
 ### `.dataBytes` {#dataBytes}
 
 **Type**: Array.&lt;number&gt;<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -83,8 +75,6 @@ byte so only the actual data is included.
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 A boolean indicating whether the MIDI message is a channel-specific message.
 
@@ -92,8 +82,6 @@ A boolean indicating whether the MIDI message is a channel-specific message.
 ### `.isSystemMessage` {#isSystemMessage}
 
 **Type**: boolean<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -104,8 +92,6 @@ channel).
 ### `.manufacturerId` {#manufacturerId}
 
 **Type**: Array.&lt;number&gt;<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -121,8 +107,6 @@ https://www.midi.org/specifications-old/item/manufacturer-id-numbers
 **Type**: Uint8Array<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 A
 [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -132,8 +116,6 @@ containing the bytes of the MIDI message. Each byte is an integer between `0` an
 ### `.rawDataBytes` {#rawDataBytes}
 
 **Type**: Uint8Array<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -149,8 +131,6 @@ only the actual data is included.
 **Type**: number<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 The MIDI status byte of the message as an integer between `0` and `255`.
 
@@ -158,8 +138,6 @@ The MIDI status byte of the message as an integer between `0` and `255`.
 ### `.type` {#type}
 
 **Type**: string<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 

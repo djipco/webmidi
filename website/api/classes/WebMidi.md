@@ -42,8 +42,6 @@ works.
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 Indicates whether access to the host's MIDI subsystem is active or not.
 
@@ -51,8 +49,6 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 ### `.eventCount` {#eventCount}
 
 **Type**: number<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -67,8 +63,6 @@ tied to a specific event.
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
@@ -77,8 +71,6 @@ event property contains an array of all the `Listener` objects registered for th
 ### `.eventNames` {#eventNames}
 
 **Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -103,8 +95,6 @@ emitter
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 An array of all currently available MIDI inputs.
 
@@ -112,8 +102,6 @@ An array of all currently available MIDI inputs.
 ### `.interface` {#interface}
 
 **Type**: MIDIAccess<br />
-**Attributes**: read-only, nullable<br />
-
 **Attributes**: read-only, nullable<br />
 
 
@@ -166,8 +154,6 @@ number sent will be 72 (instead of 60).
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 An array of all currently available MIDI outputs as [`Output`](Output) objects.
 
@@ -175,8 +161,6 @@ An array of all currently available MIDI outputs as [`Output`](Output) objects.
 ### `.supported` {#supported}
 
 **Type**: boolean<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -194,8 +178,6 @@ property will be `true` even though actual support might not be there.
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
 enabled via the [`enable()`](#enable) method.
@@ -204,8 +186,6 @@ enabled via the [`enable()`](#enable) method.
 ### `.time` {#time}
 
 **Type**: DOMHighResTimeStamp<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -234,8 +214,6 @@ improves performance but should only be done once the project has been thoroughl
 ### `.version` {#version}
 
 **Type**: string<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 

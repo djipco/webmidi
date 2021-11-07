@@ -15,9 +15,7 @@ All properties are static and should be referenced using the class name. For exa
 ### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
 
 **Type**: Array.&lt;number&gt;<br />
-**Attributes**: read-only<br />
-
-**Attributes**: read-onlystatic<br />
+**Attributes**: read-only, static<br />
 
 
 An simple array of the 16 valid MIDI channel numbers (`1` to `16`):

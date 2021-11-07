@@ -55,8 +55,6 @@ channels are numbered 1 through 16.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 
@@ -64,8 +62,6 @@ Input port's connection state: `"pending"`, `"open"` or `"closed"`.
 ### `.eventCount` {#eventCount}
 
 **Type**: number<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -80,8 +76,6 @@ tied to a specific event.
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
@@ -90,8 +84,6 @@ event property contains an array of all the `Listener` objects registered for th
 ### `.eventNames` {#eventNames}
 
 **Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -116,8 +108,6 @@ emitter
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
 platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -129,8 +119,6 @@ the same port.
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 Name of the manufacturer of the device that makes this input port available.
 
@@ -138,8 +126,6 @@ Name of the manufacturer of the device that makes this input port available.
 ### `.name` {#name}
 
 **Type**: string<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -167,8 +153,6 @@ Note that this value is combined with the global offset value defined on the `We
 **Type**: string<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 State of the input port: `"connected"` or `"disconnected"`.
 
@@ -176,8 +160,6 @@ State of the input port: `"connected"` or `"disconnected"`.
 ### `.type` {#type}
 
 **Type**: string<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 

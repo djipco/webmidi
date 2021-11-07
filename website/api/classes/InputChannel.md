@@ -39,9 +39,7 @@ property.
 ### `.EVENTS` {#EVENTS}
 
 **Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
-**Attributes**: read-onlystatic<br />
+**Attributes**: read-only, static<br />
 
 
 Array of channel-specific event names that can be listened to.
@@ -50,8 +48,6 @@ Array of channel-specific event names that can be listened to.
 ### `.eventCount` {#eventCount}
 
 **Type**: number<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
@@ -66,8 +62,6 @@ tied to a specific event.
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
-**Attributes**: read-only<br />
-
 
 An object containing a property for each event with at least one registered listener. Each
 event property contains an array of all the `Listener` objects registered for the event.
@@ -76,8 +70,6 @@ event property contains an array of all the `Listener` objects registered for th
 ### `.eventNames` {#eventNames}
 
 **Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only<br />
-
 **Attributes**: read-only<br />
 
 
