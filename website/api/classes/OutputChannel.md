@@ -1462,7 +1462,7 @@ You can suspend execution of callbacks registered with
 will not suspend all callbacks but only those registered with
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT). While this may seem counter-intuitive
 at first glance, it allows the selective suspension of global listeners while leaving other
-liseners alone. If you truly want to suspends all callbacks for a specific
+listeners alone. If you truly want to suspends all callbacks for a specific
 [`EventEmitter`](EventEmitter), simply set its `eventsSuspended` property to `true`.
 
 
