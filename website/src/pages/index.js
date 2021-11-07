@@ -2,6 +2,7 @@ import React from "react";
 //import clsx from "clsx";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Button from "../components/Button";
 import Column from "../components/Column";
 import InformationBar from "../components/InformationBar";
@@ -34,8 +35,8 @@ function HomepageHero() {
           </div>
           <img
             className="img"
-            src="../../static/img/front-page/animation-placeholder.jpg"
-            alt="placeholer-animaion"
+            src={useBaseUrl("/img/front-page/animation-placeholder.jpg")}
+            alt="placeholer-animation"
           />
         </Column>
       </div>
@@ -75,10 +76,8 @@ export default function Home() {
       description="A JavaScript library to kickstart your MIDI projects on the web and in Node.js.">
       <HomepageHero />
       <main>
-        {/* eslint-disable-next-line max-len */}
         <InformationBar>
           <strong>Version 3.0 is coming soon</strong>. <a href="">Subscribe to our newsletter</a> to know when it will be available
-
         </InformationBar>
         <Presentation />
       </main>

@@ -1,5 +1,8 @@
-.col-2 {
+.Column{
   display: grid;
+}
+
+.col-2 {
   grid-template-columns: 48% 48%;
   justify-content: space-between;
   align-items: center;
