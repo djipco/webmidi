@@ -235,39 +235,36 @@ uses two additional custom messages.
 
 **System common messages**
 
-| Function             | Hexadecimal Value | Decimal Value   |
-|----------------------|-------------------|-----------------|
-| `sysex`              | 0xF0              |  240            |
-| `timecode`           | 0xF1              |  241            |
-
-
-
-**System common messages**
-- `sysex`: 0xF0 (240)
-- `timecode`: 0xF1 (241)
-- `songposition`: 0xF2 (242)
-- `songselect`: 0xF3 (243)
-- `tunerequest`: 0xF6 (246)
-- `sysexend`: 0xF7 (247)
+| Function               | Hexadecimal Value | Decimal Value   |
+|------------------------|-------------------|-----------------|
+| `sysex`                | 0xF0              |  240            |
+| `timecode`             | 0xF1              |  241            |
+| `songposition`         | 0xF2              |  242            |
+| `songselect`           | 0xF3              |  243            |
+| `tunerequest`          | 0xF6              |  246            |
+| `sysexend`             | 0xF7              |  247            |
 
 The `sysexend` message is never actually received. It simply ends a sysex stream.
 
 **System real-time messages**
 
-- `clock`: 0xF8 (248)
-- `start`: 0xFA (250)
-- `continue`: 0xFB (251)
-- `stop`: 0xFC (252)
-- `activesensing`: 0xFE (254)
-- `reset`: 0xFF (255)
+| Function               | Hexadecimal Value | Decimal Value   |
+|------------------------|-------------------|-----------------|
+| `clock`                | 0xF8              |  248            |
+| `start`                | 0xFA              |  250            |
+| `continue`             | 0xFB              |  251            |
+| `stop`                 | 0xFC              |  252            |
+| `activesensing`        | 0xFE              |  254            |
+| `reset`                | 0xFF              |  255            |
 
-Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-purpose. The
-[MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
+Values 249 and 253 are relayed by the Web MIDI API but they do not serve any specific purpose.
+The [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
 simply states that they are undefined/reserved.
 
 **Custom WebMidi.js messages**
 
-- `midimessage`: 0
-- `unknownsystemmessage`: -1
+| Function               | Hexadecimal Value | Decimal Value   |
+|------------------------|-------------------|-----------------|
+| `midimessage`          |                   |  0              |
+| `unknownsystemmessage` |                   |  -1             |
 
