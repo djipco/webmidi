@@ -19,7 +19,6 @@ module) version, you get an already-instantiated object when you import the modu
 ## Properties
 
 ### `.defaults` {#defaults}
-
 **Type**: object<br />
 
 
@@ -38,7 +37,6 @@ works.
 
 
 ### `.enabled` {#enabled}
-
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
@@ -47,7 +45,6 @@ Indicates whether access to the host's MIDI subsystem is active or not.
 
 
 ### `.eventCount` {#eventCount}
-
 **Type**: number<br />
 **Attributes**: read-only<br />
 
@@ -59,7 +56,6 @@ tied to a specific event.
 
 
 ### `.eventMap` {#eventMap}
-
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
@@ -69,7 +65,6 @@ event property contains an array of all the `Listener` objects registered for th
 
 
 ### `.eventNames` {#eventNames}
-
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
 
@@ -82,7 +77,6 @@ tied to a specific event.
 
 
 ### `.eventsSuspended` {#eventsSuspended}
-
 **Type**: boolean<br />
 
 
@@ -91,7 +85,6 @@ emitter
 
 
 ### `.inputs` {#inputs}
-
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
@@ -100,7 +93,6 @@ An array of all currently available MIDI inputs.
 
 
 ### `.interface` {#interface}
-
 **Type**: MIDIAccess<br />
 **Attributes**: read-only, nullable<br />
 
@@ -111,7 +103,6 @@ unless you know what you are doing.
 
 
 ### `.isBrowser` {#isBrowser}
-
 **Type**: boolean<br />
 
 
@@ -121,7 +112,6 @@ NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
 
 
 ### `.isNode` {#isNode}
-
 **Type**: boolean<br />
 
 
@@ -133,7 +123,6 @@ same time.
 
 ### `.octaveOffset` {#octaveOffset}
 **Since**: 2.1<br />
-
 **Type**: number<br />
 
 
@@ -150,7 +139,6 @@ number sent will be 72 (instead of 60).
 
 
 ### `.outputs` {#outputs}
-
 **Type**: Array<br />
 **Attributes**: read-only<br />
 
@@ -159,7 +147,6 @@ An array of all currently available MIDI outputs as [`Output`](Output) objects.
 
 
 ### `.supported` {#supported}
-
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
@@ -174,7 +161,6 @@ property will be `true` even though actual support might not be there.
 
 
 ### `.sysexEnabled` {#sysexEnabled}
-
 **Type**: boolean<br />
 **Attributes**: read-only<br />
 
@@ -184,7 +170,6 @@ enabled via the [`enable()`](#enable) method.
 
 
 ### `.time` {#time}
-
 **Type**: DOMHighResTimeStamp<br />
 **Attributes**: read-only<br />
 
@@ -199,7 +184,6 @@ browser might only be accurate to one millisecond.
 
 
 ### `.validation` {#validation}
-
 **Type**: boolean<br />
 
 
@@ -212,7 +196,6 @@ improves performance but should only be done once the project has been thoroughl
 
 
 ### `.version` {#version}
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 

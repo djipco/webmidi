@@ -34,7 +34,6 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 ## Properties
 
 ### `.channels` {#channels}
-
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
 
@@ -43,7 +42,6 @@ channels are numbered 1 through 16.
 
 
 ### `.connection` {#connection}
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -52,7 +50,6 @@ Output port's connection state: `"pending"`, `"open"` or `"closed"`.
 
 
 ### `.eventCount` {#eventCount}
-
 **Type**: number<br />
 **Attributes**: read-only<br />
 
@@ -64,7 +61,6 @@ tied to a specific event.
 
 
 ### `.eventMap` {#eventMap}
-
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
@@ -74,7 +70,6 @@ event property contains an array of all the `Listener` objects registered for th
 
 
 ### `.eventNames` {#eventNames}
-
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
 
@@ -87,7 +82,6 @@ tied to a specific event.
 
 
 ### `.eventsSuspended` {#eventsSuspended}
-
 **Type**: boolean<br />
 
 
@@ -96,7 +90,6 @@ emitter
 
 
 ### `.id` {#id}
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -107,7 +100,6 @@ the same port.
 
 
 ### `.manufacturer` {#manufacturer}
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -116,7 +108,6 @@ Name of the manufacturer of the device that makes this output port available.
 
 
 ### `.name` {#name}
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -126,7 +117,6 @@ Name of the MIDI output
 
 ### `.octaveOffset` {#octaveOffset}
 **Since**: 3.0<br />
-
 **Type**: number<br />
 
 
@@ -138,7 +128,6 @@ Note that this value is combined with the global offset value defined on the `We
 
 
 ### `.state` {#state}
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 
@@ -147,7 +136,6 @@ State of the output port: `"connected"` or `"disconnected"`.
 
 
 ### `.type` {#type}
-
 **Type**: string<br />
 **Attributes**: read-only<br />
 

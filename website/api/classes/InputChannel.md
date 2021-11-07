@@ -37,7 +37,6 @@ property.
 ## Properties
 
 ### `.EVENTS` {#EVENTS}
-
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only, static<br />
 
@@ -46,7 +45,6 @@ Array of channel-specific event names that can be listened to.
 
 
 ### `.eventCount` {#eventCount}
-
 **Type**: number<br />
 **Attributes**: read-only<br />
 
@@ -58,7 +56,6 @@ tied to a specific event.
 
 
 ### `.eventMap` {#eventMap}
-
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
@@ -68,7 +65,6 @@ event property contains an array of all the `Listener` objects registered for th
 
 
 ### `.eventNames` {#eventNames}
-
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
 
@@ -81,7 +77,6 @@ tied to a specific event.
 
 
 ### `.eventsSuspended` {#eventsSuspended}
-
 **Type**: boolean<br />
 
 
@@ -91,7 +86,6 @@ emitter
 
 ### `.input` {#input}
 **Since**: 3.0<br />
-
 **Type**: Input<br />
 
 
@@ -99,7 +93,6 @@ The [`Input`](Input) this channel belongs to
 
 
 ### `.notesState` {#notesState}
-
 **Type**: Array.&lt;boolean&gt;<br />
 
 
@@ -109,7 +102,6 @@ Contains the current playing state of all MIDI notes of this channel (0-127). Th
 
 ### `.number` {#number}
 **Since**: 3.0<br />
-
 **Type**: number<br />
 
 
@@ -118,7 +110,6 @@ This channel's MIDI number (1-16)
 
 ### `.octaveOffset` {#octaveOffset}
 **Since**: 3.0<br />
-
 **Type**: number<br />
 
 
@@ -134,7 +125,6 @@ and with the value defined on the parent `Input` object.
 
 
 ### `.parameterNumberEventsEnabled` {#parameterNumberEventsEnabled}
-
 **Type**: boolean<br />
 
 

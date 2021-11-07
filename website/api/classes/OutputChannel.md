@@ -36,7 +36,6 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 ## Properties
 
 ### `.eventCount` {#eventCount}
-
 **Type**: number<br />
 **Attributes**: read-only<br />
 
@@ -48,7 +47,6 @@ tied to a specific event.
 
 
 ### `.eventMap` {#eventMap}
-
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
@@ -58,7 +56,6 @@ event property contains an array of all the `Listener` objects registered for th
 
 
 ### `.eventNames` {#eventNames}
-
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
 
@@ -71,7 +68,6 @@ tied to a specific event.
 
 
 ### `.eventsSuspended` {#eventsSuspended}
-
 **Type**: boolean<br />
 
 
@@ -81,7 +77,6 @@ emitter
 
 ### `.number` {#number}
 **Since**: 3.0<br />
-
 **Type**: number<br />
 
 
@@ -90,7 +85,6 @@ This channel's MIDI number (1-16)
 
 ### `.octaveOffset` {#octaveOffset}
 **Since**: 3.0<br />
-
 **Type**: number<br />
 
 
@@ -104,7 +98,6 @@ and with the value defined on the parent [Output](Output) object.
 
 ### `.output` {#output}
 **Since**: 3.0<br />
-
 **Type**: Output<br />
 
 

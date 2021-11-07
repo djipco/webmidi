@@ -13,7 +13,6 @@ library. All properties are static and should be referenced using the class name
 ## Properties
 
 ### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
-
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only, static<br />
 

@@ -40,7 +40,6 @@ to, the callback function and so on.
 ## Properties
 
 ### `.arguments` {#arguments}
-
 **Type**: array<br />
 
 
@@ -48,7 +47,6 @@ Arguments to pass separately to the callback function upon execution
 
 
 ### `.callback` {#callback}
-
 **Type**: function<br />
 
 
@@ -56,7 +54,6 @@ The callback function
 
 
 ### `.context` {#context}
-
 **Type**: Object<br />
 
 
@@ -65,7 +62,6 @@ callback function)
 
 
 ### `.count` {#count}
-
 **Type**: number<br />
 
 
@@ -73,7 +69,6 @@ The number of times the listener function was executed
 
 
 ### `.event` {#event}
-
 **Type**: string<br />
 
 
@@ -81,7 +76,6 @@ The event name
 
 
 ### `.remaining` {#remaining}
-
 **Type**: number<br />
 
 
@@ -89,7 +83,6 @@ The remaining number of times after which the callback should automatically be r
 
 
 ### `.suspended` {#suspended}
-
 **Type**: boolean<br />
 
 
@@ -97,7 +90,6 @@ Whether this listener is currently suspended
 
 
 ### `.target` {#target}
-
 **Type**: EventEmitter<br />
 
 

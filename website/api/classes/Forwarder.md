@@ -40,7 +40,6 @@ the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
 ## Properties
 
 ### `.channels` {#channels}
-
 **Type**: Array.&lt;number&gt;<br />
 
 
@@ -49,7 +48,6 @@ default, this array includes all MIDI channels (`1` to `16`).
 
 
 ### `.destinations` {#destinations}
-
 **Type**: Array.&lt;Output&gt;<br />
 
 
@@ -57,7 +55,6 @@ An array of [`Output`](Output) objects to forward the message to.
 
 
 ### `.suspended` {#suspended}
-
 **Type**: boolean<br />
 
 
@@ -65,7 +62,6 @@ Indicates whether message forwarding is currently suspended or not in this forwa
 
 
 ### `.types` {#types}
-
 **Type**: Array.&lt;string&gt;<br />
 
 

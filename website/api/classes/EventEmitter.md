@@ -32,7 +32,6 @@ It is a mostly abstract class meant to be extended by (or mixed into) other obje
 ## Properties
 
 ### `.ANY_EVENT` {#ANY_EVENT}
-
 **Type**: Symbol<br />
 
 
@@ -41,7 +40,6 @@ events occur.
 
 
 ### `.eventCount` {#eventCount}
-
 **Type**: number<br />
 **Attributes**: read-only<br />
 
@@ -53,7 +51,6 @@ tied to a specific event.
 
 
 ### `.eventMap` {#eventMap}
-
 **Type**: Object<br />
 **Attributes**: read-only<br />
 
@@ -63,7 +60,6 @@ event property contains an array of all the `Listener` objects registered for th
 
 
 ### `.eventNames` {#eventNames}
-
 **Type**: Array.&lt;string&gt;<br />
 **Attributes**: read-only<br />
 
@@ -76,7 +72,6 @@ tied to a specific event.
 
 
 ### `.eventsSuspended` {#eventsSuspended}
-
 **Type**: boolean<br />
 
 
