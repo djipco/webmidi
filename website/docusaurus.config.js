@@ -4,7 +4,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import("@docusaurus/types").DocusaurusConfig} */
 module.exports = {
 
-  title: "WebMidi.js",
+  title: "WEBMIDI.js",
   tagline: "Kickstart your JavaScript MIDI projects!",
   url: "https://webmdidijs.org",
   baseUrl: "/webmidi/",
@@ -28,7 +28,7 @@ module.exports = {
     navbar: {
       // title: "My Site",
       logo: {
-        alt: "WebMidi.js",
+        alt: "WEBMIDI.js",
         src: "img/webmidijs-logo-dark.svg",
         srcDark: "img/webmidijs-logo-light.svg",
       },

@@ -2,7 +2,6 @@ import React from "react";
 //import clsx from "clsx";
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import useBaseUrl from '@docusaurus/useBaseUrl';
 import Button from "../components/Button";
 import Column from "../components/Column";
 import InformationBar from "../components/InformationBar";
@@ -35,7 +34,7 @@ function HomepageHero() {
           </div>
           <img
             className="img"
-            src={useBaseUrl("/img/front-page/animation-placeholder.jpg")}
+            src="../../static/img/front-page/animation-placeholder.jpg"
             alt="placeholer-animation"
           />
         </Column>
@@ -45,10 +44,11 @@ function HomepageHero() {
 }
 
 function Presentation() {
+  const {siteConfig} = useDocusaurusContext();
   return (
     <section className={"presentation"}>
       <div className="container">
-        <h2>Whats is Webmidi.js</h2>
+        <h2>Whats is {siteConfig.title}</h2>
         <Column
           type="col-2"
         >
@@ -77,7 +77,7 @@ export default function Home() {
       <HomepageHero />
       <main>
         <InformationBar>
-          <strong>Version 3.0 is coming soon</strong>. <a href="">Subscribe to our newsletter</a> to know when it will be available
+          <strong>Version 3.0 is coming soon</strong>. <a href="">Subscribe to the newsletter</a> to be notified of its availability
         </InformationBar>
         <Presentation />
       </main>
