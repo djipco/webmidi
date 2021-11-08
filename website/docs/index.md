@@ -8,15 +8,22 @@ slug: /
 **You want to get started as quickly as possible?** This guide will let you establish a connection
 with your MIDI instrument in less than 5 minutes.
 
-:::tip 
+:::info
+
+This guide is for **version 3.x**. Documentation for [version 2.5.x](archives/v2) and
+[version 1.0.0](archives/v1) is also available.
+
+:::
+
+## Step 1 - Create the HTML page
+
+:::tip
 
 Hint: You can **go even faster** by copying the
 [code](https://github.com/djipco/webmidi/blob/master/examples/quick-start/index.html) from
 our GitHub repo.
 
 :::
-
-## Step 1 - Create the HTML page
 
 Create an HTML document and include the library: 
 
@@ -81,7 +88,7 @@ compatible browser. You will be prompted to authorize the MIDI connection.
 
 After authorization, the page should detect the connected MIDI devices and display their name.
 
-:::caution
+:::info
 
 If nothing shows up, first make sure your MIDI device is detected at the operating system level.
 
