@@ -1,0 +1,13 @@
+.InformationBar {
+  background-color: var(--color-bg-secondary);
+  padding: var(--spacing-xl) 0;
+  color: var(--color-white);
+  text-align: center;
+}
+.InformationBar p {
+  font-size: 1.87rem;
+  line-height: 120%;
+  margin: 0;
+}
+
+/*# sourceMappingURL=InformationBar.module.css.map */

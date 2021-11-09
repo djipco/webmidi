@@ -1,4 +1,5 @@
 /* stylelint-disable docusaurus/copyright-header */
+@import url("https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,400;0,900;1,900&family=Lato:wght@400;700&display=swap");
 :root {
   --ifm-color-primary: #f9d137;
   --ifm-color-primary-dark: #f8ca19;
@@ -9,30 +10,48 @@
   --ifm-color-primary-lightest: #fce590;
   --ifm-code-font-size: 95%;
   --ifm-code-padding-horizontal: 0.2rem;
-
---color-white: #ffffff;
+  --color-white: #ffffff;
   --color-black: #1c1e21;
-
---color-text-primary: var(--color-black);
+  --color-text-primary: var(--color-black);
   --color-text-secondary: var(--color-white);
   --color-text-tertiary: #999;
-
-  --color-bg-primary: #ffffff;
-  --color-bg-primary-darker: #efefef;
-  --color-bg-secondary: #eeeae0;
-  --color-bg-tertiary: #f7f7f7;
-
+  --color-bg-primary: var(--color-white);
+  --color-bg-secondary: var(--color-black);
+  --color-bg-tertiary: #F8F8F8;
   --color-accent: #ffd000;
   --color-accent-lighter: #ffe571;
   --color-accent-darker: #e0ba0f;
-
---spacing-xs: 15px;
+  --spacing-xs: 15px;
   --spacing-sm: 20px;
   --spacing-md: 30px;
   --spacing-lg: 50px;
   --spacing-xl: 100px;
   --spacing-xxl: 175px;
   --spacing-xxxl: 250px;
+  --font-primary: "Lato", sans-serif;
+  --font-secondary: "Exo", sans-serif;
+  --font-size-content-desktop: 1.125rem;
+  --font-size-content-mobile: 1rem;
+  --font-size-button: 1.25rem;
+  --font-size-h1-desktop: 5rem;
+  --font-size-h1-mobile: 2.5rem;
+  --font-size-h2-desktop: 2.5rem;
+  --font-size-h2-mobile: 2rem;
+  --font-size-h3-desktop: 1.5rem;
+  --font-size-h3-mobile: 1.125rem;
+}
+@media screen and (max-width: 500px) {
+  :root {
+    --font-size-h1-desktop: 3.5rem;
+  }
+}
+
+html[data-theme=dark]:root {
+  --color-text-primary: var(--color-white);
+  --color-text-secondary: var(--color-black);
+  --color-bg-primary: var(--color-black);
+  --color-bg-secondary: #222428;
+  --color-bg-tertiary: #222428;
 }
 
 .docusaurus-highlight-code-line {
@@ -40,10 +59,6 @@
   display: block;
   margin: 0 calc(-1 * var(--ifm-pre-padding));
   padding: 0 var(--ifm-pre-padding);
-}
-
-html[data-theme=dark] .docusaurus-highlight-code-line {
-  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .navbar__brand {
@@ -60,6 +75,10 @@ iframe {
 
 .docs-wrapper main .container article .markdown header:nth-child(2) {
   display: none;
+}
+
+html[data-theme=dark] .docusaurus-highlight-code-line {
+  background-color: rgba(0, 0, 0, 0.3);
 }
 
 .header-github-link {
@@ -140,7 +159,41 @@ li a.dropdown__link.external svg {
   width: 46%;
 }
 
+/* ==========================================================================
+   HEADINGS / ELEMENT
+   ========================================================================== */
+h1 {
+  font-family: var(--font-secondary);
+  font-weight: 900;
+  font-style: italic;
+  font-size: var(--font-size-h1-desktop);
+}
+@media screen and (min-width: 1024px) {
+  h1 {
+    font-size: var(--font-size-h1-desktop);
+  }
+}
+
+h2 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: var(--font-size-h2-mobile);
+}
+@media screen and (min-width: 1024px) {
+  h2 {
+    font-size: var(--font-size-h2-desktop);
+  }
+}
+
+h3 {
+  font-family: var(--font-secondary);
+  font-weight: 700;
+  font-size: var(--font-size-h3-mobile);
+}
+@media screen and (min-width: 1024px) {
+  h3 {
+    font-size: var(--font-size-h3-desktop);
+  }
+}
+
 /*# sourceMappingURL=custom.css.map */
-
-
-

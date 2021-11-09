@@ -4,7 +4,7 @@ toc_max_heading_level: 2
 
 # Showcase
 
-WebMidi.js is being used by amazing people to create awesome projects. Here are some examples of
+WebMidi.js is being used by amazing people to create awesome projects. Here are some examples of 
 what the library can do.
 
 :::tip Contribute
@@ -21,7 +21,7 @@ page on GitHub and submit a pull request.
 ### [DAWG](https://dawg.dev/)
 Created by: **Jacob Smith, Amir Eldesoky, Alex ODonnell & Matt DeSilva**
 
-Digital Audio Workstation (DAW) application built using web technologies and distributed as a native
+Digital Audio Workstation (DAW) application built using web technologies and distributed as a native 
 application using Electron.
 
 
@@ -66,7 +66,7 @@ generate MIDI data.
 ### [Seeing Music](https://experiments.withgoogle.com/seeing-music)
 Created by: **Jay Alan Zimmerman**
 
-An experiment to experience music visually. This is a tool for visualizing music. You can turn on
+An experiment to experience music visually. This is a tool for visualizing music. You can turn on 
 your mic to sing or play sounds. You can also drop in your own audio or video file.
 
 ### [webmidirtc](https://github.com/philmillman/webmidirtc)
@@ -123,7 +123,7 @@ A set of React components to build things with the Web Audio and Web MIDI APIs.
 ### [Sema](https://sema.codes/)
 Created by: **Francisco Bernardo, Chris Kiefer & Thor Magnusson**
 
-Sema is a playground where you can rapidly prototype live coding mini-languages for signal
+Sema is a playground where you can rapidly prototype live coding mini-languages for signal 
 synthesis, machine learning and machine listening.
 
 
