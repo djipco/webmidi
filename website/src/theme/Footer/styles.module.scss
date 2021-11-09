@@ -20,6 +20,12 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
+    @media screen and (max-width: 1000px){
+      flex-direction: column;
+      .copyright{
+        margin-top: var(--spacing-md);
+      }
+    }
     p{
       margin: 0 var(--spacing-md) 0 0;
     }

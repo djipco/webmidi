@@ -11,33 +11,25 @@ function HomepageHero() {
   return (
     <section className="hero">
       <div className="container">
-        <Column
-          type="col-2"
-        >
-          <div className="texts">
-            <h1>{siteConfig.title}</h1>
-            <span>{siteConfig.tagline}</span>
-            <div className="cta">
-              <Button
-                type="button-bg-full"
-                href="./docs/getting-started"
-                target="_self"
-              >Get started - 5 minutes!
-              </Button>
-              <Button
-                type="button-bg-empty"
-                href="./docs"
-                target="_self"
-              >DOCS
-              </Button>
-            </div>
+
+        <div className="texts">
+          <h1>{siteConfig.title}</h1>
+          <span>{siteConfig.tagline}</span>
+          <div className="cta">
+            <Button
+              type="button-bg-full"
+              href="./docs/getting-started"
+              target="_self"
+            >Get started - 5 minutes!
+            </Button>
+            <Button
+              type="button-bg-empty"
+              href="./docs"
+              target="_self"
+            >DOCS
+            </Button>
           </div>
-          <img
-            className="img"
-            src="../../static/img/front-page/animation-placeholder.jpg"
-            alt="placeholer-animation"
-          />
-        </Column>
+        </div>
       </div>
     </section>
   );
@@ -59,7 +51,7 @@ function Presentation() {
           </p>
 
           <div className="media">
-            <img src="../../static/img/front-page/presentation-illustration-keyboard-dark.png" alt=""/>
+            <img src="../../static/img/front-page/presentation-illustration-keyboard-dark.png" alt="illustration d'un keyboard"/>
           </div>
         </Column>
       </div>

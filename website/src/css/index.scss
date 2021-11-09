@@ -5,6 +5,9 @@
   display: flex;
   align-items: center;
   background: var(--color-bg-primary);
+
+  text-align: center;
+
   h1 {
     margin: 0 0 0 -10px;
   }
@@ -20,16 +23,18 @@
     display: flex;
     flex-wrap: wrap;
 
+    justify-content: center;
+
     .Button{
       margin: var(--spacing-sm) 0 0 var(--spacing-sm);
     }
     .Button:nth-child(1){
       margin-left: 0;
     }
-    @media screen and(max-width: 1000px){
+    /*@media screen and(max-width: 1000px){
       justify-content: center;
 
-    }
+    }*/
   }
   .img{
     margin: auto;
@@ -61,11 +66,12 @@
     justify-content: center;
     align-items: center;
 
-    margin: var(--spacing-xl) 0;
+    margin: var(--spacing-xl) auto;
 
     box-shadow: 10px 10px 0px rgba(255, 208, 0, 0.5);
-    img:nth-child(1){
 
+    @media screen and(max-width: 1000px){
+      width: 80%;
     }
   }
 }

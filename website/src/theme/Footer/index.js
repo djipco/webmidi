@@ -71,7 +71,7 @@ function Footer() {
       className={`footer ${styles.footer}`}>
       <div className={`container ${styles.container}`}>
         <div className={styles.sponsor}>
-          <p>This video was produced with <br/>
+          <p>This video was produced with
             financial support from:
           </p>
           <div className={styles.sponsors}>
@@ -83,7 +83,7 @@ function Footer() {
         </div>
         {copyright ? (
           <div
-            className="footer__copyright" // Developer provided the HTML, so assume it's safe.
+            className={`footer__copyright ${styles.copyright}`} // Developer provided the HTML, so assume it's safe.
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: copyright,
