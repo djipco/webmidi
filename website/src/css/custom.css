@@ -29,10 +29,6 @@ html[data-theme=dark] .docusaurus-highlight-code-line {
   height: 3.5rem;
 }
 
-.navbar__logo {
-  height: 4rem;
-}
-
 iframe {
   width: 100%;
   height: 100vh;
