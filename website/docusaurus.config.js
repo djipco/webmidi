@@ -4,7 +4,7 @@ const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 /** @type {import("@docusaurus/types").DocusaurusConfig} */
 module.exports = {
 
-  title: "WebMidi.js",
+  title: "WEBMIDI.js",
   tagline: "Kickstart your JavaScript MIDI projects!",
   url: "https://webmdidijs.org",
   baseUrl: "/webmidi/",
@@ -28,7 +28,7 @@ module.exports = {
     navbar: {
       // title: "My Site",
       logo: {
-        alt: "WebMidi.js",
+        alt: "WEBMIDI.js",
         src: "img/webmidijs-logo-dark.svg",
         srcDark: "img/webmidijs-logo-light.svg",
       },
@@ -104,52 +104,56 @@ module.exports = {
           "aria-label": "Twitter Feed"
         },
 
-
       ]
     },
     footer: {
       style: "dark",
-      // links: [
-      //   {
-      //     title: "Docs",
-      //     items: [
-      //       {
-      //         label: "Tutorial",
-      //         to: "/docs/intro",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     title: "Community",
-      //     items: [
-      //       {
-      //         label: "Stack Overflow",
-      //         href: "https://stackoverflow.com/questions/tagged/docusaurus",
-      //       },
-      //       {
-      //         label: "Discord",
-      //         href: "https://discordapp.com/invite/docusaurus",
-      //       },
-      //       {
-      //         label: "Twitter",
-      //         href: "https://twitter.com/docusaurus",
-      //       },
-      //     ],
-      //   },
-      //   {
-      //     title: "More",
-      //     items: [
-      //       {
-      //         label: "Blog",
-      //         to: "/blog",
-      //       },
-      //       {
-      //         label: "GitHub",
-      //         href: "https://github.com/facebook/docusaurus",
-      //       },
-      //     ],
-      //   },
-      // ],
+      logo: {
+        alt: "WebMidi.js",
+        src: "static/img/webmidijs-logo-dark.svg",
+        srcDark: "static/img/webmidijs-logo-light.svg",
+      },
+      links: [
+        {
+          title: "Docs",
+          items: [
+            {
+              label: "Quick Start",
+              to: "/docs",
+            },
+            {
+              label: "Getting Started",
+              to: "/docs/getting-started",
+            },
+            {
+              label: "Migration",
+              to: "/docs/migration",
+            },
+          ],
+        },
+        {
+          title: "Community",
+          items: [
+            {
+              label: "Showcase",
+              href: "/showcase",
+            },
+            {
+              label: "Twitter",
+              href: "https://twitter.com/webmidijs",
+            },
+          ],
+        },
+        {
+          title: "More",
+          items: [
+            {
+              label: "GitHub",
+              href: "https://github.com/djipco/webmidi",
+            },
+          ],
+        },
+      ],
       copyright: `© 2015-${new Date().getFullYear()} Jean-Philippe Côté`,
     },
     prism: {
@@ -189,7 +193,10 @@ module.exports = {
       "@docusaurus/preset-classic",
       {
         theme: {
-          customCss: require.resolve("./src/css/custom.css"),
+          customCss: [
+            require.resolve("./src/css/custom.scss"),
+            require.resolve("./src/css/index.scss"),
+          ],
         },
         docs: {
           path: "docs",
@@ -213,6 +220,12 @@ module.exports = {
         routeBasePath: "api",
         sidebarPath: require.resolve("./sidebars.js"),
       },
+    ],
+    [
+      "docusaurus-plugin-sass",
+      {
+
+      }
     ],
   ],
 
