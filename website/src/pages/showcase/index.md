@@ -1,3 +1,7 @@
+---
+toc_max_heading_level: 2
+---
+
 # Showcase
 
 WebMidi.js is being used by amazing people to create awesome projects. Here are some examples of 
@@ -89,7 +93,7 @@ Created by: **François Georgy**
 
 Web interface for the Nektar Pacer MIDI controller.
 
-## [Soundshed](https://soundshed.com/)
+### [Soundshed](https://soundshed.com/)
 Created by: **Christopher Cook & Lavabyrd**
 
 A Desktop app to browse and manage guitar amp tones. Control your bluetooth amp, jam to video
