@@ -18,21 +18,21 @@ page on GitHub and submit a pull request.
 ---
 ## DAWs & Editors
 
-### [DAWG](https://dawg.dev/)
-Created by: **Jacob Smith, Amir Eldesoky, Alex ODonnell & Matt DeSilva**
+* ### [DAWG](https://dawg.dev/)
+  Created by: **Jacob Smith, Amir Eldesoky, Alex ODonnell & Matt DeSilva**
 
-Digital Audio Workstation (DAW) application built using web technologies and distributed as a native 
-application using Electron.
+  Digital Audio Workstation (DAW) application built using web technologies and distributed as a native 
+  application using Electron.
 
 
 ## Education
 
-### [Learn Push 2](https://github.com/greyivy/learn-push2-with-svelte)
-Created by: **Ivy**
+* ### [Learn Push 2](https://github.com/greyivy/learn-push2-with-svelte)
+  Created by: **Ivy**
 
-A website to learn chords, scales and music theory with the Push 2 controller.
+  A website to learn chords, scales and music theory with the Push 2 controller.
 
-### [Raaga](https://raaga.riteshkr.com/)
+* ### [Raaga](https://raaga.riteshkr.com/)
 Created by: **Ritesh Kumar, Jack Hsu, Prateek Bhatnagar, Sruthi, Majid Hajian & Rohit Kokate**
 
 An online app to play and learn music on a keyboard.
@@ -100,7 +100,7 @@ A Desktop app to browse and manage guitar amp tones. Control your bluetooth amp,
 backing tracks.
 
 
-## Libraries, Components & Languages
+## Components & Languages
 
 ### [FAUST](https://faust.grame.fr/)
 Created by: **Grame Research Lab**
