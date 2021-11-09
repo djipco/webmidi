@@ -30,7 +30,13 @@ html[data-theme='dark'] .docusaurus-highlight-code-line {
 }
 
 .navbar__brand {
+
   height: 3rem;
+
+  .navbar__logo {
+    height: 3.5rem;
+  }
+
 }
 
 iframe {
