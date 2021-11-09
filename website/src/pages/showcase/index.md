@@ -72,7 +72,7 @@ This project is meant to demonstrate controlling hardware synths using Web MIDI 
 over a WebRTC video call (using Daily.)
 
 
-## Hardware
+## Music Hardware
 
 ### [MicroFreak Reader](https://studiocode.dev/doc/microfreak-reader/)
 Created by: **François Georgy**
@@ -135,3 +135,11 @@ Created by: **Théis Bazin, Sebastian Haas & Gaetan Hadjeres**
 
 An A.I.-powered interactive score distributed as an Electron application. It allows users to
 interact intuitively with any existing music composition algorithm.
+
+## Robotics
+
+### [Dexter Development Environment](https://www.hdrobotic.com/software)
+Created by: **Haddington Dynamics**
+
+The Dexter Development Environment, which is used to control the Dexter 7-axis robot arm, bundles
+WEBMIDI.js for MIDI control of the device. 
