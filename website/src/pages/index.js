@@ -51,7 +51,10 @@ function Presentation() {
           </p>
 
           <div className="media">
-            <img src="img/front-page/presentation-illustration-keyboard-dark.png" alt="illustration d'un keyboard"/>
+            <img
+              src="img/front-page/presentation-illustration-keyboard-dark.png"
+              alt="illustration d'un keyboard"
+            />
           </div>
         </Column>
       </div>
@@ -69,7 +72,13 @@ export default function Home() {
       <HomepageHero />
       <main>
         <InformationBar>
-          <strong>Version 3.0 is coming soon</strong>. <a href="">Subscribe to the newsletter</a> to be notified of its availability
+          <strong>Version 3.0 is coming soon.</strong> <br/>
+          <a
+            rel="noreferrer"
+            target="_blank"
+            href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter">Subscribe to the newsletter
+          </a> <br/>
+          to be notified of its availability.
         </InformationBar>
         <Presentation />
       </main>
