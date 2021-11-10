@@ -54,9 +54,11 @@ const FooterLogo = ({sources, alt, width, height}) => (
 );
 
 function Footer() {
+
   const {siteConfig} = useDocusaurusContext();
   const {footer} = useThemeConfig();
   const {copyright, links = [], logo = {}} = footer || {};
+
   const sources = {
     light: useBaseUrl(logo.src),
     dark: useBaseUrl(logo.srcDark || logo.src),
@@ -65,6 +67,8 @@ function Footer() {
   if (!footer) {
     return null;
   }
+
+  const sponsorLogoPath = useBaseUrl("img/sponsors/edouard-montpetit-logo.svg");
 
   return (
     <footer
@@ -76,8 +80,8 @@ function Footer() {
           </p>
           <div className={styles.sponsors}>
             <img
-              src= "../../../static/img/sponsors/logo-cegep-edouard.svg"
-              alt="logo Cegep Edouard-Montpetit"
+              src={sponsorLogoPath}
+              alt="Cégep Édouard-Montpetit"
             />
           </div>
         </div>
