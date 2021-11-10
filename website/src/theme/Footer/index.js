@@ -75,9 +75,7 @@ function Footer() {
       className={`footer ${styles.footer}`}>
       <div className={`container ${styles.container}`}>
         <div className={styles.sponsor}>
-          <p>This video was produced with
-            financial support from:
-          </p>
+          <p>This project is supported in part by:</p>
           <div className={styles.sponsors}>
             <img
               src={sponsorLogoPath}
