@@ -51,7 +51,7 @@ function Presentation() {
           </p>
 
           <div className="media">
-            <img src="../../static/img/front-page/presentation-illustration-keyboard-dark.png" alt="illustration d'un keyboard"/>
+            <img src="img/front-page/presentation-illustration-keyboard-dark.png" alt="illustration d'un keyboard"/>
           </div>
         </Column>
       </div>

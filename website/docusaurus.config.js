@@ -110,8 +110,8 @@ module.exports = {
       style: "dark",
       logo: {
         alt: "WebMidi.js",
-        src: "static/img/webmidijs-logo-dark.svg",
-        srcDark: "static/img/webmidijs-logo-light.svg",
+        src: "img/webmidijs-logo-dark.svg",
+        srcDark: "img/webmidijs-logo-light.svg",
       },
       links: [
         {
