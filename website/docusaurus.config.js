@@ -1,13 +1,15 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
+const BASE_URL = "/webmidi/";
+
 /** @type {import("@docusaurus/types").DocusaurusConfig} */
 module.exports = {
 
   title: "WEBMIDI.js",
   tagline: "Kickstart your JavaScript MIDI projects!",
   url: "https://webmdidijs.org",
-  baseUrl: "/webmidi/",
+  baseUrl: BASE_URL,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
   favicon: "img/favicon.ico",
@@ -18,7 +20,7 @@ module.exports = {
   scripts: [
     // Inject MailChimp newsletter pop-up in <head>
     {
-      src: "/scripts/mailchimp/newsletter-exit-prompt.js",
+      src: BASE_URL + "scripts/mailchimp/newsletter-exit-prompt.js",
       async: true,
       id: "mcjs"
     }
