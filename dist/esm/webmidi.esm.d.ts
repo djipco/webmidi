@@ -1,3 +1,8 @@
+// Type definitions for WebMidi.js 3.0.0-alpha.22
+// Project: https://webmidijs.org
+// Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+
 /**
  * The `Enumerations` class contains enumerations and arrays of elements used throughout the
  * library. All properties are static and should be referenced using the class name. For example:
@@ -24,7 +29,7 @@ export class Enumerations {
      * @readonly
      * @static
      */
-    static readonly get MIDI_CHANNEL_MESSAGES(): {
+    static get MIDI_CHANNEL_MESSAGES(): {
         noteoff: number;
         noteon: number;
         keyaftertouch: number;
@@ -40,7 +45,7 @@ export class Enumerations {
      * @readonly
      * @static
      */
-    static readonly get MIDI_CHANNEL_NUMBERS(): number[];
+    static get MIDI_CHANNEL_NUMBERS(): number[];
     /**
      * Enumeration of all MIDI channel mode message names and their associated numerical value:
      *
@@ -60,7 +65,7 @@ export class Enumerations {
      * @readonly
      * @static
      */
-    static readonly get MIDI_CHANNEL_MODE_MESSAGES(): {
+    static get MIDI_CHANNEL_MODE_MESSAGES(): {
         allsoundoff: number;
         resetallcontrollers: number;
         localcontrol: number;
@@ -212,7 +217,7 @@ export class Enumerations {
      * @readonly
      * @static
      */
-    static readonly get MIDI_CONTROL_CHANGE_MESSAGES(): {
+    static get MIDI_CONTROL_CHANGE_MESSAGES(): {
         bankselectcoarse: number;
         modulationwheelcoarse: number;
         breathcontrollercoarse: number;
@@ -370,7 +375,7 @@ export class Enumerations {
      * @readonly
      * @static
      */
-    static readonly get MIDI_REGISTERED_PARAMETERS(): {
+    static get MIDI_REGISTERED_PARAMETERS(): {
         pitchbendrange: number[];
         channelfinetuning: number[];
         channelcoarsetuning: number[];
@@ -435,7 +440,7 @@ export class Enumerations {
      * @readonly
      * @static
      */
-    static readonly get MIDI_SYSTEM_MESSAGES(): {
+    static get MIDI_SYSTEM_MESSAGES(): {
         sysex: number;
         timecode: number;
         songposition: number;
@@ -535,7 +540,7 @@ export class Message {
      * @type {Uint8Array}
      * @readonly
      */
-    readonly rawData: Uint8Array;
+    rawData: Uint8Array;
     /**
      * An array containing the bytes of the MIDI message. Each byte is an integer between `0` and
      * `255`.
@@ -543,14 +548,14 @@ export class Message {
      * @type {number[]}
      * @readonly
      */
-    readonly data: number[];
+    data: number[];
     /**
      * The MIDI status byte of the message as an integer between `0` and `255`.
      *
      * @type {number}
      * @readonly
      */
-    readonly statusByte: number;
+    statusByte: number;
     /**
      * A
      * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -561,7 +566,7 @@ export class Message {
      * @type {Uint8Array}
      * @readonly
      */
-    readonly rawDataBytes: Uint8Array;
+    rawDataBytes: Uint8Array;
     /**
      * An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
      * message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
@@ -570,14 +575,14 @@ export class Message {
      * @type {number[]}
      * @readonly
      */
-    readonly dataBytes: number[];
+    dataBytes: number[];
     /**
      * A boolean indicating whether the MIDI message is a channel-specific message.
      *
      * @type {boolean}
      * @readonly
      */
-    readonly isChannelMessage: boolean;
+    isChannelMessage: boolean;
     /**
      * A boolean indicating whether the MIDI message is a system message (not specific to a
      * channel).
@@ -585,7 +590,7 @@ export class Message {
      * @type {boolean}
      * @readonly
      */
-    readonly isSystemMessage: boolean;
+    isSystemMessage: boolean;
     /**
      * An integer identifying the MIDI command. For channel-specific messages, the value will be
      * between `8` and `14`. For system messages, the value will be between `240` and `255`.
@@ -593,7 +598,7 @@ export class Message {
      * @type {number}
      * @readonly
      */
-    readonly command: number;
+    command: number;
     /**
      * The MIDI channel number (`1` - `16`) that the message is targeting. This is only for
      * channel-specific messages. For system messages, this will be left undefined.
@@ -601,7 +606,7 @@ export class Message {
      * @type {number}
      * @readonly
      */
-    readonly channel: number;
+    channel: number;
     /**
      * When the message is a system exclusive message (sysex), this property contains an array with
      * either 1 or 3 entries that identify the manufacturer targeted by the message.
@@ -612,14 +617,14 @@ export class Message {
      * @type {number[]}
      * @readonly
      */
-    readonly manufacturerId: number[];
+    manufacturerId: number[];
     /**
      * The type of message as a string (`"noteon"`, `"controlchange"`, `"sysex"`, etc.)
      *
      * @type {string}
      * @readonly
      */
-    readonly type: string;
+    type: string;
 }
 /**
  * The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
@@ -2458,7 +2463,7 @@ declare class Output {
      * @type {string}
      * @readonly
      */
-    readonly get name(): string;
+    get name(): string;
     /**
      * ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
      * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -2467,35 +2472,35 @@ declare class Output {
      * @type {string}
      * @readonly
      */
-    readonly get id(): string;
+    get id(): string;
     /**
      * Output port's connection state: `"pending"`, `"open"` or `"closed"`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get connection(): string;
+    get connection(): string;
     /**
      * Name of the manufacturer of the device that makes this output port available.
      *
      * @type {string}
      * @readonly
      */
-    readonly get manufacturer(): string;
+    get manufacturer(): string;
     /**
      * State of the output port: `"connected"` or `"disconnected"`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get state(): string;
+    get state(): string;
     /**
      * Type of the output port (`"output"`)
      *
      * @type {string}
      * @readonly
      */
-    readonly get type(): string;
+    get type(): string;
     set octaveOffset(arg: number);
     /**
      * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
@@ -2753,7 +2758,7 @@ declare class WebMidi {
      * @type {?MIDIAccess}
      * @readonly
      */
-    readonly interface: any;
+    interface: any;
     /**
      * Indicates whether argument validation and backwards-compatibility checks are performed
      * throughout the WebMidi.js library for object methods and property setters.
@@ -3028,14 +3033,14 @@ declare class WebMidi {
      * @readonly
      * @type {boolean}
      */
-    readonly get enabled(): boolean;
+    get enabled(): boolean;
     /**
      * An array of all currently available MIDI inputs.
      *
      * @readonly
      * @type {Array}
      */
-    readonly get inputs(): any[];
+    get inputs(): any[];
     /**
      * Indicates whether the current environment is Node.js or not. If you need to check if we are in
      * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
@@ -3075,7 +3080,7 @@ declare class WebMidi {
      * @readonly
      * @type {Array}
      */
-    readonly get outputs(): any[];
+    get outputs(): any[];
     /**
      * Indicates whether the environment provides support for the Web MIDI API or not.
      *
@@ -3088,7 +3093,7 @@ declare class WebMidi {
      * @readonly
      * @type {boolean}
      */
-    readonly get supported(): boolean;
+    get supported(): boolean;
     /**
      * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
      * enabled via the [`enable()`](#enable) method.
@@ -3096,7 +3101,7 @@ declare class WebMidi {
      * @readonly
      * @type boolean
      */
-    readonly get sysexEnabled(): boolean;
+    get sysexEnabled(): boolean;
     /**
      * The elapsed time, in milliseconds, since the time
      * [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
@@ -3109,14 +3114,14 @@ declare class WebMidi {
      * @type {DOMHighResTimeStamp}
      * @readonly
      */
-    readonly get time(): number;
+    get time(): number;
     /**
      * The version of the library as a [semver](https://semver.org/) string.
      *
      * @readonly
      * @type string
      */
-    readonly get version(): string;
+    get version(): string;
     /**
      * @private
      * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
@@ -4743,7 +4748,7 @@ declare class Input {
      * @type {string}
      * @readonly
      */
-    readonly get name(): string;
+    get name(): string;
     /**
      * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
      * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
@@ -4752,21 +4757,21 @@ declare class Input {
      * @type {string}
      * @readonly
      */
-    readonly get id(): string;
+    get id(): string;
     /**
      * Input port's connection state: `pending`, `open` or `closed`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get connection(): string;
+    get connection(): string;
     /**
      * Name of the manufacturer of the device that makes this input port available.
      *
      * @type {string}
      * @readonly
      */
-    readonly get manufacturer(): string;
+    get manufacturer(): string;
     set octaveOffset(arg: number);
     /**
      * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
@@ -4789,14 +4794,14 @@ declare class Input {
      * @type {string}
      * @readonly
      */
-    readonly get state(): string;
+    get state(): string;
     /**
      * The port type. In the case of the `Input` object, this is always: `input`.
      *
      * @type {string}
      * @readonly
      */
-    readonly get type(): string;
+    get type(): string;
     /**
      * @type {boolean}
      * @private
@@ -4854,7 +4859,7 @@ declare class InputChannel {
      * @type {string[]}
      * @readonly
      */
-    static readonly get EVENTS(): string[];
+    static get EVENTS(): string[];
     constructor(input: any, number: any);
     /**
      * @type {Input}
