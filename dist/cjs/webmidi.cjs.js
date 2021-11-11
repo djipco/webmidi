@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.22
+ * WebMidi.js v3.0.0-alpha.23
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on November 11th, 2021.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.22 - November 11, 2021 09:44:49 */
+/* Version: 3.0.0-alpha.23 - November 11, 2021 10:02:15 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8565,7 +8565,7 @@ class WebMidi extends e {
 
 
   get version() {
-    return "3.0.0-alpha.22";
+    return "3.0.0-alpha.23";
   }
   /**
    * @private
