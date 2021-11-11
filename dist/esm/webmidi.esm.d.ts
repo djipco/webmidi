@@ -3,7 +3,11 @@
 // Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
 
-export var __esModule: boolean;
+// Type definitions for WebMidi.js 3.0.0-alpha.22
+// Project: https://webmidijs.org
+// Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
+// Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
+
 /**
  * The `Enumerations` class contains enumerations and arrays of elements used throughout the
  * library. All properties are static and should be referenced using the class name. For example:
@@ -2516,6 +2520,207 @@ declare class Output {
      */
     get octaveOffset(): number;
 }
+/**
+ * Input-wide (system) event emitted when a **system exclusive** message has been received.
+ * You should note that, to receive `sysex` events, you must call the
+ * [`WebMidi.enable()`](WebMidi#enable()) method with the `sysex` option set to `true`:
+ *
+ * ```js
+ * WebMidi.enable({sysex: true})
+ *  .then(() => console.log("WebMidi has been enabled with sysex support."))
+ * ```
+ *
+ * @event Input#sysex
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `sysex`
+ *
+ */
+/**
+ * Input-wide (system) event emitted when a **time code quarter frame** message has been
+ * received.
+ *
+ * @event Input#timecode
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `timecode`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **song position** message has been received.
+ *
+ * @event Input#songposition
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `songposition`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **song select** message has been received.
+ *
+ * @event Input#songselect
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `songselect`
+ * @property {string} song Song (or sequence) number to select (1-128)
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **tune request** message has been received.
+ *
+ * @event Input#tunerequest
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `tunerequest`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **timing clock** message has been received.
+ *
+ * @event Input#clock
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `clock`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **start** message has been received.
+ *
+ * @event Input#start
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `start`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **continue** message has been received.
+ *
+ * @event Input#continue
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `continue`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **stop** message has been received.
+ *
+ * @event Input#stop
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `stop`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when an **active sensing** message has been received.
+ *
+ * @event Input#activesensing
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `activesensing`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when a **reset** message has been received.
+ *
+ * @event Input#reset
+ *
+ * @type {object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `reset`
+ *
+ * @since 2.1
+ */
+/**
+ * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+ * be, for example, one of the undefined/reserved messages.
+ *
+ * @event Input#unknownmidimessage
+ *
+ * @type {Object}
+ *
+ * @property {Input} target The `Input` that triggered the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `unknownmidimessage`
+ *
+ * @since 2.1
+ */
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
