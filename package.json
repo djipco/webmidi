@@ -39,7 +39,7 @@
     "note"
   ],
   "homepage": "https://webmidijs.org",
-  "license": "MIT",
+  "license": "Apache-2.0",
   "webmidi": {
     "name": "WebMidi.js",
     "tagline": "A JavaScript library to kickstart your MIDI projects"
