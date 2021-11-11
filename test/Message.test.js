@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {Message, WebMidi, Enumerations} = require("../dist/webmidi.cjs.js");
+const {Message, WebMidi, Enumerations} = require("../dist/cjs/webmidi.cjs.js");
 
 describe("Message Object", function() {
 

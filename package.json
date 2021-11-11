@@ -2,9 +2,12 @@
   "name": "webmidi",
   "version": "3.0.0-alpha.22",
   "description": "WebMidi.js makes it easy to talk to MIDI instruments from a browser or from Node.js. It simplifies the control of external or virtual MIDI instruments with functions such as playNote(), setPitchBend(), sendControlChange(), etc. It also allows reacting to incoming MIDI messages by adding listeners for user-friendly events such as 'noteon', 'pitchbend', 'songposition', etc.",
-  "main": "dist/webmidi.cjs.min.js",
-  "types": "dist/webmidi.cjs.d.ts",
-  "module": "dist/webmidi.esm.min.js",
+  "main": "./dist/cjs/webmidi.cjs.min.js",
+  "types": "./dist/cjs/webmidi.cjs.d.ts",
+  "exports": {
+    "require": "./dist/cjs/webmidi.cjs.min.js",
+    "import": "./dist/esm/webmidi.esm.min.js"
+  },
   "author": {
     "name": "Jean-Philippe Côté",
     "email": "webmidi@djip.co",

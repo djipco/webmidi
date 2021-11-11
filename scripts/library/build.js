@@ -19,12 +19,12 @@ let cmd = `./node_modules/.bin/rollup ` +
   `--format ${type} `;
 
 // Minified version (with sourcemap)
-let minified = cmd + ` --file dist/webmidi.${type}.min.js ` +
+let minified = cmd + ` --file dist/${type}/webmidi.${type}.min.js ` +
   `--sourcemap ` +
   `--config ${__dirname}/rollup.config.${type}.min.js`;
 
 // Non-minified version
-let normal = cmd + ` --file dist/webmidi.${type}.js ` +
+let normal = cmd + ` --file dist/${type}/webmidi.${type}.js ` +
   `--config ${__dirname}/rollup.config.${type}.js`;
 
 async function execute() {
@@ -34,7 +34,7 @@ async function execute() {
 
   console.info(
     "\x1b[32m", // green font
-    `The "${type}" minified build was saved to "dist/webmidi.${type}.min.js"`,
+    `The "${type}" minified build was saved to "dist/${type}/webmidi.${type}.min.js"`,
     "\x1b[0m"   // reset font
   );
 
@@ -43,7 +43,7 @@ async function execute() {
 
   console.info(
     "\x1b[32m", // green font
-    `The "${type}" non-minified build was saved to "dist/webmidi.${type}.js"`,
+    `The "${type}" non-minified build was saved to "dist/${type}/webmidi.${type}.js"`,
     "\x1b[0m"   // reset font
   );
 

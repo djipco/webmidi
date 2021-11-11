@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {Utilities, WebMidi, Note} = require("../dist/webmidi.cjs.js");
+const {Utilities, WebMidi, Note} = require("../dist/cjs/webmidi.cjs.js");
 
 // VERIFIED
 describe("Utilities Object", function() {

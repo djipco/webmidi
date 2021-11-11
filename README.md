@@ -69,46 +69,56 @@ Support for the Node.js environment has been made possible by the good folks of
 
 ## Flavours
 
-To cater to various needs, WebMidi.js is distributed in 3 different flavours which you can find 
+To cater to various needs, WEBMIDI.js is distributed in 3 different flavours which you can find 
 inside the `dist` folder: 
 
 * **Immediately invoked function expression** (IIFE): This version creates a `WebMidi` object 
-directly in the global namespace. This is the legacy approach which is often easier for beginners.
+directly in the global namespace. This is the legacy approach which may be easier for beginners.
 
 * **ES6 Module** (ESM): This is the modern approach which allows you to `import` the objects as
-needed.
+needed (works in newer versions of browsers and Node.js)
 
-* **CommonJS Module** (CJS): this is the flavour used by Node.js and often with bundling tools 
+* **CommonJS Module** (CJS): this is the flavour used by Node.js and also often with bundling tools 
 such as WebPack.
 
-All 3 flavours also come in a minified version with sourcemap.
+All 3 flavours come in full and minified versions with sourcemap.
 
 ## Installation
 
-Depending on your needs and environment, you can install **WebMidi.js** in a variety of different 
+Depending on your needs and environment, you can install **WEBMIDI.js** in a variety of different 
 ways.
 
 #### CDN
 
-The easiest way to get started is to link the WebMidi.js library from the 
+The fastest way to get started is to link the WebMidi.js library from the 
 [jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (content delivery network). Just add 
 this `<script>` tag to your HTML page:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@3.0.0-alpha.22/dist/iife/webmidi.iife.js"></script>
+
+You can fetch any version and flavour you want in this way. To grab a different flavour change 
+`/dist/iife/webmidi.iife.js` by one of these:
+
+  * `/dist/cjs/webmidi.cjs.js`
+  * `/dist/cjs/webmidi.cjs.min.js`
+  * `/dist/esm/webmidi.esm.js`
+  * `/dist/esm/webmidi.esm.min.js`
+  * `/dist/iife/webmidi.iife.js`
+  * `/dist/iife/webmidi.iife.min.js`
 
 #### Manual Install
 
-Obviously, you can also install **WebMidi.js** the old-fashioned way by downloading the
+Obviously, you can also install **WEBMIDI.js** the old-fashioned way by downloading the
 [latest release](https://github.com/djipco/webmidi/releases) packaged as a zip file. Uncompress the
-package, grab the `./dist/webmidi.iife.js` file and copy it to your project. Link to it from your 
-HTML page using a `<script>` tag as usual. 
+package, grab the `./dist/iife/webmidi.iife.js` file and copy it to your project. Link to it from 
+your HTML page using a `<script>` tag as usual. 
 
 #### NPM Install
 
-Arguably, the easiest approach is to install **WebMidi.js** with NPM. At the root of your project, 
-simply issue the following command to perform the install:
+Arguably, the easiest approach is to install **WEBMIDI.js** with NPM (or Yarn). At the root of your 
+project, simply issue the following command to perform the install:
 
-    npm install webmidi@next
+    npm install webmidi
     
 Then, you can use any of those approaches depending on your environment:
 
@@ -118,8 +128,11 @@ Then, you can use any of those approaches depending on your environment:
     // CommonJS require
     const {WebMidi} = require("webmidi");
  
-    // ES module import
+    // ES module import in browser
     import {WebMidi} from "node_modules/webmidi/dist/webmidi.esm.js";
+
+    // ES module import in Node.js
+    import {WebMidi} from "webmidi";
 
 ## Insecure Origins
 

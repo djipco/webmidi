@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {Message, WebMidi, Note, Forwarder} = require("../dist/webmidi.cjs.js");
+const {Message, WebMidi, Note, Forwarder} = require("../dist/cjs/webmidi.cjs.js");
 const midi = require("midi");
 
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid

@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {WebMidi, Utilities} = require("../dist/webmidi.cjs.js");
+const {WebMidi, Utilities} = require("../dist/cjs/webmidi.cjs.js");
 const midi = require("midi");
 const semver = require("semver");
 

@@ -25,24 +25,24 @@ const argv = require("minimist")(process.argv.slice(2));
 if (["cjs", "esm"].includes(argv.t)) type = argv.t;
 
 if (type === "all" || type === "cjs")
-  targets.push({source: "webmidi.cjs.js", type: "CommonJS"});
+  targets.push({source: "webmidi.cjs.js", name: "cjs", type: "CommonJS"});
 
 if (type === "all" || type === "esm")
-  targets.push({source: "webmidi.esm.js", type: "ES2020"});
+  targets.push({source: "webmidi.esm.js", name: "esm", type: "ES2020"});
 
 async function execute() {
 
   targets.forEach(async target => {
 
     // Generate declaration file
-    const cmd = "npx -p typescript tsc " + path.join(OUT_DIR, target.source) +
+    const cmd = "npx -p typescript tsc " + path.join(OUT_DIR, target.name, target.source) +
       " --declaration --allowJs --emitDeclarationOnly" +
       " --module " + target.type +
-      " --lib ES2020,DOM --outDir " + OUT_DIR;
+      " --lib ES2020,DOM --outDir " + path.join(OUT_DIR, target.name) ;
     await system(cmd);
 
     // Remove readonly flag
-    const file = path.join(OUT_DIR, target.source.replace(".js", ".d.ts"));
+    const file = path.join(OUT_DIR, target.name, target.source.replace(".js", ".d.ts"));
     const options = {
       files: [file],
       from: /readonly /g,
@@ -52,7 +52,7 @@ async function execute() {
 
     // Prepend header for DefinitelyTyped
     await prependFile(file, HEADER);
-    log("Saved " + target.type + " TypeScript declaration file to '" + file+ "'");
+    log("Saved " + target.type + " TypeScript declaration file to '" + file + "'");
 
     // Commit
     await git.add([file]);

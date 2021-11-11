@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {Enumerations} = require("../dist/webmidi.cjs.js");
+const {Enumerations} = require("../dist/cjs/webmidi.cjs.js");
 
 // VERIFIED
 describe("Enumerations Object", function() {
