@@ -567,7 +567,7 @@ specified channels. If no channels are specified, it will send to all channels. 
 is set in the `options` parameter or in the [`Note`](Note) object's
 [`duration`](Note#duration) property, it will also schedule a **note off** message to end
 the note after said duration. If no `duration` is set, the note will simply play until a
-matching **note off** message is sent with [stopNote()](#Output+stopNote) or
+matching **note off** message is sent with [`stopNote()`](#Output+stopNote) or
 [sendNoteOff()](#Output+sendNoteOff).
 
 The execution of the **note on** command can be delayed by using the `time` property of the
