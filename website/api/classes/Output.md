@@ -945,10 +945,10 @@ following common names:
 Note: as you can see above, not all control change message have a matching common name. This
 does not mean you cannot use the others. It simply means you will need to use their number
 (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
-reserved for *channel mode* messages. See [sendChannelMode()](#Output+sendChannelMode)
+reserved for *channel mode* messages. See [`sendChannelMode()`](#Output+sendChannelMode)
 method for more info.
 
-To view a list of all available `control change` messages, please consult "Table 3 - Control
+To view a list of all available **control change** messages, please consult "Table 3 - Control
 Change Messages" from the [MIDI Messages](
 https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
 specification.
