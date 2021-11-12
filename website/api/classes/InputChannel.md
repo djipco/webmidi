@@ -573,7 +573,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`allnotesoff`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
@@ -592,7 +592,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`allsoundoff`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
@@ -710,7 +710,7 @@ off).
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`localcontrol`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |boolean|For local control on, the value is `true`. For local control off, the value is `false`.|
 
@@ -755,7 +755,7 @@ poly mode on).
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`monomode`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
 
@@ -959,7 +959,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"omnimode"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
 
@@ -1021,7 +1021,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`resetallcontrollers`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
 
