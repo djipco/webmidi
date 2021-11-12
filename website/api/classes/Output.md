@@ -114,7 +114,7 @@ Name of the manufacturer of the device that makes this output port available.
 **Attributes**: read-only<br />
 
 
-Name of the MIDI output
+Name of the MIDI output.
 
 
 ### `.octaveOffset` {#octaveOffset}
@@ -125,8 +125,8 @@ Name of the MIDI output
 An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
 is placed on the 4th octave (C4).
 
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-(if any).
+Note that this value is combined with the global offset value defined in
+[`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if any).
 
 
 ### `.state` {#state}
