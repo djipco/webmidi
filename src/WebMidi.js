@@ -1,4 +1,4 @@
-import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
 import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Utilities} from "./Utilities.js";

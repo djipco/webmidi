@@ -54,7 +54,7 @@ global namespace. This is the legacy approach which is often easier for beginner
 * **ES6 Module** (ESM): This is the modern approach which allows you to `import` the objects as
   needed (works in newer versions of browsers and Node.js).
 
-* **CommonJS Module** (CJS): this is the flavour used by Node.js and often with bundling tools
-  such as WebPack.
+* **CommonJS Module** (CJS): this is the flavour traditionnally used by Node.js and often with 
+  bundling tools such as WebPack.
 
 All 3 flavours come in full and minified versions with sourcemap.
