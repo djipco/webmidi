@@ -265,8 +265,8 @@ Returns the `Output` object so methods can be chained.
 **Attributes**: async
 
 Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
-until the output is opened again by calling [`Output.open()`](#Output+open). You can check
-the connection status by looking at the [`connection`](Output#connection) property.
+until the output is opened again by calling [`open()`](#open). You can check
+the connection status by looking at the [`connection`](#connection) property.
 
 
 **Return Value**
