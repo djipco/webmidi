@@ -115,7 +115,7 @@ using C4 as a reference for middle C.
 **Type**: number<br />
 
 
-The octave of the note
+The octave of the note.
 
 
 ### `.rawAttack` {#rawAttack}
@@ -139,7 +139,7 @@ The release velocity of the note as a positive integer between 0 and 127.
 **Type**: number<br />
 
 
-The release velocity of the note as an integer between 0 and 127.
+The release velocity of the note as an integer between 0 and 1.
 
 
 

@@ -37,8 +37,8 @@ instantiated. Instead, you can access all available `Output` objects by referrin
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
 
-Array containing the 16 [OutputChannel](OutputChannel) objects available for this `Output`. The
-channels are numbered 1 through 16.
+Array containing the 16 [`OutputChannel`](OutputChannel) objects available via this
+`Output`. The channels are numbered 1 through 16.
 
 
 ### `.connection` {#connection}
