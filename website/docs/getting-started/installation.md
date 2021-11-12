@@ -10,15 +10,15 @@ different ways. Let's look at all of them.
 ## Linking From CDN
 
 The fastest way to get started is to link the library directly from the
-[jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (Content Delivery Network). Just add
-add a `<script>` tag similar to the one below to your HTML page:
+[jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (Content Delivery Network). Just add a 
+`<script>` tag similar to the one below to your HTML page:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/webmidi/dist/iife/webmidi.iife.js"></script>
 ```
 
-You can retrieve different versions and flavours of the library. To grab a different flavour replace
-`/dist/iife/webmidi.iife.js` by one of these:
+You can retrieve different versions and flavours of the library by modifying the URL. For example, 
+to grab a different flavour replace `/dist/iife/webmidi.iife.js` by one of these:
 
 * `/dist/cjs/webmidi.cjs.js`
 * `/dist/cjs/webmidi.cjs.min.js`
@@ -28,14 +28,14 @@ You can retrieve different versions and flavours of the library. To grab a diffe
 * `/dist/iife/webmidi.iife.min.js`
 
 If you want more control over versions and flavours, check out the 
-[jsDelivr examples](https://www.jsdelivr.com/).
+[jsDelivr examples](https://www.jsdelivr.com/features).
 
 ## Installing Manually
 
 Obviously, you can also install the library the old-fashioned way by manually downloading the
-[latest release](https://github.com/djipco/webmidi/releases) (zip file). Then, simply uncompress the
-package, grab the `./dist/iife/webmidi.iife.js` file and copy it to your project. Link to it from 
-your HTML page using a `<script>` tag as usual.
+[latest release](https://github.com/djipco/webmidi/releases/latest) (zip file). Then, simply 
+uncompress the package, grab the `./dist/iife/webmidi.iife.js` file and copy it to your project. 
+Link to it from your HTML page using a `<script>` tag as usual.
 
 ## Installing with NPM
 
