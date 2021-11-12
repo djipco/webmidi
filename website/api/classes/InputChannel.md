@@ -366,8 +366,8 @@ An array of [`Listener`](Listener) objects.
 Return the playing status of the specified note. The `note` parameter can be an unsigned
 integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`](Note) object.
 
-If a note identifier or Note object is passed in, the method will take into account any
-`octaveOffset` defined.
+If a note identifier or [`Note`](Note)  object is passed in, the method will take into
+account any [`octaveOffset`](#octaveOffset) defined.
 
 
   **Parameters**
