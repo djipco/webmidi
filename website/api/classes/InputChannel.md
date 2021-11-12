@@ -137,9 +137,9 @@ Number** should be dispatched. RPNs and NRPNs are composed of a sequence of spec
 **control change** messages. When a valid sequence of such control change messages is
 received, an [`rpn`](event-rpn) or [`nrpn`](#event-nrpn) event will fire.
 
-If an invalid or
-out-of-order control change message is received, it will fall through the collector logic and
-all buffered control change messages will be discarded as incomplete.
+If an invalid or out-of-order **control change** message is received, it will fall through
+the collector logic and all buffered **control change** messages will be discarded as
+incomplete.
 
 
 
@@ -239,8 +239,8 @@ The newly created [`Listener`](Listener) object.
 ### `.destroy()` {#destroy}
 
 
-Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
-input.
+Destroys the `InputChannel` by removing all listeners and severing the link with the MIDI
+subsystem's input.
 
 
 
@@ -364,7 +364,7 @@ An array of [`Listener`](Listener) objects.
 **Since**: version 3.0.0<br />
 
 Return the playing status of the specified note. The `note` parameter can be an unsigned
-integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [Note](Note) object.
+integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`](Note) object.
 
 If a note identifier or Note object is passed in, the method will take into account any
 `octaveOffset` defined.
