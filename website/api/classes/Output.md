@@ -539,14 +539,15 @@ Returns the `Output` object so methods can be chained.
 
 **Attributes**: async
 
-Opens the output for usage.
+Opens the output for usage. When the library is enabled, all ports are automatically opened.
+This method is only useful for ports that have been manually closed.
 
 
 **Return Value**
 
 > Returns: `Promise.<Output>`<br />
 
-The promise is fulfilled with the `Output`
+The promise is fulfilled with the `Output`.
 
 
 
