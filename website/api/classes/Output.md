@@ -808,7 +808,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendClock(...)` {#sendClock}
 
 
-Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
+Sends a MIDI **clock** real-time message. According to the standard, there are 24 MIDI clocks
 for every quarter note.
 
 
@@ -840,7 +840,7 @@ Returns the `Output` object so methods can be chained.
 
 Sends a **continue** real-time message. This resumes song playback where it was previously
 stopped or where it was last cued with a song position message. To start playback from the
-start, use the [sendStart()](#Output+sendStart)` method.
+start, use the [`sendStart()`](#Output+sendStart)` method.
 
 
   **Parameters**
