@@ -571,7 +571,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"allnotesoff"`|
+  |**`type`** |string|`allnotesoff`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -590,7 +590,7 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"allsoundoff"`|
+  |**`type`** |string|`allsoundoff`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -708,7 +708,7 @@ off).
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"localcontrol"`|
+  |**`type`** |string|`localcontrol`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -753,7 +753,7 @@ poly mode on).
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"monomode"`|
+  |**`type`** |string|`monomode`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -1019,7 +1019,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"resetallcontrollers"`|
+  |**`type`** |string|`resetallcontrollers`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
