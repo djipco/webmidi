@@ -5,14 +5,15 @@ import {Note} from "./Note.js";
 import {Enumerations} from "./Enumerations.js";
 
 /**
- * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
- * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
+ * The `InputChannel` class represents a single MIDI input channel (1-16) from a single input
+ * device. This object is derived from the host's MIDI subsystem and should not be instantiated
+ * directly.
  *
- * All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
+ * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
  * property.
  *
- * @param {Input} input The `Input` object this channel belongs to
- * @param {number} number The MIDI channel's number (1-16)
+ * @param {Input} input The [`Input`](Input) object this channel belongs to.
+ * @param {number} number The channel's MIDI number (1-16).
  *
  * @fires InputChannel#midimessage
  *
@@ -25,7 +26,6 @@ import {Enumerations} from "./Enumerations.js";
  * @fires InputChannel#pitchbend
  * @fires InputChannel#controlchange
  *
- *
  * @fires InputChannel#allnotesoff
  * @fires InputChannel#allsoundoff
  * @fires InputChannel#localcontrol
@@ -34,15 +34,15 @@ import {Enumerations} from "./Enumerations.js";
  * @fires InputChannel#resetallcontrollers
  *
  * @fires InputChannel#event:nrpn
- * @fires InputChannel#nrpn-dataentrycoarse
- * @fires InputChannel#nrpn-dataentryfine
- * @fires InputChannel#nrpn-databuttonincrement
- * @fires InputChannel#nrpn-databuttondecrement
+ * @fires InputChannel#event:nrpn-dataentrycoarse
+ * @fires InputChannel#event:nrpn-dataentryfine
+ * @fires InputChannel#event:nrpn-databuttonincrement
+ * @fires InputChannel#event:nrpn-databuttondecrement
  * @fires InputChannel#event:rpn
- * @fires InputChannel#rpn-dataentrycoarse
- * @fires InputChannel#rpn-dataentryfine
- * @fires InputChannel#rpn-databuttonincrement
- * @fires InputChannel#rpn-databuttondecrement
+ * @fires InputChannel#event:rpn-dataentrycoarse
+ * @fires InputChannel#event:rpn-dataentryfine
+ * @fires InputChannel#event:rpn-databuttonincrement
+ * @fires InputChannel#event:rpn-databuttondecrement
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -1131,7 +1131,15 @@ export class InputChannel extends EventEmitter {
 
       // RPN/NRPN events
       "nrpn",
-      "rpn"
+      "nrpn-dataentrycoarse",
+      "nrpn-dataentryfine",
+      "nrpn-databuttonincrement",
+      "nrpn-databuttondecrement",
+      "rpn",
+      "rpn-dataentrycoarse",
+      "rpn-dataentryfine",
+      "rpn-databuttonincrement",
+      "rpn-databuttondecrement"
 
     ];
   }
