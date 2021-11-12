@@ -87,13 +87,14 @@ export class InputChannel extends EventEmitter {
     this._rpnBuffer = [];
 
     /**
-     * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
-     * are composed of a sequence of specific **control change** messages. When a valid sequence of
-     * such control change messages is received, an `nrpn` event will fire.
+     * Indicates whether events for **Registered Parameter Number** and **Non-Registered Parameter
+     * Number** should be dispatched. RPNs and NRPNs are composed of a sequence of specific
+     * **control change** messages. When a valid sequence of such control change messages is
+     * received, an [`rpn`](event-rpn) or [`nrpn`](#event-nrpn) event will fire.
      *
-     * If an invalid or
-     * out-of-order control change message is received, it will fall through the collector logic and
-     * all buffered control change messages will be discarded as incomplete.
+     * If an invalid or out-of-order **control change** message is received, it will fall through
+     * the collector logic and all buffered **control change** messages will be discarded as
+     * incomplete.
      *
      * @type {boolean}
      */
@@ -109,8 +110,8 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
-   * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
-   * input.
+   * Destroys the `InputChannel` by removing all listeners and severing the link with the MIDI
+   * subsystem's input.
    */
   destroy() {
     this._input = null;
@@ -140,22 +141,12 @@ export class InputChannel extends EventEmitter {
      *
      * @type {object}
      *
+     * @property {string} type `midimessage`
      * @property {Input} target The `InputChannel` that triggered the event.
-     * @property {Message} message A `Message` object containing information about the incoming MIDI
-     * message.
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
-     * @property {string} type `"midimessage"`
-     *
-     * @property {Array} data The MIDI message as an array of 8 bit values (deprecated, use
-     * the `message` object instead).
-     * @property {Uint8Array} rawData The raw MIDI message as a Uint8Array  (deprecated, use
-     * the `message` object instead).
-     * @property {number} event.statusByte The message's status byte  (deprecated, use the `message`
-     * object instead).
-     * @property {?number[]} event.dataBytes The message's data bytes as an array of 0, 1 or 2
-     * integers. This will be null for `sysex` messages (deprecated, use the `message` object
-     * instead).
      */
     this.emit(event.type, event);
 
@@ -187,7 +178,7 @@ export class InputChannel extends EventEmitter {
        * @event InputChannel#noteoff
        *
        * @type {object}
-       * @property {string} type `"noteoff"`
+       * @property {string} type `noteoff`
        *
        * @property {InputChannel} target The object that triggered the event (the
        * [`InputChannel`](InputChannel) object).
@@ -233,21 +224,16 @@ export class InputChannel extends EventEmitter {
        * @event InputChannel#noteon
        *
        * @type {object}
-       * @property {string} type `"noteon"`
-       *
-       * @property {InputChannel} channel The `InputChannel` object that triggered the event.
-       * @property {Array} data The MIDI message as an array of 8 bit values.
-       * @property {InputChannel} input The [`Input`](Input) object where through which the message
-       * was received.
-       * @property {Uint8Array} rawData The raw MIDI message as a `Uint8Array`.
+       * @property {string} type `noteon`
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {Note} note A [`Note`](Note) object containing information such as note name,
-       * octave and attack velocity.
-       *
+       * @property {object} note A [`Note`](Note) object containing information such as note name,
+       * octave and release velocity.
        * @property {number} value The attack velocity amount expressed as a float between 0 and 1.
        * @property {number} rawValue The attack velocity amount expressed as an integer (between 0
        * and 127).
@@ -279,8 +265,8 @@ export class InputChannel extends EventEmitter {
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -320,13 +306,13 @@ export class InputChannel extends EventEmitter {
        * @event InputChannel#controlchange
        *
        * @type {object}
-       * @property {string} type `"controlchange"`
+       * @property {string} type `controlchange`
        * @property {string} subtype The type of control change message that was received.
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -358,8 +344,8 @@ export class InputChannel extends EventEmitter {
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -393,12 +379,12 @@ export class InputChannel extends EventEmitter {
        * @event InputChannel#programchange
        *
        * @type {object}
-       * @property {string} type `"programchange"`
+       * @property {string} type `programchange`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -416,12 +402,12 @@ export class InputChannel extends EventEmitter {
        * @event InputChannel#channelaftertouch
        *
        * @type {object}
-       * @property {string} type `"channelaftertouch"`
+       * @property {string} type `channelaftertouch`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -439,12 +425,12 @@ export class InputChannel extends EventEmitter {
        * @event InputChannel#pitchbend
        *
        * @type {object}
-       * @property {string} type `"pitchbend"`
+       * @property {string} type `pitchbend`
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
-       * @property {Message} message A `Message` object containing information about the incoming
-       * MIDI message.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
@@ -474,12 +460,12 @@ export class InputChannel extends EventEmitter {
      * @event InputChannel#allsoundoff
      *
      * @type {object}
-     * @property {string} type `"allsoundoff"`
+     * @property {string} type `allsoundoff`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
-     * @property {Message} message A `Message` object containing information about the incoming
-     * MIDI message.
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      */
@@ -490,12 +476,12 @@ export class InputChannel extends EventEmitter {
      * @event InputChannel#resetallcontrollers
      *
      * @type {object}
-     * @property {string} type `"resetallcontrollers"`
+     * @property {string} type `resetallcontrollers`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
-     * @property {Message} message A `Message` object containing information about the incoming
-     * MIDI message.
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      */
@@ -508,12 +494,12 @@ export class InputChannel extends EventEmitter {
      * @event InputChannel#localcontrol
      *
      * @type {object}
-     * @property {string} type `"localcontrol"`
+     * @property {string} type `localcontrol`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
-     * @property {Message} message A `Message` object containing information about the incoming
-     * MIDI message.
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      *
@@ -530,12 +516,12 @@ export class InputChannel extends EventEmitter {
      * @event InputChannel#allnotesoff
      *
      * @type {object}
-     * @property {string} type `"allnotesoff"`
+     * @property {string} type `allnotesoff`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
-     * @property {Message} message A `Message` object containing information about the incoming
-     * MIDI message.
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      */
@@ -551,8 +537,8 @@ export class InputChannel extends EventEmitter {
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
-     * @property {Message} message A `Message` object containing information about the incoming
-     * MIDI message.
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      *
@@ -574,12 +560,12 @@ export class InputChannel extends EventEmitter {
      * @event InputChannel#monomode
      *
      * @type {object}
-     * @property {string} type `"monomode"`
+     * @property {string} type `monomode`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
-     * @property {Message} message A `Message` object containing information about the incoming
-     * MIDI message.
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      *
@@ -912,13 +898,13 @@ export class InputChannel extends EventEmitter {
 
 
     /**
-     * Event emitted when any NRPN message is received on the input. There are four types of NRPN
+     * Event emitted when any NRPN message is received on the input. There are four subtypes of NRPN
      * messages:
      *
-     *   * data entry coarse
-     *   * data entry fine
-     *   * data button increment
-     *   * data button decrement
+     *   * `nrpn-dataentrycoarse`
+     *   * `nrpn-dataentryfine`
+     *   * `nrpn-databuttonincrement`
+     *   * `nrpn-databuttondecrement`
      *
      * The parameter to which the message applies can be found in the event's `parameter` property.
      *
@@ -926,7 +912,7 @@ export class InputChannel extends EventEmitter {
      *
      * @type {object}
      *
-     * @property {string} type `"nrpn"`
+     * @property {string} type `nrpn`
      * @property {string} subtype The precise type of NRPN message that was received.
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -941,13 +927,13 @@ export class InputChannel extends EventEmitter {
      */
 
     /**
-     * Event emitted when any RPN message is received on the input. There are four types of RPN
+     * Event emitted when any RPN message is received on the input. There are four subtypes of RPN
      * messages:
      *
-     *   * data entry coarse
-     *   * data entry fine
-     *   * data button increment
-     *   * data button decrement
+     *   * `rpn-dataentrycoarse`
+     *   * `rpn-dataentryfine`
+     *   * `rpn-databuttonincrement`
+     *   * `rpn-databuttondecrement`
      *
      * The parameter to which the message applies can be found in the event's `parameter` property.
      * It is one of the ones defined in
@@ -957,7 +943,7 @@ export class InputChannel extends EventEmitter {
      *
      * @type {object}
      *
-     * @property {string} type `"rpn"`
+     * @property {string} type `rpn`
      * @property {string} subtype The precise type of RPN message that was received.
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1013,12 +999,14 @@ export class InputChannel extends EventEmitter {
 
   /**
    * Return the playing status of the specified note. The `note` parameter can be an unsigned
-   * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
+   * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`]{@link Note} object.
    *
-   * If a note identifier or Note object is passed in, the method will take into account any
-   * `octaveOffset` defined.
+   * If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
+   * defined.
    *
-   * @param [input] {number|string|Note}
+   * @param [input] {number|string|Note} The note to get the state for. The
+   * [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and
+   * [`Note`]{@link Note} objects.
    * @returns {boolean}
    * @since version 3.0.0
    */
@@ -1044,8 +1032,9 @@ export class InputChannel extends EventEmitter {
    * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
    * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
    *
-   * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * and with the value defined on the parent `Input` object.
+   * Note that this value is combined with the global offset value defined by
+   * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) object and with the value defined on the parent
+   * input object with [`Input.octaveOffset`](Input#octaveOffset).
    *
    * @type {number}
    *
@@ -1066,7 +1055,7 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
-   * The [`Input`](Input) this channel belongs to
+   * The [`Input`](Input) this channel belongs to.
    * @type {Input}
    * @since 3.0
    */
@@ -1075,7 +1064,7 @@ export class InputChannel extends EventEmitter {
   }
 
   /**
-   * This channel's MIDI number (1-16)
+   * This channel's MIDI number (1-16).
    * @type {number}
    * @since 3.0
    */
