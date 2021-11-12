@@ -719,7 +719,7 @@ Returns the `Output` object so methods can be chained.
 
 
 Sends an **active sensing** real-time message. This tells the device connected to this port
-that the connection is still good. Active sensing messages should be sent every 300 ms if there
+that the connection is still good. Active sensing messages are often sent every 300 ms if there
 was no other activity on the MIDI port.
 
 
@@ -767,12 +767,12 @@ defaults to 0.
 
 To make it easier, all channel mode messages have a matching helper method:
 
-  - [turnSoundOff()](OutputChannel#turnSoundOff)
-  - [resetAllControllers()](OutputChannel#resetAllControllers)
-  - [setLocalControl()](OutputChannel#turnSoundOff)
-  - [turnNotesOff()](OutputChannel#turnNotesOff)
-  - [setOmniMode()](OutputChannel#setOmniMode)
-  - [setPolyphonicMode()](OutputChannel#setPolyphonicMode)
+  - [`turnSoundOff()`](OutputChannel#turnSoundOff)
+  - [`resetAllControllers()`](OutputChannel#resetAllControllers)
+  - [`setLocalControl()`](OutputChannel#turnSoundOff)
+  - [`turnNotesOff()`](OutputChannel#turnNotesOff)
+  - [`setOmniMode()`](OutputChannel#setOmniMode)
+  - [`setPolyphonicMode()`](OutputChannel#setPolyphonicMode)
 
 
   **Parameters**
