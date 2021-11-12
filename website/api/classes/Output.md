@@ -560,12 +560,12 @@ is the note to play. It can be a single value or an array of the following valid
 
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [Note](Note) object
+ - A [`Note`](Note) object
 
 The `playNote()` method sends a **note on** MIDI message for all specified notes on all
 specified channels. If no channels are specified, it will send to all channels. If a `duration`
-is set in the `options` parameter or in the [Note](Note) object's
-[duration](Note#duration) property, it will also schedule a **note off** message to end
+is set in the `options` parameter or in the [`Note`](Note) object's
+[`duration`](Note#duration) property, it will also schedule a **note off** message to end
 the note after said duration. If no `duration` is set, the note will simply play until a
 matching **note off** message is sent with [stopNote()](#Output+stopNote) or
 [sendNoteOff()](#Output+sendNoteOff).
