@@ -132,9 +132,10 @@ input object with [`Input.octaveOffset`](Input#octaveOffset).
 **Type**: boolean<br />
 
 
-Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
-are composed of a sequence of specific **control change** messages. When a valid sequence of
-such control change messages is received, an `nrpn` event will fire.
+Indicates whether events for **Registered Parameter Number** and **Non-Registered Parameter
+Number** should be dispatched. RPNs and NRPNs are composed of a sequence of specific
+**control change** messages. When a valid sequence of such control change messages is
+received, an [`rpn`](event-rpn) or [`nrpn`](#event-nrpn) event will fire.
 
 If an invalid or
 out-of-order control change message is received, it will fall through the collector logic and
