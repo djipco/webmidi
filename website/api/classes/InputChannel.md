@@ -611,7 +611,7 @@ Event emitted when a control change MIDI message has been received.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`channelaftertouch`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
@@ -633,7 +633,7 @@ Event emitted when a **control change** MIDI message has been received.
   |**`type`** |string|`"controlchange"`|
   |**`subtype`** |string|The type of control change message that was received.|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`controller`** |object||
   |**`controller.number`** |object|The number of the controller.|
@@ -660,7 +660,7 @@ controller number (0-127).
   |**`type`** |string|`controlchange-controllerxxx`|
   |**`subtype`** |string|The type of control change message that was received.|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`controller`** |object||
   |**`controller.number`** |object|The number of the controller.|
@@ -684,7 +684,7 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"keyaftertouch"`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`identifier`** |string|The note identifier of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
   |**`key`** |number|The MIDI note number of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
@@ -979,7 +979,7 @@ Event emitted when a pitch bend MIDI message has been received.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`pitchbend`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 16383).|
@@ -1000,7 +1000,7 @@ Event emitted when a **program change** MIDI message has been received.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`programchange`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
-  |**`message`** |Message|A `Message` object containing information about the incoming MIDI message.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as an integer between 1 and 128.|
   |**`rawValue`** |number|The value expressed as an integer between 0 and 127..|
