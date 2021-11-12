@@ -1,10 +1,11 @@
 
 # InputChannel
 
-The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
-object is derived from the host's MIDI subsystem and cannot be instantiated directly.
+The `InputChannel` class represents a single MIDI input channel (1-16) from a single input
+device. This object is derived from the host's MIDI subsystem and should not be instantiated
+directly.
 
-All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
+All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
 property.
 
 **Since**: 3.0.0
