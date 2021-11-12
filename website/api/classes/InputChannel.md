@@ -732,10 +732,6 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`midimessage`|
-  |**`data`** |Array|The MIDI message as an array of 8 bit values (deprecated, use the `message` object instead).|
-  |**`rawData`** |Uint8Array|The raw MIDI message as a Uint8Array  (deprecated, use the `message` object instead).|
-  |**`event.statusByte`** |number|The message's status byte  (deprecated, use the `message` object instead).|
-  |**`event.dataBytes`** |Array.&lt;number&gt;|The message's data bytes as an array of 0, 1 or 2 integers. This will be null for `sysex` messages (deprecated, use the `message` object instead).|
 
 
 ### `monomode` {#event-monomode}
