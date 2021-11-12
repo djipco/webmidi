@@ -728,10 +728,10 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`midimessage`|
   |**`target`** |Input|The `InputChannel` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`midimessage`|
 
 
 ### `monomode` {#event-monomode}
@@ -769,7 +769,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"noteoff"`|
+  |**`type`** |string|`noteoff`|
   |**`target`** |InputChannel|The object that triggered the event (the [`InputChannel`](InputChannel) object).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment ([`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp)) when the event occurred (in milliseconds since the navigation start of the document).|
