@@ -630,7 +630,7 @@ Event emitted when a **control change** MIDI message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"controlchange"`|
+  |**`type`** |string|`controlchange`|
   |**`subtype`** |string|The type of control change message that was received.|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
