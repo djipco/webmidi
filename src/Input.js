@@ -1,5 +1,5 @@
 import {Enumerations} from "./Enumerations.js";
-import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
 import {Forwarder} from "./Forwarder.js";
 import {InputChannel} from "./InputChannel.js";
 import {Message} from "./Message.js";

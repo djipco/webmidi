@@ -1,4 +1,4 @@
-import {EventEmitter} from "../node_modules/djipevents/dist/djipevents.esm.min.js";
+import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
 import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";

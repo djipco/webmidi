@@ -80,7 +80,7 @@
     "test:WebMidi": "mocha test/WebMidi.test.js"
   },
   "dependencies": {
-    "djipevents": "^1.0.0"
+    "djipevents": "^2.0.1"
   },
   "optionalDependencies": {
     "jzz": "^1.4.5"
