@@ -92,7 +92,7 @@ Whether or not the execution of callbacks is currently suspended for this emitte
 **Type**: Input<br />
 
 
-The [`Input`](Input) this channel belongs to
+The [`Input`](Input) this channel belongs to.
 
 
 ### `.notesState` {#notesState}
@@ -108,7 +108,7 @@ Contains the current playing state of all MIDI notes of this channel (0-127). Th
 **Type**: number<br />
 
 
-This channel's MIDI number (1-16)
+This channel's MIDI number (1-16).
 
 
 ### `.octaveOffset` {#octaveOffset}
@@ -123,8 +123,9 @@ octave (C4).
 If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
 `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
 
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-and with the value defined on the parent `Input` object.
+Note that this value is combined with the global offset value defined by
+[`WebMidi.octaveOffset`](WebMidi#octaveOffset) object and with the value defined on the parent
+input object with [`Input.octaveOffset`](Input#octaveOffset).
 
 
 ### `.parameterNumberEventsEnabled` {#parameterNumberEventsEnabled}
