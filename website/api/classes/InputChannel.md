@@ -808,10 +808,10 @@ Event emitted when a **note on** MIDI message has been received.
 Event emitted when any NRPN message is received on the input. There are four types of NRPN
 messages:
 
-  * data entry coarse
-  * data entry fine
-  * data button increment
-  * data button decrement
+  * `nrpn-dataentrycoarse`
+  * `nrpn-dataentryfine`
+  * `nrpn-databuttonincrement`
+  * `nrpn-databuttondecrement`
 
 The parameter to which the message applies can be found in the event's `parameter` property.
 
@@ -821,7 +821,7 @@ The parameter to which the message applies can be found in the event's `paramete
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"nrpn"`|
+  |**`type`** |string|`nrpn`|
   |**`subtype`** |string|The precise type of NRPN message that was received.|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -1026,10 +1026,10 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 Event emitted when any RPN message is received on the input. There are four types of RPN
 messages:
 
-  * data entry coarse
-  * data entry fine
-  * data button increment
-  * data button decrement
+  * `rpn-dataentrycoarse`
+  * `rpn-dataentryfine`
+  * `rpn-databuttonincrement`
+  * `rpn-databuttondecrement`
 
 The parameter to which the message applies can be found in the event's `parameter` property.
 It is one of the ones defined in
@@ -1041,7 +1041,7 @@ It is one of the ones defined in
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`"rpn"`|
+  |**`type`** |string|`rpn`|
   |**`subtype`** |string|The precise type of RPN message that was received.|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
