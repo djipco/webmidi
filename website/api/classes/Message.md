@@ -35,7 +35,7 @@ easy to make sense of the binary data it contains.
 
 
 The MIDI channel number (`1` - `16`) that the message is targeting. This is only for
-channel-specific messages. For system messages, this will be left undefined.
+channel-specific messages. For system messages, this will be left `undefined`.
 
 
 ### `.command` {#command}
@@ -43,8 +43,9 @@ channel-specific messages. For system messages, this will be left undefined.
 **Attributes**: read-only<br />
 
 
-An integer identifying the MIDI command. For channel-specific messages, the value will be
-between `8` and `14`. For system messages, the value will be between `240` and `255`.
+An integer identifying the MIDI command. For channel-specific messages, the value is 4-bit
+and will be between `8` and `14`. For system messages, the value will be between `240` and
+`255`.
 
 
 ### `.data` {#data}
@@ -52,8 +53,8 @@ between `8` and `14`. For system messages, the value will be between `240` and `
 **Attributes**: read-only<br />
 
 
-An array containing the bytes of the MIDI message. Each byte is an integer between `0` and
-`255`.
+An array containing all the bytes of the MIDI message. Each byte is an integer between `0`
+and `255`.
 
 
 ### `.dataBytes` {#dataBytes}
@@ -61,9 +62,9 @@ An array containing the bytes of the MIDI message. Each byte is an integer betwe
 **Attributes**: read-only<br />
 
 
-An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
-message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
-byte so only the actual data is included.
+An array of the the data byte(s) of the MIDI message (as opposed to the status byte). When
+the message is a system exclusive message (sysex), `dataBytes` explicitly excludes the
+manufacturer ID and the sysex end byte so only the actual data is included.
 
 
 ### `.isChannelMessage` {#isChannelMessage}

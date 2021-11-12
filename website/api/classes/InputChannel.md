@@ -805,7 +805,7 @@ Event emitted when a **note on** MIDI message has been received.
 <a id="event:nrpn"></a>
 
 
-Event emitted when any NRPN message is received on the input. There are four types of NRPN
+Event emitted when any NRPN message is received on the input. There are four subtypes of NRPN
 messages:
 
   * `nrpn-dataentrycoarse`
@@ -1023,7 +1023,7 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 <a id="event:rpn"></a>
 
 
-Event emitted when any RPN message is received on the input. There are four types of RPN
+Event emitted when any RPN message is received on the input. There are four subtypes of RPN
 messages:
 
   * `rpn-dataentrycoarse`

@@ -65,7 +65,7 @@ method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
 **Type**: string<br />
 
 
-The accidental (#, ##, b or bb) of the note
+The accidental (#, ##, b or bb) of the note.
 
 
 ### `.attack` {#attack}
@@ -73,7 +73,7 @@ The accidental (#, ##, b or bb) of the note
 **Type**: number<br />
 
 
-The attack velocity of the note as an integer between 0 and 127.
+The attack velocity of the note as an integer between 0 and 1.
 
 
 ### `.duration` {#duration}
@@ -106,8 +106,8 @@ The name (letter) of the note
 **Type**: number<br />
 
 
-The MIDI number of the note. This number is derived from the note identifier using C4 as a
-reference for middle C.
+The MIDI number of the note (`0` - `127`). This number is derived from the note identifier
+using C4 as a reference for middle C.
 
 
 ### `.octave` {#octave}
