@@ -1313,14 +1313,9 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setSongPosition(value?: number, options?: {
+    sendSongPosition(value?: number, options?: {
         time?: number | string;
     }): Output;
-    /**
-     * @private
-     * @deprecated since version 3.0
-     */
-    private sendSongPosition;
     /**
      * Sends a **song select** MIDI message.
      *
@@ -1341,14 +1336,9 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setSong(value?: number, options?: {
+    sendSongSelect(value?: number, options?: {
         time?: number | string;
     }): Output;
-    /**
-     * @private
-     * @deprecated since version 3.0
-     */
-    private sendSongSelect;
     /**
      * Sends a MIDI **tune request** real-time message.
      *
@@ -1519,16 +1509,11 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setKeyAftertouch(note: number | Note | string | number[] | Note[] | string[], pressure?: number, options?: {
+    sendKeyAftertouch(note: number | Note | string | number[] | Note[] | string[], pressure?: number, options?: {
         channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
     }, legacy?: {}): Output;
-    /**
-     * @private
-     * @deprecated since version 3.0
-     */
-    private sendKeyAftertouch;
     /**
      * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
      * control change message to send can be specified numerically (0-127) or by using one of the
@@ -1727,10 +1712,15 @@ declare class Output {
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
-    setRegisteredParameter(parameter: string | number[], data?: number | number[], options?: {
+    sendRpnValue(parameter: string | number[], data?: number | number[], options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setRegisteredParameter;
     /**
      * Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
      * aftertouch, you should instead use [`setKeyAftertouch()`]{@link #setKeyAftertouch}.
@@ -1758,16 +1748,11 @@ declare class Output {
      * @return {Output} Returns the `Output` object so methods can be chained.
      * @since 3.0.0
      */
-    setChannelAftertouch(pressure?: number, options?: {
+    sendChannelAftertouch(pressure?: number, options?: {
         channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
     }, legacy?: {}): Output;
-    /**
-     * @private
-     * @deprecated since version 3.0
-     */
-    private sendChannelAftertouch;
     /**
      * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
      *
@@ -1806,16 +1791,11 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setPitchBend(value: number | number[], options?: {
+    sendPitchBend(value: number | number[], options?: {
         channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
     }, legacy?: {}): Output;
-    /**
-     * @private
-     * @deprecated since version 3.0
-     */
-    private sendPitchBend;
     /**
      * Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
      *
@@ -1841,15 +1821,10 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setProgram(program?: number, options?: {
+    sendProgramChange(program?: number, options?: {
         channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
-    /**
-     * @private
-     * @deprecated since version 3.0
-     */
-    private sendProgramChange;
     /**
      * Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
      * depth of their modulation wheel's range. The range can be specified with the `semitones`
@@ -1880,10 +1855,15 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setModulationRange(semitones?: number, cents?: number, options?: {
+    sendModulationRange(semitones?: number, cents?: number, options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setModulationRange;
     /**
      * Sends a master tuning message to the specified channel(s). The value is decimal and must be
      * larger than `-65` semitones and smaller than `64` semitones.
@@ -1915,10 +1895,15 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setMasterTuning(value?: number, options?: {
+    sendMasterTuning(value?: number, options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setMasterTuning;
     /**
      * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
      * *MIDI Tuning Standard*, which is not widely implemented.
@@ -1944,10 +1929,15 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setTuningProgram(value: number, options?: {
+    sendTuningProgram(value: number, options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setTuningProgram;
     /**
      * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
      * *MIDI Tuning Standard*, which is not widely implemented.
@@ -1973,10 +1963,15 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setTuningBank(value?: number, options?: {
+    sendTuningBank(value?: number, options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setTuningBank;
     /**
      * Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
      * send can be specified numerically or by using one of the following common names:
@@ -2049,10 +2044,10 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    turnSoundOff(options?: {
+    sendAllSoundOff(options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
     /**
      * Sends an **all notes off** channel mode message. This will make all currently playing notes
      * fade out just as if their key had been released. This is different from the
@@ -2075,10 +2070,10 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    turnNotesOff(options?: {
+    sendAllNotesOff(options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
     /**
      * Sends a **reset all controllers** channel mode message. This resets all controllers, such as
      * the pitch bend, to their default value.
@@ -2126,7 +2121,7 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setPolyphonicMode(mode: string, options?: {
+    sendPolyphonicMode(mode: string, options?: {
         channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
@@ -2155,7 +2150,7 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setLocalControl(state?: boolean, options?: {
+    sendLocalControl(state?: boolean, options?: {
         channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
@@ -2188,7 +2183,7 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setOmniMode(state?: boolean, options?: {
+    sendOmniMode(state?: boolean, options?: {
         channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
@@ -2248,10 +2243,15 @@ declare class Output {
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
-    setNonRegisteredParameter(parameter: number[], data?: number | number[], options?: {
+    sendNrpnValue(parameter: number[], data?: number | number[], options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setNonRegisteredParameter;
     /**
      * Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
      * names that can be used with this method:
@@ -3762,7 +3762,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setMasterTuning(value?: number, options?: {
+    sendMasterTuning(value?: number, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -3785,7 +3785,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setModulationRange(semitones: number, cents?: number, options?: {
+    sendModulationRange(semitones: number, cents?: number, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -3832,7 +3832,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setNonRegisteredParameter(nrpn: any, data?: number | number[], options?: {
+    sendNrpnValue(nrpn: any, data?: number | number[], options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -3970,7 +3970,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setRegisteredParameter(rpn: string | number[], data?: number | number[], options?: {
+    sendRpnValue(rpn: string | number[], data?: number | number[], options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -3991,7 +3991,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setTuningBank(value: number, options?: {
+    sendTuningBank(value: number, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4012,7 +4012,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setTuningProgram(value: number, options?: {
+    sendTuningProgram(value: number, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4051,7 +4051,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    turnNotesOff(options?: {
+    sendAllNotesOff(options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4068,7 +4068,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    turnSoundOff(options?: {
+    sendAllSoundOff(options?: {
         time?: number | string;
     }): OutputChannel;
     /**
