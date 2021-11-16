@@ -1620,7 +1620,7 @@ below its nominal value.
     |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The intensity of the bend (between `-1.0` and `1.0`). A value of `0` means no bend. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between `0` and `127` (MSB) or an array of two integers between `0` and `127` representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB).|
+    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between `-1.0` and `1.0` (default) or as raw integer between `0` and 127` (or an array of 2 integers if using both MSB and LSB).|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1639,8 +1639,8 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-adjust the range used by their pitch bend lever. The range is specified by using the
+Sends a **pitch bend range** message to the specified channel(s) at the scheduled time so that
+they adjust the range used by their pitch bend lever. The range is specified by using the
 `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
 means that the pitch bend range will be 12 semitones above and below the nominal pitch.
 
@@ -1653,8 +1653,8 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`semitones`** | number<br /> ||The desired adjustment value in semitones (between 0 and 127). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
-    |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0-127).|
+    |**`semitones`** | number<br /> ||The desired adjustment value in semitones (between `0` and `127`). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
+    |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between `0` and `127`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
@@ -1678,8 +1678,8 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
-and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
+Sets the polyphonic mode. In `poly` mode (usually the default), multiple notes can be played
+and heard at the same time. In `mono` mode, only one note will be heard at once even if
 multiple notes are being played.
 
 
@@ -1691,7 +1691,7 @@ multiple notes are being played.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`mode`** | string<br /> ||The mode to use: `"mono"` or `"poly"`.|
+    |**`mode`** | string<br /> ||The mode to use: `mono` or `poly`.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
