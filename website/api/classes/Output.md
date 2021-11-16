@@ -992,14 +992,17 @@ Returns the `Output` object so methods can be chained.
 
 
 Sends a **note off** message for the specified MIDI note number on the specified channel(s).
-The first parameter is the number. It can be a single value or an array of the following valid
-values:
+The first parameter is the note to stop. It can be a single value or an array of the following
+valid values:
 
  - A MIDI note number (integer between `0` and `127`)
- - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+ - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
 
  The execution of the **note off** command can be delayed by using the `time` property of the
 `options` parameter.
+
+**Note:** If you wish to specify the note to stop by using a [`Note`](Note) object, use the
+[`stopNote()`](#stopNote) method instead.
 
 
   **Parameters**
@@ -1956,13 +1959,13 @@ This is an alias to the [sendNoteOff()](#Output+sendNoteOff) method.
 
   **Parameters**
 
-  > Signature: `stopNote(note, options)`
+  > Signature: `stopNote(The, options)`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** |  |||
+    |**`The`** | number<br />string<br />Note<br /> ||note to stop|
     |**`options`** |  |||
 
   </div>
