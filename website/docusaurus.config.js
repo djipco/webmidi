@@ -180,7 +180,7 @@ module.exports = {
     announcementBar: {
       id: "github-banner",
       content: "<a target='_blank' href='https://github.com/sponsors/djipco'>" +
-        "<strong>Sponsor</strong></a> ❤️ WebMidi.js on GitHub!"
+        "<strong>Sponsor</strong></a> ❤️ WEBMIDI.js on GitHub!"
     },
     gtag: {
       trackingID: "UA-162785934-1",
