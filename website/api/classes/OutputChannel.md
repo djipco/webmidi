@@ -637,14 +637,14 @@ To make it easier, all channel mode messages have a matching helper method:
 
   **Parameters**
 
-  > Signature: `sendChannelMode(command, value, [options])`
+  > Signature: `sendChannelMode(command, [value], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`command`** | number<br />string<br /> ||The numerical identifier of the channel mode message (integer between 120-127) or its name as a string.|
-    |**`value`** | number<br /> ||The value to send (integer between 0-127).|
+    |[**`value`**] | number<br /> |0|The value to send (integer between 0-127).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
