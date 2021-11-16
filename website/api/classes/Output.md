@@ -1723,7 +1723,7 @@ Sends a MIDI **program change** message to the specified channel(s) at the sched
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`program`**] | number<br /> |1|The MIDI patch (program) number (integer between `0` and `127`).|
+    |[**`program`**] | number<br /> |0|The MIDI patch (program) number (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
