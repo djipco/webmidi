@@ -1772,7 +1772,7 @@ limited number of them:
 | (0x3D, 0x07) | `panspreadangle`         |
 | (0x3D, 0x08) | `rollangle`              |
 
-Note that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning
+Note that the `tuningprogram` and `tuningbank` parameters are part of the *MIDI Tuning
 Standard*, which is not widely implemented.
 
 
@@ -1808,10 +1808,6 @@ Returns the `Output` object so methods can be chained.
 
 Sends a **song select** MIDI message.
 
-**Note**: since version 3.0, the song number is an integer between 1 and 128. In versions 1.0
-and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices that
-use a numbering scheme starting at 1.
-
 
   **Parameters**
 
@@ -1821,7 +1817,7 @@ use a numbering scheme starting at 1.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** | number<br /> ||The number of the song to select (integer between 1 and 128).|
+    |**`value`** | number<br /> ||The number of the song to select (integer between `0` and `127`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -1836,15 +1832,15 @@ Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
-  * The song number must be between 1 and 128.
+  * The song number must be between 0 and 127.
 
 
 ### `.setSongPosition(...)` {#setSongPosition}
 
 **Since**: 3.0.0<br />
 
-Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
-16383) which are 16th note. Position 0 is always the start of the song.
+Sends a **song position** MIDI message. The value is expressed in MIDI beats (between `0` and
+`16383`) which are 16th note. Position `0` is always the start of the song.
 
 
   **Parameters**
@@ -1855,7 +1851,7 @@ Sends a **ong position** MIDI message. The value is expressed in MIDI beats (bet
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`value`**] | number<br /> |0|The MIDI beat to cue to (integer between 0 and 16383).|
+    |[**`value`**] | number<br /> |0|The MIDI beat to cue to (integer between `0` and `16383`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
