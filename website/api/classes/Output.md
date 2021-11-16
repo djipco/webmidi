@@ -315,7 +315,7 @@ names that can be used with this method:
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter"s name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
+    |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
     |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
@@ -555,7 +555,7 @@ This method is only useful for ports that have been manually closed.
 
 > Returns: `Promise.<Output>`<br />
 
-The promise is fulfilled with the `Output`.
+The promise is fulfilled with the `Output` object.
 
 
 
@@ -563,7 +563,12 @@ The promise is fulfilled with the `Output`.
 ### `.playNote(...)` {#playNote}
 
 
-Plays a note or an array of notes on one or more channels of this output. The first parameter
+Plays a note or an array of notes on one or more channels of this output. If you intend to play
+notes on a single channel, you should probably use
+[`OutputChannel.playNote()`](OutputChannel#playNote) instead.
+
+
+The first parameter
 is the note to play. It can be a single value or an array of the following valid values:
 
  - A MIDI note number (integer between `0` and `127`)
