@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 08:29:29 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 09:47:53 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2334,10 +2334,10 @@ class OutputChannel extends e {
    *   - [setOmniMode()]{@link Output#setOmniMode}
    *   - [setPolyphonicMode()]{@link Output#setPolyphonicMode}
    *
-   * @param command {number|string} The numerical identifier of the channel mode message (integer
+   * @param {number|string} command The numerical identifier of the channel mode message (integer
    * between 120-127) or its name as a string.
    *
-   * @param value {number} The value to send (integer between 0-127).
+   * @param {number} [value=0] The value to send (integer between 0-127).
    *
    * @param {object} [options={}]
    *
@@ -2351,7 +2351,7 @@ class OutputChannel extends e {
    */
 
 
-  sendChannelMode(command, value, options = {}) {
+  sendChannelMode(command, value = 0, options = {}) {
     // Normalize command to integer
     if (typeof command === "string") command = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[command];
 
@@ -3854,85 +3854,83 @@ class Output extends e {
    * control change message to send can be specified numerically (0-127) or by using one of the
    * following common names:
    *
-   *  * `bankselectcoarse` (#0)
-   *  * `modulationwheelcoarse` (#1)
-   *  * `breathcontrollercoarse` (#2)
-   *  * `footcontrollercoarse` (#4)
-   *  * `portamentotimecoarse` (#5)
-   *  * `dataentrycoarse` (#6)
-   *  * `volumecoarse` (#7)
-   *  * `balancecoarse` (#8)
-   *  * `pancoarse` (#10)
-   *  * `expressioncoarse` (#11)
-   *  * `effectcontrol1coarse` (#12)
-   *  * `effectcontrol2coarse` (#13)
-   *  * `generalpurposeslider1` (#16)
-   *  * `generalpurposeslider2` (#17)
-   *  * `generalpurposeslider3` (#18)
-   *  * `generalpurposeslider4` (#19)
-   *  * `bankselectfine` (#32)
-   *  * `modulationwheelfine` (#33)
-   *  * `breathcontrollerfine` (#34)
-   *  * `footcontrollerfine` (#36)
-   *  * `portamentotimefine` (#37)
-   *  * `dataentryfine` (#38)
-   *  * `volumefine` (#39)
-   *  * `balancefine` (#40)
-   *  * `panfine` (#42)
-   *  * `expressionfine` (#43)
-   *  * `effectcontrol1fine` (#44)
-   *  * `effectcontrol2fine` (#45)
-   *  * `holdpedal` (#64)
-   *  * `portamento` (#65)
-   *  * `sustenutopedal` (#66)
-   *  * `softpedal` (#67)
-   *  * `legatopedal` (#68)
-   *  * `hold2pedal` (#69)
-   *  * `soundvariation` (#70)
-   *  * `resonance` (#71)
-   *  * `soundreleasetime` (#72)
-   *  * `soundattacktime` (#73)
-   *  * `brightness` (#74)
-   *  * `soundcontrol6` (#75)
-   *  * `soundcontrol7` (#76)
-   *  * `soundcontrol8` (#77)
-   *  * `soundcontrol9` (#78)
-   *  * `soundcontrol10` (#79)
-   *  * `generalpurposebutton1` (#80)
-   *  * `generalpurposebutton2` (#81)
-   *  * `generalpurposebutton3` (#82)
-   *  * `generalpurposebutton4` (#83)
-   *  * `reverblevel` (#91)
-   *  * `tremololevel` (#92)
-   *  * `choruslevel` (#93)
-   *  * `celestelevel` (#94)
-   *  * `phaserlevel` (#95)
-   *  * `databuttonincrement` (#96)
-   *  * `databuttondecrement` (#97)
-   *  * `nonregisteredparametercoarse` (#98)
-   *  * `nonregisteredparameterfine` (#99)
-   *  * `registeredparametercoarse` (#100)
-   *  * `registeredparameterfine` (#101)
+   * | Number | Name                          |
+   * |--------|-------------------------------|
+   * | 0      |`bankselectcoarse`             |
+   * | 1      |`modulationwheelcoarse`        |
+   * | 2      |`breathcontrollercoarse`       |
+   * | 4      |`footcontrollercoarse`         |
+   * | 5      |`portamentotimecoarse`         |
+   * | 6      |`dataentrycoarse`              |
+   * | 7      |`volumecoarse`                 |
+   * | 8      |`balancecoarse`                |
+   * | 10     |`pancoarse`                    |
+   * | 11     |`expressioncoarse`             |
+   * | 12     |`effectcontrol1coarse`         |
+   * | 13     |`effectcontrol2coarse`         |
+   * | 18     |`generalpurposeslider3`        |
+   * | 19     |`generalpurposeslider4`        |
+   * | 32     |`bankselectfine`               |
+   * | 33     |`modulationwheelfine`          |
+   * | 34     |`breathcontrollerfine`         |
+   * | 36     |`footcontrollerfine`           |
+   * | 37     |`portamentotimefine`           |
+   * | 38     |`dataentryfine`                |
+   * | 39     |`volumefine`                   |
+   * | 40     |`balancefine`                  |
+   * | 42     |`panfine`                      |
+   * | 43     |`expressionfine`               |
+   * | 44     |`effectcontrol1fine`           |
+   * | 45     |`effectcontrol2fine`           |
+   * | 64     |`holdpedal`                    |
+   * | 65     |`portamento`                   |
+   * | 66     |`sustenutopedal`               |
+   * | 67     |`softpedal`                    |
+   * | 68     |`legatopedal`                  |
+   * | 69     |`hold2pedal`                   |
+   * | 70     |`soundvariation`               |
+   * | 71     |`resonance`                    |
+   * | 72     |`soundreleasetime`             |
+   * | 73     |`soundattacktime`              |
+   * | 74     |`brightness`                   |
+   * | 75     |`soundcontrol6`                |
+   * | 76     |`soundcontrol7`                |
+   * | 77     |`soundcontrol8`                |
+   * | 78     |`soundcontrol9`                |
+   * | 79     |`soundcontrol10`               |
+   * | 80     |`generalpurposebutton1`        |
+   * | 81     |`generalpurposebutton2`        |
+   * | 82     |`generalpurposebutton3`        |
+   * | 83     |`generalpurposebutton4`        |
+   * | 91     |`reverblevel`                  |
+   * | 92     |`tremololevel`                 |
+   * | 93     |`choruslevel`                  |
+   * | 94     |`celestelevel`                 |
+   * | 95     |`phaserlevel`                  |
+   * | 96     |`databuttonincrement`          |
+   * | 97     |`databuttondecrement`          |
+   * | 98     |`nonregisteredparametercoarse` |
+   * | 99     |`nonregisteredparameterfine`   |
+   * | 100    |`registeredparametercoarse`    |
+   * | 101    |`registeredparameterfine`      |
+   * | 120    |`allsoundoff`                  |
+   * | 121    |`resetallcontrollers`          |
+   * | 122    |`localcontrol`                 |
+   * | 123    |`allnotesoff`                  |
+   * | 124    |`omnimodeoff`                  |
+   * | 125    |`omnimodeon`                   |
+   * | 126    |`monomodeon`                   |
+   * | 127    |`polymodeon`                   |
    *
-   *  * `allsoundoff` (#120)
-   *  * `resetallcontrollers` (#121)
-   *  * `localcontrol` (#122)
-   *  * `allnotesoff` (#123)
-   *  * `omnimodeoff` (#124)
-   *  * `omnimodeon` (#125)
-   *  * `monomodeon` (#126)
-   *  * `polymodeon` (#127)
+   * Note: as you can see above, not all control change message have a matching name. This does not
+   * mean you cannot use the others. It simply means you will need to use their number (`0` - `127`)
+   * instead of their name. While you can still use them, numbers `120` to `127` are usually
+   * reserved for *channel mode* messages. See [`sendChannelMode()`]{@link #sendChannelMode} method
+   * for more info.
    *
-   * Note: as you can see above, not all control change message have a matching common name. This
-   * does not mean you cannot use the others. It simply means you will need to use their number
-   * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
-   * reserved for *channel mode* messages. See [`sendChannelMode()`]{@link Output#sendChannelMode}
-   * method for more info.
-   *
-   * To view a list of all available **control change** messages, please consult "Table 3 - Control
-   * Change Messages" from the [MIDI Messages](
-   * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
-   * specification.
+   * To view a list of all available **control change** messages, please consult [Table 3 - Control
+   * Change Messages](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+   * from the MIDI specification.
    *
    * @param controller {number|string} The MIDI controller name or number (0-127).
    *
@@ -4510,10 +4508,10 @@ class Output extends e {
    * may require a value that's not zero. For that reason, the `value` parameter is optional and
    * defaults to 0.
    *
-   * @param command {number|string} The numerical identifier of the channel mode message (integer
+   * @param {number|string} command The numerical identifier of the channel mode message (integer
    * between 120-127) or its name as a string.
    *
-   * @param [value] {number} The value to send (integer between 0-127).
+   * @param {number} [value=0] The value to send (integer between 0-127).
    *
    * @param {Object} [options={}]
    *
@@ -4535,7 +4533,7 @@ class Output extends e {
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
    */
-  sendChannelMode(command, value, options = {}, legacy = {}) {
+  sendChannelMode(command, value = 0, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -5001,19 +4999,20 @@ class Output extends e {
   }
   /**
    * Sends a **note off** message for the specified MIDI note number on the specified channel(s).
-   * The first parameter is the number. It can be a single value or an array of the following valid
-   * values:
+   * The first parameter is the note to stop. It can be a single value or an array of the following
+   * valid values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
-   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A [`Note`](Note) object
    *
    *  The execution of the **note off** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * @param note {number|string|number[]|string[]} The note(s) to stop. The notes can be specified
-   * by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the
-   * previous types. When using a note name, octave range must be between -1 and 9. The lowest note
-   * is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) to stop. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array
+   * of the previous types. When using a note name, octave range must be between -1 and 9. The
+   * lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
    *
    * @param {Object} [options={}]
    *
@@ -5051,21 +5050,53 @@ class Output extends e {
       }
     }
 
-    if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS; // This actually supports passing a Note object even if, semantically, this does not make sense.
-
+    if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendNoteOff(note, options);
     });
     return this;
   }
   /**
-   * This is an alias to the [sendNoteOff()]{@link Output#sendNoteOff} method.
+   * Sends a **note off** message for the specified MIDI note number on the specified channel(s).
+   * The first parameter is the note to stop. It can be a single value or an array of the following
+   * valid values:
    *
-   * @see {@link Output#sendNoteOff}
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A [`Note`](Note) object
    *
-   * @param note
-   * @param options
-   * @returns {Output}
+   * The execution of the **note off** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * **Note:** in effect, this method is an alias of the [`sendNoteOff()`](#sendNoteOff) method.
+   *
+   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) to stop. The notes can be
+   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array
+   * of the previous types. When using a note name, octave range must be between -1 and 9. The
+   * lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+   * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+   * channel is specified, all channels will be used.
+   *
+   * @param {boolean} [options.rawValue=false] Controls whether the release velocity is set using
+   * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+   * default).
+   *
+   * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+   * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+   * number
+   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+   * the operation will be carried out as soon as possible.
+   *
+   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
    */
 
 
