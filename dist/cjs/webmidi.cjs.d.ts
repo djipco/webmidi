@@ -1656,10 +1656,15 @@ declare class Output {
      *
      * @since 3.0.0
      */
-    setPitchBendRange(semitones?: number, cents?: number, options?: {
+    sendPitchBendRange(semitones?: number, cents?: number, options?: {
         channels?: number | number[];
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setPitchBendRange;
     /**
      * Sets the specified MIDI registered parameter to the desired value. The value is defined with
      * up to two bytes of data (msb, lsb) that each can go from `0` to `127`.
@@ -2093,7 +2098,7 @@ declare class Output {
      *
      * @returns {Output}
      */
-    resetAllControllers(options?: {
+    sendResetAllControllers(options?: {
         channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
@@ -3173,7 +3178,7 @@ declare class OutputChannel {
      *
      * @throws RangeError Invalid key aftertouch value.
      */
-    setKeyAftertouch(target: number | string | number[] | string[], pressure?: number, options?: {
+    sendKeyAftertouch(target: number | string | number[] | string[], pressure?: number, options?: {
         useRawValue?: boolean;
         time?: number | string;
     }): OutputChannel;
@@ -3709,7 +3714,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setOmniMode(state?: boolean, options?: {
+    sendOmniMode(state?: boolean, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -3734,7 +3739,7 @@ declare class OutputChannel {
      *
      * @throws RangeError Invalid channel aftertouch value.
      */
-    setChannelAftertouch(pressure?: number, options?: {
+    sendChannelAftertouch(pressure?: number, options?: {
         rawValue?: boolean;
         time?: number | string;
     }): OutputChannel;
@@ -3866,7 +3871,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setPitchBend(value?: number | number[], options?: {
+    sendPitchBend(value?: number | number[], options?: {
         rawValue?: boolean;
         time?: number | string;
     }): OutputChannel;
@@ -3895,7 +3900,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setPitchBendRange(semitones: number, cents?: number, options?: {
+    sendPitchBendRange(semitones: number, cents?: number, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -3917,7 +3922,7 @@ declare class OutputChannel {
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      *
      */
-    setProgram(program?: number, options?: {
+    sendProgramChange(program?: number, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4033,7 +4038,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setLocalControl(state?: boolean, options?: {
+    sendLocalControl(state?: boolean, options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4085,7 +4090,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    resetAllControllers(options?: {
+    sendResetAllControllers(options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4105,7 +4110,7 @@ declare class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    setPolyphonicMode(mode?: string, options?: {
+    sendPolyphonicMode(mode?: string, options?: {
         time?: number | string;
     }): OutputChannel;
     set octaveOffset(arg: number);
