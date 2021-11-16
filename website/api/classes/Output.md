@@ -1110,7 +1110,7 @@ Returns the `Output` object so methods can be chained.
 
 Sends a **start** real-time message. A MIDI Start message starts the playback of the current
 song at beat 0. To start playback elsewhere in the song, use the
-[sendContinue()](#Output+sendContinue) method.
+[`sendContinue()`](#Output+sendContinue) method.
 
 
   **Parameters**
