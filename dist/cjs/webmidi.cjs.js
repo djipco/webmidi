@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 17:23:33 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 17:33:30 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -4090,7 +4090,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setChannelAftertouch(pressure, options);
+      this.channels[ch].sendChannelAftertouch(pressure, options);
     });
     return this;
   }
