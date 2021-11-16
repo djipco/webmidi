@@ -445,54 +445,6 @@ Note: to specifically check for global listeners added with
 
 
 
-### `.incrementRegisteredParameter(...)` {#incrementRegisteredParameter}
-
-
-Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
-names that can be used with this method:
-
- * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
- * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
- * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
- * Tuning Program (0x00, 0x03): `"tuningprogram"`
- * Tuning Bank (0x00, 0x04): `"tuningbank"`
- * Modulation Range (0x00, 0x05): `"modulationrange"`
- * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
- * Elevation Angle (0x3D, 0x01): `"elevationangle"`
- * Gain (0x3D, 0x02): `"gain"`
- * Distance Ratio (0x3D, 0x03): `"distanceratio"`
- * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
- * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
- * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
- * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
- * Roll Angle (0x3D, 0x08): `"rollangle"`
-
-
-  **Parameters**
-
-  > Signature: `incrementRegisteredParameter(parameter, [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
 ### `.open()` {#open}
 
 **Attributes**: async
@@ -1103,6 +1055,54 @@ Returns the `Output` object so methods can be chained.
 
 **Throws**:
   * TypeError The specified parameter is not available.
+
+
+### `.sendRpnIncrement(...)` {#sendRpnIncrement}
+
+
+Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
+names that can be used with this method:
+
+ * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
+ * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
+ * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
+ * Tuning Program (0x00, 0x03): `"tuningprogram"`
+ * Tuning Bank (0x00, 0x04): `"tuningbank"`
+ * Modulation Range (0x00, 0x05): `"modulationrange"`
+ * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
+ * Elevation Angle (0x3D, 0x01): `"elevationangle"`
+ * Gain (0x3D, 0x02): `"gain"`
+ * Distance Ratio (0x3D, 0x03): `"distanceratio"`
+ * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
+ * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
+ * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
+ * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
+ * Roll Angle (0x3D, 0x08): `"rollangle"`
+
+
+  **Parameters**
+
+  > Signature: `sendRpnIncrement(parameter, [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
 
 
 ### `.sendStart(...)` {#sendStart}
