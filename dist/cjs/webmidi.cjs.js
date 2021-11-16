@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 09:47:53 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 10:18:11 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1606,13 +1606,25 @@ class OutputChannel extends e {
     } // Normalize pressure to integer
 
 
-    if (!options.rawValue) pressure = Utilities.fromFloatTo7Bit(pressure); // Retrieve key number. If identifier specified, offset by total offset value
+    if (!options.rawValue) pressure = Utilities.fromFloatTo7Bit(pressure); // Plot total offset
 
-    const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset;
-    if (!Array.isArray(target)) target = [target];
-    target = target.map(item => Utilities.guessNoteNumber(item));
-    target.forEach(n => {
-      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), Utilities.offsetNumber(n, offset), pressure], {
+    const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset; // Make sure we are dealing with an array
+
+    if (!Array.isArray(target)) target = [target]; // target = target.map(item => Utilities.guessNoteNumber(item));
+    //
+    // target.forEach(n => {
+    //   this.send(
+    //     [
+    //       (Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+    //       Utilities.offsetNumber(n, offset),
+    //       pressure
+    //     ],
+    //     {time: Utilities.toTimestamp(options.time)}
+    //   );
+    // });
+
+    Utilities.buildNoteArray(target).forEach(n => {
+      this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.getOffsetNumber(offset), pressure], {
         time: Utilities.toTimestamp(options.time)
       });
     });
@@ -3351,25 +3363,23 @@ class Output extends e {
     return this;
   }
   /**
-   * Sends a MIDI [system exclusive]{@link
+   * Sends a MIDI [**system exclusive**]{@link
     * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
    * (*sysex*) message. The `data` parameter should only contain the data of the message. When
-   * sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
-   * *sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
-   * the message with the *sysex end byte* (`0xF7`).
+   * sending out the actual MIDI message, WEBMIDI.js will automatically prepend the data with the
+   * **sysex byte** (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
+   * the message with the **sysex end byte** (`0xF7`).
    *
-   * The data can be an array of unsigned integers (0-127) or a `Uint8Array` object.
+   * The data can be an array of unsigned integers (`0` - `127`) or a `Uint8Array` object.
    *
    * To use the `sendSysex()` method, system exclusive message support must have been enabled. To
-   * do so, you must set the `sysex` option to `true` when calling `WebMidi.enable()`:
+   * do so, you must set the `sysex` option to `true` when calling
+   * [`WebMidi.enable()`]{@link WebMidi#enable}:
    *
    * ```js
    * WebMidi.enable({sysex: true})
    *   .then(() => console.log("System exclusive messages are enabled");
    * ```
-   *
-   * Note that, depending on browser, version and platform, it is generally necessary to serve the
-   * page over HTTPS to enable sysex support.
    *
    * ##### Examples
    *
@@ -3379,16 +3389,15 @@ class Output extends e {
    * ```js
    * WebMidi.outputs[0].sendSysex(0x42, [0x1, 0x2, 0x3, 0x4, 0x5]);
    * ```
+   * In this case `0x42` is the ID of the manufacturer (Korg) and `[0x1, 0x2, 0x3, 0x4, 0x5]` is the
+   * data being sent.
    *
    * The parameters can be specified using any number notation (decimal, hex, binary, etc.).
-   * Therefore, the code below is equivalent to the code above:
+   * Therefore, the code above is equivalent to this code:
    *
    * ```js
    * WebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]);
    * ```
-   *
-   * The above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (hex 42 is the same as
-   * decimal 66).
    *
    * Some manufacturers are identified using 3 bytes. In this case, you would use a 3-position array
    * as the first parameter. For example, to send the same sysex message to a
@@ -3397,17 +3406,20 @@ class Output extends e {
    * ```js
    * WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
    * ```
+   *
+   * The **MIDI Manufacturers Association** is in charge of maintaining the full updated list of
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
+   *
    * There is no limit for the length of the data array. However, it is generally suggested to keep
    * system exclusive messages to 64Kb or less.
    *
    * @param manufacturer {number|number[]} An unsigned integer or an array of three unsigned
-   * integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers
+   * integers between `0` and `127` that identify the targeted manufacturer. The *MIDI Manufacturers
    * Association* maintains a full list of
-   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers)
-   * .
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
    *
-   * @param {number[]|Uint8Array} [data=[]] A Uint8Array or an array of unsigned integers between 0
-   * and 127. This is the data you wish to transfer.
+   * @param {number[]|Uint8Array} [data=[]] A `Uint8Array` or an array of unsigned integers between
+   * `0` and `127`. This is the data you wish to transfer.
    *
    * @param {object} [options={}]
    *
@@ -3652,7 +3664,7 @@ class Output extends e {
   /**
    * Sends a **start** real-time message. A MIDI Start message starts the playback of the current
    * song at beat 0. To start playback elsewhere in the song, use the
-   * [sendContinue()]{@link Output#sendContinue} method.
+   * [`sendContinue()`]{@link #sendContinue} method.
    *
    * @param {object} [options={}]
    *
@@ -3699,7 +3711,7 @@ class Output extends e {
   }
   /**
    * Sends a **stop** real-time message. This tells the device connected to this output to stop
-   * playback immediately (or at the scheduled time).
+   * playback immediately (or at the scheduled time, if specified).
    *
    * @param {object} [options={}]
    *
@@ -3783,14 +3795,13 @@ class Output extends e {
   /**
    * Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
    * is a key-specific aftertouch. For a channel-wide aftertouch message, use
-   * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
+   * [`setChannelAftertouch()`]{@link #setChannelAftertouch}.
    *
-   * @param note {number|string|Array}  The note for which you are sending an aftertouch value. The
-   * notes can be specified in one of two ways. The first way is by using the MIDI note number (an
-   * integer between 0 and 127). The second way is by using the note name followed by the octave
-   * (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI
-   * note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use
-   * an array of note names and/or numbers.
+   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
+   * an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a
+   * note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using
+   * a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI
+   * note number `0`) and the highest note is `G9` (MIDI note number `127`).
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -4099,11 +4110,11 @@ class Output extends e {
   }
   /**
    * Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
-   * aftertouch, you should instead use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
+   * aftertouch, you should instead use [`setKeyAftertouch()`]{@link #setKeyAftertouch}.
    *
-   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
-   * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
-   * pressure can be defined by using an integer between 0 and 127.
+   * @param [pressure=0.5] {number} The pressure level (between `0` and `1`). An invalid pressure
+   * value will silently trigger the default behaviour. If the `rawValue` option is set to `true`,
+   * the pressure can be defined by using an integer between `0` and `127`.
    *
    * @param {object} [options={}]
    *
@@ -4112,7 +4123,7 @@ class Output extends e {
    * channel is specified, all channels will be used.
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
+   * considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
@@ -5006,13 +5017,14 @@ class Output extends e {
    *  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
    *  - A [`Note`](Note) object
    *
-   *  The execution of the **note off** command can be delayed by using the `time` property of the
+   * The execution of the **note off** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
    * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) to stop. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array
-   * of the previous types. When using a note name, octave range must be between -1 and 9. The
-   * lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+   * specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`,
+   * `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range
+   * must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest
+   * note is `G9` (MIDI note number `127`).
    *
    * @param {Object} [options={}]
    *
@@ -5068,12 +5080,11 @@ class Output extends e {
    * The execution of the **note off** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * **Note:** in effect, this method is an alias of the [`sendNoteOff()`](#sendNoteOff) method.
-   *
    * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) to stop. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array
-   * of the previous types. When using a note name, octave range must be between -1 and 9. The
-   * lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+   * specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`,
+   * `Db7`) or an array of the previous types. When using a note identifier, octave range must be
+   * between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is
+   * `G9` (MIDI note number `127`).
    *
    * @param {Object} [options={}]
    *
@@ -5134,9 +5145,9 @@ class Output extends e {
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
    * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
-   * [`Note`]{@link Note} object or an array of the previous types. When using a note name, octave
-   * range must be between -1 and 9. The lowest note is C-1 (MIDI note number `0`) and the highest
-   * note is G9 (MIDI note number `127`).
+   * [`Note`]{@link Note} object or an array of the previous types. When using a note identifier,
+   * octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number `0`) and the
+   * highest note is G9 (MIDI note number `127`).
    *
    * @param {Object} [options={}]
    *
@@ -5203,7 +5214,8 @@ class Output extends e {
    * values:
    *
    *  - A MIDI note number (integer between `0` and `127`)
-   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A [`Note`](Note) object
    *
    *  The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
@@ -5211,10 +5223,11 @@ class Output extends e {
    * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
    * functionally equivalent to a **note off** message.
    *
-   * @param note {number|string|number[]|string[]} The note(s) to play. The notes can be specified
-   * by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the
-   * previous types. When using a note name, octave range must be between -1 and 9. The lowest note
-   * is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).
+   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) to stop. The notes can be
+   * specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`,
+   * `Db7`) or an array of the previous types. When using a note identifier, octave range must be
+   * between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is
+   * `G9` (MIDI note number `127`).
    *
    * @param {Object} [options={}]
    *
