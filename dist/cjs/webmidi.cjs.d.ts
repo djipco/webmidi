@@ -543,8 +543,8 @@ export class Message {
      */
     rawData: Uint8Array;
     /**
-     * An array containing the bytes of the MIDI message. Each byte is an integer between `0` and
-     * `255`.
+     * An array containing all the bytes of the MIDI message. Each byte is an integer between `0`
+     * and `255`.
      *
      * @type {number[]}
      * @readonly
@@ -569,9 +569,9 @@ export class Message {
      */
     rawDataBytes: Uint8Array;
     /**
-     * An array of the the data byte(s) of the MIDI message. When the message is a system exclusive
-     * message (sysex), `dataBytes` explicitly excludes the manufacturer ID and the sysex end
-     * byte so only the actual data is included.
+     * An array of the the data byte(s) of the MIDI message (as opposed to the status byte). When
+     * the message is a system exclusive message (sysex), `dataBytes` explicitly excludes the
+     * manufacturer ID and the sysex end byte so only the actual data is included.
      *
      * @type {number[]}
      * @readonly
@@ -593,8 +593,9 @@ export class Message {
      */
     isSystemMessage: boolean;
     /**
-     * An integer identifying the MIDI command. For channel-specific messages, the value will be
-     * between `8` and `14`. For system messages, the value will be between `240` and `255`.
+     * An integer identifying the MIDI command. For channel-specific messages, the value is 4-bit
+     * and will be between `8` and `14`. For system messages, the value will be between `240` and
+     * `255`.
      *
      * @type {number}
      * @readonly
@@ -602,7 +603,7 @@ export class Message {
     command: number;
     /**
      * The MIDI channel number (`1` - `16`) that the message is targeting. This is only for
-     * channel-specific messages. For system messages, this will be left undefined.
+     * channel-specific messages. For system messages, this will be left `undefined`.
      *
      * @type {number}
      * @readonly
@@ -698,14 +699,14 @@ export class Note {
     get duration(): number;
     set attack(arg: number);
     /**
-     * The attack velocity of the note as an integer between 0 and 127.
+     * The attack velocity of the note as an integer between 0 and 1.
      * @type {number}
      * @since 3.0.0
      */
     get attack(): number;
     set release(arg: number);
     /**
-     * The release velocity of the note as an integer between 0 and 127.
+     * The release velocity of the note as an integer between 0 and 1.
      * @type {number}
      * @since 3.0.0
      */
@@ -729,14 +730,14 @@ export class Note {
     get name(): string;
     set accidental(arg: string);
     /**
-     * The accidental (#, ##, b or bb) of the note
+     * The accidental (#, ##, b or bb) of the note.
      * @type {string}
      * @since 3.0.0
      */
     get accidental(): string;
     set octave(arg: number);
     /**
-     * The octave of the note
+     * The octave of the note.
      * @type {number}
      * @since 3.0.0
      */
@@ -759,8 +760,8 @@ export class Note {
      */
     get rawRelease(): number;
     /**
-     * The MIDI number of the note. This number is derived from the note identifier using C4 as a
-     * reference for middle C.
+     * The MIDI number of the note (`0` - `127`). This number is derived from the note identifier
+     * using C4 as a reference for middle C.
      *
      * @type {number}
      * @since 3.0.0
@@ -1078,10 +1079,18 @@ export class Utilities {
 }
 declare const wm: WebMidi;
 /**
- * The `Output` class represents a single MIDI output port. This object is automatically
- * instantiated by the library according to the host's MIDI subsystem and should not be directly
- * instantiated. Instead, you can access all available `Output` objects by referring to the
- * [`WebMidi.outputs`](WebMidi#outputs) array.
+ * The `Output` class represents a single MIDI output port (not to be confused with a MIDI channel).
+ * A port is made available by a MIDI device. A MIDI device can advertise several input and output
+ * ports. Each port has 16 MIDI channels which can be accessed via the [`channels`](#channels)
+ * property.
+ *
+ * The `Output` object is automatically instantiated by the library according to the host's MIDI
+ * subsystem and should not be directly instantiated.
+ *
+ * You can access all available `Output` objects by referring to the
+ * [`WebMidi.outputs`](WebMidi#outputs) array or by using methods such as
+ * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
+ * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
  *
  * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
  * object as provided by the MIDI subsystem.
@@ -1107,8 +1116,8 @@ declare class Output {
      */
     private _octaveOffset;
     /**
-     * Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
-     * channels are numbered 1 through 16.
+     * Array containing the 16 [`OutputChannel`]{@link OutputChannel} objects available provided by
+     * this `Output`. The channels are numbered 1 through 16.
      *
      * @type {OutputChannel[]}
      */
@@ -1124,15 +1133,16 @@ declare class Output {
      */
     private _onStateChange;
     /**
-     * Opens the output for usage.
+     * Opens the output for usage. When the library is enabled, all ports are automatically opened.
+     * This method is only useful for ports that have been manually closed.
      *
-     * @returns {Promise<Output>} The promise is fulfilled with the `Output`
+     * @returns {Promise<Output>} The promise is fulfilled with the `Output` object.
      */
     open(): Promise<Output>;
     /**
      * Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
-     * until the output is opened again by calling [Output.open()]{@link Output#open}. You can check
-     * the connection status by looking at the [connection]{@link Output#connection} property.
+     * until the output is opened again by calling [`open()`]{@link #open}. You can check
+     * the connection status by looking at the [`connection`]{@link #connection} property.
      *
      * @returns {Promise<void>}
      */
@@ -1140,11 +1150,12 @@ declare class Output {
     /**
      * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
      * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
-     * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-     * object or a `Message` object.
+     * [`Uint8Array`]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+     * object or a [`Message`](Message) object.
      *
      * It is usually not necessary to use this method directly as you can use one of the simpler
-     * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
+     * helper methods such as [`playNote()`](#playNote), [`stopNote()`](#stopNote),
+     * [`sendControlChange()`](#sendControlChange), etc.
      *
      * Details on the format of MIDI messages are available in the summary of
      * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
@@ -1251,8 +1262,8 @@ declare class Output {
     /**
      * Clears all messages that have been queued but not yet delivered.
      *
-     * Warning: this method has been defined in the specification but has not been implemented yet. As
-     * soon as browsers implement it, it will work.
+     * **Warning**: this method has been defined in the specification but has not been implemented
+     * yet. As soon as browsers implement it, it will work.
      *
      * You can check out the current status of this feature for Chromium (Chrome) here:
      * https://bugs.chromium.org/p/chromium/issues/detail?id=471798
@@ -1352,7 +1363,7 @@ declare class Output {
         time?: number | string;
     }): Output;
     /**
-     * Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
+     * Sends a MIDI **clock** real-time message. According to the standard, there are 24 MIDI clocks
      * for every quarter note.
      *
      * @param {object} [options={}]
@@ -1387,7 +1398,7 @@ declare class Output {
     /**
      * Sends a **continue** real-time message. This resumes song playback where it was previously
      * stopped or where it was last cued with a song position message. To start playback from the
-     * start, use the [sendStart()]{@link Output#sendStart}` method.
+     * start, use the [`sendStart()`]{@link Output#sendStart}` method.
      *
      * @param {object} [options={}]
      *
@@ -1419,7 +1430,7 @@ declare class Output {
     }): Output;
     /**
      * Sends an **active sensing** real-time message. This tells the device connected to this port
-     * that the connection is still good. Active sensing messages should be sent every 300 ms if there
+     * that the connection is still good. Active sensing messages are often sent every 300 ms if there
      * was no other activity on the MIDI port.
      *
      * @param {object} [options={}]
@@ -1576,10 +1587,10 @@ declare class Output {
      * Note: as you can see above, not all control change message have a matching common name. This
      * does not mean you cannot use the others. It simply means you will need to use their number
      * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
-     * reserved for *channel mode* messages. See [sendChannelMode()]{@link Output#sendChannelMode}
+     * reserved for *channel mode* messages. See [`sendChannelMode()`]{@link Output#sendChannelMode}
      * method for more info.
      *
-     * To view a list of all available `control change` messages, please consult "Table 3 - Control
+     * To view a list of all available **control change** messages, please consult "Table 3 - Control
      * Change Messages" from the [MIDI Messages](
      * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
      * specification.
@@ -1963,12 +1974,12 @@ declare class Output {
      *
      * To make it easier, all channel mode messages have a matching helper method:
      *
-     *   - [turnSoundOff()]{@link OutputChannel#turnSoundOff}
-     *   - [resetAllControllers()]{@link OutputChannel#resetAllControllers}
-     *   - [setLocalControl()]{@link OutputChannel#turnSoundOff}
-     *   - [turnNotesOff()]{@link OutputChannel#turnNotesOff}
-     *   - [setOmniMode()]{@link OutputChannel#setOmniMode}
-     *   - [setPolyphonicMode()]{@link OutputChannel#setPolyphonicMode}
+     *   - [`turnSoundOff()`]{@link OutputChannel#turnSoundOff}
+     *   - [`resetAllControllers()`]{@link OutputChannel#resetAllControllers}
+     *   - [`setLocalControl()`]{@link OutputChannel#turnSoundOff}
+     *   - [`turnNotesOff()`]{@link OutputChannel#turnNotesOff}
+     *   - [`setOmniMode()`]{@link OutputChannel#setOmniMode}
+     *   - [`setPolyphonicMode()`]{@link OutputChannel#setPolyphonicMode}
      *
      * @param command {number|string} The numerical identifier of the channel mode message (integer
      * between 120-127) or its name as a string.
@@ -2268,7 +2279,7 @@ declare class Output {
      *  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
      *  * Roll Angle (0x3D, 0x08): `"rollangle"`
      *
-     * @param parameter {String|number[]} A string identifying the parameter"s name (see above) or a
+     * @param parameter {String|number[]} A string identifying the parameter's name (see above) or a
      * two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
      * parameter.
      *
@@ -2345,41 +2356,45 @@ declare class Output {
      */
     stopNote(note: any, options: any): Output;
     /**
-     * Plays a note or an array of notes on one or more channels of this output. The first parameter
-     * is the note to play. It can be a single value or an array of the following valid values:
+     * Plays a note or an array of notes on one or more channels of this output. If you intend to play
+     * notes on a single channel, you should probably use
+     * [`OutputChannel.playNote()`](OutputChannel#playNote) instead.
+     *
+     * The first parameter is the note to play. It can be a single value or an array of the following
+     * valid values:
      *
      *  - A MIDI note number (integer between `0` and `127`)
-     *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-     *  - A {@link Note} object
+     *  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+     *  - A [`Note`]{@link Note} object
      *
      * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
-     * specified channels. If no channels are specified, it will send to all channels. If a `duration`
-     * is set in the `options` parameter or in the {@link Note} object's
-     * [duration]{@link Note#duration} property, it will also schedule a **note off** message to end
+     * specified channels. If no channel is specified, it will send to all channels. If a `duration`
+     * is set in the `options` parameter or in the [`Note`]{@link Note} object's
+     * [`duration`]{@link Note#duration} property, it will also schedule a **note off** message to end
      * the note after said duration. If no `duration` is set, the note will simply play until a
-     * matching **note off** message is sent with [stopNote()]{@link Output#stopNote} or
-     * [sendNoteOff()]{@link Output#sendNoteOff}.
+     * matching **note off** message is sent with [`stopNote()`]{@link #stopNote}.
      *
      * The execution of the **note on** command can be delayed by using the `time` property of the
      * `options` parameter.
      *
-     * When using {@link Note} objects, the durations and velocities defined in the {@link Note}
-     * objects have precedence over the ones specified via the method's `options` parameter.
+     * When using [`Note`]{@link Note} objects, the durations and velocities defined in the
+     * [`Note`]{@link Note} objects have precedence over the ones specified via the method's `options`
+     * parameter.
      *
      * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
      * functionally equivalent to a **note off** message.
      *
      * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-     * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-     * {@link Note} object or an array of the previous types. When using a note name, octave range
-     * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-     * note is G9 (MIDI note number 127).
+     * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+     * [`Note`]{@link Note} object or an array of the previous types. When using a note name, octave
+     * range must be between -1 and 9. The lowest note is C-1 (MIDI note number `0`) and the highest
+     * note is G9 (MIDI note number `127`).
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to play the note on. The special value `"all"` can
-     * also be used to use all channels (default).
+     * @param {number|number[]|"all"} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to play the note
+     * on. If no value is specified, all channels will be used (default).
      *
      * @param {number} [options.duration=undefined] The number of milliseconds (integer) after which a
      * **note off** message will be scheduled. If left undefined, only a **note on** message is sent.
@@ -2459,7 +2474,7 @@ declare class Output {
         attack?: number;
     }, legacy?: {}): Output;
     /**
-     * Name of the MIDI output
+     * Name of the MIDI output.
      *
      * @type {string}
      * @readonly
@@ -2475,7 +2490,7 @@ declare class Output {
      */
     get id(): string;
     /**
-     * Output port's connection state: `"pending"`, `"open"` or `"closed"`.
+     * Output port's connection state: `pending`, `open` or `closed`.
      *
      * @type {string}
      * @readonly
@@ -2489,14 +2504,14 @@ declare class Output {
      */
     get manufacturer(): string;
     /**
-     * State of the output port: `"connected"` or `"disconnected"`.
+     * State of the output port: `connected` or `disconnected`.
      *
      * @type {string}
      * @readonly
      */
     get state(): string;
     /**
-     * Type of the output port (`"output"`)
+     * Type of the output port (it will always be: `output`).
      *
      * @type {string}
      * @readonly
@@ -2507,8 +2522,8 @@ declare class Output {
      * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
      * is placed on the 4th octave (C4).
      *
-     * Note that this value is combined with the global offset value defined on the `WebMidi` object
-     * (if any).
+     * Note that this value is combined with the global offset value defined in
+     * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if any).
      *
      * @type {number}
      *
@@ -4610,14 +4625,15 @@ declare class Input {
     private get nrpnEventsEnabled();
 }
 /**
- * The `InputChannel` class represents a MIDI input channel (1-16) from a single input device. This
- * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
+ * The `InputChannel` class represents a single MIDI input channel (1-16) from a single input
+ * device. This object is derived from the host's MIDI subsystem and should not be instantiated
+ * directly.
  *
- * All 16 `InputChannel` objects can be found inside the input's [channels](Input#channels)
+ * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
  * property.
  *
- * @param {Input} input The `Input` object this channel belongs to
- * @param {number} number The MIDI channel's number (1-16)
+ * @param {Input} input The [`Input`](Input) object this channel belongs to.
+ * @param {number} number The channel's MIDI number (1-16).
  *
  * @fires InputChannel#midimessage
  *
@@ -4630,7 +4646,6 @@ declare class Input {
  * @fires InputChannel#pitchbend
  * @fires InputChannel#controlchange
  *
- *
  * @fires InputChannel#allnotesoff
  * @fires InputChannel#allsoundoff
  * @fires InputChannel#localcontrol
@@ -4639,15 +4654,15 @@ declare class Input {
  * @fires InputChannel#resetallcontrollers
  *
  * @fires InputChannel#event:nrpn
- * @fires InputChannel#nrpn-dataentrycoarse
- * @fires InputChannel#nrpn-dataentryfine
- * @fires InputChannel#nrpn-databuttonincrement
- * @fires InputChannel#nrpn-databuttondecrement
+ * @fires InputChannel#event:nrpn-dataentrycoarse
+ * @fires InputChannel#event:nrpn-dataentryfine
+ * @fires InputChannel#event:nrpn-databuttonincrement
+ * @fires InputChannel#event:nrpn-databuttondecrement
  * @fires InputChannel#event:rpn
- * @fires InputChannel#rpn-dataentrycoarse
- * @fires InputChannel#rpn-dataentryfine
- * @fires InputChannel#rpn-databuttonincrement
- * @fires InputChannel#rpn-databuttondecrement
+ * @fires InputChannel#event:rpn-dataentrycoarse
+ * @fires InputChannel#event:rpn-dataentryfine
+ * @fires InputChannel#event:rpn-databuttonincrement
+ * @fires InputChannel#event:rpn-databuttondecrement
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -4689,13 +4704,14 @@ declare class InputChannel {
      */
     private _rpnBuffer;
     /**
-     * Indicates whether events for **Non-Registered Parameter Number** should be dispatched. NRPNs
-     * are composed of a sequence of specific **control change** messages. When a valid sequence of
-     * such control change messages is received, an `nrpn` event will fire.
+     * Indicates whether events for **Registered Parameter Number** and **Non-Registered Parameter
+     * Number** should be dispatched. RPNs and NRPNs are composed of a sequence of specific
+     * **control change** messages. When a valid sequence of such control change messages is
+     * received, an [`rpn`](event-rpn) or [`nrpn`](#event-nrpn) event will fire.
      *
-     * If an invalid or
-     * out-of-order control change message is received, it will fall through the collector logic and
-     * all buffered control change messages will be discarded as incomplete.
+     * If an invalid or out-of-order **control change** message is received, it will fall through
+     * the collector logic and all buffered **control change** messages will be discarded as
+     * incomplete.
      *
      * @type {boolean}
      */
@@ -4707,8 +4723,8 @@ declare class InputChannel {
      */
     notesState: boolean[];
     /**
-     * Destroys the `Input` by removing all listeners and severing the link with the MIDI subsystem's
-     * input.
+     * Destroys the `InputChannel` by removing all listeners and severing the link with the MIDI
+     * subsystem's input.
      */
     destroy(): void;
     /**
@@ -4749,12 +4765,14 @@ declare class InputChannel {
     private getCcNameByNumber;
     /**
      * Return the playing status of the specified note. The `note` parameter can be an unsigned
-     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a {@link Note} object.
+     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`]{@link Note} object.
      *
-     * If a note identifier or Note object is passed in, the method will take into account any
-     * `octaveOffset` defined.
+     * If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
+     * defined.
      *
-     * @param [input] {number|string|Note}
+     * @param [input] {number|string|Note} The note to get the state for. The
+     * [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and
+     * [`Note`]{@link Note} objects.
      * @returns {boolean}
      * @since version 3.0.0
      */
@@ -4768,8 +4786,9 @@ declare class InputChannel {
      * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
      * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
      *
-     * Note that this value is combined with the global offset value defined on the `WebMidi` object
-     * and with the value defined on the parent `Input` object.
+     * Note that this value is combined with the global offset value defined by
+     * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) object and with the value defined on the parent
+     * input object with [`Input.octaveOffset`](Input#octaveOffset).
      *
      * @type {number}
      *
@@ -4777,13 +4796,13 @@ declare class InputChannel {
      */
     get octaveOffset(): number;
     /**
-     * The [`Input`](Input) this channel belongs to
+     * The [`Input`](Input) this channel belongs to.
      * @type {Input}
      * @since 3.0
      */
     get input(): Input;
     /**
-     * This channel's MIDI number (1-16)
+     * This channel's MIDI number (1-16).
      * @type {number}
      * @since 3.0
      */
