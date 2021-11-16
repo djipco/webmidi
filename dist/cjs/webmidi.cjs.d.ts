@@ -1513,7 +1513,12 @@ declare class Output {
         channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
-    }, legacy?: {}): Output;
+    }): Output;
+    /**
+     * @private
+     * @deprecated since version 3.0
+     */
+    private setKeyAftertouch;
     /**
      * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
      * control change message to send can be specified numerically (0-127) or by using one of the
