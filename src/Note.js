@@ -130,7 +130,7 @@ export class Note {
   }
 
   /**
-   * The accidental (#, ##, b or bb) of the note
+   * The accidental (#, ##, b or bb) of the note.
    * @type {string}
    * @since 3.0.0
    */
@@ -149,7 +149,7 @@ export class Note {
   }
 
   /**
-   * The octave of the note
+   * The octave of the note.
    * @type {number}
    * @since 3.0.0
    */
@@ -191,7 +191,7 @@ export class Note {
   }
 
   /**
-   * The attack velocity of the note as an integer between 0 and 127.
+   * The attack velocity of the note as an integer between 0 and 1.
    * @type {number}
    * @since 3.0.0
    */
@@ -199,6 +199,7 @@ export class Note {
     return this._attack;
   }
   set attack(value) {
+
     if (WebMidi.validation) {
       value = parseFloat(value);
       if (isNaN(value) || !(value >= 0 && value <= 1)) {
@@ -211,7 +212,7 @@ export class Note {
   }
 
   /**
-   * The release velocity of the note as an integer between 0 and 127.
+   * The release velocity of the note as an integer between 0 and 1.
    * @type {number}
    * @since 3.0.0
    */
@@ -256,8 +257,8 @@ export class Note {
   }
 
   /**
-   * The MIDI number of the note. This number is derived from the note identifier using C4 as a
-   * reference for middle C.
+   * The MIDI number of the note (`0` - `127`). This number is derived from the note identifier
+   * using C4 as a reference for middle C.
    *
    * @type {number}
    * @since 3.0.0

@@ -39,8 +39,8 @@ export class Output extends EventEmitter {
     this._octaveOffset = 0;
 
     /**
-     * Array containing the 16 {@link OutputChannel} objects available for this `Output`. The
-     * channels are numbered 1 through 16.
+     * Array containing the 16 [`OutputChannel`]{@link OutputChannel} objects available via this
+     * `Output`. The channels are numbered 1 through 16.
      *
      * @type {OutputChannel[]}
      */
@@ -148,9 +148,10 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Opens the output for usage.
+   * Opens the output for usage. When the library is enabled, all ports are automatically opened.
+   * This method is only useful for ports that have been manually closed.
    *
-   * @returns {Promise<Output>} The promise is fulfilled with the `Output`
+   * @returns {Promise<Output>} The promise is fulfilled with the `Output`.
    */
   async open() {
 
@@ -169,8 +170,8 @@ export class Output extends EventEmitter {
 
   /**
    * Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
-   * until the output is opened again by calling [Output.open()]{@link Output#open}. You can check
-   * the connection status by looking at the [connection]{@link Output#connection} property.
+   * until the output is opened again by calling [`open()`]{@link #open}. You can check
+   * the connection status by looking at the [`connection`]{@link #connection} property.
    *
    * @returns {Promise<void>}
    */
@@ -189,11 +190,12 @@ export class Output extends EventEmitter {
   /**
    * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
    * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * object or a `Message` object.
+   * [`Uint8Array`]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * object or a [`Message`](Message) object.
    *
    * It is usually not necessary to use this method directly as you can use one of the simpler
-   * helper methods such as [playNote()`, `stopNote()`, `sendControlChange()`, etc.
+   * helper methods such as [`playNote()`](#playNote), [`stopNote()`](#stopNote),
+   * [`sendControlChange()`](#sendControlChange), etc.
    *
    * Details on the format of MIDI messages are available in the summary of
    * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
@@ -567,7 +569,7 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI **clock* real-time message. According to the standard, there are 24 MIDI Clocks
+   * Sends a MIDI **clock** real-time message. According to the standard, there are 24 MIDI clocks
    * for every quarter note.
    *
    * @param {object} [options={}]
@@ -618,7 +620,7 @@ export class Output extends EventEmitter {
   /**
    * Sends a **continue** real-time message. This resumes song playback where it was previously
    * stopped or where it was last cued with a song position message. To start playback from the
-   * start, use the [sendStart()]{@link Output#sendStart}` method.
+   * start, use the [`sendStart()`]{@link Output#sendStart}` method.
    *
    * @param {object} [options={}]
    *
@@ -666,7 +668,7 @@ export class Output extends EventEmitter {
 
   /**
    * Sends an **active sensing** real-time message. This tells the device connected to this port
-   * that the connection is still good. Active sensing messages should be sent every 300 ms if there
+   * that the connection is still good. Active sensing messages are often sent every 300 ms if there
    * was no other activity on the MIDI port.
    *
    * @param {object} [options={}]
@@ -882,10 +884,10 @@ export class Output extends EventEmitter {
    * Note: as you can see above, not all control change message have a matching common name. This
    * does not mean you cannot use the others. It simply means you will need to use their number
    * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
-   * reserved for *channel mode* messages. See [sendChannelMode()]{@link Output#sendChannelMode}
+   * reserved for *channel mode* messages. See [`sendChannelMode()`]{@link Output#sendChannelMode}
    * method for more info.
    *
-   * To view a list of all available `control change` messages, please consult "Table 3 - Control
+   * To view a list of all available **control change** messages, please consult "Table 3 - Control
    * Change Messages" from the [MIDI Messages](
    * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
    * specification.
@@ -1492,12 +1494,12 @@ export class Output extends EventEmitter {
    *
    * To make it easier, all channel mode messages have a matching helper method:
    *
-   *   - [turnSoundOff()]{@link OutputChannel#turnSoundOff}
-   *   - [resetAllControllers()]{@link OutputChannel#resetAllControllers}
-   *   - [setLocalControl()]{@link OutputChannel#turnSoundOff}
-   *   - [turnNotesOff()]{@link OutputChannel#turnNotesOff}
-   *   - [setOmniMode()]{@link OutputChannel#setOmniMode}
-   *   - [setPolyphonicMode()]{@link OutputChannel#setPolyphonicMode}
+   *   - [`turnSoundOff()`]{@link OutputChannel#turnSoundOff}
+   *   - [`resetAllControllers()`]{@link OutputChannel#resetAllControllers}
+   *   - [`setLocalControl()`]{@link OutputChannel#turnSoundOff}
+   *   - [`turnNotesOff()`]{@link OutputChannel#turnNotesOff}
+   *   - [`setOmniMode()`]{@link OutputChannel#setOmniMode}
+   *   - [`setPolyphonicMode()`]{@link OutputChannel#setPolyphonicMode}
    *
    * @param command {number|string} The numerical identifier of the channel mode message (integer
    * between 120-127) or its name as a string.
@@ -2090,29 +2092,30 @@ export class Output extends EventEmitter {
    *
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
+   *  - A [`Note`]{@link Note} object
    *
    * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
    * specified channels. If no channels are specified, it will send to all channels. If a `duration`
-   * is set in the `options` parameter or in the {@link Note} object's
-   * [duration]{@link Note#duration} property, it will also schedule a **note off** message to end
+   * is set in the `options` parameter or in the [`Note`]{@link Note} object's
+   * [`duration`]{@link Note#duration} property, it will also schedule a **note off** message to end
    * the note after said duration. If no `duration` is set, the note will simply play until a
-   * matching **note off** message is sent with [stopNote()]{@link Output#stopNote} or
-   * [sendNoteOff()]{@link Output#sendNoteOff}.
+   * matching **note off** message is sent with [`stopNote()`]{@link Output#stopNote} or
+   * [`sendNoteOff()`]{@link Output#sendNoteOff}.
    *
    * The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * When using {@link Note} objects, the durations and velocities defined in the {@link Note}
-   * objects have precedence over the ones specified via the method's `options` parameter.
+   * When using [`Note`]{@link Note} objects, the durations and velocities defined in the
+   * [`Note`]{@link Note} objects have precedence over the ones specified via the method's `options`
+   * parameter.
    *
    * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
    * functionally equivalent to a **note off** message.
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
    * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * [`Note`]{@link Note} object or an array of the previous types. When using a note name, octave
+   * range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
    * @param {Object} [options={}]
@@ -2241,7 +2244,7 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Name of the MIDI output
+   * Name of the MIDI output.
    *
    * @type {string}
    * @readonly
@@ -2293,7 +2296,7 @@ export class Output extends EventEmitter {
   }
 
   /**
-   * Type of the output port (`"output"`)
+   * Type of the output port (`"output"`).
    *
    * @type {string}
    * @readonly
@@ -2306,8 +2309,8 @@ export class Output extends EventEmitter {
    * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
    * is placed on the 4th octave (C4).
    *
-   * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * (if any).
+   * Note that this value is combined with the global offset value defined in
+   * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if any).
    *
    * @type {number}
    *
