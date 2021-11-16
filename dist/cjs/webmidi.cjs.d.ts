@@ -1166,12 +1166,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a positive
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
      * number
-     * ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
-     * the operation will be scheduled for that point time. If `time` is omitted, or in the past, the
-     * operation will be carried out as soon as possible.
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
      *
@@ -1243,10 +1243,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {DOMException} Failed to execute 'send' on 'MIDIOutput': System exclusive message is
      * not allowed.
@@ -1280,10 +1282,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
@@ -1298,10 +1302,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      *
@@ -1326,10 +1332,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws The song number must be between 1 and 128.
      *
@@ -1350,10 +1358,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      *
@@ -1368,10 +1378,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
@@ -1385,10 +1397,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
@@ -1402,10 +1416,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
@@ -1418,10 +1434,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
@@ -1435,10 +1453,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
@@ -1451,10 +1471,12 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
@@ -1484,24 +1506,26 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
      * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
      * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @return {Output} Returns the `Output` object so methods can be chained.
      *
      * @since 3.0.0
      */
     setKeyAftertouch(note: number | string | any[], pressure?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
     }, legacy?: {}): Output;
@@ -1601,14 +1625,16 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} Controller numbers must be between 0 and 127.
      * @throws {RangeError} Invalid controller name.
@@ -1616,7 +1642,7 @@ declare class Output {
      * @return {Output} Returns the `Output` object so methods can be chained.
      */
     sendControlChange(controller: number | string, value?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -1633,14 +1659,16 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} The msb value must be between 0 and 127.
      * @throws {RangeError} The lsb value must be between 0 and 127.
@@ -1650,7 +1678,7 @@ declare class Output {
      * @since 3.0.0
      */
     setPitchBendRange(semitones: number, cents?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -1695,19 +1723,21 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     setRegisteredParameter(parameter: string | number[], data?: number | number[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -1720,23 +1750,25 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
      * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
      * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @return {Output} Returns the `Output` object so methods can be chained.
      * @since 3.0.0
      */
     setChannelAftertouch(pressure?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
     }, legacy?: {}): Output;
@@ -1765,25 +1797,27 @@ declare class Output {
      *
      * @param {object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
      * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
      * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
      * an array of 2 integers if using both MSB and LSB).
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      *
      * @since 3.0.0
      */
     setPitchBend(value: number | number[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
     }, legacy?: {}): Output;
@@ -1803,14 +1837,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
      * than 0xFF.
@@ -1820,7 +1856,7 @@ declare class Output {
      * @since 3.0.0
      */
     setProgram(program?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -1840,14 +1876,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} The msb value must be between 0 and 127
      * @throws {RangeError} The lsb value must be between 0 and 127
@@ -1857,7 +1895,7 @@ declare class Output {
      * @since 3.0.0
      */
     setModulationRange(semitones?: number, cents?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -1873,14 +1911,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
      * than 64.
@@ -1890,7 +1930,7 @@ declare class Output {
      * @since 3.0.0
      */
     setMasterTuning(value?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -1905,14 +1945,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} The program value must be between 1 and 128.
      *
@@ -1921,7 +1963,7 @@ declare class Output {
      * @since 3.0.0
      */
     setTuningProgram(value: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -1936,14 +1978,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} The bank value must be between 1 and 128.
      *
@@ -1952,34 +1996,30 @@ declare class Output {
      * @since 3.0.0
      */
     setTuningBank(value: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
      * Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
      * send can be specified numerically or by using one of the following common names:
      *
-     *   * `"allsoundoff"` (#120)
-     *   * `"resetallcontrollers"` (#121)
-     *   * `"localcontrol"` (#122)
-     *   * `"allnotesoff"` (#123)
-     *   * `"omnimodeoff"` (#124)
-     *   * `"omnimodeon"` (#125)
-     *   * `"monomodeon"` (#126)
-     *   * `"polymodeon"` (#127)
+     *   | Type                  | Number | Shortcut Method                                         |
+     *   |-----------------------|--------|---------------------------------------------------------|
+     *   | `allsoundoff`         | 120    | [`turnSoundOff()`]{@link #turnSoundOff}                 |
+     *   | `resetallcontrollers` | 121    | [`resetAllControllers()`]{@link #resetAllControllers}   |
+     *   | `localcontrol`        | 122    | [`setLocalControl()`]{@link #turnSoundOff}              |
+     *   | `allnotesoff`         | 123    | [`turnNotesOff()`]{@link #turnNotesOff}                 |
+     *   | `omnimodeoff`         | 124    | [`setOmniMode(false)`]{@link #setOmniMode}              |
+     *   | `omnimodeon`          | 125    | [`setOmniMode(true)`]{@link #setOmniMode}               |
+     *   | `monomodeon`          | 126    | [`setPolyphonicMode("mono")`]{@link #setPolyphonicMode} |
+     *   | `polymodeon`          | 127    | [`setPolyphonicMode("poly")`]{@link #setPolyphonicMode} |
      *
-     * It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may
-     * require a value that's not zero. For that reason, the `value` parameter is optional and
+     * Note: as you can see above, to make it easier, all channel mode messages also have a matching
+     * helper method.
+     *
+     * It should also be noted that, per the MIDI specification, only `localcontrol` and `monomodeon`
+     * may require a value that's not zero. For that reason, the `value` parameter is optional and
      * defaults to 0.
-     *
-     * To make it easier, all channel mode messages have a matching helper method:
-     *
-     *   - [`turnSoundOff()`]{@link OutputChannel#turnSoundOff}
-     *   - [`resetAllControllers()`]{@link OutputChannel#resetAllControllers}
-     *   - [`setLocalControl()`]{@link OutputChannel#turnSoundOff}
-     *   - [`turnNotesOff()`]{@link OutputChannel#turnNotesOff}
-     *   - [`setOmniMode()`]{@link OutputChannel#setOmniMode}
-     *   - [`setPolyphonicMode()`]{@link OutputChannel#setPolyphonicMode}
      *
      * @param command {number|string} The numerical identifier of the channel mode message (integer
      * between 120-127) or its name as a string.
@@ -1988,14 +2028,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {TypeError} Invalid channel mode message name.
      * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
@@ -2005,7 +2047,7 @@ declare class Output {
      *
      */
     sendChannelMode(command: number | string, value?: number, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2014,21 +2056,23 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output}
      *
      * @since 3.0.0
      */
     turnSoundOff(options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2038,21 +2082,23 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output}
      *
      * @since 3.0.0
      */
     turnNotesOff(options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2061,19 +2107,21 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output}
      */
     resetAllControllers(options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2085,21 +2133,23 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @return {Output} Returns the `Output` object so methods can be chained.
      *
      * @since 3.0.0
      */
     setPolyphonicMode(mode: string, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2112,21 +2162,23 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @return {Output} Returns the `Output` object so methods can be chained.
      *
      * @since 3.0.0
      */
     setLocalControl(state?: boolean, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2139,14 +2191,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {TypeError} Invalid channel mode message name.
      * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
@@ -2157,7 +2211,7 @@ declare class Output {
      * @since 3.0.0
      */
     setOmniMode(state?: boolean, options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2200,14 +2254,16 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws {RangeError} The control value must be between 0 and 127.
      * @throws {RangeError} The msb value must be between 0 and 127
@@ -2215,7 +2271,7 @@ declare class Output {
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     setNonRegisteredParameter(parameter: number[], data?: number | number[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2244,19 +2300,21 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     incrementRegisteredParameter(parameter: string | number[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2285,21 +2343,23 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @throws TypeError The specified parameter is not available.
      *
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     decrementRegisteredParameter(parameter: string | number[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         time?: number | string;
     }, legacy?: {}): Output;
     /**
@@ -2320,18 +2380,20 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
      * @param {boolean} [options.rawValue=false] Controls whether the release velocity is set using
      * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
      * default).
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
      * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
@@ -2340,7 +2402,7 @@ declare class Output {
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     sendNoteOff(note: number | string | number[] | string[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
         release?: number;
@@ -2392,11 +2454,11 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
-     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to play the note
-     * on. If no value is specified, all channels will be used (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
-     * @param {number} [options.duration=undefined] The number of milliseconds (integer) after which a
+     * @param {number} [options.duration=undefined] The number of milliseconds after which a
      * **note off** message will be scheduled. If left undefined, only a **note on** message is sent.
      *
      * @param {boolean} [options.rawValue=false] Controls whether the attack and release velocities
@@ -2408,10 +2470,12 @@ declare class Output {
      * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
      * This is only used with the **note off** event triggered when `options.duration` is set.
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @param {number} [options.attack=0.5] The attack velocity to use when playing the note (between
      * `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
@@ -2420,7 +2484,7 @@ declare class Output {
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     playNote(note: number | string | Note | number[] | string[] | Note[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         duration?: number;
         rawValue?: boolean;
         release?: number;
@@ -2448,18 +2512,20 @@ declare class Output {
      *
      * @param {Object} [options={}]
      *
-     * @param {number|number[]|"all"} [options.channels="all"] The MIDI channel number (between `1`
-     * and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to
-     * use all channels (default).
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no
+     * channel is specified, all channels will be used.
      *
      * @param {boolean} [options.rawValue=false] Controls whether the attack velocity is set using
      * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
      * default).
      *
-     * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
-     * a number, the message will be delayed by that many milliseconds. If the value is a number
-     * (DOMHighResTimeStamp), the operation will be scheduled for that time. If `time` is omitted, or
-     * in the past, the operation will be carried out as soon as possible.
+     * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+     * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+     * number
+     * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+     * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+     * the operation will be carried out as soon as possible.
      *
      * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
      * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
@@ -2468,7 +2534,7 @@ declare class Output {
      * @returns {Output} Returns the `Output` object so methods can be chained.
      */
     sendNoteOn(note: number | string | number[] | string[], options?: {
-        channels?: number | number[] | "all";
+        channels?: number | number[];
         rawValue?: boolean;
         time?: number | string;
         attack?: number;
