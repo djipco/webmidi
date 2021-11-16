@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 11:57:41 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 12:32:11 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2479,7 +2479,7 @@ class OutputChannel extends e {
    */
 
 
-  setMasterTuning(value, options = {}) {
+  sendMasterTuning(value, options = {}) {
     // @todo allow passing value as msb/lsb pair (the same as pitch bend range)
     value = parseFloat(value) || 0.0;
 
@@ -2521,7 +2521,7 @@ class OutputChannel extends e {
    */
 
 
-  setModulationRange(semitones, cents, options = {}) {
+  sendModulationRange(semitones, cents, options = {}) {
     // @todo allow passing value as msb/lsb pair (the same as pitch bend range)
     // when passing a single argument, semitones and cents shoud be combined
     if (wm.validation) {
@@ -2585,7 +2585,7 @@ class OutputChannel extends e {
    */
 
 
-  setNonRegisteredParameter(nrpn, data, options = {}) {
+  sendNrpnValue(nrpn, data, options = {}) {
     data = [].concat(data);
 
     if (wm.validation) {
@@ -2824,7 +2824,7 @@ class OutputChannel extends e {
    */
 
 
-  setRegisteredParameter(rpn, data, options = {}) {
+  sendRpnValue(rpn, data, options = {}) {
     if (!Array.isArray(rpn)) rpn = Enumerations.MIDI_REGISTERED_PARAMETERS[rpn];
 
     if (wm.validation) {
@@ -2875,7 +2875,7 @@ class OutputChannel extends e {
    */
 
 
-  setTuningBank(value, options = {}) {
+  sendTuningBank(value, options = {}) {
     if (wm.validation) {
       if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
         throw new RangeError("The tuning bank number must be between 0 and 127.");
@@ -2905,7 +2905,7 @@ class OutputChannel extends e {
    */
 
 
-  setTuningProgram(value, options = {}) {
+  sendTuningProgram(value, options = {}) {
     if (wm.validation) {
       if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
         throw new RangeError("The tuning program number must be between 0 and 127.");
@@ -2959,7 +2959,7 @@ class OutputChannel extends e {
    */
 
 
-  turnNotesOff(options = {}) {
+  sendAllNotesOff(options = {}) {
     return this.sendChannelMode("allnotesoff", 0, options);
   }
   /**
@@ -2978,7 +2978,7 @@ class OutputChannel extends e {
    */
 
 
-  turnSoundOff(options = {}) {
+  sendAllSoundOff(options = {}) {
     return this.sendChannelMode("allsoundoff", 0, options);
   }
   /**
@@ -3514,7 +3514,7 @@ class Output extends e {
    *
    * @since 3.0.0
    */
-  setSongPosition(value = 0, options = {}) {
+  sendSongPosition(value = 0, options = {}) {
     // @todo allow passing in 2-entries array for msb/lsb
     value = Math.floor(value) || 0;
     var msb = value >> 7 & 0x7F;
@@ -3523,19 +3523,6 @@ class Output extends e {
       time: options.time
     });
     return this;
-  }
-  /**
-   * @private
-   * @deprecated since version 3.0
-   */
-
-
-  sendSongPosition(value, options = {}) {
-    if (wm.validation) {
-      console.warn("The sendSongPosition() method has been deprecated. Use setSongPosition() instead.");
-    }
-
-    return this.setSongPosition(value, options);
   }
   /**
    * Sends a **song select** MIDI message.
@@ -3559,7 +3546,7 @@ class Output extends e {
    */
 
 
-  setSong(value = 0, options = {}) {
+  sendSongSelect(value = 0, options = {}) {
     if (wm.validation) {
       value = parseInt(value);
 
@@ -3572,19 +3559,6 @@ class Output extends e {
       time: options.time
     });
     return this;
-  }
-  /**
-   * @private
-   * @deprecated since version 3.0
-   */
-
-
-  sendSongSelect(value, options = {}) {
-    if (wm.validation) {
-      console.warn("The sendSongSelect() method has been deprecated. Use setSong() instead.");
-    }
-
-    return this.setSong(value, options);
   }
   /**
    * Sends a MIDI **tune request** real-time message.
@@ -3801,7 +3775,7 @@ class Output extends e {
    */
 
 
-  setKeyAftertouch(note, pressure, options = {}, legacy = {}) {
+  sendKeyAftertouch(note, pressure, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(pressure) || Number.isInteger(pressure) || pressure === "all") {
@@ -3820,18 +3794,6 @@ class Output extends e {
     return this;
   }
 
-  /**
-   * @private
-   * @deprecated since version 3.0
-   */
-  sendKeyAftertouch(note, channel, pressure, options = {}) {
-    if (wm.validation) {
-      console.warn("The sendKeyAftertouch() method has been deprecated. Use setKeyAftertouch() instead.");
-    }
-
-    options.channels = channel;
-    return this.setKeyAftertouch(note, pressure, options);
-  }
   /**
    * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
    * control change message to send can be specified numerically (0-127) or by using one of the
@@ -3937,8 +3899,6 @@ class Output extends e {
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
-
-
   sendControlChange(controller, value, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
@@ -4061,22 +4021,27 @@ class Output extends e {
    */
 
 
-  setRegisteredParameter(parameter, data, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendRpnValue(parameter, data, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setRegisteredParameter(parameter, data, options);
     });
     return this;
+  }
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+
+
+  setRegisteredParameter(parameter, data = [], channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The setRegisteredParameter() method is deprecated. Use sendRpnValue() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendRpnValue(parameter, data, options);
   }
   /**
    * Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
@@ -4107,7 +4072,7 @@ class Output extends e {
    */
 
 
-  setChannelAftertouch(pressure, options = {}, legacy = {}) {
+  sendChannelAftertouch(pressure, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4123,20 +4088,6 @@ class Output extends e {
       this.channels[ch].setChannelAftertouch(pressure, options);
     });
     return this;
-  }
-  /**
-   * @private
-   * @deprecated since version 3.0
-   */
-
-
-  sendChannelAftertouch(pressure, channel, options = {}) {
-    if (wm.validation) {
-      console.warn("The sendChannelAftertouch() method has been deprecated. Use setChannelAftertouch().");
-    }
-
-    options.channels = channel;
-    return this.setChannelAftertouch(pressure, options);
   }
   /**
    * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
@@ -4178,7 +4129,7 @@ class Output extends e {
    */
 
 
-  setPitchBend(value, options = {}, legacy = {}) {
+  sendPitchBend(value, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4194,20 +4145,6 @@ class Output extends e {
       this.channels[ch].setPitchBend(value, options);
     });
     return this;
-  }
-  /**
-   * @private
-   * @deprecated since version 3.0
-   */
-
-
-  sendPitchBend(bend, channel, options = {}) {
-    if (wm.validation) {
-      console.warn("The sendPitchBend() method has been deprecated. Use setPitchBend() instead.");
-    }
-
-    options.channels = channel;
-    return this.setPitchBend(bend, options);
   }
   /**
    * Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
@@ -4236,7 +4173,7 @@ class Output extends e {
    */
 
 
-  setProgram(program = 0, options = {}, legacy = {}) {
+  sendProgramChange(program = 0, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4252,20 +4189,6 @@ class Output extends e {
       this.channels[ch].setProgram(program, options);
     });
     return this;
-  }
-  /**
-   * @private
-   * @deprecated since version 3.0
-   */
-
-
-  sendProgramChange(program, channel, options = {}) {
-    if (wm.validation) {
-      console.warn("The sendProgramChange() method has been deprecated. Use setProgram() instead.");
-    }
-
-    options.channels = channel;
-    return this.setProgram(program, options);
   }
   /**
    * Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
@@ -4299,17 +4222,7 @@ class Output extends e {
    */
 
 
-  setModulationRange(semitones, cents, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendModulationRange(semitones, cents, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setModulationRange(semitones, cents, options);
@@ -4317,6 +4230,19 @@ class Output extends e {
     return this;
   }
 
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+  setModulationRange(semitones = 0, cents = 0, channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The setModulationRange() method is deprecated. Use sendModulationRange() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendModulationRange(semitones, cents, options);
+  }
   /**
    * Sends a master tuning message to the specified channel(s). The value is decimal and must be
    * larger than `-65` semitones and smaller than `64` semitones.
@@ -4348,22 +4274,29 @@ class Output extends e {
    *
    * @since 3.0.0
    */
-  setMasterTuning(value, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
 
+
+  sendMasterTuning(value, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setMasterTuning(value, options);
     });
     return this;
+  }
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+
+
+  setMasterTuning(value, channel = {}, options = {}) {
+    if (wm.validation) {
+      console.warn("The setMasterTuning() method is deprecated. Use sendMasterTuning() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendMasterTuning(value, options);
   }
   /**
    * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
@@ -4392,22 +4325,27 @@ class Output extends e {
    */
 
 
-  setTuningProgram(value, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendTuningProgram(value, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningProgram(value, options);
     });
     return this;
+  }
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+
+
+  setTuningProgram(value, channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The setTuningProgram() method is deprecated. Use sendTuningProgram() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendTuningProgram(value, options);
   }
   /**
    * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
@@ -4436,17 +4374,7 @@ class Output extends e {
    */
 
 
-  setTuningBank(value = 0, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendTuningBank(value = 0, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setTuningBank(value, options);
@@ -4454,6 +4382,19 @@ class Output extends e {
     return this;
   }
 
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+  setTuningBank(parameter, channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The setTuningBank() method is deprecated. Use sendTuningBank() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendTuningBank(parameter, options);
+  }
   /**
    * Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
    * send can be specified numerically or by using one of the following common names:
@@ -4501,6 +4442,8 @@ class Output extends e {
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
    */
+
+
   sendChannelMode(command, value = 0, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
@@ -4541,20 +4484,10 @@ class Output extends e {
    */
 
 
-  turnSoundOff(options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendAllSoundOff(options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].turnSoundOff(options);
+      this.channels[ch].sendAllSoundOff(options);
     });
     return this;
   }
@@ -4582,17 +4515,7 @@ class Output extends e {
    */
 
 
-  turnNotesOff(options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendAllNotesOff(options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].turnNotesOff(options);
@@ -4663,7 +4586,7 @@ class Output extends e {
    */
 
 
-  setPolyphonicMode(mode, options = {}, legacy = {}) {
+  sendPolyphonicMode(mode, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4707,7 +4630,7 @@ class Output extends e {
    */
 
 
-  setLocalControl(state, options = {}, legacy = {}) {
+  sendLocalControl(state, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4755,7 +4678,7 @@ class Output extends e {
    */
 
 
-  setOmniMode(state, options = {}, legacy = {}) {
+  sendOmniMode(state, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4830,22 +4753,27 @@ class Output extends e {
    */
 
 
-  setNonRegisteredParameter(parameter, data, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendNrpnValue(parameter, data, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setNonRegisteredParameter(parameter, data, options);
     });
     return this;
+  }
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+
+
+  setNonRegisteredParameter(parameter, data = [], channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The setNonRegisteredParameter() method is deprecated. Use sendNrpnValue() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendNrpnValue(parameter, data, options);
   }
   /**
    * Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
