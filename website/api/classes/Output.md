@@ -11,8 +11,8 @@ subsystem and should not be directly instantiated.
 
 You can access all available `Output` objects by referring to the
 [`WebMidi.outputs`](WebMidi#outputs) array or by using methods such as
-[`WebMidi.getOutputByName()`](WebMidi.#getOutputByName) or
-[`WebMidi.getOutputById()`](WebMidi#getOutputByName).
+[`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
+[`WebMidi.getOutputById()`](WebMidi#getOutputById).
 
 
 **Extends**: [`EventEmitter`](EventEmitter)
