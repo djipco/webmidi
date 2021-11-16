@@ -1385,10 +1385,6 @@ Returns the `OutputChannel` object so methods can be chained.
 Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
 *MIDI Tuning Standard*, which is not widely implemented.
 
-**Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
-1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-that use a numbering scheme starting at 1.
-
 
   **Parameters**
 
@@ -1398,7 +1394,7 @@ that use a numbering scheme starting at 1.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** | number<br /> ||The desired tuning program (1-128).|
+    |**`value`** | number<br /> ||The desired tuning program (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -1413,7 +1409,7 @@ Returns the `OutputChannel` object so methods can be chained.
 
 
 **Throws**:
-  * `RangeError` : The program value must be between 1 and 128.
+  * `RangeError` : The program value must be between 0 and 127.
 
 
 ### `.stopNote(...)` {#stopNote}
