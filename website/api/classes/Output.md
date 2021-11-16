@@ -1526,7 +1526,7 @@ value to send was `10`, you could use:
 WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], 1);
 ```
 
-For further implementation details, refer to the manufacturer"s documentation.
+For further implementation details, refer to the manufacturer's documentation.
 
 
   **Parameters**
@@ -1537,7 +1537,7 @@ For further implementation details, refer to the manufacturer"s documentation.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`parameter`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (0x63, 0x62) that identify the non-registered parameter.|
+    |**`parameter`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (`0x63`, `0x62`) that identify the non-registered parameter.|
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An integer or an array of integers with a length of 1 or 2 specifying the desired data.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
