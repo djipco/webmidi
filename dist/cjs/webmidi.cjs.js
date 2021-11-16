@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 10:18:11 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 11:57:41 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1610,19 +1610,7 @@ class OutputChannel extends e {
 
     const offset = wm.octaveOffset + this.output.octaveOffset + this.octaveOffset; // Make sure we are dealing with an array
 
-    if (!Array.isArray(target)) target = [target]; // target = target.map(item => Utilities.guessNoteNumber(item));
-    //
-    // target.forEach(n => {
-    //   this.send(
-    //     [
-    //       (Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
-    //       Utilities.offsetNumber(n, offset),
-    //       pressure
-    //     ],
-    //     {time: Utilities.toTimestamp(options.time)}
-    //   );
-    // });
-
+    if (!Array.isArray(target)) target = [target];
     Utilities.buildNoteArray(target).forEach(n => {
       this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1), n.getOffsetNumber(offset), pressure], {
         time: Utilities.toTimestamp(options.time)
@@ -1968,7 +1956,7 @@ class OutputChannel extends e {
    */
 
 
-  decrementRegisteredParameter(parameter, options = {}) {
+  sendRpnDecrement(parameter, options = {}) {
     if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
@@ -2031,7 +2019,7 @@ class OutputChannel extends e {
    */
 
 
-  incrementRegisteredParameter(parameter, options = {}) {
+  sendRpnIncrement(parameter, options = {}) {
     if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
 
     if (wm.validation) {
@@ -2752,11 +2740,7 @@ class OutputChannel extends e {
   /**
    * Sends a MIDI **program change** message at the scheduled time.
    *
-   * **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
-   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-   * that use a numbering scheme starting at 1.
-   *
-   * @param [program=1] {number} The MIDI patch (program) number (1-128)
+   * @param [program=1] {number} The MIDI patch (program) number (integer between `0` and `127`).
    *
    * @param {Object} [options={}]
    *
@@ -2778,12 +2762,12 @@ class OutputChannel extends e {
     program = parseInt(program) || 1;
 
     if (wm.validation) {
-      if (!(program >= 1 && program <= 128)) {
+      if (!(program >= 0 && program <= 127)) {
         throw new RangeError("The program number must be between 1 and 128.");
       }
     }
 
-    this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program - 1], {
+    this.send([(Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1), program], {
       time: Utilities.toTimestamp(options.time)
     });
     return this;
@@ -2875,11 +2859,7 @@ class OutputChannel extends e {
    * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
    * *MIDI Tuning Standard*, which is not widely implemented.
    *
-   * **Note**: since version 3.0, the bank number is an integer between 1 and 128. In versions
-   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-   * that use a numbering scheme starting at 1.
-   *
-   * @param value {number} The desired tuning bank (1-128).
+   * @param value {number} The desired tuning bank (integer between `0` and `127`).
    *
    * @param {Object} [options={}]
    *
@@ -2889,7 +2869,7 @@ class OutputChannel extends e {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws {RangeError} The bank value must be between 1 and 128.
+   * @throws {RangeError} The bank value must be between 0 and 127.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -2897,23 +2877,19 @@ class OutputChannel extends e {
 
   setTuningBank(value, options = {}) {
     if (wm.validation) {
-      if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
-        throw new RangeError("The tuning bank number must be between 1 and 128.");
+      if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("The tuning bank number must be between 0 and 127.");
       }
     }
 
-    this.setRegisteredParameter("tuningbank", value - 1, options);
+    this.setRegisteredParameter("tuningbank", value, options);
     return this;
   }
   /**
    * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
    * *MIDI Tuning Standard*, which is not widely implemented.
    *
-   * **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
-   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-   * that use a numbering scheme starting at 1.
-   *
-   * @param value {number} The desired tuning program (1-128).
+   * @param value {number} The desired tuning program (integer between `0` and `127`).
    *
    * @param {Object} [options={}]
    *
@@ -2923,7 +2899,7 @@ class OutputChannel extends e {
    * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
    * will be carried out as soon as possible.
    *
-   * @throws {RangeError} The program value must be between 1 and 128.
+   * @throws {RangeError} The program value must be between 0 and 127.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -2931,12 +2907,12 @@ class OutputChannel extends e {
 
   setTuningProgram(value, options = {}) {
     if (wm.validation) {
-      if (!Number.isInteger(value) || !(value >= 1 && value <= 128)) {
-        throw new RangeError("The tuning program number must be between 1 and 128.");
+      if (!Number.isInteger(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("The tuning program number must be between 0 and 127.");
       }
     }
 
-    this.setRegisteredParameter("tuningprogram", value - 1, options);
+    this.setRegisteredParameter("tuningprogram", value, options);
     return this;
   }
   /**
@@ -3520,10 +3496,10 @@ class Output extends e {
   }
 
   /**
-   * Sends a **ong position** MIDI message. The value is expressed in MIDI beats (between 0 and
-   * 16383) which are 16th note. Position 0 is always the start of the song.
+   * Sends a **song position** MIDI message. The value is expressed in MIDI beats (between `0` and
+   * `16383`) which are 16th note. Position `0` is always the start of the song.
    *
-   * @param [value=0] {number} The MIDI beat to cue to (integer between 0 and 16383).
+   * @param {number} [value=0] The MIDI beat to cue to (integer between `0` and `16383`).
    *
    * @param {object} [options={}]
    *
@@ -3538,7 +3514,7 @@ class Output extends e {
    *
    * @since 3.0.0
    */
-  setSongPosition(value, options = {}) {
+  setSongPosition(value = 0, options = {}) {
     // @todo allow passing in 2-entries array for msb/lsb
     value = Math.floor(value) || 0;
     var msb = value >> 7 & 0x7F;
@@ -3564,11 +3540,7 @@ class Output extends e {
   /**
    * Sends a **song select** MIDI message.
    *
-   * **Note**: since version 3.0, the song number is an integer between 1 and 128. In versions 1.0
-   * and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices that
-   * use a numbering scheme starting at 1.
-   *
-   * @param value {number} The number of the song to select (integer between 1 and 128).
+   * @param {number} [value=0] The number of the song to select (integer between `0` and `127`).
    *
    * @param {object} [options={}]
    *
@@ -3579,7 +3551,7 @@ class Output extends e {
    * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
    * the operation will be carried out as soon as possible.
    *
-   * @throws The song number must be between 1 and 128.
+   * @throws The song number must be between 0 and 127.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    *
@@ -3587,12 +3559,12 @@ class Output extends e {
    */
 
 
-  setSong(value, options = {}) {
+  setSong(value = 0, options = {}) {
     if (wm.validation) {
       value = parseInt(value);
 
-      if (isNaN(value) || !(value >= 1 && value <= 128)) {
-        throw new RangeError("The program value must be between 1 and 128");
+      if (isNaN(value) || !(value >= 0 && value <= 127)) {
+        throw new RangeError("The program value must be between 0 and 127");
       }
     }
 
@@ -3814,7 +3786,7 @@ class Output extends e {
    * channel is specified, all channels will be used.
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
+   * considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
@@ -3986,16 +3958,17 @@ class Output extends e {
   }
 
   /**
-   * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-   * adjust the range used by their pitch bend lever. The range is specified by using the
+   * Sends a **pitch bend range** message to the specified channel(s) at the scheduled time so that
+   * they adjust the range used by their pitch bend lever. The range is specified by using the
    * `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
    * means that the pitch bend range will be 12 semitones above and below the nominal pitch.
    *
-   * @param semitones {number} The desired adjustment value in semitones (between 0 and 127). While
-   * nothing imposes that in the specification, it is very common for manufacturers to limit the
-   * range to 2 octaves (-12 semitones to 12 semitones).
+   * @param {number} [semitones=0] The desired adjustment value in semitones (between `0` and `127`).
+   * While nothing imposes that in the specification, it is very common for manufacturers to limit
+   * the range to 2 octaves (-12 semitones to 12 semitones).
    *
-   * @param [cents=0] {number} The desired adjustment value in cents (integer between 0-127).
+   * @param {number} [cents=0] The desired adjustment value in cents (integer between `0` and
+   * `127`).
    *
    * @param {object} [options={}]
    *
@@ -4017,7 +3990,7 @@ class Output extends e {
    *
    * @since 3.0.0
    */
-  setPitchBendRange(semitones, cents, options = {}, legacy = {}) {
+  setPitchBendRange(semitones = 0, cents = 0, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4036,36 +4009,33 @@ class Output extends e {
   }
   /**
    * Sets the specified MIDI registered parameter to the desired value. The value is defined with
-   * up to two bytes of data (msb, lsb) that each can go from 0 to 127.
+   * up to two bytes of data (msb, lsb) that each can go from `0` to `127`.
    *
    * MIDI
-   * [registered parameters]
-   * (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+   * [registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
    * extend the original list of control change messages. The MIDI 1.0 specification lists only a
-   * limited number of them. Here are the original registered parameters with the identifier that
-   * can be used as the first parameter of this function:
+   * limited number of them:
    *
-   *  * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
-   *  * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
-   *  * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
-   *  * Tuning Program (0x00, 0x03): `"tuningprogram"`
-   *  * Tuning Bank (0x00, 0x04): `"tuningbank"`
-   *  * Modulation Range (0x00, 0x05): `"modulationrange"`
+   * | Numbers      | Function                 |
+   * |--------------|--------------------------|
+   * | (0x00, 0x00) | `pitchbendrange`         |
+   * | (0x00, 0x01) | `channelfinetuning`      |
+   * | (0x00, 0x02) | `channelcoarsetuning`    |
+   * | (0x00, 0x03) | `tuningprogram`          |
+   * | (0x00, 0x04) | `tuningbank`             |
+   * | (0x00, 0x05) | `modulationrange`        |
+   * | (0x3D, 0x00) | `azimuthangle`           |
+   * | (0x3D, 0x01) | `elevationangle`         |
+   * | (0x3D, 0x02) | `gain`                   |
+   * | (0x3D, 0x03) | `distanceratio`          |
+   * | (0x3D, 0x04) | `maximumdistance`        |
+   * | (0x3D, 0x05) | `maximumdistancegain`    |
+   * | (0x3D, 0x06) | `referencedistanceratio` |
+   * | (0x3D, 0x07) | `panspreadangle`         |
+   * | (0x3D, 0x08) | `rollangle`              |
    *
-   * Note that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning
+   * Note that the `tuningprogram` and `tuningbank` parameters are part of the *MIDI Tuning
    * Standard*, which is not widely implemented.
-   *
-   * Another set of extra parameters have been later added for 3D sound controllers. They are:
-   *
-   *  * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
-   *  * Elevation Angle (0x3D, 0x01): `"elevationangle"`
-   *  * Gain (0x3D, 0x02): `"gain"`
-   *  * Distance Ratio (0x3D, 0x03): `"distanceratio"`
-   *  * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
-   *  * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
-   *  * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
-   *  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
-   *  * Roll Angle (0x3D, 0x08): `"rollangle"`
    *
    * @param parameter {string|number[]} A string identifying the parameter's name (see above) or a
    * two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the
@@ -4171,20 +4141,19 @@ class Output extends e {
   /**
    * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
    *
-   * @param {number|number[]} value The intensity of the bend (between -1.0 and 1.0). A value of
-   * zero means no bend. The resulting bend is relative to the pitch bend range that has been
-   * defined. The range can be set with [setPitchBendRange()]{@link OutputChannel#setPitchBendRange}
-   * . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of
-   * -1 will bend the note 1 octave below its nominal value.
+   * The resulting bend is relative to the pitch bend range that has been defined. The range can be
+   * set with [`setPitchBendRange()`]{@link #setPitchBendRange}. So, for example, if the pitch bend
+   * range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octave
+   * below its nominal value.
    *
-   * If an invalid value is specified, the nearest valid value will be used instead.
-   *
-   * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
-   * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
-   * representing, respectively, the MSB (most significant byte) and the LSB (least significant
-   * byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64`
-   * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
-   * (1/100 of a semitone). An LSB of `64` also means no bend.
+   * @param {number|number[]} value The intensity of the bend (between `-1.0` and `1.0`). A value of
+   * `0` means no bend. If an invalid value is specified, the nearest valid value will be used
+   * instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by
+   * either using a single integer between `0` and `127` (MSB) or an array of two integers between
+   * `0` and `127` representing, respectively, the MSB (most significant byte) and the LSB (least
+   * significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower
+   * than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed
+   * in cents (1/100 of a semitone). An LSB of `64` also means no bend.
    *
    * @param {object} [options={}]
    *
@@ -4193,8 +4162,8 @@ class Output extends e {
    * channel is specified, all channels will be used.
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or
-   * an array of 2 integers if using both MSB and LSB).
+   * considered as a float between `-1.0` and `1.0` (default) or as raw integer between `0` and
+   * 127` (or an array of 2 integers if using both MSB and LSB).
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
@@ -4243,11 +4212,7 @@ class Output extends e {
   /**
    * Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
    *
-   * **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
-   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-   * that use a numbering scheme starting at 1.
-   *
-   * @param [program=1] {number} The MIDI patch (program) number (1-128)
+   * @param {number} [program=0] The MIDI patch (program) number (integer between `0` and `127`).
    *
    * @param {Object} [options={}]
    *
@@ -4271,7 +4236,7 @@ class Output extends e {
    */
 
 
-  setProgram(program, options = {}, legacy = {}) {
+  setProgram(program = 0, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4354,7 +4319,7 @@ class Output extends e {
 
   /**
    * Sends a master tuning message to the specified channel(s). The value is decimal and must be
-   * larger than -65 semitones and smaller than 64 semitones.
+   * larger than `-65` semitones and smaller than `64` semitones.
    *
    * Because of the way the MIDI specification works, the decimal portion of the value will be
    * encoded with a resolution of 14bit. The integer portion must be between -64 and 63
@@ -4404,11 +4369,7 @@ class Output extends e {
    * Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
    * *MIDI Tuning Standard*, which is not widely implemented.
    *
-   * **Note**: since version 3.0, the program number is an integer between 1 and 128. In versions
-   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-   * that use a numbering scheme starting at 1.
-   *
-   * @param value {number} The desired tuning program (1-128).
+   * @param value {number} The desired tuning program (integer between `0` and `127`).
    *
    * @param {Object} [options={}]
    *
@@ -4423,7 +4384,7 @@ class Output extends e {
    * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
    * the operation will be carried out as soon as possible.
    *
-   * @throws {RangeError} The program value must be between 1 and 128.
+   * @throws {RangeError} The program value must be between 0 and 127.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
@@ -4452,11 +4413,7 @@ class Output extends e {
    * Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
    * *MIDI Tuning Standard*, which is not widely implemented.
    *
-   * **Note**: since version 3.0, the bank number is an integer between 1 and 128. In versions
-   * 1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-   * that use a numbering scheme starting at 1.
-   *
-   * @param value {number} The desired tuning bank (1-128).
+   * @param {number} [value=0] The desired tuning bank (integer between `0` and `127`).
    *
    * @param {Object} [options={}]
    *
@@ -4471,7 +4428,7 @@ class Output extends e {
    * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
    * the operation will be carried out as soon as possible.
    *
-   * @throws {RangeError} The bank value must be between 1 and 128.
+   * @throws {RangeError} The bank value must be between 0 and 127.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
@@ -4479,7 +4436,7 @@ class Output extends e {
    */
 
 
-  setTuningBank(value, options = {}, legacy = {}) {
+  setTuningBank(value = 0, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
@@ -4604,7 +4561,7 @@ class Output extends e {
   /**
    * Sends an **all notes off** channel mode message. This will make all currently playing notes
    * fade out just as if their key had been released. This is different from the
-   * [turnSoundOff()]{@link Output#turnSoundOff} method which mutes all sounds immediately.
+   * [`turnSoundOff()`]{@link #turnSoundOff} method which mutes all sounds immediately.
    *
    * @param {Object} [options={}]
    *
@@ -4681,11 +4638,11 @@ class Output extends e {
     return this;
   }
   /**
-   * Sets the polyphonic mode. In `"poly"` mode (usually the default), multiple notes can be played
-   * and heard at the same time. In `"mono"` mode, only one note will be heard at once even if
+   * Sets the polyphonic mode. In `poly` mode (usually the default), multiple notes can be played
+   * and heard at the same time. In `mono` mode, only one note will be heard at once even if
    * multiple notes are being played.
    *
-   * @param mode {string} The mode to use: `"mono"` or `"poly"`.
+   * @param mode {string} The mode to use: `mono` or `poly`.
    *
    * @param {Object} [options={}]
    *
@@ -4768,7 +4725,7 @@ class Output extends e {
     return this;
   }
   /**
-   * Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
+   * Sets OMNI mode to **on** or **off** for the specified channel(s). MIDI's OMNI mode causes the
    * instrument to respond to messages from all channels.
    *
    * It should be noted that support for OMNI mode is not as common as it used to be.
@@ -4816,39 +4773,39 @@ class Output extends e {
     return this;
   }
   /**
-   * Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
+   * Sets a non-registered parameter to the specified value. The NRPN is selected by passing a
    * two-position array specifying the values of the two control bytes. The value is specified by
-   * passing in a single integer (most cases) or an array of two integers.
+   * passing a single integer (most cases) or an array of two integers.
    *
    * NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
    * they see fit. For example, according to the Roland GS specification, you can control the
-   * **vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you
-   * would use:
+   * **vibrato rate** using NRPN (`1`, `8`). Therefore, to set the **vibrato rate** value to `123`
+   * you would use:
    *
    * ```js
    * WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
    * ```
    *
-   * Obviously, you should select a channel so the message is not sent to all channels. For
-   * instance, to send to channel 1 of the first output port, you would use:
+   * You probably want to should select a channel so the message is not sent to all channels. For
+   * instance, to send to channel `1` of the first output port, you would use:
    *
    * ```js
    * WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
    * ```
    *
    * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
-   * would use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation
+   * would use a 2-position array. For example, for its **ClockBPM** parameter (`2`, `63`), Novation
    * uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
-   * value to send was 10, you could use:
+   * value to send was `10`, you could use:
    *
    * ```js
-   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
+   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], 1);
    * ```
    *
-   * For further implementation details, refer to the manufacturer"s documentation.
+   * For further implementation details, refer to the manufacturer's documentation.
    *
-   * @param parameter {number[]} A two-position array specifying the two control bytes (0x63,
-   * 0x62) that identify the non-registered parameter.
+   * @param parameter {number[]} A two-position array specifying the two control bytes (`0x63`,
+   * `0x62`) that identify the non-registered parameter.
    *
    * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
    * specifying the desired data.
@@ -4931,22 +4888,27 @@ class Output extends e {
    */
 
 
-  incrementRegisteredParameter(parameter, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendRpnIncrement(parameter, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].incrementRegisteredParameter(parameter, options);
+      this.channels[ch].sendRpnIncrement(parameter, options);
     });
     return this;
+  }
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+
+
+  incrementRegisteredParameter(parameter, channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The incrementRegisteredParameter() method is deprecated. Use sendRpnIncrement() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendRpnIncrement(parameter, options);
   }
   /**
    * Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
@@ -4991,22 +4953,27 @@ class Output extends e {
    */
 
 
-  decrementRegisteredParameter(parameter, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendRpnDecrement(parameter, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].decrementRegisteredParameter(parameter, options);
+      this.channels[ch].sendRpnDecrement(parameter, options);
     });
     return this;
+  }
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+
+
+  decrementRegisteredParameter(parameter, channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The decrementRegisteredParameter() method is deprecated. Use sendRpnDecrement() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendRpnDecrement(parameter, options);
   }
   /**
    * Sends a **note off** message for the specified MIDI note number on the specified channel(s).
