@@ -2017,7 +2017,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
-[turnSoundOff()](#Output+turnSoundOff) method which mutes all sounds immediately.
+[`turnSoundOff()`](#turnSoundOff) method which mutes all sounds immediately.
 
 
   **Parameters**
