@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 18:30:31 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 18:41:11 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -4234,7 +4234,7 @@ class Output extends e {
   sendModulationRange(semitones, cents, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setModulationRange(semitones, cents, options);
+      this.channels[ch].sendModulationRange(semitones, cents, options);
     });
     return this;
   }
@@ -4288,7 +4288,7 @@ class Output extends e {
   sendMasterTuning(value, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setMasterTuning(value, options);
+      this.channels[ch].sendMasterTuning(value, options);
     });
     return this;
   }
@@ -4652,7 +4652,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setLocalControl(state, options);
+      this.channels[ch].sendLocalControl(state, options);
     });
     return this;
   }
@@ -4700,7 +4700,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setOmniMode(state, options);
+      this.channels[ch].sendOmniMode(state, options);
     });
     return this;
   }
@@ -4765,7 +4765,7 @@ class Output extends e {
   sendNrpnValue(parameter, data, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setNonRegisteredParameter(parameter, data, options);
+      this.channels[ch].sendNrpnValue(parameter, data, options);
     });
     return this;
   }
