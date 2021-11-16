@@ -764,7 +764,7 @@ Sends a MIDI **channel mode** message to the specified channel(s). The channel m
 send can be specified numerically or by using one of the following common names:
 
   | Type                  | Number | Shortcut Method                                         |
-  --------------------------------------------------------------------------------------------
+  |-----------------------|--------|---------------------------------------------------------|
   | `allsoundoff`         | 120    | [`turnSoundOff()`](#turnSoundOff)                 |
   | `resetallcontrollers` | 121    | [`resetAllControllers()`](#resetAllControllers)   |
   | `localcontrol`        | 122    | [`setLocalControl()`](#turnSoundOff)              |
