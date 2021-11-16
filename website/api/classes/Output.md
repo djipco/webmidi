@@ -955,8 +955,7 @@ reserved for *channel mode* messages. See [`sendChannelMode()`](#sendChannelMode
 for more info.
 
 To view a list of all available **control change** messages, please consult [Table 3 - Control
-Change Messages](
-https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
+Change Messages](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
 from the MIDI specification.
 
 
