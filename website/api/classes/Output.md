@@ -1198,7 +1198,7 @@ In this case `0x42` is the ID of the manufacturer (Korg) and `[0x1, 0x2, 0x3, 0x
 data being sent.
 
 The parameters can be specified using any number notation (decimal, hex, binary, etc.).
-Therefore, the code above is equivalent this code:
+Therefore, the code above is equivalent to this code:
 
 ```js
 WebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]);
@@ -1212,6 +1212,9 @@ as the first parameter. For example, to send the same sysex message to a
 WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 ```
 
+The *MIDI Manufacturers Association* maintains a full list of
+[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
+
 There is no limit for the length of the data array. However, it is generally suggested to keep
 system exclusive messages to 64Kb or less.
 
@@ -1224,7 +1227,7 @@ system exclusive messages to 64Kb or less.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`manufacturer`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers) .|
+    |**`manufacturer`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between 0 and 127 that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).|
     |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> |[]|A Uint8Array or an array of unsigned integers between 0 and 127. This is the data you wish to transfer.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
