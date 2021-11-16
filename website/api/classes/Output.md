@@ -778,12 +778,12 @@ defaults to 0.
 
 To make it easier, all channel mode messages have a matching helper method:
 
-  - [`turnSoundOff()`](OutputChannel#turnSoundOff)
-  - [`resetAllControllers()`](OutputChannel#resetAllControllers)
-  - [`setLocalControl()`](OutputChannel#turnSoundOff)
-  - [`turnNotesOff()`](OutputChannel#turnNotesOff)
-  - [`setOmniMode()`](OutputChannel#setOmniMode)
-  - [`setPolyphonicMode()`](OutputChannel#setPolyphonicMode)
+  - [`turnSoundOff()`](#Output+turnSoundOff)
+  - [`resetAllControllers()`](#Output+resetAllControllers)
+  - [`setLocalControl()`](#Output+turnSoundOff)
+  - [`turnNotesOff()`](#Output+turnNotesOff)
+  - [`setOmniMode()`](#Output+setOmniMode)
+  - [`setPolyphonicMode()`](#Output+setPolyphonicMode)
 
 
   **Parameters**
