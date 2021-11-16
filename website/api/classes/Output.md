@@ -1647,13 +1647,13 @@ means that the pitch bend range will be 12 semitones above and below the nominal
 
   **Parameters**
 
-  > Signature: `setPitchBendRange(semitones, [cents], [options])`
+  > Signature: `setPitchBendRange([semitones], [cents], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`semitones`** | number<br /> ||The desired adjustment value in semitones (between `0` and `127`). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
+    |[**`semitones`**] | number<br /> |0|The desired adjustment value in semitones (between `0` and `127`). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
     |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between `0` and `127`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
@@ -1811,13 +1811,13 @@ Sends a **song select** MIDI message.
 
   **Parameters**
 
-  > Signature: `setSong(value, [options])`
+  > Signature: `setSong([value], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** | number<br /> ||The number of the song to select (integer between `0` and `127`).|
+    |[**`value`**] | number<br /> |0|The number of the song to select (integer between `0` and `127`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -1877,13 +1877,13 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 
   **Parameters**
 
-  > Signature: `setTuningBank(value, [options])`
+  > Signature: `setTuningBank([value], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** | number<br /> ||The desired tuning bank (integer between `0` and `127`).|
+    |[**`value`**] | number<br /> |0|The desired tuning bank (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
