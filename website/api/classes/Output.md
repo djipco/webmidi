@@ -252,8 +252,8 @@ The newly created [`Listener`](Listener) object.
 
 Clears all messages that have been queued but not yet delivered.
 
-Warning: this method has been defined in the specification but has not been implemented yet. As
-soon as browsers implement it, it will work.
+**Warning**: this method has been defined in the specification but has not been implemented
+yet. As soon as browsers implement it, it will work.
 
 You can check out the current status of this feature for Chromium (Chrome) here:
 https://bugs.chromium.org/p/chromium/issues/detail?id=471798
