@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 12:32:11 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 12:41:52 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1585,7 +1585,7 @@ class OutputChannel extends e {
    */
 
 
-  setKeyAftertouch(target, pressure, options = {}) {
+  sendKeyAftertouch(target, pressure, options = {}) {
     if (wm.validation) {
       // Legacy support
       if (options.useRawValue) options.rawValue = options.useRawValue;
@@ -2398,7 +2398,7 @@ class OutputChannel extends e {
    */
 
 
-  setOmniMode(state, options = {}) {
+  sendOmniMode(state, options = {}) {
     if (state === undefined || state) {
       this.sendChannelMode("omnimodeon", 0, options);
     } else {
@@ -2431,7 +2431,7 @@ class OutputChannel extends e {
    */
 
 
-  setChannelAftertouch(pressure, options = {}) {
+  sendChannelAftertouch(pressure, options = {}) {
     if (wm.validation) {
       if (isNaN(parseFloat(pressure))) {
         throw new RangeError("Invalid channel aftertouch value.");
@@ -2649,7 +2649,7 @@ class OutputChannel extends e {
    */
 
 
-  setPitchBend(value, options = {}) {
+  sendPitchBend(value, options = {}) {
     // @todo standardize the way msb/lsb are passed in
     if (wm.validation) {
       if (options.rawValue && Array.isArray(value)) {
@@ -2722,7 +2722,7 @@ class OutputChannel extends e {
    */
 
 
-  setPitchBendRange(semitones, cents, options = {}) {
+  sendPitchBendRange(semitones, cents, options = {}) {
     // @todo use single value as parameter or pair of msb/lsb
     if (wm.validation) {
       if (!Number.isInteger(semitones) || !(semitones >= 0 && semitones <= 127)) {
@@ -2758,7 +2758,7 @@ class OutputChannel extends e {
    */
 
 
-  setProgram(program, options = {}) {
+  sendProgramChange(program, options = {}) {
     program = parseInt(program) || 1;
 
     if (wm.validation) {
@@ -2935,7 +2935,7 @@ class OutputChannel extends e {
    */
 
 
-  setLocalControl(state, options = {}) {
+  sendLocalControl(state, options = {}) {
     if (state) {
       return this.sendChannelMode("localcontrol", 127, options);
     } else {
@@ -2997,7 +2997,7 @@ class OutputChannel extends e {
    */
 
 
-  resetAllControllers(options = {}) {
+  sendResetAllControllers(options = {}) {
     return this.sendChannelMode("resetallcontrollers", 0, options);
   }
   /**
@@ -3019,7 +3019,7 @@ class OutputChannel extends e {
    */
 
 
-  setPolyphonicMode(mode, options = {}) {
+  sendPolyphonicMode(mode, options = {}) {
     if (mode === "mono") {
       return this.sendChannelMode("monomodeon", 0, options);
     } else {
@@ -3950,22 +3950,27 @@ class Output extends e {
    *
    * @since 3.0.0
    */
-  setPitchBendRange(semitones = 0, cents = 0, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
-        const channels = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendPitchBendRange(semitones = 0, cents = 0, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].setPitchBendRange(semitones, cents, options);
     });
     return this;
+  }
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+
+
+  setPitchBendRange(semitones = 0, cents = 0, channel = "all", options = {}) {
+    if (wm.validation) {
+      console.warn("The setPitchBendRange() method is deprecated. Use sendPitchBendRange() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendPitchBendRange(semitones, cents, options);
   }
   /**
    * Sets the specified MIDI registered parameter to the desired value. The value is defined with
@@ -4543,7 +4548,7 @@ class Output extends e {
    */
 
 
-  resetAllControllers(options = {}, legacy = {}) {
+  sendResetAllControllers(options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
       if (Array.isArray(options) || Number.isInteger(options) || options === "all") {
