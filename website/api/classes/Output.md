@@ -999,7 +999,7 @@ valid values:
  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
  - A [`Note`](Note) object
 
- The execution of the **note off** command can be delayed by using the `time` property of the
+The execution of the **note off** command can be delayed by using the `time` property of the
 `options` parameter.
 
 
