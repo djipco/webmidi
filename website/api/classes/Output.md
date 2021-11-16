@@ -1186,9 +1186,6 @@ WebMidi.enable({sysex: true})
   .then(() => console.log("System exclusive messages are enabled");
 ```
 
-Note that, depending on browser, version and platform, it is generally necessary to serve the
-page over HTTPS to enable sysex support.
-
 ##### Examples
 
 If you want to send a sysex message to a Korg device connected to the first output, you would
@@ -1197,16 +1194,15 @@ use the following code:
 ```js
 WebMidi.outputs[0].sendSysex(0x42, [0x1, 0x2, 0x3, 0x4, 0x5]);
 ```
+In this case `0x42` is the ID of the manufacturer (Korg) and `[0x1, 0x2, 0x3, 0x4, 0x5]` is the
+data being sent.
 
 The parameters can be specified using any number notation (decimal, hex, binary, etc.).
-Therefore, the code below is equivalent to the code above:
+Therefore, the code above is equivalent this code:
 
 ```js
 WebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]);
 ```
-
-The above code sends the byte values 1, 2, 3, 4 and 5 to Korg devices (hex 42 is the same as
-decimal 66).
 
 Some manufacturers are identified using 3 bytes. In this case, you would use a 3-position array
 as the first parameter. For example, to send the same sysex message to a
@@ -1215,6 +1211,7 @@ as the first parameter. For example, to send the same sysex message to a
 ```js
 WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 ```
+
 There is no limit for the length of the data array. However, it is generally suggested to keep
 system exclusive messages to 64Kb or less.
 
