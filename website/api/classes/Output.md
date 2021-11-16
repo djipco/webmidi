@@ -1562,7 +1562,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sets OMNI mode to `"on"` or `"off"` for the specified channel(s). MIDI's OMNI mode causes the
+Sets OMNI mode to **on** or **off** for the specified channel(s). MIDI's OMNI mode causes the
 instrument to respond to messages from all channels.
 
 It should be noted that support for OMNI mode is not as common as it used to be.
@@ -1603,6 +1603,11 @@ Returns the `Output` object so methods can be chained.
 
 Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
 
+The resulting bend is relative to the pitch bend range that has been defined. The range can be
+set with [`setPitchBendRange()`](#setPitchBendRange). So, for example, if the pitch bend
+range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octave
+below its nominal value.
+
 
   **Parameters**
 
@@ -1612,7 +1617,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The intensity of the bend (between -1.0 and 1.0). A value of zero means no bend. The resulting bend is relative to the pitch bend range that has been defined. The range can be set with [setPitchBendRange()](OutputChannel#setPitchBendRange) . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave below its nominal value. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127 representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
+    |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The intensity of the bend (between `-1.0` and `1.0`). A value of `0` means no bend. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between `0` and `127` (MSB) or an array of two integers between `0` and `127` representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB).|
