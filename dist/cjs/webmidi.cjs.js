@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 17:37:12 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 17:44:37 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -4333,7 +4333,7 @@ class Output extends e {
   sendTuningProgram(value, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setTuningProgram(value, options);
+      this.channels[ch].sendTuningProgram(value, options);
     });
     return this;
   }
@@ -4382,7 +4382,7 @@ class Output extends e {
   sendTuningBank(value = 0, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setTuningBank(value, options);
+      this.channels[ch].sendTuningBank(value, options);
     });
     return this;
   }
@@ -4523,7 +4523,7 @@ class Output extends e {
   sendAllNotesOff(options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].turnNotesOff(options);
+      this.channels[ch].sendAllNotesOff(options);
     });
     return this;
   }
