@@ -1175,7 +1175,7 @@ sending out the actual MIDI message, WEBMIDI.js will automatically prepend the d
 **sysex byte** (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
 the message with the **sysex end byte** (`0xF7`).
 
-The data can be an array of unsigned integers (0-127) or a `Uint8Array` object.
+The data can be an array of unsigned integers (`0` - `127`) or a `Uint8Array` object.
 
 To use the `sendSysex()` method, system exclusive message support must have been enabled. To
 do so, you must set the `sysex` option to `true` when calling `WebMidi.enable()`:
