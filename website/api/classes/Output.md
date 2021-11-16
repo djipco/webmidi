@@ -45,8 +45,8 @@ You can access all available `Output` objects by referring to the
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
 
-Array containing the 16 [`OutputChannel`](OutputChannel) objects available via this
-`Output`. The channels are numbered 1 through 16.
+Array containing the 16 [`OutputChannel`](OutputChannel) objects available provided by
+this `Output`. The channels are numbered 1 through 16.
 
 
 ### `.connection` {#connection}
@@ -54,7 +54,7 @@ Array containing the 16 [`OutputChannel`](OutputChannel) objects available via t
 **Attributes**: read-only<br />
 
 
-Output port's connection state: `"pending"`, `"open"` or `"closed"`.
+Output port's connection state: `pending`, `open` or `closed`.
 
 
 ### `.eventCount` {#eventCount}
@@ -142,7 +142,7 @@ Note that this value is combined with the global offset value defined in
 **Attributes**: read-only<br />
 
 
-State of the output port: `"connected"` or `"disconnected"`.
+State of the output port: `connected` or `disconnected`.
 
 
 ### `.type` {#type}
@@ -150,7 +150,7 @@ State of the output port: `"connected"` or `"disconnected"`.
 **Attributes**: read-only<br />
 
 
-Type of the output port (`"output"`).
+Type of the output port (it will always be: `output`).
 
 
 
