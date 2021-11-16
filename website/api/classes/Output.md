@@ -1316,7 +1316,7 @@ Returns the `Output` object so methods can be chained.
 **Since**: 3.0.0<br />
 
 Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
-aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch).
+aftertouch, you should instead use [`setKeyAftertouch()`](#setKeyAftertouch).
 
 
   **Parameters**
