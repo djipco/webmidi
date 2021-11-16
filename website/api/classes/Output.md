@@ -600,7 +600,7 @@ functionally equivalent to a **note off** message.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a [`Note`](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number `0`) and the highest note is G9 (MIDI note number `127`).|
+    |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a [`Note`](Note) object or an array of the previous types. When using a note identifier, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number `0`) and the highest note is G9 (MIDI note number `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.duration`**] | number<br /> ||The number of milliseconds after which a **note off** message will be scheduled. If left undefined, only a **note on** message is sent.|
@@ -1011,7 +1011,7 @@ The execution of the **note off** command can be delayed by using the `time` pro
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (`0` - `127`), a note name (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note name, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
+    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the release velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
@@ -1038,7 +1038,7 @@ first parameter is the number. It can be a single value or an array of the follo
 values:
 
  - A MIDI note number (integer between `0` and `127`)
- - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+ - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
  - A [`Note`](Note) object
 
  The execution of the **note on** command can be delayed by using the `time` property of the
@@ -1056,7 +1056,7 @@ functionally equivalent to a **note off** message.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (`0` - `127`), a note name (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note name, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
+    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the attack velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
@@ -1362,11 +1362,11 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />string<br />Array<br /> ||The note for which you are sending an aftertouch value. The notes can be specified in one of two ways. The first way is by using the MIDI note number (an integer between 0 and 127). The second way is by using the note name followed by the octave (C3, G#4, F-1, Db7). The octave range should be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127). It is also possible to use an array of note names and/or numbers.|
+    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
     |[**`pressure`**] | number<br /> |0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
+    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1420,7 +1420,7 @@ Returns the `Output` object so methods can be chained.
 **Since**: 3.0.0<br />
 
 Sends a master tuning message to the specified channel(s). The value is decimal and must be
-larger than -65 semitones and smaller than 64 semitones.
+larger than `-65` semitones and smaller than `64` semitones.
 
 Because of the way the MIDI specification works, the decimal portion of the value will be
 encoded with a resolution of 14bit. The integer portion must be between -64 and 63
@@ -1497,33 +1497,33 @@ Returns the `Output` object so methods can be chained.
 ### `.setNonRegisteredParameter(...)` {#setNonRegisteredParameter}
 
 
-Sets a non-registered parameter to the specified value. The NRPN is selected by passing in a
+Sets a non-registered parameter to the specified value. The NRPN is selected by passing a
 two-position array specifying the values of the two control bytes. The value is specified by
-passing in a single integer (most cases) or an array of two integers.
+passing a single integer (most cases) or an array of two integers.
 
 NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
 they see fit. For example, according to the Roland GS specification, you can control the
-**vibrato rate** using NRPN (1, 8). Therefore, to set the **vibrato rate** value to **123** you
-would use:
+**vibrato rate** using NRPN (`1`, `8`). Therefore, to set the **vibrato rate** value to `123`
+you would use:
 
 ```js
 WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
 ```
 
-Obviously, you should select a channel so the message is not sent to all channels. For
-instance, to send to channel 1 of the first output port, you would use:
+You probably want to should select a channel so the message is not sent to all channels. For
+instance, to send to channel `1` of the first output port, you would use:
 
 ```js
 WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
 ```
 
 In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
-would use a 2-position array. For example, for its **ClockBPM** parameter (2, 63), Novation
+would use a 2-position array. For example, for its **ClockBPM** parameter (`2`, `63`), Novation
 uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
-value to send was 10, you could use:
+value to send was `10`, you could use:
 
 ```js
-WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], [1]);
+WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], 1);
 ```
 
 For further implementation details, refer to the manufacturer"s documentation.
@@ -1974,7 +1974,7 @@ The execution of the **note off** command can be delayed by using the `time` pro
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (`0` - `127`), a note name (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note name, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
+    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the release velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
