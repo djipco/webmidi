@@ -3,15 +3,16 @@
 
 The `Output` class represents a single MIDI output port (not to be confused with a MIDI channel).
 A port is made available by a MIDI device. A MIDI device can advertise several input and output
-ports. Each port has 16 channels which can be accessed via the [`channels`](#channels) property.
+ports. Each port has 16 MIDI channels which can be accessed via the [`channels`](#channels)
+property.
 
-This `Output` object is automatically instantiated by the library according to the host's MIDI
+The `Output` object is automatically instantiated by the library according to the host's MIDI
 subsystem and should not be directly instantiated.
 
 You can access all available `Output` objects by referring to the
 [`WebMidi.outputs`](WebMidi#outputs) array or by using methods such as
-[`WebMidi.getOutputByName`](WebMidi.#getOutputByName) or
-[`WebMidi.getOutputById`](WebMidi#getOutputByName).
+[`WebMidi.getOutputByName()`](WebMidi.#getOutputByName) or
+[`WebMidi.getOutputById()`](WebMidi#getOutputByName).
 
 
 **Extends**: [`EventEmitter`](EventEmitter)
