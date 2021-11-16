@@ -317,7 +317,7 @@ names that can be used with this method:
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -528,7 +528,7 @@ names that can be used with this method:
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -602,7 +602,7 @@ functionally equivalent to a **note off** message.
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a [`Note`](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number `0`) and the highest note is G9 (MIDI note number `127`).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16|The MIDI channel number (between `1` and `16`) or an array of channel numbers to play the note on. If no value is specified, all channels will be used (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.duration`**] | number<br /> ||The number of milliseconds after which a **note off** message will be scheduled. If left undefined, only a **note on** message is sent.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the attack and release velocities are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
@@ -670,7 +670,7 @@ the pitch bend, to their default value.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -793,7 +793,7 @@ defaults to 0.
     |**`command`** | number<br />string<br /> ||The numerical identifier of the channel mode message (integer between 120-127) or its name as a string.|
     |[**`value`**] | number<br /> ||The value to send (integer between 0-127).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -972,7 +972,7 @@ specification.
     |**`controller`** | number<br />string<br /> ||The MIDI controller name or number (0-127).|
     |[**`value`**] | number<br /> |0|The value to send (0-127).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1014,7 +1014,7 @@ values:
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** | number<br />string<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the release velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
@@ -1058,7 +1058,7 @@ functionally equivalent to a **note off** message.
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** | number<br />string<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7) or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the attack velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.attack`**] | number<br /> |0.5|The velocity at which to play the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
@@ -1328,7 +1328,7 @@ aftertouch, you should instead use [setKeyAftertouch()](#Output+setKeyAftertouch
   | ------------ | ------------ | ------------ | ------------ |
     |[**`pressure`**] | number<br /> |0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -1399,7 +1399,7 @@ its out port.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`state`**] | boolean<br /> |false|Whether to activate local control (`true`) or disable it (`false`).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1437,7 +1437,7 @@ a **Master Fine Tuning** RPN messages.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`value`**] | number<br /> |0.0|The desired decimal adjustment value in semitones (-65 < x < 64)|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1475,7 +1475,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
     |[**`semitones`**] | number<br /> |0|The desired adjustment value in semitones (integer between 0 and 127).|
     |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0 and 127).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1539,7 +1539,7 @@ For further implementation details, refer to the manufacturer"s documentation.
     |**`parameter`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (0x63, 0x62) that identify the non-registered parameter.|
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An integer or an array of integers with a length of 1 or 2 specifying the desired data.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1577,7 +1577,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`state`**] | boolean<br /> ||Whether to activate OMNI mode (`true`) or not (`false`).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1613,7 +1613,7 @@ Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The intensity of the bend (between -1.0 and 1.0). A value of zero means no bend. The resulting bend is relative to the pitch bend range that has been defined. The range can be set with [setPitchBendRange()](OutputChannel#setPitchBendRange) . So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave below its nominal value. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127 representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB).|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -1650,7 +1650,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
     |**`semitones`** | number<br /> ||The desired adjustment value in semitones (between 0 and 127). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
     |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0-127).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1687,7 +1687,7 @@ multiple notes are being played.
   | ------------ | ------------ | ------------ | ------------ |
     |**`mode`** | string<br /> ||The mode to use: `"mono"` or `"poly"`.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1723,7 +1723,7 @@ that use a numbering scheme starting at 1.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`program`**] | number<br /> |1|The MIDI patch (program) number (1-128)|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1788,7 +1788,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
     |**`parameter`** | string<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|A single integer or an array of integers with a maximum length of 2 specifying the desired data.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1894,7 +1894,7 @@ that use a numbering scheme starting at 1.
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | number<br /> ||The desired tuning bank (1-128).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -1933,7 +1933,7 @@ that use a numbering scheme starting at 1.
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | number<br /> ||The desired tuning program (1-128).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -2027,7 +2027,7 @@ fade out just as if their key had been released. This is different from the
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -2057,7 +2057,7 @@ channel but will not prevent new sounds from being triggered.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br />&quot;all&quot;<br /> |&quot;all&quot;|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. The special value `"all"` can also be used to use all channels (default).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
