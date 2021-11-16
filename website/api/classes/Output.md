@@ -954,10 +954,10 @@ instead of their name. While you can still use them, numbers `120` to `127` are 
 reserved for *channel mode* messages. See [`sendChannelMode()`](#sendChannelMode) method
 for more info.
 
-To view a list of all available **control change** messages, please consult "Table 3 - Control
-Change Messages" from the [MIDI Messages](
+To view a list of all available **control change** messages, please consult [Table 3 - Control
+Change Messages](
 https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2
-specification.
+from the MIDI specification.
 
 
   **Parameters**
