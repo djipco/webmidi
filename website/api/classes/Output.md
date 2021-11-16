@@ -1140,7 +1140,7 @@ Returns the `Output` object so methods can be chained.
 
 
 Sends a **stop** real-time message. This tells the device connected to this output to stop
-playback immediately (or at the scheduled time).
+playback immediately (or at the scheduled time, if specified).
 
 
   **Parameters**
@@ -1169,11 +1169,11 @@ Returns the `Output` object so methods can be chained.
 ### `.sendSysex(...)` {#sendSysex}
 
 
-Sends a MIDI [system exclusive](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
+Sends a MIDI [**system exclusive**](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
 (*sysex*) message. The `data` parameter should only contain the data of the message. When
-sending out the actual MIDI message, WebMidi.js will automatically prepend the data with the
-*sysex byte* (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
-the message with the *sysex end byte* (`0xF7`).
+sending out the actual MIDI message, WEBMIDI.js will automatically prepend the data with the
+**sysex byte** (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
+the message with the **sysex end byte** (`0xF7`).
 
 The data can be an array of unsigned integers (0-127) or a `Uint8Array` object.
 
