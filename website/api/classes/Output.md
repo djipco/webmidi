@@ -567,21 +567,19 @@ Plays a note or an array of notes on one or more channels of this output. If you
 notes on a single channel, you should probably use
 [`OutputChannel.playNote()`](OutputChannel#playNote) instead.
 
-
-The first parameter
-is the note to play. It can be a single value or an array of the following valid values:
+The first parameter is the note to play. It can be a single value or an array of the following
+valid values:
 
  - A MIDI note number (integer between `0` and `127`)
- - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+ - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
  - A [`Note`](Note) object
 
 The `playNote()` method sends a **note on** MIDI message for all specified notes on all
-specified channels. If no channels are specified, it will send to all channels. If a `duration`
+specified channels. If no channel is specified, it will send to all channels. If a `duration`
 is set in the `options` parameter or in the [`Note`](Note) object's
 [`duration`](Note#duration) property, it will also schedule a **note off** message to end
 the note after said duration. If no `duration` is set, the note will simply play until a
-matching **note off** message is sent with [`stopNote()`](#Output+stopNote) or
-[`sendNoteOff()`](#Output+sendNoteOff).
+matching **note off** message is sent with [`stopNote()`](#stopNote).
 
 The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
