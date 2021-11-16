@@ -1212,7 +1212,7 @@ as the first parameter. For example, to send the same sysex message to a
 WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 ```
 
-The **MIDI Manufacturers Association** maintains a full list of
+The **MIDI Manufacturers Association** is in charge of maintaining the full updated list of
 [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
 
 There is no limit for the length of the data array. However, it is generally suggested to keep
