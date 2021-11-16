@@ -1,10 +1,23 @@
 import React from "react";
 //import clsx from "clsx";
+import useBaseUrl from '@docusaurus/useBaseUrl';
 import Layout from "@theme/Layout";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
 import Button from "../components/Button";
 import Column from "../components/Column";
 import InformationBar from "../components/InformationBar";
+
+/*
+const textContent = {
+  presentation: `
+The <strong>Web MIDI API</strong> is a really exciting
+addition to the web platform that allows web developers to
+interact with <strong>MIDI musical instruments</strong> and devices.
+  `,
+
+}
+*/
+
 
 function HomepageHero() {
   const {siteConfig} = useDocusaurusContext();
@@ -52,12 +65,19 @@ function Presentation() {
 
           <div className="media">
             <img
-              src="img/front-page/presentation-illustration-keyboard-dark.png"
-              alt="illustration d'un keyboard"
+              src={useBaseUrl('img/front-page/presentation-illustration-keyboard-dark.png')}
+              alt="A keyboard illustration"
             />
           </div>
         </Column>
       </div>
+        <div className="illustration">
+          <div className="container">
+            <img
+              src={useBaseUrl('img/front-page/webmidi-demonstration.svg')}
+              alt="Demonstration of the WEBMIDI.js library"/>
+          </div>
+        </div>
     </section>
   );
 }

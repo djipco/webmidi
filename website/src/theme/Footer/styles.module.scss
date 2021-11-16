@@ -36,14 +36,24 @@
 
     .sponsor{
       display: flex;
+      align-items: center;
       .sponsors{
         display: flex;
         flex-wrap: wrap;
+
       }
     }
 
     img {
-      height: 5rem;
+      width: 200px;
+      height: 100px;
+
+      object-fit: fill;
+
+
+      html[data-theme=light] &{
+        filter: invert(1);
+      }
     }
 
   }
