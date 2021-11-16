@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 18:22:31 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 18:30:31 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -3775,18 +3775,7 @@ class Output extends e {
    */
 
 
-  sendKeyAftertouch(note, pressure, options = {}, legacy = {}) {
-    if (wm.validation) {
-      // Legacy compatibility
-      if (Array.isArray(pressure) || Number.isInteger(pressure) || pressure === "all") {
-        const channels = pressure;
-        pressure = options;
-        options = legacy;
-        options.channels = channels;
-        if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-      }
-    }
-
+  sendKeyAftertouch(note, pressure, options = {}) {
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
       this.channels[ch].sendKeyAftertouch(note, pressure, options);
@@ -3794,6 +3783,19 @@ class Output extends e {
     return this;
   }
 
+  /**
+   * @private
+   * @deprecated since version 3.0
+   */
+  setKeyAftertouch(note, channel = "all", pressure = 0.5, options = {}) {
+    if (wm.validation) {
+      console.warn("The setKeyAftertouch() method is deprecated. Use sendKeyAftertouch() instead.");
+      options.channels = channel;
+      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
+    }
+
+    return this.sendKeyAftertouch(note, pressure, options);
+  }
   /**
    * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
    * control change message to send can be specified numerically (0-127) or by using one of the
@@ -3899,6 +3901,8 @@ class Output extends e {
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
+
+
   sendControlChange(controller, value, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
