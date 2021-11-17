@@ -705,11 +705,11 @@ following common names:
 | 126    |`monomodeon`                   |
 | 127    |`polymodeon`                   |
 
-As you can see above, not all control change message have a matching common name. This
-does not mean you cannot use the others. It simply means you will need to use their number
-(0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
-reserved for *channel mode* messages. See
-[sendChannelMode()](#OutputChannel+sendChannelMode) method for more info.
+As you can see above, not all control change message have a matching name. This does not mean
+you cannot use the others. It simply means you will need to use their number
+(`0` to `127`) instead of their name. While you can still use them, numbers `120` to `127` are
+usually reserved for *channel mode* messages. See
+[`sendChannelMode()`](#OutputChannel+sendChannelMode) method for more info.
 
 To view a detailed list of all available **control change** messages, please consult "Table 3 -
 Control Change Messages" from the [MIDI Messages](
