@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 19:34:00 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 19:36:35 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2536,7 +2536,7 @@ class OutputChannel extends e {
 
 
     if (!(cents >= 0 && cents <= 127)) cents = 0;
-    this.setRegisteredParameter("modulationrange", [semitones, cents], options);
+    this.sendRpnValue("modulationrange", [semitones, cents], options);
     return this;
   }
   /**
@@ -2734,7 +2734,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.setRegisteredParameter("pitchbendrange", [semitones, cents], options);
+    this.sendRpnValue("pitchbendrange", [semitones, cents], options);
     return this;
   }
   /**
@@ -2882,7 +2882,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.setRegisteredParameter("tuningbank", value, options);
+    this.sendRpnValue("tuningbank", value, options);
     return this;
   }
   /**
@@ -2912,7 +2912,7 @@ class OutputChannel extends e {
       }
     }
 
-    this.setRegisteredParameter("tuningprogram", value, options);
+    this.sendRpnValue("tuningprogram", value, options);
     return this;
   }
   /**
