@@ -450,7 +450,7 @@ object or a [`Message`](Message) object.
 
 It is usually not necessary to use this method directly as you can use one of the simpler
 helper methods such as [`playNote()`](#playNote), [`stopNote()`](#stopNote),
-(`sendControlChange()`](#sendControlChange), etc.
+[`sendControlChange()`](#sendControlChange), etc.
 
 Details on the format of MIDI messages are available in the summary of
 [MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
