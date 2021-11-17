@@ -3,21 +3,19 @@
 <html lang="en">
 
   <head>
+
     <meta charset="UTF-8">
     <title>WebMidi.js Quick Start</title>
+
     <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
 
-    <script>
+    <script type="module">
 
-      window.addEventListener("load", e => {
-
-        // Enable WebMidi.js and trigger the onEnabled() function when ready.
-        WebMidi
-          .enable()
-          .then(onEnabled)
-          .catch(err => alert(err));
-
-      });
+      // Enable WebMidi.js and trigger the onEnabled() function when ready.
+      WebMidi
+        .enable()
+        .then(onEnabled)
+        .catch(err => alert(err));
 
       function onEnabled() {
 
