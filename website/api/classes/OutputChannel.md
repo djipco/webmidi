@@ -757,7 +757,7 @@ Returns the `OutputChannel` object so methods can be chained.
 
 Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
 aftertouch. For a channel-wide aftertouch message, use
-[sendChannelAftertouch()](Output#sendChannelAftertouch).
+[`sendChannelAftertouch()`](#sendChannelAftertouch).
 
 The key can be a single value or an array of the following valid values:
 
