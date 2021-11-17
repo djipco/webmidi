@@ -106,7 +106,7 @@ Note that this value is combined with the global offset value defined in
 **Type**: Output<br />
 
 
-The parent [Output](Output) this channel belongs to
+The parent [`Output`](Output) this channel belongs to.
 
 
 
