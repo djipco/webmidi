@@ -1119,10 +1119,10 @@ Returns the `OutputChannel` object so methods can be chained.
 ### `.sendPitchBendRange(...)` {#sendPitchBendRange}
 
 
-Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-adjust the range used by their pitch bend lever. The range is specified by using the
-`semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
-means that the pitch bend range will be 12 semitones above and below the nominal pitch.
+Sends a **pitch bend range** message at the scheduled time to adjust the range used by the
+pitch bend lever. The range is specified by using the `semitones` and `cents` parameters. For
+example, setting the `semitones` parameter to `12` means that the pitch bend range will be 12
+semitones above and below the nominal pitch.
 
 
   **Parameters**
