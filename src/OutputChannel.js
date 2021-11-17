@@ -96,7 +96,7 @@ export class OutputChannel extends EventEmitter {
   /**
    * Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
    * aftertouch. For a channel-wide aftertouch message, use
-   * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
+   * [sendChannelAftertouch()]{@link Output#sendChannelAftertouch}.
    *
    * The key can be a single value or an array of the following valid values:
    *
@@ -384,7 +384,7 @@ export class OutputChannel extends EventEmitter {
    * entry, data increment and data decrement messages.
    *
    * Current best practice recommends doing that after each call to
-   * [_setCurrentParameter()]{@link OutputChannel#_setCurrentParameter}.
+   * [_setCurrentParameter()]{@link #_setCurrentParameter}.
    *
    * @private
    *
@@ -937,12 +937,12 @@ export class OutputChannel extends EventEmitter {
    *
    * To make it easier, all channel mode messages have a matching helper method:
    *
-   *   - [turnSoundOff()]{@link Output#turnSoundOff}
-   *   - [resetAllControllers()]{@link Output#resetAllControllers}
-   *   - [setLocalControl()]{@link Output#turnSoundOff}
-   *   - [turnNotesOff()]{@link Output#turnNotesOff}
-   *   - [setOmniMode()]{@link Output#setOmniMode}
-   *   - [setPolyphonicMode()]{@link Output#setPolyphonicMode}
+   *   - [sendAllSoundOff()]{@link #sendAllSoundOff}
+   *   - [sendResetAllControllers()]{@link #sendResetAllControllers}
+   *   - [sendLocalControl()]{@link #sendLocalControl}
+   *   - [sendAllNotesOff()]{@link #sendAllNotesOff}
+   *   - [sendOmniMode()]{@link #sendOmniMode}
+   *   - [sendPolyphonicMode()]{@link #sendPolyphonicMode}
    *
    * @param {number|string} command The numerical identifier of the channel mode message (integer
    * between 120-127) or its name as a string.
@@ -1029,7 +1029,7 @@ export class OutputChannel extends EventEmitter {
 
   /**
    * Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
-   * use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
+   * use [sendKeyAftertouch()]{@link #sendKeyAftertouch}.
    *
    * @param [pressure] {number} The pressure level (between 0 and 1). If the `rawValue` option is
    * set to `true`, the pressure can be defined by using an integer between 0 and 127.
@@ -1195,7 +1195,7 @@ export class OutputChannel extends EventEmitter {
    * would use:
    *
    * ```js
-   * WebMidi.outputs[0].channels[0].setNonRegisteredParameter([1, 8], 123);
+   * WebMidi.outputs[0].channels[0].sendNrpnValue([1, 8], 123);
    * ```
    *
    * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
@@ -1204,7 +1204,7 @@ export class OutputChannel extends EventEmitter {
    * value to send was 10, you could use:
    *
    * ```js
-   * WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
+   * WebMidi.outputs[0].channels[0].sendNrpnValue([2, 63], [0, 10]);
    * ```
    *
    * For further implementation details, refer to the manufacturer's documentation.
@@ -1268,7 +1268,7 @@ export class OutputChannel extends EventEmitter {
    * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
    * zero means no bend. The resulting bend is relative to the pitch bend range that has been
    * defined. The range can be set with
-   * [`setPitchBendRange()`]{@link OutputChannel#setPitchBendRange}. So, for example, if the pitch
+   * [`sendPitchBendRange()`]{@link #sendPitchBendRange}. So, for example, if the pitch
    * bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave
    * below its nominal value.
    *
