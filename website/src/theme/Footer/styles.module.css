@@ -32,13 +32,19 @@
 }
 .footer .container .sponsor {
   display: flex;
+  align-items: center;
 }
 .footer .container .sponsor .sponsors {
   display: flex;
   flex-wrap: wrap;
 }
 .footer .container img {
-  height: 5rem;
+  width: 150px;
+  height: 50px;
+  object-fit: fill;
+}
+html[data-theme=light] .footer .container img {
+  filter: invert(1);
 }
 
 /*# sourceMappingURL=styles.module.css.map */
