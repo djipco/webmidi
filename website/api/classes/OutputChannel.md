@@ -392,7 +392,7 @@ functionally equivalent to a **note off** message.
     |[**`options.rawAttack`**] | number<br /> |0.5|The attack velocity at which to play the note (between `0` and `127`). This has priority over the `attack` property. An invalid velocity value will silently trigger the default of `0.5`.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
     |[**`options.rawRelease`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -499,7 +499,7 @@ fade out just as if their key had been released. This is different from the
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -529,7 +529,7 @@ channel but will not prevent new sounds from being triggered.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -561,7 +561,7 @@ use [sendKeyAftertouch()](#sendKeyAftertouch).
     |[**`pressure`**] | number<br /> ||The pressure level (between 0 and 1). If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -617,7 +617,7 @@ To make it easier, all channel mode messages have a matching helper method:
     |**`command`** | number<br />string<br /> ||The numerical identifier of the channel mode message (integer between 120-127) or its name as a string.|
     |[**`value`**] | number<br /> |0|The value to send (integer between 0-127).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -737,7 +737,7 @@ parameter.
     |**`controller`** | number<br />string<br /> ||The MIDI controller name or number (0-127).|
     |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The value to send (0-127). You can also use a two-position array for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first controller)|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -780,7 +780,7 @@ The key can be a single value or an array of the following valid values:
     |[**`pressure`**] | number<br /> |0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure is defined by using an integer between 0 and 127.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.useRawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -814,7 +814,7 @@ its out port.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`state`**] | boolean<br /> |false|Whether to activate local control (`true`) or disable it (`false`).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -850,7 +850,7 @@ a **Master Fine Tuning** RPN messages.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`value`**] | number<br /> |0.0|The desired decimal adjustment value in semitones (-65 < x < 64)|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -886,7 +886,7 @@ specifying both parameters at the same time.
     |**`semitones`** | number<br /> ||The desired adjustment value in semitones (integer between 0 and 127).|
     |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0 and 127).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -927,7 +927,7 @@ precedence over the one specified via the method's `options` parameter.
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
     |[**`options.rawRelease`**] | number<br /> |64|The velocity at which to release the note (between `0` and `127`). If the `release` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `64`.|
 
@@ -980,7 +980,7 @@ functionally equivalent to a **note off** message.
   | ------------ | ------------ | ------------ | ------------ |
     |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.attack`**] | number<br /> |0.5|The velocity at which to play the note (between `0` and `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
     |[**`options.rawAttack`**] | number<br /> |64|The velocity at which to release the note (between `0` and `127`). If the `attack` option is also defined, `rawAttack` will have priority. An invalid velocity value will silently trigger the default of `64`.|
 
@@ -1035,7 +1035,7 @@ For further implementation details, refer to the manufacturer's documentation.
     |**`parameter`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (0x63, 0x62) that identify the non-registered parameter.|
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An integer or an array of integers with a length of 1 or 2 specifying the desired data.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1071,7 +1071,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`state`**] | boolean<br /> |true|Whether to activate OMNI mode (`true`) or not (`false`).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1106,7 +1106,7 @@ Sends a MIDI **pitch bend** message at the scheduled time.
     |[**`value`**] | number<br />Array.&lt;number&gt;<br /> ||The intensity of the bend (between -1.0 and 1.0). A value of zero means no bend. The resulting bend is relative to the pitch bend range that has been defined. The range can be set with [`sendPitchBendRange()`](#sendPitchBendRange). So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave below its nominal value. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127 representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between -1.0 and 1.0 (default) or as raw integer between 0 and 127 (or an array of 2 integers if using both MSB and LSB).|
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1140,7 +1140,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
     |**`semitones`** | number<br /> ||The desired adjustment value in semitones (between 0 and 127). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
     |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0-127).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1175,7 +1175,7 @@ multiple notes are being played.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`mode`**] | string<br /> |poly|The mode to use: `"mono"` or `"poly"`.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1205,7 +1205,7 @@ Sends a MIDI **program change** message at the scheduled time.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`program`**] | number<br /> |1|The MIDI patch (program) number (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1238,7 +1238,7 @@ the pitch bend, to their default value.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1285,7 +1285,7 @@ names that can be used with this function:
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1334,7 +1334,7 @@ names that can be used with this function:
   | ------------ | ------------ | ------------ | ------------ |
     |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1397,7 +1397,7 @@ Another set of extra parameters have been later added for 3D sound controllers. 
     |**`rpn`** | string<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An single integer or an array of integers with a maximum length of 2 specifying the desired data.|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1428,7 +1428,7 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | number<br /> ||The desired tuning bank (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1461,7 +1461,7 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | number<br /> ||The desired tuning program (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [WebMidi.time](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
