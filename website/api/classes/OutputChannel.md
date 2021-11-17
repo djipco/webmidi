@@ -27,7 +27,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`output`** | Output<br /> ||The [`Output`](Output) this channel belongs to.|
-    |**`number`** | number<br /> ||The MIDI channel number (`1` - `16`)|
+    |**`number`** | number<br /> ||The MIDI channel number (`1` - `16`).|
 
   </div>
 
@@ -84,7 +84,7 @@ Whether or not the execution of callbacks is currently suspended for this emitte
 **Type**: number<br />
 
 
-This channel's MIDI number (1-16)
+This channel's MIDI number (`1` - `16`).
 
 
 ### `.octaveOffset` {#octaveOffset}
@@ -96,8 +96,9 @@ An integer to offset the reported octave of outgoing note-specific messages (`no
 `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
 octave (C4).
 
-Note that this value is combined with the global offset value defined on the `WebMidi` object
-and with the value defined on the parent [Output](Output) object.
+Note that this value is combined with the global offset value defined in
+[`WebMidi`](WebMidi#octaveOffset) and with the parent value defined in
+[`Output.octaveOffset`](Output#octaveOffset).
 
 
 ### `.output` {#output}
