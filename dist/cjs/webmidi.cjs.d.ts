@@ -1986,16 +1986,16 @@ declare class Output {
      * Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
      * send can be specified numerically or by using one of the following common names:
      *
-     *   | Type                  | Number | Shortcut Method                                         |
-     *   |-----------------------|--------|---------------------------------------------------------|
-     *   | `allsoundoff`         | 120    | [`turnSoundOff()`]{@link #turnSoundOff}                 |
-     *   | `resetallcontrollers` | 121    | [`sendResetAllControllers()`]{@link #sendResetAllControllers}   |
-     *   | `localcontrol`        | 122    | [`setLocalControl()`]{@link #turnSoundOff}              |
-     *   | `allnotesoff`         | 123    | [`turnNotesOff()`]{@link #turnNotesOff}                 |
-     *   | `omnimodeoff`         | 124    | [`setOmniMode(false)`]{@link #setOmniMode}              |
-     *   | `omnimodeon`          | 125    | [`setOmniMode(true)`]{@link #setOmniMode}               |
-     *   | `monomodeon`          | 126    | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode} |
-     *   | `polymodeon`          | 127    | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode} |
+     *   | Type                |Number| Shortcut Method                                              |
+     *   |---------------------|------|--------------------------------------------------------------|
+     *   |`allsoundoff`        |120   | [`sendAllSoundOff()`]{@link #sendAllSoundOff}                |
+     *   |`resetallcontrollers`|121   | [`sendResetAllControllers()`]{@link #sendResetAllControllers}|
+     *   |`localcontrol`       |122   | [`sendLocalControl()`]{@link #sendLocalControl}              |
+     *   |`allnotesoff`        |123   | [`sendAllNotesOff()`]{@link #sendAllNotesOff}                |
+     *   |`omnimodeoff`        |124   | [`sendOmniMode(false)`]{@link #sendOmniMode}                 |
+     *   |`omnimodeon`         |125   | [`sendOmniMode(true)`]{@link #sendOmniMode}                  |
+     *   |`monomodeon`         |126   | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode}    |
+     *   |`polymodeon`         |127   | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode}    |
      *
      * Note: as you can see above, to make it easier, all channel mode messages also have a matching
      * helper method.
