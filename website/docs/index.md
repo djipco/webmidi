@@ -54,16 +54,11 @@ machines, controllers, etc.):
 ```html
 <script type="module">
 
-  // Make sure the library is loaded before starting
-  window.addEventListener("load", e => {
-
-    // Enable WebMidi.js and trigger the onEnabled() function when ready
-    WebMidi
-      .enable()
-      .then(onEnabled)
-      .catch(err => alert(err));
-
-  });
+  // Enable WebMidi.js and trigger the onEnabled() function when ready
+  WebMidi
+    .enable()
+    .then(onEnabled)
+    .catch(err => alert(err));
 
   // Function triggered when WebMidi.js is ready
   function onEnabled() {
