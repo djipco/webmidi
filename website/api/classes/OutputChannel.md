@@ -1356,30 +1356,28 @@ MIDI
 [registered parameters]
 (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
 extend the original list of control change messages. The MIDI 1.0 specification lists only a
-limited number of them. Here are the original registered parameters with the identifier that
-can be used as the first parameter of this function:
+limited number of them:
 
- * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
- * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
- * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
- * Tuning Program (0x00, 0x03): `"tuningprogram"`
- * Tuning Bank (0x00, 0x04): `"tuningbank"`
- * Modulation Range (0x00, 0x05): `"modulationrange"`
+| Numbers      | Function                 |
+|--------------|--------------------------|
+| (0x00, 0x00) | `pitchbendrange`         |
+| (0x00, 0x01) | `channelfinetuning`      |
+| (0x00, 0x02) | `channelcoarsetuning`    |
+| (0x00, 0x03) | `tuningprogram`          |
+| (0x00, 0x04) | `tuningbank`             |
+| (0x00, 0x05) | `modulationrange`        |
+| (0x3D, 0x00) | `azimuthangle`           |
+| (0x3D, 0x01) | `elevationangle`         |
+| (0x3D, 0x02) | `gain`                   |
+| (0x3D, 0x03) | `distanceratio`          |
+| (0x3D, 0x04) | `maximumdistance`        |
+| (0x3D, 0x05) | `maximumdistancegain`    |
+| (0x3D, 0x06) | `referencedistanceratio` |
+| (0x3D, 0x07) | `panspreadangle`         |
+| (0x3D, 0x08) | `rollangle`              |
 
 Note that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning
 Standard*, which is not widely implemented.
-
-Another set of extra parameters have been later added for 3D sound controllers. They are:
-
- * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
- * Elevation Angle (0x3D, 0x01): `"elevationangle"`
- * Gain (0x3D, 0x02): `"gain"`
- * Distance Ratio (0x3D, 0x03): `"distanceratio"`
- * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
- * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
- * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
- * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
- * Roll Angle (0x3D, 0x08): `"rollangle"`
 
 
   **Parameters**
