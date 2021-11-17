@@ -637,7 +637,7 @@ input names in the same way as the Jazz-Plugin does.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`name`** | string<br /> ||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [outputs](WebMidi#outputs) array).|
+    |**`name`** | string<br /> ||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [`outputs`](#outputs) array).|
 
   </div>
 
