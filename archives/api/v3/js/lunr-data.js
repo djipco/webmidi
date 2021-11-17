@@ -6698,10 +6698,10 @@ window.lunrData = {
           "utilities.getchannelmodebynumb"
         ],
         "Utilities.html#.getNoteDetails": [
+          "0",
           "1",
           "127",
           "60",
-          "9",
           "accident",
           "broken",
           "c",
@@ -8029,6 +8029,10 @@ window.lunrData = {
             "Utilities.html#.fromMsbLsbToFloat": {
               "ref": "Utilities.html#.fromMsbLsbToFloat",
               "tf": 8.695652173913043
+            },
+            "Utilities.html#.getNoteDetails": {
+              "ref": "Utilities.html#.getNoteDetails",
+              "tf": 1.25
             },
             "Utilities.html#.guessNoteNumber": {
               "ref": "Utilities.html#.guessNoteNumber",
@@ -11153,10 +11157,6 @@ window.lunrData = {
             "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
               "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
               "tf": 0.17543859649122806
-            },
-            "Utilities.html#.getNoteDetails": {
-              "ref": "Utilities.html#.getNoteDetails",
-              "tf": 1.25
             }
           }
         },
@@ -62077,7 +62077,7 @@ window.lunrData = {
       "name": "getNoteDetails",
       "tags": "Utilities.getNoteDetails getNoteDetails",
       "summary": "",
-      "description": "Given a proper note identifier (\"C#4\", \"Gb-1\", etc.) or a valid MIDI note number (9-127), this method returns an object containing broken down details about the specified note (uppercase letter, accidental and octave). When a number is specified, the translation to note is done using a value of 60 for middle C (C4 = middle C)."
+      "description": "Given a proper note identifier (C#4, Gb-1, etc.) or a valid MIDI note number (0-127), this method returns an object containing broken down details about the specified note (uppercase letter, accidental and octave). When a number is specified, the translation to note is done using a value of 60 for middle C (C4 = middle C)."
     },
     "Utilities.html#.getPropertyByValue": {
       "id": "Utilities.html#.getPropertyByValue",
