@@ -8,15 +8,23 @@
 
   text-align: center;
 
-  h1 {
-    margin: 0 0 0 -10px;
+  .logo {
+    max-width: 600px;
+    height: 300px;
+    background: center url("/img/webmidijs-logo-dark.svg") no-repeat;
+    margin: auto;
+
+    html[data-theme=dark] &{
+      background: center url("/img/webmidijs-logo-light.svg") no-repeat;
+    }
   }
   span {
     font-family: var(--font-secondary);
-    font-size: 1.56rem;
+    font-size: 2rem;
     display: block;
     margin-bottom: var(--spacing-sm);
-
+    font-weight: bold;
+    color: var(--color-accent);
   }
 
   .cta {
@@ -69,6 +77,14 @@
     margin: var(--spacing-xl) auto;
 
     box-shadow: 10px 10px 0px rgba(255, 208, 0, 0.5);
+
+    img{
+      max-width: 80%;
+
+      html[data-theme=light] &{
+        filter: invert(1);
+      }
+    }
 
     @media screen and(max-width: 1000px){
       width: 80%;
