@@ -7,7 +7,7 @@ provided by an [`Output`](Output) port which, itself, is made available by a dev
 directly.
 
 All 16 `OutputChannel` objects can be found inside the parent output's
-[channels](Output#channels) property.
+[`channels`](Output#channels) property.
 
 **Since**: 3.0.0
 
