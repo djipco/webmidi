@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 19:39:07 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 19:41:04 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -4411,7 +4411,7 @@ class Output extends e {
    *   | Type                  | Number | Shortcut Method                                         |
    *   |-----------------------|--------|---------------------------------------------------------|
    *   | `allsoundoff`         | 120    | [`turnSoundOff()`]{@link #turnSoundOff}                 |
-   *   | `resetallcontrollers` | 121    | [`resetAllControllers()`]{@link #resetAllControllers}   |
+   *   | `resetallcontrollers` | 121    | [`sendResetAllControllers()`]{@link #sendResetAllControllers}   |
    *   | `localcontrol`        | 122    | [`setLocalControl()`]{@link #turnSoundOff}              |
    *   | `allnotesoff`         | 123    | [`turnNotesOff()`]{@link #turnNotesOff}                 |
    *   | `omnimodeoff`         | 124    | [`setOmniMode(false)`]{@link #setOmniMode}              |
@@ -4565,7 +4565,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].resetAllControllers(options);
+      this.channels[ch].sendResetAllControllers(options);
     });
     return this;
   }
