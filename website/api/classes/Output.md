@@ -556,35 +556,6 @@ callback to match or one or more of the additional options.
 
 
 
-### `.resetAllControllers(...)` {#resetAllControllers}
-
-
-Sends a **reset all controllers** channel mode message. This resets all controllers, such as
-the pitch bend, to their default value.
-
-
-  **Parameters**
-
-  > Signature: `resetAllControllers([options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-
-
-
 ### `.send(...)` {#send}
 
 
@@ -659,22 +630,117 @@ Returns the `Output` object so methods can be chained.
 
 
 
+### `.sendAllNotesOff(...)` {#sendAllNotesOff}
+
+**Since**: 3.0.0<br />
+
+Sends an **all notes off** channel mode message. This will make all currently playing notes
+fade out just as if their key had been released. This is different from the
+[`turnSoundOff()`](#turnSoundOff) method which mutes all sounds immediately.
+
+
+  **Parameters**
+
+  > Signature: `sendAllNotesOff([options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+
+
+
+### `.sendAllSoundOff(...)` {#sendAllSoundOff}
+
+**Since**: 3.0.0<br />
+
+Sends an **all sound off** channel mode message. This will silence all sounds playing on that
+channel but will not prevent new sounds from being triggered.
+
+
+  **Parameters**
+
+  > Signature: `sendAllSoundOff([options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+
+
+
+### `.sendChannelAftertouch(...)` {#sendChannelAftertouch}
+
+**Since**: 3.0.0<br />
+
+Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
+aftertouch, you should instead use [`setKeyAftertouch()`](#setKeyAftertouch).
+
+
+  **Parameters**
+
+  > Signature: `sendChannelAftertouch([pressure], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`pressure`**] | number<br /> |0.5|The pressure level (between `0` and `1`). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between `0` and `127`.|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+
+
 ### `.sendChannelMode(...)` {#sendChannelMode}
 
 
 Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
 send can be specified numerically or by using one of the following common names:
 
-  | Type                  | Number | Shortcut Method                                         |
-  |-----------------------|--------|---------------------------------------------------------|
-  | `allsoundoff`         | 120    | [`turnSoundOff()`](#turnSoundOff)                 |
-  | `resetallcontrollers` | 121    | [`resetAllControllers()`](#resetAllControllers)   |
-  | `localcontrol`        | 122    | [`setLocalControl()`](#turnSoundOff)              |
-  | `allnotesoff`         | 123    | [`turnNotesOff()`](#turnNotesOff)                 |
-  | `omnimodeoff`         | 124    | [`setOmniMode(false)`](#setOmniMode)              |
-  | `omnimodeon`          | 125    | [`setOmniMode(true)`](#setOmniMode)               |
-  | `monomodeon`          | 126    | [`setPolyphonicMode("mono")`](#setPolyphonicMode) |
-  | `polymodeon`          | 127    | [`setPolyphonicMode("poly")`](#setPolyphonicMode) |
+  | Type                |Number| Shortcut Method                                              |
+  |---------------------|------|--------------------------------------------------------------|
+  |`allsoundoff`        |120   | [`sendAllSoundOff()`](#sendAllSoundOff)                |
+  |`resetallcontrollers`|121   | [`sendResetAllControllers()`](#sendResetAllControllers)|
+  |`localcontrol`       |122   | [`sendLocalControl()`](#sendLocalControl)              |
+  |`allnotesoff`        |123   | [`sendAllNotesOff()`](#sendAllNotesOff)                |
+  |`omnimodeoff`        |124   | [`sendOmniMode(false)`](#sendOmniMode)                 |
+  |`omnimodeon`         |125   | [`sendOmniMode(true)`](#sendOmniMode)                  |
+  |`monomodeon`         |126   | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)    |
+  |`polymodeon`         |127   | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)    |
 
 Note: as you can see above, to make it easier, all channel mode messages also have a matching
 helper method.
@@ -890,6 +956,155 @@ Returns the `Output` object so methods can be chained.
   * `RangeError` : Invalid controller name.
 
 
+### `.sendKeyAftertouch(...)` {#sendKeyAftertouch}
+
+**Since**: 3.0.0<br />
+
+Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
+is a key-specific aftertouch. For a channel-wide aftertouch message, use
+[`setChannelAftertouch()`](#setChannelAftertouch).
+
+
+  **Parameters**
+
+  > Signature: `sendKeyAftertouch(note, [pressure], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
+    |[**`pressure`**] | number<br /> |0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+
+
+### `.sendLocalControl(...)` {#sendLocalControl}
+
+**Since**: 3.0.0<br />
+
+Turns local control on or off. Local control is usually enabled by default. If you disable it,
+the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
+its out port.
+
+
+  **Parameters**
+
+  > Signature: `sendLocalControl([state], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`state`**] | boolean<br /> |false|Whether to activate local control (`true`) or disable it (`false`).|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+
+
+### `.sendMasterTuning(...)` {#sendMasterTuning}
+
+**Since**: 3.0.0<br />
+
+Sends a master tuning message to the specified channel(s). The value is decimal and must be
+larger than `-65` semitones and smaller than `64` semitones.
+
+Because of the way the MIDI specification works, the decimal portion of the value will be
+encoded with a resolution of 14bit. The integer portion must be between -64 and 63
+inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
+a **Master Fine Tuning** RPN messages.
+
+
+  **Parameters**
+
+  > Signature: `sendMasterTuning([value], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`value`**] | number<br /> |0.0|The desired decimal adjustment value in semitones (-65 < x < 64)|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+**Throws**:
+  * `RangeError` : The value must be a decimal number between larger than -65 and smaller
+than 64.
+
+
+### `.sendModulationRange(...)` {#sendModulationRange}
+
+**Since**: 3.0.0<br />
+
+Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
+depth of their modulation wheel's range. The range can be specified with the `semitones`
+parameter, the `cents` parameter or by specifying both parameters at the same time.
+
+
+  **Parameters**
+
+  > Signature: `sendModulationRange([semitones], [cents], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`semitones`**] | number<br /> |0|The desired adjustment value in semitones (integer between 0 and 127).|
+    |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0 and 127).|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+**Throws**:
+  * `RangeError` : The msb value must be between 0 and 127
+  * `RangeError` : The lsb value must be between 0 and 127
+
+
 ### `.sendNoteOff(...)` {#sendNoteOff}
 
 
@@ -977,6 +1192,255 @@ Returns the `Output` object so methods can be chained.
 
 
 
+### `.sendNrpnValue(...)` {#sendNrpnValue}
+
+
+Sets a non-registered parameter to the specified value. The NRPN is selected by passing a
+two-position array specifying the values of the two control bytes. The value is specified by
+passing a single integer (most cases) or an array of two integers.
+
+NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
+they see fit. For example, according to the Roland GS specification, you can control the
+**vibrato rate** using NRPN (`1`, `8`). Therefore, to set the **vibrato rate** value to `123`
+you would use:
+
+```js
+WebMidi.outputs[0].sendNrpnValue([1, 8], 123);
+```
+
+You probably want to should select a channel so the message is not sent to all channels. For
+instance, to send to channel `1` of the first output port, you would use:
+
+```js
+WebMidi.outputs[0].sendNrpnValue([1, 8], 123, 1);
+```
+
+In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
+would use a 2-position array. For example, for its **ClockBPM** parameter (`2`, `63`), Novation
+uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
+value to send was `10`, you could use:
+
+```js
+WebMidi.outputs[0].sendNrpnValue([2, 63], [0, 10], 1);
+```
+
+For further implementation details, refer to the manufacturer's documentation.
+
+
+  **Parameters**
+
+  > Signature: `sendNrpnValue(parameter, [data], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`parameter`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (`0x63`, `0x62`) that identify the non-registered parameter.|
+    |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An integer or an array of integers with a length of 1 or 2 specifying the desired data.|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+**Throws**:
+  * `RangeError` : The control value must be between 0 and 127.
+  * `RangeError` : The msb value must be between 0 and 127
+
+
+### `.sendOmniMode(...)` {#sendOmniMode}
+
+**Since**: 3.0.0<br />
+
+Sets OMNI mode to **on** or **off** for the specified channel(s). MIDI's OMNI mode causes the
+instrument to respond to messages from all channels.
+
+It should be noted that support for OMNI mode is not as common as it used to be.
+
+
+  **Parameters**
+
+  > Signature: `sendOmniMode([state], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`state`**] | boolean<br /> ||Whether to activate OMNI mode (`true`) or not (`false`).|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+**Throws**:
+  * `TypeError` : Invalid channel mode message name.
+  * `RangeError` : Channel mode controller numbers must be between 120 and 127.
+  * `RangeError` : Value must be an integer between 0 and 127.
+
+
+### `.sendPitchBend(...)` {#sendPitchBend}
+
+**Since**: 3.0.0<br />
+
+Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
+
+The resulting bend is relative to the pitch bend range that has been defined. The range can be
+set with [`sendPitchBendRange()`](#sendPitchBendRange). So, for example, if the pitch
+bend range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octave
+below its nominal value.
+
+
+  **Parameters**
+
+  > Signature: `sendPitchBend(value, [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The intensity of the bend (between `-1.0` and `1.0`). A value of `0` means no bend. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between `0` and `127` (MSB) or an array of two integers between `0` and `127` representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between `-1.0` and `1.0` (default) or as raw integer between `0` and 127` (or an array of 2 integers if using both MSB and LSB).|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+
+
+### `.sendPitchBendRange(...)` {#sendPitchBendRange}
+
+**Since**: 3.0.0<br />
+
+Sends a **pitch bend range** message to the specified channel(s) at the scheduled time so that
+they adjust the range used by their pitch bend lever. The range is specified by using the
+`semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
+means that the pitch bend range will be 12 semitones above and below the nominal pitch.
+
+
+  **Parameters**
+
+  > Signature: `sendPitchBendRange([semitones], [cents], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`semitones`**] | number<br /> |0|The desired adjustment value in semitones (between `0` and `127`). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
+    |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between `0` and `127`).|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+**Throws**:
+  * `RangeError` : The msb value must be between 0 and 127.
+  * `RangeError` : The lsb value must be between 0 and 127.
+
+
+### `.sendPolyphonicMode(...)` {#sendPolyphonicMode}
+
+**Since**: 3.0.0<br />
+
+Sets the polyphonic mode. In `poly` mode (usually the default), multiple notes can be played
+and heard at the same time. In `mono` mode, only one note will be heard at once even if
+multiple notes are being played.
+
+
+  **Parameters**
+
+  > Signature: `sendPolyphonicMode(mode, [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`mode`** | string<br /> ||The mode to use: `mono` or `poly`.|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+
+
+### `.sendProgramChange(...)` {#sendProgramChange}
+
+**Since**: 3.0.0<br />
+
+Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
+
+
+  **Parameters**
+
+  > Signature: `sendProgramChange([program], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`program`**] | number<br /> |0|The MIDI patch (program) number (integer between `0` and `127`).|
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+**Throws**:
+  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
+than 0xFF.
+
+
 ### `.sendReset(...)` {#sendReset}
 
 
@@ -1003,6 +1467,35 @@ should reset itself to a default state.
 > Returns: `Output`<br />
 
 Returns the `Output` object so methods can be chained.
+
+
+
+
+### `.sendResetAllControllers(...)` {#sendResetAllControllers}
+
+
+Sends a **reset all controllers** channel mode message. This resets all controllers, such as
+the pitch bend, to their default value.
+
+
+  **Parameters**
+
+  > Signature: `sendResetAllControllers([options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`options`**] | Object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
 
 
 
@@ -1103,6 +1596,130 @@ names that can be used with this method:
 Returns the `Output` object so methods can be chained.
 
 
+
+
+### `.sendRpnValue(...)` {#sendRpnValue}
+
+
+Sets the specified MIDI registered parameter to the desired value. The value is defined with
+up to two bytes of data (msb, lsb) that each can go from `0` to `127`.
+
+MIDI
+[registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+extend the original list of control change messages. The MIDI 1.0 specification lists only a
+limited number of them:
+
+| Numbers      | Function                 |
+|--------------|--------------------------|
+| (0x00, 0x00) | `pitchbendrange`         |
+| (0x00, 0x01) | `channelfinetuning`      |
+| (0x00, 0x02) | `channelcoarsetuning`    |
+| (0x00, 0x03) | `tuningprogram`          |
+| (0x00, 0x04) | `tuningbank`             |
+| (0x00, 0x05) | `modulationrange`        |
+| (0x3D, 0x00) | `azimuthangle`           |
+| (0x3D, 0x01) | `elevationangle`         |
+| (0x3D, 0x02) | `gain`                   |
+| (0x3D, 0x03) | `distanceratio`          |
+| (0x3D, 0x04) | `maximumdistance`        |
+| (0x3D, 0x05) | `maximumdistancegain`    |
+| (0x3D, 0x06) | `referencedistanceratio` |
+| (0x3D, 0x07) | `panspreadangle`         |
+| (0x3D, 0x08) | `rollangle`              |
+
+Note that the `tuningprogram` and `tuningbank` parameters are part of the *MIDI Tuning
+Standard*, which is not widely implemented.
+
+
+  **Parameters**
+
+  > Signature: `sendRpnValue(parameter, [data], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`parameter`** | string<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
+    |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|A single integer or an array of integers with a maximum length of 2 specifying the desired data.|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+
+
+### `.sendSongPosition(...)` {#sendSongPosition}
+
+**Since**: 3.0.0<br />
+
+Sends a **song position** MIDI message. The value is expressed in MIDI beats (between `0` and
+`16383`) which are 16th note. Position `0` is always the start of the song.
+
+
+  **Parameters**
+
+  > Signature: `sendSongPosition([value], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`value`**] | number<br /> |0|The MIDI beat to cue to (integer between `0` and `16383`).|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+
+
+### `.sendSongSelect(...)` {#sendSongSelect}
+
+**Since**: 3.0.0<br />
+
+Sends a **song select** MIDI message.
+
+
+  **Parameters**
+
+  > Signature: `sendSongSelect([value], [options])`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |[**`value`**] | number<br /> |0|The number of the song to select (integer between `0` and `127`).|
+    |[**`options`**] | object<br /> |{}||
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `Output`<br />
+
+Returns the `Output` object so methods can be chained.
+
+
+**Throws**:
+  * The song number must be between 0 and 127.
 
 
 ### `.sendStart(...)` {#sendStart}
@@ -1311,563 +1928,7 @@ Returns the `Output` object so methods can be chained.
 
 
 
-### `.setChannelAftertouch(...)` {#setChannelAftertouch}
-
-**Since**: 3.0.0<br />
-
-Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
-aftertouch, you should instead use [`setKeyAftertouch()`](#setKeyAftertouch).
-
-
-  **Parameters**
-
-  > Signature: `setChannelAftertouch([pressure], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`pressure`**] | number<br /> |0.5|The pressure level (between `0` and `1`). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between `0` and `127`.|
-    |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
-### `.setKeyAftertouch(...)` {#setKeyAftertouch}
-
-**Since**: 3.0.0<br />
-
-Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
-is a key-specific aftertouch. For a channel-wide aftertouch message, use
-[`setChannelAftertouch()`](#setChannelAftertouch).
-
-
-  **Parameters**
-
-  > Signature: `setKeyAftertouch(note, [pressure], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
-    |[**`pressure`**] | number<br /> |0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
-    |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
-### `.setLocalControl(...)` {#setLocalControl}
-
-**Since**: 3.0.0<br />
-
-Turns local control on or off. Local control is usually enabled by default. If you disable it,
-the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
-its out port.
-
-
-  **Parameters**
-
-  > Signature: `setLocalControl([state], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`state`**] | boolean<br /> |false|Whether to activate local control (`true`) or disable it (`false`).|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
-### `.setMasterTuning(...)` {#setMasterTuning}
-
-**Since**: 3.0.0<br />
-
-Sends a master tuning message to the specified channel(s). The value is decimal and must be
-larger than `-65` semitones and smaller than `64` semitones.
-
-Because of the way the MIDI specification works, the decimal portion of the value will be
-encoded with a resolution of 14bit. The integer portion must be between -64 and 63
-inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
-a **Master Fine Tuning** RPN messages.
-
-
-  **Parameters**
-
-  > Signature: `setMasterTuning([value], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`value`**] | number<br /> |0.0|The desired decimal adjustment value in semitones (-65 < x < 64)|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-**Throws**:
-  * `RangeError` : The value must be a decimal number between larger than -65 and smaller
-than 64.
-
-
-### `.setModulationRange(...)` {#setModulationRange}
-
-**Since**: 3.0.0<br />
-
-Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
-depth of their modulation wheel's range. The range can be specified with the `semitones`
-parameter, the `cents` parameter or by specifying both parameters at the same time.
-
-
-  **Parameters**
-
-  > Signature: `setModulationRange([semitones], [cents], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`semitones`**] | number<br /> |0|The desired adjustment value in semitones (integer between 0 and 127).|
-    |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0 and 127).|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-**Throws**:
-  * `RangeError` : The msb value must be between 0 and 127
-  * `RangeError` : The lsb value must be between 0 and 127
-
-
-### `.setNonRegisteredParameter(...)` {#setNonRegisteredParameter}
-
-
-Sets a non-registered parameter to the specified value. The NRPN is selected by passing a
-two-position array specifying the values of the two control bytes. The value is specified by
-passing a single integer (most cases) or an array of two integers.
-
-NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
-they see fit. For example, according to the Roland GS specification, you can control the
-**vibrato rate** using NRPN (`1`, `8`). Therefore, to set the **vibrato rate** value to `123`
-you would use:
-
-```js
-WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
-```
-
-You probably want to should select a channel so the message is not sent to all channels. For
-instance, to send to channel `1` of the first output port, you would use:
-
-```js
-WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
-```
-
-In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
-would use a 2-position array. For example, for its **ClockBPM** parameter (`2`, `63`), Novation
-uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
-value to send was `10`, you could use:
-
-```js
-WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], 1);
-```
-
-For further implementation details, refer to the manufacturer's documentation.
-
-
-  **Parameters**
-
-  > Signature: `setNonRegisteredParameter(parameter, [data], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`parameter`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (`0x63`, `0x62`) that identify the non-registered parameter.|
-    |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An integer or an array of integers with a length of 1 or 2 specifying the desired data.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-**Throws**:
-  * `RangeError` : The control value must be between 0 and 127.
-  * `RangeError` : The msb value must be between 0 and 127
-
-
-### `.setOmniMode(...)` {#setOmniMode}
-
-**Since**: 3.0.0<br />
-
-Sets OMNI mode to **on** or **off** for the specified channel(s). MIDI's OMNI mode causes the
-instrument to respond to messages from all channels.
-
-It should be noted that support for OMNI mode is not as common as it used to be.
-
-
-  **Parameters**
-
-  > Signature: `setOmniMode([state], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`state`**] | boolean<br /> ||Whether to activate OMNI mode (`true`) or not (`false`).|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-**Throws**:
-  * `TypeError` : Invalid channel mode message name.
-  * `RangeError` : Channel mode controller numbers must be between 120 and 127.
-  * `RangeError` : Value must be an integer between 0 and 127.
-
-
-### `.setPitchBend(...)` {#setPitchBend}
-
-**Since**: 3.0.0<br />
-
-Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
-
-The resulting bend is relative to the pitch bend range that has been defined. The range can be
-set with [`setPitchBendRange()`](#setPitchBendRange). So, for example, if the pitch bend
-range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octave
-below its nominal value.
-
-
-  **Parameters**
-
-  > Signature: `setPitchBend(value, [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The intensity of the bend (between `-1.0` and `1.0`). A value of `0` means no bend. If an invalid value is specified, the nearest valid value will be used instead. If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either using a single integer between `0` and `127` (MSB) or an array of two integers between `0` and `127` representing, respectively, the MSB (most significant byte) and the LSB (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.|
-    |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between `-1.0` and `1.0` (default) or as raw integer between `0` and 127` (or an array of 2 integers if using both MSB and LSB).|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
-### `.setPitchBendRange(...)` {#setPitchBendRange}
-
-**Since**: 3.0.0<br />
-
-Sends a **pitch bend range** message to the specified channel(s) at the scheduled time so that
-they adjust the range used by their pitch bend lever. The range is specified by using the
-`semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
-means that the pitch bend range will be 12 semitones above and below the nominal pitch.
-
-
-  **Parameters**
-
-  > Signature: `setPitchBendRange([semitones], [cents], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`semitones`**] | number<br /> |0|The desired adjustment value in semitones (between `0` and `127`). While nothing imposes that in the specification, it is very common for manufacturers to limit the range to 2 octaves (-12 semitones to 12 semitones).|
-    |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between `0` and `127`).|
-    |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-**Throws**:
-  * `RangeError` : The msb value must be between 0 and 127.
-  * `RangeError` : The lsb value must be between 0 and 127.
-
-
-### `.setPolyphonicMode(...)` {#setPolyphonicMode}
-
-**Since**: 3.0.0<br />
-
-Sets the polyphonic mode. In `poly` mode (usually the default), multiple notes can be played
-and heard at the same time. In `mono` mode, only one note will be heard at once even if
-multiple notes are being played.
-
-
-  **Parameters**
-
-  > Signature: `setPolyphonicMode(mode, [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`mode`** | string<br /> ||The mode to use: `mono` or `poly`.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
-### `.setProgram(...)` {#setProgram}
-
-**Since**: 3.0.0<br />
-
-Sends a MIDI **program change** message to the specified channel(s) at the scheduled time.
-
-
-  **Parameters**
-
-  > Signature: `setProgram([program], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`program`**] | number<br /> |0|The MIDI patch (program) number (integer between `0` and `127`).|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-**Throws**:
-  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
-than 0xFF.
-
-
-### `.setRegisteredParameter(...)` {#setRegisteredParameter}
-
-
-Sets the specified MIDI registered parameter to the desired value. The value is defined with
-up to two bytes of data (msb, lsb) that each can go from `0` to `127`.
-
-MIDI
-[registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
-extend the original list of control change messages. The MIDI 1.0 specification lists only a
-limited number of them:
-
-| Numbers      | Function                 |
-|--------------|--------------------------|
-| (0x00, 0x00) | `pitchbendrange`         |
-| (0x00, 0x01) | `channelfinetuning`      |
-| (0x00, 0x02) | `channelcoarsetuning`    |
-| (0x00, 0x03) | `tuningprogram`          |
-| (0x00, 0x04) | `tuningbank`             |
-| (0x00, 0x05) | `modulationrange`        |
-| (0x3D, 0x00) | `azimuthangle`           |
-| (0x3D, 0x01) | `elevationangle`         |
-| (0x3D, 0x02) | `gain`                   |
-| (0x3D, 0x03) | `distanceratio`          |
-| (0x3D, 0x04) | `maximumdistance`        |
-| (0x3D, 0x05) | `maximumdistancegain`    |
-| (0x3D, 0x06) | `referencedistanceratio` |
-| (0x3D, 0x07) | `panspreadangle`         |
-| (0x3D, 0x08) | `rollangle`              |
-
-Note that the `tuningprogram` and `tuningbank` parameters are part of the *MIDI Tuning
-Standard*, which is not widely implemented.
-
-
-  **Parameters**
-
-  > Signature: `setRegisteredParameter(parameter, [data], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |**`parameter`** | string<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the registered parameter.|
-    |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|A single integer or an array of integers with a maximum length of 2 specifying the desired data.|
-    |[**`options`**] | object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
-### `.setSong(...)` {#setSong}
-
-**Since**: 3.0.0<br />
-
-Sends a **song select** MIDI message.
-
-
-  **Parameters**
-
-  > Signature: `setSong([value], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`value`**] | number<br /> |0|The number of the song to select (integer between `0` and `127`).|
-    |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-**Throws**:
-  * The song number must be between 0 and 127.
-
-
-### `.setSongPosition(...)` {#setSongPosition}
-
-**Since**: 3.0.0<br />
-
-Sends a **song position** MIDI message. The value is expressed in MIDI beats (between `0` and
-`16383`) which are 16th note. Position `0` is always the start of the song.
-
-
-  **Parameters**
-
-  > Signature: `setSongPosition([value], [options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`value`**] | number<br /> |0|The MIDI beat to cue to (integer between `0` and `16383`).|
-    |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-Returns the `Output` object so methods can be chained.
-
-
-
-
-### `.setTuningBank(...)` {#setTuningBank}
+### `.sendTuningBank(...)` {#sendTuningBank}
 
 **Since**: 3.0.0<br />
 
@@ -1877,7 +1938,7 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
 
   **Parameters**
 
-  > Signature: `setTuningBank([value], [options])`
+  > Signature: `sendTuningBank([value], [options])`
 
   <div class="parameter-table-container">
 
@@ -1902,7 +1963,7 @@ Returns the `Output` object so methods can be chained.
   * `RangeError` : The bank value must be between 0 and 127.
 
 
-### `.setTuningProgram(...)` {#setTuningProgram}
+### `.sendTuningProgram(...)` {#sendTuningProgram}
 
 **Since**: 3.0.0<br />
 
@@ -1912,7 +1973,7 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
 
   **Parameters**
 
-  > Signature: `setTuningProgram(value, [options])`
+  > Signature: `sendTuningProgram(value, [options])`
 
   <div class="parameter-table-container">
 
@@ -2007,67 +2068,6 @@ listeners alone. If you truly want to suspends all callbacks for a specific
   </div>
 
 
-
-
-
-
-### `.turnNotesOff(...)` {#turnNotesOff}
-
-**Since**: 3.0.0<br />
-
-Sends an **all notes off** channel mode message. This will make all currently playing notes
-fade out just as if their key had been released. This is different from the
-[`turnSoundOff()`](#turnSoundOff) method which mutes all sounds immediately.
-
-
-  **Parameters**
-
-  > Signature: `turnNotesOff([options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
-
-
-
-
-### `.turnSoundOff(...)` {#turnSoundOff}
-
-**Since**: 3.0.0<br />
-
-Sends an **all sound off** channel mode message. This will silence all sounds playing on that
-channel but will not prevent new sounds from being triggered.
-
-
-  **Parameters**
-
-  > Signature: `turnSoundOff([options])`
-
-  <div class="parameter-table-container">
-
-  | Parameter    | Type(s)      | Default      | Description  |
-  | ------------ | ------------ | ------------ | ------------ |
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-
-  </div>
-
-
-**Return Value**
-
-> Returns: `Output`<br />
 
 
 
