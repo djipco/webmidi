@@ -716,11 +716,11 @@ Control Change Messages" from the [MIDI Messages](
 https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
 specification.
 
-Note: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
-(modulationwheelcoarse) can be accompanied by a second control change message for
-modulationwheelfine to achieve a greater level of precision. if you want to specify both MSB
-and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
-parameter.
+**Note**: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
+(`modulationwheelcoarse`) can be accompanied by a second control change message for
+`modulationwheelfine` to achieve a greater level of precision. if you want to specify both MSB
+and LSB for messages between `0` and `31`, you can do so by passing a 2-value array as the
+second parameter.
 
 
   **Parameters**
@@ -731,8 +731,8 @@ parameter.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`controller`** | number<br />string<br /> ||The MIDI controller name or number (0-127).|
-    |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The value to send (0-127). You can also use a two-position array for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first controller)|
+    |**`controller`** | number<br />string<br /> ||The MIDI controller name or number (`0` - `127`).|
+    |**`value`** | number<br />Array.&lt;number&gt;<br /> ||The value to send (0-127). You can also use a two-position array for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second value will be sent to the matching LSB controller (which is obtained by adding 32 to the first controller)|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
