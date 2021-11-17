@@ -97,7 +97,7 @@ An integer to offset the reported octave of outgoing note-specific messages (`no
 octave (C4).
 
 Note that this value is combined with the global offset value defined in
-[`WebMidi`](WebMidi#octaveOffset) and with the parent value defined in
+[`WebMidi.octaveOffset`](WebMidi#octaveOffset) and with the parent value defined in
 [`Output.octaveOffset`](Output#octaveOffset).
 
 
