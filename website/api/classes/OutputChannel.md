@@ -369,8 +369,9 @@ a matching **note off** message is sent with [`stopNote()`](#OutputChannel+stopN
  The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using [Note](Note) objects, the durations and velocities defined in the [Note](Note)
-objects have precedence over the ones specified via the method's `options` parameter.
+When using [`Note`](Note) objects, the durations and velocities defined in the
+[`Note`](Note) objects have precedence over the ones specified via the method's `options`
+parameter.
 
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
