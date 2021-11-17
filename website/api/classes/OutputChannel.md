@@ -1,8 +1,10 @@
 
 # OutputChannel
 
-The `OutputChannel` class represents a single output channel (1-16) from an output device. This
-object is derived from the host's MIDI subsystem and cannot be instantiated directly.
+The `OutputChannel` class represents a single output MIDI channel. `OutputChannel` objects are
+provided by an [`Output`](Output) port which, itself, is made available by a device. The
+`OutputChannel` object is derived from the host's MIDI subsystem and should not be instantiated
+directly.
 
 All 16 `OutputChannel` objects can be found inside the parent output's
 [channels](Output#channels) property.
