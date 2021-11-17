@@ -4953,8 +4953,8 @@ window.lunrData = {
           "within"
         ],
         "OutputChannel.html": [
-          "1",
           "16",
+          "avail",
           "channel",
           "class",
           "deriv",
@@ -4964,13 +4964,17 @@ window.lunrData = {
           "host'",
           "insid",
           "instanti",
+          "itself",
+          "made",
           "midi",
           "object",
           "output",
           "output'",
           "outputchannel",
           "parent",
+          "port",
           "properti",
+          "provid",
           "repres",
           "singl",
           "subsystem"
@@ -5068,19 +5072,18 @@ window.lunrData = {
           "noteoff",
           "noteon",
           "number",
-          "object",
           "octav",
           "octaveoffset",
           "offset",
           "outgo",
-          "output",
+          "output.octaveoffset",
           "outputchannel#octaveoffset",
           "parent",
           "place",
           "report",
           "specif",
           "valu",
-          "webmidi"
+          "webmidi.octaveoffset"
         ],
         "OutputChannel.html#output": [
           "belong",
@@ -5401,8 +5404,8 @@ window.lunrData = {
           "releas",
           "send",
           "sendallnotesoff",
-          "sound",
-          "turnsoundoff"
+          "sendallsoundoff",
+          "sound"
         ],
         "OutputChannel.html#sendAllSoundOff": [
           "be",
@@ -5450,6 +5453,7 @@ window.lunrData = {
           "125",
           "126",
           "127",
+          "abov",
           "allnotesoff",
           "allsoundoff",
           "channel",
@@ -5470,6 +5474,7 @@ window.lunrData = {
           "monomodeon",
           "name",
           "note",
+          "number",
           "numer",
           "omnimodeoff",
           "omnimodeon",
@@ -5483,17 +5488,22 @@ window.lunrData = {
           "reason",
           "requir",
           "resetallcontrol",
+          "see",
           "send",
           "sendallnotesoff",
           "sendallsoundoff",
           "sendchannelmod",
           "sendlocalcontrol",
-          "sendomnimod",
-          "sendpolyphonicmod",
+          "sendomnimode(fals",
+          "sendomnimode(tru",
+          "sendpolyphonicmode(\"mono",
+          "sendpolyphonicmode(\"poli",
           "sendresetallcontrol",
+          "shortcut",
           "specif",
           "specifi",
           "that'",
+          "type",
           "us",
           "valu",
           "zero"
@@ -5515,8 +5525,6 @@ window.lunrData = {
           "126",
           "127",
           "13",
-          "16",
-          "17",
           "18",
           "19",
           "2",
@@ -5612,8 +5620,6 @@ window.lunrData = {
           "generalpurposebutton2",
           "generalpurposebutton3",
           "generalpurposebutton4",
-          "generalpurposeslider1",
-          "generalpurposeslider2",
           "generalpurposeslider3",
           "generalpurposeslider4",
           "greater",
@@ -5701,27 +5707,13 @@ window.lunrData = {
           "want"
         ],
         "OutputChannel.html#sendKeyAftertouch": [
-          "0",
-          "1",
-          "127",
           "aftertouch",
-          "array",
-          "between",
-          "c3",
           "channel",
-          "db7",
-          "etc",
-          "f",
-          "follow",
           "function",
-          "g#4",
-          "identifi",
-          "integ",
           "key",
           "messag",
           "midi",
           "note",
-          "number",
           "option",
           "outputchannel",
           "outputchannel#sendkeyaftertouch",
@@ -5730,14 +5722,9 @@ window.lunrData = {
           "send",
           "sendchannelaftertouch",
           "sendkeyaftertouch",
-          "singl",
           "specif",
-          "such",
-          "target",
           "time",
           "us",
-          "valid",
-          "valu",
           "wide"
         ],
         "OutputChannel.html#sendLocalControl": [
@@ -5895,6 +5882,7 @@ window.lunrData = {
           "follow",
           "function",
           "g#4",
+          "identifi",
           "ignor",
           "instead",
           "integ",
@@ -5906,9 +5894,9 @@ window.lunrData = {
           "name",
           "note",
           "note(",
+          "noteobject",
           "number",
           "object",
-          "octav",
           "octaveoffset",
           "on",
           "option",
@@ -6027,18 +6015,33 @@ window.lunrData = {
           "us"
         ],
         "OutputChannel.html#sendPitchBend": [
+          "1",
+          "12",
+          "below",
           "bend",
+          "defin",
+          "exampl",
           "function",
           "messag",
           "midi",
+          "nomin",
+          "note",
+          "octav",
           "option",
           "outputchannel",
           "outputchannel#sendpitchbend",
           "pitch",
+          "rang",
+          "rel",
+          "result",
           "schedul",
+          "semiton",
           "send",
           "sendpitchbend",
+          "sendpitchbendrang",
+          "set",
           "time",
+          "us",
           "valu"
         ],
         "OutputChannel.html#sendPitchBendRange": [
@@ -6048,7 +6051,6 @@ window.lunrData = {
           "below",
           "bend",
           "cent",
-          "channel(",
           "exampl",
           "function",
           "lever",
@@ -6264,88 +6266,58 @@ window.lunrData = {
           "0x3d",
           "1.0",
           "127",
-          "2",
-          "3",
-          "3d",
-          "ad",
-          "angl",
-          "anoth",
-          "azimuth",
           "azimuthangl",
           "bank",
           "byte",
           "chang",
-          "channel",
           "channelcoarsetun",
           "channelfinetun",
-          "coars",
           "control",
           "data",
           "defin",
           "desir",
-          "distanc",
           "distanceratio",
           "each",
-          "elev",
           "elevationangl",
           "extend",
-          "extra",
-          "fine",
-          "first",
           "function",
           "gain",
           "go",
-          "here",
-          "https://www.midi.org/specif",
-          "identifi",
           "implement",
-          "later",
           "limit",
           "list",
           "lsb",
-          "maximum",
           "maximumdist",
           "maximumdistancegain",
           "messag",
           "midi",
-          "modul",
           "modulationrang",
           "msb",
           "note",
           "number",
-          "old/item/t",
           "option",
           "origin",
           "outputchannel",
           "outputchannel#sendrpnvalu",
-          "pan",
           "panspreadangl",
           "paramet",
           "part",
-          "pitchbend",
           "pitchbendrang",
           "program",
-          "rang",
-          "ratio",
-          "refer",
           "referencedistanceratio",
           "regist",
-          "roll",
           "rollangl",
           "rpn",
           "sendrpnvalu",
           "set",
-          "sound",
           "specif",
           "specifi",
-          "spread",
           "standard",
           "tune",
           "tuningbank",
           "tuningprogram",
           "two",
           "up",
-          "us",
           "valu",
           "wide"
         ],
@@ -6388,15 +6360,43 @@ window.lunrData = {
           "wide"
         ],
         "OutputChannel.html#stopNote": [
-          "alia",
+          "0",
+          "1",
+          "127",
+          "array",
+          "between",
+          "c3",
+          "command",
+          "db7",
+          "delay",
+          "e.g",
+          "execut",
+          "f",
+          "first",
+          "follow",
           "function",
-          "method",
+          "g#4",
+          "identifi",
+          "integ",
+          "messag",
+          "midi",
           "note",
+          "number",
+          "object",
           "option",
           "output",
           "outputchannel#stopnot",
-          "sendnoteoff",
-          "stopnot"
+          "paramet",
+          "properti",
+          "send",
+          "singl",
+          "specifi",
+          "stop",
+          "stopnot",
+          "time",
+          "us",
+          "valid",
+          "valu"
         ],
         "OutputChannel.html#suspendEvent": [
           "allow",
@@ -7976,7 +7976,7 @@ window.lunrData = {
             },
             "OutputChannel.html#playNote": {
               "ref": "OutputChannel.html#playNote",
-              "tf": 0.9259259259259258
+              "tf": 0.9433962264150944
             },
             "OutputChannel.html#send": {
               "ref": "OutputChannel.html#send",
@@ -7984,15 +7984,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendChannelMode": {
               "ref": "OutputChannel.html#sendChannelMode",
-              "tf": 0.8064516129032258
+              "tf": 0.7042253521126761
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 1.0162601626016259
-            },
-            "OutputChannel.html#sendKeyAftertouch": {
-              "ref": "OutputChannel.html#sendKeyAftertouch",
-              "tf": 1.282051282051282
+              "tf": 1.02880658436214
             },
             "OutputChannel.html#sendNoteOff": {
               "ref": "OutputChannel.html#sendNoteOff",
@@ -8000,7 +7996,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendNoteOn": {
               "ref": "OutputChannel.html#sendNoteOn",
-              "tf": 0.9708737864077669
+              "tf": 1.0101010101010102
             },
             "OutputChannel.html#sendNrpnValue": {
               "ref": "OutputChannel.html#sendNrpnValue",
@@ -8008,7 +8004,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendRpnValue": {
               "ref": "OutputChannel.html#sendRpnValue",
-              "tf": 0.3289473684210526
+              "tf": 0.5376344086021506
+            },
+            "OutputChannel.html#stopNote": {
+              "ref": "OutputChannel.html#stopNote",
+              "tf": 1.1627906976744187
             },
             "Utilities.html#.buildNote": {
               "ref": "Utilities.html#.buildNote",
@@ -8069,7 +8069,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 2.631578947368421
+                    "tf": 4.301075268817205
                   }
                 }
               },
@@ -8101,7 +8101,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 1.0752688172043012
                   }
                 }
               },
@@ -8133,7 +8133,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 1.0752688172043012
                   }
                 }
               },
@@ -8165,7 +8165,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 1.0752688172043012
                   }
                 }
               },
@@ -8197,7 +8197,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 1.0752688172043012
                   }
                 }
               },
@@ -8229,7 +8229,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 1.0752688172043012
                   }
                 }
               },
@@ -8261,7 +8261,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
+                    "tf": 0.5376344086021506
                   }
                 }
               },
@@ -8293,7 +8293,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
+                    "tf": 0.5376344086021506
                   }
                 }
               },
@@ -8325,7 +8325,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
+                    "tf": 0.5376344086021506
                   }
                 }
               },
@@ -8398,7 +8398,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 2.9605263157894735
+                    "tf": 4.838709677419355
                   }
                 }
               }
@@ -8685,7 +8685,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 }
               }
             },
@@ -8701,7 +8701,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 }
               }
             },
@@ -8788,7 +8788,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               },
               "OutputChannel.html#sendNrpnValue": {
                 "ref": "OutputChannel.html#sendNrpnValue",
@@ -8892,7 +8892,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -8917,11 +8917,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.40650406504065045
+                  "tf": 0.411522633744856
                 }
               }
             },
@@ -8945,11 +8945,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 }
               }
             },
@@ -8973,11 +8973,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 }
               }
             },
@@ -9005,11 +9005,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 },
                 "OutputChannel.html#sendNrpnValue": {
                   "ref": "OutputChannel.html#sendNrpnValue",
@@ -9037,11 +9037,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 }
               }
             },
@@ -9065,11 +9065,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 }
               }
             },
@@ -9093,11 +9093,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.20325203252032523
+                  "tf": 0.205761316872428
                 }
               }
             },
@@ -9173,19 +9173,15 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
+                  "tf": 0.4716981132075472
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.8130081300813009
-                },
-                "OutputChannel.html#sendKeyAftertouch": {
-                  "ref": "OutputChannel.html#sendKeyAftertouch",
-                  "tf": 1.282051282051282
+                  "tf": 0.823045267489712
                 },
                 "OutputChannel.html#sendNoteOff": {
                   "ref": "OutputChannel.html#sendNoteOff",
@@ -9193,11 +9189,15 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.48543689320388345
+                  "tf": 0.5050505050505051
                 },
                 "OutputChannel.html#sendRpnValue": {
                   "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 0.3289473684210526
+                  "tf": 0.5376344086021506
+                },
+                "OutputChannel.html#stopNote": {
+                  "ref": "OutputChannel.html#stopNote",
+                  "tf": 1.1627906976744187
                 },
                 "Utilities.html#.buildNote": {
                   "ref": "Utilities.html#.buildNote",
@@ -9256,11 +9256,15 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
+              },
+              "OutputChannel.html#sendPitchBend": {
+                "ref": "OutputChannel.html#sendPitchBend",
+                "tf": 1.4285714285714286
               },
               "OutputChannel.html#sendPitchBendRange": {
                 "ref": "OutputChannel.html#sendPitchBendRange",
-                "tf": 2.7777777777777777
+                "tf": 2.941176470588235
               }
             }
           },
@@ -9280,7 +9284,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -9388,15 +9392,11 @@ window.lunrData = {
               },
               "OutputChannel.html": {
                 "ref": "OutputChannel.html",
-                "tf": 3.8461538461538463
+                "tf": 1.5151515151515151
               },
               "OutputChannel.html#number": {
                 "ref": "OutputChannel.html#number",
                 "tf": 10
-              },
-              "OutputChannel.html#sendControlChange": {
-                "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
               },
               "Utilities.html#.sanitizeChannels": {
                 "ref": "Utilities.html#.sanitizeChannels",
@@ -9420,10 +9420,6 @@ window.lunrData = {
               "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
                 "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
                 "tf": 0.17543859649122806
-              },
-              "OutputChannel.html#sendControlChange": {
-                "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
               }
             }
           },
@@ -9439,7 +9435,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -9455,7 +9451,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -9568,25 +9564,17 @@ window.lunrData = {
               "ref": "Output.html#stopNote",
               "tf": 1.1111111111111112
             },
-            "OutputChannel.html": {
-              "ref": "OutputChannel.html",
-              "tf": 1.9230769230769231
-            },
             "OutputChannel.html#number": {
               "ref": "OutputChannel.html#number",
               "tf": 10
             },
             "OutputChannel.html#playNote": {
               "ref": "OutputChannel.html#playNote",
-              "tf": 0.4629629629629629
+              "tf": 0.4716981132075472
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.40650406504065045
-            },
-            "OutputChannel.html#sendKeyAftertouch": {
-              "ref": "OutputChannel.html#sendKeyAftertouch",
-              "tf": 1.282051282051282
+              "tf": 0.411522633744856
             },
             "OutputChannel.html#sendNoteOff": {
               "ref": "OutputChannel.html#sendNoteOff",
@@ -9594,11 +9582,15 @@ window.lunrData = {
             },
             "OutputChannel.html#sendNoteOn": {
               "ref": "OutputChannel.html#sendNoteOn",
-              "tf": 0.48543689320388345
+              "tf": 0.5050505050505051
             },
             "OutputChannel.html#sendNrpnValue": {
               "ref": "OutputChannel.html#sendNrpnValue",
               "tf": 0.4807692307692308
+            },
+            "OutputChannel.html#sendPitchBend": {
+              "ref": "OutputChannel.html#sendPitchBend",
+              "tf": 2.857142857142857
             },
             "OutputChannel.html#sendRpnDecrement": {
               "ref": "OutputChannel.html#sendRpnDecrement",
@@ -9607,6 +9599,10 @@ window.lunrData = {
             "OutputChannel.html#sendRpnIncrement": {
               "ref": "OutputChannel.html#sendRpnIncrement",
               "tf": 0.5434782608695652
+            },
+            "OutputChannel.html#stopNote": {
+              "ref": "OutputChannel.html#stopNote",
+              "tf": 1.1627906976744187
             },
             "Utilities.html#.from7bitToFloat": {
               "ref": "Utilities.html#.from7bitToFloat",
@@ -9650,7 +9646,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendRpnValue": {
                   "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 0.3289473684210526
+                  "tf": 0.5376344086021506
                 }
               }
             },
@@ -9932,15 +9928,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.40650406504065045
+              "tf": 0.411522633744856
             },
             "OutputChannel.html#sendNrpnValue": {
               "ref": "OutputChannel.html#sendNrpnValue",
               "tf": 0.9615384615384616
-            },
-            "OutputChannel.html#sendRpnValue": {
-              "ref": "OutputChannel.html#sendRpnValue",
-              "tf": 0.3289473684210526
             },
             "Utilities.html#.guessNoteNumber": {
               "ref": "Utilities.html#.guessNoteNumber",
@@ -9973,7 +9965,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.40650406504065045
+                "tf": 0.411522633744856
               }
             }
           },
@@ -9989,7 +9981,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.40650406504065045
+                "tf": 0.411522633744856
               }
             }
           },
@@ -10005,7 +9997,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10021,7 +10013,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10045,7 +10037,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               },
               "Utilities.html#.guessNoteNumber": {
                 "ref": "Utilities.html#.guessNoteNumber",
@@ -10065,7 +10057,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10081,7 +10073,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10097,7 +10089,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10128,23 +10120,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.20325203252032523
-            },
-            "OutputChannel.html#sendRpnValue": {
-              "ref": "OutputChannel.html#sendRpnValue",
-              "tf": 0.3289473684210526
+              "tf": 0.205761316872428
             },
             "WebMidi.html#enable": {
               "ref": "WebMidi.html#enable",
               "tf": 0.28735632183908044
-            }
-          },
-          "d": {
-            "docs": {
-              "OutputChannel.html#sendRpnValue": {
-                "ref": "OutputChannel.html#sendRpnValue",
-                "tf": 0.3289473684210526
-              }
             }
           }
         },
@@ -10161,7 +10141,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10185,7 +10165,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10201,7 +10181,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10217,7 +10197,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10233,7 +10213,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10292,7 +10272,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.20325203252032523
+              "tf": 0.205761316872428
             }
           },
           "t": {
@@ -10313,7 +10293,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#octaveOffset": {
                   "ref": "OutputChannel.html#octaveOffset",
-                  "tf": 1.3888888888888888
+                  "tf": 1.4705882352941175
                 }
               }
             }
@@ -10415,7 +10395,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.20325203252032523
+              "tf": 0.205761316872428
             },
             "WebMidi.html#time": {
               "ref": "WebMidi.html#time",
@@ -10444,7 +10424,7 @@ window.lunrData = {
               },
               "OutputChannel.html#octaveOffset": {
                 "ref": "OutputChannel.html#octaveOffset",
-                "tf": 1.3888888888888888
+                "tf": 1.4705882352941175
               },
               "Utilities.html#.getNoteDetails": {
                 "ref": "Utilities.html#.getNoteDetails",
@@ -10496,7 +10476,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               },
               "OutputChannel.html#sendMasterTuning": {
                 "ref": "OutputChannel.html#sendMasterTuning",
@@ -10524,7 +10504,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               },
               "OutputChannel.html#sendMasterTuning": {
                 "ref": "OutputChannel.html#sendMasterTuning",
@@ -10559,7 +10539,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               },
               "OutputChannel.html#sendMasterTuning": {
                 "ref": "OutputChannel.html#sendMasterTuning",
@@ -10579,7 +10559,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10595,7 +10575,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10611,7 +10591,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10627,7 +10607,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10642,7 +10622,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.20325203252032523
+              "tf": 0.205761316872428
             }
           }
         },
@@ -10659,7 +10639,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10675,7 +10655,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10691,7 +10671,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               },
               "WebMidi.html#octaveOffset": {
                 "ref": "WebMidi.html#octaveOffset",
@@ -10711,7 +10691,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10727,7 +10707,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10743,7 +10723,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10759,7 +10739,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10775,7 +10755,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10791,7 +10771,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10807,7 +10787,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10826,7 +10806,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.20325203252032523
+              "tf": 0.205761316872428
             },
             "OutputChannel.html#sendNrpnValue": {
               "ref": "OutputChannel.html#sendNrpnValue",
@@ -10865,7 +10845,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10881,7 +10861,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10897,7 +10877,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -10913,7 +10893,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11004,7 +10984,7 @@ window.lunrData = {
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
-              "tf": 0.20325203252032523
+              "tf": 0.205761316872428
             },
             "OutputChannel.html#sendNrpnValue": {
               "ref": "OutputChannel.html#sendNrpnValue",
@@ -11033,7 +11013,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11049,7 +11029,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11065,7 +11045,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11081,7 +11061,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11097,7 +11077,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11113,7 +11093,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11129,7 +11109,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11145,7 +11125,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11161,7 +11141,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               }
             }
           },
@@ -11249,7 +11229,7 @@ window.lunrData = {
                   "docs": {
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     }
                   }
                 }
@@ -11442,7 +11422,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.9259259259259258
+                      "tf": 0.9433962264150944
                     },
                     "OutputChannel.html#send": {
                       "ref": "OutputChannel.html#send",
@@ -11450,11 +11430,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
-                    },
-                    "OutputChannel.html#sendKeyAftertouch": {
-                      "ref": "OutputChannel.html#sendKeyAftertouch",
-                      "tf": 1.282051282051282
+                      "tf": 0.205761316872428
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
@@ -11462,11 +11438,15 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     },
                     "OutputChannel.html#sendNrpnValue": {
                       "ref": "OutputChannel.html#sendNrpnValue",
                       "tf": 1.4423076923076923
+                    },
+                    "OutputChannel.html#stopNote": {
+                      "ref": "OutputChannel.html#stopNote",
+                      "tf": 1.1627906976744187
                     },
                     "Utilities.html#.buildNoteArray": {
                       "ref": "Utilities.html#.buildNoteArray",
@@ -12018,7 +11998,7 @@ window.lunrData = {
                   "docs": {
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     }
                   }
                 }
@@ -12136,11 +12116,11 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendChannelMode": {
                                   "ref": "OutputChannel.html#sendChannelMode",
-                                  "tf": 0.8064516129032258
+                                  "tf": 0.7042253521126761
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.20325203252032523
+                                  "tf": 0.205761316872428
                                 }
                               }
                             }
@@ -12193,11 +12173,11 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendChannelMode": {
                                   "ref": "OutputChannel.html#sendChannelMode",
-                                  "tf": 0.8064516129032258
+                                  "tf": 0.7042253521126761
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.20325203252032523
+                                  "tf": 0.205761316872428
                                 }
                               }
                             }
@@ -12388,17 +12368,6 @@ window.lunrData = {
                   }
                 }
               }
-            },
-            "i": {
-              "docs": {},
-              "a": {
-                "docs": {
-                  "OutputChannel.html#stopNote": {
-                    "ref": "OutputChannel.html#stopNote",
-                    "tf": 16.666666666666664
-                  }
-                }
-              }
             }
           },
           "z": {
@@ -12428,10 +12397,6 @@ window.lunrData = {
                         "OutputChannel.html#sendRpnIncrement": {
                           "ref": "OutputChannel.html#sendRpnIncrement",
                           "tf": 0.5434782608695652
-                        },
-                        "OutputChannel.html#sendRpnValue": {
-                          "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 0.3289473684210526
                         }
                       },
                       "a": {
@@ -12468,7 +12433,7 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendRpnValue": {
                                   "ref": "OutputChannel.html#sendRpnValue",
-                                  "tf": 0.3289473684210526
+                                  "tf": 0.5376344086021506
                                 }
                               }
                             }
@@ -12670,7 +12635,7 @@ window.lunrData = {
                           "docs": {
                             "OutputChannel.html#sendControlChange": {
                               "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.20325203252032523
+                              "tf": 0.205761316872428
                             }
                           }
                         }
@@ -12747,7 +12712,7 @@ window.lunrData = {
                     "docs": {
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       }
                     }
                   }
@@ -12852,10 +12817,6 @@ window.lunrData = {
               "OutputChannel.html#hasListener": {
                 "ref": "OutputChannel.html#hasListener",
                 "tf": 1.6129032258064515
-              },
-              "OutputChannel.html#sendRpnValue": {
-                "ref": "OutputChannel.html#sendRpnValue",
-                "tf": 0.3289473684210526
               },
               "WebMidi.html#disable": {
                 "ref": "WebMidi.html#disable",
@@ -13185,7 +13146,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendPitchBendRange": {
                         "ref": "OutputChannel.html#sendPitchBendRange",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       }
                     }
                   }
@@ -13242,13 +13203,17 @@ window.lunrData = {
                     "ref": "Output.html#sendSysex",
                     "tf": 0.30303030303030304
                   },
+                  "OutputChannel.html#sendChannelMode": {
+                    "ref": "OutputChannel.html#sendChannelMode",
+                    "tf": 0.7042253521126761
+                  },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendPitchBendRange": {
                     "ref": "OutputChannel.html#sendPitchBendRange",
-                    "tf": 1.3888888888888888
+                    "tf": 1.4705882352941175
                   }
                 }
               }
@@ -13324,10 +13289,6 @@ window.lunrData = {
                   "OutputChannel.html#sendRpnIncrement": {
                     "ref": "OutputChannel.html#sendRpnIncrement",
                     "tf": 2.1739130434782608
-                  },
-                  "OutputChannel.html#sendRpnValue": {
-                    "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 1.3157894736842104
                   }
                 }
               }
@@ -13338,10 +13299,6 @@ window.lunrData = {
                 "docs": {},
                 "h": {
                   "docs": {
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
-                    },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
                       "tf": 1.4705882352941175
@@ -13451,11 +13408,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
+                        "tf": 0.4716981132075472
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.9708737864077669
+                        "tf": 1.0101010101010102
                       }
                     }
                   }
@@ -13560,13 +13517,17 @@ window.lunrData = {
                       "ref": "Output.html#sendControlChange",
                       "tf": 0.24509803921568626
                     },
+                    "OutputChannel.html": {
+                      "ref": "OutputChannel.html",
+                      "tf": 1.5151515151515151
+                    },
                     "OutputChannel.html#send": {
                       "ref": "OutputChannel.html#send",
                       "tf": 1.0204081632653061
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     },
                     "WebMidi.html#inputs": {
                       "ref": "WebMidi.html#inputs",
@@ -13673,7 +13634,7 @@ window.lunrData = {
                               },
                               "OutputChannel.html#sendKeyAftertouch": {
                                 "ref": "OutputChannel.html#sendKeyAftertouch",
-                                "tf": 3.8461538461538463
+                                "tf": 9.375
                               }
                             }
                           }
@@ -13887,19 +13848,15 @@ window.lunrData = {
                     },
                     "OutputChannel.html#octaveOffset": {
                       "ref": "OutputChannel.html#octaveOffset",
-                      "tf": 1.3888888888888888
+                      "tf": 1.4705882352941175
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#send": {
                       "ref": "OutputChannel.html#send",
                       "tf": 1.0204081632653061
-                    },
-                    "OutputChannel.html#sendKeyAftertouch": {
-                      "ref": "OutputChannel.html#sendKeyAftertouch",
-                      "tf": 1.282051282051282
                     },
                     "OutputChannel.html#sendMasterTuning": {
                       "ref": "OutputChannel.html#sendMasterTuning",
@@ -13911,11 +13868,15 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     },
                     "OutputChannel.html#sendNrpnValue": {
                       "ref": "OutputChannel.html#sendNrpnValue",
                       "tf": 0.9615384615384616
+                    },
+                    "OutputChannel.html#stopNote": {
+                      "ref": "OutputChannel.html#stopNote",
+                      "tf": 1.1627906976744187
                     },
                     "Utilities.html#.buildNote": {
                       "ref": "Utilities.html#.buildNote",
@@ -15915,7 +15876,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.9230769230769231
+                            "tf": 1.5151515151515151
                           },
                           "WebMidi.html": {
                             "ref": "WebMidi.html",
@@ -15986,11 +15947,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
+                          "tf": 0.205761316872428
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
                         },
                         "WebMidi.html#octaveOffset": {
                           "ref": "WebMidi.html#octaveOffset",
@@ -16054,7 +16015,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.9230769230769231
+                      "tf": 1.5151515151515151
                     }
                   }
                 }
@@ -16102,7 +16063,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   }
                 },
                 "r": {
@@ -16233,13 +16194,13 @@ window.lunrData = {
                             "ref": "Output.html#stopNote",
                             "tf": 1.1111111111111112
                           },
-                          "OutputChannel.html#sendKeyAftertouch": {
-                            "ref": "OutputChannel.html#sendKeyAftertouch",
-                            "tf": 1.282051282051282
+                          "OutputChannel.html#sendNoteOn": {
+                            "ref": "OutputChannel.html#sendNoteOn",
+                            "tf": 0.5050505050505051
                           },
-                          "OutputChannel.html#sendRpnValue": {
-                            "ref": "OutputChannel.html#sendRpnValue",
-                            "tf": 0.3289473684210526
+                          "OutputChannel.html#stopNote": {
+                            "ref": "OutputChannel.html#stopNote",
+                            "tf": 1.1627906976744187
                           },
                           "Utilities.html#.buildNote": {
                             "ref": "Utilities.html#.buildNote",
@@ -16319,7 +16280,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html#sendRpnValue": {
                               "ref": "OutputChannel.html#sendRpnValue",
-                              "tf": 0.3289473684210526
+                              "tf": 0.5376344086021506
                             },
                             "OutputChannel.html#sendTuningBank": {
                               "ref": "OutputChannel.html#sendTuningBank",
@@ -16428,6 +16389,10 @@ window.lunrData = {
                       "Output.html#sendReset": {
                         "ref": "Output.html#sendReset",
                         "tf": 3.8461538461538463
+                      },
+                      "OutputChannel.html": {
+                        "ref": "OutputChannel.html",
+                        "tf": 1.5151515151515151
                       },
                       "WebMidi.html#disable": {
                         "ref": "WebMidi.html#disable",
@@ -16579,7 +16544,7 @@ window.lunrData = {
                   "docs": {
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     },
                     "Utilities.html#.sanitizeChannels": {
                       "ref": "Utilities.html#.sanitizeChannels",
@@ -16748,7 +16713,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendKeyAftertouch": {
                   "ref": "OutputChannel.html#sendKeyAftertouch",
-                  "tf": 3.8461538461538463
+                  "tf": 6.25
                 }
               },
               "a": {
@@ -16789,7 +16754,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#octaveOffset": {
                                       "ref": "OutputChannel.html#octaveOffset",
-                                      "tf": 1.3888888888888888
+                                      "tf": 1.4705882352941175
                                     }
                                   }
                                 }
@@ -16831,7 +16796,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.48543689320388345
+                    "tf": 0.5050505050505051
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
@@ -16982,7 +16947,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendRpnDecrement": {
                     "ref": "OutputChannel.html#sendRpnDecrement",
@@ -16994,7 +16959,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 1.0752688172043012
                   },
                   "WebMidi.html#getListeners": {
                     "ref": "WebMidi.html#getListeners",
@@ -17711,7 +17676,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendRpnValue": {
                       "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
+                      "tf": 0.5376344086021506
                     }
                   }
                 }
@@ -18232,11 +18197,11 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html#sendChannelMode": {
                                     "ref": "OutputChannel.html#sendChannelMode",
-                                    "tf": 1.6129032258064515
+                                    "tf": 1.4084507042253522
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.20325203252032523
+                                    "tf": 0.205761316872428
                                   }
                                 }
                               }
@@ -18369,7 +18334,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html#sendControlChange": {
                               "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.20325203252032523
+                              "tf": 0.205761316872428
                             }
                           }
                         }
@@ -18446,7 +18411,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
@@ -18466,7 +18431,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendPitchBendRange": {
                       "ref": "OutputChannel.html#sendPitchBendRange",
-                      "tf": 1.3888888888888888
+                      "tf": 1.4705882352941175
                     }
                   }
                 }
@@ -18559,7 +18524,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.40650406504065045
+                  "tf": 0.411522633744856
                 },
                 "OutputChannel.html#sendNrpnValue": {
                   "ref": "OutputChannel.html#sendNrpnValue",
@@ -18567,7 +18532,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendRpnValue": {
                   "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 0.3289473684210526
+                  "tf": 0.5376344086021506
                 },
                 "Utilities.html#.fromFloatToMsbLsb": {
                   "ref": "Utilities.html#.fromFloatToMsbLsb",
@@ -18609,20 +18574,6 @@ window.lunrData = {
                         "ref": "OutputChannel.html#sendMasterTuning",
                         "tf": 1.1904761904761905
                       }
-                    }
-                  }
-                }
-              }
-            },
-            "t": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "r": {
-                  "docs": {
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
                     }
                   }
                 }
@@ -18908,7 +18859,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html": {
                     "ref": "OutputChannel.html",
-                    "tf": 1.9230769230769231
+                    "tf": 3.0303030303030303
                   },
                   "OutputChannel.html#number": {
                     "ref": "OutputChannel.html#number",
@@ -18916,11 +18867,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#octaveOffset": {
                     "ref": "OutputChannel.html#octaveOffset",
-                    "tf": 1.3888888888888888
+                    "tf": 1.4705882352941175
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 1.3888888888888888
+                    "tf": 1.4150943396226416
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -18932,15 +18883,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 1.6129032258064515
+                    "tf": 1.4084507042253522
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.40650406504065045
+                    "tf": 0.411522633744856
                   },
                   "OutputChannel.html#sendKeyAftertouch": {
                     "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 2.564102564102564
+                    "tf": 3.125
                   },
                   "OutputChannel.html#sendLocalControl": {
                     "ref": "OutputChannel.html#sendLocalControl",
@@ -18956,11 +18907,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 1.4563106796116505
+                    "tf": 1.5151515151515151
                   },
                   "OutputChannel.html#sendPitchBend": {
                     "ref": "OutputChannel.html#sendPitchBend",
-                    "tf": 7.142857142857142
+                    "tf": 1.4285714285714286
                   },
                   "OutputChannel.html#sendProgramChange": {
                     "ref": "OutputChannel.html#sendProgramChange",
@@ -18976,7 +18927,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 1.3157894736842104
+                    "tf": 2.1505376344086025
                   },
                   "OutputChannel.html#sendTuningBank": {
                     "ref": "OutputChannel.html#sendTuningBank",
@@ -18985,6 +18936,10 @@ window.lunrData = {
                   "OutputChannel.html#sendTuningProgram": {
                     "ref": "OutputChannel.html#sendTuningProgram",
                     "tf": 6.666666666666667
+                  },
+                  "OutputChannel.html#stopNote": {
+                    "ref": "OutputChannel.html#stopNote",
+                    "tf": 2.3255813953488373
                   },
                   "Utilities.html#.getCcNameByNumber": {
                     "ref": "Utilities.html#.getCcNameByNumber",
@@ -19429,7 +19384,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#octaveOffset": {
                       "ref": "OutputChannel.html#octaveOffset",
-                      "tf": 1.3888888888888888
+                      "tf": 1.4705882352941175
                     },
                     "Utilities.html#.getNoteDetails": {
                       "ref": "Utilities.html#.getNoteDetails",
@@ -20209,11 +20164,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 2.314814814814815
+                        "tf": 2.358490566037736
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -20233,15 +20188,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 2.4193548387096775
+                        "tf": 2.112676056338028
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 2.4390243902439024
+                        "tf": 2.4691358024691357
                       },
                       "OutputChannel.html#sendKeyAftertouch": {
                         "ref": "OutputChannel.html#sendKeyAftertouch",
-                        "tf": 2.564102564102564
+                        "tf": 6.25
                       },
                       "OutputChannel.html#sendLocalControl": {
                         "ref": "OutputChannel.html#sendLocalControl",
@@ -20261,7 +20216,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 1.9417475728155338
+                        "tf": 2.0202020202020203
                       },
                       "OutputChannel.html#sendNrpnValue": {
                         "ref": "OutputChannel.html#sendNrpnValue",
@@ -20273,11 +20228,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendPitchBend": {
                         "ref": "OutputChannel.html#sendPitchBend",
-                        "tf": 7.142857142857142
+                        "tf": 1.4285714285714286
                       },
                       "OutputChannel.html#sendPitchBendRange": {
                         "ref": "OutputChannel.html#sendPitchBendRange",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "OutputChannel.html#sendProgramChange": {
                         "ref": "OutputChannel.html#sendProgramChange",
@@ -20289,7 +20244,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendRpnValue": {
                         "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.6578947368421052
+                        "tf": 0.5376344086021506
+                      },
+                      "OutputChannel.html#stopNote": {
+                        "ref": "OutputChannel.html#stopNote",
+                        "tf": 1.1627906976744187
                       },
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
@@ -20640,11 +20599,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.40650406504065045
+                    "tf": 0.411522633744856
                   },
                   "OutputChannel.html#sendPitchBendRange": {
                     "ref": "OutputChannel.html#sendPitchBendRange",
-                    "tf": 1.3888888888888888
+                    "tf": 1.4705882352941175
                   },
                   "WebMidi.html#disable": {
                     "ref": "WebMidi.html#disable",
@@ -20779,7 +20738,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
+                        "tf": 0.4716981132075472
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -20791,19 +20750,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 1.4084507042253522
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.48543689320388345
-                      },
-                      "OutputChannel.html#stopNote": {
-                        "ref": "OutputChannel.html#stopNote",
-                        "tf": 16.666666666666664
+                        "tf": 0.5050505050505051
                       },
                       "OutputChannel.html#waitFor": {
                         "ref": "OutputChannel.html#waitFor",
@@ -20862,7 +20817,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
+                          "tf": 0.4716981132075472
                         },
                         "OutputChannel.html#sendNoteOff": {
                           "ref": "OutputChannel.html#sendNoteOff",
@@ -20870,7 +20825,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
                         }
                       }
                     }
@@ -20935,11 +20890,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 2.4193548387096775
+                    "tf": 2.112676056338028
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendOmniMode": {
                     "ref": "OutputChannel.html#sendOmniMode",
@@ -20987,10 +20942,6 @@ window.lunrData = {
                       "ref": "OutputChannel.html#sendRpnIncrement",
                       "tf": 0.5434782608695652
                     },
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
-                    },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
                       "tf": 1.9607843137254901
@@ -21036,7 +20987,7 @@ window.lunrData = {
                                                   },
                                                   "OutputChannel.html#sendControlChange": {
                                                     "ref": "OutputChannel.html#sendControlChange",
-                                                    "tf": 0.40650406504065045
+                                                    "tf": 0.411522633744856
                                                   }
                                                 }
                                               }
@@ -21060,7 +21011,7 @@ window.lunrData = {
                                               },
                                               "OutputChannel.html#sendControlChange": {
                                                 "ref": "OutputChannel.html#sendControlChange",
-                                                "tf": 0.40650406504065045
+                                                "tf": 0.411522633744856
                                               }
                                             }
                                           }
@@ -21105,7 +21056,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendRpnValue": {
                                         "ref": "OutputChannel.html#sendRpnValue",
-                                        "tf": 0.3289473684210526
+                                        "tf": 0.5376344086021506
                                       }
                                     }
                                   }
@@ -21172,11 +21123,11 @@ window.lunrData = {
                               },
                               "OutputChannel.html#sendChannelMode": {
                                 "ref": "OutputChannel.html#sendChannelMode",
-                                "tf": 1.6129032258064515
+                                "tf": 1.4084507042253522
                               },
                               "OutputChannel.html#sendControlChange": {
                                 "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.20325203252032523
+                                "tf": 0.205761316872428
                               }
                             }
                           }
@@ -21246,7 +21197,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "Utilities.html#.offsetNumber": {
                     "ref": "Utilities.html#.offsetNumber",
@@ -21287,10 +21238,6 @@ window.lunrData = {
                         "OutputChannel.html#sendRpnIncrement": {
                           "ref": "OutputChannel.html#sendRpnIncrement",
                           "tf": 1.0869565217391304
-                        },
-                        "OutputChannel.html#sendRpnValue": {
-                          "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 0.6578947368421052
                         }
                       },
                       "d": {
@@ -21327,7 +21274,7 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendRpnValue": {
                                   "ref": "OutputChannel.html#sendRpnValue",
-                                  "tf": 0.3289473684210526
+                                  "tf": 0.5376344086021506
                                 }
                               },
                               "a": {
@@ -21372,7 +21319,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#sendRpnValue": {
                                                   "ref": "OutputChannel.html#sendRpnValue",
-                                                  "tf": 0.3289473684210526
+                                                  "tf": 0.5376344086021506
                                                 }
                                               }
                                             }
@@ -21452,7 +21399,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
@@ -21460,11 +21407,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendChannelMode": {
                       "ref": "OutputChannel.html#sendChannelMode",
-                      "tf": 0.8064516129032258
+                      "tf": 0.7042253521126761
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     },
                     "Utilities.html#.getCcNameByNumber": {
                       "ref": "Utilities.html#.getCcNameByNumber",
@@ -21566,7 +21513,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 0.8064516129032258
+                    "tf": 0.7042253521126761
                   },
                   "OutputChannel.html#waitFor": {
                     "ref": "OutputChannel.html#waitFor",
@@ -21699,6 +21646,10 @@ window.lunrData = {
                   "Output.html": {
                     "ref": "Output.html",
                     "tf": 0.9259259259259258
+                  },
+                  "OutputChannel.html": {
+                    "ref": "OutputChannel.html",
+                    "tf": 1.5151515151515151
                   }
                 }
               }
@@ -21771,7 +21722,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.40650406504065045
+                  "tf": 0.411522633744856
                 },
                 "OutputChannel.html#sendNrpnValue": {
                   "ref": "OutputChannel.html#sendNrpnValue",
@@ -21779,7 +21730,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendRpnValue": {
                   "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 0.3289473684210526
+                  "tf": 0.5376344086021506
                 },
                 "Utilities.html#.fromFloatToMsbLsb": {
                   "ref": "Utilities.html#.fromFloatToMsbLsb",
@@ -22013,7 +21964,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.9230769230769231
+                            "tf": 1.5151515151515151
                           },
                           "OutputChannel.html#eventMap": {
                             "ref": "OutputChannel.html#eventMap",
@@ -22025,7 +21976,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#playNote": {
                             "ref": "OutputChannel.html#playNote",
-                            "tf": 0.9259259259259258
+                            "tf": 0.9433962264150944
                           },
                           "OutputChannel.html#sendNoteOff": {
                             "ref": "OutputChannel.html#sendNoteOff",
@@ -22033,7 +21984,11 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendNoteOn": {
                             "ref": "OutputChannel.html#sendNoteOn",
-                            "tf": 0.48543689320388345
+                            "tf": 0.5050505050505051
+                          },
+                          "OutputChannel.html#stopNote": {
+                            "ref": "OutputChannel.html#stopNote",
+                            "tf": 1.1627906976744187
                           },
                           "OutputChannel.html#suspendEvent": {
                             "ref": "OutputChannel.html#suspendEvent",
@@ -22111,7 +22066,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendRpnValue": {
                           "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 0.6578947368421052
+                          "tf": 0.5376344086021506
                         },
                         "OutputChannel.html#sendTuningProgram": {
                           "ref": "OutputChannel.html#sendTuningProgram",
@@ -22163,6 +22118,10 @@ window.lunrData = {
                       "Output.html#channels": {
                         "ref": "Output.html#channels",
                         "tf": 3.8461538461538463
+                      },
+                      "OutputChannel.html": {
+                        "ref": "OutputChannel.html",
+                        "tf": 1.5151515151515151
                       },
                       "Utilities.html#.buildNote": {
                         "ref": "Utilities.html#.buildNote",
@@ -22586,7 +22545,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
+                        "tf": 0.4716981132075472
                       },
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
@@ -22594,7 +22553,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.48543689320388345
+                        "tf": 0.5050505050505051
                       }
                     }
                   }
@@ -22605,7 +22564,7 @@ window.lunrData = {
                     "docs": {
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       }
                     }
                   }
@@ -22695,11 +22654,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendPitchBend": {
                       "ref": "OutputChannel.html#sendPitchBend",
-                      "tf": 7.142857142857142
+                      "tf": 4.285714285714286
                     },
                     "OutputChannel.html#sendPitchBendRange": {
                       "ref": "OutputChannel.html#sendPitchBendRange",
-                      "tf": 5.555555555555555
+                      "tf": 5.88235294117647
                     },
                     "OutputChannel.html#sendResetAllControllers": {
                       "ref": "OutputChannel.html#sendResetAllControllers",
@@ -22745,10 +22704,6 @@ window.lunrData = {
                             "OutputChannel.html#sendRpnIncrement": {
                               "ref": "OutputChannel.html#sendRpnIncrement",
                               "tf": 0.5434782608695652
-                            },
-                            "OutputChannel.html#sendRpnValue": {
-                              "ref": "OutputChannel.html#sendRpnValue",
-                              "tf": 0.3289473684210526
                             }
                           },
                           "r": {
@@ -22785,7 +22740,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendRpnValue": {
                                       "ref": "OutputChannel.html#sendRpnValue",
-                                      "tf": 0.3289473684210526
+                                      "tf": 0.5376344086021506
                                     }
                                   }
                                 }
@@ -22836,11 +22791,11 @@ window.lunrData = {
                               },
                               "OutputChannel.html#sendChannelMode": {
                                 "ref": "OutputChannel.html#sendChannelMode",
-                                "tf": 0.8064516129032258
+                                "tf": 0.7042253521126761
                               },
                               "OutputChannel.html#sendControlChange": {
                                 "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.20325203252032523
+                                "tf": 0.205761316872428
                               }
                             }
                           }
@@ -22956,6 +22911,10 @@ window.lunrData = {
                     "ref": "Output.html#sendNrpnValue",
                     "tf": 0.40650406504065045
                   },
+                  "OutputChannel.html": {
+                    "ref": "OutputChannel.html",
+                    "tf": 1.5151515151515151
+                  },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
                     "tf": 1.0204081632653061
@@ -22995,7 +22954,7 @@ window.lunrData = {
                               },
                               "OutputChannel.html#sendControlChange": {
                                 "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.20325203252032523
+                                "tf": 0.205761316872428
                               }
                             },
                             "t": {
@@ -23026,7 +22985,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.20325203252032523
+                                                  "tf": 0.205761316872428
                                                 }
                                               }
                                             }
@@ -23050,7 +23009,7 @@ window.lunrData = {
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.20325203252032523
+                                              "tf": 0.205761316872428
                                             }
                                           }
                                         }
@@ -23252,10 +23211,6 @@ window.lunrData = {
                 "OutputChannel.html#sendRpnIncrement": {
                   "ref": "OutputChannel.html#sendRpnIncrement",
                   "tf": 0.5434782608695652
-                },
-                "OutputChannel.html#sendRpnValue": {
-                  "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 0.3289473684210526
                 }
               },
               "c": {
@@ -23278,7 +23233,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendControlChange": {
                             "ref": "OutputChannel.html#sendControlChange",
-                            "tf": 0.20325203252032523
+                            "tf": 0.205761316872428
                           }
                         }
                       }
@@ -23302,7 +23257,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       }
                     }
                   }
@@ -23354,7 +23309,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendRpnValue": {
                                       "ref": "OutputChannel.html#sendRpnValue",
-                                      "tf": 0.3289473684210526
+                                      "tf": 0.5376344086021506
                                     }
                                   }
                                 }
@@ -23378,7 +23333,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   }
                 }
               }
@@ -23563,7 +23518,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 1.8518518518518516
+                          "tf": 1.8867924528301887
                         },
                         "OutputChannel.html#removeListener": {
                           "ref": "OutputChannel.html#removeListener",
@@ -23571,11 +23526,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
-                          "tf": 0.8064516129032258
+                          "tf": 0.7042253521126761
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
+                          "tf": 0.205761316872428
                         },
                         "OutputChannel.html#sendModulationRange": {
                           "ref": "OutputChannel.html#sendModulationRange",
@@ -23587,7 +23542,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 1.4563106796116505
+                          "tf": 1.5151515151515151
                         },
                         "OutputChannel.html#sendNrpnValue": {
                           "ref": "OutputChannel.html#sendNrpnValue",
@@ -23595,7 +23550,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendPitchBendRange": {
                           "ref": "OutputChannel.html#sendPitchBendRange",
-                          "tf": 2.7777777777777777
+                          "tf": 2.941176470588235
                         },
                         "OutputChannel.html#sendRpnDecrement": {
                           "ref": "OutputChannel.html#sendRpnDecrement",
@@ -23607,7 +23562,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendRpnValue": {
                           "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 1.9736842105263157
+                          "tf": 1.6129032258064515
                         },
                         "OutputChannel.html#sendTuningBank": {
                           "ref": "OutputChannel.html#sendTuningBank",
@@ -23616,6 +23571,10 @@ window.lunrData = {
                         "OutputChannel.html#sendTuningProgram": {
                           "ref": "OutputChannel.html#sendTuningProgram",
                           "tf": 3.3333333333333335
+                        },
+                        "OutputChannel.html#stopNote": {
+                          "ref": "OutputChannel.html#stopNote",
+                          "tf": 2.3255813953488373
                         },
                         "Utilities.html#.buildNote": {
                           "ref": "Utilities.html#.buildNote",
@@ -23735,11 +23694,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.9230769230769231
+                        "tf": 1.5151515151515151
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "OutputChannel.html#output": {
                         "ref": "OutputChannel.html#output",
@@ -23765,7 +23724,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
+                    "tf": 0.5376344086021506
                   },
                   "OutputChannel.html#sendTuningBank": {
                     "ref": "OutputChannel.html#sendTuningBank",
@@ -23904,11 +23863,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.48543689320388345
+                    "tf": 0.5050505050505051
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
@@ -24015,7 +23974,7 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.20325203252032523
+                                  "tf": 0.205761316872428
                                 }
                               }
                             }
@@ -24114,7 +24073,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -24180,7 +24139,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#octaveOffset": {
                       "ref": "OutputChannel.html#octaveOffset",
-                      "tf": 1.3888888888888888
+                      "tf": 1.4705882352941175
                     }
                   }
                 }
@@ -24221,7 +24180,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 1.3888888888888888
+                    "tf": 1.4150943396226416
                   },
                   "OutputChannel.html#sendAllNotesOff": {
                     "ref": "OutputChannel.html#sendAllNotesOff",
@@ -24281,7 +24240,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 675.4629629629629
+                          "tf": 675.4716981132076
                         },
                         "OutputChannel.html#send": {
                           "ref": "OutputChannel.html#send",
@@ -24289,7 +24248,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
                         }
                       }
                     }
@@ -24381,15 +24340,15 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
+                  "tf": 0.4716981132075472
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
-                  "tf": 0.8064516129032258
+                  "tf": 0.7042253521126761
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.48543689320388345
+                  "tf": 0.5050505050505051
                 },
                 "Utilities.html#.toNoteNumber": {
                   "ref": "Utilities.html#.toNoteNumber",
@@ -24570,7 +24529,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 0.7042253521126761
                       }
                     }
                   }
@@ -24618,10 +24577,6 @@ window.lunrData = {
                     "OutputChannel.html#sendRpnIncrement": {
                       "ref": "OutputChannel.html#sendRpnIncrement",
                       "tf": 0.5434782608695652
-                    },
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
                     }
                   },
                   "e": {
@@ -24689,7 +24644,7 @@ window.lunrData = {
                                                       },
                                                       "OutputChannel.html#sendRpnValue": {
                                                         "ref": "OutputChannel.html#sendRpnValue",
-                                                        "tf": 0.3289473684210526
+                                                        "tf": 0.5376344086021506
                                                       }
                                                     }
                                                   }
@@ -24789,11 +24744,11 @@ window.lunrData = {
                                         },
                                         "OutputChannel.html#sendChannelMode": {
                                           "ref": "OutputChannel.html#sendChannelMode",
-                                          "tf": 0.8064516129032258
+                                          "tf": 0.7042253521126761
                                         },
                                         "OutputChannel.html#sendControlChange": {
                                           "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.20325203252032523
+                                          "tf": 0.205761316872428
                                         }
                                       }
                                     }
@@ -24817,7 +24772,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       }
                     }
                   }
@@ -24837,7 +24792,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     }
                   }
                 },
@@ -24933,6 +24888,10 @@ window.lunrData = {
                       "Output.html#sendPitchBend": {
                         "ref": "Output.html#sendPitchBend",
                         "tf": 1.3513513513513513
+                      },
+                      "OutputChannel.html#sendPitchBend": {
+                        "ref": "OutputChannel.html#sendPitchBend",
+                        "tf": 1.4285714285714286
                       },
                       "Utilities.html#.fromFloatTo7Bit": {
                         "ref": "Utilities.html#.fromFloatTo7Bit",
@@ -25258,7 +25217,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendRpnValue": {
                         "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.9868421052631579
+                        "tf": 1.0752688172043012
                       },
                       "OutputChannel.html#suspendEvent": {
                         "ref": "OutputChannel.html#suspendEvent",
@@ -25359,7 +25318,7 @@ window.lunrData = {
                                                           },
                                                           "OutputChannel.html#sendControlChange": {
                                                             "ref": "OutputChannel.html#sendControlChange",
-                                                            "tf": 0.20325203252032523
+                                                            "tf": 0.205761316872428
                                                           }
                                                         }
                                                       }
@@ -25383,7 +25342,7 @@ window.lunrData = {
                                                       },
                                                       "OutputChannel.html#sendControlChange": {
                                                         "ref": "OutputChannel.html#sendControlChange",
-                                                        "tf": 0.20325203252032523
+                                                        "tf": 0.205761316872428
                                                       }
                                                     }
                                                   }
@@ -25543,7 +25502,7 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.20325203252032523
+                                  "tf": 0.205761316872428
                                 }
                               }
                             }
@@ -25589,6 +25548,10 @@ window.lunrData = {
                 "Output.html#sendPitchBend": {
                   "ref": "Output.html#sendPitchBend",
                   "tf": 1.3513513513513513
+                },
+                "OutputChannel.html#sendPitchBend": {
+                  "ref": "OutputChannel.html#sendPitchBend",
+                  "tf": 1.4285714285714286
                 },
                 "Utilities.html#.toTimestamp": {
                   "ref": "Utilities.html#.toTimestamp",
@@ -26186,7 +26149,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 1.9230769230769231
+                        "tf": 1.5151515151515151
                       },
                       "Utilities.html#.from7bitToFloat": {
                         "ref": "Utilities.html#.from7bitToFloat",
@@ -26224,7 +26187,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "WebMidi.html#octaveOffset": {
                         "ref": "WebMidi.html#octaveOffset",
@@ -26261,7 +26224,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 0.7042253521126761
                       }
                     }
                   }
@@ -26308,10 +26271,6 @@ window.lunrData = {
                   "OutputChannel.html#sendRpnIncrement": {
                     "ref": "OutputChannel.html#sendRpnIncrement",
                     "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#sendRpnValue": {
-                    "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
                   }
                 },
                 "a": {
@@ -26348,7 +26307,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendRpnValue": {
                             "ref": "OutputChannel.html#sendRpnValue",
-                            "tf": 0.3289473684210526
+                            "tf": 0.5376344086021506
                           }
                         }
                       }
@@ -26530,9 +26489,13 @@ window.lunrData = {
                     "ref": "OutputChannel.html#sendModulationRange",
                     "tf": 7.142857142857142
                   },
+                  "OutputChannel.html#sendPitchBend": {
+                    "ref": "OutputChannel.html#sendPitchBend",
+                    "tf": 4.285714285714286
+                  },
                   "OutputChannel.html#sendPitchBendRange": {
                     "ref": "OutputChannel.html#sendPitchBendRange",
-                    "tf": 5.555555555555555
+                    "tf": 5.88235294117647
                   },
                   "OutputChannel.html#sendRpnDecrement": {
                     "ref": "OutputChannel.html#sendRpnDecrement",
@@ -26541,10 +26504,6 @@ window.lunrData = {
                   "OutputChannel.html#sendRpnIncrement": {
                     "ref": "OutputChannel.html#sendRpnIncrement",
                     "tf": 1.0869565217391304
-                  },
-                  "OutputChannel.html#sendRpnValue": {
-                    "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
                   }
                 }
               }
@@ -26600,10 +26559,6 @@ window.lunrData = {
                     "OutputChannel.html#sendRpnIncrement": {
                       "ref": "OutputChannel.html#sendRpnIncrement",
                       "tf": 1.0869565217391304
-                    },
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.6578947368421052
                     },
                     "Utilities.html#.from7bitToFloat": {
                       "ref": "Utilities.html#.from7bitToFloat",
@@ -26661,10 +26616,6 @@ window.lunrData = {
                         "Input.html#open": {
                           "ref": "Input.html#open",
                           "tf": 5
-                        },
-                        "OutputChannel.html#octaveOffset": {
-                          "ref": "OutputChannel.html#octaveOffset",
-                          "tf": 1.3888888888888888
                         },
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
@@ -27062,6 +27013,10 @@ window.lunrData = {
                                                   "Output.html#octaveOffset": {
                                                     "ref": "Output.html#octaveOffset",
                                                     "tf": 2.083333333333333
+                                                  },
+                                                  "OutputChannel.html#octaveOffset": {
+                                                    "ref": "OutputChannel.html#octaveOffset",
+                                                    "tf": 1.4705882352941175
                                                   }
                                                 }
                                               }
@@ -28519,11 +28474,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.48543689320388345
+                    "tf": 0.5050505050505051
                   },
                   "OutputChannel.html#suspendEvent": {
                     "ref": "OutputChannel.html#suspendEvent",
@@ -28734,11 +28689,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendKeyAftertouch": {
                     "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 1.282051282051282
+                    "tf": 3.125
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
+                    "tf": 0.5376344086021506
                   },
                   "OutputChannel.html#sendTuningBank": {
                     "ref": "OutputChannel.html#sendTuningBank",
@@ -29032,7 +28987,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendRpnValue": {
                       "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
+                      "tf": 0.5376344086021506
                     }
                   }
                 }
@@ -29193,11 +29148,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#octaveOffset": {
                       "ref": "OutputChannel.html#octaveOffset",
-                      "tf": 2.7777777777777777
+                      "tf": 2.941176470588235
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
@@ -29209,11 +29164,15 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
+                    },
+                    "OutputChannel.html#sendPitchBend": {
+                      "ref": "OutputChannel.html#sendPitchBend",
+                      "tf": 1.4285714285714286
                     },
                     "OutputChannel.html#sendRpnValue": {
                       "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
+                      "tf": 0.5376344086021506
                     },
                     "WebMidi.html#removeListener": {
                       "ref": "WebMidi.html#removeListener",
@@ -29280,11 +29239,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#octaveOffset": {
                           "ref": "OutputChannel.html#octaveOffset",
-                          "tf": 1.3888888888888888
+                          "tf": 1.4705882352941175
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
-                          "tf": 0.8064516129032258
+                          "tf": 0.7042253521126761
                         },
                         "OutputChannel.html#sendLocalControl": {
                           "ref": "OutputChannel.html#sendLocalControl",
@@ -29373,7 +29332,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.9230769230769231
+                      "tf": 1.5151515151515151
                     },
                     "WebMidi.html#octaveOffset": {
                       "ref": "WebMidi.html#octaveOffset",
@@ -29399,7 +29358,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.9230769230769231
+                      "tf": 1.5151515151515151
                     },
                     "Utilities.html#.toTimestamp": {
                       "ref": "Utilities.html#.toTimestamp",
@@ -29444,7 +29403,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
@@ -29452,7 +29411,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
+                    },
+                    "OutputChannel.html#stopNote": {
+                      "ref": "OutputChannel.html#stopNote",
+                      "tf": 1.1627906976744187
                     }
                   }
                 }
@@ -29480,7 +29443,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       },
                       "OutputChannel.html#sendNrpnValue": {
                         "ref": "OutputChannel.html#sendNrpnValue",
@@ -29566,7 +29529,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 20.657894736842106
+                    "tf": 20.537634408602152
                   }
                 },
                 "b": {
@@ -29607,7 +29570,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.20325203252032523
+                                        "tf": 0.205761316872428
                                       }
                                     }
                                   }
@@ -29640,7 +29603,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.20325203252032523
+                                        "tf": 0.205761316872428
                                       }
                                     }
                                   }
@@ -29702,7 +29665,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.20325203252032523
+                                        "tf": 0.205761316872428
                                       }
                                     }
                                   }
@@ -29734,7 +29697,7 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.20325203252032523
+                                    "tf": 0.205761316872428
                                   }
                                 }
                               }
@@ -29775,10 +29738,6 @@ window.lunrData = {
                         "OutputChannel.html#sendRpnIncrement": {
                           "ref": "OutputChannel.html#sendRpnIncrement",
                           "tf": 2.1739130434782608
-                        },
-                        "OutputChannel.html#sendRpnValue": {
-                          "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 1.3157894736842104
                         }
                       },
                       "e": {
@@ -29819,7 +29778,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendRpnValue": {
                                       "ref": "OutputChannel.html#sendRpnValue",
-                                      "tf": 0.3289473684210526
+                                      "tf": 0.5376344086021506
                                     }
                                   }
                                 }
@@ -29991,7 +29950,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html": {
                             "ref": "OutputChannel.html",
-                            "tf": 1.9230769230769231
+                            "tf": 1.5151515151515151
                           },
                           "OutputChannel.html#send": {
                             "ref": "OutputChannel.html#send",
@@ -30090,11 +30049,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 2.314814814814815
+                      "tf": 2.358490566037736
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     },
                     "OutputChannel.html#waitFor": {
                       "ref": "OutputChannel.html#waitFor",
@@ -30138,11 +30097,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
-                },
-                "OutputChannel.html#sendKeyAftertouch": {
-                  "ref": "OutputChannel.html#sendKeyAftertouch",
-                  "tf": 1.282051282051282
+                  "tf": 0.4716981132075472
                 },
                 "OutputChannel.html#sendNoteOff": {
                   "ref": "OutputChannel.html#sendNoteOff",
@@ -30150,7 +30105,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.48543689320388345
+                  "tf": 0.5050505050505051
+                },
+                "OutputChannel.html#stopNote": {
+                  "ref": "OutputChannel.html#stopNote",
+                  "tf": 1.1627906976744187
                 }
               }
             },
@@ -30371,7 +30330,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "OutputChannel.html#addListener": {
                         "ref": "OutputChannel.html#addListener",
@@ -30563,7 +30522,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
+                                                      "tf": 0.205761316872428
                                                     }
                                                   }
                                                 },
@@ -30579,7 +30538,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
+                                                      "tf": 0.205761316872428
                                                     }
                                                   }
                                                 },
@@ -30595,7 +30554,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
+                                                      "tf": 0.205761316872428
                                                     }
                                                   }
                                                 },
@@ -30611,7 +30570,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
+                                                      "tf": 0.205761316872428
                                                     }
                                                   }
                                                 },
@@ -30638,10 +30597,6 @@ window.lunrData = {
                                                     "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
                                                       "tf": 0.17543859649122806
-                                                    },
-                                                    "OutputChannel.html#sendControlChange": {
-                                                      "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
                                                     }
                                                   }
                                                 },
@@ -30650,10 +30605,6 @@ window.lunrData = {
                                                     "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
                                                       "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
                                                       "tf": 0.17543859649122806
-                                                    },
-                                                    "OutputChannel.html#sendControlChange": {
-                                                      "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
                                                     }
                                                   }
                                                 },
@@ -30669,7 +30620,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
+                                                      "tf": 0.205761316872428
                                                     }
                                                   }
                                                 },
@@ -30685,7 +30636,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
+                                                      "tf": 0.205761316872428
                                                     }
                                                   }
                                                 },
@@ -31156,7 +31107,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.9868421052631579
+                    "tf": 0.5376344086021506
                   }
                 }
               }
@@ -31268,7 +31219,7 @@ window.lunrData = {
                       "docs": {
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
+                          "tf": 0.205761316872428
                         },
                         "Utilities.html#.from7bitToFloat": {
                           "ref": "Utilities.html#.from7bitToFloat",
@@ -31297,7 +31248,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendRpnValue": {
                 "ref": "OutputChannel.html#sendRpnValue",
-                "tf": 0.3289473684210526
+                "tf": 0.5376344086021506
               }
             },
             "o": {
@@ -31368,11 +31319,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
-                },
-                "OutputChannel.html#sendKeyAftertouch": {
-                  "ref": "OutputChannel.html#sendKeyAftertouch",
-                  "tf": 1.282051282051282
+                  "tf": 0.4716981132075472
                 },
                 "OutputChannel.html#sendNoteOff": {
                   "ref": "OutputChannel.html#sendNoteOff",
@@ -31380,7 +31327,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.48543689320388345
+                  "tf": 0.5050505050505051
+                },
+                "OutputChannel.html#stopNote": {
+                  "ref": "OutputChannel.html#stopNote",
+                  "tf": 1.1627906976744187
                 }
               }
             },
@@ -31501,11 +31452,7 @@ window.lunrData = {
               },
               "OutputChannel.html#playNote": {
                 "ref": "OutputChannel.html#playNote",
-                "tf": 0.4629629629629629
-              },
-              "OutputChannel.html#sendKeyAftertouch": {
-                "ref": "OutputChannel.html#sendKeyAftertouch",
-                "tf": 1.282051282051282
+                "tf": 0.4716981132075472
               },
               "OutputChannel.html#sendNoteOff": {
                 "ref": "OutputChannel.html#sendNoteOff",
@@ -31513,7 +31460,11 @@ window.lunrData = {
               },
               "OutputChannel.html#sendNoteOn": {
                 "ref": "OutputChannel.html#sendNoteOn",
-                "tf": 0.48543689320388345
+                "tf": 0.5050505050505051
+              },
+              "OutputChannel.html#stopNote": {
+                "ref": "OutputChannel.html#stopNote",
+                "tf": 1.1627906976744187
               },
               "Utilities.html#.guessNoteNumber": {
                 "ref": "Utilities.html#.guessNoteNumber",
@@ -31549,7 +31500,7 @@ window.lunrData = {
               },
               "OutputChannel.html#octaveOffset": {
                 "ref": "OutputChannel.html#octaveOffset",
-                "tf": 1.3888888888888888
+                "tf": 1.4705882352941175
               },
               "Utilities.html#.buildNote": {
                 "ref": "Utilities.html#.buildNote",
@@ -31612,7 +31563,7 @@ window.lunrData = {
             },
             "OutputChannel.html#octaveOffset": {
               "ref": "OutputChannel.html#octaveOffset",
-              "tf": 1.3888888888888888
+              "tf": 1.4705882352941175
             },
             "Utilities.html#.getNoteDetails": {
               "ref": "Utilities.html#.getNoteDetails",
@@ -31673,7 +31624,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 111.92307692307692
+                      "tf": 111.51515151515152
                     },
                     "Utilities.html": {
                       "ref": "Utilities.html",
@@ -31965,7 +31916,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 21.21951219512195
+                          "tf": 21.234567901234566
                         },
                         "OutputChannel.html#sendLocalControl": {
                           "ref": "OutputChannel.html#sendLocalControl",
@@ -31981,7 +31932,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendRpnValue": {
                           "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 0.9868421052631579
+                          "tf": 0.5376344086021506
                         },
                         "Utilities.html#.getCcNameByNumber": {
                           "ref": "Utilities.html#.getCcNameByNumber",
@@ -32915,7 +32866,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
+                          "tf": 0.205761316872428
                         }
                       }
                     }
@@ -33048,11 +32999,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 0.7042253521126761
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.40650406504065045
+                        "tf": 0.205761316872428
                       },
                       "OutputChannel.html#sendOmniMode": {
                         "ref": "OutputChannel.html#sendOmniMode",
@@ -33101,7 +33052,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
+                          "tf": 0.4716981132075472
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
@@ -33113,7 +33064,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
+                        },
+                        "OutputChannel.html#stopNote": {
+                          "ref": "OutputChannel.html#stopNote",
+                          "tf": 1.1627906976744187
                         }
                       }
                     }
@@ -33207,7 +33162,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "OutputChannel.html#sendNrpnValue": {
                         "ref": "OutputChannel.html#sendNrpnValue",
@@ -33389,10 +33344,6 @@ window.lunrData = {
                     "OutputChannel.html#sendRpnIncrement": {
                       "ref": "OutputChannel.html#sendRpnIncrement",
                       "tf": 0.5434782608695652
-                    },
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
                     }
                   }
                 }
@@ -33557,7 +33508,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html": {
                           "ref": "OutputChannel.html",
-                          "tf": 3.8461538461538463
+                          "tf": 3.0303030303030303
                         },
                         "OutputChannel.html#output": {
                           "ref": "OutputChannel.html#output",
@@ -33565,7 +33516,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.9259259259259258
+                          "tf": 0.4716981132075472
                         },
                         "OutputChannel.html#sendAllNotesOff": {
                           "ref": "OutputChannel.html#sendAllNotesOff",
@@ -33581,15 +33532,15 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
-                          "tf": 2.4193548387096775
+                          "tf": 2.112676056338028
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.40650406504065045
+                          "tf": 0.411522633744856
                         },
                         "OutputChannel.html#sendKeyAftertouch": {
                           "ref": "OutputChannel.html#sendKeyAftertouch",
-                          "tf": 1.282051282051282
+                          "tf": 3.125
                         },
                         "OutputChannel.html#sendNoteOff": {
                           "ref": "OutputChannel.html#sendNoteOff",
@@ -33597,7 +33548,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
                         },
                         "OutputChannel.html#sendOmniMode": {
                           "ref": "OutputChannel.html#sendOmniMode",
@@ -33614,10 +33565,6 @@ window.lunrData = {
                         "OutputChannel.html#sendRpnIncrement": {
                           "ref": "OutputChannel.html#sendRpnIncrement",
                           "tf": 1.0869565217391304
-                        },
-                        "OutputChannel.html#sendRpnValue": {
-                          "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 0.6578947368421052
                         },
                         "Utilities.html#.getChannelModeByNumber": {
                           "ref": "Utilities.html#.getChannelModeByNumber",
@@ -33719,7 +33666,7 @@ window.lunrData = {
                                           },
                                           "OutputChannel.html#sendRpnValue": {
                                             "ref": "OutputChannel.html#sendRpnValue",
-                                            "tf": 0.3289473684210526
+                                            "tf": 0.5376344086021506
                                           }
                                         }
                                       }
@@ -33771,7 +33718,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendRpnValue": {
                                         "ref": "OutputChannel.html#sendRpnValue",
-                                        "tf": 0.3289473684210526
+                                        "tf": 0.5376344086021506
                                       }
                                     }
                                   }
@@ -33858,10 +33805,6 @@ window.lunrData = {
                           "Output.html#stopNote": {
                             "ref": "Output.html#stopNote",
                             "tf": 1.1111111111111112
-                          },
-                          "OutputChannel.html#sendPitchBendRange": {
-                            "ref": "OutputChannel.html#sendPitchBendRange",
-                            "tf": 1.3888888888888888
                           }
                         }
                       },
@@ -33920,7 +33863,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 1.2195121951219512
+                      "tf": 1.2345679012345678
                     },
                     "OutputChannel.html#sendProgramChange": {
                       "ref": "OutputChannel.html#sendProgramChange",
@@ -33928,7 +33871,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendRpnValue": {
                       "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.6578947368421052
+                      "tf": 0.5376344086021506
                     },
                     "Utilities.html#.getCcNameByNumber": {
                       "ref": "Utilities.html#.getCcNameByNumber",
@@ -33997,7 +33940,7 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.20325203252032523
+                                  "tf": 0.205761316872428
                                 }
                               }
                             }
@@ -34171,7 +34114,7 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.20325203252032523
+                                    "tf": 0.205761316872428
                                   }
                                 }
                               }
@@ -34250,7 +34193,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendPitchBendRange": {
                     "ref": "OutputChannel.html#sendPitchBendRange",
-                    "tf": 21.38888888888889
+                    "tf": 21.470588235294116
                   }
                 }
               }
@@ -34711,7 +34654,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.9708737864077669
+                    "tf": 1.0101010101010102
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
@@ -34972,10 +34915,6 @@ window.lunrData = {
                   "OutputChannel.html#sendRpnIncrement": {
                     "ref": "OutputChannel.html#sendRpnIncrement",
                     "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#sendRpnValue": {
-                    "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
                   }
                 },
                 "a": {
@@ -35022,7 +34961,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendRpnValue": {
                                       "ref": "OutputChannel.html#sendRpnValue",
-                                      "tf": 0.3289473684210526
+                                      "tf": 0.5376344086021506
                                     }
                                   }
                                 }
@@ -35480,7 +35419,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
+                  "tf": 0.4716981132075472
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
@@ -35665,15 +35604,19 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       },
                       "OutputChannel.html#sendNrpnValue": {
                         "ref": "OutputChannel.html#sendNrpnValue",
                         "tf": 1.4423076923076923
                       },
+                      "OutputChannel.html#sendPitchBend": {
+                        "ref": "OutputChannel.html#sendPitchBend",
+                        "tf": 1.4285714285714286
+                      },
                       "OutputChannel.html#sendPitchBendRange": {
                         "ref": "OutputChannel.html#sendPitchBendRange",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "Utilities.html": {
                         "ref": "Utilities.html",
@@ -35729,7 +35672,7 @@ window.lunrData = {
                       "docs": {
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
                         }
                       }
                     }
@@ -35778,7 +35721,7 @@ window.lunrData = {
                                         },
                                         "OutputChannel.html#sendControlChange": {
                                           "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.20325203252032523
+                                          "tf": 0.205761316872428
                                         }
                                       }
                                     }
@@ -35802,7 +35745,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.20325203252032523
+                                      "tf": 0.205761316872428
                                     }
                                   }
                                 }
@@ -35901,7 +35844,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendRpnValue": {
                         "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.3289473684210526
+                        "tf": 0.5376344086021506
                       }
                     }
                   }
@@ -35921,12 +35864,7 @@ window.lunrData = {
               "r": {
                 "docs": {},
                 "a": {
-                  "docs": {
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
-                    }
-                  },
+                  "docs": {},
                   "c": {
                     "docs": {},
                     "t": {
@@ -36083,7 +36021,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
+                        "tf": 0.4716981132075472
                       },
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
@@ -36091,7 +36029,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.48543689320388345
+                        "tf": 0.5050505050505051
+                      },
+                      "OutputChannel.html#stopNote": {
+                        "ref": "OutputChannel.html#stopNote",
+                        "tf": 1.1627906976744187
                       },
                       "OutputChannel.html#suspendEvent": {
                         "ref": "OutputChannel.html#suspendEvent",
@@ -36254,7 +36196,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
+                  "tf": 0.4716981132075472
                 },
                 "OutputChannel.html#sendNoteOff": {
                   "ref": "OutputChannel.html#sendNoteOff",
@@ -36262,7 +36204,11 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.48543689320388345
+                  "tf": 0.5050505050505051
+                },
+                "OutputChannel.html#stopNote": {
+                  "ref": "OutputChannel.html#stopNote",
+                  "tf": 1.1627906976744187
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
@@ -36316,7 +36262,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.20325203252032523
+                                                  "tf": 0.205761316872428
                                                 }
                                               }
                                             }
@@ -36340,7 +36286,7 @@ window.lunrData = {
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.20325203252032523
+                                              "tf": 0.205761316872428
                                             }
                                           }
                                         }
@@ -36369,7 +36315,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.20325203252032523
+                                                  "tf": 0.205761316872428
                                                 }
                                               }
                                             }
@@ -36393,7 +36339,7 @@ window.lunrData = {
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.20325203252032523
+                                              "tf": 0.205761316872428
                                             }
                                           }
                                         }
@@ -38036,7 +37982,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
+                    "tf": 0.5376344086021506
                   },
                   "WebMidi.html#eventMap": {
                     "ref": "WebMidi.html#eventMap",
@@ -38100,7 +38046,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 0.7042253521126761
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -38156,10 +38102,6 @@ window.lunrData = {
                   "ref": "OutputChannel.html#send",
                   "tf": 1.0204081632653061
                 },
-                "OutputChannel.html#sendKeyAftertouch": {
-                  "ref": "OutputChannel.html#sendKeyAftertouch",
-                  "tf": 1.282051282051282
-                },
                 "Utilities.html#.buildNote": {
                   "ref": "Utilities.html#.buildNote",
                   "tf": 1.6129032258064515
@@ -38205,11 +38147,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
+                          "tf": 0.4716981132075472
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
                         }
                       }
                     }
@@ -38376,15 +38318,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 0.4629629629629629
+                    "tf": 0.4716981132075472
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 0.8064516129032258
+                    "tf": 0.7042253521126761
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.6097560975609756
+                    "tf": 0.823045267489712
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -38392,7 +38334,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.9708737864077669
+                    "tf": 0.5050505050505051
                   },
                   "OutputChannel.html#sendRpnDecrement": {
                     "ref": "OutputChannel.html#sendRpnDecrement",
@@ -38842,7 +38784,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#octaveOffset": {
                     "ref": "OutputChannel.html#octaveOffset",
-                    "tf": 4.166666666666666
+                    "tf": 4.411764705882353
                   },
                   "OutputChannel.html#addListener": {
                     "ref": "OutputChannel.html#addListener",
@@ -38870,7 +38812,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 33.7962962962963
+                    "tf": 33.9622641509434
                   },
                   "OutputChannel.html#sendAllNotesOff": {
                     "ref": "OutputChannel.html#sendAllNotesOff",
@@ -38878,15 +38820,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 0.8064516129032258
+                    "tf": 1.4084507042253522
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendKeyAftertouch": {
                     "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 2.564102564102564
+                    "tf": 20
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -38894,11 +38836,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 32.76699029126213
+                    "tf": 32.57575757575758
                   },
                   "OutputChannel.html#sendOmniMode": {
                     "ref": "OutputChannel.html#sendOmniMode",
                     "tf": 2.941176470588235
+                  },
+                  "OutputChannel.html#sendPitchBend": {
+                    "ref": "OutputChannel.html#sendPitchBend",
+                    "tf": 1.4285714285714286
                   },
                   "OutputChannel.html#sendPolyphonicMode": {
                     "ref": "OutputChannel.html#sendPolyphonicMode",
@@ -38906,7 +38852,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
+                    "tf": 0.5376344086021506
                   },
                   "OutputChannel.html#sendTuningBank": {
                     "ref": "OutputChannel.html#sendTuningBank",
@@ -38918,7 +38864,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#stopNote": {
                     "ref": "OutputChannel.html#stopNote",
-                    "tf": 25
+                    "tf": 33.13953488372093
                   },
                   "Utilities.html#.buildNote": {
                     "ref": "Utilities.html#.buildNote",
@@ -39037,7 +38983,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#octaveOffset": {
                           "ref": "OutputChannel.html#octaveOffset",
-                          "tf": 1.3888888888888888
+                          "tf": 1.4705882352941175
                         }
                       }
                     }
@@ -39074,11 +39020,31 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "WebMidi.html#octaveOffset": {
                         "ref": "WebMidi.html#octaveOffset",
                         "tf": 0.9259259259259258
+                      }
+                    }
+                  },
+                  "b": {
+                    "docs": {},
+                    "j": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "c": {
+                          "docs": {},
+                          "t": {
+                            "docs": {
+                              "OutputChannel.html#sendNoteOn": {
+                                "ref": "OutputChannel.html#sendNoteOn",
+                                "tf": 0.5050505050505051
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -39363,7 +39329,7 @@ window.lunrData = {
                   "docs": {
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     }
                   }
                 }
@@ -39497,7 +39463,7 @@ window.lunrData = {
                                                                 },
                                                                 "OutputChannel.html#sendControlChange": {
                                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                                  "tf": 0.20325203252032523
+                                                                  "tf": 0.205761316872428
                                                                 }
                                                               }
                                                             }
@@ -39521,7 +39487,7 @@ window.lunrData = {
                                                             },
                                                             "OutputChannel.html#sendControlChange": {
                                                               "ref": "OutputChannel.html#sendControlChange",
-                                                              "tf": 0.20325203252032523
+                                                              "tf": 0.205761316872428
                                                             }
                                                           }
                                                         }
@@ -39579,9 +39545,13 @@ window.lunrData = {
                       "ref": "Output.html#sendPitchBendRange",
                       "tf": 1.3888888888888888
                     },
+                    "OutputChannel.html#sendPitchBend": {
+                      "ref": "OutputChannel.html#sendPitchBend",
+                      "tf": 1.4285714285714286
+                    },
                     "OutputChannel.html#sendPitchBendRange": {
                       "ref": "OutputChannel.html#sendPitchBendRange",
-                      "tf": 1.3888888888888888
+                      "tf": 1.4705882352941175
                     }
                   }
                 }
@@ -39797,7 +39767,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 51.388888888888886
+                        "tf": 51.470588235294116
                       },
                       "OutputChannel.html#getListenerCount": {
                         "ref": "OutputChannel.html#getListenerCount",
@@ -39805,15 +39775,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
+                        "tf": 0.4716981132075472
+                      },
+                      "OutputChannel.html#sendChannelMode": {
+                        "ref": "OutputChannel.html#sendChannelMode",
+                        "tf": 0.7042253521126761
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.40650406504065045
-                      },
-                      "OutputChannel.html#sendKeyAftertouch": {
-                        "ref": "OutputChannel.html#sendKeyAftertouch",
-                        "tf": 1.282051282051282
+                        "tf": 0.6172839506172839
                       },
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
@@ -39821,11 +39791,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 1.9417475728155338
+                        "tf": 1.5151515151515151
                       },
                       "OutputChannel.html#sendRpnValue": {
                         "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.3289473684210526
+                        "tf": 1.0752688172043012
+                      },
+                      "OutputChannel.html#stopNote": {
+                        "ref": "OutputChannel.html#stopNote",
+                        "tf": 2.3255813953488373
                       },
                       "Utilities.html#.buildNote": {
                         "ref": "Utilities.html#.buildNote",
@@ -39983,11 +39957,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendChannelMode": {
                       "ref": "OutputChannel.html#sendChannelMode",
-                      "tf": 0.8064516129032258
+                      "tf": 0.7042253521126761
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     }
                   }
                 }
@@ -40068,7 +40042,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
@@ -40382,11 +40356,11 @@ window.lunrData = {
                           },
                           "OutputChannel.html#playNote": {
                             "ref": "OutputChannel.html#playNote",
-                            "tf": 0.4629629629629629
+                            "tf": 0.4716981132075472
                           },
                           "OutputChannel.html#sendNoteOn": {
                             "ref": "OutputChannel.html#sendNoteOn",
-                            "tf": 0.48543689320388345
+                            "tf": 0.5050505050505051
                           },
                           "OutputChannel.html#sendNrpnValue": {
                             "ref": "OutputChannel.html#sendNrpnValue",
@@ -40394,7 +40368,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendRpnValue": {
                             "ref": "OutputChannel.html#sendRpnValue",
-                            "tf": 0.3289473684210526
+                            "tf": 0.5376344086021506
                           },
                           "OutputChannel.html#sendTuningBank": {
                             "ref": "OutputChannel.html#sendTuningBank",
@@ -40454,6 +40428,10 @@ window.lunrData = {
                   "Output.html#stopNote": {
                     "ref": "Output.html#stopNote",
                     "tf": 1.1111111111111112
+                  },
+                  "OutputChannel.html#stopNote": {
+                    "ref": "OutputChannel.html#stopNote",
+                    "tf": 1.1627906976744187
                   }
                 },
                 "n": {
@@ -40476,7 +40454,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
+                          "tf": 0.4716981132075472
                         },
                         "OutputChannel.html#send": {
                           "ref": "OutputChannel.html#send",
@@ -40693,7 +40671,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     }
                   }
                 }
@@ -40749,11 +40727,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 0.4629629629629629
+                        "tf": 0.4716981132075472
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       },
                       "OutputChannel.html#suspendEvent": {
                         "ref": "OutputChannel.html#suspendEvent",
@@ -40879,15 +40857,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.9230769230769231
+                      "tf": 1.5151515151515151
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
-                    },
-                    "OutputChannel.html#sendKeyAftertouch": {
-                      "ref": "OutputChannel.html#sendKeyAftertouch",
-                      "tf": 1.282051282051282
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
@@ -40895,11 +40869,15 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     },
                     "OutputChannel.html#sendNrpnValue": {
                       "ref": "OutputChannel.html#sendNrpnValue",
                       "tf": 0.4807692307692308
+                    },
+                    "OutputChannel.html#stopNote": {
+                      "ref": "OutputChannel.html#stopNote",
+                      "tf": 1.1627906976744187
                     },
                     "Utilities.html#.sanitizeChannels": {
                       "ref": "Utilities.html#.sanitizeChannels",
@@ -40972,7 +40950,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
+                          "tf": 0.205761316872428
                         }
                       }
                     }
@@ -41023,10 +41001,6 @@ window.lunrData = {
                     "OutputChannel.html#sendLocalControl": {
                       "ref": "OutputChannel.html#sendLocalControl",
                       "tf": 2.7777777777777777
-                    },
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
                     }
                   },
                   "a": {
@@ -41057,7 +41031,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.20325203252032523
+                                        "tf": 0.205761316872428
                                       }
                                     }
                                   }
@@ -41095,7 +41069,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.20325203252032523
+                                        "tf": 0.205761316872428
                                       }
                                     }
                                   },
@@ -41113,7 +41087,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.20325203252032523
+                                      "tf": 0.205761316872428
                                     }
                                   }
                                 },
@@ -41129,7 +41103,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.20325203252032523
+                                      "tf": 0.205761316872428
                                     }
                                   }
                                 },
@@ -41145,7 +41119,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.20325203252032523
+                                      "tf": 0.205761316872428
                                     }
                                   }
                                 },
@@ -41161,7 +41135,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.20325203252032523
+                                      "tf": 0.205761316872428
                                     }
                                   }
                                 },
@@ -41203,7 +41177,7 @@ window.lunrData = {
                                         },
                                         "OutputChannel.html#sendControlChange": {
                                           "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.20325203252032523
+                                          "tf": 0.205761316872428
                                         }
                                       }
                                     }
@@ -41234,7 +41208,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html#sendControlChange": {
                               "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.20325203252032523
+                              "tf": 0.205761316872428
                             }
                           }
                         }
@@ -41424,7 +41398,7 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.20325203252032523
+                                    "tf": 0.205761316872428
                                   }
                                 }
                               }
@@ -41731,7 +41705,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html": {
                               "ref": "OutputChannel.html",
-                              "tf": 1.9230769230769231
+                              "tf": 1.5151515151515151
                             },
                             "WebMidi.html#enabled": {
                               "ref": "WebMidi.html#enabled",
@@ -41808,10 +41782,6 @@ window.lunrData = {
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
                     "tf": 1.0204081632653061
-                  },
-                  "OutputChannel.html#sendKeyAftertouch": {
-                    "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 1.282051282051282
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
@@ -41946,7 +41916,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 0.4629629629629629
+                    "tf": 0.4716981132075472
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -41954,7 +41924,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.48543689320388345
+                    "tf": 0.5050505050505051
                   },
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
@@ -42102,7 +42072,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 0.4629629629629629
+                    "tf": 0.4716981132075472
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -42122,15 +42092,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 1.6129032258064515
+                    "tf": 1.4084507042253522
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.40650406504065045
+                    "tf": 0.411522633744856
                   },
                   "OutputChannel.html#sendKeyAftertouch": {
                     "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 1.282051282051282
+                    "tf": 3.125
                   },
                   "OutputChannel.html#sendLocalControl": {
                     "ref": "OutputChannel.html#sendLocalControl",
@@ -42150,7 +42120,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.9708737864077669
+                    "tf": 1.0101010101010102
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
@@ -42158,11 +42128,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendPitchBend": {
                     "ref": "OutputChannel.html#sendPitchBend",
-                    "tf": 7.142857142857142
+                    "tf": 1.4285714285714286
                   },
                   "OutputChannel.html#sendPitchBendRange": {
                     "ref": "OutputChannel.html#sendPitchBendRange",
-                    "tf": 1.3888888888888888
+                    "tf": 1.4705882352941175
                   },
                   "OutputChannel.html#sendProgramChange": {
                     "ref": "OutputChannel.html#sendProgramChange",
@@ -42171,6 +42141,10 @@ window.lunrData = {
                   "OutputChannel.html#sendResetAllControllers": {
                     "ref": "OutputChannel.html#sendResetAllControllers",
                     "tf": 3.8461538461538463
+                  },
+                  "OutputChannel.html#stopNote": {
+                    "ref": "OutputChannel.html#stopNote",
+                    "tf": 1.1627906976744187
                   },
                   "WebMidi.html": {
                     "ref": "WebMidi.html",
@@ -42289,7 +42263,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendKeyAftertouch": {
                                                       "ref": "OutputChannel.html#sendKeyAftertouch",
-                                                      "tf": 1.282051282051282
+                                                      "tf": 3.125
                                                     }
                                                   }
                                                 }
@@ -42322,7 +42296,7 @@ window.lunrData = {
                                       },
                                       "OutputChannel.html#sendControlChange": {
                                         "ref": "OutputChannel.html#sendControlChange",
-                                        "tf": 0.20325203252032523
+                                        "tf": 0.205761316872428
                                       }
                                     }
                                   }
@@ -42420,7 +42394,7 @@ window.lunrData = {
                                         },
                                         "OutputChannel.html#sendChannelMode": {
                                           "ref": "OutputChannel.html#sendChannelMode",
-                                          "tf": 0.8064516129032258
+                                          "tf": 0.7042253521126761
                                         }
                                       }
                                     }
@@ -42455,13 +42429,17 @@ window.lunrData = {
                                           "ref": "Output.html#sendChannelMode",
                                           "tf": 0.684931506849315
                                         },
+                                        "OutputChannel.html#sendAllNotesOff": {
+                                          "ref": "OutputChannel.html#sendAllNotesOff",
+                                          "tf": 2.631578947368421
+                                        },
                                         "OutputChannel.html#sendAllSoundOff": {
                                           "ref": "OutputChannel.html#sendAllSoundOff",
                                           "tf": 683.3333333333334
                                         },
                                         "OutputChannel.html#sendChannelMode": {
                                           "ref": "OutputChannel.html#sendChannelMode",
-                                          "tf": 0.8064516129032258
+                                          "tf": 0.7042253521126761
                                         }
                                       }
                                     }
@@ -42509,7 +42487,7 @@ window.lunrData = {
                                           },
                                           "OutputChannel.html#sendChannelMode": {
                                             "ref": "OutputChannel.html#sendChannelMode",
-                                            "tf": 0.8064516129032258
+                                            "tf": 0.7042253521126761
                                           },
                                           "OutputChannel.html#sendLocalControl": {
                                             "ref": "OutputChannel.html#sendLocalControl",
@@ -42546,10 +42524,6 @@ window.lunrData = {
                                   "ref": "Output.html#sendOmniMode",
                                   "tf": 675
                                 },
-                                "OutputChannel.html#sendChannelMode": {
-                                  "ref": "OutputChannel.html#sendChannelMode",
-                                  "tf": 0.8064516129032258
-                                },
                                 "OutputChannel.html#sendOmniMode": {
                                   "ref": "OutputChannel.html#sendOmniMode",
                                   "tf": 675
@@ -42570,6 +42544,10 @@ window.lunrData = {
                                             "Output.html#sendChannelMode": {
                                               "ref": "Output.html#sendChannelMode",
                                               "tf": 0.684931506849315
+                                            },
+                                            "OutputChannel.html#sendChannelMode": {
+                                              "ref": "OutputChannel.html#sendChannelMode",
+                                              "tf": 0.7042253521126761
                                             }
                                           }
                                         }
@@ -42585,6 +42563,10 @@ window.lunrData = {
                                           "Output.html#sendChannelMode": {
                                             "ref": "Output.html#sendChannelMode",
                                             "tf": 0.684931506849315
+                                          },
+                                          "OutputChannel.html#sendChannelMode": {
+                                            "ref": "OutputChannel.html#sendChannelMode",
+                                            "tf": 0.7042253521126761
                                           }
                                         }
                                       }
@@ -42629,10 +42611,6 @@ window.lunrData = {
                                               "ref": "Output.html#sendPolyphonicMode",
                                               "tf": 675
                                             },
-                                            "OutputChannel.html#sendChannelMode": {
-                                              "ref": "OutputChannel.html#sendChannelMode",
-                                              "tf": 0.8064516129032258
-                                            },
                                             "OutputChannel.html#sendPolyphonicMode": {
                                               "ref": "OutputChannel.html#sendPolyphonicMode",
                                               "tf": 675
@@ -42655,6 +42633,10 @@ window.lunrData = {
                                                           "Output.html#sendChannelMode": {
                                                             "ref": "Output.html#sendChannelMode",
                                                             "tf": 0.684931506849315
+                                                          },
+                                                          "OutputChannel.html#sendChannelMode": {
+                                                            "ref": "OutputChannel.html#sendChannelMode",
+                                                            "tf": 0.7042253521126761
                                                           }
                                                         }
                                                       }
@@ -42672,6 +42654,10 @@ window.lunrData = {
                                                           "Output.html#sendChannelMode": {
                                                             "ref": "Output.html#sendChannelMode",
                                                             "tf": 0.684931506849315
+                                                          },
+                                                          "OutputChannel.html#sendChannelMode": {
+                                                            "ref": "OutputChannel.html#sendChannelMode",
+                                                            "tf": 0.7042253521126761
                                                           }
                                                         }
                                                       }
@@ -42733,6 +42719,10 @@ window.lunrData = {
                                             "Output.html#sendPitchBendRange": {
                                               "ref": "Output.html#sendPitchBendRange",
                                               "tf": 670
+                                            },
+                                            "OutputChannel.html#sendPitchBend": {
+                                              "ref": "OutputChannel.html#sendPitchBend",
+                                              "tf": 1.4285714285714286
                                             },
                                             "OutputChannel.html#sendPitchBendRange": {
                                               "ref": "OutputChannel.html#sendPitchBendRange",
@@ -42839,7 +42829,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#sendChannelMode": {
                                                   "ref": "OutputChannel.html#sendChannelMode",
-                                                  "tf": 0.8064516129032258
+                                                  "tf": 0.7042253521126761
                                                 },
                                                 "OutputChannel.html#sendResetAllControllers": {
                                                   "ref": "OutputChannel.html#sendResetAllControllers",
@@ -43190,15 +43180,11 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#playNote": {
                                   "ref": "OutputChannel.html#playNote",
-                                  "tf": 0.4629629629629629
+                                  "tf": 0.4716981132075472
                                 },
                                 "OutputChannel.html#sendNoteOff": {
                                   "ref": "OutputChannel.html#sendNoteOff",
                                   "tf": 675
-                                },
-                                "OutputChannel.html#stopNote": {
-                                  "ref": "OutputChannel.html#stopNote",
-                                  "tf": 16.666666666666664
                                 }
                               }
                             }
@@ -43450,9 +43436,13 @@ window.lunrData = {
                   "ref": "Output.html#sendNrpnValue",
                   "tf": 0.40650406504065045
                 },
+                "OutputChannel.html#sendChannelMode": {
+                  "ref": "OutputChannel.html#sendChannelMode",
+                  "tf": 0.7042253521126761
+                },
                 "OutputChannel.html#sendControlChange": {
                   "ref": "OutputChannel.html#sendControlChange",
-                  "tf": 0.40650406504065045
+                  "tf": 0.411522633744856
                 },
                 "OutputChannel.html#sendNrpnValue": {
                   "ref": "OutputChannel.html#sendNrpnValue",
@@ -43673,7 +43663,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.9259259259259258
+                  "tf": 0.9433962264150944
                 },
                 "OutputChannel.html#sendNrpnValue": {
                   "ref": "OutputChannel.html#sendNrpnValue",
@@ -43683,9 +43673,13 @@ window.lunrData = {
                   "ref": "OutputChannel.html#sendOmniMode",
                   "tf": 2.941176470588235
                 },
+                "OutputChannel.html#sendPitchBend": {
+                  "ref": "OutputChannel.html#sendPitchBend",
+                  "tf": 2.857142857142857
+                },
                 "OutputChannel.html#sendPitchBendRange": {
                   "ref": "OutputChannel.html#sendPitchBendRange",
-                  "tf": 1.3888888888888888
+                  "tf": 1.4705882352941175
                 },
                 "OutputChannel.html#sendPolyphonicMode": {
                   "ref": "OutputChannel.html#sendPolyphonicMode",
@@ -43693,7 +43687,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendRpnValue": {
                   "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 0.6578947368421052
+                  "tf": 0.5376344086021506
                 },
                 "OutputChannel.html#sendTuningBank": {
                   "ref": "OutputChannel.html#sendTuningBank",
@@ -43962,9 +43956,13 @@ window.lunrData = {
                           "ref": "OutputChannel.html#sendModulationRange",
                           "tf": 22.38095238095238
                         },
+                        "OutputChannel.html#sendPitchBend": {
+                          "ref": "OutputChannel.html#sendPitchBend",
+                          "tf": 1.4285714285714286
+                        },
                         "OutputChannel.html#sendPitchBendRange": {
                           "ref": "OutputChannel.html#sendPitchBendRange",
-                          "tf": 24.166666666666664
+                          "tf": 24.411764705882355
                         },
                         "Utilities.html#.offsetNumber": {
                           "ref": "Utilities.html#.offsetNumber",
@@ -44026,7 +44024,7 @@ window.lunrData = {
                     "docs": {
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.40650406504065045
+                        "tf": 0.411522633744856
                       }
                     }
                   }
@@ -44266,7 +44264,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4705882352941175
                       },
                       "OutputChannel.html#getListenerCount": {
                         "ref": "OutputChannel.html#getListenerCount",
@@ -44286,15 +44284,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 0.7042253521126761
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       },
                       "OutputChannel.html#sendKeyAftertouch": {
                         "ref": "OutputChannel.html#sendKeyAftertouch",
-                        "tf": 1.282051282051282
+                        "tf": 3.125
                       },
                       "OutputChannel.html#sendMasterTuning": {
                         "ref": "OutputChannel.html#sendMasterTuning",
@@ -44306,7 +44304,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendRpnValue": {
                         "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.3289473684210526
+                        "tf": 0.5376344086021506
                       },
                       "OutputChannel.html#suspendEvent": {
                         "ref": "OutputChannel.html#suspendEvent",
@@ -44585,7 +44583,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 1.3888888888888888
+                          "tf": 0.9433962264150944
                         },
                         "OutputChannel.html#removeListener": {
                           "ref": "OutputChannel.html#removeListener",
@@ -44597,11 +44595,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
-                          "tf": 0.8064516129032258
+                          "tf": 0.7042253521126761
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.40650406504065045
+                          "tf": 0.411522633744856
                         },
                         "OutputChannel.html#sendModulationRange": {
                           "ref": "OutputChannel.html#sendModulationRange",
@@ -44613,7 +44611,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.9708737864077669
+                          "tf": 1.0101010101010102
                         },
                         "OutputChannel.html#sendNrpnValue": {
                           "ref": "OutputChannel.html#sendNrpnValue",
@@ -44621,7 +44619,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendPitchBendRange": {
                           "ref": "OutputChannel.html#sendPitchBendRange",
-                          "tf": 2.7777777777777777
+                          "tf": 1.4705882352941175
                         },
                         "OutputChannel.html#sendRpnDecrement": {
                           "ref": "OutputChannel.html#sendRpnDecrement",
@@ -44633,7 +44631,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendRpnValue": {
                           "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 0.3289473684210526
+                          "tf": 0.5376344086021506
+                        },
+                        "OutputChannel.html#stopNote": {
+                          "ref": "OutputChannel.html#stopNote",
+                          "tf": 1.1627906976744187
                         },
                         "OutputChannel.html#suspendEvent": {
                           "ref": "OutputChannel.html#suspendEvent",
@@ -44748,10 +44750,6 @@ window.lunrData = {
                       "OutputChannel.html#sendRpnIncrement": {
                         "ref": "OutputChannel.html#sendRpnIncrement",
                         "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#sendRpnValue": {
-                        "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.3289473684210526
                       }
                     }
                   }
@@ -45104,23 +45102,23 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
+                          "tf": 0.4716981132075472
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
+                          "tf": 0.205761316872428
                         },
                         "OutputChannel.html#sendKeyAftertouch": {
                           "ref": "OutputChannel.html#sendKeyAftertouch",
-                          "tf": 1.282051282051282
+                          "tf": 3.125
                         },
                         "OutputChannel.html#sendPitchBend": {
                           "ref": "OutputChannel.html#sendPitchBend",
-                          "tf": 7.142857142857142
+                          "tf": 1.4285714285714286
                         },
                         "OutputChannel.html#sendPitchBendRange": {
                           "ref": "OutputChannel.html#sendPitchBendRange",
-                          "tf": 1.3888888888888888
+                          "tf": 1.4705882352941175
                         },
                         "OutputChannel.html#sendProgramChange": {
                           "ref": "OutputChannel.html#sendProgramChange",
@@ -45173,6 +45171,10 @@ window.lunrData = {
                           "Output.html#sendChannelMode": {
                             "ref": "Output.html#sendChannelMode",
                             "tf": 0.684931506849315
+                          },
+                          "OutputChannel.html#sendChannelMode": {
+                            "ref": "OutputChannel.html#sendChannelMode",
+                            "tf": 0.7042253521126761
                           }
                         }
                       }
@@ -45499,7 +45501,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendChannelMode": {
                       "ref": "OutputChannel.html#sendChannelMode",
-                      "tf": 0.8064516129032258
+                      "tf": 0.7042253521126761
                     }
                   }
                 }
@@ -45569,7 +45571,7 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.20325203252032523
+                                    "tf": 0.205761316872428
                                   }
                                 }
                               }
@@ -45937,7 +45939,7 @@ window.lunrData = {
                               },
                               "OutputChannel.html#sendRpnValue": {
                                 "ref": "OutputChannel.html#sendRpnValue",
-                                "tf": 0.3289473684210526
+                                "tf": 0.5376344086021506
                               }
                             }
                           }
@@ -45984,7 +45986,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendRpnValue": {
                                       "ref": "OutputChannel.html#sendRpnValue",
-                                      "tf": 0.3289473684210526
+                                      "tf": 0.5376344086021506
                                     }
                                   }
                                 }
@@ -46041,7 +46043,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 2.302631578947368
+                    "tf": 1.6129032258064515
                   },
                   "OutputChannel.html#sendTuningBank": {
                     "ref": "OutputChannel.html#sendTuningBank",
@@ -46123,10 +46125,6 @@ window.lunrData = {
                                 "docs": {
                                   "Output.html#sendAllNotesOff": {
                                     "ref": "Output.html#sendAllNotesOff",
-                                    "tf": 2.631578947368421
-                                  },
-                                  "OutputChannel.html#sendAllNotesOff": {
-                                    "ref": "OutputChannel.html#sendAllNotesOff",
                                     "tf": 2.631578947368421
                                   }
                                 }
@@ -46330,7 +46328,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 0.4629629629629629
+                    "tf": 0.4716981132075472
                   },
                   "OutputChannel.html#send": {
                     "ref": "OutputChannel.html#send",
@@ -46338,11 +46336,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendKeyAftertouch": {
                     "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 1.282051282051282
+                    "tf": 3.125
                   },
                   "OutputChannel.html#sendModulationRange": {
                     "ref": "OutputChannel.html#sendModulationRange",
@@ -46354,15 +46352,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.48543689320388345
+                    "tf": 0.5050505050505051
                   },
                   "OutputChannel.html#sendPitchBend": {
                     "ref": "OutputChannel.html#sendPitchBend",
-                    "tf": 7.142857142857142
+                    "tf": 1.4285714285714286
                   },
                   "OutputChannel.html#sendPitchBendRange": {
                     "ref": "OutputChannel.html#sendPitchBendRange",
-                    "tf": 1.3888888888888888
+                    "tf": 1.4705882352941175
                   },
                   "OutputChannel.html#sendPolyphonicMode": {
                     "ref": "OutputChannel.html#sendPolyphonicMode",
@@ -46371,6 +46369,10 @@ window.lunrData = {
                   "OutputChannel.html#sendProgramChange": {
                     "ref": "OutputChannel.html#sendProgramChange",
                     "tf": 7.142857142857142
+                  },
+                  "OutputChannel.html#stopNote": {
+                    "ref": "OutputChannel.html#stopNote",
+                    "tf": 1.1627906976744187
                   },
                   "OutputChannel.html#waitFor": {
                     "ref": "OutputChannel.html#waitFor",
@@ -46514,7 +46516,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendRpnValue": {
                   "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 0.3289473684210526
+                  "tf": 0.5376344086021506
                 }
               }
             }
@@ -46737,6 +46739,10 @@ window.lunrData = {
                     "ref": "Output.html#unsuspendEvent",
                     "tf": 1.4705882352941175
                   },
+                  "OutputChannel.html#sendChannelMode": {
+                    "ref": "OutputChannel.html#sendChannelMode",
+                    "tf": 0.7042253521126761
+                  },
                   "OutputChannel.html#suspendEvent": {
                     "ref": "OutputChannel.html#suspendEvent",
                     "tf": 1.0869565217391304
@@ -46812,10 +46818,6 @@ window.lunrData = {
                       "Message.html#manufacturerId": {
                         "ref": "Message.html#manufacturerId",
                         "tf": 1.7857142857142856
-                      },
-                      "OutputChannel.html#sendKeyAftertouch": {
-                        "ref": "OutputChannel.html#sendKeyAftertouch",
-                        "tf": 20
                       }
                     }
                   }
@@ -46843,7 +46845,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   }
                 }
               }
@@ -47153,7 +47155,7 @@ window.lunrData = {
               },
               "OutputChannel.html#playNote": {
                 "ref": "OutputChannel.html#playNote",
-                "tf": 0.9259259259259258
+                "tf": 0.9433962264150944
               },
               "OutputChannel.html#removeListener": {
                 "ref": "OutputChannel.html#removeListener",
@@ -47169,15 +47171,15 @@ window.lunrData = {
               },
               "OutputChannel.html#sendChannelMode": {
                 "ref": "OutputChannel.html#sendChannelMode",
-                "tf": 0.8064516129032258
+                "tf": 0.7042253521126761
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.8130081300813009
+                "tf": 0.823045267489712
               },
               "OutputChannel.html#sendKeyAftertouch": {
                 "ref": "OutputChannel.html#sendKeyAftertouch",
-                "tf": 1.282051282051282
+                "tf": 3.125
               },
               "OutputChannel.html#sendNoteOff": {
                 "ref": "OutputChannel.html#sendNoteOff",
@@ -47185,7 +47187,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendNoteOn": {
                 "ref": "OutputChannel.html#sendNoteOn",
-                "tf": 1.9417475728155338
+                "tf": 2.0202020202020203
               },
               "OutputChannel.html#sendNrpnValue": {
                 "ref": "OutputChannel.html#sendNrpnValue",
@@ -47195,9 +47197,13 @@ window.lunrData = {
                 "ref": "OutputChannel.html#sendOmniMode",
                 "tf": 2.941176470588235
               },
+              "OutputChannel.html#sendPitchBend": {
+                "ref": "OutputChannel.html#sendPitchBend",
+                "tf": 1.4285714285714286
+              },
               "OutputChannel.html#sendPitchBendRange": {
                 "ref": "OutputChannel.html#sendPitchBendRange",
-                "tf": 2.7777777777777777
+                "tf": 2.941176470588235
               },
               "OutputChannel.html#sendRpnDecrement": {
                 "ref": "OutputChannel.html#sendRpnDecrement",
@@ -47207,10 +47213,6 @@ window.lunrData = {
                 "ref": "OutputChannel.html#sendRpnIncrement",
                 "tf": 0.5434782608695652
               },
-              "OutputChannel.html#sendRpnValue": {
-                "ref": "OutputChannel.html#sendRpnValue",
-                "tf": 0.3289473684210526
-              },
               "OutputChannel.html#sendTuningBank": {
                 "ref": "OutputChannel.html#sendTuningBank",
                 "tf": 3.3333333333333335
@@ -47218,6 +47220,10 @@ window.lunrData = {
               "OutputChannel.html#sendTuningProgram": {
                 "ref": "OutputChannel.html#sendTuningProgram",
                 "tf": 3.3333333333333335
+              },
+              "OutputChannel.html#stopNote": {
+                "ref": "OutputChannel.html#stopNote",
+                "tf": 1.1627906976744187
               },
               "Utilities.html": {
                 "ref": "Utilities.html",
@@ -47332,7 +47338,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     },
                     "OutputChannel.html#sendLocalControl": {
                       "ref": "OutputChannel.html#sendLocalControl",
@@ -47738,7 +47744,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
+                      "tf": 0.4716981132075472
                     }
                   }
                 }
@@ -47840,7 +47846,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendRpnValue": {
                 "ref": "OutputChannel.html#sendRpnValue",
-                "tf": 0.3289473684210526
+                "tf": 0.5376344086021506
               }
             },
             "o": {
@@ -48706,7 +48712,7 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html#sendControlChange": {
                                     "ref": "OutputChannel.html#sendControlChange",
-                                    "tf": 0.20325203252032523
+                                    "tf": 0.205761316872428
                                   }
                                 }
                               }
@@ -48730,7 +48736,7 @@ window.lunrData = {
                               },
                               "OutputChannel.html#sendControlChange": {
                                 "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.20325203252032523
+                                "tf": 0.205761316872428
                               }
                             }
                           }
@@ -48767,7 +48773,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 0.5376344086021506
                   },
                   "OutputChannel.html#sendTuningBank": {
                     "ref": "OutputChannel.html#sendTuningBank",
@@ -48806,7 +48812,7 @@ window.lunrData = {
                                         },
                                         "OutputChannel.html#sendControlChange": {
                                           "ref": "OutputChannel.html#sendControlChange",
-                                          "tf": 0.20325203252032523
+                                          "tf": 0.205761316872428
                                         }
                                       }
                                     }
@@ -48830,7 +48836,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html#sendControlChange": {
                                       "ref": "OutputChannel.html#sendControlChange",
-                                      "tf": 0.20325203252032523
+                                      "tf": 0.205761316872428
                                     }
                                   }
                                 }
@@ -48941,7 +48947,7 @@ window.lunrData = {
                                                     },
                                                     "OutputChannel.html#sendControlChange": {
                                                       "ref": "OutputChannel.html#sendControlChange",
-                                                      "tf": 0.20325203252032523
+                                                      "tf": 0.205761316872428
                                                     }
                                                   }
                                                 }
@@ -48965,7 +48971,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.20325203252032523
+                                                  "tf": 0.205761316872428
                                                 }
                                               }
                                             }
@@ -49003,7 +49009,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
+                        "tf": 0.205761316872428
                       }
                     }
                   }
@@ -49207,7 +49213,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   },
                   "OutputChannel.html#sendModulationRange": {
                     "ref": "OutputChannel.html#sendModulationRange",
@@ -49369,11 +49375,11 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendPitchBend": {
                     "ref": "OutputChannel.html#sendPitchBend",
-                    "tf": 7.142857142857142
+                    "tf": 8.571428571428571
                   },
                   "OutputChannel.html#sendPitchBendRange": {
                     "ref": "OutputChannel.html#sendPitchBendRange",
-                    "tf": 4.166666666666666
+                    "tf": 4.411764705882353
                   },
                   "OutputChannel.html#sendResetAllControllers": {
                     "ref": "OutputChannel.html#sendResetAllControllers",
@@ -49411,9 +49417,13 @@ window.lunrData = {
                       "ref": "Output.html#sendPitchBendRange",
                       "tf": 1.3888888888888888
                     },
+                    "OutputChannel.html#sendPitchBend": {
+                      "ref": "OutputChannel.html#sendPitchBend",
+                      "tf": 1.4285714285714286
+                    },
                     "OutputChannel.html#sendPitchBendRange": {
                       "ref": "OutputChannel.html#sendPitchBendRange",
-                      "tf": 1.3888888888888888
+                      "tf": 1.4705882352941175
                     }
                   }
                 }
@@ -49487,15 +49497,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
+                          "tf": 0.4716981132075472
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
-                        },
-                        "OutputChannel.html#sendKeyAftertouch": {
-                          "ref": "OutputChannel.html#sendKeyAftertouch",
-                          "tf": 1.282051282051282
+                          "tf": 0.205761316872428
                         },
                         "OutputChannel.html#sendMasterTuning": {
                           "ref": "OutputChannel.html#sendMasterTuning",
@@ -49507,7 +49513,11 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNoteOn": {
                           "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 0.48543689320388345
+                          "tf": 0.5050505050505051
+                        },
+                        "OutputChannel.html#stopNote": {
+                          "ref": "OutputChannel.html#stopNote",
+                          "tf": 1.1627906976744187
                         },
                         "Utilities.html#.from7bitToFloat": {
                           "ref": "Utilities.html#.from7bitToFloat",
@@ -49669,7 +49679,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 0.5376344086021506
                   }
                 },
                 "(": {
@@ -49784,10 +49794,6 @@ window.lunrData = {
                   "OutputChannel.html#sendRpnIncrement": {
                     "ref": "OutputChannel.html#sendRpnIncrement",
                     "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#sendRpnValue": {
-                    "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
                   }
                 }
               }
@@ -49814,7 +49820,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 0.7042253521126761
                       }
                     }
                   }
@@ -49863,7 +49869,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendControlChange": {
                             "ref": "OutputChannel.html#sendControlChange",
-                            "tf": 0.20325203252032523
+                            "tf": 0.205761316872428
                           }
                         }
                       }
@@ -49887,7 +49893,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.20325203252032523
+                          "tf": 0.205761316872428
                         }
                       }
                     }
@@ -49936,7 +49942,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.9230769230769231
+                      "tf": 1.5151515151515151
                     },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
@@ -50127,10 +50133,6 @@ window.lunrData = {
                                                                 "Message.html#manufacturerId": {
                                                                   "ref": "Message.html#manufacturerId",
                                                                   "tf": 1.7857142857142856
-                                                                },
-                                                                "OutputChannel.html#sendRpnValue": {
-                                                                  "ref": "OutputChannel.html#sendRpnValue",
-                                                                  "tf": 0.3289473684210526
                                                                 }
                                                               }
                                                             }
@@ -50511,15 +50513,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 3.8461538461538463
+                        "tf": 4.545454545454546
                       },
                       "OutputChannel.html#eventMap": {
                         "ref": "OutputChannel.html#eventMap",
                         "tf": 39.2156862745098
-                      },
-                      "OutputChannel.html#octaveOffset": {
-                        "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 2.7777777777777777
                       },
                       "OutputChannel.html#addListener": {
                         "ref": "OutputChannel.html#addListener",
@@ -50539,7 +50537,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 1.3888888888888888
+                        "tf": 1.4150943396226416
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -50551,7 +50549,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 1.9417475728155338
+                        "tf": 1.5151515151515151
+                      },
+                      "OutputChannel.html#stopNote": {
+                        "ref": "OutputChannel.html#stopNote",
+                        "tf": 1.1627906976744187
                       },
                       "Utilities.html#.buildNote": {
                         "ref": "Utilities.html#.buildNote",
@@ -50687,7 +50689,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
-                          "tf": 0.4629629629629629
+                          "tf": 0.4716981132075472
                         }
                       }
                     }
@@ -50769,11 +50771,11 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendChannelMode": {
                                   "ref": "OutputChannel.html#sendChannelMode",
-                                  "tf": 0.8064516129032258
+                                  "tf": 0.7042253521126761
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.20325203252032523
+                                  "tf": 0.205761316872428
                                 }
                               }
                             }
@@ -50798,11 +50800,11 @@ window.lunrData = {
                               },
                               "OutputChannel.html#sendChannelMode": {
                                 "ref": "OutputChannel.html#sendChannelMode",
-                                "tf": 0.8064516129032258
+                                "tf": 0.7042253521126761
                               },
                               "OutputChannel.html#sendControlChange": {
                                 "ref": "OutputChannel.html#sendControlChange",
-                                "tf": 0.20325203252032523
+                                "tf": 0.205761316872428
                               }
                             }
                           }
@@ -50834,7 +50836,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendRpnValue": {
                         "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.6578947368421052
+                        "tf": 0.5376344086021506
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
@@ -50996,7 +50998,7 @@ window.lunrData = {
               },
               "OutputChannel.html#playNote": {
                 "ref": "OutputChannel.html#playNote",
-                "tf": 0.4629629629629629
+                "tf": 0.4716981132075472
               },
               "OutputChannel.html#removeListener": {
                 "ref": "OutputChannel.html#removeListener",
@@ -51008,11 +51010,11 @@ window.lunrData = {
               },
               "OutputChannel.html#sendChannelMode": {
                 "ref": "OutputChannel.html#sendChannelMode",
-                "tf": 0.8064516129032258
+                "tf": 0.7042253521126761
               },
               "OutputChannel.html#sendControlChange": {
                 "ref": "OutputChannel.html#sendControlChange",
-                "tf": 0.20325203252032523
+                "tf": 0.205761316872428
               },
               "OutputChannel.html#sendNoteOff": {
                 "ref": "OutputChannel.html#sendNoteOff",
@@ -51020,7 +51022,7 @@ window.lunrData = {
               },
               "OutputChannel.html#sendNoteOn": {
                 "ref": "OutputChannel.html#sendNoteOn",
-                "tf": 0.48543689320388345
+                "tf": 0.5050505050505051
               },
               "OutputChannel.html#sendPolyphonicMode": {
                 "ref": "OutputChannel.html#sendPolyphonicMode",
@@ -51192,19 +51194,19 @@ window.lunrData = {
                     },
                     "OutputChannel.html#octaveOffset": {
                       "ref": "OutputChannel.html#octaveOffset",
-                      "tf": 2.7777777777777777
+                      "tf": 2.941176470588235
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
                       "tf": 0.847457627118644
                     },
-                    "OutputChannel.html#sendNoteOn": {
-                      "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                    "OutputChannel.html#sendPitchBend": {
+                      "ref": "OutputChannel.html#sendPitchBend",
+                      "tf": 1.4285714285714286
                     },
                     "Utilities.html#.getNoteDetails": {
                       "ref": "Utilities.html#.getNoteDetails",
@@ -51267,7 +51269,7 @@ window.lunrData = {
                                   },
                                   "OutputChannel.html#sendNoteOn": {
                                     "ref": "OutputChannel.html#sendNoteOn",
-                                    "tf": 0.48543689320388345
+                                    "tf": 0.5050505050505051
                                   },
                                   "Utilities.html#.guessNoteNumber": {
                                     "ref": "Utilities.html#.guessNoteNumber",
@@ -51545,7 +51547,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 26.38888888888889
+                        "tf": 26.41509433962264
                       },
                       "OutputChannel.html#removeListener": {
                         "ref": "OutputChannel.html#removeListener",
@@ -51569,7 +51571,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 20.806451612903224
+                        "tf": 20.704225352112676
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
@@ -51597,7 +51599,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 25.97087378640777
+                        "tf": 26.01010101010101
                       },
                       "OutputChannel.html#sendNrpnValue": {
                         "ref": "OutputChannel.html#sendNrpnValue",
@@ -51649,7 +51651,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#stopNote": {
                         "ref": "OutputChannel.html#stopNote",
-                        "tf": 25
+                        "tf": 26.162790697674417
                       },
                       "OutputChannel.html#waitFor": {
                         "ref": "OutputChannel.html#waitFor",
@@ -51832,7 +51834,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.48543689320388345
+                  "tf": 0.5050505050505051
                 }
               },
               "p": {
@@ -52059,11 +52061,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html": {
                         "ref": "OutputChannel.html",
-                        "tf": 3.8461538461538463
-                      },
-                      "OutputChannel.html#octaveOffset": {
-                        "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.3888888888888888
+                        "tf": 3.0303030303030303
                       },
                       "OutputChannel.html#output": {
                         "ref": "OutputChannel.html#output",
@@ -52151,6 +52149,47 @@ window.lunrData = {
                             }
                           }
                         }
+                      },
+                      "o": {
+                        "docs": {},
+                        "c": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "a": {
+                              "docs": {},
+                              "v": {
+                                "docs": {},
+                                "e": {
+                                  "docs": {},
+                                  "o": {
+                                    "docs": {},
+                                    "f": {
+                                      "docs": {},
+                                      "f": {
+                                        "docs": {},
+                                        "s": {
+                                          "docs": {},
+                                          "e": {
+                                            "docs": {},
+                                            "t": {
+                                              "docs": {
+                                                "OutputChannel.html#octaveOffset": {
+                                                  "ref": "OutputChannel.html#octaveOffset",
+                                                  "tf": 1.4705882352941175
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     },
                     "c": {
@@ -52173,7 +52212,7 @@ window.lunrData = {
                                     },
                                     "OutputChannel.html": {
                                       "ref": "OutputChannel.html",
-                                      "tf": 1903.8461538461538
+                                      "tf": 1906.060606060606
                                     },
                                     "OutputChannel.html#playNote": {
                                       "ref": "OutputChannel.html#playNote",
@@ -55307,7 +55346,7 @@ window.lunrData = {
                       "docs": {
                         "OutputChannel.html": {
                           "ref": "OutputChannel.html",
-                          "tf": 1.9230769230769231
+                          "tf": 1.5151515151515151
                         }
                       }
                     },
@@ -55348,7 +55387,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#octaveOffset": {
                       "ref": "OutputChannel.html#octaveOffset",
-                      "tf": 1.3888888888888888
+                      "tf": 1.4705882352941175
                     },
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
@@ -55387,7 +55426,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#octaveOffset": {
                         "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 2.7777777777777777
+                        "tf": 2.941176470588235
                       },
                       "Utilities.html#.guessNoteNumber": {
                         "ref": "Utilities.html#.guessNoteNumber",
@@ -55471,7 +55510,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
-                      "tf": 0.20325203252032523
+                      "tf": 0.205761316872428
                     }
                   },
                   "w": {
@@ -55558,14 +55597,6 @@ window.lunrData = {
                                 }
                               }
                             }
-                          },
-                          "t": {
-                            "docs": {
-                              "OutputChannel.html#sendRpnValue": {
-                                "ref": "OutputChannel.html#sendRpnValue",
-                                "tf": 0.3289473684210526
-                              }
-                            }
                           }
                         }
                       }
@@ -55587,7 +55618,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 0.4629629629629629
+                    "tf": 0.4716981132075472
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -55595,7 +55626,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.48543689320388345
+                    "tf": 0.5050505050505051
                   }
                 }
               }
@@ -55751,7 +55782,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#octaveOffset": {
                     "ref": "OutputChannel.html#octaveOffset",
-                    "tf": 4.166666666666666
+                    "tf": 4.411764705882353
                   },
                   "OutputChannel.html#emit": {
                     "ref": "OutputChannel.html#emit",
@@ -55759,19 +55790,15 @@ window.lunrData = {
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
-                    "tf": 0.9259259259259258
+                    "tf": 0.9433962264150944
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 21.612903225806452
+                    "tf": 21.408450704225352
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 20.203252032520325
-                  },
-                  "OutputChannel.html#sendKeyAftertouch": {
-                    "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 2.564102564102564
+                    "tf": 20.20576131687243
                   },
                   "OutputChannel.html#sendMasterTuning": {
                     "ref": "OutputChannel.html#sendMasterTuning",
@@ -55783,7 +55810,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
-                    "tf": 0.9708737864077669
+                    "tf": 1.0101010101010102
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
@@ -55791,7 +55818,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendPitchBend": {
                     "ref": "OutputChannel.html#sendPitchBend",
-                    "tf": 25
+                    "tf": 27.857142857142858
                   },
                   "OutputChannel.html#sendResetAllControllers": {
                     "ref": "OutputChannel.html#sendResetAllControllers",
@@ -55799,7 +55826,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendRpnValue": {
                     "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.6578947368421052
+                    "tf": 1.0752688172043012
                   },
                   "OutputChannel.html#sendTuningBank": {
                     "ref": "OutputChannel.html#sendTuningBank",
@@ -55808,6 +55835,10 @@ window.lunrData = {
                   "OutputChannel.html#sendTuningProgram": {
                     "ref": "OutputChannel.html#sendTuningProgram",
                     "tf": 25
+                  },
+                  "OutputChannel.html#stopNote": {
+                    "ref": "OutputChannel.html#stopNote",
+                    "tf": 2.3255813953488373
                   },
                   "Utilities.html#.buildNoteArray": {
                     "ref": "Utilities.html#.buildNoteArray",
@@ -55889,11 +55920,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
-                    },
-                    "OutputChannel.html#sendKeyAftertouch": {
-                      "ref": "OutputChannel.html#sendKeyAftertouch",
-                      "tf": 1.282051282051282
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
@@ -55901,7 +55928,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
+                    },
+                    "OutputChannel.html#stopNote": {
+                      "ref": "OutputChannel.html#stopNote",
+                      "tf": 1.1627906976744187
                     },
                     "Utilities.html#.buildNote": {
                       "ref": "Utilities.html#.buildNote",
@@ -56005,7 +56036,7 @@ window.lunrData = {
                                 },
                                 "OutputChannel.html#sendControlChange": {
                                   "ref": "OutputChannel.html#sendControlChange",
-                                  "tf": 0.20325203252032523
+                                  "tf": 0.205761316872428
                                 }
                               }
                             }
@@ -56029,7 +56060,7 @@ window.lunrData = {
                             },
                             "OutputChannel.html#sendControlChange": {
                               "ref": "OutputChannel.html#sendControlChange",
-                              "tf": 0.20325203252032523
+                              "tf": 0.205761316872428
                             }
                           }
                         }
@@ -56073,7 +56104,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4629629629629629
+                  "tf": 0.4716981132075472
                 },
                 "OutputChannel.html#sendNoteOff": {
                   "ref": "OutputChannel.html#sendNoteOff",
@@ -56081,7 +56112,7 @@ window.lunrData = {
                 },
                 "OutputChannel.html#sendNoteOn": {
                   "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.48543689320388345
+                  "tf": 0.5050505050505051
                 },
                 "WebMidi.html#sysexEnabled": {
                   "ref": "WebMidi.html#sysexEnabled",
@@ -56099,7 +56130,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
-                    "tf": 0.20325203252032523
+                    "tf": 0.205761316872428
                   }
                 }
               }
@@ -56167,7 +56198,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.9259259259259258
+                      "tf": 0.9433962264150944
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
@@ -56175,7 +56206,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.9708737864077669
+                      "tf": 1.0101010101010102
                     }
                   }
                 }
@@ -56239,11 +56270,7 @@ window.lunrData = {
             },
             "OutputChannel.html#playNote": {
               "ref": "OutputChannel.html#playNote",
-              "tf": 0.4629629629629629
-            },
-            "OutputChannel.html#sendKeyAftertouch": {
-              "ref": "OutputChannel.html#sendKeyAftertouch",
-              "tf": 1.282051282051282
+              "tf": 0.4716981132075472
             },
             "OutputChannel.html#sendNoteOff": {
               "ref": "OutputChannel.html#sendNoteOff",
@@ -56251,7 +56278,11 @@ window.lunrData = {
             },
             "OutputChannel.html#sendNoteOn": {
               "ref": "OutputChannel.html#sendNoteOn",
-              "tf": 0.48543689320388345
+              "tf": 0.5050505050505051
+            },
+            "OutputChannel.html#stopNote": {
+              "ref": "OutputChannel.html#stopNote",
+              "tf": 1.1627906976744187
             }
           },
           "o": {
@@ -56318,19 +56349,15 @@ window.lunrData = {
                       },
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
-                        "tf": 0.9259259259259258
+                        "tf": 0.9433962264150944
                       },
                       "OutputChannel.html#sendChannelMode": {
                         "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.8064516129032258
+                        "tf": 0.7042253521126761
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.20325203252032523
-                      },
-                      "OutputChannel.html#sendKeyAftertouch": {
-                        "ref": "OutputChannel.html#sendKeyAftertouch",
-                        "tf": 1.282051282051282
+                        "tf": 0.205761316872428
                       },
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
@@ -56338,7 +56365,11 @@ window.lunrData = {
                       },
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
-                        "tf": 0.9708737864077669
+                        "tf": 0.5050505050505051
+                      },
+                      "OutputChannel.html#stopNote": {
+                        "ref": "OutputChannel.html#stopNote",
+                        "tf": 1.1627906976744187
                       },
                       "Utilities.html#.toNoteIdentifier": {
                         "ref": "Utilities.html#.toNoteIdentifier",
@@ -56401,7 +56432,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#sendControlChange": {
                                                   "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.20325203252032523
+                                                  "tf": 0.205761316872428
                                                 }
                                               }
                                             }
@@ -56425,7 +56456,7 @@ window.lunrData = {
                                             },
                                             "OutputChannel.html#sendControlChange": {
                                               "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.20325203252032523
+                                              "tf": 0.205761316872428
                                             }
                                           }
                                         }
@@ -56670,7 +56701,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
-                      "tf": 1.9230769230769231
+                      "tf": 1.5151515151515151
                     },
                     "Utilities.html#.getChannelModeByNumber": {
                       "ref": "Utilities.html#.getChannelModeByNumber",
@@ -57137,7 +57168,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#playNote": {
                             "ref": "OutputChannel.html#playNote",
-                            "tf": 110.46296296296296
+                            "tf": 110.47169811320755
                           },
                           "OutputChannel.html#removeListener": {
                             "ref": "OutputChannel.html#removeListener",
@@ -57189,7 +57220,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendNoteOn": {
                             "ref": "OutputChannel.html#sendNoteOn",
-                            "tf": 110.48543689320388
+                            "tf": 110.5050505050505
                           },
                           "OutputChannel.html#sendNrpnValue": {
                             "ref": "OutputChannel.html#sendNrpnValue",
@@ -57229,7 +57260,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#sendRpnValue": {
                             "ref": "OutputChannel.html#sendRpnValue",
-                            "tf": 110.32894736842105
+                            "tf": 110.53763440860214
                           },
                           "OutputChannel.html#sendTuningBank": {
                             "ref": "OutputChannel.html#sendTuningBank",
@@ -57620,7 +57651,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#playNote": {
                       "ref": "OutputChannel.html#playNote",
-                      "tf": 0.4629629629629629
+                      "tf": 0.4716981132075472
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
@@ -57632,11 +57663,11 @@ window.lunrData = {
                     },
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.48543689320388345
+                      "tf": 0.5050505050505051
                     },
-                    "OutputChannel.html#sendRpnValue": {
-                      "ref": "OutputChannel.html#sendRpnValue",
-                      "tf": 0.3289473684210526
+                    "OutputChannel.html#stopNote": {
+                      "ref": "OutputChannel.html#stopNote",
+                      "tf": 1.1627906976744187
                     },
                     "OutputChannel.html#suspendEvent": {
                       "ref": "OutputChannel.html#suspendEvent",
@@ -57746,10 +57777,6 @@ window.lunrData = {
                   "OutputChannel.html#sendRpnIncrement": {
                     "ref": "OutputChannel.html#sendRpnIncrement",
                     "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#sendRpnValue": {
-                    "ref": "OutputChannel.html#sendRpnValue",
-                    "tf": 0.3289473684210526
                   }
                 }
               }
@@ -58149,7 +58176,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
-                    "tf": 0.8064516129032258
+                    "tf": 0.7042253521126761
                   }
                 }
               }
@@ -58318,7 +58345,6 @@ window.lunrData = {
       "37",
       "38",
       "39",
-      "3d",
       "4",
       "40",
       "41",
@@ -58415,7 +58441,6 @@ window.lunrData = {
       "aftertouch",
       "again",
       "akin",
-      "alia",
       "allnotesoff",
       "allow",
       "allsoundoff",
@@ -58748,7 +58773,6 @@ window.lunrData = {
       "expressionfin",
       "extend",
       "extern",
-      "extra",
       "extract",
       "f",
       "f#4",
@@ -58953,7 +58977,6 @@ window.lunrData = {
       "korg",
       "larger",
       "last",
-      "later",
       "leav",
       "left",
       "legatoped",
@@ -59084,6 +59107,7 @@ window.lunrData = {
       "note#rawreleas",
       "note#releas",
       "note(",
+      "noteobject",
       "noteoff",
       "noteon",
       "notesst",
@@ -59107,7 +59131,6 @@ window.lunrData = {
       "offset",
       "offsetnumb",
       "old/item/manufactur",
-      "old/item/t",
       "omni",
       "omnimod",
       "omnimodeoff",
@@ -59190,6 +59213,7 @@ window.lunrData = {
       "output#unsuspendev",
       "output#waitfor",
       "output'",
+      "output.octaveoffset",
       "output.playnot",
       "output.stopnot",
       "outputchannel",
@@ -61521,7 +61545,7 @@ window.lunrData = {
       "name": "OutputChannel",
       "tags": "OutputChannel",
       "summary": "",
-      "description": "The OutputChannel class represents a single output channel (1-16) from an output device. This object is derived from the host's MIDI subsystem and cannot be instantiated directly. All 16 OutputChannel objects can be found inside the parent output's channels property.",
+      "description": "The OutputChannel class represents a single output MIDI channel. OutputChannel objects are provided by an Output port which, itself, is made available by a device. The OutputChannel object is derived from the host's MIDI subsystem and should not be instantiated directly. All 16 OutputChannel objects can be found inside the parent output's channels property.",
       "body": ""
     },
     "OutputChannel.html#eventCount": {
@@ -61572,7 +61596,7 @@ window.lunrData = {
       "name": "number",
       "tags": "OutputChannel#number number",
       "summary": "",
-      "description": "This channel's MIDI number (1-16)"
+      "description": "This channel's MIDI number (1 - 16)."
     },
     "OutputChannel.html#octaveOffset": {
       "id": "OutputChannel.html#octaveOffset",
@@ -61582,7 +61606,7 @@ window.lunrData = {
       "name": "octaveOffset",
       "tags": "OutputChannel#octaveOffset octaveOffset",
       "summary": "",
-      "description": "An integer to offset the reported octave of outgoing note-specific messages (noteon, noteoff and keyaftertouch). By default, middle C (MIDI note number 60) is placed on the 4th octave (C4). Note that this value is combined with the global offset value defined on the WebMidi object and with the value defined on the parent Output object."
+      "description": "An integer to offset the reported octave of outgoing note-specific messages (noteon, noteoff and keyaftertouch). By default, middle C (MIDI note number 60) is placed on the 4th octave (C4). Note that this value is combined with the global offset value defined in WebMidi.octaveOffset and with the parent value defined in Output.octaveOffset."
     },
     "OutputChannel.html#output": {
       "id": "OutputChannel.html#output",
@@ -61592,7 +61616,7 @@ window.lunrData = {
       "name": "output",
       "tags": "OutputChannel#output output",
       "summary": "",
-      "description": "The parent Output this channel belongs to"
+      "description": "The parent Output this channel belongs to."
     },
     "OutputChannel.html#addListener": {
       "id": "OutputChannel.html#addListener",
@@ -61662,7 +61686,7 @@ window.lunrData = {
       "name": "playNote",
       "tags": "OutputChannel#playNote playNote",
       "summary": "",
-      "description": "Plays a note or an array of notes on the channel. The first parameter is the note to play. It can be a single value or an array of the following valid values: A Note object A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") The playNote() method sends a note on MIDI message for all specified notes on all specified channels. If a duration is set in the options parameter or in the Note object's duration property, it will also schedule a note off message to end the note after said duration. If no duration is set, the note will simply play until a matching note off message is sent with stopNote() or sendNoteOff(). The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the durations and velocities defined in the Note objects have precedence over the ones specified via the method's options parameter. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
+      "description": "Plays a note or an array of notes on the channel. The first parameter is the note to play. It can be a single value or an array of the following valid values: A Note object A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") The playNote() method sends a note on MIDI message for all specified notes. If a duration is set in the options parameter or in the Note object's duration property, it will also schedule a note off message to end the note after said duration. If no duration is set, the note will simply play until a matching note off message is sent with stopNote() or sendNoteOff(). The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the durations and velocities defined in the Note objects have precedence over the ones specified via the method's options parameter. Note: per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
     },
     "OutputChannel.html#removeListener": {
       "id": "OutputChannel.html#removeListener",
@@ -61682,7 +61706,7 @@ window.lunrData = {
       "name": "send",
       "tags": "OutputChannel#send send",
       "summary": "",
-      "description": "Sends a MIDI message on the MIDI output port. If no time is specified, the message will be sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a Uint8Array object or a Message object. It is usually not necessary to use this method directly as you can use one of the simpler helper methods such as playNote(), stopNote(), sendControlChange(), etc. Details on the format of MIDI messages are available in the summary of MIDI messages from the MIDI Manufacturers Association."
+      "description": "Sends a MIDI message on the MIDI output port. If no time is specified, the message will be sent immediately. The message should be an array of 8-bit unsigned integers (0 - 225), a Uint8Array object or a Message object. It is usually not necessary to use this method directly as you can use one of the simpler helper methods such as playNote(), stopNote(), sendControlChange(), etc. Details on the format of MIDI messages are available in the summary of MIDI messages from the MIDI Manufacturers Association."
     },
     "OutputChannel.html#sendAllNotesOff": {
       "id": "OutputChannel.html#sendAllNotesOff",
@@ -61692,7 +61716,7 @@ window.lunrData = {
       "name": "sendAllNotesOff",
       "tags": "OutputChannel#sendAllNotesOff sendAllNotesOff",
       "summary": "",
-      "description": "Sends an all notes off channel mode message. This will make all currently playing notes fade out just as if their key had been released. This is different from the turnSoundOff() method which mutes all sounds immediately."
+      "description": "Sends an all notes off channel mode message. This will make all currently playing notes fade out just as if their key had been released. This is different from the sendAllSoundOff() method which mutes all sounds immediately."
     },
     "OutputChannel.html#sendAllSoundOff": {
       "id": "OutputChannel.html#sendAllSoundOff",
@@ -61722,7 +61746,7 @@ window.lunrData = {
       "name": "sendChannelMode",
       "tags": "OutputChannel#sendChannelMode sendChannelMode",
       "summary": "",
-      "description": "Sends a MIDI channel mode message. The channel mode message to send can be specified numerically or by using one of the following common names: \"allsoundoff\" (#120) \"resetallcontrollers\" (#121) \"localcontrol\" (#122) \"allnotesoff\" (#123) \"omnimodeoff\" (#124) \"omnimodeon\" (#125) \"monomodeon\" (#126) \"polymodeon\" (#127) It should be noted that, per the MIDI specification, only localcontrol and monomodeon may require a value that's not zero. For that reason, the value parameter is optional and defaults to 0. To make it easier, all channel mode messages have a matching helper method: sendAllSoundOff() sendResetAllControllers() sendLocalControl() sendAllNotesOff() sendOmniMode() sendPolyphonicMode()"
+      "description": "Sends a MIDI channel mode message. The channel mode message to send can be specified numerically or by using one of the following common names: Type Number Shortcut Method allsoundoff 120 sendAllSoundOff() resetallcontrollers 121 sendResetAllControllers() localcontrol 122 sendLocalControl() allnotesoff 123 sendAllNotesOff() omnimodeoff 124 sendOmniMode(false) omnimodeon 125 sendOmniMode(true) monomodeon 126 sendPolyphonicMode(\"mono\") polymodeon 127 sendPolyphonicMode(\"poly\") Note: as you can see above, to make it easier, all channel mode messages also have a matching helper method. It should be noted that, per the MIDI specification, only localcontrol and monomodeon may require a value that's not zero. For that reason, the value parameter is optional and defaults to 0."
     },
     "OutputChannel.html#sendControlChange": {
       "id": "OutputChannel.html#sendControlChange",
@@ -61732,17 +61756,17 @@ window.lunrData = {
       "name": "sendControlChange",
       "tags": "OutputChannel#sendControlChange sendControlChange",
       "summary": "",
-      "description": "Sends a MIDI control change message to the channel at the scheduled time. The control change message to send can be specified numerically (0 to 127) or by using one of the following common names: bankselectcoarse (#0) modulationwheelcoarse (#1) breathcontrollercoarse (#2) footcontrollercoarse (#4) portamentotimecoarse (#5) dataentrycoarse (#6) volumecoarse (#7) balancecoarse (#8) pancoarse (#10) expressioncoarse (#11) effectcontrol1coarse (#12) effectcontrol2coarse (#13) generalpurposeslider1 (#16) generalpurposeslider2 (#17) generalpurposeslider3 (#18) generalpurposeslider4 (#19) bankselectfine (#32) modulationwheelfine (#33) breathcontrollerfine (#34) footcontrollerfine (#36) portamentotimefine (#37) dataentryfine (#38) volumefine (#39) balancefine (#40) panfine (#42) expressionfine (#43) effectcontrol1fine (#44) effectcontrol2fine (#45) holdpedal (#64) portamento (#65) sustenutopedal (#66) softpedal (#67) legatopedal (#68) hold2pedal (#69) soundvariation (#70) resonance (#71) soundreleasetime (#72) soundattacktime (#73) brightness (#74) soundcontrol6 (#75) soundcontrol7 (#76) soundcontrol8 (#77) soundcontrol9 (#78) soundcontrol10 (#79) generalpurposebutton1 (#80) generalpurposebutton2 (#81) generalpurposebutton3 (#82) generalpurposebutton4 (#83) reverblevel (#91) tremololevel (#92) choruslevel (#93) celestelevel (#94) phaserlevel (#95) databuttonincrement (#96) databuttondecrement (#97) nonregisteredparametercoarse (#98) nonregisteredparameterfine (#99) registeredparametercoarse (#100) registeredparameterfine (#101) allsoundoff (#120) resetallcontrollers (#121) localcontrol (#122) allnotesoff (#123) omnimodeoff (#124) omnimodeon (#125) monomodeon (#126) polymodeon (#127) As you can see above, not all control change message have a matching common name. This does not mean you cannot use the others. It simply means you will need to use their number (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually reserved for channel mode messages. See sendChannelMode() method for more info. To view a detailed list of all available control change messages, please consult \"Table 3 - Control Change Messages\" from the MIDI Messages specification. Note: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1 (modulationwheelcoarse) can be accompanied by a second control change message for modulationwheelfine to achieve a greater level of precision. if you want to specify both MSB and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second parameter."
+      "description": "Sends a MIDI control change message to the channel at the scheduled time. The control change message to send can be specified numerically (0 to 127) or by using one of the following common names: Number Name 0 bankselectcoarse 1 modulationwheelcoarse 2 breathcontrollercoarse 4 footcontrollercoarse 5 portamentotimecoarse 6 dataentrycoarse 7 volumecoarse 8 balancecoarse 10 pancoarse 11 expressioncoarse 12 effectcontrol1coarse 13 effectcontrol2coarse 18 generalpurposeslider3 19 generalpurposeslider4 32 bankselectfine 33 modulationwheelfine 34 breathcontrollerfine 36 footcontrollerfine 37 portamentotimefine 38 dataentryfine 39 volumefine 40 balancefine 42 panfine 43 expressionfine 44 effectcontrol1fine 45 effectcontrol2fine 64 holdpedal 65 portamento 66 sustenutopedal 67 softpedal 68 legatopedal 69 hold2pedal 70 soundvariation 71 resonance 72 soundreleasetime 73 soundattacktime 74 brightness 75 soundcontrol6 76 soundcontrol7 77 soundcontrol8 78 soundcontrol9 79 soundcontrol10 80 generalpurposebutton1 81 generalpurposebutton2 82 generalpurposebutton3 83 generalpurposebutton4 91 reverblevel 92 tremololevel 93 choruslevel 94 celestelevel 95 phaserlevel 96 databuttonincrement 97 databuttondecrement 98 nonregisteredparametercoarse 99 nonregisteredparameterfine 100 registeredparametercoarse 101 registeredparameterfine 120 allsoundoff 121 resetallcontrollers 122 localcontrol 123 allnotesoff 124 omnimodeoff 125 omnimodeon 126 monomodeon 127 polymodeon As you can see above, not all control change message have a matching name. This does not mean you cannot use the others. It simply means you will need to use their number (0 to 127) instead of their name. While you can still use them, numbers 120 to 127 are usually reserved for channel mode messages. See sendChannelMode() method for more info. To view a detailed list of all available control change messages, please consult \"Table 3 - Control Change Messages\" from the MIDI Messages specification. Note: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1 (modulationwheelcoarse) can be accompanied by a second control change message for modulationwheelfine to achieve a greater level of precision. if you want to specify both MSB and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second parameter."
     },
     "OutputChannel.html#sendKeyAftertouch": {
       "id": "OutputChannel.html#sendKeyAftertouch",
       "kind": "function",
-      "title": "sendKeyAftertouch( target [, pressure [, options ] ] ) → {OutputChannel}",
+      "title": "sendKeyAftertouch( note [, pressure [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#sendKeyAftertouch",
       "name": "sendKeyAftertouch",
       "tags": "OutputChannel#sendKeyAftertouch sendKeyAftertouch",
       "summary": "",
-      "description": "Sends a MIDI key aftertouch message at the scheduled time. This is a key-specific aftertouch. For a channel-wide aftertouch message, use sendChannelAftertouch(). The key can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note identifier such as \"C3\", \"G#4\", \"F-1\", \"Db7\", etc."
+      "description": "Sends a MIDI key aftertouch message at the scheduled time. This is a key-specific aftertouch. For a channel-wide aftertouch message, use sendChannelAftertouch()."
     },
     "OutputChannel.html#sendLocalControl": {
       "id": "OutputChannel.html#sendLocalControl",
@@ -61792,7 +61816,7 @@ window.lunrData = {
       "name": "sendNoteOn",
       "tags": "OutputChannel#sendNoteOn sendNoteOn",
       "summary": "",
-      "description": "Sends a note on message for the specified note(s) on the channel. The first parameter is the note. It can be a single value or an array of the following valid values: A Note object A MIDI note number (integer between 0 and 127) A note name, followed by the octave (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") When passing a Note object or a note name, the octaveOffset will be applied. This is not the case when using a note number number. In this case, we assume you know exactly which MIDI note number should be sent out. The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the attack velocity defined in the Note objects has precedence over the one specified via the method's options parameter. Also, the duration is ignored. If you want to also send a note off message, use the playNote() method instead. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
+      "description": "Sends a note on message for the specified note(s) on the channel. The first parameter is the note. It can be a single value or an array of the following valid values: A Note object A MIDI note number (integer between 0 and 127) A note identifier (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") When passing a Noteobject or a note name, the octaveOffset will be applied. This is not the case when using a note number. In this case, we assume you know exactly which MIDI note number should be sent out. The execution of the note on command can be delayed by using the time property of the options parameter. When using Note objects, the attack velocity defined in the Note objects has precedence over the one specified via the method's options parameter. Also, the duration is ignored. If you want to also send a note off message, use the playNote() method instead. Note: As per the MIDI standard, a note on message with an attack velocity of 0 is functionally equivalent to a note off message."
     },
     "OutputChannel.html#sendNrpnValue": {
       "id": "OutputChannel.html#sendNrpnValue",
@@ -61822,7 +61846,7 @@ window.lunrData = {
       "name": "sendPitchBend",
       "tags": "OutputChannel#sendPitchBend sendPitchBend",
       "summary": "",
-      "description": "Sends a MIDI pitch bend message at the scheduled time."
+      "description": "Sends a MIDI pitch bend message at the scheduled time. The resulting bend is relative to the pitch bend range that has been defined. The range can be set with sendPitchBendRange(). So, for example, if the pitch bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave below its nominal value."
     },
     "OutputChannel.html#sendPitchBendRange": {
       "id": "OutputChannel.html#sendPitchBendRange",
@@ -61832,7 +61856,7 @@ window.lunrData = {
       "name": "sendPitchBendRange",
       "tags": "OutputChannel#sendPitchBendRange sendPitchBendRange",
       "summary": "",
-      "description": "Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they adjust the range used by their pitch bend lever. The range is specified by using the semitones and cents parameters. For example, setting the semitones parameter to 12 means that the pitch bend range will be 12 semitones above and below the nominal pitch."
+      "description": "Sends a pitch bend range message at the scheduled time to adjust the range used by the pitch bend lever. The range is specified by using the semitones and cents parameters. For example, setting the semitones parameter to 12 means that the pitch bend range will be 12 semitones above and below the nominal pitch."
     },
     "OutputChannel.html#sendPolyphonicMode": {
       "id": "OutputChannel.html#sendPolyphonicMode",
@@ -61892,7 +61916,7 @@ window.lunrData = {
       "name": "sendRpnValue",
       "tags": "OutputChannel#sendRpnValue sendRpnValue",
       "summary": "",
-      "description": "Sets the specified MIDI registered parameter to the desired value. The value is defined with up to two bytes of data (msb, lsb) that each can go from 0 to 127. MIDI [registered parameters] (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2) extend the original list of control change messages. The MIDI 1.0 specification lists only a limited number of them. Here are the original registered parameters with the identifier that can be used as the first parameter of this function: Pitchbend Range (0x00, 0x00): \"pitchbendrange\" Channel Fine Tuning (0x00, 0x01): \"channelfinetuning\" Channel Coarse Tuning (0x00, 0x02): \"channelcoarsetuning\" Tuning Program (0x00, 0x03): \"tuningprogram\" Tuning Bank (0x00, 0x04): \"tuningbank\" Modulation Range (0x00, 0x05): \"modulationrange\" Note that the Tuning Program and Tuning Bank parameters are part of the MIDI Tuning Standard, which is not widely implemented. Another set of extra parameters have been later added for 3D sound controllers. They are: Azimuth Angle (0x3D, 0x00): \"azimuthangle\" Elevation Angle (0x3D, 0x01): \"elevationangle\" Gain (0x3D, 0x02): \"gain\" Distance Ratio (0x3D, 0x03): \"distanceratio\" Maximum Distance (0x3D, 0x04): \"maximumdistance\" Maximum Distance Gain (0x3D, 0x05): \"maximumdistancegain\" Reference Distance Ratio (0x3D, 0x06): \"referencedistanceratio\" Pan Spread Angle (0x3D, 0x07): \"panspreadangle\" Roll Angle (0x3D, 0x08): \"rollangle\""
+      "description": "Sets the specified MIDI registered parameter to the desired value. The value is defined with up to two bytes of data (msb, lsb) that each can go from 0 to 127. MIDI registered parameters extend the original list of control change messages. The MIDI 1.0 specification lists only a limited number of them: Numbers Function (0x00, 0x00) pitchbendrange (0x00, 0x01) channelfinetuning (0x00, 0x02) channelcoarsetuning (0x00, 0x03) tuningprogram (0x00, 0x04) tuningbank (0x00, 0x05) modulationrange (0x3D, 0x00) azimuthangle (0x3D, 0x01) elevationangle (0x3D, 0x02) gain (0x3D, 0x03) distanceratio (0x3D, 0x04) maximumdistance (0x3D, 0x05) maximumdistancegain (0x3D, 0x06) referencedistanceratio (0x3D, 0x07) panspreadangle (0x3D, 0x08) rollangle Note that the Tuning Program and Tuning Bank parameters are part of the MIDI Tuning Standard, which is not widely implemented."
     },
     "OutputChannel.html#sendTuningBank": {
       "id": "OutputChannel.html#sendTuningBank",
@@ -61917,12 +61941,12 @@ window.lunrData = {
     "OutputChannel.html#stopNote": {
       "id": "OutputChannel.html#stopNote",
       "kind": "function",
-      "title": "stopNote( note, options ) → {Output}",
+      "title": "stopNote( note [, options ] ) → {Output}",
       "longname": "OutputChannel#stopNote",
       "name": "stopNote",
       "tags": "OutputChannel#stopNote stopNote",
       "summary": "",
-      "description": "This is an alias to the sendNoteOff() method."
+      "description": "Sends a note off message for the specified MIDI note number. The first parameter is the note to stop. It can be a single value or an array of the following valid values: A MIDI note number (integer between 0 and 127) A note identifier (e.g. \"C3\", \"G#4\", \"F-1\", \"Db7\") A Note object The execution of the note off command can be delayed by using the time property of the options parameter."
     },
     "OutputChannel.html#suspendEvent": {
       "id": "OutputChannel.html#suspendEvent",
