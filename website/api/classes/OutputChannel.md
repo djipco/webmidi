@@ -560,9 +560,9 @@ use [`sendKeyAftertouch()`](#sendKeyAftertouch).
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`pressure`**] | number<br /> ||The pressure level (between 0 and 1). If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between 0 and 127.|
+    |[**`pressure`**] | number<br /> ||The pressure level (between `0` and `1`). If the `rawValue` option is set to `true`, the pressure can be defined by using an integer between `0` and `127`.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
+    |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
     |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -600,12 +600,16 @@ defaults to 0.
 
 To make it easier, all channel mode messages have a matching helper method:
 
-  - [sendAllSoundOff()](#sendAllSoundOff)
-  - [sendResetAllControllers()](#sendResetAllControllers)
-  - [sendLocalControl()](#sendLocalControl)
-  - [sendAllNotesOff()](#sendAllNotesOff)
-  - [sendOmniMode()](#sendOmniMode)
-  - [sendPolyphonicMode()](#sendPolyphonicMode)
+| Type                |Number| Shortcut Method                                              |
+|---------------------|------|--------------------------------------------------------------|
+|`allsoundoff`        |120   | [`sendAllSoundOff()`](#sendAllSoundOff)                |
+|`resetallcontrollers`|121   | [`sendResetAllControllers()`](#sendResetAllControllers)|
+|`localcontrol`       |122   | [`sendLocalControl()`](#sendLocalControl)              |
+|`allnotesoff`        |123   | [`sendAllNotesOff()`](#sendAllNotesOff)                |
+|`omnimodeoff`        |124   | [`sendOmniMode(false)`](#sendOmniMode)                 |
+|`omnimodeon`         |125   | [`sendOmniMode(true)`](#sendOmniMode)                  |
+|`monomodeon`         |126   | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)    |
+|`polymodeon`         |127   | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)    |
 
 
   **Parameters**
