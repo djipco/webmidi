@@ -1423,12 +1423,12 @@ export class OutputChannel extends EventEmitter {
    */
   sendProgramChange(program, options = {}) {
 
-    program = parseInt(program) || 1;
+    program = parseInt(program) || 0;
 
     if (WebMidi.validation) {
 
       if (!(program >= 0 && program <= 127)) {
-        throw new RangeError("The program number must be between 1 and 128.");
+        throw new RangeError("The program number must be between 0 and 127.");
       }
 
     }
