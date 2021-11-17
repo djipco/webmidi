@@ -1989,7 +1989,7 @@ declare class Output {
      *   | Type                  | Number | Shortcut Method                                         |
      *   |-----------------------|--------|---------------------------------------------------------|
      *   | `allsoundoff`         | 120    | [`turnSoundOff()`]{@link #turnSoundOff}                 |
-     *   | `resetallcontrollers` | 121    | [`resetAllControllers()`]{@link #resetAllControllers}   |
+     *   | `resetallcontrollers` | 121    | [`sendResetAllControllers()`]{@link #sendResetAllControllers}   |
      *   | `localcontrol`        | 122    | [`setLocalControl()`]{@link #turnSoundOff}              |
      *   | `allnotesoff`         | 123    | [`turnNotesOff()`]{@link #turnNotesOff}                 |
      *   | `omnimodeoff`         | 124    | [`setOmniMode(false)`]{@link #setOmniMode}              |
