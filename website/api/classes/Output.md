@@ -731,16 +731,16 @@ Returns the `Output` object so methods can be chained.
 Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
 send can be specified numerically or by using one of the following common names:
 
-  | Type                |Number| Shortcut Method                                              |
-  |---------------------|------|--------------------------------------------------------------|
-  |`allsoundoff`        |120   | [`sendAllSoundOff()`](#sendAllSoundOff)                |
-  |`resetallcontrollers`|121   | [`sendResetAllControllers()`](#sendResetAllControllers)|
-  |`localcontrol`       |122   | [`sendLocalControl()`](#sendLocalControl)              |
-  |`allnotesoff`        |123   | [`sendAllNotesOff()`](#sendAllNotesOff)                |
-  |`omnimodeoff`        |124   | [`sendOmniMode(false)`](#sendOmniMode)                 |
-  |`omnimodeon`         |125   | [`sendOmniMode(true)`](#sendOmniMode)                  |
-  |`monomodeon`         |126   | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)    |
-  |`polymodeon`         |127   | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)    |
+|  Type                |Number| Shortcut Method                                               |
+| ---------------------|------|-------------------------------------------------------------- |
+| `allsoundoff`        | 120  | [`sendAllSoundOff()`](#sendAllSoundOff)                 |
+| `resetallcontrollers`| 121  | [`sendResetAllControllers()`](#sendResetAllControllers) |
+| `localcontrol`       | 122  | [`sendLocalControl()`](#sendLocalControl)               |
+| `allnotesoff`        | 123  | [`sendAllNotesOff()`](#sendAllNotesOff)                 |
+| `omnimodeoff`        | 124  | [`sendOmniMode(false)`](#sendOmniMode)                  |
+| `omnimodeon`         | 125  | [`sendOmniMode(true)`](#sendOmniMode)                   |
+| `monomodeon`         | 126  | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)     |
+| `polymodeon`         | 127  | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)     |
 
 Note: as you can see above, to make it easier, all channel mode messages also have a matching
 helper method.

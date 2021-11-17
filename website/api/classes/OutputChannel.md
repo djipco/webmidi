@@ -587,16 +587,16 @@ numerically or by using one of the following common names:
 
 |  Type                |Number| Shortcut Method                                               |
 | ---------------------|------|-------------------------------------------------------------- |
-| `allsoundoff`        |120   | [`sendAllSoundOff()`](#sendAllSoundOff)                 |
-| `resetallcontrollers`|121   | [`sendResetAllControllers()`](#sendResetAllControllers) |
-| `localcontrol`       |122   | [`sendLocalControl()`](#sendLocalControl)               |
-| `allnotesoff`        |123   | [`sendAllNotesOff()`](#sendAllNotesOff)                 |
-| `omnimodeoff`        |124   | [`sendOmniMode(false)`](#sendOmniMode)                  |
-| `omnimodeon`         |125   | [`sendOmniMode(true)`](#sendOmniMode)                   |
-| `monomodeon`         |126   | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)     |
-| `polymodeon`         |127   | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)     |
+| `allsoundoff`        | 120  | [`sendAllSoundOff()`](#sendAllSoundOff)                 |
+| `resetallcontrollers`| 121  | [`sendResetAllControllers()`](#sendResetAllControllers) |
+| `localcontrol`       | 122  | [`sendLocalControl()`](#sendLocalControl)               |
+| `allnotesoff`        | 123  | [`sendAllNotesOff()`](#sendAllNotesOff)                 |
+| `omnimodeoff`        | 124  | [`sendOmniMode(false)`](#sendOmniMode)                  |
+| `omnimodeon`         | 125  | [`sendOmniMode(true)`](#sendOmniMode)                   |
+| `monomodeon`         | 126  | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)     |
+| `polymodeon`         | 127  | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)     |
 
-Note: as you can see above, to make it easier, all channel mode messages also have a matching
+**Note**: as you can see above, to make it easier, all channel mode messages also have a matching
 helper method.
 
 It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may
@@ -612,8 +612,8 @@ defaults to 0.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`command`** | number<br />string<br /> ||The numerical identifier of the channel mode message (integer between 120-127) or its name as a string.|
-    |[**`value`**] | number<br /> |0|The value to send (integer between 0-127).|
+    |**`command`** | number<br />string<br /> ||The numerical identifier of the channel mode message (integer between `120` and `127`) or its name as a string.|
+    |[**`value`**] | number<br /> |0|The value to send (integer between `0` - `127`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -634,77 +634,76 @@ Returns the `OutputChannel` object so methods can be chained.
 **Since**: 3.0.0<br />
 
 Sends a MIDI **control change** message to the channel at the scheduled time. The control
-change message to send can be specified numerically (0 to 127) or by using one of the following
-common names:
+change message to send can be specified numerically (`0` to `127`) or by using one of the
+following common names:
 
- * `bankselectcoarse` (#0)
- * `modulationwheelcoarse` (#1)
- * `breathcontrollercoarse` (#2)
- * `footcontrollercoarse` (#4)
- * `portamentotimecoarse` (#5)
- * `dataentrycoarse` (#6)
- * `volumecoarse` (#7)
- * `balancecoarse` (#8)
- * `pancoarse` (#10)
- * `expressioncoarse` (#11)
- * `effectcontrol1coarse` (#12)
- * `effectcontrol2coarse` (#13)
- * `generalpurposeslider1` (#16)
- * `generalpurposeslider2` (#17)
- * `generalpurposeslider3` (#18)
- * `generalpurposeslider4` (#19)
- * `bankselectfine` (#32)
- * `modulationwheelfine` (#33)
- * `breathcontrollerfine` (#34)
- * `footcontrollerfine` (#36)
- * `portamentotimefine` (#37)
- * `dataentryfine` (#38)
- * `volumefine` (#39)
- * `balancefine` (#40)
- * `panfine` (#42)
- * `expressionfine` (#43)
- * `effectcontrol1fine` (#44)
- * `effectcontrol2fine` (#45)
- * `holdpedal` (#64)
- * `portamento` (#65)
- * `sustenutopedal` (#66)
- * `softpedal` (#67)
- * `legatopedal` (#68)
- * `hold2pedal` (#69)
- * `soundvariation` (#70)
- * `resonance` (#71)
- * `soundreleasetime` (#72)
- * `soundattacktime` (#73)
- * `brightness` (#74)
- * `soundcontrol6` (#75)
- * `soundcontrol7` (#76)
- * `soundcontrol8` (#77)
- * `soundcontrol9` (#78)
- * `soundcontrol10` (#79)
- * `generalpurposebutton1` (#80)
- * `generalpurposebutton2` (#81)
- * `generalpurposebutton3` (#82)
- * `generalpurposebutton4` (#83)
- * `reverblevel` (#91)
- * `tremololevel` (#92)
- * `choruslevel` (#93)
- * `celestelevel` (#94)
- * `phaserlevel` (#95)
- * `databuttonincrement` (#96)
- * `databuttondecrement` (#97)
- * `nonregisteredparametercoarse` (#98)
- * `nonregisteredparameterfine` (#99)
- * `registeredparametercoarse` (#100)
- * `registeredparameterfine` (#101)
-
- * `allsoundoff` (#120)
- * `resetallcontrollers` (#121)
- * `localcontrol` (#122)
- * `allnotesoff` (#123)
- * `omnimodeoff` (#124)
- * `omnimodeon` (#125)
- * `monomodeon` (#126)
- * `polymodeon` (#127)
+| Number | Name                          |
+|--------|-------------------------------|
+| 0      |`bankselectcoarse`             |
+| 1      |`modulationwheelcoarse`        |
+| 2      |`breathcontrollercoarse`       |
+| 4      |`footcontrollercoarse`         |
+| 5      |`portamentotimecoarse`         |
+| 6      |`dataentrycoarse`              |
+| 7      |`volumecoarse`                 |
+| 8      |`balancecoarse`                |
+| 10     |`pancoarse`                    |
+| 11     |`expressioncoarse`             |
+| 12     |`effectcontrol1coarse`         |
+| 13     |`effectcontrol2coarse`         |
+| 18     |`generalpurposeslider3`        |
+| 19     |`generalpurposeslider4`        |
+| 32     |`bankselectfine`               |
+| 33     |`modulationwheelfine`          |
+| 34     |`breathcontrollerfine`         |
+| 36     |`footcontrollerfine`           |
+| 37     |`portamentotimefine`           |
+| 38     |`dataentryfine`                |
+| 39     |`volumefine`                   |
+| 40     |`balancefine`                  |
+| 42     |`panfine`                      |
+| 43     |`expressionfine`               |
+| 44     |`effectcontrol1fine`           |
+| 45     |`effectcontrol2fine`           |
+| 64     |`holdpedal`                    |
+| 65     |`portamento`                   |
+| 66     |`sustenutopedal`               |
+| 67     |`softpedal`                    |
+| 68     |`legatopedal`                  |
+| 69     |`hold2pedal`                   |
+| 70     |`soundvariation`               |
+| 71     |`resonance`                    |
+| 72     |`soundreleasetime`             |
+| 73     |`soundattacktime`              |
+| 74     |`brightness`                   |
+| 75     |`soundcontrol6`                |
+| 76     |`soundcontrol7`                |
+| 77     |`soundcontrol8`                |
+| 78     |`soundcontrol9`                |
+| 79     |`soundcontrol10`               |
+| 80     |`generalpurposebutton1`        |
+| 81     |`generalpurposebutton2`        |
+| 82     |`generalpurposebutton3`        |
+| 83     |`generalpurposebutton4`        |
+| 91     |`reverblevel`                  |
+| 92     |`tremololevel`                 |
+| 93     |`choruslevel`                  |
+| 94     |`celestelevel`                 |
+| 95     |`phaserlevel`                  |
+| 96     |`databuttonincrement`          |
+| 97     |`databuttondecrement`          |
+| 98     |`nonregisteredparametercoarse` |
+| 99     |`nonregisteredparameterfine`   |
+| 100    |`registeredparametercoarse`    |
+| 101    |`registeredparameterfine`      |
+| 120    |`allsoundoff`                  |
+| 121    |`resetallcontrollers`          |
+| 122    |`localcontrol`                 |
+| 123    |`allnotesoff`                  |
+| 124    |`omnimodeoff`                  |
+| 125    |`omnimodeon`                   |
+| 126    |`monomodeon`                   |
+| 127    |`polymodeon`                   |
 
 As you can see above, not all control change message have a matching common name. This
 does not mean you cannot use the others. It simply means you will need to use their number
