@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 19:44:34 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 20:04:56 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1549,7 +1549,7 @@ class OutputChannel extends e {
   /**
    * Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
    * aftertouch. For a channel-wide aftertouch message, use
-   * [setChannelAftertouch()]{@link Output#setChannelAftertouch}.
+   * [sendChannelAftertouch()]{@link Output#sendChannelAftertouch}.
    *
    * The key can be a single value or an array of the following valid values:
    *
@@ -1810,7 +1810,7 @@ class OutputChannel extends e {
    * entry, data increment and data decrement messages.
    *
    * Current best practice recommends doing that after each call to
-   * [_setCurrentParameter()]{@link OutputChannel#_setCurrentParameter}.
+   * [_setCurrentParameter()]{@link #_setCurrentParameter}.
    *
    * @private
    *
@@ -2327,12 +2327,12 @@ class OutputChannel extends e {
    *
    * To make it easier, all channel mode messages have a matching helper method:
    *
-   *   - [turnSoundOff()]{@link Output#turnSoundOff}
-   *   - [resetAllControllers()]{@link Output#resetAllControllers}
-   *   - [setLocalControl()]{@link Output#turnSoundOff}
-   *   - [turnNotesOff()]{@link Output#turnNotesOff}
-   *   - [setOmniMode()]{@link Output#setOmniMode}
-   *   - [setPolyphonicMode()]{@link Output#setPolyphonicMode}
+   *   - [sendAllSoundOff()]{@link #sendAllSoundOff}
+   *   - [sendResetAllControllers()]{@link #sendResetAllControllers}
+   *   - [sendLocalControl()]{@link #sendLocalControl}
+   *   - [sendAllNotesOff()]{@link #sendAllNotesOff}
+   *   - [sendOmniMode()]{@link #sendOmniMode}
+   *   - [sendPolyphonicMode()]{@link #sendPolyphonicMode}
    *
    * @param {number|string} command The numerical identifier of the channel mode message (integer
    * between 120-127) or its name as a string.
@@ -2409,7 +2409,7 @@ class OutputChannel extends e {
   }
   /**
    * Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
-   * use [setKeyAftertouch()]{@link Output#setKeyAftertouch}.
+   * use [sendKeyAftertouch()]{@link #sendKeyAftertouch}.
    *
    * @param [pressure] {number} The pressure level (between 0 and 1). If the `rawValue` option is
    * set to `true`, the pressure can be defined by using an integer between 0 and 127.
@@ -2550,7 +2550,7 @@ class OutputChannel extends e {
    * would use:
    *
    * ```js
-   * WebMidi.outputs[0].channels[0].setNonRegisteredParameter([1, 8], 123);
+   * WebMidi.outputs[0].channels[0].sendNrpnValue([1, 8], 123);
    * ```
    *
    * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
@@ -2559,7 +2559,7 @@ class OutputChannel extends e {
    * value to send was 10, you could use:
    *
    * ```js
-   * WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
+   * WebMidi.outputs[0].channels[0].sendNrpnValue([2, 63], [0, 10]);
    * ```
    *
    * For further implementation details, refer to the manufacturer's documentation.
@@ -2622,7 +2622,7 @@ class OutputChannel extends e {
    * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
    * zero means no bend. The resulting bend is relative to the pitch bend range that has been
    * defined. The range can be set with
-   * [`setPitchBendRange()`]{@link OutputChannel#setPitchBendRange}. So, for example, if the pitch
+   * [`sendPitchBendRange()`]{@link #sendPitchBendRange}. So, for example, if the pitch
    * bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave
    * below its nominal value.
    *
@@ -3784,19 +3784,6 @@ class Output extends e {
   }
 
   /**
-   * @private
-   * @deprecated since version 3.0
-   */
-  setKeyAftertouch(note, pressure = 0.5, channel = "all", options = {}) {
-    if (wm.validation) {
-      console.warn("The setKeyAftertouch() method is deprecated. Use sendKeyAftertouch() instead.");
-      options.channels = channel;
-      if (options.channels === "all") options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
-    }
-
-    return this.sendKeyAftertouch(note, pressure, options);
-  }
-  /**
    * Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
    * control change message to send can be specified numerically (0-127) or by using one of the
    * following common names:
@@ -3901,8 +3888,6 @@ class Output extends e {
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    */
-
-
   sendControlChange(controller, value, options = {}, legacy = {}) {
     if (wm.validation) {
       // Legacy compatibility
@@ -4102,8 +4087,8 @@ class Output extends e {
    * Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
    *
    * The resulting bend is relative to the pitch bend range that has been defined. The range can be
-   * set with [`setPitchBendRange()`]{@link #setPitchBendRange}. So, for example, if the pitch bend
-   * range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octave
+   * set with [`sendPitchBendRange()`]{@link #sendPitchBendRange}. So, for example, if the pitch
+   * bend range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octave
    * below its nominal value.
    *
    * @param {number|number[]} value The intensity of the bend (between `-1.0` and `1.0`). A value of
@@ -4715,14 +4700,14 @@ class Output extends e {
    * you would use:
    *
    * ```js
-   * WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123);
+   * WebMidi.outputs[0].sendNrpnValue([1, 8], 123);
    * ```
    *
    * You probably want to should select a channel so the message is not sent to all channels. For
    * instance, to send to channel `1` of the first output port, you would use:
    *
    * ```js
-   * WebMidi.outputs[0].setNonRegisteredParameter([1, 8], 123, 1);
+   * WebMidi.outputs[0].sendNrpnValue([1, 8], 123, 1);
    * ```
    *
    * In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
@@ -4731,7 +4716,7 @@ class Output extends e {
    * value to send was `10`, you could use:
    *
    * ```js
-   * WebMidi.outputs[0].setNonRegisteredParameter([2, 63], [0, 10], 1);
+   * WebMidi.outputs[0].sendNrpnValue([2, 63], [0, 10], 1);
    * ```
    *
    * For further implementation details, refer to the manufacturer's documentation.
