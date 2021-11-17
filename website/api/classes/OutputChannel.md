@@ -465,9 +465,9 @@ from the MIDI Manufacturers Association.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`message`** | Array.&lt;number&gt;<br />Uint8Array<br />Message<br /> ||An array of 8bit unsigned integers, a `Uint8Array` object (not available in Node.js) containing the message bytes or a `Message` object.|
+    |**`message`** | Array.&lt;number&gt;<br />Uint8Array<br />Message<br /> ||A `Message` object, an array of 8-bit unsigned integers or a `Uint8Array` object (not available in Node.js) containing the message bytes.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([DOMHighResTimeStamp](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |0|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that point time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
