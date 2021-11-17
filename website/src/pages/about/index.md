@@ -3,14 +3,16 @@
 ## Who created this?
 
 **WEBMIDI.js** is a passion project of mine. I am Jean-Philippe Côté (a.k.a. 
-[djip.co](https://djip.co)), an academic and artist with particular interests in creative coding, 
-interactive arts and music technology. You can reach out to me in different ways:
+[djip.co](https://djip.co)), an 
+[academic](https://www.cegepmontpetit.ca/cegep/recherche/professeurs-chercheurs/jean-philippe-cote) 
+and artist with particular interests in creative coding, interactive arts and music technology. You 
+can reach out to me in different ways:
 
 * Twitter: **[@djipco](https://twitter.com/djipco)**
 * Website: **[Website](https://djip.co/)**
 * GitHub: **[GitHub](https://github.com/djipco/)**
 
-One of mu students, **Jean-Marie Gariépy** has also been helping out in various capacities with the
+One of my students, **Jean-Marie Gariépy** has also been helping out in various capacities with the
 creation of this website. 👏
 
 ## Sponsoring the project
