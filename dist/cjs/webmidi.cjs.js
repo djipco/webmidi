@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 18:41:11 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 19:34:00 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2495,8 +2495,8 @@ class OutputChannel extends e {
     fine = Math.round((fine + 1) / 2 * 16383);
     let msb = fine >> 7 & 0x7F;
     let lsb = fine & 0x7F;
-    this.setRegisteredParameter("channelcoarsetuning", coarse, options);
-    this.setRegisteredParameter("channelfinetuning", [msb, lsb], options);
+    this.sendRpnValue("channelcoarsetuning", coarse, options);
+    this.sendRpnValue("channelfinetuning", [msb, lsb], options);
     return this;
   }
   /**
