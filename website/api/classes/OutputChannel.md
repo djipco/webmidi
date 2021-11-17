@@ -585,31 +585,23 @@ Returns the `OutputChannel` object so methods can be chained.
 Sends a MIDI **channel mode** message. The channel mode message to send can be specified
 numerically or by using one of the following common names:
 
-  * `"allsoundoff"` (#120)
-  * `"resetallcontrollers"` (#121)
-  * `"localcontrol"` (#122)
-  * `"allnotesoff"` (#123)
-  * `"omnimodeoff"` (#124)
-  * `"omnimodeon"` (#125)
-  * `"monomodeon"` (#126)
-  * `"polymodeon"` (#127)
+|  Type                |Number| Shortcut Method                                               |
+| ---------------------|------|-------------------------------------------------------------- |
+| `allsoundoff`        |120   | [`sendAllSoundOff()`](#sendAllSoundOff)                 |
+| `resetallcontrollers`|121   | [`sendResetAllControllers()`](#sendResetAllControllers) |
+| `localcontrol`       |122   | [`sendLocalControl()`](#sendLocalControl)               |
+| `allnotesoff`        |123   | [`sendAllNotesOff()`](#sendAllNotesOff)                 |
+| `omnimodeoff`        |124   | [`sendOmniMode(false)`](#sendOmniMode)                  |
+| `omnimodeon`         |125   | [`sendOmniMode(true)`](#sendOmniMode)                   |
+| `monomodeon`         |126   | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)     |
+| `polymodeon`         |127   | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)     |
+
+Note: as you can see above, to make it easier, all channel mode messages also have a matching
+helper method.
 
 It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may
 require a value that's not zero. For that reason, the `value` parameter is optional and
 defaults to 0.
-
-To make it easier, all channel mode messages have a matching helper method:
-
-| Type                |Number| Shortcut Method                                              |
-|---------------------|------|--------------------------------------------------------------|
-|`allsoundoff`        |120   | [`sendAllSoundOff()`](#sendAllSoundOff)                |
-|`resetallcontrollers`|121   | [`sendResetAllControllers()`](#sendResetAllControllers)|
-|`localcontrol`       |122   | [`sendLocalControl()`](#sendLocalControl)              |
-|`allnotesoff`        |123   | [`sendAllNotesOff()`](#sendAllNotesOff)                |
-|`omnimodeoff`        |124   | [`sendOmniMode(false)`](#sendOmniMode)                 |
-|`omnimodeon`         |125   | [`sendOmniMode(true)`](#sendOmniMode)                  |
-|`monomodeon`         |126   | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)    |
-|`polymodeon`         |127   | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)    |
 
 
   **Parameters**
