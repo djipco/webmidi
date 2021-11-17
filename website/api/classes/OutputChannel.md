@@ -1353,8 +1353,7 @@ Sets the specified MIDI registered parameter to the desired value. The value is 
 up to two bytes of data (msb, lsb) that each can go from 0 to 127.
 
 MIDI
-[registered parameters]
-(https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+[registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
 extend the original list of control change messages. The MIDI 1.0 specification lists only a
 limited number of them:
 
