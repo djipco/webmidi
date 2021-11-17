@@ -452,7 +452,7 @@ class WebMidi extends EventEmitter {
    * input names in the same way as the Jazz-Plugin does.
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
-   * those visible in the [outputs](WebMidi#outputs) array).
+   * those visible in the [`outputs`](#outputs) array).
    *
    * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
    * the specified name.

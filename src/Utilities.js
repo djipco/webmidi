@@ -67,7 +67,7 @@ export class Utilities {
   }
 
   /**
-   * Given a proper note identifier ("C#4", "Gb-1", etc.) or a valid MIDI note number (9-127), this
+   * Given a proper note identifier (`C#4`, `Gb-1`, etc.) or a valid MIDI note number (0-127), this
    * method returns an object containing broken down details about the specified note (uppercase
    * letter, accidental and octave).
    *
@@ -260,9 +260,9 @@ export class Utilities {
   }
 
   /**
-   * Converts the `input` parameter to a valid {@link Note} object. The input usually is an unsigned
-   * integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a {@link Note}
-   * object, it will be returned as is.
+   * Converts the `input` parameter to a valid [`Note`]{@link Note} object. The input usually is an
+   * unsigned integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a
+   * [`Note`]{@link Note} object, it will be returned as is.
    *
    * If the input is a note number or identifier, it is possible to specify options by providing the
    * `options` parameter.
@@ -311,11 +311,12 @@ export class Utilities {
 
   /**
    * Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
-   * {@link Note} object or an array of the previous types, to an array of {@link Note} objects.
+   * [`Note`]{@link Note}  object or an array of the previous types, to an array of
+   * [`Note`]{@link Note}  objects.
    *
-   * {@link Note} objects are returned as is. For note numbers and identifiers, a {@link Note}
-   * object is created with the options specified. An error will be thrown when encountering invalid
-   * input.
+   * [`Note`]{@link Note}  objects are returned as is. For note numbers and identifiers, a
+   * [`Note`]{@link Note} object is created with the options specified. An error will be thrown when
+   * encountering invalid input.
    *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
