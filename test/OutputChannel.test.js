@@ -34,7 +34,7 @@ describe("OutputChannel Object", function() {
     await WebMidi.disable();
   });
 
-  describe("decrementRegisteredParameter()", function () {
+  describe("sendRpnDecrement()", function () {
 
     it("should throw error if parameter, specified by name, is invalid", function () {
 
@@ -47,7 +47,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter(value);
+          WEBMIDI_OUTPUT.channels[1].sendRpnDecrement(value);
         }).to.throw(TypeError);
       }
 
@@ -70,7 +70,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter(value);
+          WEBMIDI_OUTPUT.channels[1].sendRpnDecrement(value);
         }).to.throw();
       };
 
@@ -113,7 +113,7 @@ describe("OutputChannel Object", function() {
 
       // Act
       parameters.forEach(param => {
-        WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter(param.name);
+        WEBMIDI_OUTPUT.channels[1].sendRpnDecrement(param.name);
       });
 
       // Assert
@@ -168,7 +168,7 @@ describe("OutputChannel Object", function() {
 
       // Act
       parameters.forEach(param => {
-        WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter(param.value);
+        WEBMIDI_OUTPUT.channels[1].sendRpnDecrement(param.value);
       });
 
       // Assert
@@ -193,7 +193,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter("pitchbendrange", options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnDecrement("pitchbendrange", options);
 
       // Assert
       expect(
@@ -212,7 +212,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter("pitchbendrange", options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnDecrement("pitchbendrange", options);
 
       // Assert
       expect(
@@ -228,7 +228,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter("pitchbendrange", options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnDecrement("pitchbendrange", options);
 
       // Assert
       expect(
@@ -239,7 +239,7 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].decrementRegisteredParameter("pitchbendrange")
+        WEBMIDI_OUTPUT.channels[1].sendRpnDecrement("pitchbendrange")
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
@@ -273,7 +273,7 @@ describe("OutputChannel Object", function() {
 
   });
 
-  describe("incrementRegisteredParameter()", function () {
+  describe("sendRpnIncrement()", function () {
 
     it("should throw error if registered parameter, specified by name, is invalid", function () {
 
@@ -286,7 +286,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter(value);
+          WEBMIDI_OUTPUT.channels[1].sendRpnIncrement(value);
         }).to.throw(TypeError);
       }
 
@@ -307,7 +307,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter(value);
+          WEBMIDI_OUTPUT.channels[1].sendRpnIncrement(value);
         }).to.throw();
       };
 
@@ -350,7 +350,7 @@ describe("OutputChannel Object", function() {
 
       // Act
       parameters.forEach(param => {
-        WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter(param.name);
+        WEBMIDI_OUTPUT.channels[1].sendRpnIncrement(param.name);
       });
 
       // Assert
@@ -405,7 +405,7 @@ describe("OutputChannel Object", function() {
 
       // Act
       parameters.forEach(param => {
-        WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter(param.value);
+        WEBMIDI_OUTPUT.channels[1].sendRpnIncrement(param.value);
       });
 
       // Assert
@@ -430,7 +430,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter("pitchbendrange", options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnIncrement("pitchbendrange", options);
 
       // Assert
       expect(
@@ -449,7 +449,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter("pitchbendrange", options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnIncrement("pitchbendrange", options);
 
       // Assert
       expect(
@@ -465,7 +465,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter("pitchbendrange", options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnIncrement("pitchbendrange", options);
 
       // Assert
       expect(
@@ -476,7 +476,7 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].incrementRegisteredParameter("pitchbendrange")
+        WEBMIDI_OUTPUT.channels[1].sendRpnIncrement("pitchbendrange")
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
@@ -633,7 +633,7 @@ describe("OutputChannel Object", function() {
 
   });
 
-  describe("resetAllControllers()", function () {
+  describe("sendResetAllControllers()", function () {
 
     it("should properly call 'sendChannelMode()' method", function () {
 
@@ -642,7 +642,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].resetAllControllers(options);
+      WEBMIDI_OUTPUT.channels[1].sendResetAllControllers(options);
 
       // Assert
       expect(spy.calledOnceWithExactly("resetallcontrollers", 0, options)).to.be.true;
@@ -656,7 +656,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].resetAllControllers();
+      WEBMIDI_OUTPUT.channels[1].sendResetAllControllers();
 
       // Assert
       function assert(deltaTime, message) {
@@ -669,7 +669,7 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].resetAllControllers()
+        WEBMIDI_OUTPUT.channels[1].sendResetAllControllers()
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
@@ -980,7 +980,6 @@ describe("OutputChannel Object", function() {
         128,
         NaN,
         null,
-        undefined,
         Infinity,
         -Infinity
       ];
@@ -1761,7 +1760,7 @@ describe("OutputChannel Object", function() {
 
   });
 
-  describe("setChannelAftertouch()", function () {
+  describe("sendChannelAftertouch()", function () {
 
     it("should send correct MIDI message when using float", function(done) {
 
@@ -1776,7 +1775,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      values.forEach(value => WEBMIDI_OUTPUT.channels[1].setChannelAftertouch(value));
+      values.forEach(value => WEBMIDI_OUTPUT.channels[1].sendChannelAftertouch(value));
 
 
       // Assert
@@ -1812,7 +1811,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setChannelAftertouch(value);
+          WEBMIDI_OUTPUT.channels[1].sendChannelAftertouch(value);
         }).to.throw(RangeError);
       }
 
@@ -1836,7 +1835,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setChannelAftertouch(value, options);
+          WEBMIDI_OUTPUT.channels[1].sendChannelAftertouch(value, options);
         }).to.throw(RangeError);
       }
 
@@ -1844,13 +1843,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setChannelAftertouch(1)
+        WEBMIDI_OUTPUT.channels[1].sendChannelAftertouch(1)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setKeyAftertouch()", function () {
+  describe("sendKeyAftertouch()", function () {
 
     it("should send correct MIDI message when using note number", function(done) {
 
@@ -1859,7 +1858,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      for (let i = 0; i <= 127; i++) WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(i, 0.5);
+      for (let i = 0; i <= 127; i++) WEBMIDI_OUTPUT.channels[1].sendKeyAftertouch(i, 0.5);
 
       // Assert
       function assert(deltaTime, message) {
@@ -1890,7 +1889,7 @@ describe("OutputChannel Object", function() {
 
       // Act
       items.forEach(item => {
-        WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(item.identifier, value);
+        WEBMIDI_OUTPUT.channels[1].sendKeyAftertouch(item.identifier, value);
       });
 
 
@@ -1925,7 +1924,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      for (let i = index; i <= max; i++) WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(i, 0.5);
+      for (let i = index; i <= max; i++) WEBMIDI_OUTPUT.channels[1].sendKeyAftertouch(i, 0.5);
 
       // Assert
       function assert(deltaTime, message) {
@@ -1964,7 +1963,7 @@ describe("OutputChannel Object", function() {
 
       // Act
       items.forEach(item => {
-        WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(item.identifier, value);
+        WEBMIDI_OUTPUT.channels[1].sendKeyAftertouch(item.identifier, value);
       });
 
 
@@ -2006,7 +2005,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(64, value);
+          WEBMIDI_OUTPUT.channels[1].sendKeyAftertouch(64, value);
         }).to.throw(RangeError);
       }
 
@@ -2030,7 +2029,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(64, value, options);
+          WEBMIDI_OUTPUT.channels[1].sendKeyAftertouch(64, value, options);
         }).to.throw(RangeError);
       }
 
@@ -2038,13 +2037,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setKeyAftertouch(64, 0.5)
+        WEBMIDI_OUTPUT.channels[1].sendKeyAftertouch(64, 0.5)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setLocalControl()", function () {
+  describe("sendLocalControl()", function () {
 
     it("should call 'sendChannelMode' method with correct parameter for 'true'", function () {
 
@@ -2053,7 +2052,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setLocalControl(true, options);
+      WEBMIDI_OUTPUT.channels[1].sendLocalControl(true, options);
 
       // Assert
       expect(spy.calledOnceWithExactly("localcontrol", 127, options)).to.be.true;
@@ -2067,7 +2066,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setLocalControl(false, options);
+      WEBMIDI_OUTPUT.channels[1].sendLocalControl(false, options);
 
       // Assert
       expect(spy.calledOnceWithExactly("localcontrol", 0, options)).to.be.true;
@@ -2081,7 +2080,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setLocalControl();
+      WEBMIDI_OUTPUT.channels[1].sendLocalControl();
 
       // Assert
       function assert(deltaTime, message) {
@@ -2094,23 +2093,23 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setLocalControl()
+        WEBMIDI_OUTPUT.channels[1].sendLocalControl()
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setMasterTuning()", function () {
+  describe("sendMasterTuning()", function () {
 
-    it("should call 'setRegisteredParameter' method for coarse and fine tuning", function () {
+    it("should call 'sendRpnValue' method for coarse and fine tuning", function () {
 
       // Arrange
-      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "setRegisteredParameter");
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendRpnValue");
       let options = {time: 0};
       let value = 12.5;
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setMasterTuning(value, options);
+      WEBMIDI_OUTPUT.channels[1].sendMasterTuning(value, options);
 
       // Assert
       expect(spy.calledWith("channelcoarsetuning")).to.be.true;
@@ -2133,7 +2132,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setMasterTuning(value);
+          WEBMIDI_OUTPUT.channels[1].sendMasterTuning(value);
         }).to.throw(RangeError);
       }
 
@@ -2167,7 +2166,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setMasterTuning(coarse + fine);
+      WEBMIDI_OUTPUT.channels[1].sendMasterTuning(coarse + fine);
 
       // Assert
       function assert(deltaTime, message) {
@@ -2186,24 +2185,24 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setMasterTuning(0)
+        WEBMIDI_OUTPUT.channels[1].sendMasterTuning(0)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setModulationRange()", function () {
+  describe("sendModulationRange()", function () {
 
-    it("should properly call 'setRegisteredParameter()' method", function () {
+    it("should properly call 'sendRpnValue()' method", function () {
 
       // Arrange
-      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "setRegisteredParameter");
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendRpnValue");
       let semitones = 8;
       let cents = 123;
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setModulationRange(semitones, cents, options);
+      WEBMIDI_OUTPUT.channels[1].sendModulationRange(semitones, cents, options);
 
       // Assert
       expect(
@@ -2231,7 +2230,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setModulationRange(semitones, cents);
+      WEBMIDI_OUTPUT.channels[1].sendModulationRange(semitones, cents);
 
       // Assert
       function assert(deltaTime, message) {
@@ -2265,7 +2264,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(semitone) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setModulationRange(semitone);
+          WEBMIDI_OUTPUT.channels[1].sendModulationRange(semitone);
         }).to.throw(RangeError);
       }
 
@@ -2286,7 +2285,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setModulationRange(64, value);
+          WEBMIDI_OUTPUT.channels[1].sendModulationRange(64, value);
         }).to.throw(RangeError);
       }
 
@@ -2294,13 +2293,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setModulationRange(8, 9)
+        WEBMIDI_OUTPUT.channels[1].sendModulationRange(8, 9)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setNonRegisteredParameter()", function () {
+  describe("sendNrpnValue()", function () {
 
     it("should properly call '_selectNonRegisteredParameter()' method", function () {
 
@@ -2311,7 +2310,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(parameter, data, options);
+      WEBMIDI_OUTPUT.channels[1].sendNrpnValue(parameter, data, options);
 
       // Assert
       expect(
@@ -2329,7 +2328,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(parameter, data, options);
+      WEBMIDI_OUTPUT.channels[1].sendNrpnValue(parameter, data, options);
 
       // Assert
       expect(
@@ -2347,7 +2346,7 @@ describe("OutputChannel Object", function() {
       let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "_deselectNonRegisteredParameter");
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(parameter, data, options);
+      WEBMIDI_OUTPUT.channels[1].sendNrpnValue(parameter, data, options);
 
       // Assert
       expect(
@@ -2375,7 +2374,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(parameter, data);
+      WEBMIDI_OUTPUT.channels[1].sendNrpnValue(parameter, data);
 
       // Assert
       function assert(deltaTime, message) {
@@ -2410,7 +2409,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(parameter, data);
+      WEBMIDI_OUTPUT.channels[1].sendNrpnValue(parameter, data);
 
       // Assert
       function assert(deltaTime, message) {
@@ -2446,7 +2445,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(value, data);
+          WEBMIDI_OUTPUT.channels[1].sendNrpnValue(value, data);
         }).to.throw();
       }
 
@@ -2471,7 +2470,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(nrpn, value);
+          WEBMIDI_OUTPUT.channels[1].sendNrpnValue(nrpn, value);
         }).to.throw();
       }
 
@@ -2484,14 +2483,14 @@ describe("OutputChannel Object", function() {
 
       // Assert
       expect(
-        WEBMIDI_OUTPUT.channels[1].setNonRegisteredParameter(nrpn, 56)
+        WEBMIDI_OUTPUT.channels[1].sendNrpnValue(nrpn, 56)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
 
     });
 
   });
 
-  describe("setOmniMode()", function () {
+  describe("sendOmniMode()", function () {
 
     it("should call 'sendChannelMode()' method with correct parameter for 'true'", function () {
 
@@ -2500,7 +2499,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setOmniMode(true, options);
+      WEBMIDI_OUTPUT.channels[1].sendOmniMode(true, options);
 
       // Assert
       expect(spy.calledOnceWithExactly("omnimodeon", 0, options)).to.be.true;
@@ -2514,7 +2513,7 @@ describe("OutputChannel Object", function() {
       let options = {};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setOmniMode(false, options);
+      WEBMIDI_OUTPUT.channels[1].sendOmniMode(false, options);
 
       // Assert
       expect(spy.calledOnceWithExactly("omnimodeoff", 0, options)).to.be.true;
@@ -2528,7 +2527,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setOmniMode();
+      WEBMIDI_OUTPUT.channels[1].sendOmniMode();
 
       // Assert
       function assert(deltaTime, message) {
@@ -2541,13 +2540,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setOmniMode(true)
+        WEBMIDI_OUTPUT.channels[1].sendOmniMode(true)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setPitchBend()", function () {
+  describe("sendPitchBend()", function () {
 
     it("should send correct MIDI message when using float (-1 to 1)", function(done) {
 
@@ -2562,7 +2561,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      values.forEach(value => WEBMIDI_OUTPUT.channels[1].setPitchBend(value));
+      values.forEach(value => WEBMIDI_OUTPUT.channels[1].sendPitchBend(value));
 
       // Assert
       function assert(deltaTime, message) {
@@ -2600,7 +2599,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      values.forEach(value => WEBMIDI_OUTPUT.channels[1].setPitchBend(value, options));
+      values.forEach(value => WEBMIDI_OUTPUT.channels[1].sendPitchBend(value, options));
 
       // Assert
       function assert(deltaTime, message) {
@@ -2631,7 +2630,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setPitchBend(value);
+          WEBMIDI_OUTPUT.channels[1].sendPitchBend(value);
         }).to.throw();
       }
 
@@ -2660,7 +2659,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setPitchBend(value, options);
+          WEBMIDI_OUTPUT.channels[1].sendPitchBend(value, options);
         }).to.throw();
       }
 
@@ -2668,24 +2667,24 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setPitchBend(0)
+        WEBMIDI_OUTPUT.channels[1].sendPitchBend(0)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setPitchBendRange()", function () {
+  describe("sendPitchBendRange()", function () {
 
-    it("should call 'setRegisteredParameter()' method", function () {
+    it("should call 'sendRpnValue()' method", function () {
 
       // Arrange
-      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "setRegisteredParameter");
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendRpnValue");
       let semitones = 8;
       let cents = 123;
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setPitchBendRange(semitones, cents, options);
+      WEBMIDI_OUTPUT.channels[1].sendPitchBendRange(semitones, cents, options);
 
       // Assert
       expect(
@@ -2713,7 +2712,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setPitchBendRange(semitones, cents);
+      WEBMIDI_OUTPUT.channels[1].sendPitchBendRange(semitones, cents);
 
       // Assert
       function assert(deltaTime, message) {
@@ -2747,7 +2746,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setPitchBendRange(64, value);
+          WEBMIDI_OUTPUT.channels[1].sendPitchBendRange(64, value);
         }).to.throw(RangeError);
       }
 
@@ -2770,7 +2769,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setPitchBendRange(64, value);
+          WEBMIDI_OUTPUT.channels[1].sendPitchBendRange(64, value);
         }).to.throw(RangeError);
       }
 
@@ -2778,13 +2777,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setPitchBendRange(8, 9)
+        WEBMIDI_OUTPUT.channels[1].sendPitchBendRange(8, 9)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setPolyphonicMode()", function () {
+  describe("sendPolyphonicMode()", function () {
 
     it("should call 'sendChannelMode' method with correct parameter for 'mono'", function () {
 
@@ -2793,7 +2792,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setPolyphonicMode("mono", options);
+      WEBMIDI_OUTPUT.channels[1].sendPolyphonicMode("mono", options);
 
       // Assert
       expect(spy.calledOnceWithExactly("monomodeon", 0, options)).to.be.true;
@@ -2807,7 +2806,7 @@ describe("OutputChannel Object", function() {
       let options = {};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setPolyphonicMode("poly", options);
+      WEBMIDI_OUTPUT.channels[1].sendPolyphonicMode("poly", options);
 
       // Assert
       expect(spy.calledOnceWithExactly("polymodeon", 0, options)).to.be.true;
@@ -2821,7 +2820,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setPolyphonicMode("mono");
+      WEBMIDI_OUTPUT.channels[1].sendPolyphonicMode("mono");
 
       // Assert
       function assert(deltaTime, message) {
@@ -2839,7 +2838,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setPolyphonicMode("poly");
+      WEBMIDI_OUTPUT.channels[1].sendPolyphonicMode("poly");
 
       // Assert
       function assert(deltaTime, message) {
@@ -2852,13 +2851,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setPolyphonicMode("mono")
+        WEBMIDI_OUTPUT.channels[1].sendPolyphonicMode("mono")
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setProgram()", function () {
+  describe("sendProgramChange()", function () {
 
     it("should send correct MIDI message", function(done) {
 
@@ -2867,8 +2866,8 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      for (let i = 1; i <= 128; i++) {
-        WEBMIDI_OUTPUT.channels[1].setProgram(i);
+      for (let i = 0; i <= 127; i++) {
+        WEBMIDI_OUTPUT.channels[1].sendProgramChange(i);
       }
 
       // Assert
@@ -2898,7 +2897,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setProgram(value);
+          WEBMIDI_OUTPUT.channels[1].sendProgramChange(value);
         }).to.throw(RangeError);
       }
 
@@ -2906,13 +2905,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setProgram(1)
+        WEBMIDI_OUTPUT.channels[1].sendProgramChange(1)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setRegisteredParameter()", function () {
+  describe("sendRpnValue()", function () {
 
     it("should properly call '_selectRegisteredParameter()' method", function () {
 
@@ -2923,7 +2922,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data, options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnValue(rpn, data, options);
 
       // Assert
       expect(
@@ -2941,7 +2940,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data, options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnValue(rpn, data, options);
 
       // Assert
       expect(
@@ -2959,7 +2958,7 @@ describe("OutputChannel Object", function() {
       let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "_deselectRegisteredParameter");
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data, options);
+      WEBMIDI_OUTPUT.channels[1].sendRpnValue(rpn, data, options);
 
       // Assert
       expect(
@@ -2988,7 +2987,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data);
+      WEBMIDI_OUTPUT.channels[1].sendRpnValue(rpn, data);
 
       // Assert
       function assert(deltaTime, message) {
@@ -3024,7 +3023,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data);
+      WEBMIDI_OUTPUT.channels[1].sendRpnValue(rpn, data);
 
       // Assert
       function assert(deltaTime, message) {
@@ -3059,7 +3058,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, data);
+      WEBMIDI_OUTPUT.channels[1].sendRpnValue(rpn, data);
 
       // Assert
       function assert(deltaTime, message) {
@@ -3095,7 +3094,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(value, data);
+          WEBMIDI_OUTPUT.channels[1].sendRpnValue(value, data);
         }).to.throw();
       }
 
@@ -3120,7 +3119,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(rpn, value);
+          WEBMIDI_OUTPUT.channels[1].sendRpnValue(rpn, value);
         }).to.throw();
       }
 
@@ -3133,28 +3132,28 @@ describe("OutputChannel Object", function() {
 
       // Assert
       expect(
-        WEBMIDI_OUTPUT.channels[1].setRegisteredParameter(nrpn, 56)
+        WEBMIDI_OUTPUT.channels[1].sendRpnValue(nrpn, 56)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
 
     });
 
   });
 
-  describe("setTuningBank()", function () {
+  describe("sendTuningBank()", function () {
 
-    it("should call 'setRegisteredParameter()' method", function () {
+    it("should call 'sendRpnValue()' method", function () {
 
       // Arrange
-      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "setRegisteredParameter");
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendRpnValue");
       let value = 8;
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setTuningBank(value, options);
+      WEBMIDI_OUTPUT.channels[1].sendTuningBank(value, options);
 
       // Assert
       expect(
-        spy.calledOnceWith("tuningbank", value - 1, options)
+        spy.calledOnceWith("tuningbank", value, options)
       ).to.be.true;
 
     });
@@ -3167,7 +3166,7 @@ describe("OutputChannel Object", function() {
       let expected = [
         [ 176, 101, 0 ],
         [ 176, 100, 4 ],
-        [ 176, 6, value - 1 ],
+        [ 176, 6, value ],
         [ 176, 101, 127 ],
         [ 176, 100, 127 ]
       ];
@@ -3176,7 +3175,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setTuningBank(value);
+      WEBMIDI_OUTPUT.channels[1].sendTuningBank(value);
 
       // Assert
       function assert(deltaTime, message) {
@@ -3211,7 +3210,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setTuningBank(value);
+          WEBMIDI_OUTPUT.channels[1].sendTuningBank(value);
         }).to.throw(RangeError);
       }
 
@@ -3219,27 +3218,27 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setTuningBank(8)
+        WEBMIDI_OUTPUT.channels[1].sendTuningBank(8)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("setTuningProgram()", function () {
+  describe("sendTuningProgram()", function () {
 
-    it("should call 'setRegisteredParameter()' method", function () {
+    it("should call 'sendRpnValue()' method", function () {
 
       // Arrange
-      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "setRegisteredParameter");
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendRpnValue");
       let value = 8;
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setTuningProgram(value, options);
+      WEBMIDI_OUTPUT.channels[1].sendTuningProgram(value, options);
 
       // Assert
       expect(
-        spy.calledOnceWith("tuningprogram", value - 1, options)
+        spy.calledOnceWith("tuningprogram", value, options)
       ).to.be.true;
 
     });
@@ -3251,7 +3250,7 @@ describe("OutputChannel Object", function() {
       let expected = [
         [ 176, 101, 0 ],
         [ 176, 100, 3 ],
-        [ 176, 6, value - 1 ],
+        [ 176, 6, value],
         [ 176, 101, 127 ],
         [ 176, 100, 127 ]
       ];
@@ -3259,7 +3258,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].setTuningProgram(value);
+      WEBMIDI_OUTPUT.channels[1].sendTuningProgram(value);
 
       // Assert
       function assert(deltaTime, message) {
@@ -3293,7 +3292,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(value) {
         expect(() => {
-          WEBMIDI_OUTPUT.channels[1].setTuningProgram(value);
+          WEBMIDI_OUTPUT.channels[1].sendTuningProgram(value);
         }).to.throw(RangeError);
       }
 
@@ -3301,7 +3300,7 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].setTuningProgram(8)
+        WEBMIDI_OUTPUT.channels[1].sendTuningProgram(8)
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
@@ -3354,7 +3353,7 @@ describe("OutputChannel Object", function() {
 
   });
 
-  describe("turnNotesOff()", function () {
+  describe("sendAllNotesOff()", function () {
 
     it("should properly call 'sendChannelMode()' method", function () {
 
@@ -3363,7 +3362,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].turnNotesOff(options);
+      WEBMIDI_OUTPUT.channels[1].sendAllNotesOff(options);
 
       // Assert
       expect(spy.calledOnceWithExactly("allnotesoff", 0, options)).to.be.true;
@@ -3377,7 +3376,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].turnNotesOff();
+      WEBMIDI_OUTPUT.channels[1].sendAllNotesOff();
 
       // Assert
       function assert(deltaTime, message) {
@@ -3390,13 +3389,13 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].turnNotesOff()
+        WEBMIDI_OUTPUT.channels[1].sendAllNotesOff()
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
   });
 
-  describe("turnSoundOff()", function () {
+  describe("sendAllSoundOff()", function () {
 
     it("should properly call 'sendChannelMode()' method", function () {
 
@@ -3405,7 +3404,7 @@ describe("OutputChannel Object", function() {
       let options = {time: 0};
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].turnSoundOff(options);
+      WEBMIDI_OUTPUT.channels[1].sendAllSoundOff(options);
 
       // Assert
       expect(spy.calledOnceWithExactly("allsoundoff", 0, options)).to.be.true;
@@ -3419,7 +3418,7 @@ describe("OutputChannel Object", function() {
       VIRTUAL_OUTPUT.on("message", assert);
 
       // Act
-      WEBMIDI_OUTPUT.channels[1].turnSoundOff();
+      WEBMIDI_OUTPUT.channels[1].sendAllSoundOff();
 
       // Assert
       function assert(deltaTime, message) {
@@ -3432,7 +3431,7 @@ describe("OutputChannel Object", function() {
 
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
-        WEBMIDI_OUTPUT.channels[1].turnSoundOff()
+        WEBMIDI_OUTPUT.channels[1].sendAllSoundOff()
       ).to.equal(WEBMIDI_OUTPUT.channels[1]);
     });
 
