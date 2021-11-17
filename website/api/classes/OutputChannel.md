@@ -918,7 +918,7 @@ parameter.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
+    |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to stop. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a [`Note`](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> ||If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
@@ -942,22 +942,21 @@ Returns the `OutputChannel` object so methods can be chained.
 Sends a **note on** message for the specified note(s) on the channel. The first parameter is
 the note. It can be a single value or an array of the following valid values:
 
- - A [Note](Note) object
+ - A [`Note`](Note) object
  - A MIDI note number (integer between `0` and `127`)
- - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+ - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
 
- When passing a [Note](Note) object or a note name, the `octaveOffset` will be applied. This is
- not the case when using a note number number. In this case, we assume you know exactly which
+ When passing a [`Note`](Note)object or a note name, the `octaveOffset` will be applied.
+ This is not the case when using a note number. In this case, we assume you know exactly which
  MIDI note number should be sent out.
 
-
- The execution of the **note on** command can be delayed by using the `time` property of the
+The execution of the **note on** command can be delayed by using the `time` property of the
 `options` parameter.
 
-When using [Note](Note) objects, the attack velocity defined in the [Note](Note) objects has
-precedence over the one specified via the method's `options` parameter. Also, the `duration` is
-ignored. If you want to also send a **note off** message, use the
-[playNote()](Output#playNote) method instead.
+When using [`Note`](Note) objects, the attack velocity defined in the
+[`Note`](Note) objects has precedence over the one specified via the method's `options`
+parameter. Also, the `duration` is ignored. If you want to also send a **note off** message,
+use the [`playNote()`](#playNote) method instead.
 
 **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
