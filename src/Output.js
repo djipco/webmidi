@@ -733,9 +733,10 @@ export class Output extends EventEmitter {
    *
    * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
    * an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a
-   * note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using
-   * a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI
-   * note number `0`) and the highest note is `G9` (MIDI note number `127`).
+   * [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the
+   * previous types. When using a note identifier, octave range must be between `-1` and `9`. The
+   * lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number
+   * `127`).
    *
    * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
    * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
@@ -1463,16 +1464,16 @@ export class Output extends EventEmitter {
    * Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
    * send can be specified numerically or by using one of the following common names:
    *
-   *   | Type                |Number| Shortcut Method                                              |
-   *   |---------------------|------|--------------------------------------------------------------|
-   *   |`allsoundoff`        |120   | [`sendAllSoundOff()`]{@link #sendAllSoundOff}                |
-   *   |`resetallcontrollers`|121   | [`sendResetAllControllers()`]{@link #sendResetAllControllers}|
-   *   |`localcontrol`       |122   | [`sendLocalControl()`]{@link #sendLocalControl}              |
-   *   |`allnotesoff`        |123   | [`sendAllNotesOff()`]{@link #sendAllNotesOff}                |
-   *   |`omnimodeoff`        |124   | [`sendOmniMode(false)`]{@link #sendOmniMode}                 |
-   *   |`omnimodeon`         |125   | [`sendOmniMode(true)`]{@link #sendOmniMode}                  |
-   *   |`monomodeon`         |126   | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode}    |
-   *   |`polymodeon`         |127   | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode}    |
+   * |  Type                |Number| Shortcut Method                                               |
+   * | ---------------------|------|-------------------------------------------------------------- |
+   * | `allsoundoff`        | 120  | [`sendAllSoundOff()`]{@link #sendAllSoundOff}                 |
+   * | `resetallcontrollers`| 121  | [`sendResetAllControllers()`]{@link #sendResetAllControllers} |
+   * | `localcontrol`       | 122  | [`sendLocalControl()`]{@link #sendLocalControl}               |
+   * | `allnotesoff`        | 123  | [`sendAllNotesOff()`]{@link #sendAllNotesOff}                 |
+   * | `omnimodeoff`        | 124  | [`sendOmniMode(false)`]{@link #sendOmniMode}                  |
+   * | `omnimodeon`         | 125  | [`sendOmniMode(true)`]{@link #sendOmniMode}                   |
+   * | `monomodeon`         | 126  | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode}     |
+   * | `polymodeon`         | 127  | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode}     |
    *
    * Note: as you can see above, to make it easier, all channel mode messages also have a matching
    * helper method.

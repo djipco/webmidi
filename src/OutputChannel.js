@@ -4,14 +4,16 @@ import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";
 
 /**
- * The `OutputChannel` class represents a single output channel (1-16) from an output device. This
- * object is derived from the host's MIDI subsystem and cannot be instantiated directly.
+ * The `OutputChannel` class represents a single output MIDI channel. `OutputChannel` objects are
+ * provided by an [`Output`](Output) port which, itself, is made available by a device. The
+ * `OutputChannel` object is derived from the host's MIDI subsystem and should not be instantiated
+ * directly.
  *
  * All 16 `OutputChannel` objects can be found inside the parent output's
- * [channels]{@link Output#channels} property.
+ * [`channels`]{@link Output#channels} property.
  *
- * @param {Output} output The output this channel belongs to
- * @param {number} number The MIDI channel number (1-16)
+ * @param {Output} output The [`Output`](Output) this channel belongs to.
+ * @param {number} number The MIDI channel number (`1` - `16`).
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -59,26 +61,28 @@ export class OutputChannel extends EventEmitter {
 
   /**
    * Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-   * sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
-   * [Uint8Array]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
-   * object or a `Message` object.
+   * sent immediately. The message should be an array of 8-bit unsigned integers (`0` - `225`),
+   * a
+   * [`Uint8Array`]{@link https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array}
+   * object or a [`Message`](Message) object.
    *
    * It is usually not necessary to use this method directly as you can use one of the simpler
-   * helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
+   * helper methods such as [`playNote()`](#playNote), [`stopNote()`](#stopNote),
+   * [`sendControlChange()`](#sendControlChange), etc.
    *
    * Details on the format of MIDI messages are available in the summary of
    * [MIDI messages]{@link https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message}
    * from the MIDI Manufacturers Association.
    *
-   * @param message {number[]|Uint8Array|Message} An array of 8bit unsigned integers, a `Uint8Array`
-   * object (not available in Node.js) containing the message bytes or a `Message` object.
+   * @param message {number[]|Uint8Array|Message} A `Message` object, an array of 8-bit unsigned
+   * integers or a `Uint8Array` object (not available in Node.js) containing the message bytes.
    *
    * @param {object} [options={}]
    *
-   * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
+   * @param {number|string} [options.time=0] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a positive
    * number
-   * ([DOMHighResTimeStamp]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
    * the operation will be scheduled for that point time. If `time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
    *
@@ -96,35 +100,34 @@ export class OutputChannel extends EventEmitter {
   /**
    * Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-specific
    * aftertouch. For a channel-wide aftertouch message, use
-   * [sendChannelAftertouch()]{@link Output#sendChannelAftertouch}.
+   * [`sendChannelAftertouch()`]{@link #sendChannelAftertouch}.
    *
-   * The key can be a single value or an array of the following valid values:
+   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
+   * an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a
+   * [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the
+   * previous types. When using a note identifier, octave range must be between `-1` and `9`. The
+   * lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number
+   * `127`).
    *
-   *  - A MIDI note number (integer between `0` and `127`)
-   *  - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
+   * When using a note identifier, the octave value will be offset by the local
+   * [`octaveOffset`](#octaveOffset) and by
+   * [`Output.octaveOffset`](Output#octaveOffset) and [`WebMidi.octaveOffset`](WebMidi#octaveOffset)
+   * (if those values are not `0`). When using a key number, `octaveOffset` values are ignored.
    *
-   * @param target {number|string|number[]|string[]} The key(s) for which you are sending an
-   * aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-   * identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.
-   *
-   * When using a note identifier, the octave value will be offset by the combined value of
-   * `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values
-   * are not `0`). When using a key number, octaveOffset values are ignored.
-   *
-   * @param [pressure=0.5] {number} The pressure level (between 0 and 1). An invalid pressure value
-   * will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the
-   * pressure is defined by using an integer between 0 and 127.
+   * @param [pressure=0.5] {number} The pressure level (between `0` and `1`). An invalid pressure
+   * value will silently trigger the default behaviour. If the `rawValue` option is set to `true`,
+   * the pressure is defined by using an integer between `0` and `127`.
    *
    * @param {object} [options={}]
    *
    * @param {boolean} [options.useRawValue=false] A boolean indicating whether the value should be
-   * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
+   * considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @return {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    *
@@ -178,100 +181,99 @@ export class OutputChannel extends EventEmitter {
 
   /**
    * Sends a MIDI **control change** message to the channel at the scheduled time. The control
-   * change message to send can be specified numerically (0 to 127) or by using one of the following
-   * common names:
+   * change message to send can be specified numerically (`0` to `127`) or by using one of the
+   * following common names:
    *
-   *  * `bankselectcoarse` (#0)
-   *  * `modulationwheelcoarse` (#1)
-   *  * `breathcontrollercoarse` (#2)
-   *  * `footcontrollercoarse` (#4)
-   *  * `portamentotimecoarse` (#5)
-   *  * `dataentrycoarse` (#6)
-   *  * `volumecoarse` (#7)
-   *  * `balancecoarse` (#8)
-   *  * `pancoarse` (#10)
-   *  * `expressioncoarse` (#11)
-   *  * `effectcontrol1coarse` (#12)
-   *  * `effectcontrol2coarse` (#13)
-   *  * `generalpurposeslider1` (#16)
-   *  * `generalpurposeslider2` (#17)
-   *  * `generalpurposeslider3` (#18)
-   *  * `generalpurposeslider4` (#19)
-   *  * `bankselectfine` (#32)
-   *  * `modulationwheelfine` (#33)
-   *  * `breathcontrollerfine` (#34)
-   *  * `footcontrollerfine` (#36)
-   *  * `portamentotimefine` (#37)
-   *  * `dataentryfine` (#38)
-   *  * `volumefine` (#39)
-   *  * `balancefine` (#40)
-   *  * `panfine` (#42)
-   *  * `expressionfine` (#43)
-   *  * `effectcontrol1fine` (#44)
-   *  * `effectcontrol2fine` (#45)
-   *  * `holdpedal` (#64)
-   *  * `portamento` (#65)
-   *  * `sustenutopedal` (#66)
-   *  * `softpedal` (#67)
-   *  * `legatopedal` (#68)
-   *  * `hold2pedal` (#69)
-   *  * `soundvariation` (#70)
-   *  * `resonance` (#71)
-   *  * `soundreleasetime` (#72)
-   *  * `soundattacktime` (#73)
-   *  * `brightness` (#74)
-   *  * `soundcontrol6` (#75)
-   *  * `soundcontrol7` (#76)
-   *  * `soundcontrol8` (#77)
-   *  * `soundcontrol9` (#78)
-   *  * `soundcontrol10` (#79)
-   *  * `generalpurposebutton1` (#80)
-   *  * `generalpurposebutton2` (#81)
-   *  * `generalpurposebutton3` (#82)
-   *  * `generalpurposebutton4` (#83)
-   *  * `reverblevel` (#91)
-   *  * `tremololevel` (#92)
-   *  * `choruslevel` (#93)
-   *  * `celestelevel` (#94)
-   *  * `phaserlevel` (#95)
-   *  * `databuttonincrement` (#96)
-   *  * `databuttondecrement` (#97)
-   *  * `nonregisteredparametercoarse` (#98)
-   *  * `nonregisteredparameterfine` (#99)
-   *  * `registeredparametercoarse` (#100)
-   *  * `registeredparameterfine` (#101)
+   * | Number | Name                          |
+   * |--------|-------------------------------|
+   * | 0      |`bankselectcoarse`             |
+   * | 1      |`modulationwheelcoarse`        |
+   * | 2      |`breathcontrollercoarse`       |
+   * | 4      |`footcontrollercoarse`         |
+   * | 5      |`portamentotimecoarse`         |
+   * | 6      |`dataentrycoarse`              |
+   * | 7      |`volumecoarse`                 |
+   * | 8      |`balancecoarse`                |
+   * | 10     |`pancoarse`                    |
+   * | 11     |`expressioncoarse`             |
+   * | 12     |`effectcontrol1coarse`         |
+   * | 13     |`effectcontrol2coarse`         |
+   * | 18     |`generalpurposeslider3`        |
+   * | 19     |`generalpurposeslider4`        |
+   * | 32     |`bankselectfine`               |
+   * | 33     |`modulationwheelfine`          |
+   * | 34     |`breathcontrollerfine`         |
+   * | 36     |`footcontrollerfine`           |
+   * | 37     |`portamentotimefine`           |
+   * | 38     |`dataentryfine`                |
+   * | 39     |`volumefine`                   |
+   * | 40     |`balancefine`                  |
+   * | 42     |`panfine`                      |
+   * | 43     |`expressionfine`               |
+   * | 44     |`effectcontrol1fine`           |
+   * | 45     |`effectcontrol2fine`           |
+   * | 64     |`holdpedal`                    |
+   * | 65     |`portamento`                   |
+   * | 66     |`sustenutopedal`               |
+   * | 67     |`softpedal`                    |
+   * | 68     |`legatopedal`                  |
+   * | 69     |`hold2pedal`                   |
+   * | 70     |`soundvariation`               |
+   * | 71     |`resonance`                    |
+   * | 72     |`soundreleasetime`             |
+   * | 73     |`soundattacktime`              |
+   * | 74     |`brightness`                   |
+   * | 75     |`soundcontrol6`                |
+   * | 76     |`soundcontrol7`                |
+   * | 77     |`soundcontrol8`                |
+   * | 78     |`soundcontrol9`                |
+   * | 79     |`soundcontrol10`               |
+   * | 80     |`generalpurposebutton1`        |
+   * | 81     |`generalpurposebutton2`        |
+   * | 82     |`generalpurposebutton3`        |
+   * | 83     |`generalpurposebutton4`        |
+   * | 91     |`reverblevel`                  |
+   * | 92     |`tremololevel`                 |
+   * | 93     |`choruslevel`                  |
+   * | 94     |`celestelevel`                 |
+   * | 95     |`phaserlevel`                  |
+   * | 96     |`databuttonincrement`          |
+   * | 97     |`databuttondecrement`          |
+   * | 98     |`nonregisteredparametercoarse` |
+   * | 99     |`nonregisteredparameterfine`   |
+   * | 100    |`registeredparametercoarse`    |
+   * | 101    |`registeredparameterfine`      |
+   * | 120    |`allsoundoff`                  |
+   * | 121    |`resetallcontrollers`          |
+   * | 122    |`localcontrol`                 |
+   * | 123    |`allnotesoff`                  |
+   * | 124    |`omnimodeoff`                  |
+   * | 125    |`omnimodeon`                   |
+   * | 126    |`monomodeon`                   |
+   * | 127    |`polymodeon`                   |
    *
-   *  * `allsoundoff` (#120)
-   *  * `resetallcontrollers` (#121)
-   *  * `localcontrol` (#122)
-   *  * `allnotesoff` (#123)
-   *  * `omnimodeoff` (#124)
-   *  * `omnimodeon` (#125)
-   *  * `monomodeon` (#126)
-   *  * `polymodeon` (#127)
-   *
-   * As you can see above, not all control change message have a matching common name. This
-   * does not mean you cannot use the others. It simply means you will need to use their number
-   * (0-127) instead of their name. While you can still use them, numbers 120 to 127 are usually
-   * reserved for *channel mode* messages. See
-   * [sendChannelMode()]{@link OutputChannel#sendChannelMode} method for more info.
+   * As you can see above, not all control change message have a matching name. This does not mean
+   * you cannot use the others. It simply means you will need to use their number
+   * (`0` to `127`) instead of their name. While you can still use them, numbers `120` to `127` are
+   * usually reserved for *channel mode* messages. See
+   * [`sendChannelMode()`]{@link OutputChannel#sendChannelMode} method for more info.
    *
    * To view a detailed list of all available **control change** messages, please consult "Table 3 -
    * Control Change Messages" from the [MIDI Messages](
    * https://www.midi.org/specifications/item/table-3-control-change-messages-data-bytes-2)
    * specification.
    *
-   * Note: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
-   * (modulationwheelcoarse) can be accompanied by a second control change message for
-   * modulationwheelfine to achieve a greater level of precision. if you want to specify both MSB
-   * and LSB for messages between 0 and 31, you can do so by passing a 2-value array as the second
-   * parameter.
+   * **Note**: messages #0-31 (MSB) are paired with messages #32-63 (LSB). For example, message #1
+   * (`modulationwheelcoarse`) can be accompanied by a second control change message for
+   * `modulationwheelfine` to achieve a greater level of precision. if you want to specify both MSB
+   * and LSB for messages between `0` and `31`, you can do so by passing a 2-value array as the
+   * second parameter.
    *
-   * @param {number|string} controller The MIDI controller name or number (0-127).
+   * @param {number|string} controller The MIDI controller name or number (`0` - `127`).
    *
    * @param {number|number[]} value The value to send (0-127). You can also use a two-position array
    * for controllers 0 to 31. In this scenario, the first value will be sent as usual and the second
-   * calue will be sent to the matching LSB controller (which is obtained by adding 32 to the first
+   * value will be sent to the matching LSB controller (which is obtained by adding 32 to the first
    * controller)
    *
    * @param {object} [options={}]
@@ -279,8 +281,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} Controller numbers must be between 0 and 127.
    * @throws {RangeError} Invalid controller name.
@@ -355,8 +357,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -393,8 +395,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -415,8 +417,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -440,8 +442,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -463,8 +465,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -524,8 +526,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws TypeError The specified registered parameter is invalid.
    *
@@ -593,8 +595,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws TypeError The specified registered parameter is invalid.
    *
@@ -637,37 +639,38 @@ export class OutputChannel extends EventEmitter {
    * Plays a note or an array of notes on the channel. The first parameter is the note to play. It
    * can be a single value or an array of the following valid values:
    *
-   *  - A {@link Note} object
+   *  - A [`Note`]{@link Note} object
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
    *
-   * The `playNote()` method sends a **note on** MIDI message for all specified notes on all
-   * specified channels. If a `duration` is set in the `options` parameter or in the {@link Note}
-   * object's [duration]{@link Note#duration} property, it will also schedule a **note off** message
+   * The `playNote()` method sends a **note on** MIDI message for all specified notes. If a
+   * `duration` is set in the `options` parameter or in the [`Note`]{@link Note} object's
+   * [`duration`]{@link Note#duration} property, it will also schedule a **note off** message
    * to end the note after said duration. If no `duration` is set, the note will simply play until
-   * a matching **note off** message is sent with [stopNote()]{@link OutputChannel#stopNote} or
-   * [sendNoteOff()]{@link OutputChannel#sendNoteOff}.
+   * a matching **note off** message is sent with [`stopNote()`]{@link OutputChannel#stopNote} or
+   * [`sendNoteOff()`]{@link OutputChannel#sendNoteOff}.
    *
    *  The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * When using {@link Note} objects, the durations and velocities defined in the {@link Note}
-   * objects have precedence over the ones specified via the method's `options` parameter.
+   * When using [`Note`]{@link Note} objects, the durations and velocities defined in the
+   * [`Note`]{@link Note} objects have precedence over the ones specified via the method's `options`
+   * parameter.
    *
-   * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
+   * **Note**: per the MIDI standard, a **note on** message with an attack velocity of `0` is
    * functionally equivalent to a **note off** message.
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
-   * note is G9 (MIDI note number 127).
+   * specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`,
+   * `F-1`, `Db7`), a [`Note`]{@link Note} object or an array of the previous types. When using a
+   * note identifier, the octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI
+   * note number `0`) and the highest note is `G9` (MIDI note number `127`).
    *
    * @param {object} [options={}]
    *
-   * @param {number} [options.duration] A positive number larger than 0 representing the number of
-   * milliseconds to wait before sending a **note off** message. If invalid or left undefined, only
-   * a **note on** message will be sent.
+   * @param {number} [options.duration] A positive decimal number larger than `0` representing the
+   * number of milliseconds to wait before sending a **note off** message. If invalid or left
+   * undefined, only a **note on** message will be sent.
    *
    * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
    * `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity
@@ -690,8 +693,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -723,18 +726,19 @@ export class OutputChannel extends EventEmitter {
    *
    *  - A MIDI note number (integer between `0` and `127`)
    *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
-   *  - A {@link Note} object
+   *  - A [`Note`]{@link Note} object
    *
-   *  The execution of the **note off** command can be delayed by using the `time` property of the
+   * The execution of the **note off** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * When using {@link Note} objects, the release velocity defined in the {@link Note} objects has
-   * precedence over the one specified via the method's `options` parameter.
+   * When using [`Note`]{@link Note} objects, the release velocity defined in the
+   * [`Note`]{@link Note} objects has precedence over the one specified via the method's `options`
+   * parameter.
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to stop. The notes can be
-   * specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types. When using a note name, octave range
-   * must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
+   * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
+   * [`Note`]{@link Note} object or an array of the previous types. When using a note name, octave
+   * range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest
    * note is G9 (MIDI note number 127).
    *
    * @param {object} [options={}]
@@ -742,8 +746,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note
    * (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have
@@ -817,6 +821,43 @@ export class OutputChannel extends EventEmitter {
    * @param options
    * @returns {Output}
    */
+
+  /**
+   * Sends a **note off** message for the specified MIDI note number. The first parameter is the
+   * note to stop. It can be a single value or an array of the following valid values:
+   *
+   *  - A MIDI note number (integer between `0` and `127`)
+   *  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A [`Note`](Note) object
+   *
+   * The execution of the **note off** command can be delayed by using the `time` property of the
+   * `options` parameter.
+   *
+   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) to stop. The notes can be
+   * specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`,
+   * `Db7`) or an array of the previous types. When using a note identifier, octave range must be
+   * between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is
+   * `G9` (MIDI note number `127`).
+   *
+   * @param {Object} [options={}]
+   *
+   * @param {boolean} [options.rawValue=false] Controls whether the release velocity is set using
+   * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
+   * default).
+   *
+   * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
+   * followed by a number, the message will be delayed by that many milliseconds. If the value is a
+   * number
+   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
+   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
+   * the operation will be carried out as soon as possible.
+   *
+   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
+   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
+   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @returns {Output} Returns the `Output` object so methods can be chained.
+   */
   stopNote(note, options = {}) {
     return this.sendNoteOff(note, options);
   }
@@ -825,37 +866,36 @@ export class OutputChannel extends EventEmitter {
    * Sends a **note on** message for the specified note(s) on the channel. The first parameter is
    * the note. It can be a single value or an array of the following valid values:
    *
-   *  - A {@link Note} object
+   *  - A [`Note`]{@link Note} object
    *  - A MIDI note number (integer between `0` and `127`)
-   *  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
+   *  - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
    *
-   *  When passing a {@link Note} object or a note name, the `octaveOffset` will be applied. This is
-   *  not the case when using a note number number. In this case, we assume you know exactly which
+   *  When passing a [`Note`]{@link Note}object or a note name, the `octaveOffset` will be applied.
+   *  This is not the case when using a note number. In this case, we assume you know exactly which
    *  MIDI note number should be sent out.
    *
-   *
-   *  The execution of the **note on** command can be delayed by using the `time` property of the
+   * The execution of the **note on** command can be delayed by using the `time` property of the
    * `options` parameter.
    *
-   * When using {@link Note} objects, the attack velocity defined in the {@link Note} objects has
-   * precedence over the one specified via the method's `options` parameter. Also, the `duration` is
-   * ignored. If you want to also send a **note off** message, use the
-   * [playNote()]{@link Output#playNote} method instead.
+   * When using [`Note`]{@link Note} objects, the attack velocity defined in the
+   * [`Note`]{@link Note} objects has precedence over the one specified via the method's `options`
+   * parameter. Also, the `duration` is ignored. If you want to also send a **note off** message,
+   * use the [`playNote()`]{@link #playNote} method instead.
    *
    * **Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
    * functionally equivalent to a **note off** message.
    *
    * @param note {number|string|Note|number[]|string[]|Note[]} The note(s) to play. The notes can be
    * specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), a
-   * {@link Note} object or an array of the previous types.
+   * [`Note`]{@link Note} object or an array of the previous types.
    *
    * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
    * `1`).  If the `rawAttack` option is also defined, `rawAttack` will have priority. An invalid
@@ -922,40 +962,36 @@ export class OutputChannel extends EventEmitter {
    * Sends a MIDI **channel mode** message. The channel mode message to send can be specified
    * numerically or by using one of the following common names:
    *
-   *   * `"allsoundoff"` (#120)
-   *   * `"resetallcontrollers"` (#121)
-   *   * `"localcontrol"` (#122)
-   *   * `"allnotesoff"` (#123)
-   *   * `"omnimodeoff"` (#124)
-   *   * `"omnimodeon"` (#125)
-   *   * `"monomodeon"` (#126)
-   *   * `"polymodeon"` (#127)
+   * |  Type                |Number| Shortcut Method                                               |
+   * | ---------------------|------|-------------------------------------------------------------- |
+   * | `allsoundoff`        | 120  | [`sendAllSoundOff()`]{@link #sendAllSoundOff}                 |
+   * | `resetallcontrollers`| 121  | [`sendResetAllControllers()`]{@link #sendResetAllControllers} |
+   * | `localcontrol`       | 122  | [`sendLocalControl()`]{@link #sendLocalControl}               |
+   * | `allnotesoff`        | 123  | [`sendAllNotesOff()`]{@link #sendAllNotesOff}                 |
+   * | `omnimodeoff`        | 124  | [`sendOmniMode(false)`]{@link #sendOmniMode}                  |
+   * | `omnimodeon`         | 125  | [`sendOmniMode(true)`]{@link #sendOmniMode}                   |
+   * | `monomodeon`         | 126  | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode}     |
+   * | `polymodeon`         | 127  | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode}     |
+   *
+   * **Note**: as you can see above, to make it easier, all channel mode messages also have a matching
+   * helper method.
    *
    * It should be noted that, per the MIDI specification, only `localcontrol` and `monomodeon` may
    * require a value that's not zero. For that reason, the `value` parameter is optional and
    * defaults to 0.
    *
-   * To make it easier, all channel mode messages have a matching helper method:
-   *
-   *   - [sendAllSoundOff()]{@link #sendAllSoundOff}
-   *   - [sendResetAllControllers()]{@link #sendResetAllControllers}
-   *   - [sendLocalControl()]{@link #sendLocalControl}
-   *   - [sendAllNotesOff()]{@link #sendAllNotesOff}
-   *   - [sendOmniMode()]{@link #sendOmniMode}
-   *   - [sendPolyphonicMode()]{@link #sendPolyphonicMode}
-   *
    * @param {number|string} command The numerical identifier of the channel mode message (integer
-   * between 120-127) or its name as a string.
+   * between `120` and `127`) or its name as a string.
    *
-   * @param {number} [value=0] The value to send (integer between 0-127).
+   * @param {number} [value=0] The value to send (integer between `0` - `127`).
    *
    * @param {object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1006,8 +1042,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
@@ -1029,21 +1065,21 @@ export class OutputChannel extends EventEmitter {
 
   /**
    * Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
-   * use [sendKeyAftertouch()]{@link #sendKeyAftertouch}.
+   * use [`sendKeyAftertouch()`]{@link #sendKeyAftertouch}.
    *
-   * @param [pressure] {number} The pressure level (between 0 and 1). If the `rawValue` option is
-   * set to `true`, the pressure can be defined by using an integer between 0 and 127.
+   * @param [pressure] {number} The pressure level (between `0` and `1`). If the `rawValue` option
+   * is set to `true`, the pressure can be defined by using an integer between `0` and `127`.
    *
    * @param {object} [options={}]
    *
    * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
-   * considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.
+   * considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    *
@@ -1099,8 +1135,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
    * than 64.
@@ -1153,8 +1189,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1220,8 +1256,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The control value must be between 0 and 127.
    * @throws {RangeError} The msb value must be between 0 and 127
@@ -1263,21 +1299,19 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a MIDI **pitch bend** message at the scheduled time.
-   *
-   * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
-   * zero means no bend. The resulting bend is relative to the pitch bend range that has been
-   * defined. The range can be set with
+   * Sends a MIDI **pitch bend** message at the scheduled time. The resulting bend is relative to
+   * the pitch bend range that has been defined. The range can be set with
    * [`sendPitchBendRange()`]{@link #sendPitchBendRange}. So, for example, if the pitch
    * bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave
    * below its nominal value.
    *
-   * If the `rawValue` option is set to `true`, the intensity of the bend can be defined by either
-   * using a single integer between 0 and 127 (MSB) or an array of two integers between 0 and 127
-   * representing, respectively, the MSB (most significant byte) and the LSB (least significant
-   * byte). The MSB is expressed in semitones with `64` meaning no bend. A value lower than `64`
-   * bends downwards while a value higher than `64` bends upwards. The LSB is expressed in cents
-   * (1/100 of a semitone). An LSB of `64` also means no bend.
+   * @param {number|number[]} [value] The intensity of the bend (between -1.0 and 1.0). A value of
+   * zero means no bend. If the `rawValue` option is set to `true`, the intensity of the bend can be
+   * defined by either using a single integer between 0 and 127 (MSB) or an array of two integers
+   * between 0 and 127 representing, respectively, the MSB (most significant byte) and the LSB
+   * (least significant byte). The MSB is expressed in semitones with `64` meaning no bend. A value
+   * lower than `64` bends downwards while a value higher than `64` bends upwards. The LSB is
+   * expressed in cents (1/100 of a semitone). An LSB of `64` also means no bend.
    *
    * @param {Object} [options={}]
    *
@@ -1288,8 +1322,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1357,10 +1391,10 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * Sends a pitch bend range message to the specified channel(s) at the scheduled time so that they
-   * adjust the range used by their pitch bend lever. The range is specified by using the
-   * `semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
-   * means that the pitch bend range will be 12 semitones above and below the nominal pitch.
+   * Sends a **pitch bend range** message at the scheduled time to adjust the range used by the
+   * pitch bend lever. The range is specified by using the `semitones` and `cents` parameters. For
+   * example, setting the `semitones` parameter to `12` means that the pitch bend range will be 12
+   * semitones above and below the nominal pitch.
    *
    * @param semitones {number} The desired adjustment value in semitones (between 0 and 127). While
    * nothing imposes that in the specification, it is very common for manufacturers to limit the
@@ -1373,8 +1407,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The semitones value must be an integer between 0 and 127.
    * @throws {RangeError} The cents value must be an integer between 0 and 127.
@@ -1412,8 +1446,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
    * than 0xFF.
@@ -1450,33 +1484,30 @@ export class OutputChannel extends EventEmitter {
    * up to two bytes of data (msb, lsb) that each can go from 0 to 127.
    *
    * MIDI
-   * [registered parameters]
-   * (https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
+   * [registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
    * extend the original list of control change messages. The MIDI 1.0 specification lists only a
-   * limited number of them. Here are the original registered parameters with the identifier that
-   * can be used as the first parameter of this function:
+   * limited number of them:
    *
-   *  * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
-   *  * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
-   *  * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
-   *  * Tuning Program (0x00, 0x03): `"tuningprogram"`
-   *  * Tuning Bank (0x00, 0x04): `"tuningbank"`
-   *  * Modulation Range (0x00, 0x05): `"modulationrange"`
+   * | Numbers      | Function                 |
+   * |--------------|--------------------------|
+   * | (0x00, 0x00) | `pitchbendrange`         |
+   * | (0x00, 0x01) | `channelfinetuning`      |
+   * | (0x00, 0x02) | `channelcoarsetuning`    |
+   * | (0x00, 0x03) | `tuningprogram`          |
+   * | (0x00, 0x04) | `tuningbank`             |
+   * | (0x00, 0x05) | `modulationrange`        |
+   * | (0x3D, 0x00) | `azimuthangle`           |
+   * | (0x3D, 0x01) | `elevationangle`         |
+   * | (0x3D, 0x02) | `gain`                   |
+   * | (0x3D, 0x03) | `distanceratio`          |
+   * | (0x3D, 0x04) | `maximumdistance`        |
+   * | (0x3D, 0x05) | `maximumdistancegain`    |
+   * | (0x3D, 0x06) | `referencedistanceratio` |
+   * | (0x3D, 0x07) | `panspreadangle`         |
+   * | (0x3D, 0x08) | `rollangle`              |
    *
    * Note that the **Tuning Program** and **Tuning Bank** parameters are part of the *MIDI Tuning
    * Standard*, which is not widely implemented.
-   *
-   * Another set of extra parameters have been later added for 3D sound controllers. They are:
-   *
-   *  * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
-   *  * Elevation Angle (0x3D, 0x01): `"elevationangle"`
-   *  * Gain (0x3D, 0x02): `"gain"`
-   *  * Distance Ratio (0x3D, 0x03): `"distanceratio"`
-   *  * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
-   *  * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
-   *  * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
-   *  * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
-   *  * Roll Angle (0x3D, 0x08): `"rollangle"`
    *
    * @param rpn {string|number[]} A string identifying the parameter's name (see above) or a
    * two-position array specifying the two control bytes (e.g. `[0x65, 0x64]`) that identify the
@@ -1490,8 +1521,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1540,8 +1571,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The bank value must be between 0 and 127.
    *
@@ -1573,8 +1604,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The program value must be between 0 and 127.
    *
@@ -1608,8 +1639,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1624,15 +1655,15 @@ export class OutputChannel extends EventEmitter {
   /**
    * Sends an **all notes off** channel mode message. This will make all currently playing notes
    * fade out just as if their key had been released. This is different from the
-   * [turnSoundOff()]{@link OutputChannel#turnSoundOff} method which mutes all sounds immediately.
+   * [`sendAllSoundOff()`]{@link #sendAllSoundOff} method which mutes all sounds immediately.
    *
    * @param {Object} [options={}]
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1649,8 +1680,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1667,8 +1698,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1688,8 +1719,8 @@ export class OutputChannel extends EventEmitter {
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
    * a number, the message will be delayed by that many milliseconds. If the value is a number, the
    * operation will be scheduled for that time. The current time can be retrieved with
-   * [WebMidi.time]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the operation
-   * will be carried out as soon as possible.
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
    */
@@ -1706,8 +1737,9 @@ export class OutputChannel extends EventEmitter {
    * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
    * octave (C4).
    *
-   * Note that this value is combined with the global offset value defined on the `WebMidi` object
-   * and with the value defined on the parent {@link Output} object.
+   * Note that this value is combined with the global offset value defined in
+   * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) and with the parent value defined in
+   * [`Output.octaveOffset`]{@link Output#octaveOffset}.
    *
    * @type {number}
    *
@@ -1728,7 +1760,7 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * The parent {@link Output} this channel belongs to
+   * The parent [`Output`]{@link Output} this channel belongs to.
    * @type {Output}
    * @since 3.0
    */
@@ -1737,7 +1769,7 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * This channel's MIDI number (1-16)
+   * This channel's MIDI number (`1` - `16`).
    * @type {number}
    * @since 3.0
    */
