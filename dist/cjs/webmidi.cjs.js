@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 19:36:35 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 19:37:33 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -4416,8 +4416,8 @@ class Output extends e {
    *   | `allnotesoff`         | 123    | [`turnNotesOff()`]{@link #turnNotesOff}                 |
    *   | `omnimodeoff`         | 124    | [`setOmniMode(false)`]{@link #setOmniMode}              |
    *   | `omnimodeon`          | 125    | [`setOmniMode(true)`]{@link #setOmniMode}               |
-   *   | `monomodeon`          | 126    | [`setPolyphonicMode("mono")`]{@link #setPolyphonicMode} |
-   *   | `polymodeon`          | 127    | [`setPolyphonicMode("poly")`]{@link #setPolyphonicMode} |
+   *   | `monomodeon`          | 126    | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode} |
+   *   | `polymodeon`          | 127    | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode} |
    *
    * Note: as you can see above, to make it easier, all channel mode messages also have a matching
    * helper method.
@@ -4608,7 +4608,7 @@ class Output extends e {
 
     if (options.channels == undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     Utilities.sanitizeChannels(options.channels).forEach(ch => {
-      this.channels[ch].setPolyphonicMode(mode, options);
+      this.channels[ch].sendPolyphonicMode(mode, options);
     });
     return this;
   }
