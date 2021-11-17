@@ -20,12 +20,12 @@ This guide is for **version 3.x**. Documentation for [version 2.5.x](archives/v2
 :::tip
 
 Hint: You can **go even faster** by copying the
-[code](https://github.com/djipco/webmidi/blob/master/examples/quick-start/index.html) from
+[code](https://github.com/djipco/webmidi/blob/develop/examples/quick-start/index.html) from
 our GitHub repo.
 
 :::
 
-Create an HTML document and include the library: 
+Create an HTML document and include the library (this will install the latest alpha version): 
 
 ```html
 <!DOCTYPE html>
@@ -35,7 +35,7 @@ Create an HTML document and include the library:
   <head>
     <meta charset="UTF-8">
     <title>WebMidi.js Quick Start</title>
-    <script src="https://cdn.jsdelivr.net/npm/webmidi/dist/iife/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
   </head>
   
   <body>
@@ -52,7 +52,7 @@ to be loaded, then enables it and then displays available MIDI input devices (su
 machines, controllers, etc.):
 
 ```html
-<script>
+<script type="module">
 
   // Make sure the library is loaded before starting
   window.addEventListener("load", e => {
