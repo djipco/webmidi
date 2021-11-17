@@ -21,7 +21,7 @@ function HomepageHero() {
           <div className="cta">
             <Button
               type="button-bg-full"
-              href="./docs/getting-started"
+              href="./docs/"
               target="_self"
             >Get started - 5 minutes!
             </Button>
@@ -47,8 +47,8 @@ function Presentation() {
             However, while great, most developers will find the API to be
             too <em>low-level</em> for their needs. Having to perform binary arithmetic
             or needing to read the 300-page MIDI spec is no fun (trust us on this!).
-            The goal behind <strong>WEBMIDI.js</strong> is to get you started with your web-based MIDI
-            project as efficiently as possible.
+            The goal behind <strong>WEBMIDI.js</strong> is to get you started with your web-based
+            MIDI project as efficiently as possible.
           </p>
 
           <div className="media">
