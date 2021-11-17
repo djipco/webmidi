@@ -1560,7 +1560,7 @@ describe("Output Object", function() {
 
   describe("sendKeyAftertouch()", function () {
 
-    it("should trigger the channel method for all valid channels [legacy]", function() {
+    it("should trigger the channel method for all valid channels", function() {
 
       // Arrange
       let spies = [];
@@ -1575,7 +1575,7 @@ describe("Output Object", function() {
       });
 
       // Act
-      WEBMIDI_OUTPUT.setKeyAftertouch(note, value, valid.concat(invalid), options);
+      WEBMIDI_OUTPUT.sendKeyAftertouch(note, value, valid.concat(invalid), options);
 
       // Assert
       spies.forEach(spy => {
