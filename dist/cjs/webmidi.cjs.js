@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 20:04:56 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 20:22:43 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -2759,11 +2759,11 @@ class OutputChannel extends e {
 
 
   sendProgramChange(program, options = {}) {
-    program = parseInt(program) || 1;
+    program = parseInt(program) || 0;
 
     if (wm.validation) {
       if (!(program >= 0 && program <= 127)) {
-        throw new RangeError("The program number must be between 1 and 128.");
+        throw new RangeError("The program number must be between 0 and 127.");
       }
     }
 
