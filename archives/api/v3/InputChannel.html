@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = true;
 		</script>
@@ -126,9 +126,10 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>InputChannel</code> class represents a MIDI input channel (1-16) from a single input device. This
-			object is derived from the host's MIDI subsystem and cannot be instantiated directly.</p>
-			<p>All 16 <code>InputChannel</code> objects can be found inside the input's <a href="Input#channels">channels</a>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>InputChannel</code> class represents a single MIDI input channel (1-16) from a single input
+			device. This object is derived from the host's MIDI subsystem and should not be instantiated
+			directly.</p>
+			<p>All 16 <code>InputChannel</code> objects can be found inside the input's <a href="Input#channels"><code>channels</code></a>
 			property.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -145,14 +146,14 @@
 								<td><code>input</code></td>
 							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
 							<td class="last">
-									<p>The <code>Input</code> object this channel belongs to</p>
+									<p>The <a href="Input"><code>Input</code></a> object this channel belongs to.</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>number</code></td>
 							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>The MIDI channel's number (1-16)</p>
+									<p>The channel's MIDI number (1-16).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -179,6 +180,12 @@
 							</div>
 							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:controlchange">InputChannel#controlchange</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:controlchange-controllerxxx">InputChannel#controlchange-controllerxxx</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
@@ -220,6 +227,36 @@
 								</div>
 							</div>
 							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpn">InputChannel#nrpn</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpn-databuttondecrement">InputChannel#nrpn-databuttondecrement</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpn-databuttonincrement">InputChannel#nrpn-databuttonincrement</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpn-dataentrycoarse">InputChannel#nrpn-dataentrycoarse</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:nrpn-dataentryfine">InputChannel#nrpn-dataentryfine</a></label>
+								<div class="col-sm-9">
+									<div class="form-control-static fires-summary"></div>
+								</div>
+							</div>
+							<div class="form-group">
 								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:omnimode">InputChannel#omnimode</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
@@ -244,49 +281,31 @@
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndataentrycoarse</label>
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpn">InputChannel#rpn</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndataentryfine</label>
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpn-databuttondecrement">InputChannel#rpn-databuttondecrement</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndatabuttonincrement</label>
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpn-databuttonincrement">InputChannel#rpn-databuttonincrement</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:nrpndatabuttondecrement</label>
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpn-dataentrycoarse">InputChannel#rpn-dataentrycoarse</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
 							</div>
 							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndataentrycoarse</label>
-								<div class="col-sm-9">
-									<div class="form-control-static fires-summary"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndataentryfine</label>
-								<div class="col-sm-9">
-									<div class="form-control-static fires-summary"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndatabuttonincrement</label>
-								<div class="col-sm-9">
-									<div class="form-control-static fires-summary"></div>
-								</div>
-							</div>
-							<div class="form-group">
-								<label class="col-sm-3 control-label fires-event">InputChannel#event:rpndatabuttondecrement</label>
+								<label class="col-sm-3 control-label fires-event"><a href="InputChannel.html#event:rpn-dataentryfine">InputChannel#rpn-dataentryfine</a></label>
 								<div class="col-sm-9">
 									<div class="form-control-static fires-summary"></div>
 								</div>
@@ -333,7 +352,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-48">line 48</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-51">line 51</a></p>
 								</div>
 							</div>
 			
@@ -392,7 +411,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1019">line 1019</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1100">line 1100</a></p>
 								</div>
 							</div>
 			
@@ -408,9 +427,10 @@
 		</dt>
 <dd class="symbol-details member public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The number of unique events that have registered listeners</p>
-			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
-			tied to a specific event.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The number of unique events that have registered listeners.</p>
+			<p>Note: this excludes global events registered with
+			<code>EventEmitter.ANY_EVENT</code> because they are not tied to a
+			specific event.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -452,7 +472,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-467">line 467</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-447">line 447</a></p>
 								</div>
 							</div>
 			
@@ -469,7 +489,8 @@
 <dd class="symbol-details member public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An object containing a property for each event with at least one registered listener. Each
-			event property contains an array of all the <code>Listener</code> objects registered for the event.</p></div>
+			event property contains an array of all the <a href="Listener.html"><code>Listener</code></a> objects registered
+			for the event.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -529,8 +550,9 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all the unique event names for which the emitter has at least one registered
 			listener.</p>
-			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
-			tied to a specific event.</p></div>
+			<p>Note: this excludes global events registered with
+			<code>EventEmitter.ANY_EVENT</code> because they are not tied to a
+			specific event.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -572,7 +594,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-208">line 208</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-214">line 214</a></p>
 								</div>
 							</div>
 			
@@ -588,8 +610,7 @@
 		</dt>
 <dd class="symbol-details member public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Whether or not the execution of function callbacks is currently suspended for this whole
-			emitter</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Whether or not the execution of callbacks is currently suspended for this emitter.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -647,7 +668,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <a href="Input"><code>Input</code></a> this channel belongs to</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <a href="Input"><code>Input</code></a> this channel belongs to.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -682,7 +703,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-981">line 981</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1062">line 1062</a></p>
 								</div>
 							</div>
 			
@@ -727,7 +748,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-104">line 104</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-108">line 108</a></p>
 								</div>
 							</div>
 			
@@ -743,7 +764,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>This channel's MIDI number (1-16)</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>This channel's MIDI number (1-16).</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -778,7 +799,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-990">line 990</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1071">line 1071</a></p>
 								</div>
 							</div>
 			
@@ -799,8 +820,9 @@
 			octave (C4).</p>
 			<p>If, for example, <code>octaveOffset</code> is set to 2, MIDI note number 60 will be reported as C6. If
 			<code>octaveOffset</code> is set to -1, MIDI note number 60 will be reported as C3.</p>
-			<p>Note that this value is combined with the global offset value defined on the <code>WebMidi</code> object
-			and with the value defined on the parent <code>Input</code> object.</p></div>
+			<p>Note that this value is combined with the global offset value defined by
+			<a href="WebMidi#octaveOffset"><code>WebMidi.octaveOffset</code></a> object and with the value defined on the parent
+			input object with <a href="Input#octaveOffset"><code>Input.octaveOffset</code></a>.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -835,7 +857,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-962">line 962</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1043">line 1043</a></p>
 								</div>
 							</div>
 			
@@ -851,12 +873,13 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether events for <strong>Non-Registered Parameter Number</strong> should be dispatched. NRPNs
-			are composed of a sequence of specific <strong>control change</strong> messages. When a valid sequence of
-			such control change messages is received, an <code>nrpn</code> event will fire.</p>
-			<p>If an invalid or
-			out-of-order control change message is received, it will fall through the collector logic and
-			all buffered control change messages will be discarded as incomplete.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Indicates whether events for <strong>Registered Parameter Number</strong> and <strong>Non-Registered Parameter
+			Number</strong> should be dispatched. RPNs and NRPNs are composed of a sequence of specific
+			<strong>control change</strong> messages. When a valid sequence of such control change messages is
+			received, an <a href="event-rpn"><code>rpn</code></a> or <a href="#event-nrpn"><code>nrpn</code></a> event will fire.</p>
+			<p>If an invalid or out-of-order <strong>control change</strong> message is received, it will fall through
+			the collector logic and all buffered <strong>control change</strong> messages will be discarded as
+			incomplete.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -884,7 +907,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-97">line 97</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-101">line 101</a></p>
 								</div>
 							</div>
 			
@@ -903,11 +926,11 @@
 		</dt>
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a listener for the specified event. It returns the <a href="Listener.html"><strong>Listener</strong></a> object
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a listener for the specified event. It returns the <a href="Listener.html"><code>Listener</code></a> object
 			that was created and attached to the event.</p>
-			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
-			as the first parameter. Note that a global listener will also be triggered by non-registered
-			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			<p>To attach a global listener that will be triggered for any events, use
+			<code>EventEmitter.ANY_EVENT</code> as the first parameter. Note that a global
+			listener will also be triggered by non-registered events.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -927,7 +950,7 @@
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The event to listen to</p>
+									<p>The event to listen to.</p>
 							</td>
 						</tr>
 						<tr>
@@ -972,7 +995,7 @@
 														<td>false</td>
 													<td class="last">
 															<p>Whether the listener should be added at the beginning
-									of the listeners array</p>
+									of the listeners array and thus executed first.</p>
 													</td>
 												</tr>
 												<tr>
@@ -1002,8 +1025,8 @@
 														<td></td>
 													<td class="last">
 															<p>An array of arguments which will be passed separately to the
-									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
-									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									callback function. This array is stored in the <a href="Listener.html#arguments"><code>arguments</code></a>
+									property of the <a href="Listener.html"><code>Listener</code></a> object and can be retrieved or modified as
 									desired.</p>
 													</td>
 												</tr>
@@ -1018,7 +1041,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><code>Listener</code></a> object.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1026,7 +1049,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or
+			<code>EventEmitter.ANY_EVENT</code>.</p></div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -1070,7 +1094,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-76">line 76</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-78">line 78</a></p>
 								</div>
 							</div>
 			
@@ -1087,11 +1111,11 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a one-time listener for the specified event. The listener will be executed once and then
-			destroyed. It returns the <a href="Listener.html"><strong>Listener</strong></a> object that was created and attached
+			destroyed. It returns the <a href="Listener.html"><code>Listener</code></a> object that was created and attached
 			to the event.</p>
-			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
-			as the first parameter. Note that a global listener will also be triggered by non-registered
-			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			<p>To attach a global listener that will be triggered for any events, use
+			<code>EventEmitter.ANY_EVENT</code> as the first parameter. Note that a
+			global listener will also be triggered by non-registered events.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1156,7 +1180,7 @@
 														<td>false</td>
 													<td class="last">
 															<p>Whether the listener should be added at the beginning
-									of the listeners array</p>
+									of the listeners array and thus executed first.</p>
 													</td>
 												</tr>
 												<tr>
@@ -1176,8 +1200,8 @@
 														<td></td>
 													<td class="last">
 															<p>An array of arguments which will be passed separately to the
-									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
-									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									callback function. This array is stored in the <a href="Listener.html#arguments"><code>arguments</code></a>
+									property of the <a href="Listener.html"><code>Listener</code></a> object and can be retrieved or modified as
 									desired.</p>
 													</td>
 												</tr>
@@ -1192,7 +1216,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><code>Listener</code></a> object.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1200,7 +1224,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or
+			<code>EventEmitter.ANY_EVENT</code>.</p></div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -1244,7 +1269,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-129">line 129</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-132">line 132</a></p>
 								</div>
 							</div>
 			
@@ -1260,8 +1285,8 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Destroys the <code>Input</code> by removing all listeners and severing the link with the MIDI subsystem's
-			input.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Destroys the <code>InputChannel</code> by removing all listeners and severing the link with the MIDI
+			subsystem's input.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 			
@@ -1282,7 +1307,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-112">line 112</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-116">line 116</a></p>
 								</div>
 							</div>
 			
@@ -1298,20 +1323,16 @@
 		</dt>
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Executes the callback functions of all the <code>Listener</code> objects registered for a given event. The
-			callback functions are passed the additional arguments specifed for <code>emit()</code> (if any) followed
-			by the arguments present in the <code>arguments</code> property of the <code>Listener</code> object (if any). For
-			example:</p>
-			<pre class="prettyprint source lang-javascript"><code>let myEmitter = new EventEmitter();
-			myEmitter.addListener(&quot;test&quot;, fn, {arguments: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]});
-			myEmitter.emit(&quot;test&quot;, &quot;y&quot;, &quot;z&quot;);
-			</code></pre>
-			<p>In this example, the function will be called as such: <code>fn(&quot;y&quot;, &quot;z&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;);</code></p>
-			<p>If the <code>eventsSuspended</code> property of the <code>EventEmitter</code> or the <code>suspended</code> property of the
-			<code>Listener</code> is <code>true</code>, the callback functions will not be executed.</p>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Executes the callback function of all the <a href="Listener.html"><code>Listener</code></a> objects registered for
+			a given event. The callback functions are passed the additional arguments passed to <code>emit()</code>
+			(if any) followed by the arguments present in the <a href="Listener#arguments"><code>arguments</code></a> property of
+			the <a href="Listener"><code>Listener</code></a> object (if any).</p>
+			<p>If the <code>eventsSuspended</code> property is <code>true</code> or the
+			<a href="Listener.html#suspended"><code>Listener.suspended</code></a> property is <code>true</code>, the callback functions
+			will not be executed.</p>
 			<p>This function returns an array containing the return values of each of the callbacks.</p>
 			<p>It should be noted that the regular listeners are triggered first followed by the global
-			listeners (added with <code>EventEmitter.ANY_EVENT</code>).</p></div>
+			listeners (those added with <code>EventEmitter.ANY_EVENT</code>).</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1348,7 +1369,7 @@
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array</span></label>
 								<div class="col-sm-9">
 									<div class="form-control-static returns-description"><p>An array containing the return value of each of the executed listener
-			functions</p></div>
+			functions.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1394,167 +1415,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-306">line 306</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="getCcNameByNumber" class="function public"><span class="name">getCcNameByNumber</span><span class="signature-params">( <span class="signature-param">number</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string|undefined}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the name of a control change message matching the specified number. Some valid control
-			change numbers do not have a specific name or purpose assigned in the MIDI
-			<a href="https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2">spec</a>.
-			In this case, the method returns <code>false</code>.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>number</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>An integer representing the control change message</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">undefined</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The matching control change name or <code>undefined</code> if not match was
-			found.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>Invalid control change number.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-911">line 911</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="getChannelModeByNumber" class="function public"><span class="name">getChannelModeByNumber</span><span class="signature-params">( <span class="signature-param">number</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string|false}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the channel mode name matching the specified number. If no match is found, the function
-			returns <code>false</code>.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>number</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>An integer representing the channel mode message.</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">false</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The name of the matching channel mode or <code>false</code> if not match could be
-			found.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-							<!-- since -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Since</label>
-								<div class="col-sm-9">
-									<p class="form-control-static">2.0.0</p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-874">line 874</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-315">line 315</a></p>
 								</div>
 							</div>
 			
@@ -1571,91 +1432,9 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the number of listeners registered for a specific event.</p>
-			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) do not count
-			towards the remaining number for a &quot;regular&quot; event. To get the number of global listeners,
-			specifically use <code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>event</code></td>
-							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
-							<td class="last">
-									<p>The event</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The number of listeners registered for the specified event.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-							<!-- inherits -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Inherited From</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
-								</div>
-							</div>
-			
-							<!-- overrides -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Overrides</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-272">line 272</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public inherited collapsible-symbol">
-			<h4 id="getListeners" class="function public inherited"><span class="name">getListeners</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Listener.html">Listener</a>>}</span></h4>
-		</dt>
-<dd class="symbol-details function public inherited  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns an array of all the <code>Listener</code> objects that will be triggered for a specific event.</p>
-			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) are not returned for
-			&quot;regular&quot; events. To get the list of global listeners, specifically use
+			<p>Please note that global events (those added with
+			<code>EventEmitter.ANY_EVENT</code>) do not count towards the remaining
+			number for a &quot;regular&quot; event. To get the number of global listeners, specifically use
 			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -1672,7 +1451,94 @@
 								<td><code>event</code></td>
 							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
 							<td class="last">
-									<p>The event to get listeners for</p>
+									<p>The event which is usually a string but can also
+			be the special <code>EventEmitter.ANY_EVENT</code> symbol.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An integer representing the number of listeners registered for the specified
+			event.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-288">line 288</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="getListeners" class="function public inherited"><span class="name">getListeners</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Listener.html">Listener</a>>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns an array of all the <a href="Listener.html"><code>Listener</code></a> objects that have been registered for
+			a specific event.</p>
+			<p>Please note that global events (those added with
+			<code>EventEmitter.ANY_EVENT</code>) are not returned for &quot;regular&quot;
+			events. To get the list of global listeners, specifically use
+			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event to get listeners for.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1682,7 +1548,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;<a href="Listener.html">Listener</a>></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>An array of <code>Listener</code> objects</p></div>
+									<div class="form-control-static returns-description"><p>An array of <a href="Listener.html"><code>Listener</code></a> objects.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1720,7 +1586,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-222">line 222</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-230">line 230</a></p>
 								</div>
 							</div>
 			
@@ -1737,9 +1603,9 @@
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Return the playing status of the specified note. The <code>note</code> parameter can be an unsigned
-			integer (0-127), a note identifier (<code>&quot;C4&quot;</code>, <code>&quot;G#5&quot;</code>, etc.) or a <a href="Note.html">Note</a> object.</p>
-			<p>If a note identifier or Note object is passed in, the method will take into account any
-			<code>octaveOffset</code> defined.</p></div>
+			integer (0-127), a note identifier (<code>&quot;C4&quot;</code>, <code>&quot;G#5&quot;</code>, etc.) or a <a href="Note.html"><code>Note</code></a> object.</p>
+			<p>If a  is passed in, the method will take into account any <a href="#octaveOffset"><code>octaveOffset</code></a>
+			defined.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1757,6 +1623,9 @@
 							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
 							<td class="last">
+									<p>The note to get the state for. The
+			<a href="#octaveOffset"><code>octaveOffset</code></a> will be factored in for note identifiers and
+			<a href="Note.html"><code>Note</code></a> objects.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1797,7 +1666,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-933">line 933</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1013">line 1013</a></p>
 								</div>
 							</div>
 			
@@ -1815,8 +1684,10 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns <code>true</code> if the specified event has at least one registered listener. If no event is
 			specified, the method returns <code>true</code> if any event has at least one listener registered (this
-			includes global listeners registered to <code>EventEmitter.ANY_EVENT</code>).</p>
-			<p>Note: to specifically check for global listeners added with <code>EventEmitter.ANY_EVENT</code>, use
+			includes global listeners registered to
+			<code>EventEmitter.ANY_EVENT</code>).</p>
+			<p>Note: to specifically check for global listeners added with
+			<code>EventEmitter.ANY_EVENT</code>, use
 			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -1826,6 +1697,7 @@
 							<th>Name</th>
 						<th>Type</th>
 							<th>Attributes</th>
+							<th>Default</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
@@ -1834,6 +1706,7 @@
 								<td><code>event</code></td>
 							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>(any event)</td>
 							<td class="last">
 									<p>The event to check</p>
 							</td>
@@ -1842,9 +1715,10 @@
 								<td><code>callback</code></td>
 							<td><span class="param-type">function</span> | <span class="param-type"><a href="Listener.html">Listener</a></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>(any callback)</td>
 							<td class="last">
-									<p>The actual function that was added to the event or the
-			<a href="Listener.html">Listener</a> object returned by <code>addListener()</code>.</p>
+									<p>The actual function that was added to the
+			event or the <a href="Listener.html">Listener</a> object returned by <code>addListener()</code>.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1892,7 +1766,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-157">line 157</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-162">line 162</a></p>
 								</div>
 							</div>
 			
@@ -1910,8 +1784,8 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes all the listeners that match the specified criterias. If no parameters are passed, all
 			listeners will be removed. If only the <code>event</code> parameter is passed, all listeners for that
-			event will be removed. You can remove global listeners by using <code>EventEmitter.ANY_EVENT</code> as the
-			first parameter.</p>
+			event will be removed. You can remove global listeners by using
+			<code>EventEmitter.ANY_EVENT</code> as the first parameter.</p>
 			<p>To use more granular options, you must at least define the <code>event</code>. Then, you can specify the
 			callback to match or one or more of the additional options.</p></div>
 			</div>			<div class="callout callout-info">
@@ -1931,7 +1805,7 @@
 								<td><code>event</code></td>
 							<td><span class="param-type">string</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td></td>
+								<td>(any events)</td>
 							<td class="last">
 									<p>The event name.</p>
 							</td>
@@ -1940,10 +1814,10 @@
 								<td><code>callback</code></td>
 							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td></td>
+								<td>(any callbacks)</td>
 							<td class="last">
-									<p>Only remove the listeners that match this exact
-			callback function.</p>
+									<p>Only remove the listeners that match
+			this exact callback function.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1958,6 +1832,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -1966,17 +1841,20 @@
 														<td><code>context</code></td>
 													<td><span class="param-type">*</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(any contexts)</td>
 													<td class="last">
-															<p>Only remove the listeners that have this exact context.</p>
+															<p>Only remove the listeners that have this exact
+									context.</p>
 													</td>
 												</tr>
 												<tr>
 														<td><code>remaining</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(any number)</td>
 													<td class="last">
-															<p>Only remove the listener if it has exactly that many
-									remaining times to be executed.</p>
+															<p>Only remove the listener if it has exactly
+									that many remaining times to be executed.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -2020,7 +1898,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-360">line 360</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-370">line 370</a></p>
 								</div>
 							</div>
 			
@@ -2037,12 +1915,14 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Suspends execution of all callbacks functions registered for the specified event type.</p>
-			<p>You can suspend execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
-			<code>EventEmitter.ANY_EVENT</code> to <code>suspendEvent()</code>. Beware that this will not suspend all callbacks
-			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive
+			<p>You can suspend execution of callbacks registered with
+			<code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>suspendEvent()</code>. Beware that this
+			will not suspend all callbacks but only those registered with
+			<code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive
 			at first glance, it allows the selective suspension of global listeners while leaving other
-			liseners alone. If you truly want to suspends all callbacks for a specific <code>EventEmitter</code>,
-			simply set its <code>eventsSuspended</code> property to <code>true</code>.</p></div>
+			listeners alone. If you truly want to suspends all callbacks for a specific
+			<a href="EventEmitter.html"><code>EventEmitter</code></a>, simply set its <code>eventsSuspended</code> property to <code>true</code>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -2099,7 +1979,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-239">line 239</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-249">line 249</a></p>
 								</div>
 							</div>
 			
@@ -2116,10 +1996,13 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Resumes execution of all suspended callback functions registered for the specified event type.</p>
-			<p>You can resume execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
-			<code>EventEmitter.ANY_EVENT</code> to <code>unsuspendEvent()</code>. Beware that this will not resume all callbacks
-			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive,
-			it allows the selective unsuspension of global listeners while leaving other callbacks alone.</p></div>
+			<p>You can resume execution of callbacks registered with
+			<code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>unsuspendEvent()</code>. Beware that
+			this will not resume all callbacks but only those registered with
+			<code>EventEmitter.ANY_EVENT</code>. While this may seem
+			counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+			callbacks alone.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -2176,7 +2059,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-256">line 256</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-269">line 269</a></p>
 								</div>
 							</div>
 			
@@ -2193,36 +2076,13 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>waitFor()</code> method is an async function which returns a promise. The promise is fulfilled
-			when the specified event occurs. The event can be a regular event or <code>EventEmitter.ANY_EVENT</code>
-			(if you want to resolve as soon as any event is emitted).</p>
-			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
-			const ee = new EventEmitter();
-			ee.waitFor(&quot;ready&quot;).then(() => console.log(&quot;Ready!&quot;));
-			</code></pre>
-			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
-			const ee = new EventEmitter();
-			await ee.waitFor(&quot;ready&quot;);
-			console.log(&quot;Ready!&quot;);
-			</code></pre>
+			when the specified event occurs. The event can be a regular event or
+			<code>EventEmitter.ANY_EVENT</code> (if you want to resolve as soon as any
+			event is emitted).</p>
 			<p>If the <code>duration</code> option is set, the promise will only be fulfilled if the event is emitted
 			within the specified duration. If the event has not been fulfilled after the specified
 			duration, the promise is rejected. This makes it super easy to wait for an event and timeout
-			after a certain time if the event is not triggered.</p>
-			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
-			const ee = new EventEmitter();
-			ee.waitFor(&quot;ready&quot;, {duration: 100})
-			.then(() => console.log(&quot;Ready!&quot;))
-			.catch(err => console.log(err);
-			</code></pre>
-			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
-			const ee = new EventEmitter();
-			try {
-			 await ee.waitFor(&quot;ready&quot;, {duration: 100});
-			 console.log(&quot;Ready!&quot;);
-			} catch(err) {
-			  console.log(err);
-			}
-			</code></pre></div>
+			after a certain time if the event is not triggered.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -2313,7 +2173,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-433">line 433</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-412">line 412</a></p>
 								</div>
 							</div>
 			
@@ -2348,7 +2208,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;allnotesoff&quot;</code></p>
+									<p><code>allnotesoff</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -2363,8 +2223,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2405,7 +2265,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-494">line 494</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-513">line 513</a></p>
 								</div>
 							</div>
 			
@@ -2437,7 +2297,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;allsoundoff&quot;</code></p>
+									<p><code>allsoundoff</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -2452,8 +2312,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2494,7 +2354,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-438">line 438</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-457">line 457</a></p>
 								</div>
 							</div>
 			
@@ -2526,7 +2386,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;channelaftertouch&quot;</code></p>
+									<p><code>channelaftertouch</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -2541,8 +2401,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2597,7 +2457,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-380">line 380</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-399">line 399</a></p>
 								</div>
 							</div>
 			
@@ -2629,7 +2489,14 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;controlchange&quot;</code></p>
+									<p><code>controlchange</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>subtype</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The type of control change message that was received.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2644,8 +2511,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2731,7 +2598,150 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-315">line 315</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-303">line 303</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:controlchange-controllerxxx" class="event public"><span class="name">controlchange-controllerxxx</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a <strong>control change</strong> MIDI message has been received and that message is
+			targeting the controller numbered &quot;xxx&quot;. Of course, &quot;xxx&quot; should be replaced by a valid
+			controller number (0-127).</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>controlchange-controllerxxx</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>subtype</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The type of control change message that was received.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The object that triggered the event (the <code>InputChannel</code>
+			object).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>message</code></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
+							<td class="last">
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>controller</code></td>
+							<td><span class="param-type">object</span></td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>number</code></td>
+													<td><span class="param-type">object</span></td>
+													<td class="last">
+															<p>The number of the controller.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>name</code></td>
+													<td><span class="param-type">object</span></td>
+													<td class="last">
+															<p>The usual name or function of the controller.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value expressed as a float between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value expressed as an integer (between 0 and 127).</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-334">line 334</a></p>
 								</div>
 							</div>
 			
@@ -2778,8 +2788,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2859,7 +2869,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-270">line 270</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-258">line 258</a></p>
 								</div>
 							</div>
 			
@@ -2893,7 +2903,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;localcontrol&quot;</code></p>
+									<p><code>localcontrol</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -2908,8 +2918,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2958,7 +2968,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-470">line 470</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-489">line 489</a></p>
 								</div>
 							</div>
 			
@@ -2982,15 +2992,20 @@
 					<tr>
 							<th>Name</th>
 						<th>Type</th>
-							<th>Attributes</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
 					<tbody>
 						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>midimessage</code></p>
+							</td>
+						</tr>
+						<tr>
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
-								<td class="attributes"></td>
 							<td class="last">
 									<p>The <code>InputChannel</code> that triggered the event.</p>
 							</td>
@@ -2998,64 +3013,17 @@
 						<tr>
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
-								<td class="attributes"></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming MIDI
-			message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>timestamp</code></td>
 							<td><span class="param-type">number</span></td>
-								<td class="attributes"></td>
 							<td class="last">
 									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
 			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-								<td class="attributes"></td>
-							<td class="last">
-									<p><code>&quot;midimessage&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Array</span></td>
-								<td class="attributes"></td>
-							<td class="last">
-									<p>The MIDI message as an array of 8 bit values (deprecated, use
-			the <code>message</code> object instead).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.rawData</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-								<td class="attributes"></td>
-							<td class="last">
-									<p>The raw MIDI message as a Uint8Array  (deprecated, use
-			the <code>message</code> object instead).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.statusByte</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes"></td>
-							<td class="last">
-									<p>The message's status byte  (deprecated, use the <code>message</code>
-			object instead).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.dataBytes</code></td>
-							<td><span class="param-type">Array.&lt;number></span></td>
-								<td class="attributes">&lt;nullable&gt;<br/></td>
-							<td class="last">
-									<p>The message's data bytes as an array of 0, 1 or 2
-			integers. This will be null for <code>sysex</code> messages (deprecated, use the <code>message</code> object
-			instead).</p>
 							</td>
 						</tr>
 					</tbody>
@@ -3088,7 +3056,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-133">line 133</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-137">line 137</a></p>
 								</div>
 							</div>
 			
@@ -3122,7 +3090,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;monomode&quot;</code></p>
+									<p><code>monomode</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -3137,8 +3105,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3186,7 +3154,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-536">line 536</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-555">line 555</a></p>
 								</div>
 							</div>
 			
@@ -3218,7 +3186,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;noteoff&quot;</code></p>
+									<p><code>noteoff</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -3299,7 +3267,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-182">line 182</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-175">line 175</a></p>
 								</div>
 							</div>
 			
@@ -3331,36 +3299,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;noteon&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>channel</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> object that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.data</code></td>
-							<td><span class="param-type">Array</span></td>
-							<td class="last">
-									<p>The MIDI message as an array of 8 bit values.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>input</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <a href="Input"><code>Input</code></a> object where through which the message
-			was received.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>event.rawData</code></td>
-							<td><span class="param-type">Uint8Array</span></td>
-							<td class="last">
-									<p>The raw MIDI message as a <code>Uint8Array</code>.</p>
+									<p><code>noteon</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -3369,6 +3308,14 @@
 							<td class="last">
 									<p>The object that triggered the event (the <code>InputChannel</code>
 			object).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>message</code></td>
+							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
+							<td class="last">
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3381,10 +3328,10 @@
 						</tr>
 						<tr>
 								<td><code>note</code></td>
-							<td><span class="param-type"><a href="Note.html">Note</a></span></td>
+							<td><span class="param-type">object</span></td>
 							<td class="last">
 									<p>A <a href="Note"><code>Note</code></a> object containing information such as note name,
-			octave and attack velocity.</p>
+			octave and release velocity.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3432,7 +3379,611 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-228">line 228</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-221">line 221</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn" class="event public"><span class="name">nrpn</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when any NRPN message is received on the input. There are four subtypes of NRPN
+			messages:</p>
+			<ul>
+			<li><code>nrpn-dataentrycoarse</code></li>
+			<li><code>nrpn-dataentryfine</code></li>
+			<li><code>nrpn-databuttonincrement</code></li>
+			<li><code>nrpn-databuttondecrement</code></li>
+			</ul>
+			<p>The parameter to which the message applies can be found in the event's <code>parameter</code> property.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>nrpn</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>subtype</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The precise type of NRPN message that was received.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The non-registered parameter number (0-16383)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the non-registered parameter number
+			(0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-900">line 900</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn-databuttondecrement" class="event public"><span class="name">nrpn-databuttondecrement</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>NRPN data button decrement</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>nrpn-databuttondecrement</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The registered parameter's name</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-847">line 847</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn-databuttonincrement" class="event public"><span class="name">nrpn-databuttonincrement</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>NRPN data button increment</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>nrpn-databuttonincrement</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The registered parameter's name</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-826">line 826</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn-dataentrycoarse" class="event public"><span class="name">nrpn-dataentrycoarse</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>NRPN data entry coarse</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>nrpn-dataentrycoarse</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The registered parameter's name</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-784">line 784</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:nrpn-dataentryfine" class="event public"><span class="name">nrpn-dataentryfine</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>NRPN data entry fine</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>nrpn-dataentryfine</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The registered parameter's name</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-805">line 805</a></p>
 								</div>
 							</div>
 			
@@ -3480,8 +4031,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3529,7 +4080,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-510">line 510</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-529">line 529</a></p>
 								</div>
 							</div>
 			
@@ -3561,7 +4112,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;pitchbend&quot;</code></p>
+									<p><code>pitchbend</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -3576,8 +4127,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3632,7 +4183,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-403">line 403</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-422">line 422</a></p>
 								</div>
 							</div>
 			
@@ -3664,7 +4215,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;programchange&quot;</code></p>
+									<p><code>programchange</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -3679,8 +4230,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3735,7 +4286,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-357">line 357</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-376">line 376</a></p>
 								</div>
 							</div>
 			
@@ -3767,7 +4318,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;resetallcontrollers&quot;</code></p>
+									<p><code>resetallcontrollers</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -3782,8 +4333,8 @@
 								<td><code>message</code></td>
 							<td><span class="param-type"><a href="Message.html">Message</a></span></td>
 							<td class="last">
-									<p>A <code>Message</code> object containing information about the incoming
-			MIDI message.</p>
+									<p>A <a href="Message"><code>Message</code></a> object containing information about the
+			incoming MIDI message.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3824,7 +4375,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-454">line 454</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-473">line 473</a></p>
 								</div>
 							</div>
 			
@@ -3836,11 +4387,21 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpn:databuttondecrement" class="event public"><span class="name">nrpn:databuttondecrement</span></h4>
+			<h4 id="event:rpn" class="event public"><span class="name">rpn</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttondecrement' NRPN message has been received on the input.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when any RPN message is received on the input. There are four subtypes of RPN
+			messages:</p>
+			<ul>
+			<li><code>rpn-dataentrycoarse</code></li>
+			<li><code>rpn-dataentryfine</code></li>
+			<li><code>rpn-databuttonincrement</code></li>
+			<li><code>rpn-databuttondecrement</code></li>
+			</ul>
+			<p>The parameter to which the message applies can be found in the event's <code>parameter</code> property.
+			It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -3856,475 +4417,14 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;nrpn:databuttondecrement&quot;</code></p>
+									<p><code>rpn</code></p>
 							</td>
 						</tr>
 						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-739">line 739</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpn:databuttonincrement" class="event public"><span class="name">nrpn:databuttonincrement</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttonincrement' NRPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
+								<td><code>subtype</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;nrpn:databuttonincrement&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-719">line 719</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpn:dataentrycoarse" class="event public"><span class="name">nrpn:dataentrycoarse</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentrycoarse' NRPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;nrpn:dataentrycoarse&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-679">line 679</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:nrpn:dataentryfine" class="event public"><span class="name">nrpn:dataentryfine</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentryfine' NRPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;nrpn:dataentryfine&quot;</code></p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
-							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>timestamp</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
-			milliseconds since the navigation start of the document).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The non-registered parameter number (0-16383)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterMsb</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>parameterLsb:</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The LSB portion of the non-registered parameter number
-			(0-127)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The received value as a normalized number between 0 and 1.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawValue</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The value as received (0-127)</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-							<!-- type -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Type</label>
-								<div class="col-sm-9">
-									<div class="form-control-static type-names"><span class="param-type">object</span></div>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-699">line 699</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpn:databuttondecrement" class="event public"><span class="name">rpn:databuttondecrement</span></h4>
-		</dt>
-<dd class="symbol-details event public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttondecrement' RPN message has been received on the input.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Properties</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>type</code></td>
-							<td><span class="param-type">string</span></td>
-							<td class="last">
-									<p><code>&quot;rpn:databuttondecrement&quot;</code></p>
+									<p>The precise type of RPN message that was received.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4407,7 +4507,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-814">line 814</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-929">line 929</a></p>
 								</div>
 							</div>
 			
@@ -4419,11 +4519,14 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpn:databuttonincrement" class="event public"><span class="name">rpn:databuttonincrement</span></h4>
+			<h4 id="event:rpn-databuttondecrement" class="event public"><span class="name">rpn-databuttondecrement</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'databuttonincrement' RPN message has been received on the input.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>RPN data button decrement</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -4439,7 +4542,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;rpn:databuttonincrement&quot;</code></p>
+									<p><code>rpn-databuttondecrement</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -4522,7 +4625,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-796">line 796</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-763">line 763</a></p>
 								</div>
 							</div>
 			
@@ -4534,11 +4637,14 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpn:dataentrycoarse" class="event public"><span class="name">rpn:dataentrycoarse</span></h4>
+			<h4 id="event:rpn-databuttonincrement" class="event public"><span class="name">rpn-databuttonincrement</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentrycoarse' RPN message has been received on the input.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>RPN data button increment</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -4554,7 +4660,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;rpn:dataentrycoarse&quot;</code></p>
+									<p><code>rpn-databuttonincrement</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -4637,7 +4743,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-760">line 760</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-742">line 742</a></p>
 								</div>
 							</div>
 			
@@ -4649,11 +4755,14 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title event public collapsible-symbol">
-			<h4 id="event:rpn:dataentryfine" class="event public"><span class="name">rpn:dataentryfine</span></h4>
+			<h4 id="event:rpn-dataentrycoarse" class="event public"><span class="name">rpn-dataentrycoarse</span></h4>
 		</dt>
 <dd class="symbol-details event public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when a 'dataentryfine' RPN message has been received on the input.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>RPN data entry coarse</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Properties</h5>
 				<table class="params table table-striped">
@@ -4669,7 +4778,7 @@
 								<td><code>type</code></td>
 							<td><span class="param-type">string</span></td>
 							<td class="last">
-									<p><code>&quot;rpn:dataentryfine&quot;</code></p>
+									<p><code>rpn-dataentrycoarse</code></p>
 							</td>
 						</tr>
 						<tr>
@@ -4752,7 +4861,125 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-778">line 778</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-700">line 700</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title event public collapsible-symbol">
+			<h4 id="event:rpn-dataentryfine" class="event public"><span class="name">rpn-dataentryfine</span></h4>
+		</dt>
+<dd class="symbol-details event public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Event emitted when an <strong>RPN data entry fine</strong> message is received on the input. The
+			specific parameter to which the message applies can be found in the event's <code>parameter</code>
+			property. It is one of the ones defined in
+			<a href="Enumerations#MIDI_REGISTERED_PARAMETERS"><code>Enumerations.MIDI_REGISTERED_PARAMETERS</code></a>.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Properties</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>type</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p><code>rpn-dataentryfine</code></p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The <code>InputChannel</code> that triggered the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>timestamp</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The moment (DOMHighResTimeStamp) when the event occurred (in
+			milliseconds since the navigation start of the document).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">string</span></td>
+							<td class="last">
+									<p>The registered parameter's name</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterMsb</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The MSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>parameterLsb:</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The LSB portion of the registered parameter (0-127)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The received value as a normalized number between 0 and 1.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">number</span></td>
+							<td class="last">
+									<p>The value as received (0-127)</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+							<!-- type -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Type</label>
+								<div class="col-sm-9">
+									<div class="form-control-static type-names"><span class="param-type">object</span></div>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-721">line 721</a></p>
 								</div>
 							</div>
 			
@@ -4772,8 +4999,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 8:11:54 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 16th 2021 @ 20:41:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

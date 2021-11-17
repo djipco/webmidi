@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -109,6 +109,7 @@
 			<article></article>
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {Note} from "./Note.js";
 import {WebMidi} from "./WebMidi.js";
+import {Enumerations} from "./Enumerations.js";
 
 /**
  * The `Utilities` class contains general-purpose utility methods. All methods are static and
@@ -185,7 +186,7 @@ export class Utilities {
    * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
    * number (0-127).
    *
-   * @returns {{octave: number, letter: string, accidental: string}}
+   * @returns {{accidental: string, identifier: string, name: string, octave: number }}
    *
    * @throws TypeError Invalid note identifier
    *
@@ -205,10 +206,10 @@ export class Utilities {
     accidental = accidental === "" ? undefined : accidental;
 
     const fragments = {
-      name: name,
       accidental: accidental,
-      octave: octave,
-      identifier: name + (accidental || "") + octave
+      identifier: name + (accidental || "") + octave,
+      name: name,
+      octave: octave
     };
 
     return fragments;
@@ -253,7 +254,7 @@ export class Utilities {
 
     // In order to preserve backwards-compatibility, we let this assignment as it is.
     if (channels.indexOf("all") > -1) {
-      channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
+      channels = Enumerations.MIDI_CHANNEL_NUMBERS;
     }
 
     return channels
@@ -581,6 +582,51 @@ export class Utilities {
     return Object.keys(object).find(key => object[key] === value);
   }
 
+  /**
+   * Returns the name of a control change message matching the specified number. Some valid control
+   * change numbers do not have a specific name or purpose assigned in the MIDI
+   * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+   * In this case, the method returns `undefined`.
+   *
+   * @param {number} number An integer representing the control change message
+   * @returns {string|undefined} The matching control change name or `undefined` if not match was
+   * found.
+   *
+   * @static
+   */
+  static getCcNameByNumber(number) {
+    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
+  }
+
+  /**
+   * Returns the channel mode name matching the specified number. If no match is found, the function
+   * returns `false`.
+   *
+   * @param {number} number An integer representing the channel mode message.
+   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+   * found.
+   *
+   * @since 2.0.0
+   */
+  static getChannelModeByNumber(number) {
+
+    if ( !(number >= 120 &amp;&amp; number &lt;= 127) ) return false;
+
+    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
+
+      if (
+        Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &amp;&amp;
+        number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]
+      ) {
+        return cm;
+      }
+
+    }
+
+    return false;
+
+  }
+
 }
 </code></pre>
 		</section>
@@ -588,8 +634,8 @@ export class Utilities {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 8:11:54 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 16th 2021 @ 20:41:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

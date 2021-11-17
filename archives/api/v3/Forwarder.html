@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -112,14 +112,17 @@
 					<section>
 							<dl class="symbol primary">
 								<dt class="symbol-title class collapsible-symbol expanded">
-			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Forwarder</span><span class="signature-params">( <span class="signature-param">destinations</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h2>
+			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Forwarder</span><span class="signature-params">( [&nbsp;<span class="signature-param">destinations</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"></span></h2>
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Forwarder</code> class allows the forwarding of a MIDI message to a predetermined list of
-			<a href="Output"><code>Output</code></a> objects as long as the message matches certain conditions.</p>
-			<p>While it certainly can be manually instantiated, you are more likely to come across a <code>Forwarder</code>
-			object as the return value of the <a href="Input#addForwarder"><code>Input.addForwarder()</code></a> method.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Forwarder</code> class allows the forwarding of MIDI messages to predetermined outputs. When you
+			call its <a href="#forward"><code>forward()</code></a> method, it will send the specified <a href="Message"><code>Message</code></a> object
+			to all the outputs listed in its <a href="#destinations"><code>destinations</code></a> property.</p>
+			<p>If specific channels or message types have been defined in the <a href="#channels"><code>channels</code></a> or
+			<a href="#types"><code>types</code></a> properties, only messages matching the channels/types will be forwarded.</p>
+			<p>While it can be manually instantiated, you are more likely to come across a <code>Forwarder</code> object as
+			the return value of the <a href="Input#addForwarder"><code>Input.addForwarder()</code></a> method.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -136,8 +139,8 @@
 						<tr>
 								<td><code>destinations</code></td>
 							<td><span class="param-type"><a href="Output.html">Output</a></span> | <span class="param-type">Array.&lt;<a href="Output.html">Output</a>></span></td>
-								<td class="attributes"></td>
-								<td></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>\[\]</td>
 							<td class="last">
 									<p>An <a href="Output"><code>Output</code></a> object, or an array of such objects,
 			to forward the message to.</p>
@@ -164,13 +167,13 @@
 														<td><code>types</code></td>
 													<td><span class="param-type">string</span> | <span class="param-type">Array.&lt;string></span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>(all messages)</td>
 													<td class="last">
-															<p>A MIDI message type (<code>&quot;noteon&quot;</code>, <code>&quot;controlchange&quot;</code>,
-									etc.), or an array of such types, that the specified message must match in order to be forwarded.
-									If this option is not specified, all types of messages will be forwarded. Valid messages are the
-									ones found in either <a href="Enumerations#MIDI_SYSTEM_MESSAGES"><code>MIDI_SYSTEM_MESSAGES</code></a> or
-									<a href="Enumerations#MIDI_CHANNEL_MESSAGES"><code>MIDI_CHANNEL_MESSAGES</code></a>.</p>
+															<p>A MIDI message type or an array of such types
+									(<code>&quot;noteon&quot;</code>, <code>&quot;controlchange&quot;</code>, etc.), that the specified message must match in order to be
+									forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+									messages are the ones found in either <a href="Enumerations#MIDI_SYSTEM_MESSAGES"><code>MIDI_SYSTEM_MESSAGES</code></a>
+									or <a href="Enumerations#MIDI_CHANNEL_MESSAGES"><code>MIDI_CHANNEL_MESSAGES</code></a>.</p>
 													</td>
 												</tr>
 												<tr>
@@ -224,7 +227,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-28">line 28</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-32">line 32</a></p>
 								</div>
 							</div>
 			
@@ -240,7 +243,7 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title class public">
-			<h4 id="Forwarder" class="class public"><a href="Forwarder.html"><span class="signature-new">new&nbsp;</span><span class="name">Forwarder</span><span class="signature-params">( <span class="signature-param">destinations</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></a></h4>
+			<h4 id="Forwarder" class="class public"><a href="Forwarder.html"><span class="signature-new">new&nbsp;</span><span class="name">Forwarder</span><span class="signature-params">( [&nbsp;<span class="signature-param">destinations</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"></span></a></h4>
 		</dt>
 <dd class="symbol-details class public">
 	<div class="symbol-details-inner">
@@ -284,7 +287,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-55">line 55</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-59">line 59</a></p>
 								</div>
 							</div>
 			
@@ -328,7 +331,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-36">line 36</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-40">line 40</a></p>
 								</div>
 							</div>
 			
@@ -372,7 +375,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-61">line 61</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-65">line 65</a></p>
 								</div>
 							</div>
 			
@@ -419,7 +422,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-45">line 45</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-49">line 49</a></p>
 								</div>
 							</div>
 			
@@ -481,7 +484,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-116">line 116</a></p>
+									<p class="form-control-static"><a href="src_Forwarder.js.html">src/Forwarder.js</a>, <a href="src_Forwarder.js.html#line-120">line 120</a></p>
 								</div>
 							</div>
 			
@@ -501,8 +504,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 8:11:54 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 16th 2021 @ 20:41:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = true;
 		</script>
@@ -230,9 +230,10 @@
 		</dt>
 <dd class="symbol-details member public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The number of unique events that have registered listeners</p>
-			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
-			tied to a specific event.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The number of unique events that have registered listeners.</p>
+			<p>Note: this excludes global events registered with
+			<code>EventEmitter.ANY_EVENT</code> because they are not tied to a
+			specific event.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -274,7 +275,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-467">line 467</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-447">line 447</a></p>
 								</div>
 							</div>
 			
@@ -291,7 +292,8 @@
 <dd class="symbol-details member public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An object containing a property for each event with at least one registered listener. Each
-			event property contains an array of all the <code>Listener</code> objects registered for the event.</p></div>
+			event property contains an array of all the <a href="Listener.html"><code>Listener</code></a> objects registered
+			for the event.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -351,8 +353,9 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of all the unique event names for which the emitter has at least one registered
 			listener.</p>
-			<p>Note: this excludes global events registered with <code>EventEmitter.ANY_EVENT</code> because they are not
-			tied to a specific event.</p></div>
+			<p>Note: this excludes global events registered with
+			<code>EventEmitter.ANY_EVENT</code> because they are not tied to a
+			specific event.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -394,7 +397,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-208">line 208</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-214">line 214</a></p>
 								</div>
 							</div>
 			
@@ -410,8 +413,7 @@
 		</dt>
 <dd class="symbol-details member public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Whether or not the execution of function callbacks is currently suspended for this whole
-			emitter</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Whether or not the execution of callbacks is currently suspended for this emitter.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -504,7 +506,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1768">line 1768</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1744">line 1744</a></p>
 								</div>
 							</div>
 			
@@ -559,7 +561,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1740">line 1740</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1716">line 1716</a></p>
 								</div>
 							</div>
 			
@@ -610,7 +612,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1759">line 1759</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1735">line 1735</a></p>
 								</div>
 							</div>
 			
@@ -629,11 +631,11 @@
 		</dt>
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a listener for the specified event. It returns the <a href="Listener.html"><strong>Listener</strong></a> object
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a listener for the specified event. It returns the <a href="Listener.html"><code>Listener</code></a> object
 			that was created and attached to the event.</p>
-			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
-			as the first parameter. Note that a global listener will also be triggered by non-registered
-			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			<p>To attach a global listener that will be triggered for any events, use
+			<code>EventEmitter.ANY_EVENT</code> as the first parameter. Note that a global
+			listener will also be triggered by non-registered events.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -653,7 +655,7 @@
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The event to listen to</p>
+									<p>The event to listen to.</p>
 							</td>
 						</tr>
 						<tr>
@@ -698,7 +700,7 @@
 														<td>false</td>
 													<td class="last">
 															<p>Whether the listener should be added at the beginning
-									of the listeners array</p>
+									of the listeners array and thus executed first.</p>
 													</td>
 												</tr>
 												<tr>
@@ -728,8 +730,8 @@
 														<td></td>
 													<td class="last">
 															<p>An array of arguments which will be passed separately to the
-									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
-									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									callback function. This array is stored in the <a href="Listener.html#arguments"><code>arguments</code></a>
+									property of the <a href="Listener.html"><code>Listener</code></a> object and can be retrieved or modified as
 									desired.</p>
 													</td>
 												</tr>
@@ -744,7 +746,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><code>Listener</code></a> object.</p></div>
 								</div>
 							</div>
 					</form>
@@ -752,7 +754,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or
+			<code>EventEmitter.ANY_EVENT</code>.</p></div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -796,7 +799,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-76">line 76</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-78">line 78</a></p>
 								</div>
 							</div>
 			
@@ -813,11 +816,11 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Adds a one-time listener for the specified event. The listener will be executed once and then
-			destroyed. It returns the <a href="Listener.html"><strong>Listener</strong></a> object that was created and attached
+			destroyed. It returns the <a href="Listener.html"><code>Listener</code></a> object that was created and attached
 			to the event.</p>
-			<p>To attach a global listener that will be triggered for any events, use <code>EventEmitter.ANY_EVENT</code>
-			as the first parameter. Note that a global listener will also be triggered by non-registered
-			events. For example, this will trigger global listeners: <code>myEmitter.emit('bogus')</code>.</p></div>
+			<p>To attach a global listener that will be triggered for any events, use
+			<code>EventEmitter.ANY_EVENT</code> as the first parameter. Note that a
+			global listener will also be triggered by non-registered events.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -882,7 +885,7 @@
 														<td>false</td>
 													<td class="last">
 															<p>Whether the listener should be added at the beginning
-									of the listeners array</p>
+									of the listeners array and thus executed first.</p>
 													</td>
 												</tr>
 												<tr>
@@ -902,8 +905,8 @@
 														<td></td>
 													<td class="last">
 															<p>An array of arguments which will be passed separately to the
-									callback function. This array is stored in the <a href="Listener.html#arguments"><strong>arguments</strong></a>
-									property of the <a href="Listener.html"><strong>Listener</strong></a> object and can be retrieved or modified as
+									callback function. This array is stored in the <a href="Listener.html#arguments"><code>arguments</code></a>
+									property of the <a href="Listener.html"><code>Listener</code></a> object and can be retrieved or modified as
 									desired.</p>
 													</td>
 												</tr>
@@ -918,7 +921,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="Listener.html">Listener</a></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><strong>Listener</strong></a> object.</p></div>
+									<div class="form-control-static returns-description"><p>The newly created <a href="Listener.html"><code>Listener</code></a> object.</p></div>
 								</div>
 							</div>
 					</form>
@@ -926,7 +929,8 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">TypeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or <code>EventEmitter.ANY_EVENT</code>.</p></div>
+									<div class="form-control-static exceptions-description"><p>The <code>event</code> parameter must be a string or
+			<code>EventEmitter.ANY_EVENT</code>.</p></div>
 								</div>
 							</div>
 							<div class="form-group">
@@ -970,137 +974,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-129">line 129</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="decrementRegisteredParameter" class="function public"><span class="name">decrementRegisteredParameter</span><span class="signature-params">( <span class="signature-param">parameter</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
-			names that can be used with this function:</p>
-			<ul>
-			<li>Pitchbend Range (0x00, 0x00): <code>&quot;pitchbendrange&quot;</code></li>
-			<li>Channel Fine Tuning (0x00, 0x01): <code>&quot;channelfinetuning&quot;</code></li>
-			<li>Channel Coarse Tuning (0x00, 0x02): <code>&quot;channelcoarsetuning&quot;</code></li>
-			<li>Tuning Program (0x00, 0x03): <code>&quot;tuningprogram&quot;</code></li>
-			<li>Tuning Bank (0x00, 0x04): <code>&quot;tuningbank&quot;</code></li>
-			<li>Modulation Range (0x00, 0x05): <code>&quot;modulationrange&quot;</code></li>
-			<li>Azimuth Angle (0x3D, 0x00): <code>&quot;azimuthangle&quot;</code></li>
-			<li>Elevation Angle (0x3D, 0x01): <code>&quot;elevationangle&quot;</code></li>
-			<li>Gain (0x3D, 0x02): <code>&quot;gain&quot;</code></li>
-			<li>Distance Ratio (0x3D, 0x03): <code>&quot;distanceratio&quot;</code></li>
-			<li>Maximum Distance (0x3D, 0x04): <code>&quot;maximumdistance&quot;</code></li>
-			<li>Maximum Distance Gain (0x3D, 0x05): <code>&quot;maximumdistancegain&quot;</code></li>
-			<li>Reference Distance Ratio (0x3D, 0x06): <code>&quot;referencedistanceratio&quot;</code></li>
-			<li>Pan Spread Angle (0x3D, 0x07): <code>&quot;panspreadangle&quot;</code></li>
-			<li>Roll Angle (0x3D, 0x08): <code>&quot;rollangle&quot;</code></li>
-			</ul></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">String</span> | <span class="param-type">Array.&lt;number></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>A string identifying the parameter's name (see above) or a
-			two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
-			parameter.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>TypeError The specified registered parameter is invalid.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-550">line 550</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-132">line 132</a></p>
 								</div>
 							</div>
 			
@@ -1116,20 +990,16 @@
 		</dt>
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Executes the callback functions of all the <code>Listener</code> objects registered for a given event. The
-			callback functions are passed the additional arguments specifed for <code>emit()</code> (if any) followed
-			by the arguments present in the <code>arguments</code> property of the <code>Listener</code> object (if any). For
-			example:</p>
-			<pre class="prettyprint source lang-javascript"><code>let myEmitter = new EventEmitter();
-			myEmitter.addListener(&quot;test&quot;, fn, {arguments: [&quot;a&quot;, &quot;b&quot;, &quot;c&quot;]});
-			myEmitter.emit(&quot;test&quot;, &quot;y&quot;, &quot;z&quot;);
-			</code></pre>
-			<p>In this example, the function will be called as such: <code>fn(&quot;y&quot;, &quot;z&quot;, &quot;a&quot;, &quot;b&quot;, &quot;c&quot;);</code></p>
-			<p>If the <code>eventsSuspended</code> property of the <code>EventEmitter</code> or the <code>suspended</code> property of the
-			<code>Listener</code> is <code>true</code>, the callback functions will not be executed.</p>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Executes the callback function of all the <a href="Listener.html"><code>Listener</code></a> objects registered for
+			a given event. The callback functions are passed the additional arguments passed to <code>emit()</code>
+			(if any) followed by the arguments present in the <a href="Listener#arguments"><code>arguments</code></a> property of
+			the <a href="Listener"><code>Listener</code></a> object (if any).</p>
+			<p>If the <code>eventsSuspended</code> property is <code>true</code> or the
+			<a href="Listener.html#suspended"><code>Listener.suspended</code></a> property is <code>true</code>, the callback functions
+			will not be executed.</p>
 			<p>This function returns an array containing the return values of each of the callbacks.</p>
 			<p>It should be noted that the regular listeners are triggered first followed by the global
-			listeners (added with <code>EventEmitter.ANY_EVENT</code>).</p></div>
+			listeners (those added with <code>EventEmitter.ANY_EVENT</code>).</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1166,7 +1036,7 @@
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array</span></label>
 								<div class="col-sm-9">
 									<div class="form-control-static returns-description"><p>An array containing the return value of each of the executed listener
-			functions</p></div>
+			functions.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1212,7 +1082,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-306">line 306</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-315">line 315</a></p>
 								</div>
 							</div>
 			
@@ -1229,91 +1099,9 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the number of listeners registered for a specific event.</p>
-			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) do not count
-			towards the remaining number for a &quot;regular&quot; event. To get the number of global listeners,
-			specifically use <code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>event</code></td>
-							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
-							<td class="last">
-									<p>The event</p>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The number of listeners registered for the specified event.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-							<!-- inherits -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Inherited From</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
-								</div>
-							</div>
-			
-							<!-- overrides -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Overrides</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-272">line 272</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public inherited collapsible-symbol">
-			<h4 id="getListeners" class="function public inherited"><span class="name">getListeners</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Listener.html">Listener</a>>}</span></h4>
-		</dt>
-<dd class="symbol-details function public inherited  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns an array of all the <code>Listener</code> objects that will be triggered for a specific event.</p>
-			<p>Please note that global events (those added with <code>EventEmitter.ANY_EVENT</code>) are not returned for
-			&quot;regular&quot; events. To get the list of global listeners, specifically use
+			<p>Please note that global events (those added with
+			<code>EventEmitter.ANY_EVENT</code>) do not count towards the remaining
+			number for a &quot;regular&quot; event. To get the number of global listeners, specifically use
 			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -1330,7 +1118,94 @@
 								<td><code>event</code></td>
 							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
 							<td class="last">
-									<p>The event to get listeners for</p>
+									<p>The event which is usually a string but can also
+			be the special <code>EventEmitter.ANY_EVENT</code> symbol.</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">number</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>An integer representing the number of listeners registered for the specified
+			event.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+							<!-- inherits -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Inherited From</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+							<!-- overrides -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Overrides</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="EventEmitter.html#getListenerCount">EventEmitter#getListenerCount</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-288">line 288</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public inherited collapsible-symbol">
+			<h4 id="getListeners" class="function public inherited"><span class="name">getListeners</span><span class="signature-params">( <span class="signature-param">event</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{Array.&lt;<a href="Listener.html">Listener</a>>}</span></h4>
+		</dt>
+<dd class="symbol-details function public inherited  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns an array of all the <a href="Listener.html"><code>Listener</code></a> objects that have been registered for
+			a specific event.</p>
+			<p>Please note that global events (those added with
+			<code>EventEmitter.ANY_EVENT</code>) are not returned for &quot;regular&quot;
+			events. To get the list of global listeners, specifically use
+			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>event</code></td>
+							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
+							<td class="last">
+									<p>The event to get listeners for.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1340,7 +1215,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">Array.&lt;<a href="Listener.html">Listener</a>></span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>An array of <code>Listener</code> objects</p></div>
+									<div class="form-control-static returns-description"><p>An array of <a href="Listener.html"><code>Listener</code></a> objects.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1378,7 +1253,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-222">line 222</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-230">line 230</a></p>
 								</div>
 							</div>
 			
@@ -1396,8 +1271,10 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns <code>true</code> if the specified event has at least one registered listener. If no event is
 			specified, the method returns <code>true</code> if any event has at least one listener registered (this
-			includes global listeners registered to <code>EventEmitter.ANY_EVENT</code>).</p>
-			<p>Note: to specifically check for global listeners added with <code>EventEmitter.ANY_EVENT</code>, use
+			includes global listeners registered to
+			<code>EventEmitter.ANY_EVENT</code>).</p>
+			<p>Note: to specifically check for global listeners added with
+			<code>EventEmitter.ANY_EVENT</code>, use
 			<code>EventEmitter.ANY_EVENT</code> as the parameter.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -1407,6 +1284,7 @@
 							<th>Name</th>
 						<th>Type</th>
 							<th>Attributes</th>
+							<th>Default</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
@@ -1415,6 +1293,7 @@
 								<td><code>event</code></td>
 							<td><span class="param-type">string</span> | <span class="param-type"><a href="EventEmitter.html#.ANY_EVENT">EventEmitter.ANY_EVENT</a></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>(any event)</td>
 							<td class="last">
 									<p>The event to check</p>
 							</td>
@@ -1423,9 +1302,10 @@
 								<td><code>callback</code></td>
 							<td><span class="param-type">function</span> | <span class="param-type"><a href="Listener.html">Listener</a></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>(any callback)</td>
 							<td class="last">
-									<p>The actual function that was added to the event or the
-			<a href="Listener.html">Listener</a> object returned by <code>addListener()</code>.</p>
+									<p>The actual function that was added to the
+			event or the <a href="Listener.html">Listener</a> object returned by <code>addListener()</code>.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1473,137 +1353,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-157">line 157</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="incrementRegisteredParameter" class="function public"><span class="name">incrementRegisteredParameter</span><span class="signature-params">( <span class="signature-param">parameter</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
-			names that can be used with this function:</p>
-			<ul>
-			<li>Pitchbend Range (0x00, 0x00): <code>&quot;pitchbendrange&quot;</code></li>
-			<li>Channel Fine Tuning (0x00, 0x01): <code>&quot;channelfinetuning&quot;</code></li>
-			<li>Channel Coarse Tuning (0x00, 0x02): <code>&quot;channelcoarsetuning&quot;</code></li>
-			<li>Tuning Program (0x00, 0x03): <code>&quot;tuningprogram&quot;</code></li>
-			<li>Tuning Bank (0x00, 0x04): <code>&quot;tuningbank&quot;</code></li>
-			<li>Modulation Range (0x00, 0x05): <code>&quot;modulationrange&quot;</code></li>
-			<li>Azimuth Angle (0x3D, 0x00): <code>&quot;azimuthangle&quot;</code></li>
-			<li>Elevation Angle (0x3D, 0x01): <code>&quot;elevationangle&quot;</code></li>
-			<li>Gain (0x3D, 0x02): <code>&quot;gain&quot;</code></li>
-			<li>Distance Ratio (0x3D, 0x03): <code>&quot;distanceratio&quot;</code></li>
-			<li>Maximum Distance (0x3D, 0x04): <code>&quot;maximumdistance&quot;</code></li>
-			<li>Maximum Distance Gain (0x3D, 0x05): <code>&quot;maximumdistancegain&quot;</code></li>
-			<li>Reference Distance Ratio (0x3D, 0x06): <code>&quot;referencedistanceratio&quot;</code></li>
-			<li>Pan Spread Angle (0x3D, 0x07): <code>&quot;panspreadangle&quot;</code></li>
-			<li>Roll Angle (0x3D, 0x08): <code>&quot;rollangle&quot;</code></li>
-			</ul></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>parameter</code></td>
-							<td><span class="param-type">String</span> | <span class="param-type">Array.&lt;number></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>A string identifying the parameter's name (see above) or a
-			two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
-			parameter.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>TypeError The specified registered parameter is invalid.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-617">line 617</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-162">line 162</a></p>
 								</div>
 							</div>
 			
@@ -1786,7 +1536,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-710">line 710</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-698">line 698</a></p>
 								</div>
 							</div>
 			
@@ -1804,8 +1554,8 @@
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Removes all the listeners that match the specified criterias. If no parameters are passed, all
 			listeners will be removed. If only the <code>event</code> parameter is passed, all listeners for that
-			event will be removed. You can remove global listeners by using <code>EventEmitter.ANY_EVENT</code> as the
-			first parameter.</p>
+			event will be removed. You can remove global listeners by using
+			<code>EventEmitter.ANY_EVENT</code> as the first parameter.</p>
 			<p>To use more granular options, you must at least define the <code>event</code>. Then, you can specify the
 			callback to match or one or more of the additional options.</p></div>
 			</div>			<div class="callout callout-info">
@@ -1825,7 +1575,7 @@
 								<td><code>event</code></td>
 							<td><span class="param-type">string</span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td></td>
+								<td>(any events)</td>
 							<td class="last">
 									<p>The event name.</p>
 							</td>
@@ -1834,10 +1584,10 @@
 								<td><code>callback</code></td>
 							<td><span class="param-type"><a href="EventEmitter.html#~callback">EventEmitter~callback</a></span></td>
 								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td></td>
+								<td>(any callbacks)</td>
 							<td class="last">
-									<p>Only remove the listeners that match this exact
-			callback function.</p>
+									<p>Only remove the listeners that match
+			this exact callback function.</p>
 							</td>
 						</tr>
 						<tr>
@@ -1852,6 +1602,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -1860,17 +1611,20 @@
 														<td><code>context</code></td>
 													<td><span class="param-type">*</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(any contexts)</td>
 													<td class="last">
-															<p>Only remove the listeners that have this exact context.</p>
+															<p>Only remove the listeners that have this exact
+									context.</p>
 													</td>
 												</tr>
 												<tr>
 														<td><code>remaining</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(any number)</td>
 													<td class="last">
-															<p>Only remove the listener if it has exactly that many
-									remaining times to be executed.</p>
+															<p>Only remove the listener if it has exactly
+									that many remaining times to be executed.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -1914,101 +1668,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-360">line 360</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="resetAllControllers" class="function public"><span class="name">resetAllControllers</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>reset all controllers</strong> channel mode message. This resets all controllers, such as
-			the pitch bend, to their default value.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1699">line 1699</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-370">line 370</a></p>
 								</div>
 							</div>
 			
@@ -2146,7 +1806,320 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="sendChannelMode" class="function public"><span class="name">sendChannelMode</span><span class="signature-params">( <span class="signature-param">command</span>, <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendAllNotesOff" class="function public"><span class="name">sendAllNotesOff</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all notes off</strong> channel mode message. This will make all currently playing notes
+			fade out just as if their key had been released. This is different from the
+			turnSoundOff() method which mutes all sounds immediately.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1639">line 1639</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendAllSoundOff" class="function public"><span class="name">sendAllSoundOff</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all sound off</strong> channel mode message. This will silence all sounds playing on that
+			channel but will not prevent new sounds from being triggered.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1657">line 1657</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendChannelAftertouch" class="function public"><span class="name">sendChannelAftertouch</span><span class="signature-params">( [&nbsp;<span class="signature-param">pressure</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>channel aftertouch</strong> message. For key-specific aftertouch, you should instead
+			use sendKeyAftertouch().</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>pressure</code></td>
+							<td><span class="param-type">number</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td></td>
+							<td class="last">
+									<p>The pressure level (between 0 and 1). If the <code>rawValue</code> option is
+			set to <code>true</code>, the pressure can be defined by using an integer between 0 and 127.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>rawValue</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>A boolean indicating whether the value should be
+									considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>RangeError Invalid channel aftertouch value.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1052">line 1052</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendChannelMode" class="function public"><span class="name">sendChannelMode</span><span class="signature-params">( <span class="signature-param">command</span> [,&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -2167,12 +2140,12 @@
 			defaults to 0.</p>
 			<p>To make it easier, all channel mode messages have a matching helper method:</p>
 			<ul>
-			<li><a href="Output.html#turnSoundOff">turnSoundOff()</a></li>
-			<li><a href="Output.html#resetAllControllers">resetAllControllers()</a></li>
-			<li><a href="Output.html#turnSoundOff">setLocalControl()</a></li>
-			<li><a href="Output.html#turnNotesOff">turnNotesOff()</a></li>
-			<li><a href="Output.html#setOmniMode">setOmniMode()</a></li>
-			<li><a href="Output.html#setPolyphonicMode">setPolyphonicMode()</a></li>
+			<li>sendAllSoundOff()</li>
+			<li>sendResetAllControllers()</li>
+			<li>sendLocalControl()</li>
+			<li>sendAllNotesOff()</li>
+			<li>sendOmniMode()</li>
+			<li>sendPolyphonicMode()</li>
 			</ul></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
@@ -2200,8 +2173,8 @@
 						<tr>
 								<td><code>value</code></td>
 							<td><span class="param-type">number</span></td>
-								<td class="attributes"></td>
-								<td></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>0</td>
 							<td class="last">
 									<p>The value to send (integer between 0-127).</p>
 							</td>
@@ -2269,7 +2242,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-974">line 974</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-962">line 962</a></p>
 								</div>
 							</div>
 			
@@ -2635,7 +2608,487 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-310">line 310</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-294">line 294</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendKeyAftertouch" class="function public"><span class="name">sendKeyAftertouch</span><span class="signature-params">( <span class="signature-param">target</span> [,&nbsp;<span class="signature-param">pressure</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>key aftertouch</strong> message at the scheduled time. This is a key-specific
+			aftertouch. For a channel-wide aftertouch message, use
+			<a href="Output.html#sendChannelAftertouch">sendChannelAftertouch()</a>.</p>
+			<p>The key can be a single value or an array of the following valid values:</p>
+			<ul>
+			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
+			<li>A note identifier such as <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.</li>
+			</ul></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>target</code></td>
+							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The key(s) for which you are sending an
+			aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
+			identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.</p>
+			<p>When using a note identifier, the octave value will be offset by the combined value of
+			<code>InputChannel.octaveOffset</code>, <code>Input.octaveOffset</code> and <code>WebMidi.octaveOffset</code> (if those values
+			are not <code>0</code>). When using a key number, octaveOffset values are ignored.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>pressure</code></td>
+							<td><span class="param-type">number</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>0.5</td>
+							<td class="last">
+									<p>The pressure level (between 0 and 1). An invalid pressure value
+			will silently trigger the default behaviour. If the <code>rawValue</code> option is set to <code>true</code>, the
+			pressure is defined by using an integer between 0 and 127.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>useRawValue</code></td>
+													<td><span class="param-type">boolean</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>false</td>
+													<td class="last">
+															<p>A boolean indicating whether the value should be
+									considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>RangeError Invalid key aftertouch value.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-133">line 133</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendLocalControl" class="function public"><span class="name">sendLocalControl</span><span class="signature-params">( [&nbsp;<span class="signature-param">state</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Turns local control on or off. Local control is usually enabled by default. If you disable it,
+			the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
+			its out port.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>state</code></td>
+							<td><span class="param-type">boolean</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>false</td>
+							<td class="last">
+									<p>Whether to activate local control (<code>true</code>) or disable it
+			(<code>false</code>).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1616">line 1616</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendMasterTuning" class="function public"><span class="name">sendMasterTuning</span><span class="signature-params">( [&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>master tuning</strong> message. The value is decimal and must be larger than -65 semitones
+			and smaller than 64 semitones.</p>
+			<p>Because of the way the MIDI specification works, the decimal portion of the value will be
+			encoded with a resolution of 14bit. The integer portion must be between -64 and 63
+			inclusively. This function actually generates two MIDI messages: a <strong>Master Coarse Tuning</strong> and
+			a <strong>Master Fine Tuning</strong> RPN messages.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>value</code></td>
+							<td><span class="param-type">number</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>0.0</td>
+							<td class="last">
+									<p>The desired decimal adjustment value in semitones (-65 &lt; x &lt; 64)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>The value must be a decimal number between larger than -65 and smaller
+			than 64.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1110">line 1110</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendModulationRange" class="function public"><span class="name">sendModulationRange</span><span class="signature-params">( <span class="signature-param">semitones</span> [,&nbsp;<span class="signature-param">cents</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>modulation depth range</strong> message to adjust the depth of the modulation wheel's range.
+			The range can be specified with the <code>semitones</code> parameter, the <code>cents</code> parameter or by
+			specifying both parameters at the same time.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>semitones</code></td>
+							<td><span class="param-type">number</span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>The desired adjustment value in semitones (integer between 0 and
+			127).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>cents</code></td>
+							<td><span class="param-type">number</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>0</td>
+							<td class="last">
+									<p>The desired adjustment value in cents (integer between 0 and 127).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1161">line 1161</a></p>
 								</div>
 							</div>
 			
@@ -2775,7 +3228,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-770">line 770</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-758">line 758</a></p>
 								</div>
 							</div>
 			
@@ -2920,7 +3373,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-882">line 882</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-870">line 870</a></p>
 								</div>
 							</div>
 			
@@ -2932,611 +3385,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setChannelAftertouch" class="function public"><span class="name">setChannelAftertouch</span><span class="signature-params">( [&nbsp;<span class="signature-param">pressure</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>channel aftertouch</strong> message. For key-specific aftertouch, you should instead
-			use <a href="Output.html#setKeyAftertouch">setKeyAftertouch()</a>.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>pressure</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td></td>
-							<td class="last">
-									<p>The pressure level (between 0 and 1). If the <code>rawValue</code> option is
-			set to <code>true</code>, the pressure can be defined by using an integer between 0 and 127.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-													<th>Default</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>rawValue</code></td>
-													<td><span class="param-type">boolean</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>false</td>
-													<td class="last">
-															<p>A boolean indicating whether the value should be
-									considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>RangeError Invalid channel aftertouch value.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1064">line 1064</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setKeyAftertouch" class="function public"><span class="name">setKeyAftertouch</span><span class="signature-params">( <span class="signature-param">target</span> [,&nbsp;<span class="signature-param">pressure</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>key aftertouch</strong> message at the scheduled time. This is a key-specific
-			aftertouch. For a channel-wide aftertouch message, use
-			<a href="Output.html#setChannelAftertouch">setChannelAftertouch()</a>.</p>
-			<p>The key can be a single value or an array of the following valid values:</p>
-			<ul>
-			<li>A MIDI note number (integer between <code>0</code> and <code>127</code>)</li>
-			<li>A note identifier such as <code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.</li>
-			</ul></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>target</code></td>
-							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type">Array.&lt;number></span> | <span class="param-type">Array.&lt;string></span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>The key(s) for which you are sending an
-			aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note
-			identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types.</p>
-			<p>When using a note identifier, the octave value will be offset by the combined value of
-			<code>InputChannel.octaveOffset</code>, <code>Input.octaveOffset</code> and <code>WebMidi.octaveOffset</code> (if those values
-			are not <code>0</code>). When using a key number, octaveOffset values are ignored.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>pressure</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>0.5</td>
-							<td class="last">
-									<p>The pressure level (between 0 and 1). An invalid pressure value
-			will silently trigger the default behaviour. If the <code>rawValue</code> option is set to <code>true</code>, the
-			pressure is defined by using an integer between 0 and 127.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-													<th>Default</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>useRawValue</code></td>
-													<td><span class="param-type">boolean</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>false</td>
-													<td class="last">
-															<p>A boolean indicating whether the value should be
-									considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>RangeError Invalid key aftertouch value.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-133">line 133</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setLocalControl" class="function public"><span class="name">setLocalControl</span><span class="signature-params">( [&nbsp;<span class="signature-param">state</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Turns local control on or off. Local control is usually enabled by default. If you disable it,
-			the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
-			its out port.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>state</code></td>
-							<td><span class="param-type">boolean</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>false</td>
-							<td class="last">
-									<p>Whether to activate local control (<code>true</code>) or disable it
-			(<code>false</code>).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1640">line 1640</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setMasterTuning" class="function public"><span class="name">setMasterTuning</span><span class="signature-params">( [&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>master tuning</strong> message. The value is decimal and must be larger than -65 semitones
-			and smaller than 64 semitones.</p>
-			<p>Because of the way the MIDI specification works, the decimal portion of the value will be
-			encoded with a resolution of 14bit. The integer portion must be between -64 and 63
-			inclusively. This function actually generates two MIDI messages: a <strong>Master Coarse Tuning</strong> and
-			a <strong>Master Fine Tuning</strong> RPN messages.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>value</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>0.0</td>
-							<td class="last">
-									<p>The desired decimal adjustment value in semitones (-65 &lt; x &lt; 64)</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
-							<div class="form-group">
-								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The value must be a decimal number between larger than -65 and smaller
-			than 64.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1122">line 1122</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setModulationRange" class="function public"><span class="name">setModulationRange</span><span class="signature-params">( <span class="signature-param">semitones</span> [,&nbsp;<span class="signature-param">cents</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>modulation depth range</strong> message to adjust the depth of the modulation wheel's range.
-			The range can be specified with the <code>semitones</code> parameter, the <code>cents</code> parameter or by
-			specifying both parameters at the same time.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>semitones</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes"></td>
-								<td></td>
-							<td class="last">
-									<p>The desired adjustment value in semitones (integer between 0 and
-			127).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>cents</code></td>
-							<td><span class="param-type">number</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>0</td>
-							<td class="last">
-									<p>The desired adjustment value in cents (integer between 0 and 127).</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1173">line 1173</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setNonRegisteredParameter" class="function public"><span class="name">setNonRegisteredParameter</span><span class="signature-params">( <span class="signature-param">parameter</span> [,&nbsp;<span class="signature-param">data</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendNrpnValue" class="function public"><span class="name">sendNrpnValue</span><span class="signature-params">( <span class="signature-param">parameter</span> [,&nbsp;<span class="signature-param">data</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -3547,13 +3396,13 @@
 			they see fit. For example, according to the Roland GS specification, you can control the
 			<strong>vibrato rate</strong> using NRPN (1, 8). Therefore, to set the <strong>vibrato rate</strong> value to <strong>123</strong> you
 			would use:</p>
-			<pre class="prettyprint source lang-js"><code>WebMidi.outputs[0].channels[0].setNonRegisteredParameter([1, 8], 123);
+			<pre class="prettyprint source lang-js"><code>WebMidi.outputs[0].channels[0].sendNrpnValue([1, 8], 123);
 			</code></pre>
 			<p>In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
 			would use a 2-position array. For example, for its <strong>ClockBPM</strong> parameter (2, 63), Novation
 			uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
 			value to send was 10, you could use:</p>
-			<pre class="prettyprint source lang-js"><code>WebMidi.outputs[0].channels[0].setNonRegisteredParameter([2, 63], [0, 10]);
+			<pre class="prettyprint source lang-js"><code>WebMidi.outputs[0].channels[0].sendNrpnValue([2, 63], [0, 10]);
 			</code></pre>
 			<p>For further implementation details, refer to the manufacturer's documentation.</p></div>
 			</div>			<div class="callout callout-info">
@@ -3666,7 +3515,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1243">line 1243</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1231">line 1231</a></p>
 								</div>
 							</div>
 			
@@ -3678,7 +3527,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setOmniMode" class="function public"><span class="name">setOmniMode</span><span class="signature-params">( [&nbsp;<span class="signature-param">state</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendOmniMode" class="function public"><span class="name">sendOmniMode</span><span class="signature-params">( [&nbsp;<span class="signature-param">state</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -3790,7 +3639,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1030">line 1030</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1018">line 1018</a></p>
 								</div>
 							</div>
 			
@@ -3802,7 +3651,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setPitchBend" class="function public"><span class="name">setPitchBend</span><span class="signature-params">( [&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendPitchBend" class="function public"><span class="name">sendPitchBend</span><span class="signature-params">( [&nbsp;<span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -3829,7 +3678,7 @@
 									<p>The intensity of the bend (between -1.0 and 1.0). A value of
 			zero means no bend. The resulting bend is relative to the pitch bend range that has been
 			defined. The range can be set with
-			<a href="OutputChannel.html#setPitchBendRange"><code>setPitchBendRange()</code></a>. So, for example, if the pitch
+			<code>sendPitchBendRange()</code>. So, for example, if the pitch
 			bend range has been set to 12 semitones, using a bend value of -1 will bend the note 1 octave
 			below its nominal value.</p>
 			<p>If the <code>rawValue</code> option is set to <code>true</code>, the intensity of the bend can be defined by either
@@ -3916,7 +3765,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1308">line 1308</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1296">line 1296</a></p>
 								</div>
 							</div>
 			
@@ -3928,7 +3777,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setPitchBendRange" class="function public"><span class="name">setPitchBendRange</span><span class="signature-params">( <span class="signature-param">semitones</span> [,&nbsp;<span class="signature-param">cents</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendPitchBendRange" class="function public"><span class="name">sendPitchBendRange</span><span class="signature-params">( <span class="signature-param">semitones</span> [,&nbsp;<span class="signature-param">cents</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -4046,7 +3895,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1396">line 1396</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1384">line 1384</a></p>
 								</div>
 							</div>
 			
@@ -4058,7 +3907,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setPolyphonicMode" class="function public"><span class="name">setPolyphonicMode</span><span class="signature-params">( [&nbsp;<span class="signature-param">mode</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendPolyphonicMode" class="function public"><span class="name">sendPolyphonicMode</span><span class="signature-params">( [&nbsp;<span class="signature-param">mode</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -4150,7 +3999,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1720">line 1720</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1696">line 1696</a></p>
 								</div>
 							</div>
 			
@@ -4162,14 +4011,11 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setProgram" class="function public"><span class="name">setProgram</span><span class="signature-params">( [&nbsp;<span class="signature-param">program</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendProgramChange" class="function public"><span class="name">sendProgramChange</span><span class="signature-params">( [&nbsp;<span class="signature-param">program</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>program change</strong> message at the scheduled time.</p>
-			<p><strong>Note</strong>: since version 3.0, the program number is an integer between 1 and 128. In versions
-			1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-			that use a numbering scheme starting at 1.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a MIDI <strong>program change</strong> message at the scheduled time.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -4189,7 +4035,7 @@
 								<td class="attributes">&lt;optional&gt;<br/></td>
 								<td>1</td>
 							<td class="last">
-									<p>The MIDI patch (program) number (1-128)</p>
+									<p>The MIDI patch (program) number (integer between <code>0</code> and <code>127</code>).</p>
 							</td>
 						</tr>
 						<tr>
@@ -4264,7 +4110,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1440">line 1440</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1424">line 1424</a></p>
 								</div>
 							</div>
 			
@@ -4276,7 +4122,361 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setRegisteredParameter" class="function public"><span class="name">setRegisteredParameter</span><span class="signature-params">( <span class="signature-param">rpn</span> [,&nbsp;<span class="signature-param">data</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendResetAllControllers" class="function public"><span class="name">sendResetAllControllers</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends a <strong>reset all controllers</strong> channel mode message. This resets all controllers, such as
+			the pitch bend, to their default value.</p></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">Object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1675">line 1675</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendRpnDecrement" class="function public"><span class="name">sendRpnDecrement</span><span class="signature-params">( <span class="signature-param">parameter</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
+			names that can be used with this function:</p>
+			<ul>
+			<li>Pitchbend Range (0x00, 0x00): <code>&quot;pitchbendrange&quot;</code></li>
+			<li>Channel Fine Tuning (0x00, 0x01): <code>&quot;channelfinetuning&quot;</code></li>
+			<li>Channel Coarse Tuning (0x00, 0x02): <code>&quot;channelcoarsetuning&quot;</code></li>
+			<li>Tuning Program (0x00, 0x03): <code>&quot;tuningprogram&quot;</code></li>
+			<li>Tuning Bank (0x00, 0x04): <code>&quot;tuningbank&quot;</code></li>
+			<li>Modulation Range (0x00, 0x05): <code>&quot;modulationrange&quot;</code></li>
+			<li>Azimuth Angle (0x3D, 0x00): <code>&quot;azimuthangle&quot;</code></li>
+			<li>Elevation Angle (0x3D, 0x01): <code>&quot;elevationangle&quot;</code></li>
+			<li>Gain (0x3D, 0x02): <code>&quot;gain&quot;</code></li>
+			<li>Distance Ratio (0x3D, 0x03): <code>&quot;distanceratio&quot;</code></li>
+			<li>Maximum Distance (0x3D, 0x04): <code>&quot;maximumdistance&quot;</code></li>
+			<li>Maximum Distance Gain (0x3D, 0x05): <code>&quot;maximumdistancegain&quot;</code></li>
+			<li>Reference Distance Ratio (0x3D, 0x06): <code>&quot;referencedistanceratio&quot;</code></li>
+			<li>Pan Spread Angle (0x3D, 0x07): <code>&quot;panspreadangle&quot;</code></li>
+			<li>Roll Angle (0x3D, 0x08): <code>&quot;rollangle&quot;</code></li>
+			</ul></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">String</span> | <span class="param-type">Array.&lt;number></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>A string identifying the parameter's name (see above) or a
+			two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+			parameter.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>TypeError The specified registered parameter is invalid.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-534">line 534</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendRpnIncrement" class="function public"><span class="name">sendRpnIncrement</span><span class="signature-params">( <span class="signature-param">parameter</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+		</dt>
+<dd class="symbol-details function public  collapsible-symbol">
+	<div class="symbol-details-inner">
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
+			names that can be used with this function:</p>
+			<ul>
+			<li>Pitchbend Range (0x00, 0x00): <code>&quot;pitchbendrange&quot;</code></li>
+			<li>Channel Fine Tuning (0x00, 0x01): <code>&quot;channelfinetuning&quot;</code></li>
+			<li>Channel Coarse Tuning (0x00, 0x02): <code>&quot;channelcoarsetuning&quot;</code></li>
+			<li>Tuning Program (0x00, 0x03): <code>&quot;tuningprogram&quot;</code></li>
+			<li>Tuning Bank (0x00, 0x04): <code>&quot;tuningbank&quot;</code></li>
+			<li>Modulation Range (0x00, 0x05): <code>&quot;modulationrange&quot;</code></li>
+			<li>Azimuth Angle (0x3D, 0x00): <code>&quot;azimuthangle&quot;</code></li>
+			<li>Elevation Angle (0x3D, 0x01): <code>&quot;elevationangle&quot;</code></li>
+			<li>Gain (0x3D, 0x02): <code>&quot;gain&quot;</code></li>
+			<li>Distance Ratio (0x3D, 0x03): <code>&quot;distanceratio&quot;</code></li>
+			<li>Maximum Distance (0x3D, 0x04): <code>&quot;maximumdistance&quot;</code></li>
+			<li>Maximum Distance Gain (0x3D, 0x05): <code>&quot;maximumdistancegain&quot;</code></li>
+			<li>Reference Distance Ratio (0x3D, 0x06): <code>&quot;referencedistanceratio&quot;</code></li>
+			<li>Pan Spread Angle (0x3D, 0x07): <code>&quot;panspreadangle&quot;</code></li>
+			<li>Roll Angle (0x3D, 0x08): <code>&quot;rollangle&quot;</code></li>
+			</ul></div>
+			</div>			<div class="callout callout-info">
+				<h5>Parameters</h5>
+				<table class="params table table-striped">
+					<thead>
+					<tr>
+							<th>Name</th>
+						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
+						<th class="last">Description</th>
+					</tr>
+					</thead>
+					<tbody>
+						<tr>
+								<td><code>parameter</code></td>
+							<td><span class="param-type">String</span> | <span class="param-type">Array.&lt;number></span></td>
+								<td class="attributes"></td>
+								<td></td>
+							<td class="last">
+									<p>A string identifying the parameter's name (see above) or a
+			two-position array specifying the two control bytes (0x65, 0x64) that identify the registered
+			parameter.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
+									a number, the message will be delayed by that many milliseconds. If the value is a number, the
+									operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
+									will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
+							<div class="form-group">
+								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
+								<div class="col-sm-9">
+									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-danger"><h5>Throws</h5>		<form class="form-horizontal exceptions">
+							<div class="form-group">
+								<label class="col-sm-3 control-label exceptions-type"></label>
+								<div class="col-sm-9">
+									<div class="form-control-static exceptions-description"><p>TypeError The specified registered parameter is invalid.</p></div>
+								</div>
+							</div>
+					</form>
+			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+			
+							<!-- source -->
+							<div class="form-group">
+								<label class="col-sm-3 control-label">Source</label>
+								<div class="col-sm-9">
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-603">line 603</a></p>
+								</div>
+							</div>
+			
+			
+			
+			
+					</form>
+			</div>	</div>
+</dd>
+											<hr/>
+											<dt class="symbol-title function public collapsible-symbol">
+			<h4 id="sendRpnValue" class="function public"><span class="name">sendRpnValue</span><span class="signature-params">( <span class="signature-param">rpn</span> [,&nbsp;<span class="signature-param">data</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -4407,7 +4607,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1514">line 1514</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1498">line 1498</a></p>
 								</div>
 							</div>
 			
@@ -4419,15 +4619,12 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setTuningBank" class="function public"><span class="name">setTuningBank</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendTuningBank" class="function public"><span class="name">sendTuningBank</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sets the MIDI tuning bank to use. Note that the <strong>Tuning Bank</strong> parameter is part of the
-			<em>MIDI Tuning Standard</em>, which is not widely implemented.</p>
-			<p><strong>Note</strong>: since version 3.0, the bank number is an integer between 1 and 128. In versions
-			1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-			that use a numbering scheme starting at 1.</p></div>
+			<em>MIDI Tuning Standard</em>, which is not widely implemented.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -4447,7 +4644,7 @@
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The desired tuning bank (1-128).</p>
+									<p>The desired tuning bank (integer between <code>0</code> and <code>127</code>).</p>
 							</td>
 						</tr>
 						<tr>
@@ -4497,7 +4694,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The bank value must be between 1 and 128.</p></div>
+									<div class="form-control-static exceptions-description"><p>The bank value must be between 0 and 127.</p></div>
 								</div>
 							</div>
 					</form>
@@ -4521,7 +4718,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1570">line 1570</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1550">line 1550</a></p>
 								</div>
 							</div>
 			
@@ -4533,15 +4730,12 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="setTuningProgram" class="function public"><span class="name">setTuningProgram</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
+			<h4 id="sendTuningProgram" class="function public"><span class="name">sendTuningProgram</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sets the MIDI tuning program to use. Note that the <strong>Tuning Program</strong> parameter is part of the
-			<em>MIDI Tuning Standard</em>, which is not widely implemented.</p>
-			<p><strong>Note</strong>: since version 3.0, the program number is an integer between 1 and 128. In versions
-			1.0 and 2.0, the number was between 0 and 127. This change aligns WebMidi.js with most devices
-			that use a numbering scheme starting at 1.</p></div>
+			<em>MIDI Tuning Standard</em>, which is not widely implemented.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -4561,7 +4755,7 @@
 								<td class="attributes"></td>
 								<td></td>
 							<td class="last">
-									<p>The desired tuning program (1-128).</p>
+									<p>The desired tuning program (integer between <code>0</code> and <code>127</code>).</p>
 							</td>
 						</tr>
 						<tr>
@@ -4611,7 +4805,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label exceptions-type"><span class="param-type">RangeError</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static exceptions-description"><p>The program value must be between 1 and 128.</p></div>
+									<div class="form-control-static exceptions-description"><p>The program value must be between 0 and 127.</p></div>
 								</div>
 							</div>
 					</form>
@@ -4635,7 +4829,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1607">line 1607</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1583">line 1583</a></p>
 								</div>
 							</div>
 			
@@ -4706,7 +4900,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-832">line 832</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-820">line 820</a></p>
 								</div>
 							</div>
 			
@@ -4730,12 +4924,14 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Suspends execution of all callbacks functions registered for the specified event type.</p>
-			<p>You can suspend execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
-			<code>EventEmitter.ANY_EVENT</code> to <code>suspendEvent()</code>. Beware that this will not suspend all callbacks
-			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive
+			<p>You can suspend execution of callbacks registered with
+			<code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>suspendEvent()</code>. Beware that this
+			will not suspend all callbacks but only those registered with
+			<code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive
 			at first glance, it allows the selective suspension of global listeners while leaving other
-			liseners alone. If you truly want to suspends all callbacks for a specific <code>EventEmitter</code>,
-			simply set its <code>eventsSuspended</code> property to <code>true</code>.</p></div>
+			listeners alone. If you truly want to suspends all callbacks for a specific
+			<a href="EventEmitter.html"><code>EventEmitter</code></a>, simply set its <code>eventsSuspended</code> property to <code>true</code>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -4792,196 +4988,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-239">line 239</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="turnNotesOff" class="function public"><span class="name">turnNotesOff</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all notes off</strong> channel mode message. This will make all currently playing notes
-			fade out just as if their key had been released. This is different from the
-			<a href="OutputChannel.html#turnSoundOff">turnSoundOff()</a> method which mutes all sounds immediately.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1663">line 1663</a></p>
-								</div>
-							</div>
-			
-			
-			
-			
-					</form>
-			</div>	</div>
-</dd>
-											<hr/>
-											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id="turnSoundOff" class="function public"><span class="name">turnSoundOff</span><span class="signature-params">( [&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{<a href="OutputChannel.html">OutputChannel</a>}</span></h4>
-		</dt>
-<dd class="symbol-details function public  collapsible-symbol">
-	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Sends an <strong>all sound off</strong> channel mode message. This will silence all sounds playing on that
-			channel but will not prevent new sounds from being triggered.</p></div>
-			</div>			<div class="callout callout-info">
-				<h5>Parameters</h5>
-				<table class="params table table-striped">
-					<thead>
-					<tr>
-							<th>Name</th>
-						<th>Type</th>
-							<th>Attributes</th>
-							<th>Default</th>
-						<th class="last">Description</th>
-					</tr>
-					</thead>
-					<tbody>
-						<tr>
-								<td><code>options</code></td>
-							<td><span class="param-type">Object</span></td>
-								<td class="attributes">&lt;optional&gt;<br/></td>
-								<td>{}</td>
-							<td class="last">
-										<table class="params table table-striped">
-											<thead>
-											<tr>
-													<th>Name</th>
-												<th>Type</th>
-													<th>Attributes</th>
-												<th class="last">Description</th>
-											</tr>
-											</thead>
-											<tbody>
-												<tr>
-														<td><code>time</code></td>
-													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
-									<a href="WebMidi.html#time">WebMidi.time</a>. If <code>options.time</code> is omitted, or in the past, the operation
-									will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-											</tbody>
-										</table>
-							</td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
-			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
-							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type"><a href="OutputChannel.html">OutputChannel</a></span></label>
-								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>Returns the <code>OutputChannel</code> object so methods can be chained.</p></div>
-								</div>
-							</div>
-					</form>
-			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-			
-							<!-- source -->
-							<div class="form-group">
-								<label class="col-sm-3 control-label">Source</label>
-								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1681">line 1681</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-249">line 249</a></p>
 								</div>
 							</div>
 			
@@ -4998,10 +5005,13 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Resumes execution of all suspended callback functions registered for the specified event type.</p>
-			<p>You can resume execution of callbacks registered with <code>EventEmitter.ANY_EVENT</code> by passing
-			<code>EventEmitter.ANY_EVENT</code> to <code>unsuspendEvent()</code>. Beware that this will not resume all callbacks
-			but only those registered with <code>EventEmitter.ANY_EVENT</code>. While this may seem counter-intuitive,
-			it allows the selective unsuspension of global listeners while leaving other callbacks alone.</p></div>
+			<p>You can resume execution of callbacks registered with
+			<code>EventEmitter.ANY_EVENT</code> by passing
+			<code>EventEmitter.ANY_EVENT</code> to <code>unsuspendEvent()</code>. Beware that
+			this will not resume all callbacks but only those registered with
+			<code>EventEmitter.ANY_EVENT</code>. While this may seem
+			counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+			callbacks alone.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -5058,7 +5068,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-256">line 256</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-269">line 269</a></p>
 								</div>
 							</div>
 			
@@ -5075,36 +5085,13 @@
 <dd class="symbol-details function public inherited  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>The <code>waitFor()</code> method is an async function which returns a promise. The promise is fulfilled
-			when the specified event occurs. The event can be a regular event or <code>EventEmitter.ANY_EVENT</code>
-			(if you want to resolve as soon as any event is emitted).</p>
-			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
-			const ee = new EventEmitter();
-			ee.waitFor(&quot;ready&quot;).then(() => console.log(&quot;Ready!&quot;));
-			</code></pre>
-			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
-			const ee = new EventEmitter();
-			await ee.waitFor(&quot;ready&quot;);
-			console.log(&quot;Ready!&quot;);
-			</code></pre>
+			when the specified event occurs. The event can be a regular event or
+			<code>EventEmitter.ANY_EVENT</code> (if you want to resolve as soon as any
+			event is emitted).</p>
 			<p>If the <code>duration</code> option is set, the promise will only be fulfilled if the event is emitted
 			within the specified duration. If the event has not been fulfilled after the specified
 			duration, the promise is rejected. This makes it super easy to wait for an event and timeout
-			after a certain time if the event is not triggered.</p>
-			<pre class="prettyprint source lang-javascript"><code>// then/catch syntax
-			const ee = new EventEmitter();
-			ee.waitFor(&quot;ready&quot;, {duration: 100})
-			.then(() => console.log(&quot;Ready!&quot;))
-			.catch(err => console.log(err);
-			</code></pre>
-			<pre class="prettyprint source lang-javascript"><code>// async/await syntax
-			const ee = new EventEmitter();
-			try {
-			 await ee.waitFor(&quot;ready&quot;, {duration: 100});
-			 console.log(&quot;Ready!&quot;);
-			} catch(err) {
-			  console.log(err);
-			}
-			</code></pre></div>
+			after a certain time if the event is not triggered.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -5195,7 +5182,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-433">line 433</a></p>
+									<p class="form-control-static"><a href="node_modules_djipevents_src_djipevents.js.html">node_modules/djipevents/src/djipevents.js</a>, <a href="node_modules_djipevents_src_djipevents.js.html#line-412">line 412</a></p>
 								</div>
 							</div>
 			
@@ -5215,8 +5202,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 8:11:54 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 16th 2021 @ 20:41:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

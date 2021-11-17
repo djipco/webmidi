@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -116,8 +116,8 @@
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Enumerations</code> class contains enumerations of elements used throughout the library. All
-			enumerations are static and should be referenced using the class name. For example:
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description classdesc"><p>The <code>Enumerations</code> class contains enumerations and arrays of elements used throughout the
+			library. All properties are static and should be referenced using the class name. For example:
 			<code>Enumerations.MIDI_CHANNEL_MESSAGES</code>.</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
@@ -173,17 +173,53 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all MIDI channel messages and their associated 4-bit numerical value:</p>
-			<ul>
-			<li><code>noteoff</code>: 0x8 (8)</li>
-			<li><code>noteon</code>: 0x9 (9)</li>
-			<li><code>keyaftertouch</code>: 0xA (10)</li>
-			<li><code>controlchange</code>: 0xB (11)</li>
-			<li><code>nrpn</code>: 0xB (11)</li>
-			<li><code>programchange</code>: 0xC (12)</li>
-			<li><code>channelaftertouch</code>: 0xD (13)</li>
-			<li><code>pitchbend</code>: 0xE (14)</li>
-			</ul></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all MIDI channel message names and their associated 4-bit numerical value:</p>
+			<table>
+			<thead>
+			<tr>
+			<th>Message Name</th>
+			<th>Hexadecimal</th>
+			<th>Decimal</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td><code>noteoff</code></td>
+			<td>0x8</td>
+			<td>8</td>
+			</tr>
+			<tr>
+			<td><code>noteon</code></td>
+			<td>0x9</td>
+			<td>9</td>
+			</tr>
+			<tr>
+			<td><code>keyaftertouch</code></td>
+			<td>0xA</td>
+			<td>10</td>
+			</tr>
+			<tr>
+			<td><code>controlchange</code></td>
+			<td>0xB</td>
+			<td>11</td>
+			</tr>
+			<tr>
+			<td><code>programchange</code></td>
+			<td>0xC</td>
+			<td>12</td>
+			</tr>
+			<tr>
+			<td><code>channelaftertouch</code></td>
+			<td>0xD</td>
+			<td>13</td>
+			</tr>
+			<tr>
+			<td><code>pitchbend</code></td>
+			<td>0xE</td>
+			<td>14</td>
+			</tr>
+			</tbody>
+			</table></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -211,7 +247,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-27">line 27</a></p>
+									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-28">line 28</a></p>
 								</div>
 							</div>
 			
@@ -227,17 +263,58 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all channel mode messages and their associated numerical value:</p>
-			<ul>
-			<li><code>allsoundoff</code>: 120</li>
-			<li><code>resetallcontrollers</code>: 121</li>
-			<li><code>localcontrol</code>: 122</li>
-			<li><code>allnotesoff</code>: 123</li>
-			<li><code>omnimodeoff</code>: 124</li>
-			<li><code>omnimodeon</code>: 125</li>
-			<li><code>monomodeon</code>: 126</li>
-			<li><code>polymodeon</code>: 127</li>
-			</ul></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all MIDI channel mode message names and their associated numerical value:</p>
+			<table>
+			<thead>
+			<tr>
+			<th>Message Name</th>
+			<th>Hexadecimal</th>
+			<th>Decimal</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td><code>allsoundoff</code></td>
+			<td>0x78</td>
+			<td>120</td>
+			</tr>
+			<tr>
+			<td><code>resetallcontrollers</code></td>
+			<td>0x79</td>
+			<td>121</td>
+			</tr>
+			<tr>
+			<td><code>localcontrol</code></td>
+			<td>0x7A</td>
+			<td>122</td>
+			</tr>
+			<tr>
+			<td><code>allnotesoff</code></td>
+			<td>0x7B</td>
+			<td>123</td>
+			</tr>
+			<tr>
+			<td><code>omnimodeoff</code></td>
+			<td>0x7C</td>
+			<td>124</td>
+			</tr>
+			<tr>
+			<td><code>omnimodeon</code></td>
+			<td>0x7D</td>
+			<td>125</td>
+			</tr>
+			<tr>
+			<td><code>monomodeon</code></td>
+			<td>0x7E</td>
+			<td>126</td>
+			</tr>
+			<tr>
+			<td><code>polymodeon</code></td>
+			<td>0x7F</td>
+			<td>127</td>
+			</tr>
+			</tbody>
+			</table></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -265,7 +342,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-68">line 68</a></p>
+									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-72">line 72</a></p>
 								</div>
 							</div>
 			
@@ -281,7 +358,7 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An array of the 16 MIDI channel numbers (<code>1</code> to <code>16</code>):</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>An simple array of the 16 valid MIDI channel numbers (<code>1</code> to <code>16</code>):</p></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -309,7 +386,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-48">line 48</a></p>
+									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-49">line 49</a></p>
 								</div>
 							</div>
 			
@@ -325,211 +402,532 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of most control change messages and their associated numerical value. Note that
-			some control change numbers do not have a predefined purpose and are absent from this list.</p>
-			<ul>
-			<li>
-			<p><code>bankselectcoarse</code>: 0</p>
-			</li>
-			<li>
-			<p><code>modulationwheelcoarse</code>: 1</p>
-			</li>
-			<li>
-			<p><code>breathcontrollercoarse</code>: 2</p>
-			</li>
-			<li>
-			<p><code>footcontrollercoarse</code>: 4</p>
-			</li>
-			<li>
-			<p><code>portamentotimecoarse</code>: 5</p>
-			</li>
-			<li>
-			<p><code>dataentrycoarse</code>: 6</p>
-			</li>
-			<li>
-			<p><code>volumecoarse</code>: 7</p>
-			</li>
-			<li>
-			<p><code>balancecoarse</code>: 8</p>
-			</li>
-			<li>
-			<p><code>pancoarse</code>: 10</p>
-			</li>
-			<li>
-			<p><code>expressioncoarse</code>: 11</p>
-			</li>
-			<li>
-			<p><code>effectcontrol1coarse</code>: 12</p>
-			</li>
-			<li>
-			<p><code>effectcontrol2coarse</code>: 13</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider1</code>: 16</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider2</code>: 17</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider3</code>: 18</p>
-			</li>
-			<li>
-			<p><code>generalpurposeslider4</code>: 19</p>
-			</li>
-			<li>
-			<p><code>bankselectfine</code>: 32</p>
-			</li>
-			<li>
-			<p><code>modulationwheelfine</code>: 33</p>
-			</li>
-			<li>
-			<p><code>breathcontrollerfine</code>: 34</p>
-			</li>
-			<li>
-			<p><code>footcontrollerfine</code>: 36</p>
-			</li>
-			<li>
-			<p><code>portamentotimefine</code>: 37</p>
-			</li>
-			<li>
-			<p><code>dataentryfine</code>: 38</p>
-			</li>
-			<li>
-			<p><code>volumefine</code>: 39</p>
-			</li>
-			<li>
-			<p><code>balancefine</code>: 40</p>
-			</li>
-			<li>
-			<p><code>panfine</code>: 42</p>
-			</li>
-			<li>
-			<p><code>expressionfine</code>: 43</p>
-			</li>
-			<li>
-			<p><code>effectcontrol1fine</code>: 44</p>
-			</li>
-			<li>
-			<p><code>effectcontrol2fine</code>: 45</p>
-			</li>
-			<li>
-			<p><code>holdpedal</code>: 64</p>
-			</li>
-			<li>
-			<p><code>portamento</code>: 65</p>
-			</li>
-			<li>
-			<p><code>sustenutopedal</code>: 66</p>
-			</li>
-			<li>
-			<p><code>softpedal</code>: 67</p>
-			</li>
-			<li>
-			<p><code>legatopedal</code>: 68</p>
-			</li>
-			<li>
-			<p><code>hold2pedal</code>: 69</p>
-			</li>
-			<li>
-			<p><code>soundvariation</code>: 70</p>
-			</li>
-			<li>
-			<p><code>resonance</code>: 71</p>
-			</li>
-			<li>
-			<p><code>soundreleasetime</code>: 72</p>
-			</li>
-			<li>
-			<p><code>soundattacktime</code>: 73</p>
-			</li>
-			<li>
-			<p><code>brightness</code>: 74</p>
-			</li>
-			<li>
-			<p><code>soundcontrol6</code>: 75</p>
-			</li>
-			<li>
-			<p><code>soundcontrol7</code>: 76</p>
-			</li>
-			<li>
-			<p><code>soundcontrol8</code>:`77</p>
-			</li>
-			<li>
-			<p><code>soundcontrol9</code>: 78</p>
-			</li>
-			<li>
-			<p><code>soundcontrol10</code>: 79</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton1</code>: 80</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton2</code>: 81</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton3</code>: 82</p>
-			</li>
-			<li>
-			<p><code>generalpurposebutton4</code>: 83</p>
-			</li>
-			<li>
-			<p><code>reverblevel</code>: 91</p>
-			</li>
-			<li>
-			<p><code>tremololevel</code>: 92</p>
-			</li>
-			<li>
-			<p><code>choruslevel</code>: 93</p>
-			</li>
-			<li>
-			<p><code>celestelevel</code>: 94</p>
-			</li>
-			<li>
-			<p><code>phaserlevel</code>: 95</p>
-			</li>
-			<li>
-			<p><code>databuttonincrement</code>: 96</p>
-			</li>
-			<li>
-			<p><code>databuttondecrement</code>: 97</p>
-			</li>
-			<li>
-			<p><code>nonregisteredparametercoarse</code>: 98</p>
-			</li>
-			<li>
-			<p><code>nonregisteredparameterfine</code>: 99</p>
-			</li>
-			<li>
-			<p><code>registeredparametercoarse</code>: 100</p>
-			</li>
-			<li>
-			<p><code>registeredparameterfine</code>: 101</p>
-			</li>
-			<li>
-			<p><code>allsoundoff</code>: 120</p>
-			</li>
-			<li>
-			<p><code>resetallcontrollers</code>: 121</p>
-			</li>
-			<li>
-			<p><code>localcontrol</code>: 122</p>
-			</li>
-			<li>
-			<p><code>allnotesoff</code>: 123</p>
-			</li>
-			<li>
-			<p><code>omnimodeoff</code>: 124</p>
-			</li>
-			<li>
-			<p><code>omnimodeon</code>: 125</p>
-			</li>
-			<li>
-			<p><code>monomodeon</code>: 126</p>
-			</li>
-			<li>
-			<p><code>polymodeon</code>: 127</p>
-			</li>
-			</ul></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all control change messages identifying the control function associated to its
+			control number.</p>
+			<p>Not all numbers have a preassigned control function. For those that don't, the control function
+			is identified as the word &quot;controller&quot; followed by the number (e.g. <code>controller123</code>).</p>
+			<table>
+			<thead>
+			<tr>
+			<th>Control Function</th>
+			<th>Control Number</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td><code>bankselectcoarse</code></td>
+			<td>0</td>
+			</tr>
+			<tr>
+			<td><code>modulationwheelcoarse</code></td>
+			<td>1</td>
+			</tr>
+			<tr>
+			<td><code>breathcontrollercoarse</code></td>
+			<td>2</td>
+			</tr>
+			<tr>
+			<td><code>controller3</code></td>
+			<td>3</td>
+			</tr>
+			<tr>
+			<td><code>footcontrollercoarse</code></td>
+			<td>4</td>
+			</tr>
+			<tr>
+			<td><code>portamentotimecoarse</code></td>
+			<td>5</td>
+			</tr>
+			<tr>
+			<td><code>dataentrycoarse</code></td>
+			<td>6</td>
+			</tr>
+			<tr>
+			<td><code>volumecoarse</code></td>
+			<td>7</td>
+			</tr>
+			<tr>
+			<td><code>balancecoarse</code></td>
+			<td>8</td>
+			</tr>
+			<tr>
+			<td><code>controller9</code></td>
+			<td>9</td>
+			</tr>
+			<tr>
+			<td><code>pancoarse</code></td>
+			<td>10</td>
+			</tr>
+			<tr>
+			<td><code>expressioncoarse</code></td>
+			<td>11</td>
+			</tr>
+			<tr>
+			<td><code>effectcontrol1coarse</code></td>
+			<td>12</td>
+			</tr>
+			<tr>
+			<td><code>effectcontrol2coarse</code></td>
+			<td>13</td>
+			</tr>
+			<tr>
+			<td><code>controller14</code></td>
+			<td>14</td>
+			</tr>
+			<tr>
+			<td><code>controller15</code></td>
+			<td>15</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposeslider1</code></td>
+			<td>16</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposeslider2</code></td>
+			<td>17</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposeslider3</code></td>
+			<td>18</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposeslider4</code></td>
+			<td>19</td>
+			</tr>
+			<tr>
+			<td><code>controller20</code></td>
+			<td>20</td>
+			</tr>
+			<tr>
+			<td><code>controller21</code></td>
+			<td>21</td>
+			</tr>
+			<tr>
+			<td><code>controller22</code></td>
+			<td>22</td>
+			</tr>
+			<tr>
+			<td><code>controller23</code></td>
+			<td>23</td>
+			</tr>
+			<tr>
+			<td><code>controller24</code></td>
+			<td>24</td>
+			</tr>
+			<tr>
+			<td><code>controller25</code></td>
+			<td>25</td>
+			</tr>
+			<tr>
+			<td><code>controller26</code></td>
+			<td>26</td>
+			</tr>
+			<tr>
+			<td><code>controller27</code></td>
+			<td>27</td>
+			</tr>
+			<tr>
+			<td><code>controller28</code></td>
+			<td>28</td>
+			</tr>
+			<tr>
+			<td><code>controller29</code></td>
+			<td>29</td>
+			</tr>
+			<tr>
+			<td><code>controller30</code></td>
+			<td>30</td>
+			</tr>
+			<tr>
+			<td><code>controller31</code></td>
+			<td>31</td>
+			</tr>
+			<tr>
+			<td><code>bankselectfine</code></td>
+			<td>32</td>
+			</tr>
+			<tr>
+			<td><code>modulationwheelfine</code></td>
+			<td>33</td>
+			</tr>
+			<tr>
+			<td><code>breathcontrollerfine</code></td>
+			<td>34</td>
+			</tr>
+			<tr>
+			<td><code>controller35</code></td>
+			<td>35</td>
+			</tr>
+			<tr>
+			<td><code>footcontrollerfine</code></td>
+			<td>36</td>
+			</tr>
+			<tr>
+			<td><code>portamentotimefine</code></td>
+			<td>37</td>
+			</tr>
+			<tr>
+			<td><code>dataentryfine</code></td>
+			<td>38</td>
+			</tr>
+			<tr>
+			<td><code>volumefine</code></td>
+			<td>39</td>
+			</tr>
+			<tr>
+			<td><code>balancefine</code></td>
+			<td>40</td>
+			</tr>
+			<tr>
+			<td><code>controller41</code></td>
+			<td>41</td>
+			</tr>
+			<tr>
+			<td><code>panfine</code></td>
+			<td>42</td>
+			</tr>
+			<tr>
+			<td><code>expressionfine</code></td>
+			<td>43</td>
+			</tr>
+			<tr>
+			<td><code>effectcontrol1fine</code></td>
+			<td>44</td>
+			</tr>
+			<tr>
+			<td><code>effectcontrol2fine</code></td>
+			<td>45</td>
+			</tr>
+			<tr>
+			<td><code>controller46</code></td>
+			<td>46</td>
+			</tr>
+			<tr>
+			<td><code>controller47</code></td>
+			<td>47</td>
+			</tr>
+			<tr>
+			<td><code>controller48</code></td>
+			<td>48</td>
+			</tr>
+			<tr>
+			<td><code>controller49</code></td>
+			<td>49</td>
+			</tr>
+			<tr>
+			<td><code>controller50</code></td>
+			<td>50</td>
+			</tr>
+			<tr>
+			<td><code>controller51</code></td>
+			<td>51</td>
+			</tr>
+			<tr>
+			<td><code>controller52</code></td>
+			<td>52</td>
+			</tr>
+			<tr>
+			<td><code>controller53</code></td>
+			<td>53</td>
+			</tr>
+			<tr>
+			<td><code>controller54</code></td>
+			<td>54</td>
+			</tr>
+			<tr>
+			<td><code>controller55</code></td>
+			<td>55</td>
+			</tr>
+			<tr>
+			<td><code>controller56</code></td>
+			<td>56</td>
+			</tr>
+			<tr>
+			<td><code>controller57</code></td>
+			<td>57</td>
+			</tr>
+			<tr>
+			<td><code>controller58</code></td>
+			<td>58</td>
+			</tr>
+			<tr>
+			<td><code>controller59</code></td>
+			<td>59</td>
+			</tr>
+			<tr>
+			<td><code>controller60</code></td>
+			<td>60</td>
+			</tr>
+			<tr>
+			<td><code>controller61</code></td>
+			<td>61</td>
+			</tr>
+			<tr>
+			<td><code>controller62</code></td>
+			<td>62</td>
+			</tr>
+			<tr>
+			<td><code>controller63</code></td>
+			<td>63</td>
+			</tr>
+			<tr>
+			<td><code>holdpedal</code></td>
+			<td>64</td>
+			</tr>
+			<tr>
+			<td><code>portamento</code></td>
+			<td>65</td>
+			</tr>
+			<tr>
+			<td><code>sustenutopedal</code></td>
+			<td>66</td>
+			</tr>
+			<tr>
+			<td><code>softpedal</code></td>
+			<td>67</td>
+			</tr>
+			<tr>
+			<td><code>legatopedal</code></td>
+			<td>68</td>
+			</tr>
+			<tr>
+			<td><code>hold2pedal</code></td>
+			<td>69</td>
+			</tr>
+			<tr>
+			<td><code>soundvariation</code></td>
+			<td>70</td>
+			</tr>
+			<tr>
+			<td><code>resonance</code></td>
+			<td>71</td>
+			</tr>
+			<tr>
+			<td><code>soundreleasetime</code></td>
+			<td>72</td>
+			</tr>
+			<tr>
+			<td><code>soundattacktime</code></td>
+			<td>73</td>
+			</tr>
+			<tr>
+			<td><code>brightness</code></td>
+			<td>74</td>
+			</tr>
+			<tr>
+			<td><code>soundcontrol6</code></td>
+			<td>75</td>
+			</tr>
+			<tr>
+			<td><code>soundcontrol7</code></td>
+			<td>76</td>
+			</tr>
+			<tr>
+			<td><code>soundcontrol8</code></td>
+			<td>77</td>
+			</tr>
+			<tr>
+			<td><code>soundcontrol9</code></td>
+			<td>78</td>
+			</tr>
+			<tr>
+			<td><code>soundcontrol10</code></td>
+			<td>79</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposebutton1</code></td>
+			<td>80</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposebutton2</code></td>
+			<td>81</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposebutton3</code></td>
+			<td>82</td>
+			</tr>
+			<tr>
+			<td><code>generalpurposebutton4</code></td>
+			<td>83</td>
+			</tr>
+			<tr>
+			<td><code>controller84</code></td>
+			<td>84</td>
+			</tr>
+			<tr>
+			<td><code>controller85</code></td>
+			<td>85</td>
+			</tr>
+			<tr>
+			<td><code>controller86</code></td>
+			<td>86</td>
+			</tr>
+			<tr>
+			<td><code>controller87</code></td>
+			<td>87</td>
+			</tr>
+			<tr>
+			<td><code>controller88</code></td>
+			<td>88</td>
+			</tr>
+			<tr>
+			<td><code>controller89</code></td>
+			<td>89</td>
+			</tr>
+			<tr>
+			<td><code>controller90</code></td>
+			<td>90</td>
+			</tr>
+			<tr>
+			<td><code>reverblevel</code></td>
+			<td>91</td>
+			</tr>
+			<tr>
+			<td><code>tremololevel</code></td>
+			<td>92</td>
+			</tr>
+			<tr>
+			<td><code>choruslevel</code></td>
+			<td>93</td>
+			</tr>
+			<tr>
+			<td><code>celestelevel</code></td>
+			<td>94</td>
+			</tr>
+			<tr>
+			<td><code>phaserlevel</code></td>
+			<td>95</td>
+			</tr>
+			<tr>
+			<td><code>databuttonincrement</code></td>
+			<td>96</td>
+			</tr>
+			<tr>
+			<td><code>databuttondecrement</code></td>
+			<td>97</td>
+			</tr>
+			<tr>
+			<td><code>nonregisteredparametercoarse</code></td>
+			<td>98</td>
+			</tr>
+			<tr>
+			<td><code>nonregisteredparameterfine</code></td>
+			<td>99</td>
+			</tr>
+			<tr>
+			<td><code>registeredparametercoarse</code></td>
+			<td>100</td>
+			</tr>
+			<tr>
+			<td><code>registeredparameterfine</code></td>
+			<td>101</td>
+			</tr>
+			<tr>
+			<td><code>controller102</code></td>
+			<td>102</td>
+			</tr>
+			<tr>
+			<td><code>controller103</code></td>
+			<td>103</td>
+			</tr>
+			<tr>
+			<td><code>controller104</code></td>
+			<td>104</td>
+			</tr>
+			<tr>
+			<td><code>controller105</code></td>
+			<td>105</td>
+			</tr>
+			<tr>
+			<td><code>controller106</code></td>
+			<td>106</td>
+			</tr>
+			<tr>
+			<td><code>controller107</code></td>
+			<td>107</td>
+			</tr>
+			<tr>
+			<td><code>controller108</code></td>
+			<td>108</td>
+			</tr>
+			<tr>
+			<td><code>controller109</code></td>
+			<td>109</td>
+			</tr>
+			<tr>
+			<td><code>controller110</code></td>
+			<td>110</td>
+			</tr>
+			<tr>
+			<td><code>controller111</code></td>
+			<td>111</td>
+			</tr>
+			<tr>
+			<td><code>controller112</code></td>
+			<td>112</td>
+			</tr>
+			<tr>
+			<td><code>controller113</code></td>
+			<td>113</td>
+			</tr>
+			<tr>
+			<td><code>controller114</code></td>
+			<td>114</td>
+			</tr>
+			<tr>
+			<td><code>controller115</code></td>
+			<td>115</td>
+			</tr>
+			<tr>
+			<td><code>controller116</code></td>
+			<td>116</td>
+			</tr>
+			<tr>
+			<td><code>controller117</code></td>
+			<td>117</td>
+			</tr>
+			<tr>
+			<td><code>controller118</code></td>
+			<td>118</td>
+			</tr>
+			<tr>
+			<td><code>controller119</code></td>
+			<td>119</td>
+			</tr>
+			<tr>
+			<td><code>allsoundoff</code></td>
+			<td>120</td>
+			</tr>
+			<tr>
+			<td><code>resetallcontrollers</code></td>
+			<td>121</td>
+			</tr>
+			<tr>
+			<td><code>localcontrol</code></td>
+			<td>122</td>
+			</tr>
+			<tr>
+			<td><code>allnotesoff</code></td>
+			<td>123</td>
+			</tr>
+			<tr>
+			<td><code>omnimodeoff</code></td>
+			<td>124</td>
+			</tr>
+			<tr>
+			<td><code>omnimodeon</code></td>
+			<td>125</td>
+			</tr>
+			<tr>
+			<td><code>monomodeon</code></td>
+			<td>126</td>
+			</tr>
+			<tr>
+			<td><code>polymodeon</code></td>
+			<td>127</td>
+			</tr>
+			</tbody>
+			</table></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -557,7 +955,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-160">line 160</a></p>
+									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-229">line 229</a></p>
 								</div>
 							</div>
 			
@@ -573,26 +971,79 @@
 		</dt>
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all registered parameters and their associated pair of numerical values. MIDI
-			registered parameters extend the original list of control change messages. Currently, there are
-			only a limited number of them:</p>
-			<ul>
-			<li><code>pitchbendrange</code>: [0x00, 0x00]</li>
-			<li><code>channelfinetuning</code>: [0x00, 0x01]</li>
-			<li><code>channelcoarsetuning</code>: [0x00, 0x02]</li>
-			<li><code>tuningprogram</code>: [0x00, 0x03]</li>
-			<li><code>tuningbank</code>: [0x00, 0x04]</li>
-			<li><code>modulationrange</code>: [0x00, 0x05]</li>
-			<li><code>azimuthangle</code>: [0x3D, 0x00]</li>
-			<li><code>elevationangle</code>: [0x3D, 0x01]</li>
-			<li><code>gain</code>: [0x3D, 0x02]</li>
-			<li><code>distanceratio</code>: [0x3D, 0x03]</li>
-			<li><code>maximumdistance</code>: [0x3D, 0x04]</li>
-			<li><code>maximumdistancegain</code>: [0x3D, 0x05]</li>
-			<li><code>referencedistanceratio</code>: [0x3D, 0x06]</li>
-			<li><code>panspreadangle</code>: [0x3D, 0x07]</li>
-			<li><code>rollangle</code>: [0x3D, 0x08]</li>
-			</ul></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all MIDI registered parameters and their associated pair of numerical values.
+			MIDI registered parameters extend the original list of control change messages. Currently,
+			there are only a limited number of them:</p>
+			<table>
+			<thead>
+			<tr>
+			<th>Control Function</th>
+			<th>[LSB, MSB]</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td><code>pitchbendrange</code></td>
+			<td>[0x00, 0x00]</td>
+			</tr>
+			<tr>
+			<td><code>channelfinetuning</code></td>
+			<td>[0x00, 0x01]</td>
+			</tr>
+			<tr>
+			<td><code>channelcoarsetuning</code></td>
+			<td>[0x00, 0x02]</td>
+			</tr>
+			<tr>
+			<td><code>tuningprogram</code></td>
+			<td>[0x00, 0x03]</td>
+			</tr>
+			<tr>
+			<td><code>tuningbank</code></td>
+			<td>[0x00, 0x04]</td>
+			</tr>
+			<tr>
+			<td><code>modulationrange</code></td>
+			<td>[0x00, 0x05]</td>
+			</tr>
+			<tr>
+			<td><code>azimuthangle</code></td>
+			<td>[0x3D, 0x00]</td>
+			</tr>
+			<tr>
+			<td><code>elevationangle</code></td>
+			<td>[0x3D, 0x01]</td>
+			</tr>
+			<tr>
+			<td><code>gain</code></td>
+			<td>[0x3D, 0x02]</td>
+			</tr>
+			<tr>
+			<td><code>distanceratio</code></td>
+			<td>[0x3D, 0x03]</td>
+			</tr>
+			<tr>
+			<td><code>maximumdistance</code></td>
+			<td>[0x3D, 0x04]</td>
+			</tr>
+			<tr>
+			<td><code>maximumdistancegain</code></td>
+			<td>[0x3D, 0x05]</td>
+			</tr>
+			<tr>
+			<td><code>referencedistanceratio</code></td>
+			<td>[0x3D, 0x06]</td>
+			</tr>
+			<tr>
+			<td><code>panspreadangle</code></td>
+			<td>[0x3D, 0x07]</td>
+			</tr>
+			<tr>
+			<td><code>rollangle</code></td>
+			<td>[0x3D, 0x08]</td>
+			</tr>
+			</tbody>
+			</table></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -620,7 +1071,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-262">line 262</a></p>
+									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-394">line 394</a></p>
 								</div>
 							</div>
 			
@@ -637,35 +1088,121 @@
 <dd class="symbol-details member public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
-			uses two custom messages.</p>
-			<p><strong>System common messages</strong></p>
-			<ul>
-			<li><code>sysex</code>: 0xF0 (240)</li>
-			<li><code>timecode</code>: 0xF1 (241)</li>
-			<li><code>songposition</code>: 0xF2 (242)</li>
-			<li><code>songselect</code>: 0xF3 (243)</li>
-			<li><code>tunerequest</code>: 0xF6 (246)</li>
-			<li><code>sysexend</code>: 0xF7 (247)</li>
-			</ul>
+			uses two additional custom messages.</p>
+			<p><strong>System Common Messages</strong></p>
+			<table>
+			<thead>
+			<tr>
+			<th>Function</th>
+			<th>Hexadecimal</th>
+			<th>Decimal</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td><code>sysex</code></td>
+			<td>0xF0</td>
+			<td>240</td>
+			</tr>
+			<tr>
+			<td><code>timecode</code></td>
+			<td>0xF1</td>
+			<td>241</td>
+			</tr>
+			<tr>
+			<td><code>songposition</code></td>
+			<td>0xF2</td>
+			<td>242</td>
+			</tr>
+			<tr>
+			<td><code>songselect</code></td>
+			<td>0xF3</td>
+			<td>243</td>
+			</tr>
+			<tr>
+			<td><code>tunerequest</code></td>
+			<td>0xF6</td>
+			<td>246</td>
+			</tr>
+			<tr>
+			<td><code>sysexend</code></td>
+			<td>0xF7</td>
+			<td>247</td>
+			</tr>
+			</tbody>
+			</table>
 			<p>The <code>sysexend</code> message is never actually received. It simply ends a sysex stream.</p>
-			<p><strong>System real-time messages</strong></p>
-			<ul>
-			<li><code>clock</code>: 0xF8 (248)</li>
-			<li><code>start</code>: 0xFA (250)</li>
-			<li><code>continue</code>: 0xFB (251)</li>
-			<li><code>stop</code>: 0xFC (252)</li>
-			<li><code>activesensing</code>: 0xFE (254)</li>
-			<li><code>reset</code>: 0xFF (255)</li>
-			</ul>
-			<p>Values 249 and 253 are actually relayed by the Web MIDI API but they do not serve a specific
-			purpose. The
+			<p><strong>System Real-Time Messages</strong></p>
+			<table>
+			<thead>
+			<tr>
+			<th>Function</th>
+			<th>Hexadecimal</th>
+			<th>Decimal</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td><code>clock</code></td>
+			<td>0xF8</td>
+			<td>248</td>
+			</tr>
+			<tr>
+			<td><code>start</code></td>
+			<td>0xFA</td>
+			<td>250</td>
+			</tr>
+			<tr>
+			<td><code>continue</code></td>
+			<td>0xFB</td>
+			<td>251</td>
+			</tr>
+			<tr>
+			<td><code>stop</code></td>
+			<td>0xFC</td>
+			<td>252</td>
+			</tr>
+			<tr>
+			<td><code>activesensing</code></td>
+			<td>0xFE</td>
+			<td>254</td>
+			</tr>
+			<tr>
+			<td><code>reset</code></td>
+			<td>0xFF</td>
+			<td>255</td>
+			</tr>
+			</tbody>
+			</table>
+			<p>Values 249 and 253 are relayed by the
+			<a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_MIDI_API">Web MIDI API</a> but they do not
+			serve any specific purpose. The
 			<a href="https://www.midi.org/specifications/item/table-1-summary-of-midi-message">MIDI 1.0 spec</a>
 			simply states that they are undefined/reserved.</p>
-			<p><strong>Custom WebMidi.js messages</strong></p>
-			<ul>
-			<li><code>midimessage</code>: 0</li>
-			<li><code>unknownsystemmessage</code>: -1</li>
-			</ul></div>
+			<p><strong>Custom WebMidi.js Messages</strong></p>
+			<p>These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
+			or forwarded.</p>
+			<table>
+			<thead>
+			<tr>
+			<th>Function</th>
+			<th>Hexadecimal</th>
+			<th>Decimal</th>
+			</tr>
+			</thead>
+			<tbody>
+			<tr>
+			<td><code>midimessage</code></td>
+			<td></td>
+			<td>0</td>
+			</tr>
+			<tr>
+			<td><code>unknownsystemmessage</code></td>
+			<td></td>
+			<td>-1</td>
+			</tr>
+			</tbody>
+			</table></div>
 			</div>			<div class="callout callout-default"><h5>Details</h5>		<form class="form-horizontal details">
 			
 							<!-- type -->
@@ -693,7 +1230,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-322">line 322</a></p>
+									<p class="form-control-static"><a href="src_Enumerations.js.html">src/Enumerations.js</a>, <a href="src_Enumerations.js.html#line-465">line 465</a></p>
 								</div>
 							</div>
 			
@@ -713,8 +1250,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.21 is released under the MIT license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on October 25th 2021 @ 8:11:54 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 16th 2021 @ 20:41:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
