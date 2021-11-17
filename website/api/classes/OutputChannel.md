@@ -355,7 +355,7 @@ Note: to specifically check for global listeners added with
 Plays a note or an array of notes on the channel. The first parameter is the note to play. It
 can be a single value or an array of the following valid values:
 
- - A [Note](Note) object
+ - A [`Note`](Note) object
  - A MIDI note number (integer between `0` and `127`)
  - A note name, followed by the octave (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
 
