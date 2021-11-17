@@ -759,21 +759,16 @@ Sends a MIDI **key aftertouch** message at the scheduled time. This is a key-spe
 aftertouch. For a channel-wide aftertouch message, use
 [`sendChannelAftertouch()`](#sendChannelAftertouch).
 
-The key can be a single value or an array of the following valid values:
-
- - A MIDI note number (integer between `0` and `127`)
- - A note identifier such as `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.
-
 
   **Parameters**
 
-  > Signature: `sendKeyAftertouch(target, [pressure], [options])`
+  > Signature: `sendKeyAftertouch(note, [pressure], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`target`** | number<br />string<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br /> ||The key(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (0-127), a note identifier (e.g. C3, G#4, F-1, Db7), or an array of the previous types. When using a note identifier, the octave value will be offset by the combined value of `InputChannel.octaveOffset`, `Input.octaveOffset` and `WebMidi.octaveOffset` (if those values are not `0`). When using a key number, octaveOffset values are ignored.|
+    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`). When using a note identifier, the octave value will be offset by the combined value of [`OutputChannel.octaveOffset`](OutputChannel#octaveOffset), [`Output.octaveOffset`](Output#octaveOffset) [`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if those values are not `0`). When using a key number, `octaveOffset` values are ignored.|
     |[**`pressure`**] | number<br /> |0.5|The pressure level (between 0 and 1). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure is defined by using an integer between 0 and 127.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.useRawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between 0 and 1.0 (default) or a raw integer between 0 and 127.|
