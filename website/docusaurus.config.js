@@ -25,7 +25,6 @@ module.exports = {
       id: "mcjs"
     }
   ],
-
   themeConfig: {
     navbar: {
       // title: "My Site",

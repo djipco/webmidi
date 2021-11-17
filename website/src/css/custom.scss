@@ -55,7 +55,7 @@
   --font-size-button: 1.25rem;
 
   /// Grosseur des textes
-  --font-size-h1-desktop: 5rem;
+  --font-size-h1-desktop: 4rem;
   --font-size-h1-mobile: 2.5rem;
   --font-size-h2-desktop: 2.5rem;
   --font-size-h2-mobile: 2rem;
@@ -220,7 +220,6 @@ li a.dropdown__link.external svg {
 h1 {
   font-family: var(--font-secondary);
   font-weight: 900;
-  font-style: italic;
   font-size: var(--font-size-h1-desktop);
 
   @media screen and (min-width: $breakpoint-md) {
