@@ -373,7 +373,7 @@ When using [`Note`](Note) objects, the durations and velocities defined in the
 [`Note`](Note) objects have precedence over the ones specified via the method's `options`
 parameter.
 
-**Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
+**Note**: per the MIDI standard, a **note on** message with an attack velocity of `0` is
 functionally equivalent to a **note off** message.
 
 
@@ -385,7 +385,7 @@ functionally equivalent to a **note off** message.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to play. The notes can be specified by using a MIDI note number (0-127), a note name (e.g. C3, G#4, F-1, Db7), a [Note](Note) object or an array of the previous types. When using a note name, octave range must be between -1 and 9. The lowest note is C-1 (MIDI note number 0) and the highest note is G9 (MIDI note number 127).|
+    |**`note`** | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> ||The note(s) to play. The notes can be specified by using a MIDI note number (`0` - `127`), a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`), a [`Note`](Note) object or an array of the previous types. When using a note identifier, the octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.duration`**] | number<br /> ||A positive number larger than 0 representing the number of milliseconds to wait before sending a **note off** message. If invalid or left undefined, only a **note on** message will be sent.|
     |[**`options.attack`**] | number<br /> |0.5|The velocity at which to play the note (between `0` and `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
