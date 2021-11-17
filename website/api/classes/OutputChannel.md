@@ -444,8 +444,8 @@ callback to match or one or more of the additional options.
 
 Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
 sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
-[Uint8Array](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
-object or a `Message` object.
+[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+object or a [`Message`](Message) object.
 
 It is usually not necessary to use this method directly as you can use one of the simpler
 helper methods such as `playNote()`, `stopNote()`, `sendControlChange()`, etc.
