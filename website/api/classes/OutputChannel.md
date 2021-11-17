@@ -549,7 +549,7 @@ Returns the `OutputChannel` object so methods can be chained.
 
 
 Sends a MIDI **channel aftertouch** message. For key-specific aftertouch, you should instead
-use [sendKeyAftertouch()](#sendKeyAftertouch).
+use [`sendKeyAftertouch()`](#sendKeyAftertouch).
 
 
   **Parameters**
