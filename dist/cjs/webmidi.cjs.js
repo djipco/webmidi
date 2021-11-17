@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.24 - November 16, 2021 19:41:04 */
+/* Version: 3.0.0-alpha.24 - November 16, 2021 19:44:34 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -3787,7 +3787,7 @@ class Output extends e {
    * @private
    * @deprecated since version 3.0
    */
-  setKeyAftertouch(note, channel = "all", pressure = 0.5, options = {}) {
+  setKeyAftertouch(note, pressure = 0.5, channel = "all", options = {}) {
     if (wm.validation) {
       console.warn("The setKeyAftertouch() method is deprecated. Use sendKeyAftertouch() instead.");
       options.channels = channel;
@@ -4408,16 +4408,16 @@ class Output extends e {
    * Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
    * send can be specified numerically or by using one of the following common names:
    *
-   *   | Type                  | Number | Shortcut Method                                         |
-   *   |-----------------------|--------|---------------------------------------------------------|
-   *   | `allsoundoff`         | 120    | [`turnSoundOff()`]{@link #turnSoundOff}                 |
-   *   | `resetallcontrollers` | 121    | [`sendResetAllControllers()`]{@link #sendResetAllControllers}   |
-   *   | `localcontrol`        | 122    | [`setLocalControl()`]{@link #turnSoundOff}              |
-   *   | `allnotesoff`         | 123    | [`turnNotesOff()`]{@link #turnNotesOff}                 |
-   *   | `omnimodeoff`         | 124    | [`setOmniMode(false)`]{@link #setOmniMode}              |
-   *   | `omnimodeon`          | 125    | [`setOmniMode(true)`]{@link #setOmniMode}               |
-   *   | `monomodeon`          | 126    | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode} |
-   *   | `polymodeon`          | 127    | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode} |
+   *   | Type                |Number| Shortcut Method                                              |
+   *   |---------------------|------|--------------------------------------------------------------|
+   *   |`allsoundoff`        |120   | [`sendAllSoundOff()`]{@link #sendAllSoundOff}                |
+   *   |`resetallcontrollers`|121   | [`sendResetAllControllers()`]{@link #sendResetAllControllers}|
+   *   |`localcontrol`       |122   | [`sendLocalControl()`]{@link #sendLocalControl}              |
+   *   |`allnotesoff`        |123   | [`sendAllNotesOff()`]{@link #sendAllNotesOff}                |
+   *   |`omnimodeoff`        |124   | [`sendOmniMode(false)`]{@link #sendOmniMode}                 |
+   *   |`omnimodeon`         |125   | [`sendOmniMode(true)`]{@link #sendOmniMode}                  |
+   *   |`monomodeon`         |126   | [`sendPolyphonicMode("mono")`]{@link #sendPolyphonicMode}    |
+   *   |`polymodeon`         |127   | [`sendPolyphonicMode("poly")`]{@link #sendPolyphonicMode}    |
    *
    * Note: as you can see above, to make it easier, all channel mode messages also have a matching
    * helper method.
