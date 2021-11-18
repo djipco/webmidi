@@ -123,13 +123,13 @@ project, simply issue the following command to perform the install:
 Then, you can use any of those approaches depending on your environment:
 
     // Script tag
-    <script src="node_modules/webmidi/dist/webmidi.iife.js"></script>
+    <script src="node_modules/webmidi/dist/iife/webmidi.iife.js"></script>
  
     // CommonJS require
     const {WebMidi} = require("webmidi");
  
     // ES module import in browser
-    import {WebMidi} from "node_modules/webmidi/dist/webmidi.esm.js";
+    import {WebMidi} from "node_modules/webmidi/dist/iife/webmidi.esm.js";
 
     // ES module import in Node.js
     import {WebMidi} from "webmidi";
