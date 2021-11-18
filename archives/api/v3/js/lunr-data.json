@@ -7457,8 +7457,6 @@
           "code",
           "confirm",
           "connect",
-          "console.log(\"input",
-          "console.log(\"output",
           "console.log(\"webmidi.j",
           "current",
           "display",
@@ -7508,8 +7506,6 @@
           "page",
           "pass",
           "plugin",
-          "ports.input",
-          "ports.output",
           "process",
           "promis",
           "promise.&lt;webmidi&gt",
@@ -7544,7 +7540,7 @@
           "web",
           "webmidi",
           "webmidi#en",
-          "webmidi.enable().then(port",
+          "webmidi.enable().then",
           "webmidi.j"
         ],
         "WebMidi.html#getInputById": [
@@ -9664,7 +9660,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 }
               },
@@ -10128,7 +10124,7 @@
             },
             "WebMidi.html#enable": {
               "ref": "WebMidi.html#enable",
-              "tf": 0.28735632183908044
+              "tf": 0.29411764705882354
             }
           }
         },
@@ -11189,7 +11185,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.5747126436781609
+                  "tf": 0.5882352941176471
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -12059,7 +12055,7 @@
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.28735632183908044
+                              "tf": 0.29411764705882354
                             }
                           }
                         }
@@ -12331,7 +12327,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.5747126436781609
+                      "tf": 0.5882352941176471
                     }
                   }
                 }
@@ -12361,7 +12357,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -12566,7 +12562,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5747126436781609
+                        "tf": 0.5882352941176471
                       }
                     }
                   }
@@ -13473,7 +13469,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       }
                     }
                   }
@@ -13543,7 +13539,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.8620689655172413
+                      "tf": 0.8823529411764706
                     }
                   }
                 }
@@ -14232,7 +14228,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -16292,7 +16288,7 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.28735632183908044
+                              "tf": 0.29411764705882354
                             }
                           }
                         }
@@ -16317,7 +16313,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       }
                     }
                   }
@@ -16552,7 +16548,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -16618,7 +16614,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -16877,7 +16873,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -17311,7 +17307,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#getListenerCount": {
                         "ref": "WebMidi.html#getListenerCount",
@@ -18221,7 +18217,7 @@
                           "docs": {
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.28735632183908044
+                              "tf": 0.29411764705882354
                             }
                           }
                         }
@@ -19003,7 +18999,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 1.4367816091954022
+                    "tf": 1.4705882352941175
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -19350,7 +19346,7 @@
                                 "docs": {
                                   "WebMidi.html#enable": {
                                     "ref": "WebMidi.html#enable",
-                                    "tf": 0.5747126436781609
+                                    "tf": 0.5882352941176471
                                   }
                                 }
                               }
@@ -20268,7 +20264,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5747126436781609
+                        "tf": 0.5882352941176471
                       }
                     },
                     "e": {
@@ -20798,7 +20794,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#hasListener": {
                         "ref": "WebMidi.html#hasListener",
@@ -21452,7 +21448,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       }
                     }
                   }
@@ -22016,7 +22012,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.28735632183908044
+                            "tf": 0.29411764705882354
                           },
                           "WebMidi.html#suspendEvent": {
                             "ref": "WebMidi.html#suspendEvent",
@@ -22167,7 +22163,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 1.1494252873563218
+                        "tf": 1.1764705882352942
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -22334,7 +22330,7 @@
                     "docs": {
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5747126436781609
+                        "tf": 0.5882352941176471
                       }
                     }
                   }
@@ -22379,7 +22375,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -22392,7 +22388,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -23050,55 +23046,6 @@
                         "OutputChannel.html#sendMasterTuning": {
                           "ref": "OutputChannel.html#sendMasterTuning",
                           "tf": 2.380952380952381
-                        }
-                      }
-                    }
-                  }
-                },
-                "s": {
-                  "docs": {},
-                  ".": {
-                    "docs": {},
-                    "i": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "p": {
-                          "docs": {},
-                          "u": {
-                            "docs": {},
-                            "t": {
-                              "docs": {
-                                "WebMidi.html#enable": {
-                                  "ref": "WebMidi.html#enable",
-                                  "tf": 0.28735632183908044
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    },
-                    "o": {
-                      "docs": {},
-                      "u": {
-                        "docs": {},
-                        "t": {
-                          "docs": {},
-                          "p": {
-                            "docs": {},
-                            "u": {
-                              "docs": {},
-                              "t": {
-                                "docs": {
-                                  "WebMidi.html#enable": {
-                                    "ref": "WebMidi.html#enable",
-                                    "tf": 0.28735632183908044
-                                  }
-                                }
-                              }
-                            }
-                          }
                         }
                       }
                     }
@@ -23911,7 +23858,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   },
                   "WebMidi.html#removeListener": {
                     "ref": "WebMidi.html#removeListener",
@@ -23938,7 +23885,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 }
               }
@@ -24283,7 +24230,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -24453,7 +24400,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -24822,7 +24769,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.8620689655172413
+                        "tf": 0.8823529411764706
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -26594,7 +26541,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.5747126436781609
+                  "tf": 0.5882352941176471
                 },
                 "WebMidi.html#getInputById": {
                   "ref": "WebMidi.html#getInputById",
@@ -26627,7 +26574,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.8620689655172413
+                          "tf": 0.8823529411764706
                         }
                       },
                       ".": {
@@ -26664,7 +26611,7 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.5747126436781609
+                              "tf": 0.5882352941176471
                             }
                           }
                         },
@@ -27369,25 +27316,10 @@
                                               "e": {
                                                 "docs": {},
                                                 "n": {
-                                                  "docs": {},
-                                                  "(": {
-                                                    "docs": {},
-                                                    "p": {
-                                                      "docs": {},
-                                                      "o": {
-                                                        "docs": {},
-                                                        "r": {
-                                                          "docs": {},
-                                                          "t": {
-                                                            "docs": {
-                                                              "WebMidi.html#enable": {
-                                                                "ref": "WebMidi.html#enable",
-                                                                "tf": 0.28735632183908044
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
+                                                  "docs": {
+                                                    "WebMidi.html#enable": {
+                                                      "ref": "WebMidi.html#enable",
+                                                      "tf": 0.29411764705882354
                                                     }
                                                   }
                                                 }
@@ -28525,7 +28457,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   },
                   "WebMidi.html#waitFor": {
                     "ref": "WebMidi.html#waitFor",
@@ -28599,7 +28531,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.5747126436781609
+                  "tf": 0.5882352941176471
                 },
                 "WebMidi.html#getInputByName": {
                   "ref": "WebMidi.html#getInputByName",
@@ -29882,7 +29814,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -31201,7 +31133,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -31290,7 +31222,7 @@
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 0.28735632183908044
+                "tf": 0.29411764705882354
               }
             }
           },
@@ -32683,7 +32615,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.8620689655172413
+                          "tf": 0.8823529411764706
                         }
                       }
                     }
@@ -32738,49 +32670,6 @@
                                       }
                                     }
                                   },
-                                  "i": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {},
-                                      "p": {
-                                        "docs": {},
-                                        "u": {
-                                          "docs": {},
-                                          "t": {
-                                            "docs": {
-                                              "WebMidi.html#enable": {
-                                                "ref": "WebMidi.html#enable",
-                                                "tf": 0.28735632183908044
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "o": {
-                                    "docs": {},
-                                    "u": {
-                                      "docs": {},
-                                      "t": {
-                                        "docs": {},
-                                        "p": {
-                                          "docs": {},
-                                          "u": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {
-                                                "WebMidi.html#enable": {
-                                                  "ref": "WebMidi.html#enable",
-                                                  "tf": 0.28735632183908044
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
                                   "w": {
                                     "docs": {},
                                     "e": {
@@ -32801,7 +32690,7 @@
                                                     "docs": {
                                                       "WebMidi.html#enable": {
                                                         "ref": "WebMidi.html#enable",
-                                                        "tf": 0.28735632183908044
+                                                        "tf": 0.29411764705882354
                                                       }
                                                     }
                                                   }
@@ -32957,7 +32846,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -33284,7 +33173,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 }
               }
@@ -34012,7 +33901,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.5747126436781609
+                      "tf": 0.5882352941176471
                     },
                     "WebMidi.html#hasListener": {
                       "ref": "WebMidi.html#hasListener",
@@ -34044,7 +33933,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -34294,7 +34183,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -34372,7 +34261,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 },
                 "b": {
@@ -34581,7 +34470,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 0.8620689655172413
+                            "tf": 0.8823529411764706
                           },
                           "WebMidi.html#hasListener": {
                             "ref": "WebMidi.html#hasListener",
@@ -34710,7 +34599,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 }
               }
@@ -35423,7 +35312,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.28735632183908044
+                  "tf": 0.29411764705882354
                 }
               }
             },
@@ -35463,7 +35352,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 678.448275862069
+                      "tf": 678.5294117647059
                     }
                   }
                 }
@@ -35539,7 +35428,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.5747126436781609
+                          "tf": 0.5882352941176471
                         },
                         "WebMidi.html#getInputByName": {
                           "ref": "WebMidi.html#getInputByName",
@@ -35640,7 +35529,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -36057,7 +35946,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.8620689655172413
+                        "tf": 0.8823529411764706
                       },
                       "WebMidi.html#suspendEvent": {
                         "ref": "WebMidi.html#suspendEvent",
@@ -36162,7 +36051,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5747126436781609
+                        "tf": 0.5882352941176471
                       }
                     }
                   }
@@ -36212,7 +36101,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.28735632183908044
+                  "tf": 0.29411764705882354
                 }
               }
             }
@@ -36862,7 +36751,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 1.4367816091954022
+                      "tf": 1.4705882352941175
                     },
                     "WebMidi.html#getListenerCount": {
                       "ref": "WebMidi.html#getListenerCount",
@@ -37994,7 +37883,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 }
               }
@@ -38924,7 +38813,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -40311,7 +40200,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -40964,7 +40853,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.8620689655172413
+                          "tf": 0.8823529411764706
                         }
                       }
                     }
@@ -41645,7 +41534,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -41713,7 +41602,7 @@
                             },
                             "WebMidi.html#enable": {
                               "ref": "WebMidi.html#enable",
-                              "tf": 0.28735632183908044
+                              "tf": 0.29411764705882354
                             }
                           },
                           "'": {
@@ -43715,7 +43604,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.5747126436781609
+                  "tf": 0.5882352941176471
                 },
                 "WebMidi.html#suspendEvent": {
                   "ref": "WebMidi.html#suspendEvent",
@@ -43864,7 +43753,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -44036,7 +43925,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.5747126436781609
+                      "tf": 0.5882352941176471
                     }
                   }
                 }
@@ -44683,7 +44572,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         },
                         "WebMidi.html#getInputById": {
                           "ref": "WebMidi.html#getInputById",
@@ -44799,7 +44688,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.8620689655172413
+                      "tf": 0.8823529411764706
                     }
                   },
                   "e": {
@@ -44812,7 +44701,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       },
                       "d": {
@@ -44887,7 +44776,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.5747126436781609
+                        "tf": 0.5882352941176471
                       }
                     }
                   }
@@ -44923,7 +44812,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   },
                   "e": {
@@ -44932,7 +44821,7 @@
                       "docs": {
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -45588,7 +45477,7 @@
               "docs": {
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.28735632183908044
+                  "tf": 0.29411764705882354
                 }
               },
               "g": {
@@ -45721,7 +45610,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.8620689655172413
+                          "tf": 0.8823529411764706
                         },
                         "WebMidi.html#waitFor": {
                           "ref": "WebMidi.html#waitFor",
@@ -45823,7 +45712,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.8620689655172413
+                    "tf": 0.8823529411764706
                   },
                   "WebMidi.html#hasListener": {
                     "ref": "WebMidi.html#hasListener",
@@ -46553,7 +46442,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#getListenerCount": {
                         "ref": "WebMidi.html#getListenerCount",
@@ -47275,7 +47164,7 @@
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
-                "tf": 1.1494252873563218
+                "tf": 1.1764705882352942
               },
               "WebMidi.html#getInputById": {
                 "ref": "WebMidi.html#getInputById",
@@ -47381,7 +47270,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.8620689655172413
+                    "tf": 0.8823529411764706
                   }
                 }
               }
@@ -47451,7 +47340,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -49044,7 +48933,7 @@
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
-                          "tf": 0.28735632183908044
+                          "tf": 0.29411764705882354
                         }
                       }
                     }
@@ -49915,7 +49804,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.5747126436781609
+                    "tf": 0.5882352941176471
                   },
                   "WebMidi.html#getInputById": {
                     "ref": "WebMidi.html#getInputById",
@@ -49950,7 +49839,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -50065,7 +49954,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       }
                     }
                   }
@@ -50081,7 +49970,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 },
                 "s": {
@@ -50613,7 +50502,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#getInputById": {
                         "ref": "WebMidi.html#getInputById",
@@ -50844,7 +50733,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       }
                     }
                   }
@@ -50871,7 +50760,7 @@
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -51113,7 +51002,7 @@
                 },
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.28735632183908044
+                  "tf": 0.29411764705882354
                 }
               }
             }
@@ -51683,7 +51572,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 26.724137931034484
+                        "tf": 26.764705882352942
                       },
                       "WebMidi.html#removeListener": {
                         "ref": "WebMidi.html#removeListener",
@@ -51776,7 +51665,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.5747126436781609
+                    "tf": 0.5882352941176471
                   }
                 }
               }
@@ -52085,7 +51974,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
@@ -55639,7 +55528,7 @@
               "docs": {
                 "WebMidi.html#enable": {
                   "ref": "WebMidi.html#enable",
-                  "tf": 0.28735632183908044
+                  "tf": 0.29411764705882354
                 }
               }
             },
@@ -57372,7 +57261,7 @@
                           },
                           "WebMidi.html#enable": {
                             "ref": "WebMidi.html#enable",
-                            "tf": 110.57471264367815
+                            "tf": 110.58823529411765
                           },
                           "WebMidi.html#getInputById": {
                             "ref": "WebMidi.html#getInputById",
@@ -57455,7 +57344,7 @@
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
-                        "tf": 0.28735632183908044
+                        "tf": 0.29411764705882354
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -57492,7 +57381,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -57530,7 +57419,7 @@
                   "docs": {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
-                      "tf": 0.28735632183908044
+                      "tf": 0.29411764705882354
                     }
                   }
                 }
@@ -57720,7 +57609,7 @@
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 }
               }
@@ -57745,7 +57634,7 @@
                 "docs": {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
-                    "tf": 0.28735632183908044
+                    "tf": 0.29411764705882354
                   }
                 }
               }
@@ -58213,7 +58102,7 @@
           }
         }
       },
-      "length": 7268
+      "length": 7264
     },
     "corpusTokens": [
       "0",
@@ -58565,8 +58454,6 @@
       "connect",
       "consid",
       "console.log(",
-      "console.log(\"input",
-      "console.log(\"output",
       "console.log(\"system",
       "console.log(\"webmidi.j",
       "const",
@@ -59302,8 +59189,6 @@
       "portamentotimecoars",
       "portamentotimefin",
       "portion",
-      "ports.input",
-      "ports.output",
       "posit",
       "possibl",
       "preassign",
@@ -59656,7 +59541,7 @@
       "webmidi#waitfor",
       "webmidi.default",
       "webmidi.en",
-      "webmidi.enable().then(port",
+      "webmidi.enable().then",
       "webmidi.enable({sysex",
       "webmidi.getinputbyid",
       "webmidi.getinputbynam",
@@ -62378,7 +62263,7 @@
       "name": "enable",
       "tags": "WebMidi#enable enable",
       "summary": "",
-      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of September 2021). By the way, if you call the enable() method while WebMidi.js is already enabled, the callback function will be executed (if any), the promise will resolve but the events (\"midiaccessgranted\", \"connected\" and \"enabled\") will not be fired. There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the \"enabled\" event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: \"midiaccessgranted\" event is triggered once the user has granted access to use MIDI. \"connected\" events are triggered (for each available input and output) \"enabled\" event is triggered when WebMidi.js is fully ready specified callback (if any) is executed promise is resolved and fulfilled with the WebMidi object. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(ports =&gt; { console.log(\"WebMidi.js has been enabled!\"); console.log(\"Inputs: \", ports.inputs); console.log(\"Outputs: \", ports.outputs); })"
+      "description": "Checks if the Web MIDI API is available in the current environment and then tries to connect to the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to be displayed to the user. To enable the use of MIDI system exclusive messages, the sysex option should be set to true. However, under some environments (e.g. Jazz-Plugin), the sysex option is ignored and system exclusive messages are always enabled. You can check the sysexEnabled property to confirm. To enable access to software synthesizers available on the host, you would set the software option to true. However, this option is only there to future-proof the library as support for software synths has not yet been implemented in any browser (as of September 2021). By the way, if you call the enable() method while WebMidi.js is already enabled, the callback function will be executed (if any), the promise will resolve but the events (\"midiaccessgranted\", \"connected\" and \"enabled\") will not be fired. There are 3 ways to execute code after WebMidi has been enabled: Pass a callback function in the options Listen to the \"enabled\" event Wait for the promise to resolve In order, this is what happens towards the end of the enabling process: \"midiaccessgranted\" event is triggered once the user has granted access to use MIDI. \"connected\" events are triggered (for each available input and output) \"enabled\" event is triggered when WebMidi.js is fully ready specified callback (if any) is executed promise is resolved and fulfilled with the WebMidi object. Important note: starting with Chrome v77, a page using Web MIDI API must be hosted on a secure origin (https://, localhost or file:///) and the user will always be prompted to authorize the operation (no matter if the sysex option is true or not). Example // Enabling WebMidi and using the promise WebMidi.enable().then(() =&gt; { console.log(\"WebMidi.js has been enabled!\"); })"
     },
     "WebMidi.html#getInputById": {
       "id": "WebMidi.html#getInputById",
