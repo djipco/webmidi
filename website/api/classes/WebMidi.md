@@ -407,10 +407,8 @@ authorize the operation (no matter if the `sysex` option is `true` or not).
 ##### Example
 ```js
 // Enabling WebMidi and using the promise
-WebMidi.enable().then(ports => {
+WebMidi.enable().then(() => {
   console.log("WebMidi.js has been enabled!");
-  console.log("Inputs: ", ports.inputs);
-  console.log("Outputs: ", ports.outputs);
 })
 ```
 
