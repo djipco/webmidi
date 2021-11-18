@@ -48,11 +48,11 @@ module.exports = {
             {
               label: "3.0.0-alpha.21 🚧",
               to: "api/index",
+              className: "recommended"
             },
             {
-              label: "2.5.3 (stable, recommended)",
+              label: "2.5.3",
               href: "https://djipco.github.io/webmidi/archives/api/v2/",
-              className: "recommended"
             },
             {
               label: "1.0.0-beta.15",
