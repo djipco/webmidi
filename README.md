@@ -94,7 +94,7 @@ The fastest way to get started is to link the WebMidi.js library from the
 [jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (content delivery network). Just add 
 this `<script>` tag to your HTML page:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@3.0.0-alpha.22/dist/iife/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
 
 You can fetch any version and flavour you want in this way. To grab a different flavour change 
 `/dist/iife/webmidi.iife.js` by one of these:
@@ -222,14 +222,14 @@ channel.addListener('pitchbend', e => {
 
 ## API Documentation
 
-The [API for WebMidi.js](https://webmidijs.org/docs/) is fully documented and I take 
+The [API for WebMidi.js](https://djipco.github.io/webmidi/docs/) is fully documented and I take 
 pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
 topic should be made clearer, do not hesitate to 
 [file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR (the API
 documentation is compiled from jsdoc comments in the source code files).
 
 Here is a link to the full
-**[API Reference](https://webmidijs.org/docs/)**.
+**[API Reference](https://djipco.github.io/webmidi/docs/)**.
 
 ## More Code Examples
 
@@ -411,7 +411,7 @@ WebMidi.enable({sysex: true});
 If you would like to request a new feature, enhancement or API change, please check if it is not 
 already planned for an upcoming version by checking the 
 [Wiki](https://github.com/djipco/webmidi/wiki). Then, discuss it in the 
-[Enhancement Proposals](https://webmidijs.org/forum/categories/enhancements) section of the forum.
+[Enhancement Proposals](https://github.com/djipco/webmidi/discussions/categories/feature-requests) section of the forum.
 
 ## Contributing
 
