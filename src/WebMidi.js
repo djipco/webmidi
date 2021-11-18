@@ -169,10 +169,8 @@ class WebMidi extends EventEmitter {
    * ##### Example
    * ```js
    * // Enabling WebMidi and using the promise
-   * WebMidi.enable().then(ports => {
+   * WebMidi.enable().then(() => {
    *   console.log("WebMidi.js has been enabled!");
-   *   console.log("Inputs: ", ports.inputs);
-   *   console.log("Outputs: ", ports.outputs);
    * })
    * ```
    *
@@ -554,37 +552,6 @@ class WebMidi extends EventEmitter {
     }
 
     return Utilities.sanitizeChannels(channel);
-
-    // let channels;
-    //
-    // if (this.validation) {
-    //
-    //   if (channel === "all") { // backwards-compatibility
-    //     channels = ["all"];
-    //   } else if (channel === "none") { // backwards-compatibility
-    //     return [];
-    //   }
-    //
-    // }
-    //
-    // if (!Array.isArray(channel)) {
-    //   channels = [channel];
-    // } else {
-    //   channels = channel;
-    // }
-    //
-    // // In order to preserve backwards-compatibility, we let this assignment as it is.
-    // if (channels.indexOf("all") > -1) {
-    //   channels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16];
-    // }
-    //
-    // return channels
-    //   .map(function(ch) {
-    //     return parseInt(ch);
-    //   })
-    //   .filter(function(ch) {
-    //     return (ch >= 1 && ch <= 16);
-    //   });
 
   }
 
