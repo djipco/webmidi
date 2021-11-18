@@ -4,6 +4,25 @@ sidebar_position: 2
 
 # Installation
 
+## Distribution Flavours
+
+To cater to various needs, WEBMIDI.js is distributed in 3 different flavours which you can find
+inside the [`dist`](https://github.com/djipco/webmidi/tree/develop/dist) folder:
+
+* **Immediately Invoked Function Expression** (IIFE): This version adds its objects directly in the
+  global namespace. This is the legacy approach which is often easier for beginners.
+
+* **ES6 Module** (ESM): This is the modern approach which allows you to `import` the objects as
+  needed (works in newer versions of browsers and Node.js).
+
+* **CommonJS Module** (CJS): this is the flavour traditionnally used by Node.js and often with
+  bundling tools such as WebPack.
+
+All 3 flavours come in full and minified versions with sourcemap.
+
+
+## Retrieving the Library
+
 Depending on your needs and environment, you can retrieve and install **WEBMIDI.js** in a variety of
 different ways. Let's look at all of them.
 
@@ -11,7 +30,7 @@ different ways. Let's look at all of them.
 
 The fastest way to get started is to link the library directly from the
 [jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (Content Delivery Network). Just add a 
-`<script>` tag similar to the one below to your HTML page:
+`<script>` tag to your HTML page:
 
 ```html
 <script src="https://cdn.jsdelivr.net/npm/webmidi/dist/iife/webmidi.iife.js"></script>
@@ -39,11 +58,12 @@ Link to it from your HTML page using a `<script>` tag as usual.
 
 ## Installing with NPM
 
-Arguably, the easiest approach is to install the library with NPM (Node Package Manager) or Yarn. At 
-the root of your project, simply issue the following command to perform the installation (obviously, 
-[Node.js ](https://nodejs.org/en/) needs to be installed on your system):
+Arguably, the easiest approach is to install the library with [NPM](https://www.npmjs.com/) (Node 
+Package Manager) or [Yarn](https://yarnpkg.com/). At the root of your project, simply issue the 
+following command to perform the installation (obviously, [Node.js ](https://nodejs.org/en/) needs 
+to be installed on your system):
 
-```bash
+```shell
 npm install webmidi
 ```
 
@@ -84,11 +104,15 @@ Then, you can use any of these approaches depending on your environment:
   import {WebMidi} from "webmidi";
   ```
 
+
+
+:::caution
+
 ## Insecure Origins
 
 Starting with version 77,
 [Chrome deprecated Web MIDI usage on insecure origins](https://www.chromestatus.com/feature/5138066234671104).
-This means that, going forward, any page using the library will need to be hosted on a secure 
+This means that, going forward, any page using the library will need to be hosted on a secure
 origin:
 
 * `https://`
@@ -97,3 +121,5 @@ origin:
 
 Also, the user will need to explicitely authorize usage via a prompt (no matter if system exclusive
 messages are used or not).
+
+:::

@@ -42,19 +42,3 @@ should just work in the following environments:
 
 Support for the Node.js environment has been made possible by the good folks of
 [Jazz-Soft](https://jazz-soft.net/) via their [JZZ](https://www.npmjs.com/package/jzz) module.
-
-## Distribution Flavours
-
-To cater to various needs, WEBMIDI.js is distributed in 3 different flavours which you can find
-inside the `dist` folder:
-
-* **Immediately Invoked Function Expression** (IIFE): This version adds its objects directly in the
-global namespace. This is the legacy approach which is often easier for beginners.
-
-* **ES6 Module** (ESM): This is the modern approach which allows you to `import` the objects as
-  needed (works in newer versions of browsers and Node.js).
-
-* **CommonJS Module** (CJS): this is the flavour traditionnally used by Node.js and often with 
-  bundling tools such as WebPack.
-
-All 3 flavours come in full and minified versions with sourcemap.
