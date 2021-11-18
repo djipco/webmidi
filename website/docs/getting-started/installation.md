@@ -33,7 +33,7 @@ The fastest way to get started is to link the library directly from the
 `<script>` tag to your HTML page:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/webmidi/dist/iife/webmidi.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
 ```
 
 You can retrieve different versions and flavours of the library by modifying the URL. For example, 
