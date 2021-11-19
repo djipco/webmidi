@@ -135,7 +135,7 @@ input object with [`Input.octaveOffset`](Input#octaveOffset).
 Indicates whether events for **Registered Parameter Number** and **Non-Registered Parameter
 Number** should be dispatched. RPNs and NRPNs are composed of a sequence of specific
 **control change** messages. When a valid sequence of such control change messages is
-received, an [`rpn`](event-rpn) or [`nrpn`](#event-nrpn) event will fire.
+received, an [`rpn`](#event-rpn) or [`nrpn`](#event-nrpn) event will fire.
 
 If an invalid or out-of-order **control change** message is received, it will fall through
 the collector logic and all buffered **control change** messages will be discarded as
