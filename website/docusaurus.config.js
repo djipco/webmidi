@@ -46,9 +46,8 @@ module.exports = {
           position: "left",
           items: [
             {
-              label: "3.0.0-alpha.21 🚧",
-              to: "api/index",
-              className: "recommended"
+              label: "3.0.0-alpha.XX 🚧",
+              to: "api/index"
             },
             {
               label: "2.5.3",
