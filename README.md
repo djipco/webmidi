@@ -30,6 +30,10 @@ much easier.
 > If you would like to try out v3.0.0-alpha, you can switch to the 
 > [develop branch](https://github.com/djipco/webmidi/tree/develop) for instructions on how to do
 > so.
+> 
+> You can also visit the [beta version of the upcoming website](https://djipco.github.io/webmidi/) 
+> where you can find all the [documentation](https://djipco.github.io/webmidi/docs/) to get 
+> started with v3.
 
 ## Sponsors
 
