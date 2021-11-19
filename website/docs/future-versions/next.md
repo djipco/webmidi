@@ -1,11 +1,13 @@
 ---
-sidebar_label: Version 4
+sidebar_label: Next Version
+sidebar_position: 2
 ---
 
-# Features Planned for v4
+# Features Planned for Next Version
 
 The analysis has not started yet. We will wait after the official launch of version 3. We do have a
-lot of ideas and suggestions in store.
+lot of ideas and suggestions in store. Depending on whether these features break the API or not, 
+they may make it into version 3.x or be deployed in v4.
 
 :::info
 
