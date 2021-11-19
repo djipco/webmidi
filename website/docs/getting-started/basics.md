@@ -7,7 +7,7 @@ sidebar_position: 3
 ## Enabling the Library 
 
 The first step to get started is to enable the library. To do that, you simply call
-[`WebMidi.enable()`](../api/classes/WebMidi#enable). Starting with v3, the `enable()` method returns 
+[`WebMidi.enable()`](../../api/classes/WebMidi#enable). Starting with v3, the `enable()` method returns 
 a promise which is resolved when the library has been enabled:
 
 ```javascript
