@@ -220,7 +220,7 @@ li a.dropdown__link.external svg {
 h1 {
   font-family: var(--font-secondary);
   font-weight: 900;
-  font-size: var(--font-size-h1-desktop);
+  font-size: var(--font-size-h1-mobile);
 
   @media screen and (min-width: $breakpoint-md) {
     font-size: var(--font-size-h1-desktop);
