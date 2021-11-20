@@ -26,8 +26,6 @@ Hide toggle in small viewports
   margin-right: 1rem;
 }
 
-
-
 .navbarSidebarMobile ul li a{
   padding: 10px var(--spacing-sm);
 }
