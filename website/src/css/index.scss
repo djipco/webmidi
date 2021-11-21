@@ -87,25 +87,20 @@
 
     margin: var(--spacing-xl) auto;
 
-    box-shadow: 10px 10px 0px rgba(255, 208, 0, 0.5);
+    box-shadow: 10px 10px 0 rgba(255, 208, 0, 0.5);
 
     @media screen and(max-width: 1000px){
+      width: 90%;
       margin: var(--spacing-md) auto;
     }
 
     .imgMedia{
-      //max-width: 80%;
       width: 80%;
       height: 80%;
 
       html[data-theme=light] &{
         filter: invert(1);
       }
-    }
-
-
-    @media screen and(max-width: 1000px){
-      width: 80%;
     }
   }
 
