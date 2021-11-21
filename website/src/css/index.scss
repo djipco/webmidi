@@ -9,7 +9,7 @@
   text-align: center;
 
   @media screen and(max-width: 1000px){
-    min-height: 30vh;
+    min-height: 40vh;
     padding-top: 0;
   }
 
@@ -22,6 +22,7 @@
 
     @media screen and(max-width: 500px){
       height: 10em;
+      margin: var(--spacing-md) 0;
     }
 
     html[data-theme=dark] &{
