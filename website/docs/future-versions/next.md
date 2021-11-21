@@ -19,7 +19,8 @@ category of our GitHub Discussions.
 
 ## Enhancements To Evaluate
 
-* Add support for Web BLE MIDI (see implementation [here](https://github.com/skratchdot/ble-midi))
+* Add support for Web BLE MIDI ([browser implementation](https://github.com/skratchdot/ble-midi),
+[Node implementation](https://github.com/natcl/ble-midi))
 
 * Calculate BPM from clock messages 
 ([Discussion #177](https://github.com/djipco/webmidi/discussions/177))
