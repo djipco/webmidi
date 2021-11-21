@@ -8,11 +8,21 @@
 
   text-align: center;
 
+  @media screen and(max-width: 1000px){
+    min-height: 30vh;
+    padding-top: 0;
+  }
+
+
   .logo {
     max-width: 600px;
     height: 300px;
     background: center url("/img/webmidijs-logo-dark.svg") no-repeat;
     margin: auto;
+
+    @media screen and(max-width: 500px){
+      height: 8em;
+    }
 
     html[data-theme=dark] &{
       background: center url("/img/webmidijs-logo-light.svg") no-repeat;
