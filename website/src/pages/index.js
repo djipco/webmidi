@@ -52,9 +52,10 @@ function Presentation() {
           </p>
 
           <div className="media">
-            <img
-              src={useBaseUrl('img/front-page/webmidi-demonstration.svg')}
-              alt="Demonstration of the WEBMIDI.js library"
+            <div
+              className="imgMedia"
+              src=""
+              alt=""
             />
           </div>
         </Column>

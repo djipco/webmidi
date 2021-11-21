@@ -89,16 +89,30 @@
 
     box-shadow: 10px 10px 0px rgba(255, 208, 0, 0.5);
 
-    img{
-      max-width: 80%;
+    @media screen and(max-width: 1000px){
+      margin: var(--spacing-md) auto;
+    }
+
+    .imgMedia{
+      //max-width: 80%;
+      width: 80%;
+      height: 80%;
 
       html[data-theme=light] &{
         filter: invert(1);
       }
     }
 
+
     @media screen and(max-width: 1000px){
       width: 80%;
+    }
+  }
+
+  .media :nth-child(1){
+    background: center url("/img/front-page/webmidi-demonstration.svg") no-repeat;
+    @media screen and(max-width: 1000px){
+      background: center url("/img/front-page/webmidi-demonstration-vertical.svg") no-repeat;
     }
   }
 }
