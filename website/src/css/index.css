@@ -9,7 +9,7 @@
 }
 @media screen and (max-width: 1000px) {
   .hero {
-    min-height: 30vh;
+    min-height: 40vh;
     padding-top: 0;
   }
 }
@@ -21,7 +21,8 @@
 }
 @media screen and (max-width: 500px) {
   .hero .logo {
-    height: 8em;
+    height: 10em;
+    margin: var(--spacing-md) 0;
   }
 }
 html[data-theme=dark] .hero .logo {
@@ -79,17 +80,27 @@ html[data-theme=dark] .hero .logo {
   justify-content: center;
   align-items: center;
   margin: var(--spacing-xl) auto;
-  box-shadow: 10px 10px 0px rgba(255, 208, 0, 0.5);
-}
-.presentation .media img {
-  max-width: 80%;
-}
-html[data-theme=light] .presentation .media img {
-  filter: invert(1);
+  box-shadow: 10px 10px 0 rgba(255, 208, 0, 0.5);
 }
 @media screen and (max-width: 1000px) {
   .presentation .media {
-    width: 80%;
+    width: 90%;
+    margin: var(--spacing-md) auto;
+  }
+}
+.presentation .media .imgMedia {
+  width: 80%;
+  height: 80%;
+}
+html[data-theme=light] .presentation .media .imgMedia {
+  filter: invert(1);
+}
+.presentation .media :nth-child(1) {
+  background: center url("/img/front-page/webmidi-demonstration.svg") no-repeat;
+}
+@media screen and (max-width: 1000px) {
+  .presentation .media :nth-child(1) {
+    background: center url("/img/front-page/webmidi-demonstration-vertical.svg") no-repeat;
   }
 }
 
