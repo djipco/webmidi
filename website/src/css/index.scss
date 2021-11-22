@@ -9,7 +9,7 @@
   text-align: center;
 
   @media screen and(max-width: 1000px){
-    min-height: 30vh;
+    min-height: 40vh;
     padding-top: 0;
   }
 
@@ -21,7 +21,8 @@
     margin: auto;
 
     @media screen and(max-width: 500px){
-      height: 8em;
+      height: 10em;
+      margin: var(--spacing-md) 0;
     }
 
     html[data-theme=dark] &{
@@ -86,18 +87,27 @@
 
     margin: var(--spacing-xl) auto;
 
-    box-shadow: 10px 10px 0px rgba(255, 208, 0, 0.5);
+    box-shadow: 10px 10px 0 rgba(255, 208, 0, 0.5);
 
-    img{
-      max-width: 80%;
+    @media screen and(max-width: 1000px){
+      width: 90%;
+      margin: var(--spacing-md) auto;
+    }
+
+    .imgMedia{
+      width: 80%;
+      height: 80%;
 
       html[data-theme=light] &{
         filter: invert(1);
       }
     }
+  }
 
+  .media :nth-child(1){
+    background: center url("/img/front-page/webmidi-demonstration.svg") no-repeat;
     @media screen and(max-width: 1000px){
-      width: 80%;
+      background: center url("/img/front-page/webmidi-demonstration-vertical.svg") no-repeat;
     }
   }
 }
