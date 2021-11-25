@@ -1,6 +1,7 @@
 const { graphql } = require("@octokit/graphql");
+const { token } = require("../../.credentials/sponsors.js");
 
-const token = "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";
+console.log(token);
 
 async function test() {
 
