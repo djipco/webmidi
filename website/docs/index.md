@@ -3,7 +3,7 @@ sidebar_position: 1
 slug: /
 ---
 
-# Quick Start
+# Quick Start For v3.x
 
 **You want to get started as quickly as possible?** This guide will let you establish a connection
 with your MIDI instrument in less than 5 minutes.
