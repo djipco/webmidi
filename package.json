@@ -92,6 +92,7 @@
     "@babel/plugin-proposal-class-properties": "^7.8.3",
     "@babel/polyfill": "^7.8.7",
     "@babel/preset-env": "^7.9.0",
+    "@octokit/graphql": "^4.8.0",
     "array-back": "^6.2.0",
     "babel-plugin-istanbul": "^6.0.0",
     "chai": "^4.3.3",
