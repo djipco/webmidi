@@ -2219,18 +2219,18 @@ export class Output extends EventEmitter {
    * `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity
    * value will silently trigger the default of `0.5`.
    *
-   * @param {number} [options.rawAttack=0.5] The attack velocity at which to play the note (between
+   * @param {number} [options.rawAttack=64] The attack velocity at which to play the note (between
    * `0` and `127`). This has priority over the `attack` property. An invalid velocity value will
-   * silently trigger the default of `0.5`.
+   * silently trigger the default of 64.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
    * and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid
    * velocity value will silently trigger the default of `0.5`. This is only used with the
    * **note off** event triggered when `options.duration` is set.
    *
-   * @param {number} [options.rawRelease=0.5] The velocity at which to release the note (between `0`
+   * @param {number} [options.rawRelease=64] The velocity at which to release the note (between `0`
    * and `127`). This has priority over the `release` property. An invalid velocity value will
-   * silently trigger the default of `0.5`. This is only used with the **note off** event triggered
+   * silently trigger the default of 64. This is only used with the **note off** event triggered
    * when `options.duration` is set.
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
