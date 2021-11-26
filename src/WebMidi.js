@@ -12,18 +12,6 @@ global["performance"] = require("perf_hooks").performance;
 global["navigator"] = require("jzz");
 /*END-CJS*/
 
-/*START-ESM*/
-// This is the way to import the necessary modules under Node.js when using "type: module" in the
-// package.json file. This block will be stripped in IIFE and CJS versions.
-import("perf_hooks").then(module => {
-  global["performance"] = module.performance;
-}).catch(() => {});
-
-import("jzz").then(module => {
-  global["navigator"] = module;
-}).catch(() => {});
-/*END-ESM*/
-
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -210,6 +198,22 @@ class WebMidi extends EventEmitter {
    * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
+
+    /*START-ESM*/
+    // This is the way to import the necessary modules under Node.js when using "type: module" in
+    // the package.json file. This block will be stripped in IIFE and CJS versions.
+    try {
+      const perf_hooks = await import("perf_hooks");
+      global["performance"] = perf_hooks.performance;
+      // eslint-disable-next-line no-empty
+    } catch (err) {} // ignored because it means we already have the modules
+
+    try {
+      const jzz = await import("jzz");
+      global["navigator"] = jzz.default;
+      // eslint-disable-next-line no-empty
+    } catch (err) {} // ignored because it means we already have the modules
+    /*END-ESM*/
 
     this.validation = (options.validation !== false);
 
