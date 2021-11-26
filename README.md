@@ -37,7 +37,7 @@ If you want to stay up-to-date, here are your best sources:
 
 ## Sponsors
 
-WebMidi.js is a passion project but it still takes quite a bit of time, effort and money to develop and 
+WEBMIDI.js is a passion project but it still takes quite a bit of time, effort and money to develop and 
 maintain. That's why I would like to sincerely thank 👏 these sponsors for their support: 
 
 [<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman") &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
