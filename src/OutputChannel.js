@@ -120,7 +120,7 @@ export class OutputChannel extends EventEmitter {
    *
    * @param {object} [options={}]
    *
-   * @param {boolean} [options.useRawValue=false] A boolean indicating whether the value should be
+   * @param {boolean} [options.rawValue=false] A boolean indicating whether the value should be
    * considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.
    *
    * @param {number|string} [options.time] If `time` is a string prefixed with `"+"` and followed by
