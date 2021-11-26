@@ -8,7 +8,7 @@
 
 ## Introduction
 
-**WebMidi.js** makes it easy to interact with MIDI instruments directly from a web browser or from 
+**WEBMIDI.js** makes it easy to interact with MIDI instruments directly from a web browser or from 
 Node.js. It simplifies the control of physical or virtual MIDI instruments with user-friendly 
 functions such as `playNote()`, `setPitchBend()` or `sendControlChange()`. It also allows reacting 
 to inbound MIDI messages by adding listeners for events such as `"noteon"`, `"pitchbend"` or 
