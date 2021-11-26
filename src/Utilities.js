@@ -460,7 +460,9 @@ export class Utilities {
    * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
    * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
    *
-   * @param offset
+   * @param number {number} The MIDI note to offset as an integer between 0 and 127.
+   * @param octaveOffset {number} An integer to offset the note by (in octave)
+   * @param octaveOffset {number} An integer to offset the note by (in semitones)
    * @returns {number} An integer between 0 and 127
    *
    * @throws {Error} Invalid note number
