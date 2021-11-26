@@ -508,7 +508,7 @@ functionally equivalent to a **note off** message.
     |[**`options.duration`**] | number<br /> ||The number of milliseconds after which a **note off** message will be scheduled. If left undefined, only a **note on** message is sent.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the attack and release velocities are set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.attack`**] | number<br /> |0.5|The attack velocity to use when playing the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
   </div>
@@ -583,7 +583,7 @@ from the MIDI Manufacturers Association.
   | ------------ | ------------ | ------------ | ------------ |
     |**`message`** | Array.&lt;number&gt;<br />Uint8Array<br />Message<br /> ||An array of 8bit unsigned integers, a `Uint8Array` object (not available in Node.js) containing the message bytes or a `Message` object.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -616,7 +616,7 @@ was no other activity on the MIDI port.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -649,7 +649,7 @@ fade out just as if their key had been released. This is different from the
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -679,7 +679,7 @@ channel but will not prevent new sounds from being triggered.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -711,7 +711,7 @@ aftertouch, you should instead use [`setKeyAftertouch()`](#setKeyAftertouch).
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -762,7 +762,7 @@ defaults to 0.
     |[**`value`**] | number<br /> |0|The value to send (integer between 0-127).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -796,7 +796,7 @@ for every quarter note.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -827,7 +827,7 @@ start, use the [`sendStart()`](#Output+sendStart)` method.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -939,7 +939,7 @@ from the MIDI specification.
     |[**`value`**] | number<br /> |0|The value to send (0-127).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -978,7 +978,7 @@ is a key-specific aftertouch. For a channel-wide aftertouch message, use
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1012,7 +1012,7 @@ its out port.
     |[**`state`**] | boolean<br /> |false|Whether to activate local control (`true`) or disable it (`false`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1050,7 +1050,7 @@ a **Master Fine Tuning** RPN messages.
     |[**`value`**] | number<br /> |0.0|The desired decimal adjustment value in semitones (-65 < x < 64)|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1088,7 +1088,7 @@ parameter, the `cents` parameter or by specifying both parameters at the same ti
     |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between 0 and 127).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1132,7 +1132,7 @@ The execution of the **note off** command can be delayed by using the `time` pro
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the release velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
   </div>
@@ -1177,7 +1177,7 @@ functionally equivalent to a **note off** message.
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the attack velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.attack`**] | number<br /> |0.5|The velocity at which to play the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
   </div>
@@ -1239,7 +1239,7 @@ For further implementation details, refer to the manufacturer's documentation.
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An integer or an array of integers with a length of 1 or 2 specifying the desired data.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1277,7 +1277,7 @@ It should be noted that support for OMNI mode is not as common as it used to be.
     |[**`state`**] | boolean<br /> ||Whether to activate OMNI mode (`true`) or not (`false`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1319,7 +1319,7 @@ below its nominal value.
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered as a float between `-1.0` and `1.0` (default) or as raw integer between `0` and 127` (or an array of 2 integers if using both MSB and LSB).|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1355,7 +1355,7 @@ means that the pitch bend range will be 12 semitones above and below the nominal
     |[**`cents`**] | number<br /> |0|The desired adjustment value in cents (integer between `0` and `127`).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1392,7 +1392,7 @@ multiple notes are being played.
     |**`mode`** | string<br /> ||The mode to use: `mono` or `poly`.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1424,7 +1424,7 @@ Sends a MIDI **program change** message to the specified channel(s) at the sched
     |[**`program`**] | number<br /> |0|The MIDI patch (program) number (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1457,7 +1457,7 @@ should reset itself to a default state.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1488,7 +1488,7 @@ the pitch bend, to their default value.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1534,7 +1534,7 @@ names that can be used with this method:
     |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1584,7 +1584,7 @@ names that can be used with this method:
     |**`parameter`** | String<br />Array.&lt;number&gt;<br /> ||A string identifying the parameter's name (see above) or a two-position array specifying the two control bytes (0x65, 0x64) that identify the registered parameter.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1643,7 +1643,7 @@ Standard*, which is not widely implemented.
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|A single integer or an array of integers with a maximum length of 2 specifying the desired data.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1675,7 +1675,7 @@ Sends a **song position** MIDI message. The value is expressed in MIDI beats (be
   | ------------ | ------------ | ------------ | ------------ |
     |[**`value`**] | number<br /> |0|The MIDI beat to cue to (integer between `0` and `16383`).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1706,7 +1706,7 @@ Sends a **song select** MIDI message.
   | ------------ | ------------ | ------------ | ------------ |
     |[**`value`**] | number<br /> |0|The number of the song to select (integer between `0` and `127`).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1739,7 +1739,7 @@ song at beat 0. To start playback elsewhere in the song, use the
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1769,7 +1769,7 @@ playback immediately (or at the scheduled time, if specified).
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1847,7 +1847,7 @@ system exclusive messages to 64Kb or less.
     |**`manufacturer`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between `0` and `127` that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).|
     |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> |[]|A `Uint8Array` or an array of unsigned integers between `0` and `127`. This is the data you wish to transfer.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1884,7 +1884,7 @@ on the data. It is up to the developer to format the data according to the
   | ------------ | ------------ | ------------ | ------------ |
     |**`value`** | number<br /> ||The quarter frame message content (integer between 0 and 127).|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1914,7 +1914,7 @@ Sends a MIDI **tune request** real-time message.
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |[**`options`**] | object<br /> |{}||
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1947,7 +1947,7 @@ Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is par
     |[**`value`**] | number<br /> |0|The desired tuning bank (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -1982,7 +1982,7 @@ Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter 
     |**`value`** | number<br /> ||The desired tuning program (integer between `0` and `127`).|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
 
@@ -2025,7 +2025,7 @@ The execution of the **note off** command can be delayed by using the `time` pro
     |[**`options`**] | Object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.rawValue`**] | boolean<br /> |false|Controls whether the release velocity is set using integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`, default).|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the operation will be scheduled for that specific time. If `time` is omitted, or in the past, the operation will be carried out as soon as possible.|
+    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
   </div>
