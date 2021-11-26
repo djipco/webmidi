@@ -118,9 +118,8 @@ NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
 
 
 Indicates whether the current environment is Node.js or not. If you need to check if we are in
-browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
-NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
-same time.
+browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
+[`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
 
 
 ### `.octaveOffset` {#octaveOffset}

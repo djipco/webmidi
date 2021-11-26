@@ -35,8 +35,10 @@ If the input is a note number or identifier, it is possible to specify options b
     |[**`input`**] | number<br />string<br />Note<br /> |||
     |[**`options`**] | object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the note should be explicitly stopped.|
-    |[**`options.attack`**] | number<br /> |64|The note's attack velocity as an integer between 0 and 127.|
-    |[**`options.release`**] | number<br /> |64|The note's release velocity as an integer between 0 and 127.|
+    |[**`options.attack`**] | number<br /> |0.5|The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.release`**] | number<br /> |0.5|The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
+    |[**`options.rawAttack`**] | number<br /> |64|The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.rawRelease`**] | number<br /> |64|The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
     |[**`options.octaveOffset`**] | number<br /> |0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
   </div>
@@ -65,6 +67,9 @@ Converts an input value, which can be an unsigned integer (0-127), a note identi
 [`Note`](Note) object is created with the options specified. An error will be thrown when
 encountering invalid input.
 
+Note: if both the `attack` and `rawAttack` options are specified, the later has priority. The
+same goes for `release` and `rawRelease`.
+
 
   **Parameters**
 
@@ -77,10 +82,10 @@ encountering invalid input.
     |[**`notes`**] | number<br />string<br />Note<br />Array.&lt;number&gt;<br />Array.&lt;string&gt;<br />Array.&lt;Note&gt;<br /> |||
     |[**`options`**] | object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the note should be explicitly stopped.|
-    |[**`options.attack`**] | number<br /> |0.5|The note's attack velocity as a decimal number between 0 and 1.|
-    |[**`options.release`**] | number<br /> |0.5|The note's release velocity as a decimal number between 0 and 1.|
-    |[**`options.rawAttack`**] | number<br /> |64|The note's attack velocity as an integer between 0 and 127.|
-    |[**`options.rawRelease`**] | number<br /> |64|The note's release velocity as an integer between 0 and 127.|
+    |[**`options.attack`**] | number<br /> |0.5|The note's attack velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.release`**] | number<br /> |0.5|The note's release velocity as a float between 0 and 1. If you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
+    |[**`options.rawAttack`**] | number<br /> |64|The note's attack velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `attack` and `rawAttack` are specified, the latter has precedence.|
+    |[**`options.rawRelease`**] | number<br /> |64|The note's release velocity as an integer between 0 and 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both `release` and `rawRelease` are specified, the latter has precedence.|
     |[**`options.octaveOffset`**] | number<br /> |0|An integer to offset the octave by. **This is only used when the input value is a note identifier.**|
 
   </div>
@@ -230,10 +235,10 @@ A float between 0 and 1.
 ### `.getCcNameByNumber(...)` {#getCcNameByNumber}
 
 
-Returns the name of a control change message matching the specified number. Some valid control
-change numbers do not have a specific name or purpose assigned in the MIDI
+Returns the name of a control change message matching the specified number (0-127). Some valid
+control change numbers do not have a specific name or purpose assigned in the MIDI
 [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-In this case, the method returns `undefined`.
+In these cases, the method returns `controllerXXX` (where XXX is the number).
 
 
   **Parameters**
@@ -244,7 +249,7 @@ In this case, the method returns `undefined`.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`number`** | number<br /> ||An integer representing the control change message|
+    |**`number`** | number<br /> ||An integer (0-127) representing the control change message|
 
   </div>
 
@@ -253,7 +258,7 @@ In this case, the method returns `undefined`.
 
 > Returns: `string` or `undefined`<br />
 
-The matching control change name or `undefined` if not match was
+The matching control change name or `undefined` if no match was
 found.
 
 
@@ -277,7 +282,7 @@ returns `false`.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`number`** | number<br /> ||An integer representing the channel mode message.|
+    |**`number`** | number<br /> ||An integer representing the channel mode message (120-127)|
 
   </div>
 
@@ -286,7 +291,7 @@ returns `false`.
 
 > Returns: `string` or `false`<br />
 
-The name of the matching channel mode or `false` if not match could be
+The name of the matching channel mode or `false` if no match could be
 found.
 
 
@@ -334,7 +339,7 @@ When a number is specified, the translation to note is done using a value of 60 
 
 
 Returns the name of the first property of the supplied object whose value is equal to the one
-supplied.
+supplied. If nothing is found, `undefined` is returned.
 
 
   **Parameters**
@@ -345,17 +350,18 @@ supplied.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`object`** | object<br /> |||
-    |**`value`** | *<br /> |||
+    |**`object`** | object<br /> ||The object to look for the property in.|
+    |**`value`** | *<br /> ||Any value that can be expected to be found in the object's properties.|
 
   </div>
 
 
 **Return Value**
 
-> Returns: `string`<br />
+> Returns: `string` or `undefined`<br />
 
-The name of the matching property
+The name of the matching property or `undefined` if nothing is
+found.
 
 
 **Attributes**: static
@@ -411,13 +417,15 @@ the calculated value is less than 0, 0 will be returned. If the calculated value
 
   **Parameters**
 
-  > Signature: `offsetNumber(offset)`
+  > Signature: `offsetNumber(number, octaveOffset, octaveOffset)`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`offset`** |  |||
+    |**`number`** | number<br /> ||The MIDI note to offset as an integer between 0 and 127.|
+    |**`octaveOffset`** | number<br /> |0|An integer to offset the note by (in octave)|
+    |**`octaveOffset`** | number<br /> ||An integer to offset the note by (in semitones)|
 
   </div>
 
