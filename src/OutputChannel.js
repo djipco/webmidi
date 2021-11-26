@@ -858,9 +858,13 @@ export class OutputChannel extends EventEmitter {
    *
    * @param {Object} [options={}]
    *
-   * @param {boolean} [options.rawValue=false] Controls whether the release velocity is set using
-   * integers between `0` and `127` (`true`) or a decimal number between `0` and `1` (`false`,
-   * default).
+   * @param {number} [options.release=0.5] The velocity at which to release the note
+   * (between `0` and `1`).  If the `rawRelease` option is also defined, `rawRelease` will have
+   * priority. An invalid velocity value will silently trigger the default of `0.5`.
+   *
+   * @param {number} [options.rawRelease=64] The velocity at which to release the note
+   * (between `0` and `127`). If the `release` option is also defined, `rawRelease` will have
+   * priority. An invalid velocity value will silently trigger the default of `64`.
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
@@ -869,10 +873,6 @@ export class OutputChannel extends EventEmitter {
    * the operation will be scheduled for that time. The current time can be retrieved with
    * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
-   *
-   * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
-   * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
