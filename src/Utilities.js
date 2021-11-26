@@ -483,8 +483,8 @@ export class Utilities {
    * Returns the name of the first property of the supplied object whose value is equal to the one
    * supplied. If nothing is found, `undefined` is returned.
    *
-   * @param object {object}
-   * @param value {*}
+   * @param object {object} The object to look for the property in.
+   * @param value {*} Any value that can be expected to be found in the object's properties.
    * @returns {string|undefined} The name of the matching property or `undefined` if nothing is
    * found.
    * @static
@@ -513,8 +513,8 @@ export class Utilities {
    * Returns the channel mode name matching the specified number. If no match is found, the function
    * returns `false`.
    *
-   * @param {number} number An integer representing the channel mode message.
-   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+   * @param {number} number An integer representing the channel mode message (120-127)
+   * @returns {string|false} The name of the matching channel mode or `false` if no match could be
    * found.
    *
    * @since 2.0.0
