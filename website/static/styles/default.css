@@ -1,0 +1,41 @@
+a {
+  text-decoration: none;
+}
+a:link {
+  color: #ffd000;
+}
+a:visited {
+  color: #ffd000;
+}
+a:hover {
+  color: #ffd000;
+  text-decoration: underline;
+}
+a:active {
+  color: #ffd000;
+}
+
+body {
+  font-family: "Yanone Kaffeesatz", sans-serif;
+  font-size: 24px;
+  line-height: 1.25;
+  text-align: justify;
+}
+
+header {
+  margin: 5vh auto;
+  width: 75%;
+  max-width: 500px;
+}
+header img {
+  max-width: 100%;
+}
+
+main {
+  margin: 0 auto;
+  width: 75%;
+  max-width: 500px;
+  padding: 0 50px;
+}
+
+/*# sourceMappingURL=default.css.map */

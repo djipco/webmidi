@@ -1,0 +1,44 @@
+{{!
+
+  This template creates the 'Events' portion of the output . It relies on the following helpers:
+
+    - inlineLinks
+    - stripNewlines
+
+}}
+{{#if this}}
+***
+
+## Events
+
+{{#each this}}
+{{! Name and anchor }}
+### `{{this.name}}` {{curly true}}{{createEventAnchor this.name}}{{curly}}
+
+<a id="event:{{this.name}}"></a>
+
+
+{{! Description }}
+{{{inlineLinks description}}}
+
+{{! Since }}
+{{#if since}}
+**Since**: {{since}}
+{{/if}}
+
+{{! Properties }}
+{{#if properties}}
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+{{#each properties}}
+  |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines (inlineLinks this.description)}}}|
+{{/each}}
+
+{{/if}}
+
+{{/each}}
+
+{{/if}}

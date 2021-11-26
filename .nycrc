@@ -1,0 +1,4 @@
+{
+  "report-dir": "./node_modules/nyc/.nyc_output",
+  "temp-dir": "./node_modules/nyc/.coverage"
+}

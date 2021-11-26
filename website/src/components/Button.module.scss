@@ -1,0 +1,75 @@
+$ease-in-out-circ: cubic-bezier(0.785, 0.135, 0.15, 0.86);
+.Button {
+  background-color: var(--color-accent);
+  width: fit-content;
+  height: fit-content;
+  border-radius: 10px;
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+
+  a {
+    display: block;
+    font: bold 1.56rem var(--font-secondary), sans-serif;
+    padding: var(--spacing-sm) 1.5em;
+    color: var(--color-text-primary);
+    text-decoration: none;
+
+    position: relative;
+    z-index: 2;
+  }
+  .buttonBg {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+  }
+  &.button-bg-full {
+    border: solid 4px var(--color-accent);
+    .buttonBg {
+      background-color: var(--color-accent-lighter);
+
+      z-index: 1;
+      top: 0;
+      left: -100%;
+      transition: all 0.3s $ease-in-out-circ;
+    }
+    &:hover {
+      border: solid 4px var(--color-accent-lighter);
+      transition: all 0.3s $ease-in-out-circ;
+      .buttonBg {
+        left: 0;
+        transition: all 0.3s $ease-in-out-circ;
+      }
+    }
+  }
+  &.button-bg-empty {
+    background-color: rgba(0, 0, 0, 0%);
+    border: solid 4px var(--color-accent);
+    a {
+      color: var(--color-accent);
+      transition: all 0.3s $ease-in-out-circ;
+    }
+    .buttonBg {
+      background-color: var(--color-accent-lighter);
+
+      z-index: 1;
+      top: 0;
+      left: -100%;
+      transition: all 0.3s $ease-in-out-circ;
+    }
+    &:hover {
+      border: solid 4px var(--color-accent-lighter);
+      transition: all 0.3s $ease-in-out-circ;
+      a {
+        color: var(--color-white);
+        transition: all 0.3s $ease-in-out-circ;
+      }
+      .buttonBg {
+        left: 0;
+        transition: all 0.3s $ease-in-out-circ;
+      }
+    }
+  }
+}
+
+

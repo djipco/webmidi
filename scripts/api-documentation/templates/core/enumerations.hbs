@@ -1,0 +1,27 @@
+{{!
+
+  This template creates the 'enmus' portion of the output . It relies on the following helpers:
+
+    - inlineLinks
+    - stripNewlines
+
+}}
+{{#if this}}
+***
+
+## Enums
+
+{{#each this}}
+{{! Name }}
+### `.{{this.name}}` {{curly true}}#{{this.name}}{{curly}}
+**Type**: {{this.type.names.[0]}}<br />
+{{! Attributes }}
+{{#if (eq this.scope "static")}}
+**Attributes**: static
+{{/if}}
+
+{{! Description }}
+{{{inlineLinks description}}}
+{{/each}}
+
+{{/if}}

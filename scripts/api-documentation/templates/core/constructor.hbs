@@ -1,0 +1,41 @@
+{{!
+
+  This template creates the 'constructor' portion of the output (below the class). It relies on the
+  following helpers:
+
+    - stripNewlines
+
+}}
+{{#if this}}
+
+{{! Constructor name }}
+### `Constructor`
+
+{{! Parameters }}
+{{#if params}}
+
+  **Parameters**
+
+  > `new {{this.longname}}({{methodSignature this}})`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type         | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+  {{#each params}}
+    |{{#if this.optional}}[{{/if}}**`{{this.name}}`**{{#if this.optional}}]{{/if}} | {{#each this.type.names}}{{this}}<br />{{/each}} |{{this.defaultvalue}}|{{{stripNewlines (inlineLinks this.description)}}}|
+  {{/each}}
+
+  </div>
+
+{{/if}}
+
+{{! Exceptions }}
+{{#if this.exceptions}}
+**Throws**:
+{{#each this.exceptions}}
+* {{#if this.type}}`{{this.type.names.[0]}}` : {{/if}}{{inlineLinks this.description}}
+{{/each}}
+{{/if}}
+
+{{/if}}

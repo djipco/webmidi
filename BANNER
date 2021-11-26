@@ -1,4 +1,0 @@
-<%= bower.name %> v<%= pkg.version %>
-
-<%= pkg.description %>
-<%= pkg.homepage %>

@@ -1,44 +1,31 @@
-![WebMidi.js Logo](https://djipco.github.io/webmidi/img/webmidijs-logo.svg "WebMidi.js")
+![WebMidi.js Logo](https://djipco.github.io/webmidi/img/webmidijs-logo-color-on-white.svg "WebMidi.js")
 
-[![npm](https://img.shields.io/npm/v/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![npm](https://img.shields.io/npm/dm/webmidi)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
-[![npm](https://img.shields.io/npm/dt/webmidi.svg)](https://www.npmjs.com/package/webmidi)
+[![](https://img.shields.io/github/stars/djipco/webmidi?style=social)](https://github.com/djipco/webmidi)
+[![npm](https://img.shields.io/npm/l/webmidi)](https://www.npmjs.com/package/webmidi)
 
 <p align="center">
-  <a href="https://github.com/djipco/webmidi#user-content-installation">INSTALLATION</a> — 
-  <a href="https://github.com/djipco/webmidi#user-content-quick-start">QUICK START</a> — 
-  <a href="https://github.com/djipco/webmidi#user-content-more-code-examples">EXAMPLES</a> — 
-  <a href="https://webmidijs.org/docs/v2.x/">API DOCUMENTATION</a> — 
-  <a href="https://github.com/djipco/webmidi/discussions">DISCUSSIONS</a> —
-  <a href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter">NEWSLETTER</a>
+  <a href="https://github.com/djipco/webmidi/tree/develop#installation"><strong>INSTALLATION</strong></a> — 
+  <a href="https://github.com/djipco/webmidi/tree/develop#quick-start"><strong>QUICK START</strong></a> — 
+  <a href="https://github.com/djipco/webmidi/tree/develop#more-code-examples"><strong>EXAMPLES</strong></a> — 
+  <a href="https://djipco.github.io/webmidi/docs/"><strong>API DOCUMENTATION</strong></a> — 
+  <a href="https://github.com/djipco/webmidi/discussions"><strong>DISCUSSIONS</strong></a> — 
+  <a href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter"><strong>NEWSLETTER</strong></a>
 </p>
 
-## Background
+## Introduction
 
-The [Web MIDI API](https://webaudio.github.io/web-midi-api/) is a really exciting addition
-to the web platform that allows web developers to interact with MIDI musical instruments 
-and devices. While great, most developers will find the *Web MIDI API* to be a bit too 
-low-level for their needs. For example, sending and receiving MIDI messages involves 
-performing binary arithmetic to encode or decode MIDI byte streams. Having to read the 
-MIDI spec in order to properly do that is not fun. Also the native *Web MIDI API* makes it hard 
-to react upon receiving MIDI messages from external devices. For example, it only allows a 
-single callback function per channel. The goal behind **WebMidi.js** is to make all these things 
-much easier.
-
-> ## ⚠️ About the upcoming version 3.0
-> 
-> If you would like to try out v3.0.0-alpha, you can switch to the 
-> [develop branch](https://github.com/djipco/webmidi/tree/develop) for instructions on how to do
-> so.
-> 
-> You can also visit the [beta version of the upcoming website](https://djipco.github.io/webmidi/) 
-> where you can find all the [documentation](https://djipco.github.io/webmidi/docs/) to get 
-> started with v3.
+**WebMidi.js** makes it easy to interact with MIDI instruments directly from a web browser or from 
+Node.js. It simplifies the control of physical or virtual MIDI instruments with user-friendly 
+functions such as `playNote()`, `setPitchBend()` or `sendControlChange()`. It also allows reacting 
+to inbound MIDI messages by adding listeners for events such as `"noteon"`, `"pitchbend"` or 
+`"programchange"`.
 
 ## Sponsors
 
-I would like to sincerely thank these sponsors for their support. WebMidi.js is a passion project
-but it still takes quite a bit of time to develop and maintain. Thank you so much! 👏
+WebMidi.js is a passion project but it still takes quite a bit of time to develop and maintain. 
+I would like to sincerely thank 👏 these sponsors for their support: 
 
 [<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
 
@@ -47,448 +34,384 @@ If you would like to support the project, you can press the
 
 ## Browser Support
 
-This library works in all browsers that natively support the 
-[Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following browsers have 
-built-in support: 
+The library works in all browsers that natively support the 
+[Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following major browsers
+have native support: 
 
-* Chrome (macOS, GNU/Linux, Android & Windows)
-* Opera (macOS, GNU/Linux, Windows)
-* Android WebView component (KitKat and above)
-* Edge (Windows)
+* Edge
+* Chrome
+* Opera
 
-It is also possible to use this library in other browsers if you install version 1.4+ of 
-[Jazz-Plugin](http://jazz-soft.net/) together with the 
-[WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. This combination provides 
-support for the following additional browsers:
+It is also possible to use this library in other browsers if you install 
+[Jazz-Plugin](https://jazz-soft.net/download/Jazz-Plugin/) v1.4+. This combination provides 
+support for the following additional web browsers:
 
-* Firefox v51 **or less** (Mac, GNU/Linux & Windows)
-* Safari (macOS)
-* Internet Explorer (Windows)
-
->For details on how to use **WebMidi.js** with the Jazz-Plugin (and WebMIDIAPIShim, please skip 
->ahead to the [Using WebMidi.js with the Jazz-Plugin](#using-webmidijs-with-the-jazz-plugin) 
->section.
-
-For **Firefox v52+ support**, you need to install two extensions made by 
-[Jazz-Soft](https://www.jazz-soft.net/):
-
-* [Jazz-MIDI extension](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) v1.5.1+
-* [Web MIDI API extension](https://addons.mozilla.org/en-US/firefox/addon/web-midi-api/)
-
-Early tests show that WebMidi.js is working in Firefox when both these extensions installed. Further 
-testing will need to be done but it looks very promising.
-
-I invite you to communicate with the Firefox and Safari teams to let them know how having native Web
-MIDI support is important for you:
-
-* Safari: https://bugs.webkit.org/show_bug.cgi?id=107250
-* Firefox: https://bugzilla.mozilla.org/show_bug.cgi?id=836897
+* Firefox
+* Safari
+* Internet Explorer
 
 Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/) that they would not
-implement the Web MIDI API (and a host of other APIs) in Safari over fingerprinting concerns. 
+natively support the Web MIDI API (and a host of other APIs) in Safari because of fingerprinting 
+concerns. 
 
 ## Node.js Support
 
-There is no official Node.js support in WebMidi.js 2.5.x. However, version 3 (currently in alpha) 
-offers full Node.js support. You can try out version 3 in the 
-[develop branch](https://github.com/djipco/webmidi/tree/develop).
+Version 3.0 of WebMidi.js introduced full Node.js support. Nothing special needs to be done, it 
+should just work in the following environments:
 
+* GNU/Linux
+* macOS
+* Windows
+* Raspberry Pi
 
-## TypeScript Support
+Support for the Node.js environment has been made possible by the good folks of 
+[Jazz-Soft](https://jazz-soft.net/) via their [JZZ](https://www.npmjs.com/package/jzz) module.
 
-TypeScript type definitions have been tentatively added to WebMidi.js with version 2.3 (thanks to
-[mmmveggies](https://www.github.com/mmmveggies)) but it should be noted that **TypeScript IS NOT 
-officially supported** at this time. 
+## Flavours
 
-Usage:
+To cater to various needs, WEBMIDI.js is distributed in 3 different flavours which you can find 
+inside the `dist` folder: 
 
-```ts
-import WebMidi from "webmidi";
+* **Immediately invoked function expression** (IIFE): This version creates a `WebMidi` object 
+directly in the global namespace. This is the legacy approach which may be easier for beginners.
 
-WebMidi.enable(...);
-```
-Or (thanks to [michaelcaterisano](https://www.github.com/michaelcaterisano)):
+* **ES6 Module** (ESM): This is the modern approach which allows you to `import` the objects as
+needed (works in newer versions of browsers and Node.js)
 
-```ts
-const WebMidi: import("webmidi").WebMidi = require("webmidi");
-```
+* **CommonJS Module** (CJS): this is the flavour used by Node.js and also often with bundling tools 
+such as WebPack.
 
-You can also import the types, if you need them:
-
-```ts
-import WebMidi, { InputEventNoteon, InputEventNoteoff } from "webmidi";
-
-input.addListener("noteon", "all", (event: InputEventNoteon) => {
-  ...
-}) 
-```
-
-I would like to add official TypeScript support in 
-[version 3](https://github.com/djipco/webmidi/tree/develop). However, this would require help
-from a knowledgeable TypeScript developer. Get in touch if you are interested in contributing.
-
+All 3 flavours come in full and minified versions with sourcemap.
 
 ## Installation
 
-Depending on your needs and environment, you can install **WebMidi.js** in a variety of different 
+Depending on your needs and environment, you can install **WEBMIDI.js** in a variety of different 
 ways.
 
 #### CDN
 
-The easiest way to get started is to link the WebMidi.js library from the 
-[jsDelivr](https://www.jsdelivr.com/) CDN (content delivery network). To retrieve the latest 
-version, just add this `<script>` tag to your HTML page:
+The fastest way to get started is to link the WebMidi.js library from the 
+[jsDelivr](https://www.jsdelivr.com/package/npm/webmidi) CDN (content delivery network). Just add 
+this `<script>` tag to your HTML page:
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi"></script>
-    
-In production, it might be a better idea to target a specific version. To do that, just append the 
-desired version at the end of the request:
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@2.5.2"></script>
+You can fetch any version and flavour you want in this way. To grab a different flavour change 
+`/dist/iife/webmidi.iife.js` by one of these:
+
+  * `/dist/cjs/webmidi.cjs.js`
+  * `/dist/cjs/webmidi.cjs.min.js`
+  * `/dist/esm/webmidi.esm.js`
+  * `/dist/esm/webmidi.esm.min.js`
+  * `/dist/iife/webmidi.iife.js`
+  * `/dist/iife/webmidi.iife.min.js`
 
 #### Manual Install
 
-Obviously, you can also install **WebMidi.js** the old fashioned way by downloading the
+Obviously, you can also install **WEBMIDI.js** the old-fashioned way by downloading the
 [latest release](https://github.com/djipco/webmidi/releases) packaged as a zip file. Uncompress the
-package, grab the `webmidi.min.js` file and copy it to your project. Link to it from your HTML page 
-as usual. 
+package, grab the `./dist/iife/webmidi.iife.js` file and copy it to your project. Link to it from 
+your HTML page using a `<script>` tag as usual. 
 
 #### NPM Install
 
-If it's more convenient, you can install **WebMidi.js** with NPM. Simply issue the following command 
-to perform the actual install:
+Arguably, the easiest approach is to install **WEBMIDI.js** with NPM (or Yarn). At the root of your 
+project, simply issue the following command to perform the install:
 
     npm install webmidi
     
-Then, just add a `<script>` tag to your HTML page and make it point to:
+Then, you can use any of those approaches depending on your environment:
 
-    <script src="node_modules/webmidi/webmidi.min.js"></script>
+    // Script tag
+    <script src="node_modules/webmidi/dist/iife/webmidi.iife.js"></script>
+ 
+    // CommonJS require
+    const {WebMidi} = require("webmidi");
+ 
+    // ES module import in browser
+    import {WebMidi} from "node_modules/webmidi/dist/iife/webmidi.esm.js";
 
-#### Using with a Bundler
-
-If you are using a bundler such as WebPack, you can import **WebMidi.js** in your project in this way:
-
-    import WebMidi from 'path/to/webmidi';
+    // ES module import in Node.js
+    import {WebMidi} from "webmidi";
 
 ## Insecure Origins
 
-Starting with version 77, [Chrome deprecates Web MIDI usage on insecure origins](https://www.chromestatus.com/feature/5138066234671104). This means that, going forward, the page will 
-need to be hosted on a secure origin (e.g. `https://`, `localhost:` or `file:///`) and the user will 
-need to explicitely authorize usage (no matter if `sysex` is used or not).
+Starting with version 77, 
+[Chrome deprecated Web MIDI usage on insecure origins](https://www.chromestatus.com/feature/5138066234671104). 
+This means that, going forward, any page using WebMidi.js will need to be hosted on a secure origin:
 
+* `https://`
+* `localhost:`
+* `file:///`
+
+Also, the user will need to explicitely authorize usage via a prompt (no matter if system exclusive
+messages are used or not).
 
 ## Quick Start
 
 Getting started is easy. The first thing to do is to enable **WebMidi.js**. To do that, you call
-`WebMidi.enable()` and pass it a function to execute when done. This function will receive an 
-`Error` object if enabling `WebMidi` failed: 
+`WebMidi.enable()` and use `then()` to pass it a function to execute when done:
 
 ```javascript
-WebMidi.enable(function (err) {
+WebMidi
+  .enable()
+  .then(() => console.log("WebMidi enabled!"))
+  .catch(err => alert(err));
+```
+To interact with devices you need to know which `Input` and `Output` ports are available. Connect a
+MIDI device and try the following:
 
-  if (err) {
-    console.log("WebMidi could not be enabled.", err);
-  } else {
-    console.log("WebMidi enabled!");
-  }
-  
-});
+```javascript
+WebMidi
+  .enable()
+  .then(onEnabled)
+  .catch(err => alert(err));
+
+function onEnabled() {
+  console.log(WebMidi.inputs);
+  console.log(WebMidi.outputs);
+}
+```
+You should see your devices appear in the console. As you can probably witness, most MIDI devices 
+will make several input and/or output ports available. 
+
+> #### About devices and channels
+>
+> MIDI input and output ports all have 16 channels. WebMidi.js reflects that. Let's break it down. 
+> The `WebMidi.inputs` property contains an array of `Input` objects. These objects have methods
+> such as `addListener()` which allows you to listen to inbound MIDI messages on all 16 channels at
+> once (or just a subset of channels should you prefer).
+>
+> Each `Input` object has a `channels` property which is an array of 16 `InputChannel` objects. The 
+> `InputChannel` objects also have an `addListener()` method which, in this case, listens for events
+> only on that particular channel.
+
+Here is a quick example of how to play a note on MIDI channel 1 of the first found output device 
+(port):
+
+```javascript
+let synth = WebMidi.outputs[0];
+synth.channels[1].playNote("C3");
 ```
 
+Above, we retrieve the port in the `outputs` array and store it inside the `synth` variable. Then,
+we access MIDI channel 1 of the synth and use its `playNote()` method.
 
-To send and receive MIDI messages, you will need to do so via the appropriate `Output` and `Input`
-device. To view all the available `Input` and `Output` ports, you can use the matching arrays:
+Since the position of devices in the array could change, it is often better to use the device's 
+name (as displayed in the `WebMidi.outputs` array):
 
 ```javascript
-WebMidi.enable(function (err) {
-    console.log(WebMidi.inputs);
-    console.log(WebMidi.outputs);
-});
+let synth = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
+synth.channels[1].playNote("C3");
 ```
 
-To send MIDI messages to a device, you simply need to grab that device and call one of its output
-method (`playNote()`, `stopNote()`, `sendPitchBend()`, etc.). To retrieve a device, you can use
-its position in the `WebMidi.outputs` array. For instance, to grab the first output device, you 
-could use:
+Receiving MIDI messages works in a similar way: you retrieve the input device and channel you want 
+to use, and then add a callback function to be triggered when a specific MIDI message is received on 
+the desired channel.
+
+For example, to listen for pitch bend events on channel 1 of the selected port:
 
 ```javascript
-var output = WebMidi.outputs[0];
-```
+let input = WebMidi.getInputByName("Axiom Pro 25 USB A In");
+let channel = input.channels[1]; // channel 1
 
-However, this is not very safe as the position of devices in the array could change. An alternative
-is to use the device's ID:
-
-```javascript
-var output = WebMidi.getOutputById("1584982307");
-```
-Beware that device IDs are not the same across browsers and platforms. You could also use the device's name (as
-displayed in the `WebMidi.outputs` array):
-
-```javascript
-var output = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
-```
- 
-Then, you can call any of the output methods and all native MIDI communications will be handled for 
-you. For example, to play a "C" on the 3rd octave, you simply do:
-
-```javascript
-output.playNote("C3");
-```
-
-That's it.
-
-Receiving messages works in a similar way: you retrieve the `Input` device you want to use, and then
-add a callback function to be triggered when a specific MIDI message is received. For example, to 
-listen for pitch bend events on all channels of the device:
-
-```javascript
-
-var input = WebMidi.getInputByName("Axiom Pro 25 USB A In");
-
-input.addListener('pitchbend', "all", function(e) {
-    console.log("Pitch value: " + e.value);
+channel.addListener('pitchbend', e => {
+ console.log("Pitch value: " + e.value);
 });
 ```
 
 ## API Documentation
 
-The [API for WebMidi.js](https://webmidijs.org/docs/) is fully documented and I take pride in 
-maintaining good API documentation. If you spot an error (even something minor) or think a topic 
-should be made clearer, do not hesitate to [file an issue](https://github.com/djipco/webmidi/issues) or, 
-better yet, send a PR. 
+The [API for WebMidi.js](https://djipco.github.io/webmidi/docs/) is fully documented and I take 
+pride in maintaining good API documentation. If you spot an error (even something minor) or think a 
+topic should be made clearer, do not hesitate to 
+[file an issue](https://github.com/djipco/webmidi/issues) or, better yet, send a PR (the API
+documentation is compiled from jsdoc comments in the source code files).
 
-Here is a link to the full **[API Reference](https://webmidijs.org/docs/)**. You can 
-also find  the API reference in portable format inside the `docs` folder.
+Here is a link to the full
+**[API Reference](https://djipco.github.io/webmidi/docs/)**.
 
-By the way, legacy 
-[documentation for version 1.0.0-beta.15](https://webmidijs.org/docs/v1.x/index.html) will 
-also remain available online as long as necessary.
+## More Code Examples
 
-## More code examples
+Here are various other examples to give you an idea of what is possible with WebMidi.js. All the 
+examples below only work if WebMidi.js has been properly enabled.
 
-Here are various other examples to give you an idea of what is possible with **WebMidi.js**. 
+#### View available ports
 
 ```javascript
-// Enable WebMidi.js
-WebMidi.enable(function (err) {
-
-  if (err) {
-    console.log("WebMidi could not be enabled.", err);
-  }
-
-  // Viewing available inputs and outputs
-  console.log(WebMidi.inputs);
-  console.log(WebMidi.outputs);
-  
-  // Reacting when a new device becomes available
-  WebMidi.addListener("connected", function(e) {
-    console.log(e);
-  });
-  
-  // Reacting when a device becomes unavailable
-  WebMidi.addListener("disconnected", function(e) {
-    console.log(e);
-  });
-
-  // Display the current time
-  console.log(WebMidi.time);
-
-  // Retrieving an output port/device using its id, name or index
-  var output = WebMidi.getOutputById("123456789");
-  output = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
-  output = WebMidi.outputs[0];
-
-  // Play a note on all channels of the selected output
-  output.playNote("C3");
-
-  // Play a note on channel 3
-  output.playNote("Gb4", 3);
-
-  // Play a chord on all available channels
-  output.playNote(["C3", "D#3", "G3"]);
-
-  // Play a chord on channel 7
-  output.playNote(["C3", "D#3", "G3"], 7);
-
-  // Play a note at full velocity on all channels)
-  output.playNote("F#-1", "all", {velocity: 1});
-
-  // Play a note on channel 16 in 2 seconds (relative time)
-  output.playNote("F5", 16, {time: "+2000"});
-
-  // Play a note on channel 1 at an absolute time in the future
-  output.playNote("F5", 16, {time: WebMidi.time + 3000});
-
-  // Play a note for a duration of 2 seconds (will send a note off message in 2 seconds). Also use
-  // a low attack velocity
-  output.playNote("Gb2", 10, {duration: 2000, velocity: 0.25});
-
-  // Stop a playing note on all channels
-  output.stopNote("C-1");
-
-  // Stopping a playing note on channel 11
-  output.stopNote("F3", 11);
-
-  // Stop a playing note on channel 11 and use a high release velocity
-  output.stopNote("G8", 11, {velocity: 0.9});
-
-  // Stopping a playing note in 2.5 seconds
-  output.stopNote("Bb2", 11, {time: "+2500"});
-
-  // Send polyphonic aftertouch message to channel 8
-  output.sendKeyAftertouch("C#3", 8, 0.25);
-
-  // Send pitch bend (between -1 and 1) to channel 12
-  output.sendPitchBend(-1, 12);
-
-  // You can chain most method calls
-  output.playNote("G5", 12)
-    .sendPitchBend(-0.5, 12, {time: 400}) // After 400 ms.
-    .sendPitchBend(0.5, 12, {time: 800})  // After 800 ms.
-    .stopNote("G5", 12, {time: 1200});    // After 1.2 s.
-
-  // Retrieve an input by name, id or index
-  var input = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
-  input = WebMidi.getInputById("1809568182");
-  input = WebMidi.inputs[0];
-
-  // Listen for a 'note on' message on all channels
-  input.addListener('noteon', "all",
-    function (e) {
-      console.log("Received 'noteon' message (" + e.note.name + e.note.octave + ").");
-    }
-  );
-
-  // Listen to pitch bend message on channel 3
-  input.addListener('pitchbend', 3,
-    function (e) {
-      console.log("Received 'pitchbend' message.", e);
-    }
-  );
-
-  // Listen to control change message on all channels
-  input.addListener('controlchange', "all",
-    function (e) {
-      console.log("Received 'controlchange' message.", e);
-    }
-  );
-  
-  // Listen to NRPN message on all channels
-  input.addListener('nrpn', "all",
-    function (e) {
-      if(e.controller.type === 'entry') {
-        console.log("Received 'nrpn' 'entry' message.", e);
-      }
-      if(e.controller.type === 'decrement') {
-        console.log("Received 'nrpn' 'decrement' message.", e);
-      }
-      if(e.controller.type === 'increment') {
-        console.log("Received 'nrpn' 'increment' message.", e);
-      }
-      console.log("message value: " + e.controller.value + ".", e);
-    }
-  );
-
-  // Check for the presence of an event listener (in such cases, you cannot use anonymous functions).
-  function test(e) { console.log(e); }
-  input.addListener('programchange', 12, test);
-  console.log("Has event listener: ", input.hasListener('programchange', 12, test));
-
-  // Remove a specific listener
-  input.removeListener('programchange', 12, test);
-  console.log("Has event listener: ", input.hasListener('programchange', 12, test));
-
-  // Remove all listeners of a specific type on a specific channel
-  input.removeListener('noteoff', 12);
-
-  // Remove all listeners for 'noteoff' on all channels
-  input.removeListener('noteoff');
-
-  // Remove all listeners on the input
-  input.removeListener();
-
+WebMidi.enable().then(() => {
+    console.log(WebMidi.inputs);
+    console.log(WebMidi.outputs);
 });
 ```
+#### Retrieve the current time
+
+This can be useful if you want to schedule playback of a note somewhere in the future. The time is
+in milliseconds (decimal) relative to the navigation start of the document.
+
+```javascript
+WebMidi.enable().then(ports => {
+  console.log(WebMidi.time);
+})
+```
+#### Retrieve an output port/device using its id, name or array index
+
+Different ways to retrive an output. Beware that IDs are different from one platform to another. 
+
+```javascript
+let output1 = WebMidi.getOutputById("123456789");
+let output2 = WebMidi.getOutputByName("Axiom Pro 25 Ext Out");
+let output3 = WebMidi.outputs[0];
+```
+
+#### Play a note on a specific MIDI channel (1)
+
+The `channels` property of an `Output` object contains references to 16 `OutputChannel` objects 
+(1-16).
+
+```javascript
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote("C3");
+```
+
+#### Play a note on multiple channels at once
+
+You can call `playNote()` (and various other methods) directly on the `Output` object. This allows 
+you to play a note on several channels at once. 
+
+```javascript
+let output = WebMidi.outputs[0];
+output.playNote("Gb4", [1, 2, 3]);
+```
+
+#### Play a chord on a specific MIDI channel (1)
+
+You can pass an array of notes to play to the `playNote()` method.
+
+```javascript
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote(["C3", "D#3", "G3"]);
+```
+
+#### Control note velocity
+
+You can control attack and release velocites when playing a note by using the `options` parameter.
+
+```javascript
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote("C3", {attack: 0.5});
+```
+
+#### Specify note duration
+
+If you specify a duration (in decimal milliseconds) for the note, it will be automatically stopped 
+after duration has expired.
+
+```javascript
+let output = WebMidi.outputs[0];
+let channel = output.channels[1];
+channel.playNote("C3", {duration: 1000});
+```
+
+#### Schedule notes
+
+You can specify an absolute or relative time to schedule note playback in the future:
+
+```javascript
+WebMidi.outputs[0].channels[1].playNote("C3", {time: WebMidi.time + 3000});
+WebMidi.outputs[0].channels[1].playNote("C3", {time: "+2000"});
+```
+
+#### Manually stopping playback
+
+You can specify stop playback of a note right away or in the future.
+
+```javascript
+WebMidi.outputs[0].channels[1].stopNote("C3");
+WebMidi.outputs[0].channels[1].stopNote("C3", {time: "+2500"});
+```
+
+#### Set polyphonic aftertouch 
+
+Send polyphonic aftertouch message to channel 8
+
+```javascript
+WebMidi.outputs[0].channels[8].setKeyAftertouch("B#3", 0.25);
+```
+
+#### Set pitch bend value
+
+The value is between -1 and 1 (a value of 0 means no bend).
+
+```javascript
+WebMidi.outputs[0].channels[8].setPitchBend(-0.25);
+```
+
+#### Use Chained Methods
+
+The value is between -1 and 1 (a value of 0 means no bend).
+
+```javascript
+WebMidi.outputs[0].channels[8]
+    .setPitchBend(-0.25)
+    .playNote("F4");
+```
+
+#### Listen to event on single channel
+
+```javascript
+WebMidi.inputs[0].channels[1].addListener("noteon", e => {
+  console.log(`Received 'noteon' message (${e.note.name}${e.note.octave}).`);
+});
+```
+
+#### Listen to event on multiple channels at once
+
+```javascript
+WebMidi.inputs[0].addListener("controlchange", e => {
+  console.log(`Received 'controlchange' message.`, e);
+}, {channels: [1, 2, 3]});
+```
+
+#### Check for the presence of an event listener
+
+```javascript
+let channel = WebMidi.inputs[0].channels[1];
+let test = e => console.log(e);
+channel.addListener('programchange', test);
+console.log("Has event listener: ", channel.hasListener('programchange', test));
+```
+
+#### Remove listeners
+
+```javascript
+let channel = WebMidi.inputs[0].channels[1];
+let test = e => console.log(e);
+channel.removeListener("noteoff", test);  // specifically this one
+channel.removeListener("noteoff");        // all noteoff on this channel
+channel.removeListener();                 // all listeners
+```
+
 ## About Sysex Support
 
 Per the 
 [Web MIDI API specification](https://webaudio.github.io/web-midi-api/#dom-navigator-requestmidiaccess), 
 system exclusive (sysex) support is disabled by default. If you need to use sysex messages, you will 
-need to pass `true` as the second parameter to `WebMidi.enable()`:
+need to explicitly enable them:
 
 ```javascript
-WebMidi.enable(function (err) {
-  if (err) {
-    console.warn(err);
-  } else {
-    console.log("Sysex is enabled!");
-  }
-}, true);
+WebMidi.enable({sysex: true});
 ```
-**Important**: depending on the browser, version and platform, it may also be necessary to serve the 
-page over https if you want to enable sysex support.
-
-## Migration Notes
-
-If you are upgrading from version 1.x to 2.x, you should know that v2.x is not backwards compatible.
-Some important changes were made to the API to make it easier to use, more versatile and to better
-future-proof it.
-
-Here is a summary of the changes:
-
-* All the "output" functions (`playNote()`, `sendPitchBend()`, etc.) have been moved to the 
-`Output` object. A list of all available `Output` objects is available in `WebMidi.outputs` 
-(like before).
-    
-* All the "input" functions (`addListener`, `removeListener()` and `hasListener()` have been 
-moved to the `Input` object. A list of all available `Input` objects is available in 
-`WebMidi.inputs` (also like before).
-
-There might be a few other minor changes here and there but the refactoring mostly concerns the
-introduction of `Input` and `Output` objects.
-
-## Using WebMidi.js with the Jazz-Plugin
-
-To use **WebMidi.js** on Safari, Firefox and Internet Explorer, you will first need to install 
-Jazz-Plugin. Simply [download the plugin](http://jazz-soft.net/download/Jazz-Plugin/) and run the 
-installer.
-
-> Users of Firefox v52+ are currently out of luck because Mozilla deactivated support for NPAPI
-> plugins. There is an add-on version of 
-> [Jazz-Midi](https://addons.mozilla.org/en-US/firefox/addon/jazz-midi/) but, unfortunately, the 
-> API is different and cannot be used as is. Firefox v52+ users will have to wait for native Web 
-> MIDI support to be finalized. 
-> [Reading from the comments on Bug 836897](https://bugzilla.mozilla.org/show_bug.cgi?id=836897), 
-> this might take a while...
-
-Then, you will need to add the plugin to the page with the following HTML code:
-
-    <object id="Jazz1" classid="CLSID:1ACE1618-1C7D-4561-AEE1-34842AA85E90" class="hidden">
-      <object id="Jazz2" type="audio/x-jazz" class="hidden">
-        <p><a href=http://jazz-soft.net>Jazz-Plugin</a> required!</p>
-      </object>
-    </object>
-    
-To support recent versions of Internet Explorer, you also need to add a `meta` tag to the `<head>` 
-of the page:
-
-    <meta http-equiv="X-UA-Compatible" content="requiresActiveX=true"/>
-
-Since Jazz-Plugin does not use the same syntax as the native Web MIDI API, it is necessary to also
-install the [WebMIDIAPIShim](http://cwilso.github.io/WebMIDIAPIShim/) polyfill. You can do that by 
-including the following in your page:
-
-    <script src='https://cwilso.github.io/WebMIDIAPIShim/build/WebMIDIAPI.min.js'></script>
-    
-Obviously, you can also 
-[download a local copy](https://github.com/cwilso/WebMIDIAPIShim/zipball/master) and link to it.
 
 ## Feature Request
 
-If you would like to request a new feature, enhancement or API change, please first verify that it 
-is not already planned for an upcoming version by checking the 
-[Wiki](https://github.com/djipco/webmidi/wiki). If it isn't listed there, simply 
-[file an issue](https://github.com/djipco/webmidi/issues) describing your request.
+If you would like to request a new feature, enhancement or API change, please check if it is not 
+already planned for an upcoming version by checking the 
+[Wiki](https://github.com/djipco/webmidi/wiki). Then, discuss it in the 
+[Enhancement Proposals](https://github.com/djipco/webmidi/discussions/categories/feature-requests) section of the forum.
 
 ## Contributing
 
@@ -501,7 +424,7 @@ If you use this software for research or academic purposes, please cite the proj
 references (or wherever appropriate). Here's an example of how to cite it 
 ([APA Style](https://apastyle.apa.org/)):
 
->Côté, J. P. (2020). WebMidi.js v2.5.3 [Computer Software]. Retrieved from 
+>Côté, J. P. (2020). WebMidi.js v3.0.0 [Computer Software]. Retrieved from 
 https://github.com/djipco/webmidi
 
 Here are a few examples of academic papers citing WebMidi.js:
@@ -521,3 +444,19 @@ Católica del Ecuador]. Retrieved from http://repositorio.puce.edu.ec/handle/220
 I invite academics to show their support for this project by notifying us of all papers 
 referencing the software. The best way to do that is to submit a pull request adding your paper 
 to the list above.
+
+
+## Licensing
+
+Starting with version 3.0.0, this library is licensed under the Apache License, Version 2.0 (the 
+"License"). You may not use this library except in compliance with the License. You may obtain a 
+copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software distributed under the License is
+distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or 
+implied. See the License for the specific language governing permissions and limitations under the 
+License.
+
+Copyright 2015-2021 Jean-Philippe Côté

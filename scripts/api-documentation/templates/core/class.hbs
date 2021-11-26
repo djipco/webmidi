@@ -1,0 +1,32 @@
+{{!
+
+  This template creates the 'class' portion of the output (at the top). It relies on the following
+  helpers:
+
+    - inlineLinks
+    - eq
+    - eventName
+
+}}
+
+{{! Class name }}
+# {{name}}
+
+{{! Class description }}
+{{{inlineLinks description}}}
+
+{{! Since }}
+{{#if since}}
+**Since**: {{since}}
+{{/if}}
+
+{{! Extends }}
+{{#if augments}}
+**Extends**: {{#each augments}}[`{{this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/each}}
+<!--**Extends**: {{#each augments}}{{#if (eq this "EventEmitter")}}{{this}}{{else if (eq this "Listener")}}{{this}}{{else}}[`{{this}}`]({{this}}){{#unless @last}}, {{/unless}}{{/if}}{{/each}}-->
+{{/if}}
+
+{{! Fires }}
+{{#if fires}}
+**Fires**: {{#each fires}}[`{{eventName this}}`](#event:{{eventName this}}){{#unless @last}}, {{/unless}}{{/each}}
+{{/if}}

@@ -1,0 +1,47 @@
+{{!
+
+  This template creates the 'properties' portion of the output . It relies on the following helpers:
+
+    - inlineLinks
+    - stripNewlines
+
+}}
+{{#if this}}
+***
+
+## Properties
+
+{{#each this}}
+{{! Name }}
+### `.{{this.name}}` {{curly true}}#{{this.name}}{{curly}}
+{{! Since }}
+{{#if this.since}}
+**Since**: {{this.since}}<br />
+{{/if}}
+{{! Type }}
+**Type**: {{this.type.names.[0]}}<br />
+{{#if (or this.readonly this.nullable)}}
+{{! Attributes }}
+**Attributes**: {{#if this.readonly}}read-only{{/if}}{{#if this.nullable}}, nullable{{/if}}{{#if (eq this.scope "static")}}, static{{/if}}<br />
+{{/if}}
+
+
+{{! Description }}
+{{{inlineLinks description}}}
+
+{{! Properties }}
+{{#if properties}}
+
+  **Properties**
+
+  | Property     | Type         | Description  |
+  | ------------ | ------------ | ------------ |
+  {{#each properties}}
+    |**`{{this.name}}`** |{{this.type.names.[0]}}|{{{stripNewlines (inlineLinks this.description)}}}|
+  {{/each}}
+
+{{/if}}
+
+{{/each}}
+
+{{/if}}

@@ -2,22 +2,22 @@
 github: [djipco]
 
 # Single Patreon username
-#patreon: 
+#patreon:
 
 # Replace with a single Open Collective username
-#open_collective: 
+#open_collective:
 
 # Replace with a single Ko-fi username
-#ko_fi: 
+#ko_fi:
 
 # Replace with a single Tidelift platform-name/package-name e.g., npm/babel
-#tidelift: 
+#tidelift:
 
 # Replace with a single Community Bridge project-name e.g., cloud-foundry
-#community_bridge: 
+#community_bridge:
 
 # Replace with a single Liberapay username
-#liberapay: 
+#liberapay:
 
 # Replace with a single IssueHunt username
 #issuehunt:
@@ -26,4 +26,4 @@ github: [djipco]
 #otechie:
 
 # Replace with up to 4 custom sponsorship URLs e.g., ['link1', 'link2']
-#custom: 
+#custom:
