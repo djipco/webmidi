@@ -274,10 +274,21 @@ export class Utilities {
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
    *
-   * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and 127.
+   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
    *
-   * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
-   * 127.
+   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
    *
    * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
    * used when the input value is a note identifier.**
@@ -318,6 +329,9 @@ export class Utilities {
    * [`Note`]{@link Note} object is created with the options specified. An error will be thrown when
    * encountering invalid input.
    *
+   * Note: if both the `attack` and `rawAttack` options are specified, the later has priority. The
+   * same goes for `release` and `rawRelease`.
+   *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
    * @param {object} [options={}]
@@ -325,17 +339,21 @@ export class Utilities {
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
    *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
+   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
    *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
+   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
    *
    * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-   * 127.
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
    *
    * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127.
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
    *
    * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
    * used when the input value is a note identifier.**
@@ -463,11 +481,12 @@ export class Utilities {
 
   /**
    * Returns the name of the first property of the supplied object whose value is equal to the one
-   * supplied.
+   * supplied. If nothing is found, `undefined` is returned.
    *
    * @param object {object}
    * @param value {*}
-   * @returns {string} The name of the matching property
+   * @returns {string|undefined} The name of the matching property or `undefined` if nothing is
+   * found.
    * @static
    */
   static getPropertyByValue(object, value) {
@@ -475,13 +494,13 @@ export class Utilities {
   }
 
   /**
-   * Returns the name of a control change message matching the specified number. Some valid control
-   * change numbers do not have a specific name or purpose assigned in the MIDI
+   * Returns the name of a control change message matching the specified number (0-127). Some valid
+   * control change numbers do not have a specific name or purpose assigned in the MIDI
    * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-   * In this case, the method returns `undefined`.
+   * In these cases, the method returns `controllerXXX` (where XXX is the number).
    *
-   * @param {number} number An integer representing the control change message
-   * @returns {string|undefined} The matching control change name or `undefined` if not match was
+   * @param {number} number An integer (0-127) representing the control change message
+   * @returns {string|undefined} The matching control change name or `undefined` if no match was
    * found.
    *
    * @static
