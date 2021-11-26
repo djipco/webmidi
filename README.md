@@ -6,10 +6,9 @@
 [![npm](https://img.shields.io/npm/l/webmidi)](https://www.npmjs.com/package/webmidi)
 
 <p align="center">
-  <a href="https://github.com/djipco/webmidi/tree/develop#installation"><strong>INSTALLATION</strong></a> — 
-  <a href="https://github.com/djipco/webmidi/tree/develop#quick-start"><strong>QUICK START</strong></a> — 
-  <a href="https://github.com/djipco/webmidi/tree/develop#more-code-examples"><strong>EXAMPLES</strong></a> — 
-  <a href="https://webmidijs.org/docs/"><strong>API DOCUMENTATION</strong></a> — 
+  <a href="https://webmidijs.org"><strong>OFFICIAL WEBSITE</strong></a> — 
+  <a href="https://webmidijs.org/docs/"><strong>DOCUMENTATION</strong></a> — 
+  <a href="https://webmidijs.org/api/index"><strong>API REFERENCE</strong></a> — 
   <a href="https://github.com/djipco/webmidi/discussions"><strong>DISCUSSIONS</strong></a> — 
   <a href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter"><strong>NEWSLETTER</strong></a>
 </p>
