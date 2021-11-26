@@ -1,7 +1,8 @@
 ![WebMidi.js Logo](https://webmidijs.org/img/webmidijs-logo-color-on-white.svg "WebMidi.js")
 
-[![npm](https://img.shields.io/npm/dm/webmidi)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
+[![npm](https://img.shields.io/npm/dm/webmidi)](https://www.npmjs.com/package/webmidi)
+[![npm](https://img.shields.io/npm/dt/webmidi)](https://www.npmjs.com/package/webmidi)
 [![](https://img.shields.io/github/stars/djipco/webmidi?style=social)](https://github.com/djipco/webmidi)
 [![npm](https://img.shields.io/npm/l/webmidi)](https://www.npmjs.com/package/webmidi)
 
