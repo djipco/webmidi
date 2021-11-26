@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.26 - November 25, 2021 21:31:23 */
+/* Version: 3.0.0-alpha.26 - November 25, 2021 22:46:17 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7684,12 +7684,20 @@ class Input extends e {
 
 /*START-NODE.JS*/
 // This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
-// and server-side rendering. This is why it is explicitly being stripped off for the IIFE and ESM
+// and server-side rendering. This is why it is explicitly being stripped off from the IIFE and ESM
 // distributions.
+// global["performance"] = require("perf_hooks").performance;
+// global["navigator"] = require("jzz");
+
+/*END-NODE.JS*/
+
+/*START-CJS*/
+// This is the way to import the necessary modules under Node.js when using "type: commonjs" in the
+// package.json file.
 
 global["performance"] = require("perf_hooks").performance;
 global["navigator"] = require("jzz");
-/*END-NODE.JS*/
+/*END-CJS*/
 
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
@@ -8492,9 +8500,8 @@ class WebMidi extends e {
   }
   /**
    * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-   * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
-   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
-   * same time.
+   * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
+   * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
    * @type {boolean}
    */
 
