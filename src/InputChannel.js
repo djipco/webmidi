@@ -388,11 +388,9 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {number} value The value expressed as an integer between 1 and 128.
-       * @property {number} rawValue The value expressed as an integer between 0 and 127..
+       * @property {number} value The value expressed as an integer between 0 and 127.
        */
-      event.value = data1 + 1;
-      event.rawValue = data1;
+      event.value = data1;
 
     } else if (event.type === "channelaftertouch") {
 
