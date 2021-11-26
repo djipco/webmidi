@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.1 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -229,19 +229,44 @@
 														<td><code>attack</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>64</td>
+														<td>0.5</td>
 													<td class="last">
-															<p>The note's attack velocity as an integer between 0 and 127.</p>
+															<p>The note's attack velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawAttack</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
 														<td><code>release</code></td>
 													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The note's release velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawRelease</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawAttack</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>64</td>
+													<td class="last">
+															<p>The note's attack velocity as an integer between 0 and
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawRelease</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>64</td>
 													<td class="last">
 															<p>The note's release velocity as an integer between 0 and
-									127.</p>
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -304,7 +329,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-292">line 292</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-303">line 303</a></p>
 								</div>
 							</div>
 			
@@ -325,7 +350,9 @@
 			<a href="Note.html"><code>Note</code></a>  objects.</p>
 			<p><a href="Note.html"><code>Note</code></a>  objects are returned as is. For note numbers and identifiers, a
 			<a href="Note.html"><code>Note</code></a> object is created with the options specified. An error will be thrown when
-			encountering invalid input.</p></div>
+			encountering invalid input.</p>
+			<p>Note: if both the <code>attack</code> and <code>rawAttack</code> options are specified, the later has priority. The
+			same goes for <code>release</code> and <code>rawRelease</code>.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -380,8 +407,9 @@
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>0.5</td>
 													<td class="last">
-															<p>The note's attack velocity as a decimal number between 0
-									and 1.</p>
+															<p>The note's attack velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawAttack</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -390,8 +418,9 @@
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>0.5</td>
 													<td class="last">
-															<p>The note's release velocity as a decimal number between 0
-									and 1.</p>
+															<p>The note's release velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawRelease</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -401,7 +430,8 @@
 														<td>64</td>
 													<td class="last">
 															<p>The note's attack velocity as an integer between 0 and
-									127.</p>
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -411,7 +441,8 @@
 														<td>64</td>
 													<td class="last">
 															<p>The note's release velocity as an integer between 0 and
-									127.</p>
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
 													</td>
 												</tr>
 												<tr>
@@ -474,7 +505,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-350">line 350</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-368">line 368</a></p>
 								</div>
 							</div>
 			
@@ -544,7 +575,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-375">line 375</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-393">line 393</a></p>
 								</div>
 							</div>
 			
@@ -614,7 +645,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-393">line 393</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-411">line 411</a></p>
 								</div>
 							</div>
 			
@@ -680,7 +711,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-425">line 425</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-443">line 443</a></p>
 								</div>
 							</div>
 			
@@ -760,7 +791,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-407">line 407</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-425">line 425</a></p>
 								</div>
 							</div>
 			
@@ -776,10 +807,10 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the name of a control change message matching the specified number. Some valid control
-			change numbers do not have a specific name or purpose assigned in the MIDI
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the name of a control change message matching the specified number (0-127). Some valid
+			control change numbers do not have a specific name or purpose assigned in the MIDI
 			<a href="https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2">spec</a>.
-			In this case, the method returns <code>undefined</code>.</p></div>
+			In these cases, the method returns <code>controllerXXX</code> (where XXX is the number).</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -795,7 +826,7 @@
 								<td><code>number</code></td>
 							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>An integer representing the control change message</p>
+									<p>An integer (0-127) representing the control change message</p>
 							</td>
 						</tr>
 					</tbody>
@@ -805,7 +836,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">undefined</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The matching control change name or <code>undefined</code> if not match was
+									<div class="form-control-static returns-description"><p>The matching control change name or <code>undefined</code> if no match was
 			found.</p></div>
 								</div>
 							</div>
@@ -830,7 +861,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-489">line 489</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-510">line 510</a></p>
 								</div>
 							</div>
 			
@@ -863,7 +894,7 @@
 								<td><code>number</code></td>
 							<td><span class="param-type">number</span></td>
 							<td class="last">
-									<p>An integer representing the channel mode message.</p>
+									<p>An integer representing the channel mode message (120-127)</p>
 							</td>
 						</tr>
 					</tbody>
@@ -873,7 +904,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">false</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The name of the matching channel mode or <code>false</code> if not match could be
+									<div class="form-control-static returns-description"><p>The name of the matching channel mode or <code>false</code> if no match could be
 			found.</p></div>
 								</div>
 							</div>
@@ -905,7 +936,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-503">line 503</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-524">line 524</a></p>
 								</div>
 							</div>
 			
@@ -1003,12 +1034,12 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id=".getPropertyByValue" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">getPropertyByValue</span><span class="signature-params">( <span class="signature-param">object</span>, <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string}</span></h4>
+			<h4 id=".getPropertyByValue" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">getPropertyByValue</span><span class="signature-params">( <span class="signature-param">object</span>, <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{string|undefined}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
 			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the name of the first property of the supplied object whose value is equal to the one
-			supplied.</p></div>
+			supplied. If nothing is found, <code>undefined</code> is returned.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1024,12 +1055,14 @@
 								<td><code>object</code></td>
 							<td><span class="param-type">object</span></td>
 							<td class="last">
+									<p>The object to look for the property in.</p>
 							</td>
 						</tr>
 						<tr>
 								<td><code>value</code></td>
 							<td><span class="param-type">*</span></td>
 							<td class="last">
+									<p>Any value that can be expected to be found in the object's properties.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1037,9 +1070,10 @@
 			</div>
 			<div class="callout callout-success"><h5>Returns</h5>		<form class="form-horizontal returns">
 							<div class="form-group">
-								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span></label>
+								<label class="col-sm-3 control-label returns-type"><span class="param-type">string</span> | <span class="param-type">undefined</span></label>
 								<div class="col-sm-9">
-									<div class="form-control-static returns-description"><p>The name of the matching property</p></div>
+									<div class="form-control-static returns-description"><p>The name of the matching property or <code>undefined</code> if nothing is
+			found.</p></div>
 								</div>
 							</div>
 					</form>
@@ -1063,7 +1097,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-473">line 473</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-494">line 494</a></p>
 								</div>
 							</div>
 			
@@ -1155,7 +1189,7 @@
 </dd>
 											<hr/>
 											<dt class="symbol-title function public collapsible-symbol">
-			<h4 id=".offsetNumber" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">offsetNumber</span><span class="signature-params">( <span class="signature-param">offset</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
+			<h4 id=".offsetNumber" class="function public"><span class="signature-attribs">&lt;static> </span><span class="name">offsetNumber</span><span class="signature-params">( <span class="signature-param">number</span>, <span class="signature-param">octaveOffset</span>, <span class="signature-param">octaveOffset</span>&nbsp;)</span><span class="signature-type"> &rarr;&nbsp;{number}</span></h4>
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
@@ -1169,14 +1203,33 @@
 					<tr>
 							<th>Name</th>
 						<th>Type</th>
+							<th>Default</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
 					<tbody>
 						<tr>
-								<td><code>offset</code></td>
-							<td></td>
+								<td><code>number</code></td>
+							<td><span class="param-type">number</span></td>
+								<td></td>
 							<td class="last">
+									<p>The MIDI note to offset as an integer between 0 and 127.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>octaveOffset</code></td>
+							<td><span class="param-type">number</span></td>
+								<td>0</td>
+							<td class="last">
+									<p>An integer to offset the note by (in octave)</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>octaveOffset</code></td>
+							<td><span class="param-type">number</span></td>
+								<td></td>
+							<td class="last">
+									<p>An integer to offset the note by (in semitones)</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1218,7 +1271,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-451">line 451</a></p>
+									<p class="form-control-static"><a href="src_Utilities.js.html">src/Utilities.js</a>, <a href="src_Utilities.js.html#line-471">line 471</a></p>
 								</div>
 							</div>
 			
@@ -1607,8 +1660,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 19th 2021 @ 10:47:15 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.1 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 26th 2021 @ 11:28:37 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

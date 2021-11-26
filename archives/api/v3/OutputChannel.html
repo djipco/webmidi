@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.1 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = true;
 		</script>
@@ -508,7 +508,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1776">line 1776</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1830">line 1830</a></p>
 								</div>
 							</div>
 			
@@ -564,7 +564,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1748">line 1748</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1802">line 1802</a></p>
 								</div>
 							</div>
 			
@@ -615,7 +615,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1767">line 1767</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1821">line 1821</a></p>
 								</div>
 							</div>
 			
@@ -1496,11 +1496,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -1540,7 +1542,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-701">line 701</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-716">line 716</a></p>
 								</div>
 							</div>
 			
@@ -1743,14 +1745,26 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0</td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a positive
-									number
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
 									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
-									the operation will be scheduled for that point time. If <code>time</code> is omitted, or in the past, the
+									the operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>time</code></td>
+													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
+													<td class="last">
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									number, the operation will be scheduled for that time.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -1802,7 +1816,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-95">line 95</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-100">line 100</a></p>
 								</div>
 							</div>
 			
@@ -1846,6 +1860,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -1854,10 +1869,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -1897,7 +1915,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1670">line 1670</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1718">line 1718</a></p>
 								</div>
 							</div>
 			
@@ -1940,6 +1958,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -1948,10 +1967,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -1991,7 +2013,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1688">line 1688</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1738">line 1738</a></p>
 								</div>
 							</div>
 			
@@ -2063,11 +2085,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -2115,7 +2139,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1088">line 1088</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1114">line 1114</a></p>
 								</div>
 							</div>
 			
@@ -2233,6 +2257,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -2241,10 +2266,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -2284,7 +2312,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-998">line 998</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1020">line 1020</a></p>
 								</div>
 							</div>
 			
@@ -2632,6 +2660,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -2640,10 +2669,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -2717,7 +2749,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-296">line 296</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-305">line 305</a></p>
 								</div>
 							</div>
 			
@@ -2796,7 +2828,7 @@
 											</thead>
 											<tbody>
 												<tr>
-														<td><code>useRawValue</code></td>
+														<td><code>rawValue</code></td>
 													<td><span class="param-type">boolean</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>false</td>
@@ -2809,11 +2841,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -2861,7 +2895,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-136">line 136</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-143">line 143</a></p>
 								</div>
 							</div>
 			
@@ -2915,6 +2949,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -2923,10 +2958,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -2966,7 +3004,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1647">line 1647</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1693">line 1693</a></p>
 								</div>
 							</div>
 			
@@ -3022,6 +3060,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -3030,10 +3069,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -3082,7 +3124,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1146">line 1146</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1174">line 1174</a></p>
 								</div>
 							</div>
 			
@@ -3145,6 +3187,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -3153,10 +3196,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -3196,7 +3242,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1197">line 1197</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1227">line 1227</a></p>
 								</div>
 							</div>
 			
@@ -3271,11 +3317,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -3337,7 +3385,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-762">line 762</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-779">line 779</a></p>
 								</div>
 							</div>
 			
@@ -3416,11 +3464,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -3482,7 +3532,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-910">line 910</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-930">line 930</a></p>
 								</div>
 							</div>
 			
@@ -3559,6 +3609,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -3567,10 +3618,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -3624,7 +3678,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1267">line 1267</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1299">line 1299</a></p>
 								</div>
 							</div>
 			
@@ -3677,6 +3731,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -3685,10 +3740,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -3748,7 +3806,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1054">line 1054</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1078">line 1078</a></p>
 								</div>
 							</div>
 			
@@ -3829,11 +3887,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -3873,7 +3933,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1330">line 1330</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1364">line 1364</a></p>
 								</div>
 							</div>
 			
@@ -3938,6 +3998,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -3946,10 +4007,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4003,7 +4067,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1418">line 1418</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1454">line 1454</a></p>
 								</div>
 							</div>
 			
@@ -4056,6 +4120,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4064,10 +4129,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4107,7 +4175,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1727">line 1727</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1781">line 1781</a></p>
 								</div>
 							</div>
 			
@@ -4158,6 +4226,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4166,10 +4235,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4218,7 +4290,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1458">line 1458</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1496">line 1496</a></p>
 								</div>
 							</div>
 			
@@ -4261,6 +4333,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4269,10 +4342,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4312,7 +4388,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1706">line 1706</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1758">line 1758</a></p>
 								</div>
 							</div>
 			
@@ -4383,6 +4459,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4391,10 +4468,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4442,7 +4522,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-536">line 536</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-547">line 547</a></p>
 								</div>
 							</div>
 			
@@ -4513,6 +4593,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4521,10 +4602,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4572,7 +4656,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-605">line 605</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-618">line 618</a></p>
 								</div>
 							</div>
 			
@@ -4712,6 +4796,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4720,10 +4805,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4763,7 +4851,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1529">line 1529</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1569">line 1569</a></p>
 								</div>
 							</div>
 			
@@ -4815,6 +4903,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4823,10 +4912,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4874,7 +4966,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1581">line 1581</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1623">line 1623</a></p>
 								</div>
 							</div>
 			
@@ -4926,6 +5018,7 @@
 													<th>Name</th>
 												<th>Type</th>
 													<th>Attributes</th>
+													<th>Default</th>
 												<th class="last">Description</th>
 											</tr>
 											</thead>
@@ -4934,10 +5027,13 @@
 														<td><code>time</code></td>
 													<td><span class="param-type">number</span> | <span class="param-type">string</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>(now)</td>
 													<td class="last">
-															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and followed by
-									a number, the message will be delayed by that many milliseconds. If the value is a number, the
-									operation will be scheduled for that time. The current time can be retrieved with
+															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
+									followed by a number, the message will be delayed by that many milliseconds. If the value is a
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
 									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
 									operation will be carried out as soon as possible.</p>
 													</td>
@@ -4985,7 +5081,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1614">line 1614</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-1658">line 1658</a></p>
 								</div>
 							</div>
 			
@@ -5054,14 +5150,25 @@
 											</thead>
 											<tbody>
 												<tr>
-														<td><code>rawValue</code></td>
-													<td><span class="param-type">boolean</span></td>
+														<td><code>release</code></td>
+													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>false</td>
+														<td>0.5</td>
 													<td class="last">
-															<p>Controls whether the release velocity is set using
-									integers between <code>0</code> and <code>127</code> (<code>true</code>) or a decimal number between <code>0</code> and <code>1</code> (<code>false</code>,
-									default).</p>
+															<p>The velocity at which to release the note
+									(between <code>0</code> and <code>1</code>).  If the <code>rawRelease</code> option is also defined, <code>rawRelease</code> will have
+									priority. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawRelease</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>64</td>
+													<td class="last">
+															<p>The velocity at which to release the note
+									(between <code>0</code> and <code>127</code>). If the <code>release</code> option is also defined, <code>rawRelease</code> will have
+									priority. An invalid velocity value will silently trigger the default of <code>64</code>.</p>
 													</td>
 												</tr>
 												<tr>
@@ -5072,21 +5179,11 @@
 													<td class="last">
 															<p>If <code>time</code> is a string prefixed with <code>&quot;+&quot;</code> and
 									followed by a number, the message will be delayed by that many milliseconds. If the value is a
-									number
-									<a href="https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>,
-									the operation will be scheduled for that specific time. If <code>time</code> is omitted, or in the past,
-									the operation will be carried out as soon as possible.</p>
-													</td>
-												</tr>
-												<tr>
-														<td><code>release</code></td>
-													<td><span class="param-type">number</span></td>
-														<td class="attributes">&lt;optional&gt;<br/></td>
-														<td>0.5</td>
-													<td class="last">
-															<p>The velocity at which to release the note (between <code>0</code>
-									and <code>1</code>). If the <code>rawValue</code> option is <code>true</code>, the value should be specified as an integer
-									between <code>0</code> and <code>127</code>. An invalid velocity value will silently trigger the default of <code>0.5</code>.</p>
+									positive number
+									(<a href="https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp"><code>DOMHighResTimeStamp</code></a>),
+									the operation will be scheduled for that time. The current time can be retrieved with
+									<a href="WebMidi.html#time"><code>WebMidi.time</code></a>. If <code>options.time</code> is omitted, or in the past, the
+									operation will be carried out as soon as possible.</p>
 													</td>
 												</tr>
 											</tbody>
@@ -5124,7 +5221,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-861">line 861</a></p>
+									<p class="form-control-static"><a href="src_OutputChannel.js.html">src/OutputChannel.js</a>, <a href="src_OutputChannel.js.html#line-879">line 879</a></p>
 								</div>
 							</div>
 			
@@ -5419,8 +5516,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 19th 2021 @ 10:47:15 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.1 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 26th 2021 @ 11:28:37 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

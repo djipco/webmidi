@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.1 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -383,10 +383,21 @@ export class Utilities {
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
    *
-   * @param {number} [options.attack=64] The note's attack velocity as an integer between 0 and 127.
+   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
    *
-   * @param {number} [options.release=64] The note's release velocity as an integer between 0 and
-   * 127.
+   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
    *
    * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
    * used when the input value is a note identifier.**
@@ -427,6 +438,9 @@ export class Utilities {
    * [`Note`]{@link Note} object is created with the options specified. An error will be thrown when
    * encountering invalid input.
    *
+   * Note: if both the `attack` and `rawAttack` options are specified, the later has priority. The
+   * same goes for `release` and `rawRelease`.
+   *
    * @param [notes] {number|string|Note|number[]|string[]|Note[]}
    *
    * @param {object} [options={}]
@@ -434,17 +448,21 @@ export class Utilities {
    * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
    * be explicitly stopped.
    *
-   * @param {number} [options.attack=0.5] The note's attack velocity as a decimal number between 0
-   * and 1.
+   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
    *
-   * @param {number} [options.release=0.5] The note's release velocity as a decimal number between 0
-   * and 1.
+   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
    *
    * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-   * 127.
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
    *
    * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-   * 127.
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
    *
    * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
    * used when the input value is a note identifier.**
@@ -551,7 +569,9 @@ export class Utilities {
    * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
    * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
    *
-   * @param offset
+   * @param number {number} The MIDI note to offset as an integer between 0 and 127.
+   * @param octaveOffset {number} An integer to offset the note by (in octave)
+   * @param octaveOffset {number} An integer to offset the note by (in semitones)
    * @returns {number} An integer between 0 and 127
    *
    * @throws {Error} Invalid note number
@@ -572,11 +592,12 @@ export class Utilities {
 
   /**
    * Returns the name of the first property of the supplied object whose value is equal to the one
-   * supplied.
+   * supplied. If nothing is found, `undefined` is returned.
    *
-   * @param object {object}
-   * @param value {*}
-   * @returns {string} The name of the matching property
+   * @param object {object} The object to look for the property in.
+   * @param value {*} Any value that can be expected to be found in the object's properties.
+   * @returns {string|undefined} The name of the matching property or `undefined` if nothing is
+   * found.
    * @static
    */
   static getPropertyByValue(object, value) {
@@ -584,13 +605,13 @@ export class Utilities {
   }
 
   /**
-   * Returns the name of a control change message matching the specified number. Some valid control
-   * change numbers do not have a specific name or purpose assigned in the MIDI
+   * Returns the name of a control change message matching the specified number (0-127). Some valid
+   * control change numbers do not have a specific name or purpose assigned in the MIDI
    * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-   * In this case, the method returns `undefined`.
+   * In these cases, the method returns `controllerXXX` (where XXX is the number).
    *
-   * @param {number} number An integer representing the control change message
-   * @returns {string|undefined} The matching control change name or `undefined` if not match was
+   * @param {number} number An integer (0-127) representing the control change message
+   * @returns {string|undefined} The matching control change name or `undefined` if no match was
    * found.
    *
    * @static
@@ -603,8 +624,8 @@ export class Utilities {
    * Returns the channel mode name matching the specified number. If no match is found, the function
    * returns `false`.
    *
-   * @param {number} number An integer representing the channel mode message.
-   * @returns {string|false} The name of the matching channel mode or `false` if not match could be
+   * @param {number} number An integer representing the channel mode message (120-127)
+   * @returns {string|false} The name of the matching channel mode or `false` if no match could be
    * found.
    *
    * @since 2.0.0
@@ -635,8 +656,8 @@ export class Utilities {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.0-alpha.25 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 19th 2021 @ 10:47:15 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.1 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on November 26th 2021 @ 11:28:37 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

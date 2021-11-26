@@ -6541,23 +6541,32 @@ window.lunrData = {
           "127",
           "array",
           "array.&lt;note&gt",
+          "attack",
+          "both",
           "buildnotearray",
           "convert",
           "creat",
           "encount",
           "error",
           "function",
+          "goe",
           "identifi",
           "input",
           "integ",
           "invalid",
+          "later",
           "lt;static&gt",
           "note",
           "number",
           "object",
           "option",
           "previou",
+          "prioriti",
+          "rawattack",
+          "rawreleas",
+          "releas",
           "return",
+          "same",
           "specifi",
           "thrown",
           "type",
@@ -6658,10 +6667,13 @@ window.lunrData = {
           "within"
         ],
         "Utilities.html#.getCcNameByNumber": [
+          "0",
+          "127",
           "assign",
           "case",
           "chang",
           "control",
+          "controllerxxx",
           "function",
           "getccnamebynumb",
           "lt;static&gt",
@@ -6677,9 +6689,9 @@ window.lunrData = {
           "specif",
           "specifi",
           "string|undefin",
-          "undefin",
           "utilities.getccnamebynumb",
-          "valid"
+          "valid",
+          "xxx"
         ],
         "Utilities.html#.getChannelModeByNumber": [
           "channel",
@@ -6739,16 +6751,19 @@ window.lunrData = {
         "Utilities.html#.getPropertyByValue": [
           "equal",
           "first",
+          "found",
           "function",
           "getpropertybyvalu",
           "lt;static&gt",
           "name",
+          "noth",
           "object",
           "on",
           "properti",
           "return",
-          "string",
+          "string|undefin",
           "suppli",
+          "undefin",
           "utilities.getpropertybyvalu",
           "valu",
           "whose"
@@ -6809,6 +6824,7 @@ window.lunrData = {
           "note",
           "number",
           "octav",
+          "octaveoffset",
           "offset",
           "offsetnumb",
           "request",
@@ -8012,7 +8028,7 @@ window.lunrData = {
             },
             "Utilities.html#.buildNoteArray": {
               "ref": "Utilities.html#.buildNoteArray",
-              "tf": 1.5151515151515151
+              "tf": 1.1111111111111112
             },
             "Utilities.html#.from7bitToFloat": {
               "ref": "Utilities.html#.from7bitToFloat",
@@ -8025,6 +8041,10 @@ window.lunrData = {
             "Utilities.html#.fromMsbLsbToFloat": {
               "ref": "Utilities.html#.fromMsbLsbToFloat",
               "tf": 8.695652173913043
+            },
+            "Utilities.html#.getCcNameByNumber": {
+              "ref": "Utilities.html#.getCcNameByNumber",
+              "tf": 1.9230769230769231
             },
             "Utilities.html#.getNoteDetails": {
               "ref": "Utilities.html#.getNoteDetails",
@@ -9205,7 +9225,7 @@ window.lunrData = {
                 },
                 "Utilities.html#.buildNoteArray": {
                   "ref": "Utilities.html#.buildNoteArray",
-                  "tf": 1.5151515151515151
+                  "tf": 1.1111111111111112
                 },
                 "Utilities.html#.from7bitToFloat": {
                   "ref": "Utilities.html#.from7bitToFloat",
@@ -9218,6 +9238,10 @@ window.lunrData = {
                 "Utilities.html#.fromMsbLsbToFloat": {
                   "ref": "Utilities.html#.fromMsbLsbToFloat",
                   "tf": 2.1739130434782608
+                },
+                "Utilities.html#.getCcNameByNumber": {
+                  "ref": "Utilities.html#.getCcNameByNumber",
+                  "tf": 1.9230769230769231
                 },
                 "Utilities.html#.getNoteDetails": {
                   "ref": "Utilities.html#.getNoteDetails",
@@ -11446,7 +11470,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.buildNoteArray": {
                       "ref": "Utilities.html#.buildNoteArray",
-                      "tf": 3.0303030303030303
+                      "tf": 2.2222222222222223
                     },
                     "Utilities.html#.sanitizeChannels": {
                       "ref": "Utilities.html#.sanitizeChannels",
@@ -12007,7 +12031,7 @@ window.lunrData = {
                     "docs": {
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 2.272727272727273
+                        "tf": 1.9230769230769231
                       }
                     }
                   }
@@ -13409,6 +13433,10 @@ window.lunrData = {
                       "OutputChannel.html#sendNoteOn": {
                         "ref": "OutputChannel.html#sendNoteOn",
                         "tf": 1.0101010101010102
+                      },
+                      "Utilities.html#.buildNoteArray": {
+                        "ref": "Utilities.html#.buildNoteArray",
+                        "tf": 1.1111111111111112
                       }
                     }
                   }
@@ -13880,7 +13908,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.buildNoteArray": {
                       "ref": "Utilities.html#.buildNoteArray",
-                      "tf": 1.5151515151515151
+                      "tf": 1.1111111111111112
                     },
                     "Utilities.html#.from7bitToFloat": {
                       "ref": "Utilities.html#.from7bitToFloat",
@@ -14200,7 +14228,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.buildNoteArray": {
                       "ref": "Utilities.html#.buildNoteArray",
-                      "tf": 3.0303030303030303
+                      "tf": 2.2222222222222223
                     },
                     "Utilities.html#.from7bitToFloat": {
                       "ref": "Utilities.html#.from7bitToFloat",
@@ -16037,7 +16065,7 @@ window.lunrData = {
                         },
                         "Utilities.html#.buildNoteArray": {
                           "ref": "Utilities.html#.buildNoteArray",
-                          "tf": 1.5151515151515151
+                          "tf": 1.1111111111111112
                         },
                         "Utilities.html#.offsetNumber": {
                           "ref": "Utilities.html#.offsetNumber",
@@ -16204,7 +16232,7 @@ window.lunrData = {
                           },
                           "Utilities.html#.buildNoteArray": {
                             "ref": "Utilities.html#.buildNoteArray",
-                            "tf": 3.0303030303030303
+                            "tf": 2.2222222222222223
                           },
                           "Utilities.html#.getNoteDetails": {
                             "ref": "Utilities.html#.getNoteDetails",
@@ -17791,7 +17819,7 @@ window.lunrData = {
                                   },
                                   "Utilities.html#.offsetNumber": {
                                     "ref": "Utilities.html#.offsetNumber",
-                                    "tf": 25
+                                    "tf": 16.666666666666664
                                   },
                                   "Utilities.html#.sanitizeChannels": {
                                     "ref": "Utilities.html#.sanitizeChannels",
@@ -18574,6 +18602,20 @@ window.lunrData = {
                   }
                 }
               }
+            },
+            "t": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "r": {
+                  "docs": {
+                    "Utilities.html#.buildNoteArray": {
+                      "ref": "Utilities.html#.buildNoteArray",
+                      "tf": 1.1111111111111112
+                    }
+                  }
+                }
+              }
             }
           }
         },
@@ -18939,7 +18981,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.getCcNameByNumber": {
                     "ref": "Utilities.html#.getCcNameByNumber",
-                    "tf": 2.272727272727273
+                    "tf": 1.9230769230769231
                   },
                   "Utilities.html#.getNoteDetails": {
                     "ref": "Utilities.html#.getNoteDetails",
@@ -20248,7 +20290,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 2.272727272727273
+                        "tf": 1.9230769230769231
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -20774,7 +20816,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 2.272727272727273
+                        "tf": 1.9230769230769231
                       },
                       "Utilities.html#.getNoteDetails": {
                         "ref": "Utilities.html#.getNoteDetails",
@@ -21411,7 +21453,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.getCcNameByNumber": {
                       "ref": "Utilities.html#.getCcNameByNumber",
-                      "tf": 2.272727272727273
+                      "tf": 1.9230769230769231
                     },
                     "Utilities.html#.getChannelModeByNumber": {
                       "ref": "Utilities.html#.getChannelModeByNumber",
@@ -21992,7 +22034,7 @@ window.lunrData = {
                           },
                           "Utilities.html#.getPropertyByValue": {
                             "ref": "Utilities.html#.getPropertyByValue",
-                            "tf": 4.545454545454546
+                            "tf": 3.3333333333333335
                           },
                           "WebMidi.html#eventMap": {
                             "ref": "WebMidi.html#eventMap",
@@ -22594,7 +22636,7 @@ window.lunrData = {
                       "docs": {
                         "Utilities.html#.buildNoteArray": {
                           "ref": "Utilities.html#.buildNoteArray",
-                          "tf": 1.5151515151515151
+                          "tf": 1.1111111111111112
                         }
                       },
                       "s": {
@@ -22620,6 +22662,29 @@ window.lunrData = {
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
                           "tf": 0.30303030303030304
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "i": {
+              "docs": {},
+              "o": {
+                "docs": {},
+                "r": {
+                  "docs": {},
+                  "i": {
+                    "docs": {},
+                    "t": {
+                      "docs": {},
+                      "i": {
+                        "docs": {
+                          "Utilities.html#.buildNoteArray": {
+                            "ref": "Utilities.html#.buildNoteArray",
+                            "tf": 1.1111111111111112
+                          }
                         }
                       }
                     }
@@ -23954,7 +24019,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 2.272727272727273
+                        "tf": 1.9230769230769231
                       }
                     }
                   }
@@ -25557,6 +25622,10 @@ window.lunrData = {
                       "OutputChannel.html#sendNoteOff": {
                         "ref": "OutputChannel.html#sendNoteOff",
                         "tf": 0.847457627118644
+                      },
+                      "Utilities.html#.buildNoteArray": {
+                        "ref": "Utilities.html#.buildNoteArray",
+                        "tf": 1.1111111111111112
                       }
                     }
                   }
@@ -25901,7 +25970,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.buildNoteArray": {
                         "ref": "Utilities.html#.buildNoteArray",
-                        "tf": 1.5151515151515151
+                        "tf": 1.1111111111111112
                       },
                       "Utilities.html#.from7bitToFloat": {
                         "ref": "Utilities.html#.from7bitToFloat",
@@ -25917,7 +25986,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 4.545454545454546
+                        "tf": 3.8461538461538463
                       },
                       "Utilities.html#.getChannelModeByNumber": {
                         "ref": "Utilities.html#.getChannelModeByNumber",
@@ -25929,7 +25998,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getPropertyByValue": {
                         "ref": "Utilities.html#.getPropertyByValue",
-                        "tf": 4.545454545454546
+                        "tf": 6.666666666666667
                       },
                       "Utilities.html#.guessNoteNumber": {
                         "ref": "Utilities.html#.guessNoteNumber",
@@ -26372,6 +26441,10 @@ window.lunrData = {
                             "Note.html#rawAttack": {
                               "ref": "Note.html#rawAttack",
                               "tf": 700
+                            },
+                            "Utilities.html#.buildNoteArray": {
+                              "ref": "Utilities.html#.buildNoteArray",
+                              "tf": 1.1111111111111112
                             }
                           }
                         }
@@ -26399,6 +26472,10 @@ window.lunrData = {
                             "Note.html#rawRelease": {
                               "ref": "Note.html#rawRelease",
                               "tf": 700
+                            },
+                            "Utilities.html#.buildNoteArray": {
+                              "ref": "Utilities.html#.buildNoteArray",
+                              "tf": 1.1111111111111112
                             }
                           }
                         }
@@ -28331,7 +28408,7 @@ window.lunrData = {
                   "docs": {
                     "Utilities.html#.getPropertyByValue": {
                       "ref": "Utilities.html#.getPropertyByValue",
-                      "tf": 4.545454545454546
+                      "tf": 3.3333333333333335
                     },
                     "WebMidi.html#getInputByName": {
                       "ref": "WebMidi.html#getInputByName",
@@ -31208,6 +31285,14 @@ window.lunrData = {
                   }
                 }
               }
+            },
+            "e": {
+              "docs": {
+                "Utilities.html#.buildNoteArray": {
+                  "ref": "Utilities.html#.buildNoteArray",
+                  "tf": 1.1111111111111112
+                }
+              }
             }
           },
           "t": {
@@ -31868,7 +31953,7 @@ window.lunrData = {
                         },
                         "Utilities.html#.getCcNameByNumber": {
                           "ref": "Utilities.html#.getCcNameByNumber",
-                          "tf": 4.545454545454546
+                          "tf": 3.8461538461538463
                         }
                       },
                       "c": {
@@ -32513,7 +32598,21 @@ window.lunrData = {
                                 }
                               }
                             },
-                            "docs": {}
+                            "docs": {},
+                            "x": {
+                              "docs": {},
+                              "x": {
+                                "docs": {},
+                                "x": {
+                                  "docs": {
+                                    "Utilities.html#.getCcNameByNumber": {
+                                      "ref": "Utilities.html#.getCcNameByNumber",
+                                      "tf": 1.9230769230769231
+                                    }
+                                  }
+                                }
+                              }
+                            }
                           }
                         }
                       }
@@ -32802,7 +32901,7 @@ window.lunrData = {
                         },
                         "Utilities.html#.buildNoteArray": {
                           "ref": "Utilities.html#.buildNoteArray",
-                          "tf": 1.5151515151515151
+                          "tf": 1.1111111111111112
                         },
                         "Utilities.html#.from7bitToFloat": {
                           "ref": "Utilities.html#.from7bitToFloat",
@@ -33764,7 +33863,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.getCcNameByNumber": {
                       "ref": "Utilities.html#.getCcNameByNumber",
-                      "tf": 4.545454545454546
+                      "tf": 3.8461538461538463
                     },
                     "WebMidi.html#defaults": {
                       "ref": "WebMidi.html#defaults",
@@ -34551,7 +34650,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.getCcNameByNumber": {
                     "ref": "Utilities.html#.getCcNameByNumber",
-                    "tf": 2.272727272727273
+                    "tf": 1.9230769230769231
                   }
                 }
               }
@@ -34681,7 +34780,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.buildNoteArray": {
                       "ref": "Utilities.html#.buildNoteArray",
-                      "tf": 1.5151515151515151
+                      "tf": 1.1111111111111112
                     },
                     "WebMidi.html#addListener": {
                       "ref": "WebMidi.html#addListener",
@@ -35396,7 +35495,7 @@ window.lunrData = {
                       "docs": {
                         "Utilities.html#.buildNoteArray": {
                           "ref": "Utilities.html#.buildNoteArray",
-                          "tf": 1.5151515151515151
+                          "tf": 1.1111111111111112
                         }
                       }
                     }
@@ -38053,7 +38152,7 @@ window.lunrData = {
                   "docs": {
                     "Utilities.html#.getPropertyByValue": {
                       "ref": "Utilities.html#.getPropertyByValue",
-                      "tf": 4.545454545454546
+                      "tf": 3.3333333333333335
                     }
                   }
                 }
@@ -38070,7 +38169,7 @@ window.lunrData = {
                   "docs": {
                     "Utilities.html#.buildNoteArray": {
                       "ref": "Utilities.html#.buildNoteArray",
-                      "tf": 1.5151515151515151
+                      "tf": 1.1111111111111112
                     }
                   }
                 }
@@ -38239,7 +38338,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.getCcNameByNumber": {
                     "ref": "Utilities.html#.getCcNameByNumber",
-                    "tf": 4.545454545454546
+                    "tf": 3.8461538461538463
                   },
                   "Utilities.html#.getChannelModeByNumber": {
                     "ref": "Utilities.html#.getChannelModeByNumber",
@@ -38247,7 +38346,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.getPropertyByValue": {
                     "ref": "Utilities.html#.getPropertyByValue",
-                    "tf": 4.545454545454546
+                    "tf": 3.3333333333333335
                   },
                   "Utilities.html#.toNoteIdentifier": {
                     "ref": "Utilities.html#.toNoteIdentifier",
@@ -38761,7 +38860,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.buildNoteArray": {
                     "ref": "Utilities.html#.buildNoteArray",
-                    "tf": 29.090909090909093
+                    "tf": 27.77777777777778
                   },
                   "Utilities.html#.getNoteDetails": {
                     "ref": "Utilities.html#.getNoteDetails",
@@ -39237,6 +39336,14 @@ window.lunrData = {
                     }
                   }
                 }
+              },
+              "h": {
+                "docs": {
+                  "Utilities.html#.getPropertyByValue": {
+                    "ref": "Utilities.html#.getPropertyByValue",
+                    "tf": 3.3333333333333335
+                  }
+                }
               }
             },
             "n": {
@@ -39696,7 +39803,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.buildNoteArray": {
                         "ref": "Utilities.html#.buildNoteArray",
-                        "tf": 1.5151515151515151
+                        "tf": 1.1111111111111112
                       },
                       "Utilities.html#.from7bitToFloat": {
                         "ref": "Utilities.html#.from7bitToFloat",
@@ -39712,7 +39819,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 29.545454545454547
+                        "tf": 30.76923076923077
                       },
                       "Utilities.html#.getChannelModeByNumber": {
                         "ref": "Utilities.html#.getChannelModeByNumber",
@@ -39728,7 +39835,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.offsetNumber": {
                         "ref": "Utilities.html#.offsetNumber",
-                        "tf": 26.785714285714285
+                        "tf": 35.11904761904761
                       },
                       "Utilities.html#.sanitizeChannels": {
                         "ref": "Utilities.html#.sanitizeChannels",
@@ -40449,10 +40556,6 @@ window.lunrData = {
                         "ref": "Output.html#type",
                         "tf": 33.33333333333333
                       },
-                      "Utilities.html#.getPropertyByValue": {
-                        "ref": "Utilities.html#.getPropertyByValue",
-                        "tf": 20
-                      },
                       "Utilities.html#.guessNoteNumber": {
                         "ref": "Utilities.html#.guessNoteNumber",
                         "tf": 1.7543859649122806
@@ -40509,6 +40612,10 @@ window.lunrData = {
                                       "Utilities.html#.getCcNameByNumber": {
                                         "ref": "Utilities.html#.getCcNameByNumber",
                                         "tf": 25
+                                      },
+                                      "Utilities.html#.getPropertyByValue": {
+                                        "ref": "Utilities.html#.getPropertyByValue",
+                                        "tf": 20
                                       }
                                     }
                                   }
@@ -41501,7 +41608,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getPropertyByValue": {
                         "ref": "Utilities.html#.getPropertyByValue",
-                        "tf": 9.090909090909092
+                        "tf": 6.666666666666667
                       },
                       "Utilities.html#.offsetNumber": {
                         "ref": "Utilities.html#.offsetNumber",
@@ -43944,7 +44051,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.getCcNameByNumber": {
                     "ref": "Utilities.html#.getCcNameByNumber",
-                    "tf": 2.272727272727273
+                    "tf": 1.9230769230769231
                   }
                 },
                 "i": {
@@ -44201,7 +44308,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getCcNameByNumber": {
                         "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 2.272727272727273
+                        "tf": 1.9230769230769231
                       },
                       "WebMidi.html#eventCount": {
                         "ref": "WebMidi.html#eventCount",
@@ -44544,11 +44651,11 @@ window.lunrData = {
                         },
                         "Utilities.html#.buildNoteArray": {
                           "ref": "Utilities.html#.buildNoteArray",
-                          "tf": 1.5151515151515151
+                          "tf": 2.2222222222222223
                         },
                         "Utilities.html#.getCcNameByNumber": {
                           "ref": "Utilities.html#.getCcNameByNumber",
-                          "tf": 2.272727272727273
+                          "tf": 1.9230769230769231
                         },
                         "Utilities.html#.getChannelModeByNumber": {
                           "ref": "Utilities.html#.getChannelModeByNumber",
@@ -44868,6 +44975,10 @@ window.lunrData = {
                     "ref": "OutputChannel.html#sendPolyphonicMode",
                     "tf": 2.083333333333333
                   },
+                  "Utilities.html#.buildNoteArray": {
+                    "ref": "Utilities.html#.buildNoteArray",
+                    "tf": 1.1111111111111112
+                  },
                   "WebMidi.html#isBrowser": {
                     "ref": "WebMidi.html#isBrowser",
                     "tf": 2.272727272727273
@@ -45185,7 +45296,7 @@ window.lunrData = {
                     "docs": {
                       "Utilities.html#.buildNoteArray": {
                         "ref": "Utilities.html#.buildNoteArray",
-                        "tf": 1.5151515151515151
+                        "tf": 1.1111111111111112
                       }
                     }
                   }
@@ -46642,7 +46753,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.buildNoteArray": {
                     "ref": "Utilities.html#.buildNoteArray",
-                    "tf": 1.5151515151515151
+                    "tf": 1.1111111111111112
                   },
                   "WebMidi.html#suspendEvent": {
                     "ref": "WebMidi.html#suspendEvent",
@@ -47292,9 +47403,9 @@ window.lunrData = {
                           "ref": "Message.html#channel",
                           "tf": 3.571428571428571
                         },
-                        "Utilities.html#.getCcNameByNumber": {
-                          "ref": "Utilities.html#.getCcNameByNumber",
-                          "tf": 2.272727272727273
+                        "Utilities.html#.getPropertyByValue": {
+                          "ref": "Utilities.html#.getPropertyByValue",
+                          "tf": 3.3333333333333335
                         },
                         "Utilities.html#.sanitizeChannels": {
                           "ref": "Utilities.html#.sanitizeChannels",
@@ -47606,7 +47717,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.buildNoteArray": {
                         "ref": "Utilities.html#.buildNoteArray",
-                        "tf": 1.5151515151515151
+                        "tf": 1.1111111111111112
                       }
                     }
                   }
@@ -49108,6 +49219,10 @@ window.lunrData = {
                     "ref": "OutputChannel.html#sendModulationRange",
                     "tf": 2.380952380952381
                   },
+                  "Utilities.html#.buildNoteArray": {
+                    "ref": "Utilities.html#.buildNoteArray",
+                    "tf": 1.1111111111111112
+                  },
                   "WebMidi.html#isBrowser": {
                     "ref": "WebMidi.html#isBrowser",
                     "tf": 2.272727272727273
@@ -50450,7 +50565,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.buildNoteArray": {
                         "ref": "Utilities.html#.buildNoteArray",
-                        "tf": 6.0606060606060606
+                        "tf": 4.444444444444445
                       },
                       "Utilities.html#.fromFloatToMsbLsb": {
                         "ref": "Utilities.html#.fromFloatToMsbLsb",
@@ -50462,7 +50577,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.getPropertyByValue": {
                         "ref": "Utilities.html#.getPropertyByValue",
-                        "tf": 24.545454545454547
+                        "tf": 23.333333333333332
                       },
                       "WebMidi.html": {
                         "ref": "WebMidi.html",
@@ -50919,7 +51034,7 @@ window.lunrData = {
               },
               "Utilities.html#.getPropertyByValue": {
                 "ref": "Utilities.html#.getPropertyByValue",
-                "tf": 4.545454545454546
+                "tf": 3.3333333333333335
               },
               "WebMidi.html#eventMap": {
                 "ref": "WebMidi.html#eventMap",
@@ -51163,6 +51278,10 @@ window.lunrData = {
                                   "Utilities.html#.guessNoteNumber": {
                                     "ref": "Utilities.html#.guessNoteNumber",
                                     "tf": 1.7543859649122806
+                                  },
+                                  "Utilities.html#.offsetNumber": {
+                                    "ref": "Utilities.html#.offsetNumber",
+                                    "tf": 33.33333333333333
                                   },
                                   "Utilities.html#.toNoteIdentifier": {
                                     "ref": "Utilities.html#.toNoteIdentifier",
@@ -51552,7 +51671,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.buildNoteArray": {
                         "ref": "Utilities.html#.buildNoteArray",
-                        "tf": 21.515151515151516
+                        "tf": 22.22222222222222
                       },
                       "Utilities.html#.toNoteIdentifier": {
                         "ref": "Utilities.html#.toNoteIdentifier",
@@ -55323,7 +55442,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.offsetNumber": {
                         "ref": "Utilities.html#.offsetNumber",
-                        "tf": 28.57142857142857
+                        "tf": 3.571428571428571
                       },
                       "Utilities.html#.toNoteIdentifier": {
                         "ref": "Utilities.html#.toNoteIdentifier",
@@ -55348,7 +55467,7 @@ window.lunrData = {
                             "docs": {
                               "Utilities.html#.offsetNumber": {
                                 "ref": "Utilities.html#.offsetNumber",
-                                "tf": 675
+                                "tf": 666.6666666666666
                               }
                             }
                           }
@@ -55731,7 +55850,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.buildNoteArray": {
                     "ref": "Utilities.html#.buildNoteArray",
-                    "tf": 1.5151515151515151
+                    "tf": 1.1111111111111112
                   },
                   "Utilities.html#.from7bitToFloat": {
                     "ref": "Utilities.html#.from7bitToFloat",
@@ -55755,7 +55874,7 @@ window.lunrData = {
                   },
                   "Utilities.html#.getPropertyByValue": {
                     "ref": "Utilities.html#.getPropertyByValue",
-                    "tf": 24.545454545454547
+                    "tf": 23.333333333333332
                   },
                   "Utilities.html#.guessNoteNumber": {
                     "ref": "Utilities.html#.guessNoteNumber",
@@ -55829,7 +55948,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.getCcNameByNumber": {
                       "ref": "Utilities.html#.getCcNameByNumber",
-                      "tf": 2.272727272727273
+                      "tf": 1.9230769230769231
                     },
                     "Utilities.html#.getNoteDetails": {
                       "ref": "Utilities.html#.getNoteDetails",
@@ -56595,6 +56714,10 @@ window.lunrData = {
                     "Utilities.html#.getChannelModeByNumber": {
                       "ref": "Utilities.html#.getChannelModeByNumber",
                       "tf": 4.166666666666666
+                    },
+                    "Utilities.html#.getPropertyByValue": {
+                      "ref": "Utilities.html#.getPropertyByValue",
+                      "tf": 3.3333333333333335
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
@@ -57564,7 +57687,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.getPropertyByValue": {
                       "ref": "Utilities.html#.getPropertyByValue",
-                      "tf": 4.545454545454546
+                      "tf": 3.3333333333333335
                     },
                     "WebMidi.html#addListener": {
                       "ref": "WebMidi.html#addListener",
@@ -58072,6 +58195,20 @@ window.lunrData = {
             }
           }
         },
+        "x": {
+          "docs": {},
+          "x": {
+            "docs": {},
+            "x": {
+              "docs": {
+                "Utilities.html#.getCcNameByNumber": {
+                  "ref": "Utilities.html#.getCcNameByNumber",
+                  "tf": 1.9230769230769231
+                }
+              }
+            }
+          }
+        },
         "y": {
           "docs": {},
           "o": {
@@ -58102,7 +58239,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 7264
+      "length": 7280
     },
     "corpusTokens": [
       "0",
@@ -58533,6 +58670,7 @@ window.lunrData = {
       "controller9",
       "controller90",
       "controller99",
+      "controllerxxx",
       "conveni",
       "convert",
       "count",
@@ -58735,6 +58873,7 @@ window.lunrData = {
       "glanc",
       "global",
       "go",
+      "goe",
       "good",
       "googl",
       "grant",
@@ -58864,6 +59003,7 @@ window.lunrData = {
       "korg",
       "larger",
       "last",
+      "later",
       "leav",
       "left",
       "legatoped",
@@ -58998,6 +59138,7 @@ window.lunrData = {
       "noteoff",
       "noteon",
       "notesst",
+      "noth",
       "novat",
       "nrpn",
       "nullable&gt",
@@ -59202,6 +59343,7 @@ window.lunrData = {
       "prevent",
       "previou",
       "previous",
+      "prioriti",
       "probabl",
       "process",
       "program",
@@ -59570,6 +59712,7 @@ window.lunrData = {
       "within",
       "word",
       "work",
+      "xxx",
       "yourself",
       "zero"
     ],
@@ -61892,7 +62035,7 @@ window.lunrData = {
       "name": "buildNoteArray",
       "tags": "Utilities.buildNoteArray buildNoteArray",
       "summary": "",
-      "description": "Converts an input value, which can be an unsigned integer (0-127), a note identifier, a Note object or an array of the previous types, to an array of Note objects. Note objects are returned as is. For note numbers and identifiers, a Note object is created with the options specified. An error will be thrown when encountering invalid input."
+      "description": "Converts an input value, which can be an unsigned integer (0-127), a note identifier, a Note object or an array of the previous types, to an array of Note objects. Note objects are returned as is. For note numbers and identifiers, a Note object is created with the options specified. An error will be thrown when encountering invalid input. Note: if both the attack and rawAttack options are specified, the later has priority. The same goes for release and rawRelease."
     },
     "Utilities.html#.from7bitToFloat": {
       "id": "Utilities.html#.from7bitToFloat",
@@ -61942,7 +62085,7 @@ window.lunrData = {
       "name": "getCcNameByNumber",
       "tags": "Utilities.getCcNameByNumber getCcNameByNumber",
       "summary": "",
-      "description": "Returns the name of a control change message matching the specified number. Some valid control change numbers do not have a specific name or purpose assigned in the MIDI spec. In this case, the method returns undefined."
+      "description": "Returns the name of a control change message matching the specified number (0-127). Some valid control change numbers do not have a specific name or purpose assigned in the MIDI spec. In these cases, the method returns controllerXXX (where XXX is the number)."
     },
     "Utilities.html#.getChannelModeByNumber": {
       "id": "Utilities.html#.getChannelModeByNumber",
@@ -61967,12 +62110,12 @@ window.lunrData = {
     "Utilities.html#.getPropertyByValue": {
       "id": "Utilities.html#.getPropertyByValue",
       "kind": "function",
-      "title": "&lt;static&gt; getPropertyByValue( object, value ) → {string}",
+      "title": "&lt;static&gt; getPropertyByValue( object, value ) → {string|undefined}",
       "longname": "Utilities.getPropertyByValue",
       "name": "getPropertyByValue",
       "tags": "Utilities.getPropertyByValue getPropertyByValue",
       "summary": "",
-      "description": "Returns the name of the first property of the supplied object whose value is equal to the one supplied."
+      "description": "Returns the name of the first property of the supplied object whose value is equal to the one supplied. If nothing is found, undefined is returned."
     },
     "Utilities.html#.guessNoteNumber": {
       "id": "Utilities.html#.guessNoteNumber",
@@ -61987,7 +62130,7 @@ window.lunrData = {
     "Utilities.html#.offsetNumber": {
       "id": "Utilities.html#.offsetNumber",
       "kind": "function",
-      "title": "&lt;static&gt; offsetNumber( offset ) → {number}",
+      "title": "&lt;static&gt; offsetNumber( number, octaveOffset, octaveOffset ) → {number}",
       "longname": "Utilities.offsetNumber",
       "name": "offsetNumber",
       "tags": "Utilities.offsetNumber offsetNumber",
