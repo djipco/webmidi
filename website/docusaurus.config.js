@@ -19,11 +19,11 @@ module.exports = {
 
   scripts: [
     // Inject MailChimp newsletter pop-up in <head>
-    {
-      src: BASE_URL + "scripts/mailchimp/newsletter-exit-prompt.js",
-      async: true,
-      id: "mcjs"
-    }
+    // {
+    //   src: BASE_URL + "scripts/mailchimp/newsletter-exit-prompt.js",
+    //   async: true,
+    //   id: "mcjs"
+    // }
   ],
   themeConfig: {
     navbar: {
