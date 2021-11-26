@@ -1,4 +1,4 @@
-![WebMidi.js Logo](https://djipco.github.io/webmidi/img/webmidijs-logo-color-on-white.svg "WebMidi.js")
+![WebMidi.js Logo](https://webmidijs.org/img/webmidijs-logo-color-on-white.svg "WebMidi.js")
 
 [![npm](https://img.shields.io/npm/dm/webmidi)](https://www.npmjs.com/package/webmidi)
 [![](https://data.jsdelivr.com/v1/package/npm/webmidi/badge)](https://www.jsdelivr.com/package/npm/webmidi)
@@ -9,7 +9,7 @@
   <a href="https://github.com/djipco/webmidi/tree/develop#installation"><strong>INSTALLATION</strong></a> — 
   <a href="https://github.com/djipco/webmidi/tree/develop#quick-start"><strong>QUICK START</strong></a> — 
   <a href="https://github.com/djipco/webmidi/tree/develop#more-code-examples"><strong>EXAMPLES</strong></a> — 
-  <a href="https://djipco.github.io/webmidi/docs/"><strong>API DOCUMENTATION</strong></a> — 
+  <a href="https://webmidijs.org/docs/"><strong>API DOCUMENTATION</strong></a> — 
   <a href="https://github.com/djipco/webmidi/discussions"><strong>DISCUSSIONS</strong></a> — 
   <a href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter"><strong>NEWSLETTER</strong></a>
 </p>
@@ -27,7 +27,7 @@ to inbound MIDI messages by adding listeners for events such as `"noteon"`, `"pi
 WebMidi.js is a passion project but it still takes quite a bit of time to develop and maintain. 
 I would like to sincerely thank 👏 these sponsors for their support: 
 
-[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman") &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; <img src="https://djipco.github.io/webmidi/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
+[<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman") &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
 
 If you would like to support the project, you can press the 
 [Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
