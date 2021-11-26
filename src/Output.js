@@ -216,10 +216,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
@@ -335,10 +336,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {DOMException} Failed to execute 'send' on 'MIDIOutput': System exclusive message is
    * not allowed.
@@ -411,10 +413,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -449,10 +452,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    *
@@ -489,10 +493,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws The song number must be between 0 and 127.
    *
@@ -531,10 +536,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    *
@@ -559,10 +565,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -586,10 +593,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -613,10 +621,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -639,10 +648,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -666,10 +676,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -692,10 +703,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -753,10 +765,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
@@ -869,10 +882,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} Controller numbers must be between 0 and 127.
    * @throws {RangeError} Invalid controller name.
@@ -924,10 +938,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The msb value must be between 0 and 127.
    * @throws {RangeError} The lsb value must be between 0 and 127.
@@ -1015,10 +1030,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -1074,10 +1090,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    * @since 3.0.0
@@ -1135,10 +1152,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    *
@@ -1181,10 +1199,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
    * than 0xFF.
@@ -1235,10 +1254,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The msb value must be between 0 and 127
    * @throws {RangeError} The lsb value must be between 0 and 127
@@ -1299,10 +1319,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The value must be a decimal number between larger than -65 and smaller
    * than 64.
@@ -1358,10 +1379,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The program value must be between 0 and 127.
    *
@@ -1416,10 +1438,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The bank value must be between 0 and 127.
    *
@@ -1495,10 +1518,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
@@ -1543,10 +1567,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output}
    *
@@ -1577,10 +1602,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output}
    *
@@ -1610,10 +1636,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output}
    */
@@ -1656,10 +1683,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
@@ -1705,10 +1733,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @return {Output} Returns the `Output` object so methods can be chained.
    *
@@ -1754,10 +1783,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {TypeError} Invalid channel mode message name.
    * @throws {RangeError} Channel mode controller numbers must be between 120 and 127.
@@ -1837,10 +1867,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws {RangeError} The control value must be between 0 and 127.
    * @throws {RangeError} The msb value must be between 0 and 127
@@ -1912,10 +1943,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -1984,10 +2016,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @throws TypeError The specified parameter is not available.
    *
@@ -2056,10 +2089,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
    * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
@@ -2121,10 +2155,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
    * and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
@@ -2191,10 +2226,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @param {number} [options.attack=0.5] The attack velocity to use when playing the note (between
    * `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
@@ -2268,10 +2304,11 @@ export class Output extends EventEmitter {
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
    * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number
-   * [`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp),
-   * the operation will be scheduled for that specific time. If `time` is omitted, or in the past,
-   * the operation will be carried out as soon as possible.
+   * positive number
+   * ([`DOMHighResTimeStamp`]{@link https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp}),
+   * the operation will be scheduled for that time. The current time can be retrieved with
+   * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
+   * operation will be carried out as soon as possible.
    *
    * @param {number} [options.attack=0.5] The velocity at which to play the note (between `0` and
    * `1`). If the `rawValue` option is `true`, the value should be specified as an integer
