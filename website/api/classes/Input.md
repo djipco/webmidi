@@ -1078,7 +1078,7 @@ Input-wide (system) event emitted when a **song select** message has been receiv
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`songselect`|
-  |**`song`** |string|Song (or sequence) number to select (1-128)|
+  |**`song`** |string|Song (or sequence) number to select (0-127)|
 
 
 ### `start` {#event-start}

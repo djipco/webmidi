@@ -995,8 +995,7 @@ Event emitted when a **program change** MIDI message has been received.
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`value`** |number|The value expressed as an integer between 1 and 128.|
-  |**`rawValue`** |number|The value expressed as an integer between 0 and 127..|
+  |**`value`** |number|The value expressed as an integer between 0 and 127.|
 
 
 ### `resetallcontrollers` {#event-resetallcontrollers}
