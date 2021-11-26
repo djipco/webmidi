@@ -10,8 +10,7 @@ with your MIDI instrument in less than 5 minutes.
 
 :::info
 
-This guide is for **version 3.x**. Documentation for [version 2.5.x](archives/v2) and
-[version 1.0.0](archives/v1) is also available.
+Documentation for [version 2.5.x](archives/v2) and [version 1.0.0](archives/v1) is also available.
 
 :::
 
