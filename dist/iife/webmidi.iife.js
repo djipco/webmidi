@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.26 - November 25, 2021 21:31:49 */
+/* Version: 3.0.0-alpha.26 - November 25, 2021 22:46:44 */
 (function (exports) {
   'use strict';
 
@@ -7681,6 +7681,15 @@
    * @since 2.1
    */
 
+  /*START-NODE.JS*/
+  // This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
+  // and server-side rendering. This is why it is explicitly being stripped off from the IIFE and ESM
+  // distributions.
+  // global["performance"] = require("perf_hooks").performance;
+  // global["navigator"] = require("jzz");
+
+  /*END-NODE.JS*/
+
   /**
    * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
    * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -8482,9 +8491,8 @@
     }
     /**
      * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-     * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and
-     * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the
-     * same time.
+     * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
+     * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
      * @type {boolean}
      */
 
