@@ -10,32 +10,39 @@
 
 **WEBMIDI.js** makes it easy to interact with MIDI instruments directly from a web browser or from 
 Node.js. It simplifies the control of physical or virtual MIDI instruments with user-friendly 
-functions such as `playNote()`, `setPitchBend()` or `sendControlChange()`. It also allows reacting 
+functions such as `playNote()`, `sendPitchBend()` or `sendControlChange()`. It also allows reacting 
 to inbound MIDI messages by adding listeners for events such as `"noteon"`, `"pitchbend"` or 
 `"programchange"`.
 
+In short, the goal behind WEBMIDI.js is to get you started with your web-based MIDI project as quickly
+and efficiently as possible.
+
 ## Getting Started
 
-Here are the key places to get you started:
+The [**official website**](https://webmidijs.org) site is the best place to get started. Over there,
+you will find, amongst others, two key resources:
 
-* [Official website](https://webmidijs.org)
 * [Documentation](https://webmidijs.org/docs/)
 * [API Reference](https://webmidijs.org/api/index)
+
+To exchange with fellow users and myself, you can visit our [**Forum**](https://github.com/djipco/webmidi/discussions)
+which is hosted on the GitHub Discussions platform: 
+
 * [Forum](https://github.com/djipco/webmidi/discussions)
+
+If you want to stay up-to-date, here are your best sources:
+
 * [Newsletter](https://mailchi.mp/eeffe50651bd/webmidijs-newsletter)
 * [Twitter](https://twitter.com/webmidijs)
 
 ## Sponsors
 
-WebMidi.js is a passion project but it still takes quite a bit of time to develop and maintain. 
-I would like to sincerely thank 👏 these sponsors for their support: 
+WebMidi.js is a passion project but it still takes quite a bit of time, effort and money to develop and 
+maintain. That's why I would like to sincerely thank 👏 these sponsors for their support: 
 
 [<img src="https://avatars3.githubusercontent.com/u/1488433?s=60&v=4">](https://github.com/awatterott "@awatterott") &nbsp; [<img src="https://avatars3.githubusercontent.com/u/3331057?s=60&v=4">](https://github.com/rubendax "@rubendax") &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; [<img src="https://avatars.githubusercontent.com/u/3722211?s=60&v=4">](https://github.com/philmillman "@philmillman") &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor"> &nbsp; <img src="https://webmidijs.org/img/person.png" alt="Anonymous Sponsor" title="Anonymous Sponsor">
 
-If you would like to support the project, you can press the 
-[Sponsor](https://github.com/sponsors/djipco) 💜 button at the top of the page.
-
-
+If you use the library and find it useful, please 💜 [**sponsor the project**](https://github.com/sponsors/djipco).
 
 ## Feature Request
 
@@ -43,11 +50,6 @@ If you would like to request a new feature, enhancement or API change, please fi
 not [already planned](https://webmidijs.org/docs/future-versions/next). Then, discuss it in the 
 [Enhancement Proposals](https://github.com/djipco/webmidi/discussions/categories/feature-requests) 
 section of the forum.
-
-## Contributing
-
-If you are interested in contributing to the project, please read our 
-[Contribution Guidelines](https://github.com/djipco/webmidi/blob/master/CONTRIBUTING.md).
 
 ## Citing this Software in Research
 
@@ -57,3 +59,7 @@ references (or wherever appropriate). Here's an example of how to cite it
 
 >Côté, J. P. (2020). WebMidi.js v3.0.0 [Computer Software]. Retrieved from 
 https://github.com/djipco/webmidi
+
+Cheers!
+
+-- Jean-Philippe
