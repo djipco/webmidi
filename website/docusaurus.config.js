@@ -1,7 +1,7 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const BASE_URL = "/webmidi/";
+const BASE_URL = "/";
 
 /** @type {import("@docusaurus/types").DocusaurusConfig} */
 module.exports = {
