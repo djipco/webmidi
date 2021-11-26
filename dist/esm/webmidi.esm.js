@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.0
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on November 25th, 2021.
+ * Build generated on November 26th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0 - November 25, 2021 23:17:29 */
+/* Version: 3.0.0 - November 26, 2021 00:18:09 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -8256,6 +8256,22 @@ class WebMidi extends e {
    * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
+
+    /*START-ESM*/
+    // This is the way to import the necessary modules under Node.js when using "type: module" in the
+    // package.json file. This block will be stripped in IIFE and CJS versions.
+    try {
+      const perf_hooks = await import('perf_hooks');
+      global["performance"] = perf_hooks.performance;
+      // eslint-disable-next-line no-empty
+    } catch (err) {} // ignored because it means we already have the modules
+
+    try {
+      const jzz = await import('jzz');
+      global["navigator"] = jzz.default;
+      // eslint-disable-next-line no-empty
+    } catch (err) {} // ignored because it means we already have the modules
+    /*END-ESM*/
 
     this.validation = (options.validation !== false);
 
