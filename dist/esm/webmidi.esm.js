@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0
+ * WebMidi.js v3.0.1
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on November 26th, 2021.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0 - November 26, 2021 00:19:24 */
+/* Version: 3.0.1 - November 26, 2021 00:27:06 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -8246,8 +8246,8 @@ class WebMidi extends e {
   async enable(options = {}, legacy = false) {
 
     /*START-ESM*/
-    // This is the way to import the necessary modules under Node.js when using "type: module" in the
-    // package.json file. This block will be stripped in IIFE and CJS versions.
+    // This is the way to import the necessary modules under Node.js when using "type: module" in
+    // the package.json file. This block will be stripped in IIFE and CJS versions.
     try {
       const perf_hooks = await import('perf_hooks');
       global["performance"] = perf_hooks.performance;
@@ -9042,7 +9042,7 @@ class WebMidi extends e {
    * @type string
    */
   get version() {
-    return "3.0.0";
+    return "3.0.1";
   }
 
   /**
