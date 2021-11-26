@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.0-alpha.26
+ * WebMidi.js v3.0.0
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on November 25th, 2021.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.26 - November 25, 2021 23:10:54 */
+/* Version: 3.0.0 - November 25, 2021 23:17:29 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -9038,7 +9038,7 @@ class WebMidi extends e {
    * @type string
    */
   get version() {
-    return "3.0.0-alpha.26";
+    return "3.0.0";
   }
 
   /**
