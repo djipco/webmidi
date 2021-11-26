@@ -17,6 +17,20 @@ WebMidi
   .catch(err => alert(err));
 ```
 
+:::caution
+
+If you intend to use MIDI **system exclusive** messages, you must explicitly enable them by setting 
+the `sysex` option to `true`:
+
+```javascript
+WebMidi
+  .enable({sysex: true})
+  .then(() => console.log("WebMidi with sysex enabled!"))
+  .catch(err => alert(err));
+```
+
+:::
+
 ## Listing Available Devices
 
 To interact with devices you need to know which `Input` and `Output` ports are available. Connect a
