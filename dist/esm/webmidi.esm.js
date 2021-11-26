@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.26 - November 25, 2021 23:03:49 */
+/* Version: 3.0.0-alpha.26 - November 25, 2021 23:10:54 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -8058,18 +8058,9 @@ class Input extends e {
  * @since 2.1
  */
 
-/*START-NODE.JS*/
-// This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
-// and server-side rendering. This is why it is explicitly being stripped off from the IIFE and ESM
-// distributions.
-// global["performance"] = require("perf_hooks").performance;
-// global["navigator"] = require("jzz");
-/*END-NODE.JS*/
-
-
 /*START-ESM*/
 // This is the way to import the necessary modules under Node.js when using "type: module" in the
-// package.json file.
+// package.json file. This block will be stripped in IIFE and CJS versions.
 import('perf_hooks').then(module => {
   global["performance"] = module.performance;
 }).catch(() => {});
