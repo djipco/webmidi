@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0 - November 26, 2021 00:18:09 */
+/* Version: 3.0.0 - November 26, 2021 00:19:24 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -8057,18 +8057,6 @@ class Input extends e {
  *
  * @since 2.1
  */
-
-/*START-ESM*/
-// This is the way to import the necessary modules under Node.js when using "type: module" in the
-// package.json file. This block will be stripped in IIFE and CJS versions.
-import('perf_hooks').then(module => {
-  global["performance"] = module.performance;
-}).catch(() => {});
-
-import('jzz').then(module => {
-  global["navigator"] = module;
-}).catch(() => {});
-/*END-ESM*/
 
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
