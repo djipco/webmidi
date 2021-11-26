@@ -1,4 +1,4 @@
-# WebMidi.js Usage Examples
+# WEBMIDI.js Usage Examples
 
 In this directory, you will find starter examples explaining how to use WebMidi.js in various 
 contexts or for various purposes. 
