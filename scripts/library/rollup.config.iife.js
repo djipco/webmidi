@@ -18,8 +18,12 @@ export default {
   plugins: [
     versionInjector(),
     stripCode({
-      start_comment: "START-NODE.JS",
-      end_comment: "END-NODE.JS"
+      start_comment: "START-CJS",
+      end_comment: "END-CJS"
+    }),
+    stripCode({
+      start_comment: "START-ESM",
+      end_comment: "END-ESM"
     }),
     babel(),
     license({
