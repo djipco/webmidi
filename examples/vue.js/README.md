@@ -1,4 +1,4 @@
-# Using WebMidi.js with Vue.js
+# Using WEBMIDI.js with Vue.js
 
 Currently, this example may not work because the bundler is looking for perf_hooks even though it's
 a native module since Node.js v8.x. Something will have to be fixed in Vue.js in order to make this 
