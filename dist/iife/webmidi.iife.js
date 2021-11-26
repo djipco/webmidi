@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.0-alpha.26 - November 25, 2021 23:04:03 */
+/* Version: 3.0.0-alpha.26 - November 25, 2021 23:11:08 */
 (function (exports) {
   'use strict';
 
@@ -7680,15 +7680,6 @@
    *
    * @since 2.1
    */
-
-  /*START-NODE.JS*/
-  // This block of code is only relevant on Node.js and causes issues with bundlers (such as Webpack)
-  // and server-side rendering. This is why it is explicitly being stripped off from the IIFE and ESM
-  // distributions.
-  // global["performance"] = require("perf_hooks").performance;
-  // global["navigator"] = require("jzz");
-
-  /*END-NODE.JS*/
 
   /**
    * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
