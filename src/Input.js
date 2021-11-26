@@ -996,7 +996,7 @@ export class Input extends EventEmitter {
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
  * @property {string} type `songselect`
- * @property {string} song Song (or sequence) number to select (1-128)
+ * @property {string} song Song (or sequence) number to select (0-127)
  *
  * @since 2.1
  */
