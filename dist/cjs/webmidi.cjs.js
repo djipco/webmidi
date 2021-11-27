@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.1
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on November 26th, 2021.
+ * Build generated on November 27th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.1 - November 26, 2021 18:04:43 */
+/* Version: 3.0.1 - November 27, 2021 12:16:28 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8406,6 +8406,21 @@ class WebMidi extends e {
   _onInterfaceStateChange(e) {
     this._updateInputsAndOutputs();
     /**
+     * Event emitted when an [`Input`](Input) or [`Output`](Output) port is connected or
+     * disconnected. This event is typically fired whenever a MIDI device is plugged in or
+     * unplugged. Please note that it may fire several times if a device possesses multiple inputs
+     * and/or outputs (which is often the case).
+     *
+     * @event WebMidi#portschanged
+     * @type {object}
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
+     * (in milliseconds since the navigation start of the document).
+     * @property {string} type `portschanged`
+     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
+     */
+
+    /**
      * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
      * typically fired whenever a MIDI device is plugged in. Please note that it may fire several
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
@@ -8414,7 +8429,7 @@ class WebMidi extends e {
      * @type {object}
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
-     * @property {string} type `"connected"`
+     * @property {string} type `connected`
      * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
      */
@@ -8428,15 +8443,9 @@ class WebMidi extends e {
      * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
-     * @property {string} type `"disconnected"`
+     * @property {string} type `disconnected`
      * @property {object} target Object with properties describing the [`Input`](Input) or
      * [`Output`](Output) that triggered the event.
-     * @property {string} target.connection `"closed"`
-     * @property {string} target.id ID of the input
-     * @property {string} target.manufacturer Manufacturer of the device that provided the input
-     * @property {string} target.name Name of the device that provided the input
-     * @property {string} target.state `disconnected`
-     * @property {string} target.type `input` or `output`
      */
 
 
@@ -8457,7 +8466,8 @@ class WebMidi extends e {
         event.target = event.port;
       }
 
-      this.emit(e.port.state, event); // We check if "connection" is "pending" because we do not always get the "closed" event
+      this.emit(e.port.state, event);
+      this.emit("portschanged", event); // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
       // It feels more logical to include a `target` property instead of a `port` property. This is
       // the terminology used everywhere in the library.
@@ -8471,6 +8481,7 @@ class WebMidi extends e {
       };
       event.target = event.port;
       this.emit(e.port.state, event);
+      this.emit("portschanged", event);
     }
   }
 
