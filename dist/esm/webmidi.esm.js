@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.1 - November 27, 2021 12:23:16 */
+/* Version: 3.0.1 - November 27, 2021 12:25:28 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -8902,7 +8902,9 @@ class WebMidi extends e {
       event.target = event.port;
 
       this.emit(e.port.state, event);
-      this.emit("portschanged", event);
+
+      event.type = "portschanged";
+      this.emit(event.type, event);
 
     }
 
