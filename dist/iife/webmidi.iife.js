@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.1 - November 27, 2021 12:23:31 */
+/* Version: 3.0.1 - November 27, 2021 12:25:42 */
 (function (exports) {
   'use strict';
 
@@ -8473,7 +8473,8 @@
         };
         event.target = event.port;
         this.emit(e.port.state, event);
-        this.emit("portschanged", event);
+        event.type = "portschanged";
+        this.emit(event.type, event);
       }
     }
 
