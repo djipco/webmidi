@@ -835,7 +835,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"connected"`|
+  |**`type`** |string|`connected`|
   |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
@@ -873,14 +873,8 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"disconnected"`|
+  |**`type`** |string|`disconnected`|
   |**`target`** |object|Object with properties describing the [`Input`](Input) or [`Output`](Output) that triggered the event.|
-  |**`target.connection`** |string|`"closed"`|
-  |**`target.id`** |string|ID of the input|
-  |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
-  |**`target.name`** |string|Name of the device that provided the input|
-  |**`target.state`** |string|`disconnected`|
-  |**`target.type`** |string|`input` or `output`|
 
 
 ### `enabled` {#event-enabled}
@@ -937,6 +931,27 @@ granted access to MIDI).
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
   |**`type`** |string|`midiaccessgranted`|
+
+
+### `portschanged` {#event-portschanged}
+
+<a id="event:portschanged"></a>
+
+
+Event emitted when an [`Input`](Input) or [`Output`](Output) port is connected or
+disconnected. This event is typically fired whenever a MIDI device is plugged in or
+unplugged. Please note that it may fire several times if a device possesses multiple inputs
+and/or outputs (which is often the case).
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`portschanged`|
+  |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 
