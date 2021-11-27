@@ -657,6 +657,21 @@ class WebMidi extends EventEmitter {
     this._updateInputsAndOutputs();
 
     /**
+     * Event emitted when an [`Input`](Input) or [`Output`](Output) port is connected or
+     * disconnected. This event is typically fired whenever a MIDI device is plugged in or
+     * unplugged. Please note that it may fire several times if a device possesses multiple inputs
+     * and/or outputs (which is often the case).
+     *
+     * @event WebMidi#portschanged
+     * @type {object}
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
+     * (in milliseconds since the navigation start of the document).
+     * @property {string} type `portschanged`
+     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
+     */
+
+    /**
      * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
      * typically fired whenever a MIDI device is plugged in. Please note that it may fire several
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
@@ -665,7 +680,7 @@ class WebMidi extends EventEmitter {
      * @type {object}
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
-     * @property {string} type `"connected"`
+     * @property {string} type `connected`
      * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
      */
@@ -679,15 +694,9 @@ class WebMidi extends EventEmitter {
      * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
-     * @property {string} type `"disconnected"`
+     * @property {string} type `disconnected`
      * @property {object} target Object with properties describing the [`Input`](Input) or
      * [`Output`](Output) that triggered the event.
-     * @property {string} target.connection `"closed"`
-     * @property {string} target.id ID of the input
-     * @property {string} target.manufacturer Manufacturer of the device that provided the input
-     * @property {string} target.name Name of the device that provided the input
-     * @property {string} target.state `disconnected`
-     * @property {string} target.type `input` or `output`
      */
     let event = {
       timestamp: e.timeStamp,
@@ -707,6 +716,7 @@ class WebMidi extends EventEmitter {
       }
 
       this.emit(e.port.state, event);
+      this.emit("portschanged", event);
 
       // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
@@ -725,6 +735,7 @@ class WebMidi extends EventEmitter {
       event.target = event.port;
 
       this.emit(e.port.state, event);
+      this.emit("portschanged", event);
 
     }
 
