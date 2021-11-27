@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.1 - November 27, 2021 12:16:55 */
+/* Version: 3.0.1 - November 27, 2021 12:23:31 */
 (function (exports) {
   'use strict';
 
@@ -8458,7 +8458,8 @@
         }
 
         this.emit(e.port.state, event);
-        this.emit("portschanged", event); // We check if "connection" is "pending" because we do not always get the "closed" event
+        event.type = "portschanged";
+        this.emit(event.type, event); // We check if "connection" is "pending" because we do not always get the "closed" event
       } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
         // It feels more logical to include a `target` property instead of a `port` property. This is
         // the terminology used everywhere in the library.
