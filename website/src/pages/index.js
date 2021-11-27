@@ -23,7 +23,7 @@ function HomepageHero() {
               type="button-bg-full"
               href="./docs/"
               target="_self"
-            >Get started - 5 minutes!
+            >Get started in 5 minutes!
             </Button>
           </div>
         </div>
@@ -74,13 +74,13 @@ export default function Home() {
       <HomepageHero />
       <main>
         <InformationBar>
-          <strong>Version 3.0 is coming soon.</strong> <br/>
+          <strong>Version 3.0 has been released!</strong> <br/>
           <a
             rel="noreferrer"
             target="_blank"
             href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter">Subscribe to the newsletter
           </a> <br/>
-          to be notified of its availability.
+          to learn about all the new features.
         </InformationBar>
         <Presentation />
       </main>
