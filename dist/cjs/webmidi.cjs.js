@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.1 - November 27, 2021 12:23:04 */
+/* Version: 3.0.1 - November 27, 2021 12:25:17 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8482,7 +8482,8 @@ class WebMidi extends e {
       };
       event.target = event.port;
       this.emit(e.port.state, event);
-      this.emit("portschanged", event);
+      event.type = "portschanged";
+      this.emit(event.type, event);
     }
   }
 
