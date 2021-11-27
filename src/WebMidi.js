@@ -716,7 +716,9 @@ class WebMidi extends EventEmitter {
       }
 
       this.emit(e.port.state, event);
-      this.emit("portschanged", event);
+
+      event.type = "portschanged";
+      this.emit(event.type, event);
 
       // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
@@ -735,7 +737,9 @@ class WebMidi extends EventEmitter {
       event.target = event.port;
 
       this.emit(e.port.state, event);
-      this.emit("portschanged", event);
+
+      event.type = "portschanged";
+      this.emit(event.type, event);
 
     }
 
