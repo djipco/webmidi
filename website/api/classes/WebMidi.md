@@ -943,6 +943,7 @@ disconnected. This event is typically fired whenever a MIDI device is plugged in
 unplugged. Please note that it may fire several times if a device possesses multiple inputs
 and/or outputs (which is often the case).
 
+**Since**: 3.0.2
 
 
 **Event Properties**
