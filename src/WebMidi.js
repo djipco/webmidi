@@ -669,6 +669,8 @@ class WebMidi extends EventEmitter {
      * @property {string} type `portschanged`
      * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
+     *
+     * @since 3.0.2
      */
 
     /**
