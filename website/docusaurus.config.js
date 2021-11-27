@@ -174,9 +174,10 @@ module.exports = {
       //... other Algolia params
       placeholder: "Search website..."
     },
-    image: "og-card.png",
+    image: "img/og-card.png",
+    metadatas: [{ name: "robots", content: "max-image-preview:large" }],
     announcementBar: {
-      id: "github-banner",
+      id: "sponsor-banner",
       content: "<a target='_blank' href='https://github.com/sponsors/djipco'>" +
         "<strong>Sponsor</strong></a> ❤️ WEBMIDI.js on GitHub!"
     },
