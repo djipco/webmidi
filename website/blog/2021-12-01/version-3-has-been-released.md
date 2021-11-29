@@ -1,6 +1,6 @@
 ---
 title: WEBMIDI.js v3 is available now!
-description: Version 3 of WEBMIDI.js, the go-to library for JavaScript MIDI, is now available.
+description: Version 3 of WEBMIDI.js, the library that lets you interact with your MIDI instruments and devices, is now available. It features Node.js and TypeScript support, various new objects (Message, Note, etc.) and a completely rewritten engine.
 authors:
 - name: Jean-Philippe Côté
   title: Creator of WEBMIDI.js
