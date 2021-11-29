@@ -8,7 +8,7 @@ authors:
   image_url: /img/blog/jean-philippe_cote.jpg
 hide_table_of_contents: false
 keywords: [web midi api, music, instrument, midi, javascript]
-image: webmidi.js-is-available-now.png
+image: /blog/2021-12-01/webmidijs-is-out.png
 ---
 
 After a lot of work and testing, I am happy to announce today that version 3 of the go-to MIDI
