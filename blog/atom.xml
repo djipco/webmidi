@@ -1,16 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-    <id>https://webmdidijs.org/blog</id>
+    <id>https://webmidijs.org/blog</id>
     <title>WEBMIDI.js Blog</title>
     <updated>2021-12-01T00:00:00.000Z</updated>
     <generator>https://github.com/jpmonette/feed</generator>
-    <link rel="alternate" href="https://webmdidijs.org/blog"/>
+    <link rel="alternate" href="https://webmidijs.org/blog"/>
     <subtitle>WEBMIDI.js Blog</subtitle>
-    <icon>https://webmdidijs.org/img/favicon.ico</icon>
+    <icon>https://webmidijs.org/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[WEBMIDI.js v3 is available now!]]></title>
         <id>WEBMIDI.js v3 is available now!</id>
-        <link href="https://webmdidijs.org/blog/2021/12/01/version-3-has-been-released"/>
+        <link href="https://webmidijs.org/blog/2021/12/01/version-3-has-been-released"/>
         <updated>2021-12-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Version 3 of WEBMIDI.js, the library that lets you interact with your MIDI instruments and devices, is now available. It features Node.js and TypeScript support, various new objects (Message, Note, etc.) and a completely rewritten engine.]]></summary>
         <content type="html"><![CDATA[<p>After a lot of work and testing, I am happy to announce today that version 3 of the go-to MIDI

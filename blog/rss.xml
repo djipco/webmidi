@@ -2,14 +2,14 @@
 <rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
     <channel>
         <title>WEBMIDI.js Blog</title>
-        <link>https://webmdidijs.org/blog</link>
+        <link>https://webmidijs.org/blog</link>
         <description>WEBMIDI.js Blog</description>
         <lastBuildDate>Wed, 01 Dec 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
         <item>
             <title><![CDATA[WEBMIDI.js v3 is available now!]]></title>
-            <link>https://webmdidijs.org/blog/2021/12/01/version-3-has-been-released</link>
+            <link>https://webmidijs.org/blog/2021/12/01/version-3-has-been-released</link>
             <guid>WEBMIDI.js v3 is available now!</guid>
             <pubDate>Wed, 01 Dec 2021 00:00:00 GMT</pubDate>
             <description><![CDATA[Version 3 of WEBMIDI.js, the library that lets you interact with your MIDI instruments and devices, is now available. It features Node.js and TypeScript support, various new objects (Message, Note, etc.) and a completely rewritten engine.]]></description>
