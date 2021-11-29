@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+    <channel>
+        <title>WEBMIDI.js Blog</title>
+        <link>https://webmdidijs.org/blog</link>
+        <description>WEBMIDI.js Blog</description>
+        <lastBuildDate>Wed, 01 Dec 2021 00:00:00 GMT</lastBuildDate>
+        <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
+        <generator>https://github.com/jpmonette/feed</generator>
+        <item>
+            <title><![CDATA[WEBMIDI.js v3 is available now!]]></title>
+            <link>https://webmdidijs.org/blog/2021/12/01/version-3-has-been-released</link>
+            <guid>WEBMIDI.js v3 is available now!</guid>
+            <pubDate>Wed, 01 Dec 2021 00:00:00 GMT</pubDate>
+            <description><![CDATA[Version 3 of WEBMIDI.js, the go-to library for JavaScript MIDI, is now available.]]></description>
+            <content:encoded><![CDATA[<p>After a lot of work and testing, I am happy to announce today that version 3 of the go-to MIDI
+library for JavaScript has been released! You can <a href="https://webmidijs.org/docs">try it out</a> right
+now!</p><p><img src="webmidi.js-is-available-now.png"/></p><h3>About WEBMIDI.js</h3><p><a href="https://webmidijs.org"><strong>WEBMIDI.js</strong></a> exists to make it easier for developers to use the
+<a href="https://webaudio.github.io/web-midi-api/">Web MIDI API</a>. The Web MIDI API is a really exciting
+addition to the web platform allowing a web page to interact directly with MIDI musical instruments
+and devices.</p><p>While great, many developers will find the API to be too low-level for their needs. Having to
+perform binary arithmetic or needing to constantly refer to the 300-page MIDI spec is no fun (trust
+me on this!). So, the goal for <a href="https://webmidijs.org"><strong>WEBMIDI.js</strong></a> is to get developers and
+musicians started with their web-based MIDI projects as efficiently as possible.</p><p>As of today, <a href="https://webmidijs.org"><strong>WEBMIDI.js</strong></a> generates over <strong>744K hits a month on
+<a href="https://www.jsdelivr.com/package/npm/webmidi">jsDelivr</a></strong>. It is <strong>downloaded over 4.4K times a
+month on <a href="https://www.npmjs.com/package/webmidi">NPM</a></strong> and has been <strong>starred by over
+<a href="https://github.com/djipco/webmidi/stargazers">1000 developers</a></strong> on GitHub. Not too bad for a niche
+library that grew out of a personal passion project. 😀</p><h3>About the New Version 3</h3><p>Version 3 has been rewritten from scratch to make it both future-proof and backwards-compatible. It
+uses a modern development paradigm and now has its own dedicated website at
+<a href="https://webmidijs.org"><strong>webmidijs.org</strong></a>. The library offers numerous new features such as:</p><ul><li><p>Long-awaited <strong>support for Node.js</strong> (thanks to the <a href="https://www.npmjs.com/package/jzz">jzz</a>
+module by Jazz-Soft). The exact same code can be used in supported browsers and in Node.js.</p></li><li><p>Distribution in <strong>3 flavours</strong>: <strong>ESM</strong> (ECMAScript module for modern browsers), <strong>CJS</strong> (CommonJS
+module for Node.js) and <strong>IIFE</strong> (Immediately Invoked Function Expression for legacy browsers and
+<em>ad hoc</em> usage).</p></li><li><p><strong>TypeScript Support</strong>. Every new release includes a TypeScript definition file for CJS and ESM in
+the <code>dist</code> directory.</p></li><li><p><strong>New <code>InputChannel</code> and <code>OutputChannel</code></strong> objects. You can now work with a single MIDI channel if
+that&#x27;s appropriate for your needs.</p></li><li><p><strong>New <code>Note</code> object</strong>. Makes it easier to work with notes and pass them around from one method to
+the next.</p></li><li><p><strong>New <code>Message</code> object</strong> that allows easier routing of MIDI messages, including the ability to
+automatically <strong>forward inbound MIDI messages</strong> to one, or more, outputs (much like the good ol&#x27;
+physical THRU port).</p></li><li><p>Improved support for <strong>system exclusive</strong> (sysex) messages.</p></li><li><p><strong>Support for promises</strong> while preserving legacy callback support.</p></li><li><p>Improved <strong>support for RPN/NRPN messages</strong>.</p></li><li><p>Addition of <strong>hundreds of unit tests</strong> to make sure the library remains stable at all times.</p></li><li><p>and lots more...</p></li></ul><h3>Try it out!</h3><p>The <a href="https://webmidijs.org/docs">documentation section</a> of the new website has all the information
+to get you started. If you need help, you can exchange with fellow users and myself using the
+<a href="https://github.com/djipco/webmidi/discussions">GitHub Discussions</a> platform.</p><p>If you use the library and find it useful, please think about
+<a href="https://github.com/sponsors/djipco">sponsoring</a> 💜 the project.</p><p>Cheers!</p><p>Jean-Philippe</p>]]></content:encoded>
+        </item>
+    </channel>
+</rss>
