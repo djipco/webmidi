@@ -8,7 +8,7 @@ module.exports = {
 
   title: "WEBMIDI.js",
   tagline: "Kickstart your JavaScript MIDI projects!",
-  url: "https://webmdidijs.org",
+  url: "https://webmidijs.org",
   baseUrl: BASE_URL,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
