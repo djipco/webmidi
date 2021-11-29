@@ -1,9 +1,9 @@
 ---
-sidebar_label: Next Version
+sidebar_label: Under Evaluation
 sidebar_position: 2
 ---
 
-# Features Planned for Next Version
+# Potential Enhancements To Evaluate
 
 The analysis has not started yet. We will wait after the official launch of version 3. We do have a
 lot of ideas and suggestions in store. Depending on whether these features break the API or not, 
@@ -17,10 +17,10 @@ category of our GitHub Discussions.
 
 :::
 
-## Enhancements To Evaluate
-
 * Add support for Web BLE MIDI ([browser implementation](https://github.com/skratchdot/ble-midi),
 [Node implementation](https://github.com/natcl/ble-midi))
+
+* Add throttling option to `sendSysex`
 
 * Calculate BPM from clock messages 
 ([Discussion #177](https://github.com/djipco/webmidi/discussions/177))
