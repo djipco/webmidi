@@ -2336,7 +2336,7 @@
     "url-loader" "^4.1.1"
     "webpack" "^5.61.0"
 
-"@docusaurus/plugin-content-blog@2.0.0-beta.9":
+"@docusaurus/plugin-content-blog@^2.0.0-beta.9", "@docusaurus/plugin-content-blog@2.0.0-beta.9":
   "integrity" "sha512-KZ6UmUa/P4SSX8/xnZpwSt7krnAfRg3S/ghZ7zeIzcp12iumSZBmLNi5rIIXcsFVH0IPOnIofEoWEaEIwaNerg=="
   "resolved" "https://registry.npmjs.org/@docusaurus/plugin-content-blog/-/plugin-content-blog-2.0.0-beta.9.tgz"
   "version" "2.0.0-beta.9"
@@ -7494,7 +7494,7 @@
   dependencies:
     "@babel/runtime" "^7.10.3"
 
-"react-loadable@*", "react-loadable@npm:@docusaurus/react-loadable@5.5.2":
+"react-loadable@npm:@docusaurus/react-loadable@5.5.2":
   "integrity" "sha512-A3dYjdBGuy0IGT+wyLIGIKLRE+sAk1iNk0f1HjNDysO7u8lhL4N3VEm+FAubmJbAztn94F7MxBTPmnixbiyFdQ=="
   "resolved" "https://registry.npmjs.org/@docusaurus/react-loadable/-/react-loadable-5.5.2.tgz"
   "version" "5.5.2"

@@ -206,7 +206,16 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/djipco/webmidi/edit/master/website/",
         },
-        blog: false,
+
+
+        blog: {
+          path: "blog",
+          blogTitle: "Blog de Docusaurus !",
+          blogDescription: "Un blog alimenté par Docusaurus !",
+          postsPerPage: "ALL",
+        },
+
+
         pages: {},
       },
     ],
@@ -228,6 +237,7 @@ module.exports = {
 
       }
     ],
+
   ],
 
 };
