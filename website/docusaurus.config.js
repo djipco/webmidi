@@ -81,16 +81,33 @@ module.exports = {
             }
           ]
         },
+
         {
           to: "showcase",
           label: "Showcase",
           position: "left",
         },
+
         {
-          to: "about",
-          label: "About",
+          type: "dropdown",
+          label: "Behind the Scenes",
           position: "left",
+          items: [
+            {
+              to: "about",
+              label: "About",
+            },
+            {
+              to: "blog",
+              label: "Blog",
+            },
+          ]
         },
+
+
+
+
+
         {
           href: "https://github.com/djipco/webmidi",
           position: "right",
