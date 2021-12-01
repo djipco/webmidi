@@ -71,6 +71,12 @@ page on GitHub and submit a pull request.
   A Mac application that turns videos into music. It uses color tracking in combination with a grid 
   to generate MIDI data.
 
+* ### [Sonification: turning the yield curve into music](https://www.ft.com/content/80269930-40c3-11e9-b896-fe36ec32aece)
+  Created by: **Alan Smith**
+
+  This experiment turns the US yield curve into music and uses WEBMIDI.js to generate the MIDI note
+  messages.
+
 * ### [Seeing Music](https://experiments.withgoogle.com/seeing-music)
   Created by: **Jay Alan Zimmerman, Yotam Mann, Claire Kearney-Volpe, Luisa Pereira, Kyle Phillips, 
   and Google Creative Lab**
