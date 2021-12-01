@@ -47,7 +47,7 @@ module.exports = {
           items: [
             {
               label: "3.0.1",
-              to: "api/index"
+              to: "api"
             },
             {
               label: "2.5.3",
