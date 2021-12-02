@@ -46,7 +46,7 @@ module.exports = {
           position: "left",
           items: [
             {
-              label: "3.0.1",
+              label: "3.x",
               to: "api"
             },
             {
