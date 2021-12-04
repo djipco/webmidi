@@ -19,6 +19,10 @@ the project on GitHub.
 
 <!-- SPONSOR START -->
 
+<img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
+
+<img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
+
 <a href="https://github.com/awatterott" title="Andreas Watterott">
 	<img class="user-icon" src="https://avatars.githubusercontent.com/u/1488433?u=2a498d433dd252a2959c2c846a212624098a03d9&v=4" alt="Andreas Watterott" width="100" height="100" />
 </a>
@@ -30,10 +34,6 @@ the project on GitHub.
 <a href="https://github.com/philmillman" title="Phil Miller">
 	<img class="user-icon" src="https://avatars.githubusercontent.com/u/3722211?v=4" alt="Phil Miller" width="100" height="100" />
 </a>
-
-<img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
-
-<img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
 
 <img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
 

@@ -47,11 +47,30 @@ async function getSponsors() {
 
 getSponsors().then(async data => {
 
+  // data.forEach(d => {
+  //   console.log(d.sponsorEntity.login, d.sponsorEntity.sponsorshipForViewerAsSponsorable);
+  //   // console.log(d);
+  // });
+
   let output = "";
+
+  data.sort((a, b) => {
+    a = a.sponsorEntity.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars;
+    b = b.sponsorEntity.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars;
+
+    if (a > b) return -1;
+    if (a < b) return -1;
+    return 0;
+
+  });
 
   data.forEach(entity => {
 
     const sponsor = entity.sponsorEntity;
+
+    if (sponsor.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars < 10) {
+      return;
+    }
 
     if (sponsor.sponsorshipForViewerAsSponsorable.privacyLevel === "PUBLIC") {
       const name = sponsor.name || sponsor.login;
@@ -73,6 +92,5 @@ getSponsors().then(async data => {
   };
 
   const results = await replace(options);
-  // console.log("Replacement results:", results[0]);
 
 });
