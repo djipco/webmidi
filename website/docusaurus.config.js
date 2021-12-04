@@ -47,7 +47,7 @@ module.exports = {
           items: [
             {
               label: "3.x",
-              to: "api3"
+              to: "api"
             },
             {
               label: "2.5.3",
@@ -246,8 +246,8 @@ module.exports = {
       "@docusaurus/plugin-content-docs",
       {
         id: "api",
-        path: "api3",
-        routeBasePath: "api3",
+        path: "api",
+        routeBasePath: "api",
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
