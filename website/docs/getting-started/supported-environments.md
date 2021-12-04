@@ -5,12 +5,12 @@ slug: /getting-started
 
 # Supported Environments
 
-Starting with version 3, the library works in both the browser and Node.js and is available in a
-variety of formats. Let's look at the specificities of all these environments.
+Starting with version 3, the library works in both the browser and Node.js. Let's quickly look at 
+the specificities of both these environments.
 
 ## Browser Support
 
-The library works in all browsers that natively support the
+The library works in all browsers that natively [support](https://caniuse.com/midi) the
 [Web MIDI API](https://webaudio.github.io/web-midi-api/). Currently, the following major browsers
 have native support:
 
@@ -33,12 +33,12 @@ concerns.
 ## Node.js Support
 
 Version 3.0 of WEBMIDI.js introduced full Node.js support. Nothing special needs to be done, it
-should just work in the following environments:
+should just work in the following environments (with Node.js 8.5+):
 
 * GNU/Linux
 * macOS
 * Windows
 * Raspberry Pi
 
-Support for the Node.js environment has been made possible by the good folks of
+Support for the Node.js environment has been made possible in large part by the good folks of
 [Jazz-Soft](https://jazz-soft.net/) via their [JZZ](https://www.npmjs.com/package/jzz) module.
