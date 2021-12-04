@@ -9,6 +9,7 @@
   --ifm-color-primary-lighter: #fadb63;
   --ifm-color-primary-lightest: #fce590;
   --ifm-code-font-size: 95%;
+  --ifm-link-color: #759DCE;
   --ifm-code-padding-horizontal: 0.2rem;
   --color-white: #ffffff;
   --color-black: #1c1e21;
@@ -68,13 +69,12 @@ html[data-theme=dark]:root {
   height: 3.5rem;
 }
 
-iframe {
-  width: 100%;
-  height: 100vh;
-}
-
 .docs-wrapper main .container article .markdown header:nth-child(2) {
   display: none;
+}
+
+main article a:link {
+  font-weight: var(--ifm-font-weight-bold);
 }
 
 html[data-theme=dark] .docusaurus-highlight-code-line {
