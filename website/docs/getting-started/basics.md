@@ -7,7 +7,7 @@ sidebar_position: 3
 ## Enabling the Library 
 
 The first step to get started is to enable the library. To do that, you simply call
-[`WebMidi.enable()`](../../api/classes/WebMidi#enable). Starting with v3, the `enable()` method returns 
+[`WebMidi.enable()`](../../api3/classes/WebMidi#enable). Starting with v3, the `enable()` method returns 
 a promise which is resolved when the library has been enabled:
 
 ```javascript
@@ -56,9 +56,9 @@ function onEnabled() {
 You should see your hardware and software devices appear in the console. Note that many devices make
 available several input and/or output ports. 
 
-You can retrieve a reference to an [`Input`](../../api/classes/Input) by using the 
-[`getInputByName()`](../../api/classes/WebMidi#getInputByName) or
-[`getInputById()`](../../api/classes/WebMidi#getInputById) methods:
+You can retrieve a reference to an [`Input`](../../api3/classes/Input) by using the 
+[`getInputByName()`](../../api3/classes/WebMidi#getInputByName) or
+[`getInputById()`](../../api3/classes/WebMidi#getInputById) methods:
 
 ```javascript
 const myInput = WebMidi.getInputByName("MPK mini 3");
@@ -69,7 +69,7 @@ as a note press) arrives.
 ## Listening For Incoming MIDI Messages
 
 On a MIDI device, an input has 16 discrete channels. If you want to listen on all of them, you can
-add a listener directly on the [`Input`](../../api/classes/Input) object:
+add a listener directly on the [`Input`](../../api3/classes/Input) object:
 
 ```javascript
 const myInput = WebMidi.getInputByName("MPK mini 3");
@@ -81,7 +81,7 @@ myInput.addListener("noteon", e => {
 Try playing a note on your device. You should see the note's name and octave in the console.
 
 Obviously, you can listen to many more messages coming from your device. For a full list, check out
-the [`Input.addListener()`](../../api/classes/Input#addListener) documentation.
+the [`Input.addListener()`](../../api3/classes/Input#addListener) documentation.
 
 It is also possible to listen to messages coming from a specific MIDI channel. For example, when
 I press the drum pads on my Akai MPK Mini, the messages are sent to channel 10:
@@ -100,8 +100,8 @@ input device.
 ## Sending Outgoing MIDI Messages
 
 To send messages to an external device, you must first get a reference to it. For that, you can use
-methods such as [`getOutputByName()`](../../api/classes/WebMidi#getOutputByName) or
-[`getOutputById()`](../../api/classes/WebMidi#getOutputById):
+methods such as [`getOutputByName()`](../../api3/classes/WebMidi#getOutputByName) or
+[`getOutputById()`](../../api3/classes/WebMidi#getOutputById):
 
 ```javascript
 const myOutput = WebMidi.getOutputByName("SP-404MKII");
@@ -116,7 +116,7 @@ myOutput.sendAllSoundOff();
 ```
 
 You can learn about all the the methods available to send data by looking at the documentation for
-the [`Output`](../../api/classes/Output) object.
+the [`Output`](../../api3/classes/Output) object.
 
 You can send messages to a specific MIDI channel by first grabbing a reference to the channel you 
 want. For example, on the Roland SP-404 MK II sampler, you can control a vocoder effet by sending a 
@@ -127,7 +127,7 @@ const myOutput = WebMidi.getOutputByName("SP-404MKII");
 const vocoder = myOutput.channels[11];
 vocoder.sendPitchBend(-0.5);
 ```
-In this case, the `vocoder` constant contains an  [`OutputChannel`](../../api/classes/OutputChannel) 
+In this case, the `vocoder` constant contains an  [`OutputChannel`](../../api3/classes/OutputChannel) 
 object.
 
 
@@ -135,7 +135,7 @@ object.
 
 Here are various other examples to give you an idea of what is possible with the library. All the
 examples below only work if the library has first been properly enabled with 
-[`WebMidi.enable()`](../../api/classes/WebMidi#enable).
+[`WebMidi.enable()`](../../api3/classes/WebMidi#enable).
 
 
 ### Retrieve an output port/device using its id, name or array index
@@ -162,16 +162,16 @@ channel.playNote("C3");
 
 ### Play a note on multiple channels at once
 
-You can call [`playNote()`](../../api/classes/Output#playNote) (and various other methods) directly 
-on the [`Output`](../../api/classes/Output) object. This allows you to play a note on several 
+You can call [`playNote()`](../../api3/classes/Output#playNote) (and various other methods) directly 
+on the [`Output`](../../api3/classes/Output) object. This allows you to play a note on several 
 channels at once. For example, to play a note on channels 1, 2 and 3:
 
 ```javascript
 let output = WebMidi.outputs[0];
 output.playNote("Gb4", [1, 2, 3]);
 ```
-You can also create a [`Note`](../../api/classes/Note) object and pass it to the 
-[`playNote()`](../../api/classes/Output#playNote) method:
+You can also create a [`Note`](../../api3/classes/Note) object and pass it to the 
+[`playNote()`](../../api3/classes/Output#playNote) method:
 
 ```javascript
 const note = new Note("A4");
@@ -182,9 +182,9 @@ output.playNote(note);
 ### Play a note on a specific MIDI channel
 
 To play a note on a specific MIDI channel, you can use the 
-[`playNote()`](../../api/classes/OutputChannel#playNote) method of the 
-[`OutputChannel`](../../api/classes/OutputChannel) object (instead of the one on the
-[`Output`](../../api/classes/Output) object).
+[`playNote()`](../../api3/classes/OutputChannel#playNote) method of the 
+[`OutputChannel`](../../api3/classes/OutputChannel) object (instead of the one on the
+[`Output`](../../api3/classes/Output) object).
 
 For example, to play a chord on MIDI channel 1:
 
@@ -232,7 +232,7 @@ WebMidi.outputs[0].channels[1].playNote("C3", {time: WebMidi.time + 3000});
 WebMidi.outputs[0].channels[1].playNote("C3", {time: "+2000"});
 ```
 
-You can retrieve the current time with [`WebMidi.time`](../../api/classes/WebMidi#time). The time is
+You can retrieve the current time with [`WebMidi.time`](../../api3/classes/WebMidi#time). The time is
 in milliseconds (decimal) relative to the navigation start of the document.
 
 ### Manually stopping playback
@@ -260,7 +260,7 @@ The value is between -1 and 1 (a value of 0 means no bend).
 WebMidi.outputs[0].channels[8].setPitchBend(-0.25);
 ```
 You can set the range of the bend with 
-[`OutputChannel.sendPitchBendRange()`](../../api/classes/OutputChannel#sendPitchBendRange).
+[`OutputChannel.sendPitchBendRange()`](../../api3/classes/OutputChannel#sendPitchBendRange).
 
 ### Use Chained Methods
 
@@ -315,7 +315,7 @@ channel.removeListener();                 // all listeners
 
 I hope this short guide helped you getting started. Obviously, the library can do a whole lot more. 
 Some of that is covered in the **Going Further** section but all of it is detailed in the [API 
-documentation](../../api/index).
+documentation](../../api).
 
 If you need help, you can ask questions in the 
 [Forum](https://github.com/djipco/webmidi/discussions). If you want to stay posted, I suggest you 

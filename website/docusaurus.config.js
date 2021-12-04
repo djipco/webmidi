@@ -47,7 +47,7 @@ module.exports = {
           items: [
             {
               label: "3.x",
-              to: "api"
+              to: "api3"
             },
             {
               label: "2.5.3",
@@ -211,6 +211,7 @@ module.exports = {
   presets: [
     [
       "@docusaurus/preset-classic",
+
       {
         theme: {
           customCss: [
@@ -218,6 +219,7 @@ module.exports = {
             require.resolve("./src/css/index.scss"),
           ],
         },
+
         docs: {
           path: "docs",
           lastVersion: "current",
@@ -234,7 +236,6 @@ module.exports = {
           postsPerPage: "ALL",
         },
 
-
         pages: {},
       },
     ],
@@ -245,16 +246,14 @@ module.exports = {
       "@docusaurus/plugin-content-docs",
       {
         id: "api",
-        path: "api",
-        routeBasePath: "api",
+        path: "api3",
+        routeBasePath: "api3",
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
     [
       "docusaurus-plugin-sass",
-      {
-
-      }
+      {}
     ],
 
   ],
