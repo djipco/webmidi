@@ -24,22 +24,22 @@ Expression) and **CJS** (CommonJS) flavours
 - Full **Node.js** support
 - **TypeScript** definitions files
 - Various **new objects**:
-  - [`InputChannel`](../api3/classes/InputChannel) and [`OutputChannel`](../api3/classes/OutputChannel) 
+  - [`InputChannel`](../api/classes/InputChannel) and [`OutputChannel`](../api/classes/OutputChannel) 
   objects to communicate with a single MIDI channel
-  - [`Note`](../api3/classes/Note) object to store and pass around note information
-  - [`Message`](../api3/classes/Message) object to better encapsulate MIDI messages
-  - [`Forwarder`](../api3/classes/Forwarder) object to allow message forwarding from an input to an output
+  - [`Note`](../api/classes/Note) object to store and pass around note information
+  - [`Message`](../api/classes/Message) object to better encapsulate MIDI messages
+  - [`Forwarder`](../api/classes/Forwarder) object to allow message forwarding from an input to an output
   - and others...
 - More and better **unit tests** to prevent regression issues
 - Support for **promises** where appropriate (such as 
-[`WebMidi.enable()`](../api3/classes/WebMidi#enable))
+[`WebMidi.enable()`](../api/classes/WebMidi#enable))
 - More granular **events**. For example:
   - `midiaccessgranted` to know when a user clicked the MIDI authorization prompt
   - `controlchange-controllerXXX` to listen to a single type of control change message
   - and various others...
 - Ability to query **current note state** (currently playing or not) with 
-[`InputChannel.getNoteState()`](../api3/classes/InputChannel#getNoteState) 
-and [`InputChannel.notesState`](../api3/classes/InputChannel#notesState) array
+[`InputChannel.getNoteState()`](../api/classes/InputChannel#getNoteState) 
+and [`InputChannel.notesState`](../api/classes/InputChannel#notesState) array
 - Ability to unplug and replug a device while **retaining its state**
 - Better **sysex** (system exclusive) message support
 - **Octave transposition** can be performed at the global, input/output or channel level
@@ -86,22 +86,22 @@ WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [7]});
 
 You may think (rightly so!) that this syntax is more cumbersome. The reasoning is that, if you want
 to listen to events on a single channel, you should do so on the channel itself 
-(the new [`InputChannel`](../api3/classes/InputChannel) object):
+(the new [`InputChannel`](../api/classes/InputChannel) object):
 
 ```javascript
 WebMidi.inputs[0].channels[7].addListener("noteon", someFunction);
 ```
 
 Here, `WebMidi.inputs[0].channels[7]` refers to an
-[`InputChannel`](../api3/classes/InputChannel) object that has, for the most part, the same methods 
-as the [`Input`](../api3/classes/Input) object you were used to in v2.5.x.
+[`InputChannel`](../api/classes/InputChannel) object that has, for the most part, the same methods 
+as the [`Input`](../api/classes/Input) object you were used to in v2.5.x.
 
-So, the idea is to use the [`Input`](../api3/classes/Input) object if you need to listen to events on 
-more than one channel and to use the [`InputChannel`](../api3/classes/InputChannel) object to listen
+So, the idea is to use the [`Input`](../api/classes/Input) object if you need to listen to events on 
+more than one channel and to use the [`InputChannel`](../api/classes/InputChannel) object to listen
 for events dispatched by a single channel.
 
-The exact same logic applies to the [`Output`](../api3/classes/Output) and 
-[`OutputChannel`](../api3/classes/OutputChannel) objects. For example, if you want to send a 
+The exact same logic applies to the [`Output`](../api/classes/Output) and 
+[`OutputChannel`](../api/classes/OutputChannel) objects. For example, if you want to send a 
 **controlchange** message to all channels of an output, you can use:
 
 ```javascript
@@ -131,19 +131,19 @@ synth.playNote("A4");
 Having said all that, let me reiterate that **the previous way of doing things will still work in 
 v3**. This will give you a chance to smoothly transition to the new version.
 
-Let's recap. In v3, there is a top-level [`WebMidi`](../api3/classes/WebMidi) object which has both 
-an [`inputs`](../api3/classes/WebMidi#inputs) and an [`outputs`](../api3/classes/WebMidi#outputs) 
-array. These arrays contain, respectively, a list [`Input`](../api3/classes/Input) and 
-[`Output`](../api3/classes/Output) objects. The [`Input`](../api3/classes/Input) and
-[`Output`](../api3/classes/Output)  objects have a `channels` array that contains a list of 
-[`InputChannel`](../api3/classes/InputChannel) or [`OutputChannel`](../api3/classes/OutputChannel)
+Let's recap. In v3, there is a top-level [`WebMidi`](../api/classes/WebMidi) object which has both 
+an [`inputs`](../api/classes/WebMidi#inputs) and an [`outputs`](../api/classes/WebMidi#outputs) 
+array. These arrays contain, respectively, a list [`Input`](../api/classes/Input) and 
+[`Output`](../api/classes/Output) objects. The [`Input`](../api/classes/Input) and
+[`Output`](../api/classes/Output)  objects have a `channels` array that contains a list of 
+[`InputChannel`](../api/classes/InputChannel) or [`OutputChannel`](../api/classes/OutputChannel)
 objects.
 
 ## Things to Watch Out For
 
 ### The `WebMidi.enable()` method now returns a promise
 
-**You can still use a callback** with [`WebMidi.enable()`](../api3/classes/WebMidi#enable) and it 
+**You can still use a callback** with [`WebMidi.enable()`](../api/classes/WebMidi#enable) and it 
 will work just like before. However, you are now welcome to use the promise-based approach:
 
 ```javascript
