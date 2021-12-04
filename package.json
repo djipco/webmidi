@@ -117,7 +117,7 @@
     "object-get": "^2.1.1",
     "prepend-file": "^2.0.0",
     "reduce-flatten": "^3.0.1",
-    "replace-in-file": "^6.2.0",
+    "replace-in-file": "^6.3.2",
     "rollup": "^2.3.3",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-license": "^2.3.0",

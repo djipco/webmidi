@@ -33,9 +33,9 @@
   --font-size-content-desktop: 1.125rem;
   --font-size-content-mobile: 1rem;
   --font-size-button: 1.25rem;
-  --font-size-h1-desktop: 3.5rem;
+  --font-size-h1-desktop: 3rem;
   --font-size-h1-mobile: 2.5rem;
-  --font-size-h2-desktop: 2rem;
+  --font-size-h2-desktop: 1.8rem;
   --font-size-h2-mobile: 1.6rem;
   --font-size-h3-desktop: 1.2rem;
   --font-size-h3-mobile: 1.125rem;
@@ -177,6 +177,7 @@ h2 {
   font-family: var(--font-secondary);
   font-weight: 700;
   font-size: var(--font-size-h2-mobile);
+  margin-top: 2.4rem;
 }
 @media screen and (min-width: 1024px) {
   h2 {
@@ -193,6 +194,16 @@ h3 {
   h3 {
     font-size: var(--font-size-h3-desktop);
   }
+}
+
+html[data-theme=light] img.logo-cem {
+  filter: invert(1);
+}
+
+img.user-icon {
+  border-radius: 50px;
+  border: 1px solid black;
+  margin: 0.5rem;
 }
 
 /*# sourceMappingURL=custom.css.map */

@@ -35,10 +35,10 @@ module.exports = {
       },
       items: [
         {
+          label: "Docs",
           type: "doc",
           docId: "index",
           position: "left",
-          label: "Documentation",
         },
         {
           type: "dropdown",
@@ -65,6 +65,14 @@ module.exports = {
           position: "left",
           items: [
             {
+              label: "Sponsors",
+              to: "sponsors"
+            },
+            {
+              label: "Showcase",
+              to: "showcase"
+            },
+            {
               label: "GitHub Discussions",
               href: "https://github.com/djipco/webmidi/discussions",
               className: "external"
@@ -80,12 +88,6 @@ module.exports = {
               className: "external"
             }
           ]
-        },
-
-        {
-          to: "showcase",
-          label: "Showcase",
-          position: "left",
         },
 
         {
