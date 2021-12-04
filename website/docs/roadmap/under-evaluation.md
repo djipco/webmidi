@@ -17,6 +17,12 @@ category of our GitHub Discussions.
 
 :::
 
+## Ideas & Suggestions to Evaluate
+
+If you feel any of these ideas should be given priority, plese explain why in the 
+[Feature Request](https://github.com/djipco/webmidi/discussions/categories/feature-requests)
+category of our GitHub Discussions so I can properly triage them.
+
 * Add support for Web BLE MIDI ([browser implementation](https://github.com/skratchdot/ble-midi),
 [Node implementation](https://github.com/natcl/ble-midi))
 
@@ -27,12 +33,12 @@ category of our GitHub Discussions.
 
 * Allow the first argument of `output.playNote( )` to be ‘0:0’ as ‘A0’, ‘7:3’ as ‘E:3’ and so on.
 
-* Add a "mute" button for inputs/outputs
+* Add a "mute" option for inputs/outputs
 
 * Include the ability to add MIDI event listeners at the WebMidi.js level 
 ([Issue #138](https://github.com/djipco/webmidi/issues/138))
 
-* Emit events on `send()` so outbound MIDI messages can be listen for 
+* Emit events on `send()` so outbound MIDI messages can be listened for 
 ([Discussion #171](https://github.com/djipco/webmidi/discussions/171))
 
 * Add a `stopAllNotes()` method
@@ -43,7 +49,7 @@ category of our GitHub Discussions.
 
 * Add the ability to send grouped messages for CC events (and potentially others)
 
-* Add support for 
+* Add expliocit support for 
 [MIDI Polyphonic Expressions](https://www.midi.org/midi-articles/midi-polyphonic-expression-mpe).
 
 * Add explicit support for 
@@ -68,8 +74,6 @@ category of our GitHub Discussions.
 * Add continuous integration tool
 
 * Add ability to read/write MIDI files
-
-* Add site to [js.org](https://js.org/) (i.e. webmidi.js.org)
 
 * Solid timing, midi clock, sync, transport functionality
 
@@ -100,7 +104,7 @@ musical notes.
 
 * Consider usage of 
 [pipelining operator](https://github.com/tc39/proposal-pipeline-operator/blob/master/README.md#introduction) 
-for patching webmidi function calls to a sequence: 
+for patching webmidi function calls to a sequence
  
 * Consider using [middleware](https://github.com/unbug/js-middleware) approach for making the app 
 pluggable
