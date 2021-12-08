@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 09:22:43 */
+/* Version: 3.0.2 - December 8, 2021 09:35:17 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7806,14 +7806,13 @@ class Input extends e {
 // package.json file. This block will be stripped in IIFE and ESM versions.
 //global["performance"] = require("perf_hooks").performance;
 // if (!window && !window.navigator) global["navigator"] = require("jzz");
+// try {
+//   window && window.navigator;
+// } catch (e) {
+//   global["navigator"] = require("jzz");
+// }
 
-try {
-  window && window.navigator;
-} catch (e) {
-  const jzz = require("jzz");
-
-  global["navigator"] = jzz; // global["navigator"] = require("jzz");
-}
+global["navigator"] = require("jzz");
 /*END-CJS*/
 
 /**
@@ -7834,7 +7833,6 @@ try {
  * @extends EventEmitter
  * @license Apache-2.0
  */
-
 
 class WebMidi extends e {
   constructor() {
