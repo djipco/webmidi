@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.2
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on November 27th, 2021.
+ * Build generated on December 8th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - November 27, 2021 12:38:02 */
+/* Version: 3.0.2 - December 8, 2021 08:10:35 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7805,8 +7805,8 @@ class Input extends e {
 // This is the way to import the necessary modules under Node.js when using "type: commonjs" in the
 // package.json file. This block will be stripped in IIFE and ESM versions.
 
-global["performance"] = require("perf_hooks").performance;
-global["navigator"] = require("jzz");
+if (!performance) global["performance"] = require("perf_hooks").performance;
+if (!navigator) global["navigator"] = require("jzz");
 /*END-CJS*/
 
 /**
