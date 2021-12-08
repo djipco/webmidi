@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 09:38:10 */
+/* Version: 3.0.2 - December 8, 2021 09:49:43 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7802,23 +7802,19 @@ class Input extends e {
  */
 
 /*START-CJS*/
-// This is the way to import the necessary modules under Node.js when using "type: commonjs" in the
-// package.json file. This block will be stripped in IIFE and ESM versions.
-//global["performance"] = require("perf_hooks").performance;
-// if (!window && !window.navigator) global["navigator"] = require("jzz");
-// try {
-//   window && window.navigator;
-// } catch (e) {
-//   global["navigator"] = require("jzz");
-// }
+// This code is only executed when the CommonJS module is used. This is typically under Node.js but
+// might also happen when a bundler (i.e. Webpack) parses the file. This block will be stripped from
+// IIFE and ESM versions.
 
 const jzz = require("jzz");
 
 try {
+  // This will fail in Webpack because the "global" object (i.e. window) cannot be assigned to. This
+  // is what we want because if window is available, this means we are actually inside a browser and
+  // not inside Node.js where the jzz module is required.
   global["navigator"] = jzz;
-} catch (err) {
-  console.info("coucou", err);
-}
+} catch (err) {} // Do nothing
+
 /*END-CJS*/
 
 /**
