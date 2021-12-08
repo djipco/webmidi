@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 09:49:43 */
+/* Version: 3.0.2 - December 8, 2021 09:56:24 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7806,15 +7806,17 @@ class Input extends e {
 // might also happen when a bundler (i.e. Webpack) parses the file. This block will be stripped from
 // IIFE and ESM versions.
 
-const jzz = require("jzz");
+let jzz = require("jzz");
 
 try {
   // This will fail in Webpack because the "global" object (i.e. window) cannot be assigned to. This
   // is what we want because if window is available, this means we are actually inside a browser and
   // not inside Node.js where the jzz module is required.
   global["navigator"] = jzz;
-} catch (err) {} // Do nothing
-
+} catch (err) {
+  // Do nothing
+  jzz = null;
+}
 /*END-CJS*/
 
 /**
