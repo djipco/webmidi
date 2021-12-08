@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 08:24:29 */
+/* Version: 3.0.2 - December 8, 2021 08:29:13 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7806,7 +7806,7 @@ class Input extends e {
 // package.json file. This block will be stripped in IIFE and ESM versions.
 //global["performance"] = require("perf_hooks").performance;
 
-global["navigator"] = require("jzz");
+if (!window && !window.navigator) global["navigator"] = require("jzz");
 /*END-CJS*/
 
 /**
