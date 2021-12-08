@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 09:35:17 */
+/* Version: 3.0.2 - December 8, 2021 09:38:10 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7812,7 +7812,13 @@ class Input extends e {
 //   global["navigator"] = require("jzz");
 // }
 
-global["navigator"] = require("jzz");
+const jzz = require("jzz");
+
+try {
+  global["navigator"] = jzz;
+} catch (err) {
+  console.info("coucou", err);
+}
 /*END-CJS*/
 
 /**
@@ -7833,6 +7839,7 @@ global["navigator"] = require("jzz");
  * @extends EventEmitter
  * @license Apache-2.0
  */
+
 
 class WebMidi extends e {
   constructor() {
