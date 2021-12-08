@@ -17,12 +17,14 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 10:05:59 */
+/* Version: 3.0.2 - December 8, 2021 10:06:56 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-require('jzz');
+function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
+
+var jzz = _interopDefault(require('jzz'));
 
 /**
  * djipevents v2.0.1
@@ -7803,6 +7805,7 @@ class Input extends e {
  * @since 2.1
  */
 
+global["navigator"] = jzz;
 // jzz = null;
 
 /*END-CJS*/
