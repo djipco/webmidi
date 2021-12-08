@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 08:17:02 */
+/* Version: 3.0.2 - December 8, 2021 08:21:02 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7803,11 +7803,10 @@ class Input extends e {
 
 /*START-CJS*/
 // This is the way to import the necessary modules under Node.js when using "type: commonjs" in the
-// package.json file. This block will be stripped out in IIFE and ESM versions.
+// package.json file. This block will be stripped in IIFE and ESM versions.
+//global["performance"] = require("perf_hooks").performance;
 
-console.info(process, performance);
-if (!performance) global["performance"] = require("perf_hooks").performance;
-if (!navigator) global["navigator"] = require("jzz");
+global["navigator"] = require("jzz");
 /*END-CJS*/
 
 /**
