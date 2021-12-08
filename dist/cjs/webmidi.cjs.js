@@ -17,14 +17,12 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 10:04:07 */
+/* Version: 3.0.2 - December 8, 2021 10:05:59 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
 
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var jzz = _interopDefault(require('jzz'));
+require('jzz');
 
 /**
  * djipevents v2.0.1
@@ -7805,12 +7803,6 @@ class Input extends e {
  * @since 2.1
  */
 
-try {
-  // This will fail in Webpack because the "global" object (i.e. window) cannot be assigned to. This
-  // is what we want because if window is available, this means we are actually inside a browser and
-  // not inside Node.js where the jzz module is required.
-  global["navigator"] = jzz;
-} catch (err) {} // Do nothing
 // jzz = null;
 
 /*END-CJS*/
