@@ -6,10 +6,24 @@ import {Enumerations} from "./Enumerations.js";
 import {InputChannel} from "./InputChannel.js";
 
 /*START-CJS*/
-// This is the way to import the necessary modules under Node.js when using "type: commonjs" in the
-// package.json file. This block will be stripped in IIFE and ESM versions.
-global["performance"] = require("perf_hooks").performance;
-global["navigator"] = require("jzz");
+
+// This code is only executed when the CommonJS module is used. This is typically under Node.js but
+// might also happen when a bundler (i.e. Webpack) parses the file.
+//
+// Note: this block of code will be stripped from IIFE and ESM versions.
+
+let jzz = require("jzz");
+// import jzz from "jzz";
+
+try {
+  // This will fail in Webpack because the "global" object (i.e. window) cannot be assigned to. This
+  // is what we want because if window is available, this means we are actually inside a browser and
+  // not inside Node.js where the jzz module is required.
+  global["navigator"] = jzz;
+} catch (err) {
+  jzz = null;
+}
+
 /*END-CJS*/
 
 /**
