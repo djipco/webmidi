@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 09:12:11 */
+/* Version: 3.0.2 - December 8, 2021 09:22:43 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7810,7 +7810,9 @@ class Input extends e {
 try {
   window && window.navigator;
 } catch (e) {
-  global["navigator"] = require("jzz");
+  const jzz = require("jzz");
+
+  global["navigator"] = jzz; // global["navigator"] = require("jzz");
 }
 /*END-CJS*/
 
