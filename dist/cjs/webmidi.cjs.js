@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 10:12:03 */
+/* Version: 3.0.2 - December 8, 2021 10:20:40 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7803,8 +7803,9 @@ class Input extends e {
 
 /*START-CJS*/
 // This code is only executed when the CommonJS module is used. This is typically under Node.js but
-// might also happen when a bundler (i.e. Webpack) parses the file. This block will be stripped from
-// IIFE and ESM versions.
+// might also happen when a bundler (i.e. Webpack) parses the file.
+//
+// Note: this block of code will be stripped from IIFE and ESM versions.
 
 let jzz = require("jzz"); // import jzz from "jzz";
 
