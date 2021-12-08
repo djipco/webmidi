@@ -1,4 +1,4 @@
-// Type definitions for WebMidi.js 3.0.2
+// Type definitions for WebMidi.js 3.0.3
 // Project: https://webmidijs.org
 // Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
