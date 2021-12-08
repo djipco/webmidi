@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 08:38:49 */
+/* Version: 3.0.2 - December 8, 2021 09:12:23 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
