@@ -17,14 +17,10 @@
  * the License.
  */
 
-/* Version: 3.0.2 - December 8, 2021 10:06:56 */
+/* Version: 3.0.2 - December 8, 2021 10:12:03 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
-
-function _interopDefault (ex) { return (ex && (typeof ex === 'object') && 'default' in ex) ? ex['default'] : ex; }
-
-var jzz = _interopDefault(require('jzz'));
 
 /**
  * djipevents v2.0.1
@@ -7805,9 +7801,22 @@ class Input extends e {
  * @since 2.1
  */
 
-global["navigator"] = jzz;
-// jzz = null;
+/*START-CJS*/
+// This code is only executed when the CommonJS module is used. This is typically under Node.js but
+// might also happen when a bundler (i.e. Webpack) parses the file. This block will be stripped from
+// IIFE and ESM versions.
 
+let jzz = require("jzz"); // import jzz from "jzz";
+
+
+try {
+  // This will fail in Webpack because the "global" object (i.e. window) cannot be assigned to. This
+  // is what we want because if window is available, this means we are actually inside a browser and
+  // not inside Node.js where the jzz module is required.
+  global["navigator"] = jzz;
+} catch (err) {
+  jzz = null;
+}
 /*END-CJS*/
 
 /**
