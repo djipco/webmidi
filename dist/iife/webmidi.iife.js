@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 14, 2021 10:10:11 */
+/* Version: 3.0.3 - December 14, 2021 10:12:19 */
 (function (exports) {
   'use strict';
 
@@ -5965,7 +5965,7 @@
        *
        * @event InputChannel#resetallcontrollers
        *
-       * @type {object}     * @property {string} type `resetallcontrollers`
+       * @type {object}
        *
        * @property {InputChannel} target The object that triggered the event (the `InputChannel`
        * object).
