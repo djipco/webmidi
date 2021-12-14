@@ -320,7 +320,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value + 1);
+      expect(e.value).to.equal(value);
       expect(e.rawValue).to.equal(value);
       expect(e.target).to.equal(channel);
       done();
