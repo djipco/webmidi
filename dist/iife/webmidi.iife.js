@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.3
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 8th, 2021.
+ * Build generated on December 14th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 8, 2021 11:01:24 */
+/* Version: 3.0.3 - December 14, 2021 09:58:55 */
 (function (exports) {
   'use strict';
 
@@ -659,6 +659,21 @@
         midimessage: 0,
         unknownsystemmessage: -1
       };
+    }
+    /**
+     * Array of channel-specific event names that can be listened for. This includes channel mode
+     * events and RPN/NRPN events.
+     *
+     * @type {string[]}
+     * @readonly
+     */
+
+
+    static get CHANNEL_EVENTS() {
+      return [// MIDI channel message events
+      "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
+      "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // RPN/NRPN events
+      "nrpn", "nrpn-dataentrycoarse", "nrpn-dataentryfine", "nrpn-databuttonincrement", "nrpn-databuttondecrement", "rpn", "rpn-dataentrycoarse", "rpn-dataentryfine", "rpn-databuttonincrement", "rpn-databuttondecrement"];
     }
 
   }
@@ -6518,19 +6533,6 @@
 
       this.parameterNumberEventsEnabled = value;
     }
-    /**
-     * Array of channel-specific event names that can be listened to.
-     * @type {string[]}
-     * @readonly
-     */
-
-
-    static get EVENTS() {
-      return [// MIDI channel message events
-      "noteoff", "controlchange", "noteon", "keyaftertouch", "programchange", "channelaftertouch", "pitchbend", // MIDI channel mode events
-      "allnotesoff", "allsoundoff", "localcontrol", "monomode", "omnimode", "resetallcontrollers", // RPN/NRPN events
-      "nrpn", "nrpn-dataentrycoarse", "nrpn-dataentryfine", "nrpn-databuttonincrement", "nrpn-databuttondecrement", "rpn", "rpn-dataentrycoarse", "rpn-dataentryfine", "rpn-databuttonincrement", "rpn-databuttondecrement"];
-    }
 
   }
 
@@ -7149,7 +7151,7 @@
       } // Check if the event is channel-specific or input-wide
 
 
-      if (InputChannel.EVENTS.includes(event)) {
+      if (Enumerations.CHANNEL_EVENTS.includes(event)) {
         // If no channel defined, use all.
         if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
         let listeners = [];
@@ -7347,7 +7349,7 @@
         }
       }
 
-      if (InputChannel.EVENTS.includes(event)) {
+      if (Enumerations.CHANNEL_EVENTS.includes(event)) {
         // If no channel defined, use all.
         if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
         return Utilities.sanitizeChannels(options.channels).every(ch => {
@@ -7406,7 +7408,7 @@
       } // If the event is specified, check if it's channel-specific or input-wide.
 
 
-      if (InputChannel.EVENTS.includes(event)) {
+      if (Enumerations.CHANNEL_EVENTS.includes(event)) {
         Utilities.sanitizeChannels(options.channels).forEach(ch => {
           this.channels[ch].removeListener(event, listener, options);
         });
@@ -8739,16 +8741,16 @@
     }
     /**
      * @private
-     * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
+     * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
      */
 
 
     get CHANNEL_EVENTS() {
       if (this.validation) {
-        console.warn("The CHANNEL_EVENTS enum has been moved to InputChannel.EVENTS.");
+        console.warn("The CHANNEL_EVENTS enum has been moved to Enumerations.CHANNEL_EVENTS.");
       }
 
-      return InputChannel.EVENTS;
+      return Enumerations.CHANNEL_EVENTS;
     }
     /**
      * @private
