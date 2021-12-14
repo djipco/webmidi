@@ -476,7 +476,7 @@ export class InputChannel extends EventEmitter {
      *
      * @event InputChannel#resetallcontrollers
      *
-     * @type {object}     * @property {string} type `resetallcontrollers`
+     * @type {object}
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
