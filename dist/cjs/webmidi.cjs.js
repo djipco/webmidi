@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 14, 2021 10:09:45 */
+/* Version: 3.0.3 - December 14, 2021 10:11:52 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -5966,7 +5966,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#resetallcontrollers
      *
-     * @type {object}     * @property {string} type `resetallcontrollers`
+     * @type {object}
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
