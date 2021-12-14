@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 14, 2021 10:09:57 */
+/* Version: 3.0.3 - December 14, 2021 10:12:04 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -6276,7 +6276,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#resetallcontrollers
      *
-     * @type {object}     * @property {string} type `resetallcontrollers`
+     * @type {object}
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
