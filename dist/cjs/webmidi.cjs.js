@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 14, 2021 09:58:28 */
+/* Version: 3.0.3 - December 14, 2021 10:09:45 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -5887,8 +5887,10 @@ class InputChannel extends e {
        * milliseconds since the navigation start of the document).
        *
        * @property {number} value The value expressed as an integer between 0 and 127.
+       * @property {number} rawValue  The raw MIDI value expressed as an integer between 0 and 127.
        */
       event.value = data1;
+      event.rawValue = event.value;
     } else if (event.type === "channelaftertouch") {
       /**
        * Event emitted when a control change MIDI message has been received.
@@ -5906,7 +5908,7 @@ class InputChannel extends e {
        * milliseconds since the navigation start of the document).
        *
        * @property {number} value The value expressed as a float between 0 and 1.
-       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+       * @property {number} rawValue The raw MIDI value expressed as an integer between 0 and 127.
        */
       event.value = Utilities.from7bitToFloat(data1);
       event.rawValue = data1;
@@ -5927,7 +5929,8 @@ class InputChannel extends e {
        * milliseconds since the navigation start of the document).
        *
        * @property {number} value The value expressed as a float between 0 and 1.
-       * @property {number} rawValue The value expressed as an integer (between 0 and 16383).
+       * @property {number} rawValue The raw MIDI value expressed as an integer (between 0 and
+       * 16383).
        */
       event.value = ((data2 << 7) + data1 - 8192) / 8192;
       event.rawValue = (data2 << 7) + data1;
@@ -5963,8 +5966,7 @@ class InputChannel extends e {
      *
      * @event InputChannel#resetallcontrollers
      *
-     * @type {object}
-     * @property {string} type `resetallcontrollers`
+     * @type {object}     * @property {string} type `resetallcontrollers`
      *
      * @property {InputChannel} target The object that triggered the event (the `InputChannel`
      * object).
