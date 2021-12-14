@@ -1090,45 +1090,4 @@ export class InputChannel extends EventEmitter {
 
   }
 
-  /**
-   * Array of channel-specific event names that can be listened to.
-   * @type {string[]}
-   * @readonly
-   */
-  static get EVENTS() {
-
-    return [
-
-      // MIDI channel message events
-      "noteoff",
-      "controlchange",
-      "noteon",
-      "keyaftertouch",
-      "programchange",
-      "channelaftertouch",
-      "pitchbend",
-
-      // MIDI channel mode events
-      "allnotesoff",
-      "allsoundoff",
-      "localcontrol",
-      "monomode",
-      "omnimode",
-      "resetallcontrollers",
-
-      // RPN/NRPN events
-      "nrpn",
-      "nrpn-dataentrycoarse",
-      "nrpn-dataentryfine",
-      "nrpn-databuttonincrement",
-      "nrpn-databuttondecrement",
-      "rpn",
-      "rpn-dataentrycoarse",
-      "rpn-dataentryfine",
-      "rpn-databuttonincrement",
-      "rpn-databuttondecrement"
-
-    ];
-  }
-
 }

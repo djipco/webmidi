@@ -480,7 +480,7 @@ export class Input extends EventEmitter {
     }
 
     // Check if the event is channel-specific or input-wide
-    if (InputChannel.EVENTS.includes(event)) {
+    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
 
       // If no channel defined, use all.
       if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
@@ -683,7 +683,7 @@ export class Input extends EventEmitter {
 
     }
 
-    if (InputChannel.EVENTS.includes(event)) {
+    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
 
       // If no channel defined, use all.
       if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
@@ -746,7 +746,7 @@ export class Input extends EventEmitter {
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
-    if (InputChannel.EVENTS.includes(event)) {
+    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
 
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);

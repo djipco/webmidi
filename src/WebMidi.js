@@ -3,7 +3,6 @@ import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";
-import {InputChannel} from "./InputChannel.js";
 
 /*START-CJS*/
 
@@ -1032,15 +1031,15 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
+   * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
   get CHANNEL_EVENTS() {
     if (this.validation) {
       console.warn(
-        "The CHANNEL_EVENTS enum has been moved to InputChannel.EVENTS."
+        "The CHANNEL_EVENTS enum has been moved to Enumerations.CHANNEL_EVENTS."
       );
     }
-    return InputChannel.EVENTS;
+    return Enumerations.CHANNEL_EVENTS;
   }
 
   /**
@@ -1134,8 +1133,8 @@ const wm = new WebMidi();
 wm.constructor = null;
 export {wm as WebMidi};
 
+export {Enumerations} from "./Enumerations.js";
+export {Forwarder} from "./Forwarder.js";
+export {Message} from "./Message.js";
 export {Note} from "./Note.js";
 export {Utilities} from "./Utilities.js";
-export {Enumerations} from "./Enumerations.js";
-export {Message} from "./Message.js";
-export {Forwarder} from "./Forwarder.js";
