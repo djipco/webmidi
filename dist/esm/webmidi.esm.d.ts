@@ -457,6 +457,14 @@ export class Enumerations {
         midimessage: number;
         unknownsystemmessage: number;
     };
+    /**
+     * Array of channel-specific event names that can be listened for. This includes channel mode
+     * events and RPN/NRPN events.
+     *
+     * @type {string[]}
+     * @readonly
+     */
+    static get CHANNEL_EVENTS(): string[];
 }
 /**
  * The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When you
@@ -3309,7 +3317,7 @@ declare class WebMidi {
     get version(): string;
     /**
      * @private
-     * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
+     * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
      */
     private get CHANNEL_EVENTS();
     /**
@@ -5117,12 +5125,6 @@ declare class Input {
  * @since 3.0.0
  */
 declare class InputChannel {
-    /**
-     * Array of channel-specific event names that can be listened to.
-     * @type {string[]}
-     * @readonly
-     */
-    static get EVENTS(): string[];
     constructor(input: any, number: any);
     /**
      * @type {Input}
