@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 15, 2021 16:21:40 */
+/* Version: 3.0.4 - December 15, 2021 16:30:49 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1573,10 +1573,6 @@ class OutputChannel extends e {
    * the operation will be scheduled for that time. The current time can be retrieved with
    * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
-   *
-   * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
-   * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number, the operation will be scheduled for that time.
    *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
@@ -5231,10 +5227,6 @@ class Output extends e {
    * the operation will be scheduled for that time. The current time can be retrieved with
    * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
-   *
-   * @param {number} [options.attack=0.5] The attack velocity to use when playing the note (between
-   * `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
