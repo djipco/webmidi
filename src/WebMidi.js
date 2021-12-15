@@ -216,12 +216,6 @@ class WebMidi extends EventEmitter {
     // This is the way to import the necessary modules under Node.js when using "type: module" in
     // the package.json file. This block will be stripped in IIFE and CJS versions.
     try {
-      const perf_hooks = await import("perf_hooks");
-      global["performance"] = perf_hooks.performance;
-      // eslint-disable-next-line no-empty
-    } catch (err) {} // ignored because it means we already have the modules
-
-    try {
       const jzz = await import("jzz");
       global["navigator"] = jzz.default;
       // eslint-disable-next-line no-empty
