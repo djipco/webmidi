@@ -12,6 +12,15 @@ library. All properties are static and should be referenced using the class name
 
 ## Properties
 
+### `.CHANNEL_EVENTS` {#CHANNEL_EVENTS}
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only, static<br />
+
+
+Array of channel-specific event names that can be listened for. This includes channel mode
+events and RPN/NRPN events.
+
+
 ### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only, static<br />

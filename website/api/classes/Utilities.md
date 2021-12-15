@@ -470,7 +470,7 @@ integers between 1 and 16 are silently ignored.
 
 **Return Value**
 
-> Returns: `Array`<br />
+> Returns: `Array.<number>`<br />
 
 An array of 0 or more valid MIDI channel numbers.
 

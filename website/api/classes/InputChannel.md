@@ -37,14 +37,6 @@ property.
 
 ## Properties
 
-### `.EVENTS` {#EVENTS}
-**Type**: Array.&lt;string&gt;<br />
-**Attributes**: read-only, static<br />
-
-
-Array of channel-specific event names that can be listened to.
-
-
 ### `.eventCount` {#eventCount}
 **Type**: number<br />
 **Attributes**: read-only<br />
@@ -614,7 +606,7 @@ Event emitted when a control change MIDI message has been received.
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
-  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+  |**`rawValue`** |number|The raw MIDI value expressed as an integer between 0 and 127.|
 
 
 ### `controlchange` {#event-controlchange}
@@ -975,7 +967,7 @@ Event emitted when a pitch bend MIDI message has been received.
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
-  |**`rawValue`** |number|The value expressed as an integer (between 0 and 16383).|
+  |**`rawValue`** |number|The raw MIDI value expressed as an integer (between 0 and 16383).|
 
 
 ### `programchange` {#event-programchange}
@@ -996,6 +988,7 @@ Event emitted when a **program change** MIDI message has been received.
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as an integer between 0 and 127.|
+  |**`rawValue`** |number|The raw MIDI value expressed as an integer between 0 and 127.|
 
 
 ### `resetallcontrollers` {#event-resetallcontrollers}
@@ -1011,7 +1004,6 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`resetallcontrollers`|
   |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|

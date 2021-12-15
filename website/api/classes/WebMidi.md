@@ -87,7 +87,7 @@ Whether or not the execution of callbacks is currently suspended for this emitte
 
 
 ### `.inputs` {#inputs}
-**Type**: Array<br />
+**Type**: Array.&lt;Input&gt;<br />
 **Attributes**: read-only<br />
 
 
@@ -140,7 +140,7 @@ number sent will be 72 (instead of 60).
 
 
 ### `.outputs` {#outputs}
-**Type**: Array<br />
+**Type**: Array.&lt;Output&gt;<br />
 **Attributes**: read-only<br />
 
 
