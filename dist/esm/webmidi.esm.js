@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 15, 2021 15:51:46 */
+/* Version: 3.0.3 - December 15, 2021 16:12:22 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -980,7 +980,7 @@ class Utilities {
    * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
    * numbers.
    *
-   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   * @returns {number[]} An array of 0 or more valid MIDI channel numbers.
    *
    * @since 3.0.0
    * @static
@@ -8371,12 +8371,6 @@ class WebMidi extends e {
     /*START-ESM*/
     // This is the way to import the necessary modules under Node.js when using "type: module" in
     // the package.json file. This block will be stripped in IIFE and CJS versions.
-    try {
-      const perf_hooks = await import('perf_hooks');
-      global["performance"] = perf_hooks.performance;
-      // eslint-disable-next-line no-empty
-    } catch (err) {} // ignored because it means we already have the modules
-
     try {
       const jzz = await import('jzz');
       global["navigator"] = jzz.default;
