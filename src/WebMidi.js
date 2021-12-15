@@ -901,7 +901,7 @@ class WebMidi extends EventEmitter {
    * An array of all currently available MIDI inputs.
    *
    * @readonly
-   * @type {Array}
+   * @type {Input[]}
    */
   get inputs() {
     return this._inputs;
@@ -970,7 +970,7 @@ class WebMidi extends EventEmitter {
    * An array of all currently available MIDI outputs as [`Output`](Output) objects.
    *
    * @readonly
-   * @type {Array}
+   * @type {Output[]}
    */
   get outputs() {
     return this._outputs;
