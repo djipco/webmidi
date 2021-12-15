@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 15, 2021 15:51:35 */
+/* Version: 3.0.3 - December 15, 2021 16:12:11 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1086,7 +1086,7 @@ class Utilities {
    * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
    * numbers.
    *
-   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   * @returns {number[]} An array of 0 or more valid MIDI channel numbers.
    *
    * @since 3.0.0
    * @static
