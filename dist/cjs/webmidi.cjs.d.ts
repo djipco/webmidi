@@ -3032,9 +3032,9 @@ declare class WebMidi {
      * An array of all currently available MIDI inputs.
      *
      * @readonly
-     * @type {Array}
+     * @type {Input[]}
      */
-    get inputs(): any[];
+    get inputs(): Input[];
     /**
      * Indicates whether the current environment is Node.js or not. If you need to check if we are in
      * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
@@ -3071,9 +3071,9 @@ declare class WebMidi {
      * An array of all currently available MIDI outputs as [`Output`](Output) objects.
      *
      * @readonly
-     * @type {Array}
+     * @type {Output[]}
      */
-    get outputs(): any[];
+    get outputs(): Output[];
     /**
      * Indicates whether the environment provides support for the Web MIDI API or not.
      *
