@@ -857,12 +857,12 @@ export class Utilities {
      * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
      * numbers.
      *
-     * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+     * @returns {number[]} An array of 0 or more valid MIDI channel numbers.
      *
      * @since 3.0.0
      * @static
      */
-    static sanitizeChannels(channel?: number | number[]): any[];
+    static sanitizeChannels(channel?: number | number[]): number[];
     /**
      * Returns a valid timestamp, relative to the navigation start of the document, derived from the
      * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
