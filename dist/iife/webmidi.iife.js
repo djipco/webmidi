@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 15, 2021 15:52:01 */
+/* Version: 3.0.3 - December 15, 2021 16:12:37 */
 (function (exports) {
   'use strict';
 
@@ -1085,7 +1085,7 @@
      * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
      * numbers.
      *
-     * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+     * @returns {number[]} An array of 0 or more valid MIDI channel numbers.
      *
      * @since 3.0.0
      * @static
