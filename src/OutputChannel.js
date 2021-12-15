@@ -87,10 +87,6 @@ export class OutputChannel extends EventEmitter {
    * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
    *
-   * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
-   * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number, the operation will be scheduled for that time.
-   *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
    * @throws {RangeError} Data bytes must be integers between 0 and 255.

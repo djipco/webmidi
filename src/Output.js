@@ -2241,10 +2241,6 @@ export class Output extends EventEmitter {
    * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
    *
-   * @param {number} [options.attack=0.5] The attack velocity to use when playing the note (between
-   * `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
-   *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   playNote(note, options = {}, legacy = {}) {
