@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.3
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 14th, 2021.
+ * Build generated on December 15th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.3 - December 14, 2021 10:17:00 */
+/* Version: 3.0.3 - December 15, 2021 15:51:46 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -9057,7 +9057,7 @@ class WebMidi extends e {
    * An array of all currently available MIDI inputs.
    *
    * @readonly
-   * @type {Array}
+   * @type {Input[]}
    */
   get inputs() {
     return this._inputs;
@@ -9126,7 +9126,7 @@ class WebMidi extends e {
    * An array of all currently available MIDI outputs as [`Output`](Output) objects.
    *
    * @readonly
-   * @type {Array}
+   * @type {Output[]}
    */
   get outputs() {
     return this._outputs;
