@@ -46,7 +46,8 @@ try {
 class WebMidi extends EventEmitter {
 
   /**
-   * Creates a `WebMidi` object.
+   * The WebMidi class is a singleton and you cannot instantiate it directly. It has already been
+   * instantiated for you.
    */
   constructor() {
 

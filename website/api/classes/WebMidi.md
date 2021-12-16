@@ -17,7 +17,8 @@ module) version, you get an already-instantiated object when you import the modu
 
 ### `Constructor`
 
-Creates a `WebMidi` object.
+The WebMidi class is a singleton and you cannot instantiate it directly. It has already been
+instantiated for you.
 
 
 
