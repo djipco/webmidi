@@ -17,7 +17,7 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ### `Constructor`
 
-
+Creates an `OutputChannel` object.
 
 
   **Parameters**

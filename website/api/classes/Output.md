@@ -33,7 +33,7 @@ Creates an `Output` object.
 
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`midiOutput`** | MIDIOutput<br /> ||[`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput) object as provided by the MIDI subsystem.XXXXX|
+    |**`midiOutput`** | MIDIOutput<br /> ||[`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput) object as provided by the MIDI subsystem.|
 
   </div>
 

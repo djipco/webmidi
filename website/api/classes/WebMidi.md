@@ -14,6 +14,13 @@ module) version, you get an already-instantiated object when you import the modu
 <!--**Extends**: EventEmitter-->
 
 **Fires**: [`connected`](#event:connected), [`disabled`](#event:disabled), [`disconnected`](#event:disconnected), [`enabled`](#event:enabled), [`midiaccessgranted`](#event:midiaccessgranted)
+
+### `Constructor`
+
+Creates a `WebMidi` object.
+
+
+
 ***
 
 ## Properties
