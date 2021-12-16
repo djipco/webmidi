@@ -130,7 +130,6 @@
     "sinon-browser-only": "^1.12.1",
     "system-commands": "^1.1.7",
     "test-value": "^3.0.0",
-    "typescript": "^4.4.4",
     "util": "^0.12.4"
   }
 }
