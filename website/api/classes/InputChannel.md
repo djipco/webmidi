@@ -18,6 +18,8 @@ property.
 ### `Constructor`
 
 
+
+
   **Parameters**
 
   > `new InputChannel(input, number)`

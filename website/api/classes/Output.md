@@ -23,6 +23,8 @@ You can access all available `Output` objects by referring to the
 ### `Constructor`
 
 
+
+
   **Parameters**
 
   > `new Output(midiOutput)`

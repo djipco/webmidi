@@ -11,6 +11,8 @@ to, the callback function and so on.
 ### `Constructor`
 
 
+
+
   **Parameters**
 
   > `new Listener(event, target, callback, [options])`

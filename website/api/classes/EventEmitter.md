@@ -13,6 +13,8 @@ It is intended to be an abstract class meant to be extended by (or mixed into) o
 ### `Constructor`
 
 
+
+
   **Parameters**
 
   > `new EventEmitter([eventsSuspended])`

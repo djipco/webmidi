@@ -28,6 +28,8 @@ method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
 ### `Constructor`
 
 
+
+
   **Parameters**
 
   > `new Note(value, [options])`

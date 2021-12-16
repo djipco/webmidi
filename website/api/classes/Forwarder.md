@@ -18,6 +18,8 @@ the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
 ### `Constructor`
 
 
+
+
   **Parameters**
 
   > `new Forwarder([destinations], [options])`

@@ -26,6 +26,8 @@ object does that. However, you can still use the
 ### `Constructor`
 
 
+
+
   **Parameters**
 
   > `new Input(midiInput)`
