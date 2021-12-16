@@ -52,6 +52,12 @@ module.exports = {
 
     "react/prop-types": "off"
 
+  },
+
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
   }
 
 };
