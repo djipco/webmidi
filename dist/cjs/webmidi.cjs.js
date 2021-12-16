@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.4
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 15th, 2021.
+ * Build generated on December 16th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 15, 2021 19:13:42 */
+/* Version: 3.0.4 - December 16, 2021 09:08:24 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -705,40 +705,48 @@ class Enumerations {
  * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
  * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
- * @param {object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
- *
- * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @throws {Error} Invalid note identifier
- * @throws {RangeError} Invalid name value
- * @throws {RangeError} Invalid accidental value
- * @throws {RangeError} Invalid octave value
- * @throws {RangeError} Invalid duration value
- * @throws {RangeError} Invalid attack value
- * @throws {RangeError} Invalid release value
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 
 class Note {
+  /**
+   * Creates a `Note` object.
+   *
+   * @param value {string|number} The value used to create the note. If an identifier string is used,
+   * it must start with the note letter, optionally followed by an accidental and followed by the
+   * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
+   * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
+   *
+   * @param {object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+   * explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @throws {Error} Invalid note identifier
+   * @throws {RangeError} Invalid name value
+   * @throws {RangeError} Invalid accidental value
+   * @throws {RangeError} Invalid octave value
+   * @throws {RangeError} Invalid duration value
+   * @throws {RangeError} Invalid attack value
+   * @throws {RangeError} Invalid release value
+   */
   constructor(value, options = {}) {
     // Assign property defaults
     this.duration = wm.defaults.note.duration;
@@ -1510,6 +1518,12 @@ class Utilities {
  */
 
 class OutputChannel extends e {
+  /**
+   * Creates an `OutputChannel` object.
+   *
+   * @param {Output} output The [`Output`](Output) this channel belongs to.
+   * @param {number} number The MIDI channel number (`1` - `16`).
+   */
   constructor(output, number) {
     super();
     /**
@@ -3208,9 +3222,6 @@ class OutputChannel extends e {
  * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
  * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
  *
- * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
- * object as provided by the MIDI subsystem.
- *
  * @fires Output#opened
  * @fires Output#disconnected
  * @fires Output#closed
@@ -3220,6 +3231,12 @@ class OutputChannel extends e {
  */
 
 class Output extends e {
+  /**
+   * Creates an `Output` object.
+   *
+   * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+   * object as provided by the MIDI subsystem.
+   */
   constructor(midiOutput) {
     super();
     /**
@@ -5430,24 +5447,28 @@ class Output extends e {
  * While it can be manually instantiated, you are more likely to come across a `Forwarder` object as
  * the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
  *
- * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such objects,
- * to forward the message to.
- *
- * @param {object} [options={}]
- * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such types
- * (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to be
- * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
- * messages are the ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
- * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
- * A MIDI channel number or an array of channel numbers that the message must match in order to be
- * forwarded. By default all MIDI channels are included (`1` to `16`).
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 
 class Forwarder {
+  /**
+   * Creates a `Forwarder` object.
+   *
+   * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+   * objects, to forward the message to.
+   *
+   * @param {object} [options={}]
+   * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such
+   * types (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to
+   * be forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+   * messages are the ones found in either
+   * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
+   * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+   * A MIDI channel number or an array of channel numbers that the message must match in order to be
+   * forwarded. By default all MIDI channels are included (`1` to `16`).
+   */
   constructor(destinations = [], options = {}) {
     /**
      * An array of [`Output`](Output) objects to forward the message to.
@@ -5543,9 +5564,6 @@ class Forwarder {
  * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
  * property.
  *
- * @param {Input} input The [`Input`](Input) object this channel belongs to.
- * @param {number} number The channel's MIDI number (1-16).
- *
  * @fires InputChannel#midimessage
  *
  * @fires InputChannel#noteoff
@@ -5581,6 +5599,12 @@ class Forwarder {
  */
 
 class InputChannel extends e {
+  /**
+   * Creates an `InputChannel` object.
+   *
+   * @param {Input} input The [`Input`](Input) object this channel belongs to.
+   * @param {number} number The channel's MIDI number (1-16).
+   */
   constructor(input, number) {
     super();
     /**
@@ -6535,15 +6559,18 @@ class InputChannel extends e {
  * The `Message` class represents a single MIDI message. It has several properties that make it
  * easy to make sense of the binary data it contains.
  *
- * @param {Uint8Array} data The raw data of the MIDI message as a
- * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
- * of integers between `0` and `255`.
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 
 class Message {
+  /**
+   * Creates a new `Message` object from raw MIDI data.
+   *
+   * @param {Uint8Array} data The raw data of the MIDI message as a
+   * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+   * of integers between `0` and `255`.
+   */
   constructor(data) {
     /**
      * A
@@ -6700,9 +6727,6 @@ class Message {
  * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
  * [`InputChannel`](InputChannel) objects at once.
  *
- * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
- * object as provided by the MIDI subsystem (Web MIDI API).
- *
  * @fires Input#opened
  * @fires Input#disconnected
  * @fires Input#closed
@@ -6725,6 +6749,12 @@ class Message {
  */
 
 class Input extends e {
+  /**
+   * Creates an `Input` object.
+   *
+   * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+   * object as provided by the MIDI subsystem (Web MIDI API).
+   */
   constructor(midiInput) {
     super();
     /**
@@ -7837,6 +7867,10 @@ try {
 
 
 class WebMidi extends e {
+  /**
+   * The WebMidi class is a singleton and you cannot instantiate it directly. It has already been
+   * instantiated for you.
+   */
   constructor() {
     super();
     /**
@@ -8840,13 +8874,14 @@ class WebMidi extends e {
 
 const wm = new WebMidi();
 wm.constructor = null;
-// export {InputChannel} from "./InputChannel.js";
-// export {Output} from "./Output.js";
-// export {OutputChannel} from "./OutputChannel.js";
 
 exports.Enumerations = Enumerations;
 exports.Forwarder = Forwarder;
+exports.Input = Input;
+exports.InputChannel = InputChannel;
 exports.Message = Message;
 exports.Note = Note;
+exports.Output = Output;
+exports.OutputChannel = OutputChannel;
 exports.Utilities = Utilities;
 exports.WebMidi = wm;
