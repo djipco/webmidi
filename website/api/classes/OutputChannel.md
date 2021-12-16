@@ -468,7 +468,6 @@ from the MIDI Manufacturers Association.
     |**`message`** | Array.&lt;number&gt;<br />Uint8Array<br />Message<br /> ||A `Message` object, an array of 8-bit unsigned integers or a `Uint8Array` object (not available in Node.js) containing the message bytes.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time.|
 
   </div>
 

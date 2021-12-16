@@ -511,7 +511,6 @@ functionally equivalent to a **note off** message.
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
     |[**`options.rawRelease`**] | number<br /> |64|The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of 64. This is only used with the **note off** event triggered when `options.duration` is set.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-    |[**`options.attack`**] | number<br /> |0.5|The attack velocity to use when playing the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
   </div>
 
