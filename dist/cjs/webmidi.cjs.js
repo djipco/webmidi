@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 15, 2021 16:30:49 */
+/* Version: 3.0.4 - December 15, 2021 19:06:28 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8843,7 +8843,11 @@ wm.constructor = null;
 
 exports.Enumerations = Enumerations;
 exports.Forwarder = Forwarder;
+exports.Input = Input;
+exports.InputChannel = InputChannel;
 exports.Message = Message;
 exports.Note = Note;
+exports.Output = Output;
+exports.OutputChannel = OutputChannel;
 exports.Utilities = Utilities;
 exports.WebMidi = wm;
