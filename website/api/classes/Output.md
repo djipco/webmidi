@@ -22,7 +22,7 @@ You can access all available `Output` objects by referring to the
 
 ### `Constructor`
 
-
+Creates an `Output` object.
 
 
   **Parameters**

@@ -17,7 +17,7 @@ property.
 
 ### `Constructor`
 
-
+Creates an `InputChannel` object.
 
 
   **Parameters**
