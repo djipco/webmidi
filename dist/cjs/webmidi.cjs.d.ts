@@ -478,24 +478,31 @@ export class Enumerations {
  * While it can be manually instantiated, you are more likely to come across a `Forwarder` object as
  * the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
  *
- * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such objects,
- * to forward the message to.
- *
- * @param {object} [options={}]
- * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such types
- * (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to be
- * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
- * messages are the ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
- * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
- * A MIDI channel number or an array of channel numbers that the message must match in order to be
- * forwarded. By default all MIDI channels are included (`1` to `16`).
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Forwarder {
-    constructor(destinations?: any[], options?: {});
+    /**
+     * Creates a `Forwarder` object.
+     *
+     * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+     * objects, to forward the message to.
+     *
+     * @param {object} [options={}]
+     * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such
+     * types (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to
+     * be forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+     * messages are the ones found in either
+     * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
+     * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * A MIDI channel number or an array of channel numbers that the message must match in order to be
+     * forwarded. By default all MIDI channels are included (`1` to `16`).
+     */
+    constructor(destinations?: Output | Output[], options?: {
+        types?: string | string[];
+        channels?: number;
+    });
     /**
      * An array of [`Output`](Output) objects to forward the message to.
      * @type {Output[]}
@@ -529,18 +536,786 @@ export class Forwarder {
     forward(message: Message): void;
 }
 /**
+ * The `Input` class represents a single MIDI input port. This object is automatically instantiated
+ * by the library according to the host's MIDI subsystem and does not need to be directly
+ * instantiated. Instead, you can access all `Input` objects by referring to the
+ * [`WebMidi.inputs`](WebMidi#inputs) array. You can also retrieve inputs by using methods such as
+ * [`WebMidi.getInputByName()`](WebMidi#getInputByName) and
+ * [`WebMidi.getInputById()`](WebMidi#getInputById).
+ *
+ * Note that a single MIDI device may expose several inputs and/or outputs.
+ *
+ * **Important**: the `Input` class does not directly fire channel-specific MIDI messages
+ * (such as [`noteon`](InputChannel#event:noteon) or
+ * [`controlchange`](InputChannel#event:controlchange), etc.). The [`InputChannel`](InputChannel)
+ * object does that. However, you can still use the
+ * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
+ * [`InputChannel`](InputChannel) objects at once.
+ *
+ * @fires Input#opened
+ * @fires Input#disconnected
+ * @fires Input#closed
+ * @fires Input#midimessage
+ * @fires Input#sysex
+ * @fires Input#timecode
+ * @fires Input#songposition
+ * @fires Input#songselect
+ * @fires Input#tunerequest
+ * @fires Input#clock
+ * @fires Input#start
+ * @fires Input#continue
+ * @fires Input#stop
+ * @fires Input#activesensing
+ * @fires Input#reset
+ * @fires Input#unknownmidimessage
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ */
+export class Input {
+    /**
+     * Creates an `Input` object.
+     *
+     * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+     * object as provided by the MIDI subsystem (Web MIDI API).
+     */
+    constructor(midiInput: MIDIInput);
+    /**
+     * Reference to the actual MIDIInput object
+     * @private
+     */
+    private _midiInput;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
+    /**
+     * Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
+     * channels are numbered 1 through 16.
+     *
+     * @type {InputChannel[]}
+     */
+    channels: InputChannel[];
+    _forwarders: any[];
+    /**
+     * Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
+     * unlinking the MIDI subsystem. This is mostly for internal use.
+     *
+     * @returns {Promise<void>}
+     */
+    destroy(): Promise<void>;
+    /**
+     * Executed when a `"statechange"` event occurs.
+     *
+     * @param e
+     * @private
+     */
+    private _onStateChange;
+    /**
+     * Executed when a `"midimessage"` event is received
+     * @param e
+     * @private
+     */
+    private _onMidiMessage;
+    /**
+     * @private
+     */
+    private _parseEvent;
+    /**
+     * Opens the input for usage. This is usually unnecessary as the port is opened automatically when
+     * WebMidi is enabled.
+     *
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object.
+     */
+    open(): Promise<Input>;
+    /**
+     * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
+     * the input is opened again by calling [`Input.open()`](Input#open).
+     *
+     * **Note**: if what you want to do is stop events from being dispatched, you should use
+     * [`eventsSuspended`](#eventsSuspended) instead.
+     *
+     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
+     */
+    close(): Promise<Input>;
+    /**
+     * @private
+     * @deprecated since v3.0.0 (moved to 'Utilities' class)
+     */
+    private getChannelModeByNumber;
+    /**
+     * Adds an event listener that will trigger a function callback when the specified event is
+     * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
+     *
+     * Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
+     * at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
+     * events target a specific channel. Usually, in this case, you would add the listener to the
+     * [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
+     * channel-specific events directly on an `Input`. This allows you to react to a channel-specific
+     * event no matter which channel it actually came through.
+     *
+     * When listening for an event, you simply need to specify the event name and the function to
+     * execute:
+     *
+     * ```javascript
+     * const listener = WebMidi.inputs[0].addListener("midimessage", e => {
+     *   console.log(e);
+     * });
+     * ```
+     *
+     * Calling the function with an input-wide event (such as
+     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
+     * that was created.
+     *
+     * If you call the function with a channel-specific event (such as
+     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
+     * [`Listener`](Listener) objects that were created (one for each channel):
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
+     * ```
+     *
+     * You can also specify which channels you want to add the listener to:
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+     * ```
+     *
+     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
+     *
+     * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
+     * instance that actually gets a listener added and not the `Input` instance. You can check that
+     * by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
+     *
+     * There are 8 families of events you can listen to:
+     *
+     * 1. **MIDI System Common** Events (input-wide)
+     *
+     *    * [`songposition`]{@link Input#event:songposition}
+     *    * [`songselect`]{@link Input#event:songselect}
+     *    * [`sysex`]{@link Input#event:sysex}
+     *    * [`timecode`]{@link Input#event:timecode}
+     *    * [`tunerequest`]{@link Input#event:tunerequest}
+     *
+     * 2. **MIDI System Real-Time** Events (input-wide)
+     *
+     *    * [`clock`]{@link Input#event:clock}
+     *    * [`start`]{@link Input#event:start}
+     *    * [`continue`]{@link Input#event:continue}
+     *    * [`stop`]{@link Input#event:stop}
+     *    * [`activesensing`]{@link Input#event:activesensing}
+     *    * [`reset`]{@link Input#event:reset}
+     *
+     * 3. **State Change** Events (input-wide)
+     *
+     *    * [`opened`]{@link Input#event:opened}
+     *    * [`closed`]{@link Input#event:closed}
+     *    * [`disconnected`]{@link Input#event:disconnected}
+     *
+     * 4. **Catch-All** Events (input-wide)
+     *
+     *    * [`midimessage`]{@link Input#event:midimessage}
+     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
+     *
+     * 5. **Channel Voice** Events (channel-specific)
+     *
+     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
+     *    * [`controlchange`]{@link InputChannel#event:controlchange}
+     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
+     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
+     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
+     *      * (...)
+     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
+     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
+     *    * [`noteoff`]{@link InputChannel#event:noteoff}
+     *    * [`noteon`]{@link InputChannel#event:noteon}
+     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
+     *    * [`programchange`]{@link InputChannel#event:programchange}
+     *
+     *    Note: you can listen for a specific control change message by using an event name like this:
+     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
+     *    etc.
+     *
+     * 6. **Channel Mode** Events (channel-specific)
+     *
+     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
+     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
+     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
+     *    * [`monomode`]{@link InputChannel#event:monomode}
+     *    * [`omnimode`]{@link InputChannel#event:omnimode}
+     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
+     *
+     * 7. **NRPN** Events (channel-specific)
+     *
+     *    * [`nrpn`]{@link InputChannel#event:nrpn}
+     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
+     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
+     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
+     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+     *
+     * 8. **RPN** Events (channel-specific)
+     *
+     *    * [`rpn`]{@link InputChannel#event:rpn}
+     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
+     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
+     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
+     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+     *
+     * @param event {string} The type of the event.
+     *
+     * @param listener {function} A callback function to execute when the specified event is detected.
+     * This function will receive an event parameter object. For details on this object's properties,
+     * check out the documentation for the various events (links above).
+     *
+     * @param {object} [options={}]
+     *
+     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
+     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
+     *
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
+     * listen on. If no channel is specified, all channels will be used. This parameter is ignored for
+     * input-wide events.
+     *
+     * @param {object} [options.context=this] The value of `this` in the callback function.
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+     * automatically expires.
+     *
+     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+     * of the listeners array and thus be triggered before others.
+     *
+     * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+     * should automatically be removed.
+     *
+     * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
+     * object is returned. If the event is channel-specific, an array of all the
+     * [`Listener`](Listener) objects is returned (one for each channel).
+     */
+    addListener(event: string, listener: Function, options?: {
+        arguments?: any[];
+        channels?: number | number[];
+        context?: object;
+        duration?: number;
+        prepend?: boolean;
+        remaining?: boolean;
+    }): Listener | Listener[];
+    /**
+     * Adds a one-time event listener that will trigger a function callback when the specified event
+     * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
+     * dispatched by [`InputChannel`]{@link InputChannel} objects and are tied to a specific MIDI
+     * channel while input-wide events are dispatched by the `Input` object itself and are not tied
+     * to a specific channel.
+     *
+     * Calling the function with an input-wide event (such as
+     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
+     * that was created.
+     *
+     * If you call the function with a channel-specific event (such as
+     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
+     * [`Listener`](Listener) objects that were created (one for each channel):
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
+     * ```
+     *
+     * You can also specify which channels you want to add the listener to:
+     *
+     * ```javascript
+     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
+     * ```
+     *
+     * In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.
+     *
+     * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
+     * event is triggered on MIDI channels `1`, `2` or `3`.
+     *
+     * Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
+     * that actually gets a listener added and not the `Input` instance.
+     *
+     * Note: if you want to add a listener to a single MIDI channel you should probably do so directly
+     * on the [`InputChannel`](InputChannel) object itself.
+     *
+     * There are 8 families of events you can listen to:
+     *
+     * 1. **MIDI System Common** Events (input-wide)
+     *
+     *    * [`songposition`]{@link Input#event:songposition}
+     *    * [`songselect`]{@link Input#event:songselect}
+     *    * [`sysex`]{@link Input#event:sysex}
+     *    * [`timecode`]{@link Input#event:timecode}
+     *    * [`tunerequest`]{@link Input#event:tunerequest}
+     *
+     * 2. **MIDI System Real-Time** Events (input-wide)
+     *
+     *    * [`clock`]{@link Input#event:clock}
+     *    * [`start`]{@link Input#event:start}
+     *    * [`continue`]{@link Input#event:continue}
+     *    * [`stop`]{@link Input#event:stop}
+     *    * [`activesensing`]{@link Input#event:activesensing}
+     *    * [`reset`]{@link Input#event:reset}
+     *
+     * 3. **State Change** Events (input-wide)
+     *
+     *    * [`opened`]{@link Input#event:opened}
+     *    * [`closed`]{@link Input#event:closed}
+     *    * [`disconnected`]{@link Input#event:disconnected}
+     *
+     * 4. **Catch-All** Events (input-wide)
+     *
+     *    * [`midimessage`]{@link Input#event:midimessage}
+     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
+     *
+     * 5. **Channel Voice** Events (channel-specific)
+     *
+     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
+     *    * [`controlchange`]{@link InputChannel#event:controlchange}
+     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
+     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
+     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
+     *      * (...)
+     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
+     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
+     *    * [`noteoff`]{@link InputChannel#event:noteoff}
+     *    * [`noteon`]{@link InputChannel#event:noteon}
+     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
+     *    * [`programchange`]{@link InputChannel#event:programchange}
+     *
+     *    Note: you can listen for a specific control change message by using an event name like this:
+     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
+     *    etc.
+     *
+     * 6. **Channel Mode** Events (channel-specific)
+     *
+     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
+     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
+     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
+     *    * [`monomode`]{@link InputChannel#event:monomode}
+     *    * [`omnimode`]{@link InputChannel#event:omnimode}
+     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
+     *
+     * 7. **NRPN** Events (channel-specific)
+     *
+     *    * [`nrpn`]{@link InputChannel#event:nrpn}
+     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
+     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
+     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
+     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+     *
+     * 8. **RPN** Events (channel-specific)
+     *
+     *    * [`rpn`]{@link InputChannel#event:rpn}
+     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
+     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
+     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
+     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+     *
+     * @param event {string} The type of the event.
+     *
+     * @param listener {function} A callback function to execute when the specified event is detected.
+     * This function will receive an event parameter object. For details on this object's properties,
+     * check out the documentation for the various events (links above).
+     *
+     * @param {object} [options={}]
+     *
+     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
+     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
+     *
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
+     * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
+     * input-wide events.
+     *
+     * @param {object} [options.context=this] The value of `this` in the callback function.
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+     * automatically expires.
+     *
+     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+     * of the listeners array and thus be triggered before others.
+     *
+     * @returns {Listener[]} An array of all [`Listener`](Listener) objects that were created.
+     */
+    addOneTimeListener(event: string, listener: Function, options?: {
+        arguments?: any[];
+        channels?: number | number[];
+        context?: object;
+        duration?: number;
+        prepend?: boolean;
+    }): Listener[];
+    /**
+     * This is an alias to the [Input.addListener()]{@link Input#addListener} method.
+     * @since 2.0.0
+     * @deprecated since v3.0
+     * @private
+     */
+    private on;
+    /**
+     * Checks if the specified event type is already defined to trigger the specified callback
+     * function. For channel-specific events, the function will return `true` only if all channels
+     * have the listener defined.
+     *
+     * @param event {string} The type of the event.
+     *
+     * @param listener {function} The callback function to check for.
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of such
+     * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
+     * events.
+     *
+     * @returns {boolean} Boolean value indicating whether or not the `Input` or
+     * [`InputChannel`](InputChannel) already has this listener defined.
+     */
+    hasListener(event: string, listener: Function, options?: {
+        channels?: number | number[];
+    }): boolean;
+    /**
+     * Removes the specified listener for the specified event. If no listener is specified, all
+     * listeners for the specified event will be removed. If no event is specified, all listeners for
+     * the `Input` as well as all listeners for all [`InputChannel`]{@link InputChannel} objects will
+     * be removed.
+     *
+     * By default, channel-specific listeners will be removed from all channels unless the
+     * `options.channel` narrows it down.
+     *
+     * @param [type] {string} The type of the event.
+     *
+     * @param [listener] {Function} The callback function to check for.
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
+     * such integers representing the MIDI channel(s) to match. This parameter is ignored for
+     * input-wide events.
+     *
+     * @param {*} [options.context] Only remove the listeners that have this exact context.
+     *
+     * @param {number} [options.remaining] Only remove the listener if it has exactly that many
+     * remaining times to be executed.
+     */
+    removeListener(event: any, listener?: Function, options?: {
+        channels?: number | number[];
+        context?: any;
+        remaining?: number;
+    }): any;
+    /**
+     * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
+     * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
+     * the added benefit of being able to filter which data is forwarded.
+     *
+     * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+     * objects, to forward messages to.
+     * @param {object} [options={}]
+     * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
+     * types (`noteon`, `controlchange`, etc.), that the message type must match in order to be
+     * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+     * messages are the ones found in either
+     * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
+     * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
+     * MIDI channel number or an array of channel numbers that the message must match in order to be
+     * forwarded. By default all MIDI channels are included (`1` to `16`).
+     *
+     * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
+     * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
+     */
+    addForwarder(output: any, options?: {
+        types?: string | string[];
+        channels?: number;
+    }): Forwarder;
+    /**
+     * Removes the specified [`Forwarder`](Forwarder) object from the input.
+     *
+     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
+     * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
+     */
+    removeForwarder(forwarder: Forwarder): void;
+    /**
+     * Checks whether the specified [`Forwarder`](Forwarder) object has already been attached to this
+     * input.
+     *
+     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check for (the
+     * [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).
+     * @returns {boolean}
+     */
+    hasForwarder(forwarder: Forwarder): boolean;
+    /**
+     * Name of the MIDI input.
+     *
+     * @type {string}
+     * @readonly
+     */
+    get name(): string;
+    /**
+     * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
+     * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+     * the same port.
+     *
+     * @type {string}
+     * @readonly
+     */
+    get id(): string;
+    /**
+     * Input port's connection state: `pending`, `open` or `closed`.
+     *
+     * @type {string}
+     * @readonly
+     */
+    get connection(): string;
+    /**
+     * Name of the manufacturer of the device that makes this input port available.
+     *
+     * @type {string}
+     * @readonly
+     */
+    get manufacturer(): string;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+     * number 60) is placed on the 4th octave (C4).
+     *
+     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     *
+     * Note that this value is combined with the global offset value defined in the
+     * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) property (if any).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
+    /**
+     * State of the input port: `connected` or `disconnected`.
+     *
+     * @type {string}
+     * @readonly
+     */
+    get state(): string;
+    /**
+     * The port type. In the case of the `Input` object, this is always: `input`.
+     *
+     * @type {string}
+     * @readonly
+     */
+    get type(): string;
+    /**
+     * @type {boolean}
+     * @private
+     * @deprecated since v3.0.0 (moved to 'InputChannel' class)
+     */
+    private get nrpnEventsEnabled();
+}
+/**
+ * The `InputChannel` class represents a single MIDI input channel (1-16) from a single input
+ * device. This object is derived from the host's MIDI subsystem and should not be instantiated
+ * directly.
+ *
+ * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
+ * property.
+ *
+ * @fires InputChannel#midimessage
+ *
+ * @fires InputChannel#noteoff
+ * @fires InputChannel#noteon
+ * @fires InputChannel#keyaftertouch
+ * @fires InputChannel#programchange
+ * @fires InputChannel#event:controlchange-controllerxxx
+ * @fires InputChannel#channelaftertouch
+ * @fires InputChannel#pitchbend
+ * @fires InputChannel#controlchange
+ *
+ * @fires InputChannel#allnotesoff
+ * @fires InputChannel#allsoundoff
+ * @fires InputChannel#localcontrol
+ * @fires InputChannel#monomode
+ * @fires InputChannel#omnimode
+ * @fires InputChannel#resetallcontrollers
+ *
+ * @fires InputChannel#event:nrpn
+ * @fires InputChannel#event:nrpn-dataentrycoarse
+ * @fires InputChannel#event:nrpn-dataentryfine
+ * @fires InputChannel#event:nrpn-databuttonincrement
+ * @fires InputChannel#event:nrpn-databuttondecrement
+ * @fires InputChannel#event:rpn
+ * @fires InputChannel#event:rpn-dataentrycoarse
+ * @fires InputChannel#event:rpn-dataentryfine
+ * @fires InputChannel#event:rpn-databuttonincrement
+ * @fires InputChannel#event:rpn-databuttondecrement
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ * @since 3.0.0
+ */
+export class InputChannel {
+    /**
+     * Creates an `InputChannel` object.
+     *
+     * @param {Input} input The [`Input`](Input) object this channel belongs to.
+     * @param {number} number The channel's MIDI number (1-16).
+     */
+    constructor(input: Input, number: number);
+    /**
+     * @type {Input}
+     * @private
+     */
+    private _input;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _number;
+    /**
+     * @type {number}
+     * @private
+     */
+    private _octaveOffset;
+    /**
+     * An array of messages that form the current NRPN sequence
+     * @private
+     * @type {Message[]}
+     */
+    private _nrpnBuffer;
+    /**
+     * An array of messages that form the current RPN sequence
+     * @private
+     * @type {Message[]}
+     */
+    private _rpnBuffer;
+    /**
+     * Indicates whether events for **Registered Parameter Number** and **Non-Registered Parameter
+     * Number** should be dispatched. RPNs and NRPNs are composed of a sequence of specific
+     * **control change** messages. When a valid sequence of such control change messages is
+     * received, an [`rpn`](#event-rpn) or [`nrpn`](#event-nrpn) event will fire.
+     *
+     * If an invalid or out-of-order **control change** message is received, it will fall through
+     * the collector logic and all buffered **control change** messages will be discarded as
+     * incomplete.
+     *
+     * @type {boolean}
+     */
+    parameterNumberEventsEnabled: boolean;
+    /**
+     * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+     * `true` for a currently playing note and `false` otherwise.
+     * @type {boolean[]}
+     */
+    notesState: boolean[];
+    /**
+     * Destroys the `InputChannel` by removing all listeners and severing the link with the MIDI
+     * subsystem's input.
+     */
+    destroy(): void;
+    /**
+     * @param e MIDIMessageEvent
+     * @private
+     */
+    private _processMidiMessageEvent;
+    /**
+     * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
+     * @param e Event
+     * @private
+     */
+    private _parseEventForStandardMessages;
+    _parseChannelModeMessage(e: any): void;
+    /**
+     * Parses inbound events to identify RPN/NRPN sequences.
+     * @param e Event
+     * @private
+     */
+    private _parseEventForParameterNumber;
+    /**
+     * Indicates whether the specified controller can be part of an RPN or NRPN sequence
+     * @param controller
+     * @returns {boolean}
+     * @private
+     */
+    private _isRpnOrNrpnController;
+    _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
+    /**
+     * @deprecated since version 3.
+     * @private
+     */
+    private getChannelModeByNumber;
+    /**
+     * @deprecated since version 3.
+     * @private
+     */
+    private getCcNameByNumber;
+    /**
+     * Return the playing status of the specified note. The `note` parameter can be an unsigned
+     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`]{@link Note} object.
+     *
+     * If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
+     * defined.
+     *
+     * @param [input] {number|string|Note} The note to get the state for. The
+     * [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and
+     * [`Note`]{@link Note} objects.
+     * @returns {boolean}
+     * @since version 3.0.0
+     */
+    getNoteState(note: any): boolean;
+    set octaveOffset(arg: number);
+    /**
+     * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+     * octave (C4).
+     *
+     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     *
+     * Note that this value is combined with the global offset value defined by
+     * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) object and with the value defined on the parent
+     * input object with [`Input.octaveOffset`](Input#octaveOffset).
+     *
+     * @type {number}
+     *
+     * @since 3.0
+     */
+    get octaveOffset(): number;
+    /**
+     * The [`Input`](Input) this channel belongs to.
+     * @type {Input}
+     * @since 3.0
+     */
+    get input(): Input;
+    /**
+     * This channel's MIDI number (1-16).
+     * @type {number}
+     * @since 3.0
+     */
+    get number(): number;
+    private set nrpnEventsEnabled(arg);
+    /**
+     * Whether RPN/NRPN events are parsed and dispatched.
+     * @type {boolean}
+     * @since 3.0
+     * @deprecated Use parameterNumberEventsEnabled instead.
+     * @private
+     */
+    private get nrpnEventsEnabled();
+}
+/**
  * The `Message` class represents a single MIDI message. It has several properties that make it
  * easy to make sense of the binary data it contains.
- *
- * @param {Uint8Array} data The raw data of the MIDI message as a
- * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
- * of integers between `0` and `255`.
  *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Message {
-    constructor(data: any);
+    /**
+     * Creates a new `Message` object from raw MIDI data.
+     *
+     * @param {Uint8Array} data The raw data of the MIDI message as a
+     * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+     * of integers between `0` and `255`.
+     */
+    constructor(data: Uint8Array);
     /**
      * A
      * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -662,40 +1437,54 @@ export class Message {
  * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
  * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
- * @param {object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
- *
- * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @throws {Error} Invalid note identifier
- * @throws {RangeError} Invalid name value
- * @throws {RangeError} Invalid accidental value
- * @throws {RangeError} Invalid octave value
- * @throws {RangeError} Invalid duration value
- * @throws {RangeError} Invalid attack value
- * @throws {RangeError} Invalid release value
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Note {
-    constructor(value: any, options?: {});
+    /**
+     * Creates a `Note` object.
+     *
+     * @param value {string|number} The value used to create the note. If an identifier string is used,
+     * it must start with the note letter, optionally followed by an accidental and followed by the
+     * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
+     * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+     * explicitly stopped.
+     *
+     * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @throws {Error} Invalid note identifier
+     * @throws {RangeError} Invalid name value
+     * @throws {RangeError} Invalid accidental value
+     * @throws {RangeError} Invalid octave value
+     * @throws {RangeError} Invalid duration value
+     * @throws {RangeError} Invalid attack value
+     * @throws {RangeError} Invalid release value
+     */
+    constructor(value: string | number, options?: {
+        duration?: number;
+        attack?: number;
+        release?: number;
+        rawAttack?: number;
+        rawRelease?: number;
+    });
     set duration(arg: number);
     /**
      * The duration of the note as a positive decimal number representing the number of milliseconds
@@ -787,330 +1576,6 @@ export class Note {
     getOffsetNumber(octaveOffset?: number, semitoneOffset?: number): number;
 }
 /**
- * The `Utilities` class contains general-purpose utility methods. All methods are static and
- * should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
- *
- * @license Apache-2.0
- * @since 3.0.0
- */
-export class Utilities {
-    /**
-     * Returns a MIDI note number matching the identifier passed in the form of a string. The
-     * identifier must include the octave number. The identifier also optionally include a sharp (#),
-     * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
-     * identifiers: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
-     *
-     * When converting note identifiers to numbers, C4 is considered to be middle C (MIDI note number
-     * 60) as per the scientific pitch notation standard.
-     *
-     * The resulting note number can be offset by using the `octaveOffset` parameter.
-     *
-     * @param identifier {string} The identifier in the form of a letter, followed by an optional "#",
-     * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
-     * Abb4, B##6, etc.
-     *
-     * @param {number} [octaveOffset=0] A integer to offset the octave by.
-     *
-     * @returns {number} The MIDI note number (an integer between 0 and 127).
-     *
-     * @throws RangeError Invalid 'octaveOffset' value
-     *
-     * @throws TypeError Invalid note identifier
-     *
-     * @license Apache-2.0
-     * @since 3.0.0
-     * @static
-     */
-    static toNoteNumber(identifier: string, octaveOffset?: number): number;
-    /**
-     * Given a proper note identifier (`C#4`, `Gb-1`, etc.) or a valid MIDI note number (0-127), this
-     * method returns an object containing broken down details about the specified note (uppercase
-     * letter, accidental and octave).
-     *
-     * When a number is specified, the translation to note is done using a value of 60 for middle C
-     * (C4 = middle C).
-     *
-     * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
-     * number (0-127).
-     *
-     * @returns {{accidental: string, identifier: string, name: string, octave: number }}
-     *
-     * @throws TypeError Invalid note identifier
-     *
-     * @since 3.0.0
-     * @static
-     */
-    static getNoteDetails(value: string | number): {
-        accidental: string;
-        identifier: string;
-        name: string;
-        octave: number;
-    };
-    /**
-     * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
-     * single integer or an array of integers.
-     *
-     * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
-     * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
-     * integers between 1 and 16 are silently ignored.
-     *
-     * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
-     * numbers.
-     *
-     * @returns {number[]} An array of 0 or more valid MIDI channel numbers.
-     *
-     * @since 3.0.0
-     * @static
-     */
-    static sanitizeChannels(channel?: number | number[]): number[];
-    /**
-     * Returns a valid timestamp, relative to the navigation start of the document, derived from the
-     * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
-     * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
-     * the parameter is a positive number, it will be returned as is. Otherwise, false will be
-     * returned.
-     *
-     * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
-     * @return {number|false} A positive number or `false` (if the time cannot be converted)
-     *
-     * @since 3.0.0
-     * @static
-     */
-    static toTimestamp(time?: number | string): number | false;
-    /**
-     * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
-     * string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
-     * between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings
-     * will be parsed for integer value, if possible.
-     *
-     * If the input is an identifier, the resulting note number is offset by the `octaveOffset`
-     * parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
-     * -2, the resulting MIDI note number will be 36.
-     *
-     * @param input {string|number} A string or number to extract the MIDI note number from.
-     *
-     * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
-     * successfully be parsed to a note number.
-     *
-     * @since 3.0.0
-     * @static
-     */
-    static guessNoteNumber(input: string | number, octaveOffset: any): number | false;
-    /**
-     * Returns an identifier string representing a note name (with optional accidental) followed by an
-     * octave number. The octave can be offset by using the `octaveOffset` parameter.
-     *
-     * @param {number} number The MIDI note number to convert to a note identifier
-     * @param {number} octaveOffset An offset to apply to the resulting octave
-     *
-     * @returns {string}
-     *
-     * @throws RangeError Invalid note number
-     * @throws RangeError Invalid octaveOffset value
-     *
-     * @since 3.0.0
-     * @static
-     */
-    static toNoteIdentifier(number: number, octaveOffset: number): string;
-    /**
-     * Converts the `input` parameter to a valid [`Note`]{@link Note} object. The input usually is an
-     * unsigned integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a
-     * [`Note`]{@link Note} object, it will be returned as is.
-     *
-     * If the input is a note number or identifier, it is possible to specify options by providing the
-     * `options` parameter.
-     *
-     * @param [input] {number|string|Note}
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-     * be explicitly stopped.
-     *
-     * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
-     * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
-     * `attack` and `rawAttack` are specified, the latter has precedence.
-     *
-     * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
-     * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
-     * `release` and `rawRelease` are specified, the latter has precedence.
-     *
-     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
-     * `attack` and `rawAttack` are specified, the latter has precedence.
-     *
-     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
-     * `release` and `rawRelease` are specified, the latter has precedence.
-     *
-     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
-     * used when the input value is a note identifier.**
-     *
-     * @returns {Note}
-     *
-     * @throws TypeError The input could not be parsed to a note
-     *
-     * @since version 3.0.0
-     * @static
-     */
-    static buildNote(input?: number | string | Note, options?: {
-        duration?: number;
-        attack?: number;
-        release?: number;
-        rawAttack?: number;
-        rawRelease?: number;
-        octaveOffset?: number;
-    }): Note;
-    /**
-     * Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
-     * [`Note`]{@link Note}  object or an array of the previous types, to an array of
-     * [`Note`]{@link Note}  objects.
-     *
-     * [`Note`]{@link Note}  objects are returned as is. For note numbers and identifiers, a
-     * [`Note`]{@link Note} object is created with the options specified. An error will be thrown when
-     * encountering invalid input.
-     *
-     * Note: if both the `attack` and `rawAttack` options are specified, the later has priority. The
-     * same goes for `release` and `rawRelease`.
-     *
-     * @param [notes] {number|string|Note|number[]|string[]|Note[]}
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
-     * be explicitly stopped.
-     *
-     * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
-     * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
-     * `attack` and `rawAttack` are specified, the latter has precedence.
-     *
-     * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
-     * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
-     * `release` and `rawRelease` are specified, the latter has precedence.
-     *
-     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
-     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
-     * `attack` and `rawAttack` are specified, the latter has precedence.
-     *
-     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
-     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
-     * `release` and `rawRelease` are specified, the latter has precedence.
-     *
-     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
-     * used when the input value is a note identifier.**
-     *
-     * @returns {Note[]}
-     *
-     * @throws TypeError An element could not be parsed as a note.
-     *
-     * @since 3.0.0
-     * @static
-     */
-    static buildNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
-        duration?: number;
-        attack?: number;
-        release?: number;
-        rawAttack?: number;
-        rawRelease?: number;
-        octaveOffset?: number;
-    }): Note[];
-    /**
-     * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
-     * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
-     * smaller than 0.
-     *
-     * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
-     * input value cannot be converted to an integer, the method returns 0.
-     *
-     * @param value A positive integer between 0 and 127 (inclusive)
-     * @returns {number} A number between 0 and 1 (inclusive)
-     * @static
-     */
-    static from7bitToFloat(value: any): number;
-    /**
-     * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-     * The input value should be number between 0 and 1 (inclusively). The returned value is
-     * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
-     *
-     * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
-     * the input value cannot be converted to a number, the method returns 0.
-     *
-     * @param value A positive integer between 0 and 127 (inclusive)
-     * @returns {number} A number between 0 and 1 (inclusive)
-     * @static
-     */
-    static fromFloatTo7Bit(value: any): number;
-    /**
-     * Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
-     * is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
-     *
-     * @param msb {number} The most significant byte as a integer between 0 and 127.
-     * @param [lsb=0] {number} The least significant byte as a integer between 0 and 127.
-     * @returns {number} A float between 0 and 1.
-     */
-    static fromMsbLsbToFloat(msb: number, lsb?: number): number;
-    /**
-     * Extracts 7bit MSB and LSB values from the supplied float.
-     *
-     * @param value {number} A float between 0 and 1
-     * @returns {{lsb: number, msb: number}}
-     */
-    static fromFloatToMsbLsb(value: number): {
-        lsb: number;
-        msb: number;
-    };
-    /**
-     * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
-     * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
-     * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
-     *
-     * @param number {number} The MIDI note to offset as an integer between 0 and 127.
-     * @param octaveOffset {number} An integer to offset the note by (in octave)
-     * @param octaveOffset {number} An integer to offset the note by (in semitones)
-     * @returns {number} An integer between 0 and 127
-     *
-     * @throws {Error} Invalid note number
-     * @static
-     */
-    static offsetNumber(number: number, octaveOffset?: number, semitoneOffset?: number): number;
-    /**
-     * Returns the name of the first property of the supplied object whose value is equal to the one
-     * supplied. If nothing is found, `undefined` is returned.
-     *
-     * @param object {object} The object to look for the property in.
-     * @param value {*} Any value that can be expected to be found in the object's properties.
-     * @returns {string|undefined} The name of the matching property or `undefined` if nothing is
-     * found.
-     * @static
-     */
-    static getPropertyByValue(object: object, value: any): string | undefined;
-    /**
-     * Returns the name of a control change message matching the specified number (0-127). Some valid
-     * control change numbers do not have a specific name or purpose assigned in the MIDI
-     * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
-     * In these cases, the method returns `controllerXXX` (where XXX is the number).
-     *
-     * @param {number} number An integer (0-127) representing the control change message
-     * @returns {string|undefined} The matching control change name or `undefined` if no match was
-     * found.
-     *
-     * @static
-     */
-    static getCcNameByNumber(number: number): string | undefined;
-    /**
-     * Returns the channel mode name matching the specified number. If no match is found, the function
-     * returns `false`.
-     *
-     * @param {number} number An integer representing the channel mode message (120-127)
-     * @returns {string|false} The name of the matching channel mode or `false` if no match could be
-     * found.
-     *
-     * @since 2.0.0
-     */
-    static getChannelModeByNumber(number: number): string | false;
-}
-declare const wm: WebMidi;
-/**
  * The `Output` class represents a single MIDI output port (not to be confused with a MIDI channel).
  * A port is made available by a MIDI device. A MIDI device can advertise several input and output
  * ports. Each port has 16 MIDI channels which can be accessed via the [`channels`](#channels)
@@ -1124,9 +1589,6 @@ declare const wm: WebMidi;
  * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
  * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
  *
- * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
- * object as provided by the MIDI subsystem.
- *
  * @fires Output#opened
  * @fires Output#disconnected
  * @fires Output#closed
@@ -1134,8 +1596,14 @@ declare const wm: WebMidi;
  * @extends EventEmitter
  * @license Apache-2.0
  */
-declare class Output {
-    constructor(midiOutput: any);
+export class Output {
+    /**
+     * Creates an `Output` object.
+     *
+     * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+     * object as provided by the MIDI subsystem.
+     */
+    constructor(midiOutput: MIDIOutput);
     /**
      * A reference to the `MIDIOutput` object
      * @type {MIDIOutput}
@@ -2708,440 +3176,6 @@ declare class Output {
     get octaveOffset(): number;
 }
 /**
- * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
- * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
- *
- * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
- * instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
- * simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
- * module) version, you get an already-instantiated object when you import the module.
- *
- * @fires WebMidi#connected
- * @fires WebMidi#disabled
- * @fires WebMidi#disconnected
- * @fires WebMidi#enabled
- * @fires WebMidi#midiaccessgranted
- *
- * @extends EventEmitter
- * @license Apache-2.0
- */
-declare class WebMidi {
-    /**
-     * Object containing system-wide default values that can be changed to customize how the library
-     * works.
-     *
-     * @type {object}
-     *
-     * @property {object}  defaults.note - Default values relating to note
-     * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
-     * default attack velocity of notes. Initial value is 64.
-     * @property {number}  defaults.note.release - A number between 0 and 127 representing the
-     * default release velocity of notes. Initial value is 64.
-     * @property {number}  defaults.note.duration - A number representing the default duration of
-     * notes (in seconds). Initial value is Infinity.
-     */
-    defaults: object;
-    /**
-     * The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
-     * instance used to talk to the lower-level Web MIDI API. This should not be used directly
-     * unless you know what you are doing.
-     *
-     * @type {?MIDIAccess}
-     * @readonly
-     */
-    interface: any;
-    /**
-     * Indicates whether argument validation and backwards-compatibility checks are performed
-     * throughout the WebMidi.js library for object methods and property setters.
-     *
-     * This is an advanced setting that should be used carefully. Setting `validation` to `false`
-     * improves performance but should only be done once the project has been thoroughly tested with
-     * `validation` turned on.
-     *
-     * @type {boolean}
-     */
-    validation: boolean;
-    /**
-     * Array of all (Input) objects
-     * @type {Input[]}
-     * @private
-     */
-    private _inputs;
-    /**
-     * Array of disconnected [`Input`](Input) objects. This is used when inputs are plugged back in
-     * to retain their previous state.
-     * @type {Input[]}
-     * @private
-     */
-    private _disconnectedInputs;
-    /**
-     * Array of all [`Output`](Output) objects
-     * @type {Output[]}
-     * @private
-     */
-    private _outputs;
-    /**
-     * Array of disconnected [`Output`](Output) objects. This is used when outputs are plugged back
-     * in to retain their previous state.
-     * @type {Output[]}
-     * @private
-     */
-    private _disconnectedOutputs;
-    /**
-     * Array of statechange events to process. These events must be parsed synchronously so they do
-     * not override each other.
-     *
-     * @type {string[]}
-     * @private
-     */
-    private _stateChangeQueue;
-    /**
-     * @type {number}
-     * @private
-     */
-    private _octaveOffset;
-    /**
-     * Checks if the Web MIDI API is available in the current environment and then tries to connect to
-     * the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
-     * be displayed to the user.
-     *
-     * To enable the use of MIDI system exclusive messages, the `sysex` option should be set to
-     * `true`. However, under some environments (e.g. Jazz-Plugin), the `sysex` option is ignored
-     * and system exclusive messages are always enabled. You can check the
-     * [`sysexEnabled`](#sysexEnabled) property to confirm.
-     *
-     * To enable access to software synthesizers available on the host, you would set the `software`
-     * option to `true`. However, this option is only there to future-proof the library as support for
-     * software synths has not yet been implemented in any browser (as of September 2021).
-     *
-     * By the way, if you call the [`enable()`](#enable) method while WebMidi.js is already enabled,
-     * the callback function will be executed (if any), the promise will resolve but the events
-     * ([`"midiaccessgranted"`](#event:midiaccessgranted), [`"connected"`](#event:connected) and
-     * [`"enabled"`](#event:enabled)) will not be fired.
-     *
-     * There are 3 ways to execute code after `WebMidi` has been enabled:
-     *
-     * - Pass a callback function in the `options`
-     * - Listen to the [`"enabled"`](#event:enabled) event
-     * - Wait for the promise to resolve
-     *
-     * In order, this is what happens towards the end of the enabling process:
-     *
-     * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered once the user has
-     * granted access to use MIDI.
-     * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
-     * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is fully ready
-     * 4. specified callback (if any) is executed
-     * 5. promise is resolved and fulfilled with the `WebMidi` object.
-     *
-     * **Important note**: starting with Chrome v77, a page using Web MIDI API must be hosted on a
-     * secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
-     * authorize the operation (no matter if the `sysex` option is `true` or not).
-     *
-     * ##### Example
-     * ```js
-     * // Enabling WebMidi and using the promise
-     * WebMidi.enable().then(() => {
-     *   console.log("WebMidi.js has been enabled!");
-     * })
-     * ```
-     *
-     * @param [options] {object}
-     *
-     * @param [options.callback] {function} A function to execute once the operation completes. This
-     * function will receive an `Error` object if enabling the Web MIDI API failed.
-     *
-     * @param [options.sysex=false] {boolean} Whether to enable MIDI system exclusive messages or not.
-     *
-     * @param [options.validation=true] {boolean} Whether to enable library-wide validation of method
-     * arguments and setter values. This is an advanced setting that should be used carefully. Setting
-     * [`validation`](#validation) to `false` improves performance but should only be done once the
-     * project has been thoroughly tested with [`validation`](#validation)  turned on.
-     *
-     * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
-     * the host system. This is part of the spec but has not yet been implemented by most browsers as
-     * of April 2020.
-     *
-     * @async
-     *
-     * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object fro
-     * chainability
-     *
-     * @throws {Error} The Web MIDI API is not supported in your environment.
-     * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
-     */
-    enable(options?: {
-        callback?: Function;
-        sysex?: boolean;
-        validation?: boolean;
-        software?: boolean;
-    }, legacy?: boolean): Promise<WebMidi>;
-    /**
-     * Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
-     * [`Input`](Input) and [`Output`](Output) objects that may have been opened. This also means that
-     * listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `WebMidi` itself
-     * are also destroyed.
-     *
-     * @async
-     * @returns {Promise}
-     *
-     * @throws {Error} The Web MIDI API is not supported by your environment.
-     *
-     * @since 2.0.0
-     */
-    disable(): Promise<any>;
-    /**
-     * Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
-     * matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
-     *
-     * Please note that IDs change from one host to another. For example, Chrome does not use the same
-     * kind of IDs as Jazz-Plugin.
-     *
-     * @param id {string} The ID string of the input. IDs can be viewed by looking at the
-     * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
-     * are strings.
-     *
-     * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
-     * if no matching input can be found.
-     *
-     * @throws {Error} WebMidi is not enabled.
-     *
-     * @since 2.0.0
-     */
-    getInputById(id: string): Input | false;
-    /**
-     * Returns the first [`Input`](Input) object whose name **contains** the specified string. Note
-     * that the port names change from one environment to another. For example, Chrome does not report
-     * input names in the same way as the Jazz-Plugin does.
-     *
-     * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
-     * those visible in the [inputs](WebMidi#inputs) array).
-     *
-     * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
-     * specified name.
-     *
-     * @throws {Error} WebMidi is not enabled.
-     *
-     * @since 2.0.0
-     */
-    getInputByName(name: string): Input | false;
-    /**
-     * Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
-     * that the port names change from one environment to another. For example, Chrome does not report
-     * input names in the same way as the Jazz-Plugin does.
-     *
-     * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
-     * those visible in the [`outputs`](#outputs) array).
-     *
-     * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
-     * the specified name.
-     *
-     * @throws {Error} WebMidi is not enabled.
-     *
-     * @since 2.0.0
-     */
-    getOutputByName(name: string): Output | false;
-    /**
-     * Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
-     * matching output is found. As per the Web MIDI API specification, IDs are strings (not
-     * integers).
-     *
-     * Please note that IDs change from one host to another. For example, Chrome does not use the same
-     * kind of IDs as Jazz-Plugin.
-     *
-     * @param id {string} The ID string of the port. IDs can be viewed by looking at the
-     * [`WebMidi.outputs`](WebMidi#outputs) array.
-     *
-     * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
-     * matching output can be found, the method returns `false`.
-     *
-     * @throws {Error} WebMidi is not enabled.
-     *
-     * @since 2.0.0
-     */
-    getOutputById(id: string): Output | false;
-    /**
-     * @private
-     * @deprecated since version 3.0.0, use Utilities.toNoteNumber() instead.
-     */
-    private noteNameToNumber;
-    /**
-     * @private
-     * @deprecated since 3.0.0, use Utilities.getNoteDetails() instead.
-     */
-    private getOctave;
-    /**
-     * @private
-     * @deprecated since 3.0.0, use Utilities.sanitizeChannels() instead.
-     */
-    private sanitizeChannels;
-    /**
-     * @private
-     * @deprecated since version 3.0.0, use Utilities.sanitizeChannels() instead.
-     */
-    private toMIDIChannels;
-    /**
-     * @private
-     * @deprecated since version 3.0.0, use Utilities.guessNoteNumber() instead.
-     */
-    private guessNoteNumber;
-    /**
-     * @private
-     * @deprecated since version 3.0.0, use Utilities.buildNoteArray() instead.
-     */
-    private getValidNoteArray;
-    /**
-     * @private
-     * @deprecated since version 3.0.0, use Utilities.toTimestamp() instead.
-     */
-    private convertToTimestamp;
-    /**
-     * @return {Promise<void>}
-     * @private
-     */
-    private _destroyInputsAndOutputs;
-    /**
-     * @private
-     */
-    private _onInterfaceStateChange;
-    /**
-     * @private
-     */
-    private _updateInputsAndOutputs;
-    /**
-     * @private
-     */
-    private _updateInputs;
-    /**
-     * @private
-     */
-    private _updateOutputs;
-    /**
-     * Indicates whether access to the host's MIDI subsystem is active or not.
-     *
-     * @readonly
-     * @type {boolean}
-     */
-    get enabled(): boolean;
-    /**
-     * An array of all currently available MIDI inputs.
-     *
-     * @readonly
-     * @type {Input[]}
-     */
-    get inputs(): Input[];
-    /**
-     * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-     * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-     * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-     * @type {boolean}
-     */
-    get isNode(): boolean;
-    /**
-     * Indicates whether the current environment is a browser environment or not. If you need to check
-     * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-     * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-     * @type {boolean}
-     */
-    get isBrowser(): boolean;
-    set octaveOffset(arg: number);
-    /**
-     * An integer to offset the octave of notes received from external devices or sent to external
-     * devices.
-     *
-     * When a MIDI message comes in on an input channel the reported note name will be offset. For
-     * example, if the `octaveOffset` is set to `-1` and a [`"noteon"`](InputChannel#event:noteon)
-     * message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4).
-     *
-     * By the same token, when [`OutputChannel.playNote()`](OutputChannel#playNote) is called, the
-     * MIDI note number being sent will be offset. If `octaveOffset` is set to `-1`, the MIDI note
-     * number sent will be 72 (instead of 60).
-     *
-     * @type {number}
-     *
-     * @since 2.1
-     */
-    get octaveOffset(): number;
-    /**
-     * An array of all currently available MIDI outputs as [`Output`](Output) objects.
-     *
-     * @readonly
-     * @type {Output[]}
-     */
-    get outputs(): Output[];
-    /**
-     * Indicates whether the environment provides support for the Web MIDI API or not.
-     *
-     * **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
-     * the
-     * [`navigator.requestMIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
-     * function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this
-     * property will be `true` even though actual support might not be there.
-     *
-     * @readonly
-     * @type {boolean}
-     */
-    get supported(): boolean;
-    /**
-     * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
-     * enabled via the [`enable()`](#enable) method.
-     *
-     * @readonly
-     * @type boolean
-     */
-    get sysexEnabled(): boolean;
-    /**
-     * The elapsed time, in milliseconds, since the time
-     * [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
-     * Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
-     * floating-point number, it has sub-millisecond accuracy. According to the
-     * [documentation](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
-     * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
-     * browser might only be accurate to one millisecond.
-     *
-     * @type {DOMHighResTimeStamp}
-     * @readonly
-     */
-    get time(): number;
-    /**
-     * The version of the library as a [semver](https://semver.org/) string.
-     *
-     * @readonly
-     * @type string
-     */
-    get version(): string;
-    /**
-     * @private
-     * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
-     */
-    private get CHANNEL_EVENTS();
-    /**
-     * @private
-     * @deprecated since 3.0.0. Use Enumerations.MIDI_SYSTEM_MESSAGES instead.
-     */
-    private get MIDI_SYSTEM_MESSAGES();
-    /**
-     * @private
-     * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
-     */
-    private get MIDI_CHANNEL_MODE_MESSAGES();
-    /**
-     * @private
-     * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
-     */
-    private get MIDI_CONTROL_CHANGE_MESSAGES();
-    /**
-     * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
-     * @private
-     */
-    private get MIDI_REGISTERED_PARAMETER();
-    /**
-     * @deprecated since 3.0.0.
-     * @private
-     */
-    private get NOTES();
-}
-/**
  * The `OutputChannel` class represents a single output MIDI channel. `OutputChannel` objects are
  * provided by an [`Output`](Output) port which, itself, is made available by a device. The
  * `OutputChannel` object is derived from the host's MIDI subsystem and should not be instantiated
@@ -3157,8 +3191,14 @@ declare class WebMidi {
  * @license Apache-2.0
  * @since 3.0.0
  */
-declare class OutputChannel {
-    constructor(output: any, number: any);
+export class OutputChannel {
+    /**
+     * Creates an `OutputChannel` object.
+     *
+     * @param {Output} output The [`Output`](Output) this channel belongs to.
+     * @param {number} number The MIDI channel number (`1` - `16`).
+     */
+    constructor(output: Output, number: number);
     /**
      * @type {Output}
      * @private
@@ -4299,762 +4339,761 @@ declare class OutputChannel {
     get number(): number;
 }
 /**
- * The `Input` class represents a single MIDI input port. This object is automatically instantiated
- * by the library according to the host's MIDI subsystem and does not need to be directly
- * instantiated. Instead, you can access all `Input` objects by referring to the
- * [`WebMidi.inputs`](WebMidi#inputs) array. You can also retrieve inputs by using methods such as
- * [`WebMidi.getInputByName()`](WebMidi#getInputByName) and
- * [`WebMidi.getInputById()`](WebMidi#getInputById).
+ * The `Utilities` class contains general-purpose utility methods. All methods are static and
+ * should be called using the class name. For example: `Utilities.getNoteDetails("C4")`.
  *
- * Note that a single MIDI device may expose several inputs and/or outputs.
- *
- * **Important**: the `Input` class does not directly fire channel-specific MIDI messages
- * (such as [`noteon`](InputChannel#event:noteon) or
- * [`controlchange`](InputChannel#event:controlchange), etc.). The [`InputChannel`](InputChannel)
- * object does that. However, you can still use the
- * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
- * [`InputChannel`](InputChannel) objects at once.
- *
- * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
- * object as provided by the MIDI subsystem (Web MIDI API).
- *
- * @fires Input#opened
- * @fires Input#disconnected
- * @fires Input#closed
- * @fires Input#midimessage
- * @fires Input#sysex
- * @fires Input#timecode
- * @fires Input#songposition
- * @fires Input#songselect
- * @fires Input#tunerequest
- * @fires Input#clock
- * @fires Input#start
- * @fires Input#continue
- * @fires Input#stop
- * @fires Input#activesensing
- * @fires Input#reset
- * @fires Input#unknownmidimessage
- *
- * @extends EventEmitter
- * @license Apache-2.0
- */
-declare class Input {
-    constructor(midiInput: any);
-    /**
-     * Reference to the actual MIDIInput object
-     * @private
-     */
-    private _midiInput;
-    /**
-     * @type {number}
-     * @private
-     */
-    private _octaveOffset;
-    /**
-     * Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
-     * channels are numbered 1 through 16.
-     *
-     * @type {InputChannel[]}
-     */
-    channels: InputChannel[];
-    _forwarders: any[];
-    /**
-     * Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
-     * unlinking the MIDI subsystem. This is mostly for internal use.
-     *
-     * @returns {Promise<void>}
-     */
-    destroy(): Promise<void>;
-    /**
-     * Executed when a `"statechange"` event occurs.
-     *
-     * @param e
-     * @private
-     */
-    private _onStateChange;
-    /**
-     * Executed when a `"midimessage"` event is received
-     * @param e
-     * @private
-     */
-    private _onMidiMessage;
-    /**
-     * @private
-     */
-    private _parseEvent;
-    /**
-     * Opens the input for usage. This is usually unnecessary as the port is opened automatically when
-     * WebMidi is enabled.
-     *
-     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object.
-     */
-    open(): Promise<Input>;
-    /**
-     * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
-     * the input is opened again by calling [`Input.open()`](Input#open).
-     *
-     * **Note**: if what you want to do is stop events from being dispatched, you should use
-     * [`eventsSuspended`](#eventsSuspended) instead.
-     *
-     * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
-     */
-    close(): Promise<Input>;
-    /**
-     * @private
-     * @deprecated since v3.0.0 (moved to 'Utilities' class)
-     */
-    private getChannelModeByNumber;
-    /**
-     * Adds an event listener that will trigger a function callback when the specified event is
-     * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
-     *
-     * Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
-     * at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
-     * events target a specific channel. Usually, in this case, you would add the listener to the
-     * [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
-     * channel-specific events directly on an `Input`. This allows you to react to a channel-specific
-     * event no matter which channel it actually came through.
-     *
-     * When listening for an event, you simply need to specify the event name and the function to
-     * execute:
-     *
-     * ```javascript
-     * const listener = WebMidi.inputs[0].addListener("midimessage", e => {
-     *   console.log(e);
-     * });
-     * ```
-     *
-     * Calling the function with an input-wide event (such as
-     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
-     * that was created.
-     *
-     * If you call the function with a channel-specific event (such as
-     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
-     * [`Listener`](Listener) objects that were created (one for each channel):
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
-     * ```
-     *
-     * You can also specify which channels you want to add the listener to:
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
-     * ```
-     *
-     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
-     *
-     * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
-     * instance that actually gets a listener added and not the `Input` instance. You can check that
-     * by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
-     *
-     * There are 8 families of events you can listen to:
-     *
-     * 1. **MIDI System Common** Events (input-wide)
-     *
-     *    * [`songposition`]{@link Input#event:songposition}
-     *    * [`songselect`]{@link Input#event:songselect}
-     *    * [`sysex`]{@link Input#event:sysex}
-     *    * [`timecode`]{@link Input#event:timecode}
-     *    * [`tunerequest`]{@link Input#event:tunerequest}
-     *
-     * 2. **MIDI System Real-Time** Events (input-wide)
-     *
-     *    * [`clock`]{@link Input#event:clock}
-     *    * [`start`]{@link Input#event:start}
-     *    * [`continue`]{@link Input#event:continue}
-     *    * [`stop`]{@link Input#event:stop}
-     *    * [`activesensing`]{@link Input#event:activesensing}
-     *    * [`reset`]{@link Input#event:reset}
-     *
-     * 3. **State Change** Events (input-wide)
-     *
-     *    * [`opened`]{@link Input#event:opened}
-     *    * [`closed`]{@link Input#event:closed}
-     *    * [`disconnected`]{@link Input#event:disconnected}
-     *
-     * 4. **Catch-All** Events (input-wide)
-     *
-     *    * [`midimessage`]{@link Input#event:midimessage}
-     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
-     *
-     * 5. **Channel Voice** Events (channel-specific)
-     *
-     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
-     *    * [`controlchange`]{@link InputChannel#event:controlchange}
-     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
-     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
-     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
-     *      * (...)
-     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
-     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
-     *    * [`noteoff`]{@link InputChannel#event:noteoff}
-     *    * [`noteon`]{@link InputChannel#event:noteon}
-     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
-     *    * [`programchange`]{@link InputChannel#event:programchange}
-     *
-     *    Note: you can listen for a specific control change message by using an event name like this:
-     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
-     *    etc.
-     *
-     * 6. **Channel Mode** Events (channel-specific)
-     *
-     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
-     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
-     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
-     *    * [`monomode`]{@link InputChannel#event:monomode}
-     *    * [`omnimode`]{@link InputChannel#event:omnimode}
-     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
-     *
-     * 7. **NRPN** Events (channel-specific)
-     *
-     *    * [`nrpn`]{@link InputChannel#event:nrpn}
-     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
-     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
-     *
-     * 8. **RPN** Events (channel-specific)
-     *
-     *    * [`rpn`]{@link InputChannel#event:rpn}
-     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
-     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} A callback function to execute when the specified event is detected.
-     * This function will receive an event parameter object. For details on this object's properties,
-     * check out the documentation for the various events (links above).
-     *
-     * @param {object} [options={}]
-     *
-     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
-     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
-     *
-     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
-     * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
-     * listen on. If no channel is specified, all channels will be used. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {object} [options.context=this] The value of `this` in the callback function.
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
-     * automatically expires.
-     *
-     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array and thus be triggered before others.
-     *
-     * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
-     * should automatically be removed.
-     *
-     * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
-     * object is returned. If the event is channel-specific, an array of all the
-     * [`Listener`](Listener) objects is returned (one for each channel).
-     */
-    addListener(event: string, listener: Function, options?: {
-        arguments?: any[];
-        channels?: number | number[];
-        context?: object;
-        duration?: number;
-        prepend?: boolean;
-        remaining?: boolean;
-    }): any | any[];
-    /**
-     * Adds a one-time event listener that will trigger a function callback when the specified event
-     * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
-     * dispatched by [`InputChannel`]{@link InputChannel} objects and are tied to a specific MIDI
-     * channel while input-wide events are dispatched by the `Input` object itself and are not tied
-     * to a specific channel.
-     *
-     * Calling the function with an input-wide event (such as
-     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
-     * that was created.
-     *
-     * If you call the function with a channel-specific event (such as
-     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
-     * [`Listener`](Listener) objects that were created (one for each channel):
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
-     * ```
-     *
-     * You can also specify which channels you want to add the listener to:
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
-     * ```
-     *
-     * In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.
-     *
-     * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
-     * event is triggered on MIDI channels `1`, `2` or `3`.
-     *
-     * Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
-     * that actually gets a listener added and not the `Input` instance.
-     *
-     * Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-     * on the [`InputChannel`](InputChannel) object itself.
-     *
-     * There are 8 families of events you can listen to:
-     *
-     * 1. **MIDI System Common** Events (input-wide)
-     *
-     *    * [`songposition`]{@link Input#event:songposition}
-     *    * [`songselect`]{@link Input#event:songselect}
-     *    * [`sysex`]{@link Input#event:sysex}
-     *    * [`timecode`]{@link Input#event:timecode}
-     *    * [`tunerequest`]{@link Input#event:tunerequest}
-     *
-     * 2. **MIDI System Real-Time** Events (input-wide)
-     *
-     *    * [`clock`]{@link Input#event:clock}
-     *    * [`start`]{@link Input#event:start}
-     *    * [`continue`]{@link Input#event:continue}
-     *    * [`stop`]{@link Input#event:stop}
-     *    * [`activesensing`]{@link Input#event:activesensing}
-     *    * [`reset`]{@link Input#event:reset}
-     *
-     * 3. **State Change** Events (input-wide)
-     *
-     *    * [`opened`]{@link Input#event:opened}
-     *    * [`closed`]{@link Input#event:closed}
-     *    * [`disconnected`]{@link Input#event:disconnected}
-     *
-     * 4. **Catch-All** Events (input-wide)
-     *
-     *    * [`midimessage`]{@link Input#event:midimessage}
-     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
-     *
-     * 5. **Channel Voice** Events (channel-specific)
-     *
-     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
-     *    * [`controlchange`]{@link InputChannel#event:controlchange}
-     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
-     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
-     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
-     *      * (...)
-     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
-     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
-     *    * [`noteoff`]{@link InputChannel#event:noteoff}
-     *    * [`noteon`]{@link InputChannel#event:noteon}
-     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
-     *    * [`programchange`]{@link InputChannel#event:programchange}
-     *
-     *    Note: you can listen for a specific control change message by using an event name like this:
-     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
-     *    etc.
-     *
-     * 6. **Channel Mode** Events (channel-specific)
-     *
-     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
-     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
-     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
-     *    * [`monomode`]{@link InputChannel#event:monomode}
-     *    * [`omnimode`]{@link InputChannel#event:omnimode}
-     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
-     *
-     * 7. **NRPN** Events (channel-specific)
-     *
-     *    * [`nrpn`]{@link InputChannel#event:nrpn}
-     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
-     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
-     *
-     * 8. **RPN** Events (channel-specific)
-     *
-     *    * [`rpn`]{@link InputChannel#event:rpn}
-     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
-     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} A callback function to execute when the specified event is detected.
-     * This function will receive an event parameter object. For details on this object's properties,
-     * check out the documentation for the various events (links above).
-     *
-     * @param {object} [options={}]
-     *
-     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
-     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {object} [options.context=this] The value of `this` in the callback function.
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
-     * automatically expires.
-     *
-     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array and thus be triggered before others.
-     *
-     * @returns {Listener[]} An array of all [`Listener`](Listener) objects that were created.
-     */
-    addOneTimeListener(event: string, listener: Function, options?: {
-        arguments?: any[];
-        channels?: number | number[];
-        context?: object;
-        duration?: number;
-        prepend?: boolean;
-    }): any[];
-    /**
-     * This is an alias to the [Input.addListener()]{@link Input#addListener} method.
-     * @since 2.0.0
-     * @deprecated since v3.0
-     * @private
-     */
-    private on;
-    /**
-     * Checks if the specified event type is already defined to trigger the specified callback
-     * function. For channel-specific events, the function will return `true` only if all channels
-     * have the listener defined.
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} The callback function to check for.
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of such
-     * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
-     * events.
-     *
-     * @returns {boolean} Boolean value indicating whether or not the `Input` or
-     * [`InputChannel`](InputChannel) already has this listener defined.
-     */
-    hasListener(event: string, listener: Function, options?: {
-        channels?: number | number[];
-    }): boolean;
-    /**
-     * Removes the specified listener for the specified event. If no listener is specified, all
-     * listeners for the specified event will be removed. If no event is specified, all listeners for
-     * the `Input` as well as all listeners for all [`InputChannel`]{@link InputChannel} objects will
-     * be removed.
-     *
-     * By default, channel-specific listeners will be removed from all channels unless the
-     * `options.channel` narrows it down.
-     *
-     * @param [type] {string} The type of the event.
-     *
-     * @param [listener] {Function} The callback function to check for.
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to match. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {*} [options.context] Only remove the listeners that have this exact context.
-     *
-     * @param {number} [options.remaining] Only remove the listener if it has exactly that many
-     * remaining times to be executed.
-     */
-    removeListener(event: any, listener?: Function, options?: {
-        channels?: number | number[];
-        context?: any;
-        remaining?: number;
-    }): any;
-    /**
-     * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
-     * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
-     * the added benefit of being able to filter which data is forwarded.
-     *
-     * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
-     * objects, to forward messages to.
-     * @param {object} [options={}]
-     * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
-     * types (`noteon`, `controlchange`, etc.), that the message type must match in order to be
-     * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
-     * messages are the ones found in either
-     * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
-     * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
-     * MIDI channel number or an array of channel numbers that the message must match in order to be
-     * forwarded. By default all MIDI channels are included (`1` to `16`).
-     *
-     * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
-     * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
-     */
-    addForwarder(output: any, options?: {
-        types?: string | string[];
-        channels?: number;
-    }): Forwarder;
-    /**
-     * Removes the specified [`Forwarder`](Forwarder) object from the input.
-     *
-     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to remove (the
-     * [`Forwarder`](Forwarder) object is returned when calling `addForwarder()`.
-     */
-    removeForwarder(forwarder: Forwarder): void;
-    /**
-     * Checks whether the specified [`Forwarder`](Forwarder) object has already been attached to this
-     * input.
-     *
-     * @param {Forwarder} forwarder The [`Forwarder`](Forwarder) to check for (the
-     * [`Forwarder`](Forwarder) object is returned when calling [`addForwarder()`](#addForwarder).
-     * @returns {boolean}
-     */
-    hasForwarder(forwarder: Forwarder): boolean;
-    /**
-     * Name of the MIDI input.
-     *
-     * @type {string}
-     * @readonly
-     */
-    get name(): string;
-    /**
-     * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
-     * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-     * the same port.
-     *
-     * @type {string}
-     * @readonly
-     */
-    get id(): string;
-    /**
-     * Input port's connection state: `pending`, `open` or `closed`.
-     *
-     * @type {string}
-     * @readonly
-     */
-    get connection(): string;
-    /**
-     * Name of the manufacturer of the device that makes this input port available.
-     *
-     * @type {string}
-     * @readonly
-     */
-    get manufacturer(): string;
-    set octaveOffset(arg: number);
-    /**
-     * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-     * number 60) is placed on the 4th octave (C4).
-     *
-     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-     *
-     * Note that this value is combined with the global offset value defined in the
-     * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) property (if any).
-     *
-     * @type {number}
-     *
-     * @since 3.0
-     */
-    get octaveOffset(): number;
-    /**
-     * State of the input port: `connected` or `disconnected`.
-     *
-     * @type {string}
-     * @readonly
-     */
-    get state(): string;
-    /**
-     * The port type. In the case of the `Input` object, this is always: `input`.
-     *
-     * @type {string}
-     * @readonly
-     */
-    get type(): string;
-    /**
-     * @type {boolean}
-     * @private
-     * @deprecated since v3.0.0 (moved to 'InputChannel' class)
-     */
-    private get nrpnEventsEnabled();
-}
-/**
- * The `InputChannel` class represents a single MIDI input channel (1-16) from a single input
- * device. This object is derived from the host's MIDI subsystem and should not be instantiated
- * directly.
- *
- * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
- * property.
- *
- * @param {Input} input The [`Input`](Input) object this channel belongs to.
- * @param {number} number The channel's MIDI number (1-16).
- *
- * @fires InputChannel#midimessage
- *
- * @fires InputChannel#noteoff
- * @fires InputChannel#noteon
- * @fires InputChannel#keyaftertouch
- * @fires InputChannel#programchange
- * @fires InputChannel#event:controlchange-controllerxxx
- * @fires InputChannel#channelaftertouch
- * @fires InputChannel#pitchbend
- * @fires InputChannel#controlchange
- *
- * @fires InputChannel#allnotesoff
- * @fires InputChannel#allsoundoff
- * @fires InputChannel#localcontrol
- * @fires InputChannel#monomode
- * @fires InputChannel#omnimode
- * @fires InputChannel#resetallcontrollers
- *
- * @fires InputChannel#event:nrpn
- * @fires InputChannel#event:nrpn-dataentrycoarse
- * @fires InputChannel#event:nrpn-dataentryfine
- * @fires InputChannel#event:nrpn-databuttonincrement
- * @fires InputChannel#event:nrpn-databuttondecrement
- * @fires InputChannel#event:rpn
- * @fires InputChannel#event:rpn-dataentrycoarse
- * @fires InputChannel#event:rpn-dataentryfine
- * @fires InputChannel#event:rpn-databuttonincrement
- * @fires InputChannel#event:rpn-databuttondecrement
- *
- * @extends EventEmitter
  * @license Apache-2.0
  * @since 3.0.0
  */
-declare class InputChannel {
-    constructor(input: any, number: any);
+export class Utilities {
     /**
-     * @type {Input}
+     * Returns a MIDI note number matching the identifier passed in the form of a string. The
+     * identifier must include the octave number. The identifier also optionally include a sharp (#),
+     * a double sharp (##), a flat (b) or a double flat (bb) symbol. For example, these are all valid
+     * identifiers: C5, G4, D#-1, F0, Gb7, Eb-1, Abb4, B##6, etc.
+     *
+     * When converting note identifiers to numbers, C4 is considered to be middle C (MIDI note number
+     * 60) as per the scientific pitch notation standard.
+     *
+     * The resulting note number can be offset by using the `octaveOffset` parameter.
+     *
+     * @param identifier {string} The identifier in the form of a letter, followed by an optional "#",
+     * "##", "b" or "bb" followed by the octave number. For exemple: C5, G4, D#-1, F0, Gb7, Eb-1,
+     * Abb4, B##6, etc.
+     *
+     * @param {number} [octaveOffset=0] A integer to offset the octave by.
+     *
+     * @returns {number} The MIDI note number (an integer between 0 and 127).
+     *
+     * @throws RangeError Invalid 'octaveOffset' value
+     *
+     * @throws TypeError Invalid note identifier
+     *
+     * @license Apache-2.0
+     * @since 3.0.0
+     * @static
+     */
+    static toNoteNumber(identifier: string, octaveOffset?: number): number;
+    /**
+     * Given a proper note identifier (`C#4`, `Gb-1`, etc.) or a valid MIDI note number (0-127), this
+     * method returns an object containing broken down details about the specified note (uppercase
+     * letter, accidental and octave).
+     *
+     * When a number is specified, the translation to note is done using a value of 60 for middle C
+     * (C4 = middle C).
+     *
+     * @param value {string|number} A note identifier A  atring ("C#4", "Gb-1", etc.) or a MIDI note
+     * number (0-127).
+     *
+     * @returns {{accidental: string, identifier: string, name: string, octave: number }}
+     *
+     * @throws TypeError Invalid note identifier
+     *
+     * @since 3.0.0
+     * @static
+     */
+    static getNoteDetails(value: string | number): {
+        accidental: string;
+        identifier: string;
+        name: string;
+        octave: number;
+    };
+    /**
+     * Returns a sanitized array of valid MIDI channel numbers (1-16). The parameter should be a
+     * single integer or an array of integers.
+     *
+     * For backwards-compatibility, passing `undefined` as a parameter to this method results in all
+     * channels being returned (1-16). Otherwise, parameters that cannot successfully be parsed to
+     * integers between 1 and 16 are silently ignored.
+     *
+     * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
+     * numbers.
+     *
+     * @returns {number[]} An array of 0 or more valid MIDI channel numbers.
+     *
+     * @since 3.0.0
+     * @static
+     */
+    static sanitizeChannels(channel?: number | number[]): number[];
+    /**
+     * Returns a valid timestamp, relative to the navigation start of the document, derived from the
+     * `time` parameter. If the parameter is a string starting with the "+" sign and followed by a
+     * number, the resulting timestamp will be the sum of the current timestamp plus that number. If
+     * the parameter is a positive number, it will be returned as is. Otherwise, false will be
+     * returned.
+     *
+     * @param [time] {number|string} The time string (e.g. `"+2000"`) or number to parse
+     * @return {number|false} A positive number or `false` (if the time cannot be converted)
+     *
+     * @since 3.0.0
+     * @static
+     */
+    static toTimestamp(time?: number | string): number | false;
+    /**
+     * Returns a valid MIDI note number (0-127) given the specified input. The input usually is a
+     * string containing a note identifier (`"C3"`, `"F#4"`, `"D-2"`, `"G8"`, etc.). If an integer
+     * between 0 and 127 is passed, it will simply be returned as is (for convenience). Other strings
+     * will be parsed for integer value, if possible.
+     *
+     * If the input is an identifier, the resulting note number is offset by the `octaveOffset`
+     * parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffset` value is
+     * -2, the resulting MIDI note number will be 36.
+     *
+     * @param input {string|number} A string or number to extract the MIDI note number from.
+     *
+     * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
+     * successfully be parsed to a note number.
+     *
+     * @since 3.0.0
+     * @static
+     */
+    static guessNoteNumber(input: string | number, octaveOffset: any): number | false;
+    /**
+     * Returns an identifier string representing a note name (with optional accidental) followed by an
+     * octave number. The octave can be offset by using the `octaveOffset` parameter.
+     *
+     * @param {number} number The MIDI note number to convert to a note identifier
+     * @param {number} octaveOffset An offset to apply to the resulting octave
+     *
+     * @returns {string}
+     *
+     * @throws RangeError Invalid note number
+     * @throws RangeError Invalid octaveOffset value
+     *
+     * @since 3.0.0
+     * @static
+     */
+    static toNoteIdentifier(number: number, octaveOffset: number): string;
+    /**
+     * Converts the `input` parameter to a valid [`Note`]{@link Note} object. The input usually is an
+     * unsigned integer (0-127) or a note identifier (`"C4"`, `"G#5"`, etc.). If the input is a
+     * [`Note`]{@link Note} object, it will be returned as is.
+     *
+     * If the input is a note number or identifier, it is possible to specify options by providing the
+     * `options` parameter.
+     *
+     * @param [input] {number|string|Note}
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+     * be explicitly stopped.
+     *
+     * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+     * used when the input value is a note identifier.**
+     *
+     * @returns {Note}
+     *
+     * @throws TypeError The input could not be parsed to a note
+     *
+     * @since version 3.0.0
+     * @static
+     */
+    static buildNote(input?: number | string | Note, options?: {
+        duration?: number;
+        attack?: number;
+        release?: number;
+        rawAttack?: number;
+        rawRelease?: number;
+        octaveOffset?: number;
+    }): Note;
+    /**
+     * Converts an input value, which can be an unsigned integer (0-127), a note identifier, a
+     * [`Note`]{@link Note}  object or an array of the previous types, to an array of
+     * [`Note`]{@link Note}  objects.
+     *
+     * [`Note`]{@link Note}  objects are returned as is. For note numbers and identifiers, a
+     * [`Note`]{@link Note} object is created with the options specified. An error will be thrown when
+     * encountering invalid input.
+     *
+     * Note: if both the `attack` and `rawAttack` options are specified, the later has priority. The
+     * same goes for `release` and `rawRelease`.
+     *
+     * @param [notes] {number|string|Note|number[]|string[]|Note[]}
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should
+     * be explicitly stopped.
+     *
+     * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @param {number} [options.octaveOffset=0] An integer to offset the octave by. **This is only
+     * used when the input value is a note identifier.**
+     *
+     * @returns {Note[]}
+     *
+     * @throws TypeError An element could not be parsed as a note.
+     *
+     * @since 3.0.0
+     * @static
+     */
+    static buildNoteArray(notes?: number | string | Note | number[] | string[] | Note[], options?: {
+        duration?: number;
+        attack?: number;
+        release?: number;
+        rawAttack?: number;
+        rawRelease?: number;
+        octaveOffset?: number;
+    }): Note[];
+    /**
+     * Returns a number between 0 and 1 representing the ratio of the input value divided by 127 (7
+     * bit). The returned value is restricted between 0 and 1 even if the input is greater than 127 or
+     * smaller than 0.
+     *
+     * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
+     * input value cannot be converted to an integer, the method returns 0.
+     *
+     * @param value A positive integer between 0 and 127 (inclusive)
+     * @returns {number} A number between 0 and 1 (inclusive)
+     * @static
+     */
+    static from7bitToFloat(value: any): number;
+    /**
+     * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
+     * The input value should be number between 0 and 1 (inclusively). The returned value is
+     * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
+     *
+     * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
+     * the input value cannot be converted to a number, the method returns 0.
+     *
+     * @param value A positive integer between 0 and 127 (inclusive)
+     * @returns {number} A number between 0 and 1 (inclusive)
+     * @static
+     */
+    static fromFloatTo7Bit(value: any): number;
+    /**
+     * Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
+     * is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
+     *
+     * @param msb {number} The most significant byte as a integer between 0 and 127.
+     * @param [lsb=0] {number} The least significant byte as a integer between 0 and 127.
+     * @returns {number} A float between 0 and 1.
+     */
+    static fromMsbLsbToFloat(msb: number, lsb?: number): number;
+    /**
+     * Extracts 7bit MSB and LSB values from the supplied float.
+     *
+     * @param value {number} A float between 0 and 1
+     * @returns {{lsb: number, msb: number}}
+     */
+    static fromFloatToMsbLsb(value: number): {
+        lsb: number;
+        msb: number;
+    };
+    /**
+     * Returns the supplied MIDI note number offset by the requested octave and semitone values. If
+     * the calculated value is less than 0, 0 will be returned. If the calculated value is more than
+     * 127, 127 will be returned. If an invalid offset value is supplied, 0 will be used.
+     *
+     * @param number {number} The MIDI note to offset as an integer between 0 and 127.
+     * @param octaveOffset {number} An integer to offset the note by (in octave)
+     * @param octaveOffset {number} An integer to offset the note by (in semitones)
+     * @returns {number} An integer between 0 and 127
+     *
+     * @throws {Error} Invalid note number
+     * @static
+     */
+    static offsetNumber(number: number, octaveOffset?: number, semitoneOffset?: number): number;
+    /**
+     * Returns the name of the first property of the supplied object whose value is equal to the one
+     * supplied. If nothing is found, `undefined` is returned.
+     *
+     * @param object {object} The object to look for the property in.
+     * @param value {*} Any value that can be expected to be found in the object's properties.
+     * @returns {string|undefined} The name of the matching property or `undefined` if nothing is
+     * found.
+     * @static
+     */
+    static getPropertyByValue(object: object, value: any): string | undefined;
+    /**
+     * Returns the name of a control change message matching the specified number (0-127). Some valid
+     * control change numbers do not have a specific name or purpose assigned in the MIDI
+     * [spec](https://midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2).
+     * In these cases, the method returns `controllerXXX` (where XXX is the number).
+     *
+     * @param {number} number An integer (0-127) representing the control change message
+     * @returns {string|undefined} The matching control change name or `undefined` if no match was
+     * found.
+     *
+     * @static
+     */
+    static getCcNameByNumber(number: number): string | undefined;
+    /**
+     * Returns the channel mode name matching the specified number. If no match is found, the function
+     * returns `false`.
+     *
+     * @param {number} number An integer representing the channel mode message (120-127)
+     * @returns {string|false} The name of the matching channel mode or `false` if no match could be
+     * found.
+     *
+     * @since 2.0.0
+     */
+    static getChannelModeByNumber(number: number): string | false;
+}
+declare const wm: WebMidi;
+/**
+ * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
+ * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
+ *
+ * When using the WebMidi.js library, you should know that the `WebMidi` class has already been
+ * instantiated. You cannot instantiate it yourself. If you use the **IIFE** version, you should
+ * simply use the global object called `WebMidi`. If you use the **CJS** (CommonJS) or **ESM** (ES6
+ * module) version, you get an already-instantiated object when you import the module.
+ *
+ * @fires WebMidi#connected
+ * @fires WebMidi#disabled
+ * @fires WebMidi#disconnected
+ * @fires WebMidi#enabled
+ * @fires WebMidi#midiaccessgranted
+ *
+ * @extends EventEmitter
+ * @license Apache-2.0
+ */
+declare class WebMidi {
+    /**
+     * Object containing system-wide default values that can be changed to customize how the library
+     * works.
+     *
+     * @type {object}
+     *
+     * @property {object}  defaults.note - Default values relating to note
+     * @property {number}  defaults.note.attack - A number between 0 and 127 representing the
+     * default attack velocity of notes. Initial value is 64.
+     * @property {number}  defaults.note.release - A number between 0 and 127 representing the
+     * default release velocity of notes. Initial value is 64.
+     * @property {number}  defaults.note.duration - A number representing the default duration of
+     * notes (in seconds). Initial value is Infinity.
+     */
+    defaults: object;
+    /**
+     * The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+     * instance used to talk to the lower-level Web MIDI API. This should not be used directly
+     * unless you know what you are doing.
+     *
+     * @type {?MIDIAccess}
+     * @readonly
+     */
+    interface: MIDIAccess;
+    /**
+     * Indicates whether argument validation and backwards-compatibility checks are performed
+     * throughout the WebMidi.js library for object methods and property setters.
+     *
+     * This is an advanced setting that should be used carefully. Setting `validation` to `false`
+     * improves performance but should only be done once the project has been thoroughly tested with
+     * `validation` turned on.
+     *
+     * @type {boolean}
+     */
+    validation: boolean;
+    /**
+     * Array of all (Input) objects
+     * @type {Input[]}
      * @private
      */
-    private _input;
+    private _inputs;
     /**
-     * @type {number}
+     * Array of disconnected [`Input`](Input) objects. This is used when inputs are plugged back in
+     * to retain their previous state.
+     * @type {Input[]}
      * @private
      */
-    private _number;
+    private _disconnectedInputs;
+    /**
+     * Array of all [`Output`](Output) objects
+     * @type {Output[]}
+     * @private
+     */
+    private _outputs;
+    /**
+     * Array of disconnected [`Output`](Output) objects. This is used when outputs are plugged back
+     * in to retain their previous state.
+     * @type {Output[]}
+     * @private
+     */
+    private _disconnectedOutputs;
+    /**
+     * Array of statechange events to process. These events must be parsed synchronously so they do
+     * not override each other.
+     *
+     * @type {string[]}
+     * @private
+     */
+    private _stateChangeQueue;
     /**
      * @type {number}
      * @private
      */
     private _octaveOffset;
     /**
-     * An array of messages that form the current NRPN sequence
-     * @private
-     * @type {Message[]}
-     */
-    private _nrpnBuffer;
-    /**
-     * An array of messages that form the current RPN sequence
-     * @private
-     * @type {Message[]}
-     */
-    private _rpnBuffer;
-    /**
-     * Indicates whether events for **Registered Parameter Number** and **Non-Registered Parameter
-     * Number** should be dispatched. RPNs and NRPNs are composed of a sequence of specific
-     * **control change** messages. When a valid sequence of such control change messages is
-     * received, an [`rpn`](#event-rpn) or [`nrpn`](#event-nrpn) event will fire.
+     * Checks if the Web MIDI API is available in the current environment and then tries to connect to
+     * the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
+     * be displayed to the user.
      *
-     * If an invalid or out-of-order **control change** message is received, it will fall through
-     * the collector logic and all buffered **control change** messages will be discarded as
-     * incomplete.
+     * To enable the use of MIDI system exclusive messages, the `sysex` option should be set to
+     * `true`. However, under some environments (e.g. Jazz-Plugin), the `sysex` option is ignored
+     * and system exclusive messages are always enabled. You can check the
+     * [`sysexEnabled`](#sysexEnabled) property to confirm.
      *
+     * To enable access to software synthesizers available on the host, you would set the `software`
+     * option to `true`. However, this option is only there to future-proof the library as support for
+     * software synths has not yet been implemented in any browser (as of September 2021).
+     *
+     * By the way, if you call the [`enable()`](#enable) method while WebMidi.js is already enabled,
+     * the callback function will be executed (if any), the promise will resolve but the events
+     * ([`"midiaccessgranted"`](#event:midiaccessgranted), [`"connected"`](#event:connected) and
+     * [`"enabled"`](#event:enabled)) will not be fired.
+     *
+     * There are 3 ways to execute code after `WebMidi` has been enabled:
+     *
+     * - Pass a callback function in the `options`
+     * - Listen to the [`"enabled"`](#event:enabled) event
+     * - Wait for the promise to resolve
+     *
+     * In order, this is what happens towards the end of the enabling process:
+     *
+     * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered once the user has
+     * granted access to use MIDI.
+     * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
+     * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is fully ready
+     * 4. specified callback (if any) is executed
+     * 5. promise is resolved and fulfilled with the `WebMidi` object.
+     *
+     * **Important note**: starting with Chrome v77, a page using Web MIDI API must be hosted on a
+     * secure origin (`https://`, `localhost` or `file:///`) and the user will always be prompted to
+     * authorize the operation (no matter if the `sysex` option is `true` or not).
+     *
+     * ##### Example
+     * ```js
+     * // Enabling WebMidi and using the promise
+     * WebMidi.enable().then(() => {
+     *   console.log("WebMidi.js has been enabled!");
+     * })
+     * ```
+     *
+     * @param [options] {object}
+     *
+     * @param [options.callback] {function} A function to execute once the operation completes. This
+     * function will receive an `Error` object if enabling the Web MIDI API failed.
+     *
+     * @param [options.sysex=false] {boolean} Whether to enable MIDI system exclusive messages or not.
+     *
+     * @param [options.validation=true] {boolean} Whether to enable library-wide validation of method
+     * arguments and setter values. This is an advanced setting that should be used carefully. Setting
+     * [`validation`](#validation) to `false` improves performance but should only be done once the
+     * project has been thoroughly tested with [`validation`](#validation)  turned on.
+     *
+     * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
+     * the host system. This is part of the spec but has not yet been implemented by most browsers as
+     * of April 2020.
+     *
+     * @async
+     *
+     * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object fro
+     * chainability
+     *
+     * @throws {Error} The Web MIDI API is not supported in your environment.
+     * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
+     */
+    enable(options?: {
+        callback?: Function;
+        sysex?: boolean;
+        validation?: boolean;
+        software?: boolean;
+    }, legacy?: boolean): Promise<WebMidi>;
+    /**
+     * Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
+     * [`Input`](Input) and [`Output`](Output) objects that may have been opened. This also means that
+     * listeners added to [`Input`](Input) objects, [`Output`](Output) objects or to `WebMidi` itself
+     * are also destroyed.
+     *
+     * @async
+     * @returns {Promise}
+     *
+     * @throws {Error} The Web MIDI API is not supported by your environment.
+     *
+     * @since 2.0.0
+     */
+    disable(): Promise<any>;
+    /**
+     * Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
+     * matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
+     *
+     * Please note that IDs change from one host to another. For example, Chrome does not use the same
+     * kind of IDs as Jazz-Plugin.
+     *
+     * @param id {string} The ID string of the input. IDs can be viewed by looking at the
+     * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
+     * are strings.
+     *
+     * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
+     * if no matching input can be found.
+     *
+     * @throws {Error} WebMidi is not enabled.
+     *
+     * @since 2.0.0
+     */
+    getInputById(id: string): Input | false;
+    /**
+     * Returns the first [`Input`](Input) object whose name **contains** the specified string. Note
+     * that the port names change from one environment to another. For example, Chrome does not report
+     * input names in the same way as the Jazz-Plugin does.
+     *
+     * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
+     * those visible in the [inputs](WebMidi#inputs) array).
+     *
+     * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
+     * specified name.
+     *
+     * @throws {Error} WebMidi is not enabled.
+     *
+     * @since 2.0.0
+     */
+    getInputByName(name: string): Input | false;
+    /**
+     * Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
+     * that the port names change from one environment to another. For example, Chrome does not report
+     * input names in the same way as the Jazz-Plugin does.
+     *
+     * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
+     * those visible in the [`outputs`](#outputs) array).
+     *
+     * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
+     * the specified name.
+     *
+     * @throws {Error} WebMidi is not enabled.
+     *
+     * @since 2.0.0
+     */
+    getOutputByName(name: string): Output | false;
+    /**
+     * Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
+     * matching output is found. As per the Web MIDI API specification, IDs are strings (not
+     * integers).
+     *
+     * Please note that IDs change from one host to another. For example, Chrome does not use the same
+     * kind of IDs as Jazz-Plugin.
+     *
+     * @param id {string} The ID string of the port. IDs can be viewed by looking at the
+     * [`WebMidi.outputs`](WebMidi#outputs) array.
+     *
+     * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
+     * matching output can be found, the method returns `false`.
+     *
+     * @throws {Error} WebMidi is not enabled.
+     *
+     * @since 2.0.0
+     */
+    getOutputById(id: string): Output | false;
+    /**
+     * @private
+     * @deprecated since version 3.0.0, use Utilities.toNoteNumber() instead.
+     */
+    private noteNameToNumber;
+    /**
+     * @private
+     * @deprecated since 3.0.0, use Utilities.getNoteDetails() instead.
+     */
+    private getOctave;
+    /**
+     * @private
+     * @deprecated since 3.0.0, use Utilities.sanitizeChannels() instead.
+     */
+    private sanitizeChannels;
+    /**
+     * @private
+     * @deprecated since version 3.0.0, use Utilities.sanitizeChannels() instead.
+     */
+    private toMIDIChannels;
+    /**
+     * @private
+     * @deprecated since version 3.0.0, use Utilities.guessNoteNumber() instead.
+     */
+    private guessNoteNumber;
+    /**
+     * @private
+     * @deprecated since version 3.0.0, use Utilities.buildNoteArray() instead.
+     */
+    private getValidNoteArray;
+    /**
+     * @private
+     * @deprecated since version 3.0.0, use Utilities.toTimestamp() instead.
+     */
+    private convertToTimestamp;
+    /**
+     * @return {Promise<void>}
+     * @private
+     */
+    private _destroyInputsAndOutputs;
+    /**
+     * @private
+     */
+    private _onInterfaceStateChange;
+    /**
+     * @private
+     */
+    private _updateInputsAndOutputs;
+    /**
+     * @private
+     */
+    private _updateInputs;
+    /**
+     * @private
+     */
+    private _updateOutputs;
+    /**
+     * Indicates whether access to the host's MIDI subsystem is active or not.
+     *
+     * @readonly
      * @type {boolean}
      */
-    parameterNumberEventsEnabled: boolean;
+    get enabled(): boolean;
     /**
-     * Contains the current playing state of all MIDI notes of this channel (0-127). The state is
-     * `true` for a currently playing note and `false` otherwise.
-     * @type {boolean[]}
-     */
-    notesState: boolean[];
-    /**
-     * Destroys the `InputChannel` by removing all listeners and severing the link with the MIDI
-     * subsystem's input.
-     */
-    destroy(): void;
-    /**
-     * @param e MIDIMessageEvent
-     * @private
-     */
-    private _processMidiMessageEvent;
-    /**
-     * Parses incoming channel events and emit standard MIDI message events (noteon, noteoff, etc.)
-     * @param e Event
-     * @private
-     */
-    private _parseEventForStandardMessages;
-    _parseChannelModeMessage(e: any): void;
-    /**
-     * Parses inbound events to identify RPN/NRPN sequences.
-     * @param e Event
-     * @private
-     */
-    private _parseEventForParameterNumber;
-    /**
-     * Indicates whether the specified controller can be part of an RPN or NRPN sequence
-     * @param controller
-     * @returns {boolean}
-     * @private
-     */
-    private _isRpnOrNrpnController;
-    _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
-    /**
-     * @deprecated since version 3.
-     * @private
-     */
-    private getChannelModeByNumber;
-    /**
-     * @deprecated since version 3.
-     * @private
-     */
-    private getCcNameByNumber;
-    /**
-     * Return the playing status of the specified note. The `note` parameter can be an unsigned
-     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`]{@link Note} object.
+     * An array of all currently available MIDI inputs.
      *
-     * If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
-     * defined.
-     *
-     * @param [input] {number|string|Note} The note to get the state for. The
-     * [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and
-     * [`Note`]{@link Note} objects.
-     * @returns {boolean}
-     * @since version 3.0.0
+     * @readonly
+     * @type {Input[]}
      */
-    getNoteState(note: any): boolean;
+    get inputs(): Input[];
+    /**
+     * Indicates whether the current environment is Node.js or not. If you need to check if we are in
+     * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
+     * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
+     * @type {boolean}
+     */
+    get isNode(): boolean;
+    /**
+     * Indicates whether the current environment is a browser environment or not. If you need to check
+     * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
+     * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
+     * @type {boolean}
+     */
+    get isBrowser(): boolean;
     set octaveOffset(arg: number);
     /**
-     * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
-     * `noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
-     * octave (C4).
+     * An integer to offset the octave of notes received from external devices or sent to external
+     * devices.
      *
-     * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-     * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+     * When a MIDI message comes in on an input channel the reported note name will be offset. For
+     * example, if the `octaveOffset` is set to `-1` and a [`"noteon"`](InputChannel#event:noteon)
+     * message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4).
      *
-     * Note that this value is combined with the global offset value defined by
-     * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) object and with the value defined on the parent
-     * input object with [`Input.octaveOffset`](Input#octaveOffset).
+     * By the same token, when [`OutputChannel.playNote()`](OutputChannel#playNote) is called, the
+     * MIDI note number being sent will be offset. If `octaveOffset` is set to `-1`, the MIDI note
+     * number sent will be 72 (instead of 60).
      *
      * @type {number}
      *
-     * @since 3.0
+     * @since 2.1
      */
     get octaveOffset(): number;
     /**
-     * The [`Input`](Input) this channel belongs to.
-     * @type {Input}
-     * @since 3.0
+     * An array of all currently available MIDI outputs as [`Output`](Output) objects.
+     *
+     * @readonly
+     * @type {Output[]}
      */
-    get input(): Input;
+    get outputs(): Output[];
     /**
-     * This channel's MIDI number (1-16).
-     * @type {number}
-     * @since 3.0
-     */
-    get number(): number;
-    private set nrpnEventsEnabled(arg);
-    /**
-     * Whether RPN/NRPN events are parsed and dispatched.
+     * Indicates whether the environment provides support for the Web MIDI API or not.
+     *
+     * **Note**: in environments that do not offer built-in MIDI support, this will report `true` if
+     * the
+     * [`navigator.requestMIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
+     * function is available. For example, if you have installed WebMIDIAPIShim.js but no plugin, this
+     * property will be `true` even though actual support might not be there.
+     *
+     * @readonly
      * @type {boolean}
-     * @since 3.0
-     * @deprecated Use parameterNumberEventsEnabled instead.
+     */
+    get supported(): boolean;
+    /**
+     * Indicates whether MIDI system exclusive messages have been activated when WebMidi.js was
+     * enabled via the [`enable()`](#enable) method.
+     *
+     * @readonly
+     * @type boolean
+     */
+    get sysexEnabled(): boolean;
+    /**
+     * The elapsed time, in milliseconds, since the time
+     * [origin](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp#The_time_origin).
+     * Said simply, it is the number of milliseconds that passed since the page was loaded. Being a
+     * floating-point number, it has sub-millisecond accuracy. According to the
+     * [documentation](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
+     * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
+     * browser might only be accurate to one millisecond.
+     *
+     * @type {DOMHighResTimeStamp}
+     * @readonly
+     */
+    get time(): number;
+    /**
+     * The version of the library as a [semver](https://semver.org/) string.
+     *
+     * @readonly
+     * @type string
+     */
+    get version(): string;
+    /**
+     * @private
+     * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
+     */
+    private get CHANNEL_EVENTS();
+    /**
+     * @private
+     * @deprecated since 3.0.0. Use Enumerations.MIDI_SYSTEM_MESSAGES instead.
+     */
+    private get MIDI_SYSTEM_MESSAGES();
+    /**
+     * @private
+     * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
+     */
+    private get MIDI_CHANNEL_MODE_MESSAGES();
+    /**
+     * @private
+     * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
+     */
+    private get MIDI_CONTROL_CHANGE_MESSAGES();
+    /**
+     * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
      * @private
      */
-    private get nrpnEventsEnabled();
+    private get MIDI_REGISTERED_PARAMETER();
+    /**
+     * @deprecated since 3.0.0.
+     * @private
+     */
+    private get NOTES();
 }
 export { wm as WebMidi };
