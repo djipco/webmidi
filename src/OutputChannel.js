@@ -21,6 +21,12 @@ import {Enumerations} from "./Enumerations.js";
  */
 export class OutputChannel extends EventEmitter {
 
+  /**
+   * Creates an `OutputChannel` object.
+   *
+   * @param {Output} output The [`Output`](Output) this channel belongs to.
+   * @param {number} number The MIDI channel number (`1` - `16`).
+   */
   constructor(output, number) {
 
     super();

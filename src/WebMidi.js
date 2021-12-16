@@ -45,6 +45,9 @@ try {
  */
 class WebMidi extends EventEmitter {
 
+  /**
+   * Creates a `WebMidi` object.
+   */
   constructor() {
 
     super();

@@ -17,9 +17,6 @@ import {Utilities} from "./Utilities.js";
  * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
  * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
  *
- * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
- * object as provided by the MIDI subsystem.
- *
  * @fires Output#opened
  * @fires Output#disconnected
  * @fires Output#closed
@@ -29,6 +26,12 @@ import {Utilities} from "./Utilities.js";
  */
 export class Output extends EventEmitter {
 
+  /**
+   * Creates an `Output` object.
+   *
+   * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+   * object as provided by the MIDI subsystem.
+   */
   constructor(midiOutput) {
 
     super();

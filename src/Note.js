@@ -27,40 +27,48 @@ import {Utilities} from "./Utilities.js";
  * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
  * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
- * @param {object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
- *
- * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @throws {Error} Invalid note identifier
- * @throws {RangeError} Invalid name value
- * @throws {RangeError} Invalid accidental value
- * @throws {RangeError} Invalid octave value
- * @throws {RangeError} Invalid duration value
- * @throws {RangeError} Invalid attack value
- * @throws {RangeError} Invalid release value
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Note {
 
+  /**
+   * Creates a `Note` object.
+   *
+   * @param value {string|number} The value used to create the note. If an identifier string is used,
+   * it must start with the note letter, optionally followed by an accidental and followed by the
+   * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
+   * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
+   *
+   * @param {object} [options={}]
+   *
+   * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+   * explicitly stopped.
+   *
+   * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+   * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `attack` and `rawAttack` are specified, the latter has precedence.
+   *
+   * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+   * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+   * `release` and `rawRelease` are specified, the latter has precedence.
+   *
+   * @throws {Error} Invalid note identifier
+   * @throws {RangeError} Invalid name value
+   * @throws {RangeError} Invalid accidental value
+   * @throws {RangeError} Invalid octave value
+   * @throws {RangeError} Invalid duration value
+   * @throws {RangeError} Invalid attack value
+   * @throws {RangeError} Invalid release value
+   */
   constructor(value, options = {}) {
 
     // Assign property defaults

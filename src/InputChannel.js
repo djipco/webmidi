@@ -12,9 +12,6 @@ import {Enumerations} from "./Enumerations.js";
  * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
  * property.
  *
- * @param {Input} input The [`Input`](Input) object this channel belongs to.
- * @param {number} number The channel's MIDI number (1-16).
- *
  * @fires InputChannel#midimessage
  *
  * @fires InputChannel#noteoff
@@ -50,6 +47,12 @@ import {Enumerations} from "./Enumerations.js";
  */
 export class InputChannel extends EventEmitter {
 
+  /**
+   * Creates an `InputChannel` object.
+   *
+   * @param {Input} input The [`Input`](Input) object this channel belongs to.
+   * @param {number} number The channel's MIDI number (1-16).
+   */
   constructor(input, number) {
 
     super();

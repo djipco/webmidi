@@ -23,9 +23,6 @@ import {WebMidi} from "./WebMidi.js";
  * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
  * [`InputChannel`](InputChannel) objects at once.
  *
- * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
- * object as provided by the MIDI subsystem (Web MIDI API).
- *
  * @fires Input#opened
  * @fires Input#disconnected
  * @fires Input#closed
@@ -48,6 +45,12 @@ import {WebMidi} from "./WebMidi.js";
  */
 export class Input extends EventEmitter {
 
+  /**
+   * Creates an `Input` object.
+   *
+   * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+   * object as provided by the MIDI subsystem (Web MIDI API).
+   */
   constructor(midiInput) {
 
     super();

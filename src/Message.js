@@ -5,15 +5,18 @@ import {Enumerations} from "./Enumerations.js";
  * The `Message` class represents a single MIDI message. It has several properties that make it
  * easy to make sense of the binary data it contains.
  *
- * @param {Uint8Array} data The raw data of the MIDI message as a
- * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
- * of integers between `0` and `255`.
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Message {
 
+  /**
+   * Creates a new `Message` object from raw MIDI data.
+   *
+   * @param {Uint8Array} data The raw data of the MIDI message as a
+   * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+   * of integers between `0` and `255`.
+   */
   constructor(data) {
 
     /**
