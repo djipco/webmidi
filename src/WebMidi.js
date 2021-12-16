@@ -1125,10 +1125,15 @@ class WebMidi extends EventEmitter {
 // extensible (properties can be added at will).
 const wm = new WebMidi();
 wm.constructor = null;
-export {wm as WebMidi};
 
 export {Enumerations} from "./Enumerations.js";
 export {Forwarder} from "./Forwarder.js";
+export {Input} from "./Input.js";
+export {InputChannel} from "./InputChannel.js";
 export {Message} from "./Message.js";
 export {Note} from "./Note.js";
+export {Output} from "./Output.js";
+export {OutputChannel} from "./OutputChannel.js";
 export {Utilities} from "./Utilities.js";
+export {wm as WebMidi};
+
