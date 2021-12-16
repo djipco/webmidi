@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.2 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.4 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -112,13 +112,26 @@ import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";
-import {InputChannel} from "./InputChannel.js";
 
 /*START-CJS*/
-// This is the way to import the necessary modules under Node.js when using "type: commonjs" in the
-// package.json file. This block will be stripped in IIFE and ESM versions.
-global["performance"] = require("perf_hooks").performance;
-global["navigator"] = require("jzz");
+
+// This code is only executed when the CommonJS module is used. This is typically under Node.js but
+// might also happen when a bundler (i.e. Webpack) parses the file.
+//
+// Note: this block of code will be stripped from IIFE and ESM versions.
+
+let jzz = require("jzz");
+// import jzz from "jzz";
+
+try {
+  // This will fail in Webpack because the "global" object (i.e. window) cannot be assigned to. This
+  // is what we want because if window is available, this means we are actually inside a browser and
+  // not inside Node.js where the jzz module is required.
+  global["navigator"] = jzz;
+} catch (err) {
+  jzz = null;
+}
+
 /*END-CJS*/
 
 /**
@@ -141,6 +154,9 @@ global["navigator"] = require("jzz");
  */
 class WebMidi extends EventEmitter {
 
+  /**
+   * Creates a `WebMidi` object.
+   */
   constructor() {
 
     super();
@@ -311,12 +327,6 @@ class WebMidi extends EventEmitter {
     /*START-ESM*/
     // This is the way to import the necessary modules under Node.js when using "type: module" in
     // the package.json file. This block will be stripped in IIFE and CJS versions.
-    try {
-      const perf_hooks = await import("perf_hooks");
-      global["performance"] = perf_hooks.performance;
-      // eslint-disable-next-line no-empty
-    } catch (err) {} // ignored because it means we already have the modules
-
     try {
       const jzz = await import("jzz");
       global["navigator"] = jzz.default;
@@ -997,7 +1007,7 @@ class WebMidi extends EventEmitter {
    * An array of all currently available MIDI inputs.
    *
    * @readonly
-   * @type {Array}
+   * @type {Input[]}
    */
   get inputs() {
     return this._inputs;
@@ -1066,7 +1076,7 @@ class WebMidi extends EventEmitter {
    * An array of all currently available MIDI outputs as [`Output`](Output) objects.
    *
    * @readonly
-   * @type {Array}
+   * @type {Output[]}
    */
   get outputs() {
     return this._outputs;
@@ -1127,15 +1137,15 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
+   * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
   get CHANNEL_EVENTS() {
     if (this.validation) {
       console.warn(
-        "The CHANNEL_EVENTS enum has been moved to InputChannel.EVENTS."
+        "The CHANNEL_EVENTS enum has been moved to Enumerations.CHANNEL_EVENTS."
       );
     }
-    return InputChannel.EVENTS;
+    return Enumerations.CHANNEL_EVENTS;
   }
 
   /**
@@ -1227,21 +1237,26 @@ class WebMidi extends EventEmitter {
 // extensible (properties can be added at will).
 const wm = new WebMidi();
 wm.constructor = null;
+
+export {Enumerations} from "./Enumerations.js";
+export {Forwarder} from "./Forwarder.js";
+export {Input} from "./Input.js";
+export {InputChannel} from "./InputChannel.js";
+export {Message} from "./Message.js";
+export {Note} from "./Note.js";
+export {Output} from "./Output.js";
+export {OutputChannel} from "./OutputChannel.js";
+export {Utilities} from "./Utilities.js";
 export {wm as WebMidi};
 
-export {Note} from "./Note.js";
-export {Utilities} from "./Utilities.js";
-export {Enumerations} from "./Enumerations.js";
-export {Message} from "./Message.js";
-export {Forwarder} from "./Forwarder.js";
 </code></pre>
 		</section>
 			</div>
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.2 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on December 3rd 2021 @ 23:20:31 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.4 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on December 15th 2021 @ 19:39:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

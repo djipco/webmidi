@@ -76,6 +76,23 @@ window.lunrData = {
           "throughout",
           "us"
         ],
+        "Enumerations.html#.CHANNEL_EVENTS": [
+          "array",
+          "array.&lt;string&gt",
+          "channel",
+          "channel_ev",
+          "enumerations.channel_ev",
+          "event",
+          "includ",
+          "listen",
+          "lt;static",
+          "member",
+          "mode",
+          "name",
+          "readonly&gt",
+          "rpn/nrpn",
+          "specif"
+        ],
         "Enumerations.html#.MIDI_CHANNEL_MESSAGES": [
           "0x8",
           "0x9",
@@ -1944,19 +1961,6 @@ window.lunrData = {
           "repres",
           "singl",
           "subsystem"
-        ],
-        "InputChannel.html#.EVENTS": [
-          "array",
-          "array.&lt;string&gt",
-          "channel",
-          "event",
-          "inputchannel.ev",
-          "listen",
-          "lt;static",
-          "member",
-          "name",
-          "readonly&gt",
-          "specif"
         ],
         "InputChannel.html#eventCount": [
           "event",
@@ -6839,6 +6843,7 @@ window.lunrData = {
           "1",
           "16",
           "array",
+          "array.&lt;number&gt",
           "backward",
           "be",
           "between",
@@ -7100,6 +7105,7 @@ window.lunrData = {
         ],
         "WebMidi.html#inputs": [
           "array",
+          "array.&lt;input&gt",
           "avail",
           "current",
           "input",
@@ -7213,6 +7219,7 @@ window.lunrData = {
         ],
         "WebMidi.html#outputs": [
           "array",
+          "array.&lt;output&gt",
           "avail",
           "current",
           "lt;readonly&gt",
@@ -11268,6 +11275,10 @@ window.lunrData = {
                       "ref": "Enumerations.html",
                       "tf": 2.941176470588235
                     },
+                    "Enumerations.html#.CHANNEL_EVENTS": {
+                      "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                      "tf": 4.166666666666666
+                    },
                     "Enumerations.html#.MIDI_CHANNEL_NUMBERS": {
                       "ref": "Enumerations.html#.MIDI_CHANNEL_NUMBERS",
                       "tf": 5.555555555555555
@@ -11335,10 +11346,6 @@ window.lunrData = {
                     "Input.html#getListeners": {
                       "ref": "Input.html#getListeners",
                       "tf": 2.083333333333333
-                    },
-                    "InputChannel.html#.EVENTS": {
-                      "ref": "InputChannel.html#.EVENTS",
-                      "tf": 8.333333333333332
                     },
                     "InputChannel.html#eventMap": {
                       "ref": "InputChannel.html#eventMap",
@@ -11474,7 +11481,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.sanitizeChannels": {
                       "ref": "Utilities.html#.sanitizeChannels",
-                      "tf": 27.77777777777778
+                      "tf": 2.7777777777777777
                     },
                     "WebMidi.html#eventMap": {
                       "ref": "WebMidi.html#eventMap",
@@ -11486,11 +11493,11 @@ window.lunrData = {
                     },
                     "WebMidi.html#inputs": {
                       "ref": "WebMidi.html#inputs",
-                      "tf": 43.33333333333333
+                      "tf": 10
                     },
                     "WebMidi.html#outputs": {
                       "ref": "WebMidi.html#outputs",
-                      "tf": 40.47619047619047
+                      "tf": 7.142857142857142
                     },
                     "WebMidi.html#emit": {
                       "ref": "WebMidi.html#emit",
@@ -11511,6 +11518,66 @@ window.lunrData = {
                           "docs": {},
                           ";": {
                             "docs": {},
+                            "s": {
+                              "docs": {},
+                              "t": {
+                                "docs": {},
+                                "r": {
+                                  "docs": {},
+                                  "i": {
+                                    "docs": {},
+                                    "n": {
+                                      "docs": {},
+                                      "g": {
+                                        "docs": {},
+                                        "&": {
+                                          "docs": {},
+                                          "g": {
+                                            "docs": {},
+                                            "t": {
+                                              "docs": {
+                                                "Enumerations.html#.CHANNEL_EVENTS": {
+                                                  "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                                                  "tf": 25
+                                                },
+                                                "EventEmitter.html#eventNames": {
+                                                  "ref": "EventEmitter.html#eventNames",
+                                                  "tf": 33.33333333333333
+                                                },
+                                                "Forwarder.html#types": {
+                                                  "ref": "Forwarder.html#types",
+                                                  "tf": 50
+                                                },
+                                                "Input.html#eventNames": {
+                                                  "ref": "Input.html#eventNames",
+                                                  "tf": 33.33333333333333
+                                                },
+                                                "InputChannel.html#eventNames": {
+                                                  "ref": "InputChannel.html#eventNames",
+                                                  "tf": 33.33333333333333
+                                                },
+                                                "Output.html#eventNames": {
+                                                  "ref": "Output.html#eventNames",
+                                                  "tf": 33.33333333333333
+                                                },
+                                                "OutputChannel.html#eventNames": {
+                                                  "ref": "OutputChannel.html#eventNames",
+                                                  "tf": 33.33333333333333
+                                                },
+                                                "WebMidi.html#eventNames": {
+                                                  "ref": "WebMidi.html#eventNames",
+                                                  "tf": 33.33333333333333
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "n": {
                               "docs": {},
                               "u": {
@@ -11548,6 +11615,10 @@ window.lunrData = {
                                                 "Message.html#manufacturerId": {
                                                   "ref": "Message.html#manufacturerId",
                                                   "tf": 33.33333333333333
+                                                },
+                                                "Utilities.html#.sanitizeChannels": {
+                                                  "ref": "Utilities.html#.sanitizeChannels",
+                                                  "tf": 25
                                                 }
                                               },
                                               ";": {
@@ -11590,66 +11661,6 @@ window.lunrData = {
                                             "Utilities.html#.buildNoteArray": {
                                               "ref": "Utilities.html#.buildNoteArray",
                                               "tf": 20
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "s": {
-                              "docs": {},
-                              "t": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "i": {
-                                    "docs": {},
-                                    "n": {
-                                      "docs": {},
-                                      "g": {
-                                        "docs": {},
-                                        "&": {
-                                          "docs": {},
-                                          "g": {
-                                            "docs": {},
-                                            "t": {
-                                              "docs": {
-                                                "EventEmitter.html#eventNames": {
-                                                  "ref": "EventEmitter.html#eventNames",
-                                                  "tf": 33.33333333333333
-                                                },
-                                                "Forwarder.html#types": {
-                                                  "ref": "Forwarder.html#types",
-                                                  "tf": 50
-                                                },
-                                                "Input.html#eventNames": {
-                                                  "ref": "Input.html#eventNames",
-                                                  "tf": 33.33333333333333
-                                                },
-                                                "InputChannel.html#.EVENTS": {
-                                                  "ref": "InputChannel.html#.EVENTS",
-                                                  "tf": 25
-                                                },
-                                                "InputChannel.html#eventNames": {
-                                                  "ref": "InputChannel.html#eventNames",
-                                                  "tf": 33.33333333333333
-                                                },
-                                                "Output.html#eventNames": {
-                                                  "ref": "Output.html#eventNames",
-                                                  "tf": 33.33333333333333
-                                                },
-                                                "OutputChannel.html#eventNames": {
-                                                  "ref": "OutputChannel.html#eventNames",
-                                                  "tf": 33.33333333333333
-                                                },
-                                                "WebMidi.html#eventNames": {
-                                                  "ref": "WebMidi.html#eventNames",
-                                                  "tf": 33.33333333333333
-                                                }
-                                              }
                                             }
                                           }
                                         }
@@ -11742,6 +11753,10 @@ window.lunrData = {
                                                 "Forwarder.html#destinations": {
                                                   "ref": "Forwarder.html#destinations",
                                                   "tf": 50
+                                                },
+                                                "WebMidi.html#outputs": {
+                                                  "ref": "WebMidi.html#outputs",
+                                                  "tf": 33.33333333333333
                                                 }
                                               }
                                             }
@@ -11828,6 +11843,20 @@ window.lunrData = {
                                                     }
                                                   }
                                                 }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      },
+                                      "&": {
+                                        "docs": {},
+                                        "g": {
+                                          "docs": {},
+                                          "t": {
+                                            "docs": {
+                                              "WebMidi.html#inputs": {
+                                                "ref": "WebMidi.html#inputs",
+                                                "tf": 33.33333333333333
                                               }
                                             }
                                           }
@@ -13736,6 +13765,146 @@ window.lunrData = {
                 }
               }
             },
+            "c": {
+              "docs": {},
+              "l": {
+                "docs": {},
+                "u": {
+                  "docs": {},
+                  "d": {
+                    "docs": {
+                      "Enumerations.html#.CHANNEL_EVENTS": {
+                        "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                        "tf": 4.166666666666666
+                      },
+                      "EventEmitter.html#hasListener": {
+                        "ref": "EventEmitter.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "Forwarder.html#channels": {
+                        "ref": "Forwarder.html#channels",
+                        "tf": 3.3333333333333335
+                      },
+                      "Forwarder.html#types": {
+                        "ref": "Forwarder.html#types",
+                        "tf": 3.3333333333333335
+                      },
+                      "InputChannel.html#hasListener": {
+                        "ref": "InputChannel.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "Message.html#dataBytes": {
+                        "ref": "Message.html#dataBytes",
+                        "tf": 2.083333333333333
+                      },
+                      "Message.html#rawDataBytes": {
+                        "ref": "Message.html#rawDataBytes",
+                        "tf": 2.380952380952381
+                      },
+                      "Output.html#hasListener": {
+                        "ref": "Output.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "OutputChannel.html#hasListener": {
+                        "ref": "OutputChannel.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "Utilities.html#.toNoteNumber": {
+                        "ref": "Utilities.html#.toNoteNumber",
+                        "tf": 1.5873015873015872
+                      },
+                      "WebMidi.html#hasListener": {
+                        "ref": "WebMidi.html#hasListener",
+                        "tf": 1.6129032258064515
+                      }
+                    }
+                  },
+                  "s": {
+                    "docs": {
+                      "Output.html#sendMasterTuning": {
+                        "ref": "Output.html#sendMasterTuning",
+                        "tf": 1.1363636363636365
+                      },
+                      "OutputChannel.html#sendMasterTuning": {
+                        "ref": "OutputChannel.html#sendMasterTuning",
+                        "tf": 1.1904761904761905
+                      },
+                      "Utilities.html#.fromFloatTo7Bit": {
+                        "ref": "Utilities.html#.fromFloatTo7Bit",
+                        "tf": 1.1111111111111112
+                      }
+                    }
+                  }
+                }
+              },
+              "o": {
+                "docs": {},
+                "m": {
+                  "docs": {
+                    "Input.html#octaveOffset": {
+                      "ref": "Input.html#octaveOffset",
+                      "tf": 1.1111111111111112
+                    },
+                    "Input.html#addForwarder": {
+                      "ref": "Input.html#addForwarder",
+                      "tf": 2.272727272727273
+                    },
+                    "InputChannel.html#octaveOffset": {
+                      "ref": "InputChannel.html#octaveOffset",
+                      "tf": 0.8928571428571428
+                    },
+                    "WebMidi.html": {
+                      "ref": "WebMidi.html",
+                      "tf": 0.9803921568627451
+                    }
+                  },
+                  "p": {
+                    "docs": {},
+                    "l": {
+                      "docs": {},
+                      "e": {
+                        "docs": {},
+                        "t": {
+                          "docs": {
+                            "InputChannel.html#parameterNumberEventsEnabled": {
+                              "ref": "InputChannel.html#parameterNumberEventsEnabled",
+                              "tf": 1.0638297872340425
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              },
+              "r": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "m": {
+                    "docs": {},
+                    "e": {
+                      "docs": {},
+                      "n": {
+                        "docs": {},
+                        "t": {
+                          "docs": {
+                            "Output.html#sendRpnIncrement": {
+                              "ref": "Output.html#sendRpnIncrement",
+                              "tf": 0.5434782608695652
+                            },
+                            "OutputChannel.html#sendRpnIncrement": {
+                              "ref": "OutputChannel.html#sendRpnIncrement",
+                              "tf": 0.5434782608695652
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
             "t": {
               "docs": {},
               "e": {
@@ -13990,142 +14159,6 @@ window.lunrData = {
                       "WebMidi.html#unsuspendEvent": {
                         "ref": "WebMidi.html#unsuspendEvent",
                         "tf": 1.4705882352941175
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "c": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "u": {
-                  "docs": {},
-                  "d": {
-                    "docs": {
-                      "EventEmitter.html#hasListener": {
-                        "ref": "EventEmitter.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "Forwarder.html#channels": {
-                        "ref": "Forwarder.html#channels",
-                        "tf": 3.3333333333333335
-                      },
-                      "Forwarder.html#types": {
-                        "ref": "Forwarder.html#types",
-                        "tf": 3.3333333333333335
-                      },
-                      "InputChannel.html#hasListener": {
-                        "ref": "InputChannel.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "Message.html#dataBytes": {
-                        "ref": "Message.html#dataBytes",
-                        "tf": 2.083333333333333
-                      },
-                      "Message.html#rawDataBytes": {
-                        "ref": "Message.html#rawDataBytes",
-                        "tf": 2.380952380952381
-                      },
-                      "Output.html#hasListener": {
-                        "ref": "Output.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "OutputChannel.html#hasListener": {
-                        "ref": "OutputChannel.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "Utilities.html#.toNoteNumber": {
-                        "ref": "Utilities.html#.toNoteNumber",
-                        "tf": 1.5873015873015872
-                      },
-                      "WebMidi.html#hasListener": {
-                        "ref": "WebMidi.html#hasListener",
-                        "tf": 1.6129032258064515
-                      }
-                    }
-                  },
-                  "s": {
-                    "docs": {
-                      "Output.html#sendMasterTuning": {
-                        "ref": "Output.html#sendMasterTuning",
-                        "tf": 1.1363636363636365
-                      },
-                      "OutputChannel.html#sendMasterTuning": {
-                        "ref": "OutputChannel.html#sendMasterTuning",
-                        "tf": 1.1904761904761905
-                      },
-                      "Utilities.html#.fromFloatTo7Bit": {
-                        "ref": "Utilities.html#.fromFloatTo7Bit",
-                        "tf": 1.1111111111111112
-                      }
-                    }
-                  }
-                }
-              },
-              "o": {
-                "docs": {},
-                "m": {
-                  "docs": {
-                    "Input.html#octaveOffset": {
-                      "ref": "Input.html#octaveOffset",
-                      "tf": 1.1111111111111112
-                    },
-                    "Input.html#addForwarder": {
-                      "ref": "Input.html#addForwarder",
-                      "tf": 2.272727272727273
-                    },
-                    "InputChannel.html#octaveOffset": {
-                      "ref": "InputChannel.html#octaveOffset",
-                      "tf": 0.8928571428571428
-                    },
-                    "WebMidi.html": {
-                      "ref": "WebMidi.html",
-                      "tf": 0.9803921568627451
-                    }
-                  },
-                  "p": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "t": {
-                          "docs": {
-                            "InputChannel.html#parameterNumberEventsEnabled": {
-                              "ref": "InputChannel.html#parameterNumberEventsEnabled",
-                              "tf": 1.0638297872340425
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              },
-              "r": {
-                "docs": {},
-                "e": {
-                  "docs": {},
-                  "m": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "t": {
-                          "docs": {
-                            "Output.html#sendRpnIncrement": {
-                              "ref": "Output.html#sendRpnIncrement",
-                              "tf": 0.5434782608695652
-                            },
-                            "OutputChannel.html#sendRpnIncrement": {
-                              "ref": "OutputChannel.html#sendRpnIncrement",
-                              "tf": 0.5434782608695652
-                            }
-                          }
-                        }
                       }
                     }
                   }
@@ -14460,17 +14493,6 @@ window.lunrData = {
                                               }
                                             }
                                           }
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "e": {
-                                    "docs": {},
-                                    "v": {
-                                      "docs": {
-                                        "InputChannel.html#.EVENTS": {
-                                          "ref": "InputChannel.html#.EVENTS",
-                                          "tf": 1150
                                         }
                                       }
                                     }
@@ -17017,6 +17039,10 @@ window.lunrData = {
                   "docs": {},
                   "n": {
                     "docs": {
+                      "Enumerations.html#.CHANNEL_EVENTS": {
+                        "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                        "tf": 4.166666666666666
+                      },
                       "EventEmitter.html#.ANY_EVENT": {
                         "ref": "EventEmitter.html#.ANY_EVENT",
                         "tf": 6.25
@@ -17132,10 +17158,6 @@ window.lunrData = {
                       "Input.html#unsuspendEvent": {
                         "ref": "Input.html#unsuspendEvent",
                         "tf": 1.4705882352941175
-                      },
-                      "InputChannel.html#.EVENTS": {
-                        "ref": "InputChannel.html#.EVENTS",
-                        "tf": 8.333333333333332
                       },
                       "InputChannel.html#eventCount": {
                         "ref": "InputChannel.html#eventCount",
@@ -17734,6 +17756,10 @@ window.lunrData = {
                         "docs": {},
                         "c": {
                           "docs": {
+                            "Enumerations.html#.CHANNEL_EVENTS": {
+                              "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                              "tf": 25
+                            },
                             "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
                               "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                               "tf": 20
@@ -17757,10 +17783,6 @@ window.lunrData = {
                             "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
                               "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
                               "tf": 20
-                            },
-                            "InputChannel.html#.EVENTS": {
-                              "ref": "InputChannel.html#.EVENTS",
-                              "tf": 25
                             }
                           },
                           "&": {
@@ -19523,6 +19545,10 @@ window.lunrData = {
                   "docs": {},
                   "r": {
                     "docs": {
+                      "Enumerations.html#.CHANNEL_EVENTS": {
+                        "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                        "tf": 110
+                      },
                       "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
                         "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                         "tf": 110
@@ -19629,10 +19655,6 @@ window.lunrData = {
                       },
                       "Input.html#type": {
                         "ref": "Input.html#type",
-                        "tf": 110
-                      },
-                      "InputChannel.html#.EVENTS": {
-                        "ref": "InputChannel.html#.EVENTS",
                         "tf": 110
                       },
                       "InputChannel.html#eventCount": {
@@ -20878,6 +20900,10 @@ window.lunrData = {
               "docs": {},
               "e": {
                 "docs": {
+                  "Enumerations.html#.CHANNEL_EVENTS": {
+                    "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                    "tf": 4.166666666666666
+                  },
                   "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES": {
                     "ref": "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES",
                     "tf": 1.3513513513513513
@@ -24425,6 +24451,10 @@ window.lunrData = {
                             "docs": {},
                             "t": {
                               "docs": {
+                                "Enumerations.html#.CHANNEL_EVENTS": {
+                                  "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                                  "tf": 25
+                                },
                                 "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
                                   "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                                   "tf": 20
@@ -24448,10 +24478,6 @@ window.lunrData = {
                                 "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
                                   "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
                                   "tf": 20
-                                },
-                                "InputChannel.html#.EVENTS": {
-                                  "ref": "InputChannel.html#.EVENTS",
-                                  "tf": 25
                                 }
                               }
                             }
@@ -26266,6 +26292,57 @@ window.lunrData = {
               }
             }
           },
+          "p": {
+            "docs": {},
+            "n": {
+              "docs": {
+                "Input.html#addListener": {
+                  "ref": "Input.html#addListener",
+                  "tf": 1.1811023622047243
+                },
+                "Input.html#addOneTimeListener": {
+                  "ref": "Input.html#addOneTimeListener",
+                  "tf": 1.2448132780082988
+                },
+                "InputChannel.html#parameterNumberEventsEnabled": {
+                  "ref": "InputChannel.html#parameterNumberEventsEnabled",
+                  "tf": 2.127659574468085
+                },
+                "Output.html#sendMasterTuning": {
+                  "ref": "Output.html#sendMasterTuning",
+                  "tf": 1.1363636363636365
+                },
+                "OutputChannel.html#sendMasterTuning": {
+                  "ref": "OutputChannel.html#sendMasterTuning",
+                  "tf": 1.1904761904761905
+                },
+                "OutputChannel.html#sendRpnValue": {
+                  "ref": "OutputChannel.html#sendRpnValue",
+                  "tf": 20
+                }
+              },
+              "/": {
+                "docs": {},
+                "n": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "p": {
+                      "docs": {},
+                      "n": {
+                        "docs": {
+                          "Enumerations.html#.CHANNEL_EVENTS": {
+                            "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                            "tf": 4.166666666666666
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
           "o": {
             "docs": {},
             "l": {
@@ -26347,37 +26424,6 @@ window.lunrData = {
                       }
                     }
                   }
-                }
-              }
-            }
-          },
-          "p": {
-            "docs": {},
-            "n": {
-              "docs": {
-                "Input.html#addListener": {
-                  "ref": "Input.html#addListener",
-                  "tf": 1.1811023622047243
-                },
-                "Input.html#addOneTimeListener": {
-                  "ref": "Input.html#addOneTimeListener",
-                  "tf": 1.2448132780082988
-                },
-                "InputChannel.html#parameterNumberEventsEnabled": {
-                  "ref": "InputChannel.html#parameterNumberEventsEnabled",
-                  "tf": 2.127659574468085
-                },
-                "Output.html#sendMasterTuning": {
-                  "ref": "Output.html#sendMasterTuning",
-                  "tf": 1.1363636363636365
-                },
-                "OutputChannel.html#sendMasterTuning": {
-                  "ref": "OutputChannel.html#sendMasterTuning",
-                  "tf": 1.1904761904761905
-                },
-                "OutputChannel.html#sendRpnValue": {
-                  "ref": "OutputChannel.html#sendRpnValue",
-                  "tf": 20
                 }
               }
             }
@@ -33350,6 +33396,10 @@ window.lunrData = {
                     "docs": {},
                     "l": {
                       "docs": {
+                        "Enumerations.html#.CHANNEL_EVENTS": {
+                          "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                          "tf": 8.333333333333332
+                        },
                         "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
                           "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                           "tf": 1.4285714285714286
@@ -33401,10 +33451,6 @@ window.lunrData = {
                         "InputChannel.html": {
                           "ref": "InputChannel.html",
                           "tf": 3.7037037037037033
-                        },
-                        "InputChannel.html#.EVENTS": {
-                          "ref": "InputChannel.html#.EVENTS",
-                          "tf": 8.333333333333332
                         },
                         "InputChannel.html#input": {
                           "ref": "InputChannel.html#input",
@@ -33565,6 +33611,20 @@ window.lunrData = {
                         "WebMidi.html#octaveOffset": {
                           "ref": "WebMidi.html#octaveOffset",
                           "tf": 0.9259259259259258
+                        }
+                      },
+                      "_": {
+                        "docs": {},
+                        "e": {
+                          "docs": {},
+                          "v": {
+                            "docs": {
+                              "Enumerations.html#.CHANNEL_EVENTS": {
+                                "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                                "tf": 675
+                              }
+                            }
+                          }
                         }
                       },
                       "a": {
@@ -35371,6 +35431,41 @@ window.lunrData = {
                                         }
                                       }
                                     }
+                                  },
+                                  "c": {
+                                    "docs": {},
+                                    "h": {
+                                      "docs": {},
+                                      "a": {
+                                        "docs": {},
+                                        "n": {
+                                          "docs": {},
+                                          "n": {
+                                            "docs": {},
+                                            "e": {
+                                              "docs": {},
+                                              "l": {
+                                                "docs": {},
+                                                "_": {
+                                                  "docs": {},
+                                                  "e": {
+                                                    "docs": {},
+                                                    "v": {
+                                                      "docs": {
+                                                        "Enumerations.html#.CHANNEL_EVENTS": {
+                                                          "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                                                          "tf": 1150
+                                                        }
+                                                      }
+                                                    }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
                                   }
                                 }
                               }
@@ -36158,335 +36253,6 @@ window.lunrData = {
               }
             }
           },
-          ".": {
-            "docs": {},
-            "g": {
-              "docs": {
-                "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
-                  "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
-                  "tf": 0.17543859649122806
-                },
-                "Output.html#playNote": {
-                  "ref": "Output.html#playNote",
-                  "tf": 0.4132231404958678
-                },
-                "Output.html#sendNoteOff": {
-                  "ref": "Output.html#sendNoteOff",
-                  "tf": 1.1111111111111112
-                },
-                "Output.html#sendNoteOn": {
-                  "ref": "Output.html#sendNoteOn",
-                  "tf": 0.8771929824561403
-                },
-                "Output.html#stopNote": {
-                  "ref": "Output.html#stopNote",
-                  "tf": 1.1111111111111112
-                },
-                "OutputChannel.html#playNote": {
-                  "ref": "OutputChannel.html#playNote",
-                  "tf": 0.4716981132075472
-                },
-                "OutputChannel.html#sendNoteOff": {
-                  "ref": "OutputChannel.html#sendNoteOff",
-                  "tf": 0.847457627118644
-                },
-                "OutputChannel.html#sendNoteOn": {
-                  "ref": "OutputChannel.html#sendNoteOn",
-                  "tf": 0.5050505050505051
-                },
-                "OutputChannel.html#stopNote": {
-                  "ref": "OutputChannel.html#stopNote",
-                  "tf": 1.1627906976744187
-                },
-                "WebMidi.html#enable": {
-                  "ref": "WebMidi.html#enable",
-                  "tf": 0.29411764705882354
-                }
-              }
-            }
-          },
-          "f": {
-            "docs": {},
-            "f": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "c": {
-                  "docs": {},
-                  "t": {
-                    "docs": {},
-                    "c": {
-                      "docs": {},
-                      "o": {
-                        "docs": {},
-                        "n": {
-                          "docs": {},
-                          "t": {
-                            "docs": {},
-                            "r": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "l": {
-                                  "1": {
-                                    "docs": {},
-                                    "c": {
-                                      "docs": {},
-                                      "o": {
-                                        "docs": {},
-                                        "a": {
-                                          "docs": {},
-                                          "r": {
-                                            "docs": {},
-                                            "s": {
-                                              "docs": {
-                                                "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                  "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
-                                                  "tf": 0.17543859649122806
-                                                },
-                                                "Output.html#sendControlChange": {
-                                                  "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.24509803921568626
-                                                },
-                                                "OutputChannel.html#sendControlChange": {
-                                                  "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.205761316872428
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
-                                    "f": {
-                                      "docs": {},
-                                      "i": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {
-                                            "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
-                                              "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
-                                              "tf": 0.17543859649122806
-                                            },
-                                            "Output.html#sendControlChange": {
-                                              "ref": "Output.html#sendControlChange",
-                                              "tf": 0.24509803921568626
-                                            },
-                                            "OutputChannel.html#sendControlChange": {
-                                              "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.205761316872428
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "2": {
-                                    "docs": {},
-                                    "c": {
-                                      "docs": {},
-                                      "o": {
-                                        "docs": {},
-                                        "a": {
-                                          "docs": {},
-                                          "r": {
-                                            "docs": {},
-                                            "s": {
-                                              "docs": {
-                                                "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
-                                                  "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
-                                                  "tf": 0.17543859649122806
-                                                },
-                                                "Output.html#sendControlChange": {
-                                                  "ref": "Output.html#sendControlChange",
-                                                  "tf": 0.24509803921568626
-                                                },
-                                                "OutputChannel.html#sendControlChange": {
-                                                  "ref": "OutputChannel.html#sendControlChange",
-                                                  "tf": 0.205761316872428
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    },
-                                    "f": {
-                                      "docs": {},
-                                      "i": {
-                                        "docs": {},
-                                        "n": {
-                                          "docs": {
-                                            "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
-                                              "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
-                                              "tf": 0.17543859649122806
-                                            },
-                                            "Output.html#sendControlChange": {
-                                              "ref": "Output.html#sendControlChange",
-                                              "tf": 0.24509803921568626
-                                            },
-                                            "OutputChannel.html#sendControlChange": {
-                                              "ref": "OutputChannel.html#sendControlChange",
-                                              "tf": 0.205761316872428
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
-                                  "docs": {}
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "m": {
-            "docs": {},
-            "i": {
-              "docs": {},
-              "t": {
-                "docs": {
-                  "EventEmitter.html": {
-                    "ref": "EventEmitter.html",
-                    "tf": 2
-                  },
-                  "EventEmitter.html#emit": {
-                    "ref": "EventEmitter.html#emit",
-                    "tf": 676
-                  },
-                  "EventEmitter.html#waitFor": {
-                    "ref": "EventEmitter.html#waitFor",
-                    "tf": 2.1739130434782608
-                  },
-                  "EventEmitter.html#~callback": {
-                    "ref": "EventEmitter.html#~callback",
-                    "tf": 3.1914893617021276
-                  },
-                  "Input.html#emit": {
-                    "ref": "Input.html#emit",
-                    "tf": 676
-                  },
-                  "Input.html#waitFor": {
-                    "ref": "Input.html#waitFor",
-                    "tf": 2.1739130434782608
-                  },
-                  "InputChannel.html#emit": {
-                    "ref": "InputChannel.html#emit",
-                    "tf": 676
-                  },
-                  "InputChannel.html#waitFor": {
-                    "ref": "InputChannel.html#waitFor",
-                    "tf": 2.1739130434782608
-                  },
-                  "Listener.html#target": {
-                    "ref": "Listener.html#target",
-                    "tf": 10
-                  },
-                  "Output.html#emit": {
-                    "ref": "Output.html#emit",
-                    "tf": 676
-                  },
-                  "Output.html#waitFor": {
-                    "ref": "Output.html#waitFor",
-                    "tf": 2.1739130434782608
-                  },
-                  "OutputChannel.html#emit": {
-                    "ref": "OutputChannel.html#emit",
-                    "tf": 676
-                  },
-                  "OutputChannel.html#waitFor": {
-                    "ref": "OutputChannel.html#waitFor",
-                    "tf": 2.1739130434782608
-                  },
-                  "WebMidi.html#emit": {
-                    "ref": "WebMidi.html#emit",
-                    "tf": 676
-                  },
-                  "WebMidi.html#waitFor": {
-                    "ref": "WebMidi.html#waitFor",
-                    "tf": 2.1739130434782608
-                  }
-                },
-                "t": {
-                  "docs": {
-                    "EventEmitter.html": {
-                      "ref": "EventEmitter.html",
-                      "tf": 2
-                    },
-                    "EventEmitter.html#eventNames": {
-                      "ref": "EventEmitter.html#eventNames",
-                      "tf": 2.941176470588235
-                    },
-                    "EventEmitter.html#eventsSuspended": {
-                      "ref": "EventEmitter.html#eventsSuspended",
-                      "tf": 8.333333333333332
-                    },
-                    "Input.html#eventNames": {
-                      "ref": "Input.html#eventNames",
-                      "tf": 2.941176470588235
-                    },
-                    "Input.html#eventsSuspended": {
-                      "ref": "Input.html#eventsSuspended",
-                      "tf": 8.333333333333332
-                    },
-                    "InputChannel.html#eventNames": {
-                      "ref": "InputChannel.html#eventNames",
-                      "tf": 2.941176470588235
-                    },
-                    "InputChannel.html#eventsSuspended": {
-                      "ref": "InputChannel.html#eventsSuspended",
-                      "tf": 8.333333333333332
-                    },
-                    "Output.html#eventNames": {
-                      "ref": "Output.html#eventNames",
-                      "tf": 2.941176470588235
-                    },
-                    "Output.html#eventsSuspended": {
-                      "ref": "Output.html#eventsSuspended",
-                      "tf": 8.333333333333332
-                    },
-                    "OutputChannel.html#eventNames": {
-                      "ref": "OutputChannel.html#eventNames",
-                      "tf": 2.941176470588235
-                    },
-                    "OutputChannel.html#eventsSuspended": {
-                      "ref": "OutputChannel.html#eventsSuspended",
-                      "tf": 8.333333333333332
-                    },
-                    "WebMidi.html#eventNames": {
-                      "ref": "WebMidi.html#eventNames",
-                      "tf": 2.941176470588235
-                    },
-                    "WebMidi.html#eventsSuspended": {
-                      "ref": "WebMidi.html#eventsSuspended",
-                      "tf": 8.333333333333332
-                    }
-                  }
-                }
-              }
-            },
-            "p": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "i": {
-                  "docs": {
-                    "Input.html#destroy": {
-                      "ref": "Input.html#destroy",
-                      "tf": 3.8461538461538463
-                    }
-                  }
-                }
-              }
-            }
-          },
           "v": {
             "docs": {},
             "e": {
@@ -36520,6 +36286,10 @@ window.lunrData = {
                 },
                 "t": {
                   "docs": {
+                    "Enumerations.html#.CHANNEL_EVENTS": {
+                      "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                      "tf": 12.5
+                    },
                     "EventEmitter.html": {
                       "ref": "EventEmitter.html",
                       "tf": 2
@@ -36643,10 +36413,6 @@ window.lunrData = {
                     "Input.html#waitFor": {
                       "ref": "Input.html#waitFor",
                       "tf": 33.69565217391305
-                    },
-                    "InputChannel.html#.EVENTS": {
-                      "ref": "InputChannel.html#.EVENTS",
-                      "tf": 683.3333333333334
                     },
                     "InputChannel.html#eventCount": {
                       "ref": "InputChannel.html#eventCount",
@@ -37890,6 +37656,335 @@ window.lunrData = {
               }
             }
           },
+          ".": {
+            "docs": {},
+            "g": {
+              "docs": {
+                "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
+                  "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
+                  "tf": 0.17543859649122806
+                },
+                "Output.html#playNote": {
+                  "ref": "Output.html#playNote",
+                  "tf": 0.4132231404958678
+                },
+                "Output.html#sendNoteOff": {
+                  "ref": "Output.html#sendNoteOff",
+                  "tf": 1.1111111111111112
+                },
+                "Output.html#sendNoteOn": {
+                  "ref": "Output.html#sendNoteOn",
+                  "tf": 0.8771929824561403
+                },
+                "Output.html#stopNote": {
+                  "ref": "Output.html#stopNote",
+                  "tf": 1.1111111111111112
+                },
+                "OutputChannel.html#playNote": {
+                  "ref": "OutputChannel.html#playNote",
+                  "tf": 0.4716981132075472
+                },
+                "OutputChannel.html#sendNoteOff": {
+                  "ref": "OutputChannel.html#sendNoteOff",
+                  "tf": 0.847457627118644
+                },
+                "OutputChannel.html#sendNoteOn": {
+                  "ref": "OutputChannel.html#sendNoteOn",
+                  "tf": 0.5050505050505051
+                },
+                "OutputChannel.html#stopNote": {
+                  "ref": "OutputChannel.html#stopNote",
+                  "tf": 1.1627906976744187
+                },
+                "WebMidi.html#enable": {
+                  "ref": "WebMidi.html#enable",
+                  "tf": 0.29411764705882354
+                }
+              }
+            }
+          },
+          "f": {
+            "docs": {},
+            "f": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "c": {
+                  "docs": {},
+                  "t": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "o": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "t": {
+                            "docs": {},
+                            "r": {
+                              "docs": {},
+                              "o": {
+                                "docs": {},
+                                "l": {
+                                  "1": {
+                                    "docs": {},
+                                    "c": {
+                                      "docs": {},
+                                      "o": {
+                                        "docs": {},
+                                        "a": {
+                                          "docs": {},
+                                          "r": {
+                                            "docs": {},
+                                            "s": {
+                                              "docs": {
+                                                "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                  "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
+                                                  "tf": 0.17543859649122806
+                                                },
+                                                "Output.html#sendControlChange": {
+                                                  "ref": "Output.html#sendControlChange",
+                                                  "tf": 0.24509803921568626
+                                                },
+                                                "OutputChannel.html#sendControlChange": {
+                                                  "ref": "OutputChannel.html#sendControlChange",
+                                                  "tf": 0.205761316872428
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "f": {
+                                      "docs": {},
+                                      "i": {
+                                        "docs": {},
+                                        "n": {
+                                          "docs": {
+                                            "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
+                                              "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
+                                              "tf": 0.17543859649122806
+                                            },
+                                            "Output.html#sendControlChange": {
+                                              "ref": "Output.html#sendControlChange",
+                                              "tf": 0.24509803921568626
+                                            },
+                                            "OutputChannel.html#sendControlChange": {
+                                              "ref": "OutputChannel.html#sendControlChange",
+                                              "tf": 0.205761316872428
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "2": {
+                                    "docs": {},
+                                    "c": {
+                                      "docs": {},
+                                      "o": {
+                                        "docs": {},
+                                        "a": {
+                                          "docs": {},
+                                          "r": {
+                                            "docs": {},
+                                            "s": {
+                                              "docs": {
+                                                "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
+                                                  "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
+                                                  "tf": 0.17543859649122806
+                                                },
+                                                "Output.html#sendControlChange": {
+                                                  "ref": "Output.html#sendControlChange",
+                                                  "tf": 0.24509803921568626
+                                                },
+                                                "OutputChannel.html#sendControlChange": {
+                                                  "ref": "OutputChannel.html#sendControlChange",
+                                                  "tf": 0.205761316872428
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    },
+                                    "f": {
+                                      "docs": {},
+                                      "i": {
+                                        "docs": {},
+                                        "n": {
+                                          "docs": {
+                                            "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
+                                              "ref": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
+                                              "tf": 0.17543859649122806
+                                            },
+                                            "Output.html#sendControlChange": {
+                                              "ref": "Output.html#sendControlChange",
+                                              "tf": 0.24509803921568626
+                                            },
+                                            "OutputChannel.html#sendControlChange": {
+                                              "ref": "OutputChannel.html#sendControlChange",
+                                              "tf": 0.205761316872428
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  },
+                                  "docs": {}
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "m": {
+            "docs": {},
+            "i": {
+              "docs": {},
+              "t": {
+                "docs": {
+                  "EventEmitter.html": {
+                    "ref": "EventEmitter.html",
+                    "tf": 2
+                  },
+                  "EventEmitter.html#emit": {
+                    "ref": "EventEmitter.html#emit",
+                    "tf": 676
+                  },
+                  "EventEmitter.html#waitFor": {
+                    "ref": "EventEmitter.html#waitFor",
+                    "tf": 2.1739130434782608
+                  },
+                  "EventEmitter.html#~callback": {
+                    "ref": "EventEmitter.html#~callback",
+                    "tf": 3.1914893617021276
+                  },
+                  "Input.html#emit": {
+                    "ref": "Input.html#emit",
+                    "tf": 676
+                  },
+                  "Input.html#waitFor": {
+                    "ref": "Input.html#waitFor",
+                    "tf": 2.1739130434782608
+                  },
+                  "InputChannel.html#emit": {
+                    "ref": "InputChannel.html#emit",
+                    "tf": 676
+                  },
+                  "InputChannel.html#waitFor": {
+                    "ref": "InputChannel.html#waitFor",
+                    "tf": 2.1739130434782608
+                  },
+                  "Listener.html#target": {
+                    "ref": "Listener.html#target",
+                    "tf": 10
+                  },
+                  "Output.html#emit": {
+                    "ref": "Output.html#emit",
+                    "tf": 676
+                  },
+                  "Output.html#waitFor": {
+                    "ref": "Output.html#waitFor",
+                    "tf": 2.1739130434782608
+                  },
+                  "OutputChannel.html#emit": {
+                    "ref": "OutputChannel.html#emit",
+                    "tf": 676
+                  },
+                  "OutputChannel.html#waitFor": {
+                    "ref": "OutputChannel.html#waitFor",
+                    "tf": 2.1739130434782608
+                  },
+                  "WebMidi.html#emit": {
+                    "ref": "WebMidi.html#emit",
+                    "tf": 676
+                  },
+                  "WebMidi.html#waitFor": {
+                    "ref": "WebMidi.html#waitFor",
+                    "tf": 2.1739130434782608
+                  }
+                },
+                "t": {
+                  "docs": {
+                    "EventEmitter.html": {
+                      "ref": "EventEmitter.html",
+                      "tf": 2
+                    },
+                    "EventEmitter.html#eventNames": {
+                      "ref": "EventEmitter.html#eventNames",
+                      "tf": 2.941176470588235
+                    },
+                    "EventEmitter.html#eventsSuspended": {
+                      "ref": "EventEmitter.html#eventsSuspended",
+                      "tf": 8.333333333333332
+                    },
+                    "Input.html#eventNames": {
+                      "ref": "Input.html#eventNames",
+                      "tf": 2.941176470588235
+                    },
+                    "Input.html#eventsSuspended": {
+                      "ref": "Input.html#eventsSuspended",
+                      "tf": 8.333333333333332
+                    },
+                    "InputChannel.html#eventNames": {
+                      "ref": "InputChannel.html#eventNames",
+                      "tf": 2.941176470588235
+                    },
+                    "InputChannel.html#eventsSuspended": {
+                      "ref": "InputChannel.html#eventsSuspended",
+                      "tf": 8.333333333333332
+                    },
+                    "Output.html#eventNames": {
+                      "ref": "Output.html#eventNames",
+                      "tf": 2.941176470588235
+                    },
+                    "Output.html#eventsSuspended": {
+                      "ref": "Output.html#eventsSuspended",
+                      "tf": 8.333333333333332
+                    },
+                    "OutputChannel.html#eventNames": {
+                      "ref": "OutputChannel.html#eventNames",
+                      "tf": 2.941176470588235
+                    },
+                    "OutputChannel.html#eventsSuspended": {
+                      "ref": "OutputChannel.html#eventsSuspended",
+                      "tf": 8.333333333333332
+                    },
+                    "WebMidi.html#eventNames": {
+                      "ref": "WebMidi.html#eventNames",
+                      "tf": 2.941176470588235
+                    },
+                    "WebMidi.html#eventsSuspended": {
+                      "ref": "WebMidi.html#eventsSuspended",
+                      "tf": 8.333333333333332
+                    }
+                  }
+                }
+              }
+            },
+            "p": {
+              "docs": {},
+              "t": {
+                "docs": {},
+                "i": {
+                  "docs": {
+                    "Input.html#destroy": {
+                      "ref": "Input.html#destroy",
+                      "tf": 3.8461538461538463
+                    }
+                  }
+                }
+              }
+            }
+          },
           "a": {
             "docs": {},
             "c": {
@@ -38216,6 +38311,10 @@ window.lunrData = {
                     "ref": "Enumerations.html",
                     "tf": 2.941176470588235
                   },
+                  "Enumerations.html#.CHANNEL_EVENTS": {
+                    "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                    "tf": 4.166666666666666
+                  },
                   "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
                     "ref": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
                     "tf": 2.857142857142857
@@ -38247,10 +38346,6 @@ window.lunrData = {
                   "Input.html#addOneTimeListener": {
                     "ref": "Input.html#addOneTimeListener",
                     "tf": 0.2074688796680498
-                  },
-                  "InputChannel.html#.EVENTS": {
-                    "ref": "InputChannel.html#.EVENTS",
-                    "tf": 8.333333333333332
                   },
                   "InputChannel.html#eventNames": {
                     "ref": "InputChannel.html#eventNames",
@@ -40668,6 +40763,720 @@ window.lunrData = {
                     "OutputChannel.html#sendControlChange": {
                       "ref": "OutputChannel.html#sendControlChange",
                       "tf": 0.205761316872428
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "p": {
+            "docs": {},
+            "e": {
+              "docs": {},
+              "c": {
+                "docs": {
+                  "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
+                    "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
+                    "tf": 0.46728971962616817
+                  },
+                  "Utilities.html#.getCcNameByNumber": {
+                    "ref": "Utilities.html#.getCcNameByNumber",
+                    "tf": 1.9230769230769231
+                  }
+                },
+                "i": {
+                  "docs": {},
+                  "f": {
+                    "docs": {
+                      "Enumerations.html#.CHANNEL_EVENTS": {
+                        "ref": "Enumerations.html#.CHANNEL_EVENTS",
+                        "tf": 4.166666666666666
+                      },
+                      "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
+                        "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
+                        "tf": 0.46728971962616817
+                      },
+                      "EventEmitter.html": {
+                        "ref": "EventEmitter.html",
+                        "tf": 2
+                      },
+                      "EventEmitter.html#eventCount": {
+                        "ref": "EventEmitter.html#eventCount",
+                        "tf": 3.571428571428571
+                      },
+                      "EventEmitter.html#eventNames": {
+                        "ref": "EventEmitter.html#eventNames",
+                        "tf": 2.941176470588235
+                      },
+                      "EventEmitter.html#getListenerCount": {
+                        "ref": "EventEmitter.html#getListenerCount",
+                        "tf": 3.8461538461538463
+                      },
+                      "EventEmitter.html#getListeners": {
+                        "ref": "EventEmitter.html#getListeners",
+                        "tf": 4.166666666666666
+                      },
+                      "EventEmitter.html#hasListener": {
+                        "ref": "EventEmitter.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "EventEmitter.html#suspendEvent": {
+                        "ref": "EventEmitter.html#suspendEvent",
+                        "tf": 1.0869565217391304
+                      },
+                      "Forwarder.html": {
+                        "ref": "Forwarder.html",
+                        "tf": 1.2195121951219512
+                      },
+                      "Input.html": {
+                        "ref": "Input.html",
+                        "tf": 1.4705882352941175
+                      },
+                      "Input.html#eventCount": {
+                        "ref": "Input.html#eventCount",
+                        "tf": 3.571428571428571
+                      },
+                      "Input.html#eventNames": {
+                        "ref": "Input.html#eventNames",
+                        "tf": 2.941176470588235
+                      },
+                      "Input.html#id": {
+                        "ref": "Input.html#id",
+                        "tf": 2.1739130434782608
+                      },
+                      "Input.html#addListener": {
+                        "ref": "Input.html#addListener",
+                        "tf": 2.559055118110236
+                      },
+                      "Input.html#addOneTimeListener": {
+                        "ref": "Input.html#addOneTimeListener",
+                        "tf": 1.6597510373443984
+                      },
+                      "Input.html#getListenerCount": {
+                        "ref": "Input.html#getListenerCount",
+                        "tf": 3.8461538461538463
+                      },
+                      "Input.html#getListeners": {
+                        "ref": "Input.html#getListeners",
+                        "tf": 4.166666666666666
+                      },
+                      "Input.html#hasListener": {
+                        "ref": "Input.html#hasListener",
+                        "tf": 2.631578947368421
+                      },
+                      "Input.html#removeListener": {
+                        "ref": "Input.html#removeListener",
+                        "tf": 1.6666666666666667
+                      },
+                      "Input.html#suspendEvent": {
+                        "ref": "Input.html#suspendEvent",
+                        "tf": 1.0869565217391304
+                      },
+                      "InputChannel.html#eventCount": {
+                        "ref": "InputChannel.html#eventCount",
+                        "tf": 3.571428571428571
+                      },
+                      "InputChannel.html#eventNames": {
+                        "ref": "InputChannel.html#eventNames",
+                        "tf": 2.941176470588235
+                      },
+                      "InputChannel.html#octaveOffset": {
+                        "ref": "InputChannel.html#octaveOffset",
+                        "tf": 0.8928571428571428
+                      },
+                      "InputChannel.html#parameterNumberEventsEnabled": {
+                        "ref": "InputChannel.html#parameterNumberEventsEnabled",
+                        "tf": 1.0638297872340425
+                      },
+                      "InputChannel.html#getListenerCount": {
+                        "ref": "InputChannel.html#getListenerCount",
+                        "tf": 3.8461538461538463
+                      },
+                      "InputChannel.html#getListeners": {
+                        "ref": "InputChannel.html#getListeners",
+                        "tf": 4.166666666666666
+                      },
+                      "InputChannel.html#hasListener": {
+                        "ref": "InputChannel.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "InputChannel.html#suspendEvent": {
+                        "ref": "InputChannel.html#suspendEvent",
+                        "tf": 1.0869565217391304
+                      },
+                      "Message.html#channel": {
+                        "ref": "Message.html#channel",
+                        "tf": 3.571428571428571
+                      },
+                      "Message.html#command": {
+                        "ref": "Message.html#command",
+                        "tf": 2.631578947368421
+                      },
+                      "Message.html#isChannelMessage": {
+                        "ref": "Message.html#isChannelMessage",
+                        "tf": 6.25
+                      },
+                      "Message.html#isSystemMessage": {
+                        "ref": "Message.html#isSystemMessage",
+                        "tf": 5.555555555555555
+                      },
+                      "Output.html#eventCount": {
+                        "ref": "Output.html#eventCount",
+                        "tf": 3.571428571428571
+                      },
+                      "Output.html#eventNames": {
+                        "ref": "Output.html#eventNames",
+                        "tf": 2.941176470588235
+                      },
+                      "Output.html#id": {
+                        "ref": "Output.html#id",
+                        "tf": 2.1739130434782608
+                      },
+                      "Output.html#clear": {
+                        "ref": "Output.html#clear",
+                        "tf": 2.272727272727273
+                      },
+                      "Output.html#getListenerCount": {
+                        "ref": "Output.html#getListenerCount",
+                        "tf": 3.8461538461538463
+                      },
+                      "Output.html#getListeners": {
+                        "ref": "Output.html#getListeners",
+                        "tf": 4.166666666666666
+                      },
+                      "Output.html#hasListener": {
+                        "ref": "Output.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "Output.html#sendChannelAftertouch": {
+                        "ref": "Output.html#sendChannelAftertouch",
+                        "tf": 3.8461538461538463
+                      },
+                      "Output.html#sendChannelMode": {
+                        "ref": "Output.html#sendChannelMode",
+                        "tf": 0.684931506849315
+                      },
+                      "Output.html#sendControlChange": {
+                        "ref": "Output.html#sendControlChange",
+                        "tf": 0.24509803921568626
+                      },
+                      "Output.html#sendKeyAftertouch": {
+                        "ref": "Output.html#sendKeyAftertouch",
+                        "tf": 2.7777777777777777
+                      },
+                      "Output.html#sendMasterTuning": {
+                        "ref": "Output.html#sendMasterTuning",
+                        "tf": 1.1363636363636365
+                      },
+                      "Output.html#sendNrpnValue": {
+                        "ref": "Output.html#sendNrpnValue",
+                        "tf": 0.40650406504065045
+                      },
+                      "Output.html#sendRpnValue": {
+                        "ref": "Output.html#sendRpnValue",
+                        "tf": 0.5494505494505495
+                      },
+                      "Output.html#suspendEvent": {
+                        "ref": "Output.html#suspendEvent",
+                        "tf": 1.0869565217391304
+                      },
+                      "OutputChannel.html#eventCount": {
+                        "ref": "OutputChannel.html#eventCount",
+                        "tf": 3.571428571428571
+                      },
+                      "OutputChannel.html#eventNames": {
+                        "ref": "OutputChannel.html#eventNames",
+                        "tf": 2.941176470588235
+                      },
+                      "OutputChannel.html#octaveOffset": {
+                        "ref": "OutputChannel.html#octaveOffset",
+                        "tf": 1.4705882352941175
+                      },
+                      "OutputChannel.html#getListenerCount": {
+                        "ref": "OutputChannel.html#getListenerCount",
+                        "tf": 3.8461538461538463
+                      },
+                      "OutputChannel.html#getListeners": {
+                        "ref": "OutputChannel.html#getListeners",
+                        "tf": 4.166666666666666
+                      },
+                      "OutputChannel.html#hasListener": {
+                        "ref": "OutputChannel.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "OutputChannel.html#sendChannelAftertouch": {
+                        "ref": "OutputChannel.html#sendChannelAftertouch",
+                        "tf": 4.545454545454546
+                      },
+                      "OutputChannel.html#sendChannelMode": {
+                        "ref": "OutputChannel.html#sendChannelMode",
+                        "tf": 0.7042253521126761
+                      },
+                      "OutputChannel.html#sendControlChange": {
+                        "ref": "OutputChannel.html#sendControlChange",
+                        "tf": 0.205761316872428
+                      },
+                      "OutputChannel.html#sendKeyAftertouch": {
+                        "ref": "OutputChannel.html#sendKeyAftertouch",
+                        "tf": 3.125
+                      },
+                      "OutputChannel.html#sendMasterTuning": {
+                        "ref": "OutputChannel.html#sendMasterTuning",
+                        "tf": 1.1904761904761905
+                      },
+                      "OutputChannel.html#sendNrpnValue": {
+                        "ref": "OutputChannel.html#sendNrpnValue",
+                        "tf": 0.4807692307692308
+                      },
+                      "OutputChannel.html#sendRpnValue": {
+                        "ref": "OutputChannel.html#sendRpnValue",
+                        "tf": 0.5376344086021506
+                      },
+                      "OutputChannel.html#suspendEvent": {
+                        "ref": "OutputChannel.html#suspendEvent",
+                        "tf": 1.0869565217391304
+                      },
+                      "Utilities.html#.getCcNameByNumber": {
+                        "ref": "Utilities.html#.getCcNameByNumber",
+                        "tf": 1.9230769230769231
+                      },
+                      "WebMidi.html#eventCount": {
+                        "ref": "WebMidi.html#eventCount",
+                        "tf": 3.571428571428571
+                      },
+                      "WebMidi.html#eventNames": {
+                        "ref": "WebMidi.html#eventNames",
+                        "tf": 2.941176470588235
+                      },
+                      "WebMidi.html#getInputById": {
+                        "ref": "WebMidi.html#getInputById",
+                        "tf": 1.4705882352941175
+                      },
+                      "WebMidi.html#getListenerCount": {
+                        "ref": "WebMidi.html#getListenerCount",
+                        "tf": 3.8461538461538463
+                      },
+                      "WebMidi.html#getListeners": {
+                        "ref": "WebMidi.html#getListeners",
+                        "tf": 4.166666666666666
+                      },
+                      "WebMidi.html#getOutputById": {
+                        "ref": "WebMidi.html#getOutputById",
+                        "tf": 1.4705882352941175
+                      },
+                      "WebMidi.html#hasListener": {
+                        "ref": "WebMidi.html#hasListener",
+                        "tf": 1.6129032258064515
+                      },
+                      "WebMidi.html#suspendEvent": {
+                        "ref": "WebMidi.html#suspendEvent",
+                        "tf": 1.0869565217391304
+                      }
+                    },
+                    "i": {
+                      "docs": {
+                        "EventEmitter.html#addListener": {
+                          "ref": "EventEmitter.html#addListener",
+                          "tf": 1.9230769230769231
+                        },
+                        "EventEmitter.html#addOneTimeListener": {
+                          "ref": "EventEmitter.html#addOneTimeListener",
+                          "tf": 1.5625
+                        },
+                        "EventEmitter.html#hasListener": {
+                          "ref": "EventEmitter.html#hasListener",
+                          "tf": 3.225806451612903
+                        },
+                        "EventEmitter.html#removeListener": {
+                          "ref": "EventEmitter.html#removeListener",
+                          "tf": 2.857142857142857
+                        },
+                        "EventEmitter.html#suspendEvent": {
+                          "ref": "EventEmitter.html#suspendEvent",
+                          "tf": 1.0869565217391304
+                        },
+                        "EventEmitter.html#unsuspendEvent": {
+                          "ref": "EventEmitter.html#unsuspendEvent",
+                          "tf": 1.4705882352941175
+                        },
+                        "EventEmitter.html#waitFor": {
+                          "ref": "EventEmitter.html#waitFor",
+                          "tf": 3.260869565217391
+                        },
+                        "Forwarder.html": {
+                          "ref": "Forwarder.html",
+                          "tf": 1.2195121951219512
+                        },
+                        "Forwarder.html#forward": {
+                          "ref": "Forwarder.html#forward",
+                          "tf": 11.11111111111111
+                        },
+                        "Input.html#addForwarder": {
+                          "ref": "Input.html#addForwarder",
+                          "tf": 2.272727272727273
+                        },
+                        "Input.html#addListener": {
+                          "ref": "Input.html#addListener",
+                          "tf": 0.5905511811023622
+                        },
+                        "Input.html#addOneTimeListener": {
+                          "ref": "Input.html#addOneTimeListener",
+                          "tf": 0.4149377593360996
+                        },
+                        "Input.html#hasForwarder": {
+                          "ref": "Input.html#hasForwarder",
+                          "tf": 6.25
+                        },
+                        "Input.html#hasListener": {
+                          "ref": "Input.html#hasListener",
+                          "tf": 5.263157894736842
+                        },
+                        "Input.html#removeForwarder": {
+                          "ref": "Input.html#removeForwarder",
+                          "tf": 10
+                        },
+                        "Input.html#removeListener": {
+                          "ref": "Input.html#removeListener",
+                          "tf": 8.333333333333332
+                        },
+                        "Input.html#suspendEvent": {
+                          "ref": "Input.html#suspendEvent",
+                          "tf": 1.0869565217391304
+                        },
+                        "Input.html#unsuspendEvent": {
+                          "ref": "Input.html#unsuspendEvent",
+                          "tf": 1.4705882352941175
+                        },
+                        "Input.html#waitFor": {
+                          "ref": "Input.html#waitFor",
+                          "tf": 3.260869565217391
+                        },
+                        "InputChannel.html#addListener": {
+                          "ref": "InputChannel.html#addListener",
+                          "tf": 1.9230769230769231
+                        },
+                        "InputChannel.html#addOneTimeListener": {
+                          "ref": "InputChannel.html#addOneTimeListener",
+                          "tf": 1.5625
+                        },
+                        "InputChannel.html#getNoteState": {
+                          "ref": "InputChannel.html#getNoteState",
+                          "tf": 2.083333333333333
+                        },
+                        "InputChannel.html#hasListener": {
+                          "ref": "InputChannel.html#hasListener",
+                          "tf": 3.225806451612903
+                        },
+                        "InputChannel.html#removeListener": {
+                          "ref": "InputChannel.html#removeListener",
+                          "tf": 2.857142857142857
+                        },
+                        "InputChannel.html#suspendEvent": {
+                          "ref": "InputChannel.html#suspendEvent",
+                          "tf": 1.0869565217391304
+                        },
+                        "InputChannel.html#unsuspendEvent": {
+                          "ref": "InputChannel.html#unsuspendEvent",
+                          "tf": 1.4705882352941175
+                        },
+                        "InputChannel.html#waitFor": {
+                          "ref": "InputChannel.html#waitFor",
+                          "tf": 3.260869565217391
+                        },
+                        "Output.html#addListener": {
+                          "ref": "Output.html#addListener",
+                          "tf": 1.9230769230769231
+                        },
+                        "Output.html#addOneTimeListener": {
+                          "ref": "Output.html#addOneTimeListener",
+                          "tf": 1.5625
+                        },
+                        "Output.html#hasListener": {
+                          "ref": "Output.html#hasListener",
+                          "tf": 3.225806451612903
+                        },
+                        "Output.html#playNote": {
+                          "ref": "Output.html#playNote",
+                          "tf": 1.6528925619834711
+                        },
+                        "Output.html#removeListener": {
+                          "ref": "Output.html#removeListener",
+                          "tf": 2.857142857142857
+                        },
+                        "Output.html#send": {
+                          "ref": "Output.html#send",
+                          "tf": 1.0204081632653061
+                        },
+                        "Output.html#sendChannelAftertouch": {
+                          "ref": "Output.html#sendChannelAftertouch",
+                          "tf": 3.8461538461538463
+                        },
+                        "Output.html#sendChannelMode": {
+                          "ref": "Output.html#sendChannelMode",
+                          "tf": 1.36986301369863
+                        },
+                        "Output.html#sendControlChange": {
+                          "ref": "Output.html#sendControlChange",
+                          "tf": 0.49019607843137253
+                        },
+                        "Output.html#sendKeyAftertouch": {
+                          "ref": "Output.html#sendKeyAftertouch",
+                          "tf": 2.7777777777777777
+                        },
+                        "Output.html#sendMasterTuning": {
+                          "ref": "Output.html#sendMasterTuning",
+                          "tf": 1.1363636363636365
+                        },
+                        "Output.html#sendModulationRange": {
+                          "ref": "Output.html#sendModulationRange",
+                          "tf": 6.521739130434782
+                        },
+                        "Output.html#sendNoteOff": {
+                          "ref": "Output.html#sendNoteOff",
+                          "tf": 2.2222222222222223
+                        },
+                        "Output.html#sendNoteOn": {
+                          "ref": "Output.html#sendNoteOn",
+                          "tf": 1.7543859649122806
+                        },
+                        "Output.html#sendNrpnValue": {
+                          "ref": "Output.html#sendNrpnValue",
+                          "tf": 1.2195121951219512
+                        },
+                        "Output.html#sendOmniMode": {
+                          "ref": "Output.html#sendOmniMode",
+                          "tf": 2.631578947368421
+                        },
+                        "Output.html#sendPitchBend": {
+                          "ref": "Output.html#sendPitchBend",
+                          "tf": 1.3513513513513513
+                        },
+                        "Output.html#sendPitchBendRange": {
+                          "ref": "Output.html#sendPitchBendRange",
+                          "tf": 2.7777777777777777
+                        },
+                        "Output.html#sendProgramChange": {
+                          "ref": "Output.html#sendProgramChange",
+                          "tf": 5.555555555555555
+                        },
+                        "Output.html#sendRpnDecrement": {
+                          "ref": "Output.html#sendRpnDecrement",
+                          "tf": 0.5434782608695652
+                        },
+                        "Output.html#sendRpnIncrement": {
+                          "ref": "Output.html#sendRpnIncrement",
+                          "tf": 0.5434782608695652
+                        },
+                        "Output.html#sendRpnValue": {
+                          "ref": "Output.html#sendRpnValue",
+                          "tf": 0.5494505494505495
+                        },
+                        "Output.html#sendStop": {
+                          "ref": "Output.html#sendStop",
+                          "tf": 3.3333333333333335
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.30303030303030304
+                        },
+                        "Output.html#stopNote": {
+                          "ref": "Output.html#stopNote",
+                          "tf": 2.2222222222222223
+                        },
+                        "Output.html#suspendEvent": {
+                          "ref": "Output.html#suspendEvent",
+                          "tf": 1.0869565217391304
+                        },
+                        "Output.html#unsuspendEvent": {
+                          "ref": "Output.html#unsuspendEvent",
+                          "tf": 1.4705882352941175
+                        },
+                        "Output.html#waitFor": {
+                          "ref": "Output.html#waitFor",
+                          "tf": 3.260869565217391
+                        },
+                        "OutputChannel.html#addListener": {
+                          "ref": "OutputChannel.html#addListener",
+                          "tf": 1.9230769230769231
+                        },
+                        "OutputChannel.html#addOneTimeListener": {
+                          "ref": "OutputChannel.html#addOneTimeListener",
+                          "tf": 1.5625
+                        },
+                        "OutputChannel.html#hasListener": {
+                          "ref": "OutputChannel.html#hasListener",
+                          "tf": 3.225806451612903
+                        },
+                        "OutputChannel.html#playNote": {
+                          "ref": "OutputChannel.html#playNote",
+                          "tf": 0.9433962264150944
+                        },
+                        "OutputChannel.html#removeListener": {
+                          "ref": "OutputChannel.html#removeListener",
+                          "tf": 2.857142857142857
+                        },
+                        "OutputChannel.html#send": {
+                          "ref": "OutputChannel.html#send",
+                          "tf": 1.0204081632653061
+                        },
+                        "OutputChannel.html#sendChannelMode": {
+                          "ref": "OutputChannel.html#sendChannelMode",
+                          "tf": 0.7042253521126761
+                        },
+                        "OutputChannel.html#sendControlChange": {
+                          "ref": "OutputChannel.html#sendControlChange",
+                          "tf": 0.411522633744856
+                        },
+                        "OutputChannel.html#sendModulationRange": {
+                          "ref": "OutputChannel.html#sendModulationRange",
+                          "tf": 4.761904761904762
+                        },
+                        "OutputChannel.html#sendNoteOff": {
+                          "ref": "OutputChannel.html#sendNoteOff",
+                          "tf": 1.694915254237288
+                        },
+                        "OutputChannel.html#sendNoteOn": {
+                          "ref": "OutputChannel.html#sendNoteOn",
+                          "tf": 1.0101010101010102
+                        },
+                        "OutputChannel.html#sendNrpnValue": {
+                          "ref": "OutputChannel.html#sendNrpnValue",
+                          "tf": 1.4423076923076923
+                        },
+                        "OutputChannel.html#sendPitchBendRange": {
+                          "ref": "OutputChannel.html#sendPitchBendRange",
+                          "tf": 1.4705882352941175
+                        },
+                        "OutputChannel.html#sendRpnDecrement": {
+                          "ref": "OutputChannel.html#sendRpnDecrement",
+                          "tf": 0.5434782608695652
+                        },
+                        "OutputChannel.html#sendRpnIncrement": {
+                          "ref": "OutputChannel.html#sendRpnIncrement",
+                          "tf": 0.5434782608695652
+                        },
+                        "OutputChannel.html#sendRpnValue": {
+                          "ref": "OutputChannel.html#sendRpnValue",
+                          "tf": 0.5376344086021506
+                        },
+                        "OutputChannel.html#stopNote": {
+                          "ref": "OutputChannel.html#stopNote",
+                          "tf": 1.1627906976744187
+                        },
+                        "OutputChannel.html#suspendEvent": {
+                          "ref": "OutputChannel.html#suspendEvent",
+                          "tf": 1.0869565217391304
+                        },
+                        "OutputChannel.html#unsuspendEvent": {
+                          "ref": "OutputChannel.html#unsuspendEvent",
+                          "tf": 1.4705882352941175
+                        },
+                        "OutputChannel.html#waitFor": {
+                          "ref": "OutputChannel.html#waitFor",
+                          "tf": 3.260869565217391
+                        },
+                        "Utilities.html#.buildNote": {
+                          "ref": "Utilities.html#.buildNote",
+                          "tf": 1.6129032258064515
+                        },
+                        "Utilities.html#.buildNoteArray": {
+                          "ref": "Utilities.html#.buildNoteArray",
+                          "tf": 2.2222222222222223
+                        },
+                        "Utilities.html#.getCcNameByNumber": {
+                          "ref": "Utilities.html#.getCcNameByNumber",
+                          "tf": 1.9230769230769231
+                        },
+                        "Utilities.html#.getChannelModeByNumber": {
+                          "ref": "Utilities.html#.getChannelModeByNumber",
+                          "tf": 4.166666666666666
+                        },
+                        "Utilities.html#.getNoteDetails": {
+                          "ref": "Utilities.html#.getNoteDetails",
+                          "tf": 2.5
+                        },
+                        "Utilities.html#.guessNoteNumber": {
+                          "ref": "Utilities.html#.guessNoteNumber",
+                          "tf": 0.8771929824561403
+                        },
+                        "WebMidi.html#addListener": {
+                          "ref": "WebMidi.html#addListener",
+                          "tf": 1.9230769230769231
+                        },
+                        "WebMidi.html#addOneTimeListener": {
+                          "ref": "WebMidi.html#addOneTimeListener",
+                          "tf": 1.5625
+                        },
+                        "WebMidi.html#enable": {
+                          "ref": "WebMidi.html#enable",
+                          "tf": 0.29411764705882354
+                        },
+                        "WebMidi.html#getInputById": {
+                          "ref": "WebMidi.html#getInputById",
+                          "tf": 1.4705882352941175
+                        },
+                        "WebMidi.html#getInputByName": {
+                          "ref": "WebMidi.html#getInputByName",
+                          "tf": 2
+                        },
+                        "WebMidi.html#getOutputById": {
+                          "ref": "WebMidi.html#getOutputById",
+                          "tf": 1.4705882352941175
+                        },
+                        "WebMidi.html#getOutputByName": {
+                          "ref": "WebMidi.html#getOutputByName",
+                          "tf": 2
+                        },
+                        "WebMidi.html#hasListener": {
+                          "ref": "WebMidi.html#hasListener",
+                          "tf": 3.225806451612903
+                        },
+                        "WebMidi.html#removeListener": {
+                          "ref": "WebMidi.html#removeListener",
+                          "tf": 2.857142857142857
+                        },
+                        "WebMidi.html#suspendEvent": {
+                          "ref": "WebMidi.html#suspendEvent",
+                          "tf": 1.0869565217391304
+                        },
+                        "WebMidi.html#unsuspendEvent": {
+                          "ref": "WebMidi.html#unsuspendEvent",
+                          "tf": 1.4705882352941175
+                        },
+                        "WebMidi.html#waitFor": {
+                          "ref": "WebMidi.html#waitFor",
+                          "tf": 3.260869565217391
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "e": {
+                "docs": {},
+                "a": {
+                  "docs": {},
+                  "d": {
+                    "docs": {
+                      "Output.html#sendRpnDecrement": {
+                        "ref": "Output.html#sendRpnDecrement",
+                        "tf": 0.5434782608695652
+                      },
+                      "Output.html#sendRpnIncrement": {
+                        "ref": "Output.html#sendRpnIncrement",
+                        "tf": 0.5434782608695652
+                      },
+                      "OutputChannel.html#sendRpnDecrement": {
+                        "ref": "OutputChannel.html#sendRpnDecrement",
+                        "tf": 0.5434782608695652
+                      },
+                      "OutputChannel.html#sendRpnIncrement": {
+                        "ref": "OutputChannel.html#sendRpnIncrement",
+                        "tf": 0.5434782608695652
+                      }
                     }
                   }
                 }
@@ -44033,720 +44842,6 @@ window.lunrData = {
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
                       "tf": 0.5882352941176471
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "p": {
-            "docs": {},
-            "e": {
-              "docs": {},
-              "c": {
-                "docs": {
-                  "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                    "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-                    "tf": 0.46728971962616817
-                  },
-                  "Utilities.html#.getCcNameByNumber": {
-                    "ref": "Utilities.html#.getCcNameByNumber",
-                    "tf": 1.9230769230769231
-                  }
-                },
-                "i": {
-                  "docs": {},
-                  "f": {
-                    "docs": {
-                      "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                        "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-                        "tf": 0.46728971962616817
-                      },
-                      "EventEmitter.html": {
-                        "ref": "EventEmitter.html",
-                        "tf": 2
-                      },
-                      "EventEmitter.html#eventCount": {
-                        "ref": "EventEmitter.html#eventCount",
-                        "tf": 3.571428571428571
-                      },
-                      "EventEmitter.html#eventNames": {
-                        "ref": "EventEmitter.html#eventNames",
-                        "tf": 2.941176470588235
-                      },
-                      "EventEmitter.html#getListenerCount": {
-                        "ref": "EventEmitter.html#getListenerCount",
-                        "tf": 3.8461538461538463
-                      },
-                      "EventEmitter.html#getListeners": {
-                        "ref": "EventEmitter.html#getListeners",
-                        "tf": 4.166666666666666
-                      },
-                      "EventEmitter.html#hasListener": {
-                        "ref": "EventEmitter.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "EventEmitter.html#suspendEvent": {
-                        "ref": "EventEmitter.html#suspendEvent",
-                        "tf": 1.0869565217391304
-                      },
-                      "Forwarder.html": {
-                        "ref": "Forwarder.html",
-                        "tf": 1.2195121951219512
-                      },
-                      "Input.html": {
-                        "ref": "Input.html",
-                        "tf": 1.4705882352941175
-                      },
-                      "Input.html#eventCount": {
-                        "ref": "Input.html#eventCount",
-                        "tf": 3.571428571428571
-                      },
-                      "Input.html#eventNames": {
-                        "ref": "Input.html#eventNames",
-                        "tf": 2.941176470588235
-                      },
-                      "Input.html#id": {
-                        "ref": "Input.html#id",
-                        "tf": 2.1739130434782608
-                      },
-                      "Input.html#addListener": {
-                        "ref": "Input.html#addListener",
-                        "tf": 2.559055118110236
-                      },
-                      "Input.html#addOneTimeListener": {
-                        "ref": "Input.html#addOneTimeListener",
-                        "tf": 1.6597510373443984
-                      },
-                      "Input.html#getListenerCount": {
-                        "ref": "Input.html#getListenerCount",
-                        "tf": 3.8461538461538463
-                      },
-                      "Input.html#getListeners": {
-                        "ref": "Input.html#getListeners",
-                        "tf": 4.166666666666666
-                      },
-                      "Input.html#hasListener": {
-                        "ref": "Input.html#hasListener",
-                        "tf": 2.631578947368421
-                      },
-                      "Input.html#removeListener": {
-                        "ref": "Input.html#removeListener",
-                        "tf": 1.6666666666666667
-                      },
-                      "Input.html#suspendEvent": {
-                        "ref": "Input.html#suspendEvent",
-                        "tf": 1.0869565217391304
-                      },
-                      "InputChannel.html#.EVENTS": {
-                        "ref": "InputChannel.html#.EVENTS",
-                        "tf": 8.333333333333332
-                      },
-                      "InputChannel.html#eventCount": {
-                        "ref": "InputChannel.html#eventCount",
-                        "tf": 3.571428571428571
-                      },
-                      "InputChannel.html#eventNames": {
-                        "ref": "InputChannel.html#eventNames",
-                        "tf": 2.941176470588235
-                      },
-                      "InputChannel.html#octaveOffset": {
-                        "ref": "InputChannel.html#octaveOffset",
-                        "tf": 0.8928571428571428
-                      },
-                      "InputChannel.html#parameterNumberEventsEnabled": {
-                        "ref": "InputChannel.html#parameterNumberEventsEnabled",
-                        "tf": 1.0638297872340425
-                      },
-                      "InputChannel.html#getListenerCount": {
-                        "ref": "InputChannel.html#getListenerCount",
-                        "tf": 3.8461538461538463
-                      },
-                      "InputChannel.html#getListeners": {
-                        "ref": "InputChannel.html#getListeners",
-                        "tf": 4.166666666666666
-                      },
-                      "InputChannel.html#hasListener": {
-                        "ref": "InputChannel.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "InputChannel.html#suspendEvent": {
-                        "ref": "InputChannel.html#suspendEvent",
-                        "tf": 1.0869565217391304
-                      },
-                      "Message.html#channel": {
-                        "ref": "Message.html#channel",
-                        "tf": 3.571428571428571
-                      },
-                      "Message.html#command": {
-                        "ref": "Message.html#command",
-                        "tf": 2.631578947368421
-                      },
-                      "Message.html#isChannelMessage": {
-                        "ref": "Message.html#isChannelMessage",
-                        "tf": 6.25
-                      },
-                      "Message.html#isSystemMessage": {
-                        "ref": "Message.html#isSystemMessage",
-                        "tf": 5.555555555555555
-                      },
-                      "Output.html#eventCount": {
-                        "ref": "Output.html#eventCount",
-                        "tf": 3.571428571428571
-                      },
-                      "Output.html#eventNames": {
-                        "ref": "Output.html#eventNames",
-                        "tf": 2.941176470588235
-                      },
-                      "Output.html#id": {
-                        "ref": "Output.html#id",
-                        "tf": 2.1739130434782608
-                      },
-                      "Output.html#clear": {
-                        "ref": "Output.html#clear",
-                        "tf": 2.272727272727273
-                      },
-                      "Output.html#getListenerCount": {
-                        "ref": "Output.html#getListenerCount",
-                        "tf": 3.8461538461538463
-                      },
-                      "Output.html#getListeners": {
-                        "ref": "Output.html#getListeners",
-                        "tf": 4.166666666666666
-                      },
-                      "Output.html#hasListener": {
-                        "ref": "Output.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "Output.html#sendChannelAftertouch": {
-                        "ref": "Output.html#sendChannelAftertouch",
-                        "tf": 3.8461538461538463
-                      },
-                      "Output.html#sendChannelMode": {
-                        "ref": "Output.html#sendChannelMode",
-                        "tf": 0.684931506849315
-                      },
-                      "Output.html#sendControlChange": {
-                        "ref": "Output.html#sendControlChange",
-                        "tf": 0.24509803921568626
-                      },
-                      "Output.html#sendKeyAftertouch": {
-                        "ref": "Output.html#sendKeyAftertouch",
-                        "tf": 2.7777777777777777
-                      },
-                      "Output.html#sendMasterTuning": {
-                        "ref": "Output.html#sendMasterTuning",
-                        "tf": 1.1363636363636365
-                      },
-                      "Output.html#sendNrpnValue": {
-                        "ref": "Output.html#sendNrpnValue",
-                        "tf": 0.40650406504065045
-                      },
-                      "Output.html#sendRpnValue": {
-                        "ref": "Output.html#sendRpnValue",
-                        "tf": 0.5494505494505495
-                      },
-                      "Output.html#suspendEvent": {
-                        "ref": "Output.html#suspendEvent",
-                        "tf": 1.0869565217391304
-                      },
-                      "OutputChannel.html#eventCount": {
-                        "ref": "OutputChannel.html#eventCount",
-                        "tf": 3.571428571428571
-                      },
-                      "OutputChannel.html#eventNames": {
-                        "ref": "OutputChannel.html#eventNames",
-                        "tf": 2.941176470588235
-                      },
-                      "OutputChannel.html#octaveOffset": {
-                        "ref": "OutputChannel.html#octaveOffset",
-                        "tf": 1.4705882352941175
-                      },
-                      "OutputChannel.html#getListenerCount": {
-                        "ref": "OutputChannel.html#getListenerCount",
-                        "tf": 3.8461538461538463
-                      },
-                      "OutputChannel.html#getListeners": {
-                        "ref": "OutputChannel.html#getListeners",
-                        "tf": 4.166666666666666
-                      },
-                      "OutputChannel.html#hasListener": {
-                        "ref": "OutputChannel.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "OutputChannel.html#sendChannelAftertouch": {
-                        "ref": "OutputChannel.html#sendChannelAftertouch",
-                        "tf": 4.545454545454546
-                      },
-                      "OutputChannel.html#sendChannelMode": {
-                        "ref": "OutputChannel.html#sendChannelMode",
-                        "tf": 0.7042253521126761
-                      },
-                      "OutputChannel.html#sendControlChange": {
-                        "ref": "OutputChannel.html#sendControlChange",
-                        "tf": 0.205761316872428
-                      },
-                      "OutputChannel.html#sendKeyAftertouch": {
-                        "ref": "OutputChannel.html#sendKeyAftertouch",
-                        "tf": 3.125
-                      },
-                      "OutputChannel.html#sendMasterTuning": {
-                        "ref": "OutputChannel.html#sendMasterTuning",
-                        "tf": 1.1904761904761905
-                      },
-                      "OutputChannel.html#sendNrpnValue": {
-                        "ref": "OutputChannel.html#sendNrpnValue",
-                        "tf": 0.4807692307692308
-                      },
-                      "OutputChannel.html#sendRpnValue": {
-                        "ref": "OutputChannel.html#sendRpnValue",
-                        "tf": 0.5376344086021506
-                      },
-                      "OutputChannel.html#suspendEvent": {
-                        "ref": "OutputChannel.html#suspendEvent",
-                        "tf": 1.0869565217391304
-                      },
-                      "Utilities.html#.getCcNameByNumber": {
-                        "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 1.9230769230769231
-                      },
-                      "WebMidi.html#eventCount": {
-                        "ref": "WebMidi.html#eventCount",
-                        "tf": 3.571428571428571
-                      },
-                      "WebMidi.html#eventNames": {
-                        "ref": "WebMidi.html#eventNames",
-                        "tf": 2.941176470588235
-                      },
-                      "WebMidi.html#getInputById": {
-                        "ref": "WebMidi.html#getInputById",
-                        "tf": 1.4705882352941175
-                      },
-                      "WebMidi.html#getListenerCount": {
-                        "ref": "WebMidi.html#getListenerCount",
-                        "tf": 3.8461538461538463
-                      },
-                      "WebMidi.html#getListeners": {
-                        "ref": "WebMidi.html#getListeners",
-                        "tf": 4.166666666666666
-                      },
-                      "WebMidi.html#getOutputById": {
-                        "ref": "WebMidi.html#getOutputById",
-                        "tf": 1.4705882352941175
-                      },
-                      "WebMidi.html#hasListener": {
-                        "ref": "WebMidi.html#hasListener",
-                        "tf": 1.6129032258064515
-                      },
-                      "WebMidi.html#suspendEvent": {
-                        "ref": "WebMidi.html#suspendEvent",
-                        "tf": 1.0869565217391304
-                      }
-                    },
-                    "i": {
-                      "docs": {
-                        "EventEmitter.html#addListener": {
-                          "ref": "EventEmitter.html#addListener",
-                          "tf": 1.9230769230769231
-                        },
-                        "EventEmitter.html#addOneTimeListener": {
-                          "ref": "EventEmitter.html#addOneTimeListener",
-                          "tf": 1.5625
-                        },
-                        "EventEmitter.html#hasListener": {
-                          "ref": "EventEmitter.html#hasListener",
-                          "tf": 3.225806451612903
-                        },
-                        "EventEmitter.html#removeListener": {
-                          "ref": "EventEmitter.html#removeListener",
-                          "tf": 2.857142857142857
-                        },
-                        "EventEmitter.html#suspendEvent": {
-                          "ref": "EventEmitter.html#suspendEvent",
-                          "tf": 1.0869565217391304
-                        },
-                        "EventEmitter.html#unsuspendEvent": {
-                          "ref": "EventEmitter.html#unsuspendEvent",
-                          "tf": 1.4705882352941175
-                        },
-                        "EventEmitter.html#waitFor": {
-                          "ref": "EventEmitter.html#waitFor",
-                          "tf": 3.260869565217391
-                        },
-                        "Forwarder.html": {
-                          "ref": "Forwarder.html",
-                          "tf": 1.2195121951219512
-                        },
-                        "Forwarder.html#forward": {
-                          "ref": "Forwarder.html#forward",
-                          "tf": 11.11111111111111
-                        },
-                        "Input.html#addForwarder": {
-                          "ref": "Input.html#addForwarder",
-                          "tf": 2.272727272727273
-                        },
-                        "Input.html#addListener": {
-                          "ref": "Input.html#addListener",
-                          "tf": 0.5905511811023622
-                        },
-                        "Input.html#addOneTimeListener": {
-                          "ref": "Input.html#addOneTimeListener",
-                          "tf": 0.4149377593360996
-                        },
-                        "Input.html#hasForwarder": {
-                          "ref": "Input.html#hasForwarder",
-                          "tf": 6.25
-                        },
-                        "Input.html#hasListener": {
-                          "ref": "Input.html#hasListener",
-                          "tf": 5.263157894736842
-                        },
-                        "Input.html#removeForwarder": {
-                          "ref": "Input.html#removeForwarder",
-                          "tf": 10
-                        },
-                        "Input.html#removeListener": {
-                          "ref": "Input.html#removeListener",
-                          "tf": 8.333333333333332
-                        },
-                        "Input.html#suspendEvent": {
-                          "ref": "Input.html#suspendEvent",
-                          "tf": 1.0869565217391304
-                        },
-                        "Input.html#unsuspendEvent": {
-                          "ref": "Input.html#unsuspendEvent",
-                          "tf": 1.4705882352941175
-                        },
-                        "Input.html#waitFor": {
-                          "ref": "Input.html#waitFor",
-                          "tf": 3.260869565217391
-                        },
-                        "InputChannel.html#addListener": {
-                          "ref": "InputChannel.html#addListener",
-                          "tf": 1.9230769230769231
-                        },
-                        "InputChannel.html#addOneTimeListener": {
-                          "ref": "InputChannel.html#addOneTimeListener",
-                          "tf": 1.5625
-                        },
-                        "InputChannel.html#getNoteState": {
-                          "ref": "InputChannel.html#getNoteState",
-                          "tf": 2.083333333333333
-                        },
-                        "InputChannel.html#hasListener": {
-                          "ref": "InputChannel.html#hasListener",
-                          "tf": 3.225806451612903
-                        },
-                        "InputChannel.html#removeListener": {
-                          "ref": "InputChannel.html#removeListener",
-                          "tf": 2.857142857142857
-                        },
-                        "InputChannel.html#suspendEvent": {
-                          "ref": "InputChannel.html#suspendEvent",
-                          "tf": 1.0869565217391304
-                        },
-                        "InputChannel.html#unsuspendEvent": {
-                          "ref": "InputChannel.html#unsuspendEvent",
-                          "tf": 1.4705882352941175
-                        },
-                        "InputChannel.html#waitFor": {
-                          "ref": "InputChannel.html#waitFor",
-                          "tf": 3.260869565217391
-                        },
-                        "Output.html#addListener": {
-                          "ref": "Output.html#addListener",
-                          "tf": 1.9230769230769231
-                        },
-                        "Output.html#addOneTimeListener": {
-                          "ref": "Output.html#addOneTimeListener",
-                          "tf": 1.5625
-                        },
-                        "Output.html#hasListener": {
-                          "ref": "Output.html#hasListener",
-                          "tf": 3.225806451612903
-                        },
-                        "Output.html#playNote": {
-                          "ref": "Output.html#playNote",
-                          "tf": 1.6528925619834711
-                        },
-                        "Output.html#removeListener": {
-                          "ref": "Output.html#removeListener",
-                          "tf": 2.857142857142857
-                        },
-                        "Output.html#send": {
-                          "ref": "Output.html#send",
-                          "tf": 1.0204081632653061
-                        },
-                        "Output.html#sendChannelAftertouch": {
-                          "ref": "Output.html#sendChannelAftertouch",
-                          "tf": 3.8461538461538463
-                        },
-                        "Output.html#sendChannelMode": {
-                          "ref": "Output.html#sendChannelMode",
-                          "tf": 1.36986301369863
-                        },
-                        "Output.html#sendControlChange": {
-                          "ref": "Output.html#sendControlChange",
-                          "tf": 0.49019607843137253
-                        },
-                        "Output.html#sendKeyAftertouch": {
-                          "ref": "Output.html#sendKeyAftertouch",
-                          "tf": 2.7777777777777777
-                        },
-                        "Output.html#sendMasterTuning": {
-                          "ref": "Output.html#sendMasterTuning",
-                          "tf": 1.1363636363636365
-                        },
-                        "Output.html#sendModulationRange": {
-                          "ref": "Output.html#sendModulationRange",
-                          "tf": 6.521739130434782
-                        },
-                        "Output.html#sendNoteOff": {
-                          "ref": "Output.html#sendNoteOff",
-                          "tf": 2.2222222222222223
-                        },
-                        "Output.html#sendNoteOn": {
-                          "ref": "Output.html#sendNoteOn",
-                          "tf": 1.7543859649122806
-                        },
-                        "Output.html#sendNrpnValue": {
-                          "ref": "Output.html#sendNrpnValue",
-                          "tf": 1.2195121951219512
-                        },
-                        "Output.html#sendOmniMode": {
-                          "ref": "Output.html#sendOmniMode",
-                          "tf": 2.631578947368421
-                        },
-                        "Output.html#sendPitchBend": {
-                          "ref": "Output.html#sendPitchBend",
-                          "tf": 1.3513513513513513
-                        },
-                        "Output.html#sendPitchBendRange": {
-                          "ref": "Output.html#sendPitchBendRange",
-                          "tf": 2.7777777777777777
-                        },
-                        "Output.html#sendProgramChange": {
-                          "ref": "Output.html#sendProgramChange",
-                          "tf": 5.555555555555555
-                        },
-                        "Output.html#sendRpnDecrement": {
-                          "ref": "Output.html#sendRpnDecrement",
-                          "tf": 0.5434782608695652
-                        },
-                        "Output.html#sendRpnIncrement": {
-                          "ref": "Output.html#sendRpnIncrement",
-                          "tf": 0.5434782608695652
-                        },
-                        "Output.html#sendRpnValue": {
-                          "ref": "Output.html#sendRpnValue",
-                          "tf": 0.5494505494505495
-                        },
-                        "Output.html#sendStop": {
-                          "ref": "Output.html#sendStop",
-                          "tf": 3.3333333333333335
-                        },
-                        "Output.html#sendSysex": {
-                          "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
-                        },
-                        "Output.html#stopNote": {
-                          "ref": "Output.html#stopNote",
-                          "tf": 2.2222222222222223
-                        },
-                        "Output.html#suspendEvent": {
-                          "ref": "Output.html#suspendEvent",
-                          "tf": 1.0869565217391304
-                        },
-                        "Output.html#unsuspendEvent": {
-                          "ref": "Output.html#unsuspendEvent",
-                          "tf": 1.4705882352941175
-                        },
-                        "Output.html#waitFor": {
-                          "ref": "Output.html#waitFor",
-                          "tf": 3.260869565217391
-                        },
-                        "OutputChannel.html#addListener": {
-                          "ref": "OutputChannel.html#addListener",
-                          "tf": 1.9230769230769231
-                        },
-                        "OutputChannel.html#addOneTimeListener": {
-                          "ref": "OutputChannel.html#addOneTimeListener",
-                          "tf": 1.5625
-                        },
-                        "OutputChannel.html#hasListener": {
-                          "ref": "OutputChannel.html#hasListener",
-                          "tf": 3.225806451612903
-                        },
-                        "OutputChannel.html#playNote": {
-                          "ref": "OutputChannel.html#playNote",
-                          "tf": 0.9433962264150944
-                        },
-                        "OutputChannel.html#removeListener": {
-                          "ref": "OutputChannel.html#removeListener",
-                          "tf": 2.857142857142857
-                        },
-                        "OutputChannel.html#send": {
-                          "ref": "OutputChannel.html#send",
-                          "tf": 1.0204081632653061
-                        },
-                        "OutputChannel.html#sendChannelMode": {
-                          "ref": "OutputChannel.html#sendChannelMode",
-                          "tf": 0.7042253521126761
-                        },
-                        "OutputChannel.html#sendControlChange": {
-                          "ref": "OutputChannel.html#sendControlChange",
-                          "tf": 0.411522633744856
-                        },
-                        "OutputChannel.html#sendModulationRange": {
-                          "ref": "OutputChannel.html#sendModulationRange",
-                          "tf": 4.761904761904762
-                        },
-                        "OutputChannel.html#sendNoteOff": {
-                          "ref": "OutputChannel.html#sendNoteOff",
-                          "tf": 1.694915254237288
-                        },
-                        "OutputChannel.html#sendNoteOn": {
-                          "ref": "OutputChannel.html#sendNoteOn",
-                          "tf": 1.0101010101010102
-                        },
-                        "OutputChannel.html#sendNrpnValue": {
-                          "ref": "OutputChannel.html#sendNrpnValue",
-                          "tf": 1.4423076923076923
-                        },
-                        "OutputChannel.html#sendPitchBendRange": {
-                          "ref": "OutputChannel.html#sendPitchBendRange",
-                          "tf": 1.4705882352941175
-                        },
-                        "OutputChannel.html#sendRpnDecrement": {
-                          "ref": "OutputChannel.html#sendRpnDecrement",
-                          "tf": 0.5434782608695652
-                        },
-                        "OutputChannel.html#sendRpnIncrement": {
-                          "ref": "OutputChannel.html#sendRpnIncrement",
-                          "tf": 0.5434782608695652
-                        },
-                        "OutputChannel.html#sendRpnValue": {
-                          "ref": "OutputChannel.html#sendRpnValue",
-                          "tf": 0.5376344086021506
-                        },
-                        "OutputChannel.html#stopNote": {
-                          "ref": "OutputChannel.html#stopNote",
-                          "tf": 1.1627906976744187
-                        },
-                        "OutputChannel.html#suspendEvent": {
-                          "ref": "OutputChannel.html#suspendEvent",
-                          "tf": 1.0869565217391304
-                        },
-                        "OutputChannel.html#unsuspendEvent": {
-                          "ref": "OutputChannel.html#unsuspendEvent",
-                          "tf": 1.4705882352941175
-                        },
-                        "OutputChannel.html#waitFor": {
-                          "ref": "OutputChannel.html#waitFor",
-                          "tf": 3.260869565217391
-                        },
-                        "Utilities.html#.buildNote": {
-                          "ref": "Utilities.html#.buildNote",
-                          "tf": 1.6129032258064515
-                        },
-                        "Utilities.html#.buildNoteArray": {
-                          "ref": "Utilities.html#.buildNoteArray",
-                          "tf": 2.2222222222222223
-                        },
-                        "Utilities.html#.getCcNameByNumber": {
-                          "ref": "Utilities.html#.getCcNameByNumber",
-                          "tf": 1.9230769230769231
-                        },
-                        "Utilities.html#.getChannelModeByNumber": {
-                          "ref": "Utilities.html#.getChannelModeByNumber",
-                          "tf": 4.166666666666666
-                        },
-                        "Utilities.html#.getNoteDetails": {
-                          "ref": "Utilities.html#.getNoteDetails",
-                          "tf": 2.5
-                        },
-                        "Utilities.html#.guessNoteNumber": {
-                          "ref": "Utilities.html#.guessNoteNumber",
-                          "tf": 0.8771929824561403
-                        },
-                        "WebMidi.html#addListener": {
-                          "ref": "WebMidi.html#addListener",
-                          "tf": 1.9230769230769231
-                        },
-                        "WebMidi.html#addOneTimeListener": {
-                          "ref": "WebMidi.html#addOneTimeListener",
-                          "tf": 1.5625
-                        },
-                        "WebMidi.html#enable": {
-                          "ref": "WebMidi.html#enable",
-                          "tf": 0.29411764705882354
-                        },
-                        "WebMidi.html#getInputById": {
-                          "ref": "WebMidi.html#getInputById",
-                          "tf": 1.4705882352941175
-                        },
-                        "WebMidi.html#getInputByName": {
-                          "ref": "WebMidi.html#getInputByName",
-                          "tf": 2
-                        },
-                        "WebMidi.html#getOutputById": {
-                          "ref": "WebMidi.html#getOutputById",
-                          "tf": 1.4705882352941175
-                        },
-                        "WebMidi.html#getOutputByName": {
-                          "ref": "WebMidi.html#getOutputByName",
-                          "tf": 2
-                        },
-                        "WebMidi.html#hasListener": {
-                          "ref": "WebMidi.html#hasListener",
-                          "tf": 3.225806451612903
-                        },
-                        "WebMidi.html#removeListener": {
-                          "ref": "WebMidi.html#removeListener",
-                          "tf": 2.857142857142857
-                        },
-                        "WebMidi.html#suspendEvent": {
-                          "ref": "WebMidi.html#suspendEvent",
-                          "tf": 1.0869565217391304
-                        },
-                        "WebMidi.html#unsuspendEvent": {
-                          "ref": "WebMidi.html#unsuspendEvent",
-                          "tf": 1.4705882352941175
-                        },
-                        "WebMidi.html#waitFor": {
-                          "ref": "WebMidi.html#waitFor",
-                          "tf": 3.260869565217391
-                        }
-                      }
-                    }
-                  }
-                }
-              }
-            },
-            "r": {
-              "docs": {},
-              "e": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "d": {
-                    "docs": {
-                      "Output.html#sendRpnDecrement": {
-                        "ref": "Output.html#sendRpnDecrement",
-                        "tf": 0.5434782608695652
-                      },
-                      "Output.html#sendRpnIncrement": {
-                        "ref": "Output.html#sendRpnIncrement",
-                        "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#sendRpnDecrement": {
-                        "ref": "OutputChannel.html#sendRpnDecrement",
-                        "tf": 0.5434782608695652
-                      },
-                      "OutputChannel.html#sendRpnIncrement": {
-                        "ref": "OutputChannel.html#sendRpnIncrement",
-                        "tf": 0.5434782608695652
-                      }
                     }
                   }
                 }
@@ -58239,7 +58334,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 7280
+      "length": 7287
     },
     "corpusTokens": [
       "0",
@@ -58484,6 +58579,7 @@ window.lunrData = {
       "argument",
       "array",
       "array.&lt;boolean&gt",
+      "array.&lt;input&gt",
       "array.&lt;inputchannel&gt",
       "array.&lt;listener&gt",
       "array.&lt;note&gt",
@@ -58560,6 +58656,7 @@ window.lunrData = {
       "channel",
       "channel'",
       "channel(",
+      "channel_ev",
       "channelaftertouch",
       "channelcoarsetun",
       "channelfinetun",
@@ -58749,6 +58846,7 @@ window.lunrData = {
       "end",
       "entri",
       "enumer",
+      "enumerations.channel_ev",
       "enumerations.midi_channel_messag",
       "enumerations.midi_channel_mode_messag",
       "enumerations.midi_channel_numb",
@@ -58972,7 +59070,6 @@ window.lunrData = {
       "inputchannel#suspendev",
       "inputchannel#unsuspendev",
       "inputchannel#waitfor",
-      "inputchannel.ev",
       "inputchannel.haslisten",
       "input|fals",
       "insid",
@@ -59415,6 +59512,7 @@ window.lunrData = {
       "roll",
       "rollangl",
       "rpn",
+      "rpn/nrpn",
       "s",
       "same",
       "sanit",
@@ -59766,6 +59864,16 @@ window.lunrData = {
       "summary": "",
       "description": "The Enumerations class contains enumerations and arrays of elements used throughout the library. All properties are static and should be referenced using the class name. For example: Enumerations.MIDI_CHANNEL_MESSAGES.",
       "body": ""
+    },
+    "Enumerations.html#.CHANNEL_EVENTS": {
+      "id": "Enumerations.html#.CHANNEL_EVENTS",
+      "kind": "member",
+      "title": "&lt;static, readonly&gt; CHANNEL_EVENTS :Array.&lt;string&gt;",
+      "longname": "Enumerations.CHANNEL_EVENTS",
+      "name": "CHANNEL_EVENTS",
+      "tags": "Enumerations.CHANNEL_EVENTS CHANNEL_EVENTS",
+      "summary": "",
+      "description": "Array of channel-specific event names that can be listened for. This includes channel mode events and RPN/NRPN events."
     },
     "Enumerations.html#.MIDI_CHANNEL_MESSAGES": {
       "id": "Enumerations.html#.MIDI_CHANNEL_MESSAGES",
@@ -60360,16 +60468,6 @@ window.lunrData = {
       "summary": "",
       "description": "The InputChannel class represents a single MIDI input channel (1-16) from a single input device. This object is derived from the host's MIDI subsystem and should not be instantiated directly. All 16 InputChannel objects can be found inside the input's channels property.",
       "body": ""
-    },
-    "InputChannel.html#.EVENTS": {
-      "id": "InputChannel.html#.EVENTS",
-      "kind": "member",
-      "title": "&lt;static, readonly&gt; EVENTS :Array.&lt;string&gt;",
-      "longname": "InputChannel.EVENTS",
-      "name": "EVENTS",
-      "tags": "InputChannel.EVENTS EVENTS",
-      "summary": "",
-      "description": "Array of channel-specific event names that can be listened to."
     },
     "InputChannel.html#eventCount": {
       "id": "InputChannel.html#eventCount",
@@ -62140,7 +62238,7 @@ window.lunrData = {
     "Utilities.html#.sanitizeChannels": {
       "id": "Utilities.html#.sanitizeChannels",
       "kind": "function",
-      "title": "&lt;static&gt; sanitizeChannels( [ channel ] ) → {Array}",
+      "title": "&lt;static&gt; sanitizeChannels( [ channel ] ) → {Array.&lt;number&gt;}",
       "longname": "Utilities.sanitizeChannels",
       "name": "sanitizeChannels",
       "tags": "Utilities.sanitizeChannels sanitizeChannels",
@@ -62251,7 +62349,7 @@ window.lunrData = {
     "WebMidi.html#inputs": {
       "id": "WebMidi.html#inputs",
       "kind": "member",
-      "title": "&lt;readonly&gt; inputs :Array",
+      "title": "&lt;readonly&gt; inputs :Array.&lt;Input&gt;",
       "longname": "WebMidi#inputs",
       "name": "inputs",
       "tags": "WebMidi#inputs inputs",
@@ -62301,7 +62399,7 @@ window.lunrData = {
     "WebMidi.html#outputs": {
       "id": "WebMidi.html#outputs",
       "kind": "member",
-      "title": "&lt;readonly&gt; outputs :Array",
+      "title": "&lt;readonly&gt; outputs :Array.&lt;Output&gt;",
       "longname": "WebMidi#outputs",
       "name": "outputs",
       "tags": "WebMidi#outputs outputs",
