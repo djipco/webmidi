@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 15, 2021 16:31:17 */
+/* Version: 3.0.4 - December 15, 2021 19:06:55 */
 (function (exports) {
   'use strict';
 
@@ -8822,8 +8822,12 @@
 
   exports.Enumerations = Enumerations;
   exports.Forwarder = Forwarder;
+  exports.Input = Input;
+  exports.InputChannel = InputChannel;
   exports.Message = Message;
   exports.Note = Note;
+  exports.Output = Output;
+  exports.OutputChannel = OutputChannel;
   exports.Utilities = Utilities;
   exports.WebMidi = wm;
 
