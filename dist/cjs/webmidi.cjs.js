@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 15, 2021 19:10:07 */
+/* Version: 3.0.4 - December 15, 2021 19:13:42 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8840,14 +8840,13 @@ class WebMidi extends e {
 
 const wm = new WebMidi();
 wm.constructor = null;
+// export {InputChannel} from "./InputChannel.js";
+// export {Output} from "./Output.js";
+// export {OutputChannel} from "./OutputChannel.js";
 
 exports.Enumerations = Enumerations;
 exports.Forwarder = Forwarder;
-exports.Input = Input;
-exports.InputChannel = InputChannel;
 exports.Message = Message;
 exports.Note = Note;
-exports.Output = Output;
-exports.OutputChannel = OutputChannel;
 exports.Utilities = Utilities;
 exports.WebMidi = wm;
