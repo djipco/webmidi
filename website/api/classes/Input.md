@@ -25,7 +25,7 @@ object does that. However, you can still use the
 
 ### `Constructor`
 
-
+Creates an `Input` object.
 
 
   **Parameters**

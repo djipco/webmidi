@@ -10,7 +10,7 @@ easy to make sense of the binary data it contains.
 
 ### `Constructor`
 
-Creates a new `Message` object
+Creates a new `Message` object from raw MIDI data.
 
 
   **Parameters**
