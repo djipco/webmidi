@@ -4565,7 +4565,7 @@ declare class EventEmitter {
      * @param {number} [options.remaining] Only remove the listener if it has exactly that many
      * remaining times to be executed.
      */
-    removeListener(event?: string, callback: any, options?: {
+    removeListener(event?: string, callback?: Function, options?: {
         context?: any;
         remaining?: number;
     }): void;
