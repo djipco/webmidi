@@ -68,11 +68,9 @@ async function execute() {
     // Add TypeScript WebMidi namespace before native Web MIDI API objects
     WEB_MIDI_API_CLASSES.forEach(element => {
 
-      const re = new RegExp("{" + element + "}", "g");
-
       const options = {
         files: TMP_FILE_PATH,
-        from: re,
+        from: new RegExp("{" + element + "}", "g"),
         to: () => `{WebMidi.${element}}`
       };
 
@@ -80,8 +78,14 @@ async function execute() {
 
     });
 
+    // Replace callback type by simply "function"
+    replace.sync({
+      files: TMP_FILE_PATH,
+      from: new RegExp("EventEmitter~callback", "g"),
+      to: () => "function"
+    });
+
     // Generate declaration file
-    // const cmd = "npx -p typescript tsc " + path.join(OUT_DIR, target.name, target.source) +
     const cmd = "npx -p typescript tsc " + TMP_FILE_PATH +
       " --declaration --allowJs --emitDeclarationOnly" +
       " --module " + target.type +
