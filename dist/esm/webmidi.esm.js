@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 12:07:16 */
+/* Version: 3.0.4 - December 17, 2021 12:12:50 */
 /**
  * djipevents v2.0.1
  * https://github.com/djipco/djipevents
@@ -9317,4 +9317,4 @@ class WebMidi extends e {
 const wm = new WebMidi();
 wm.constructor = null;
 
-export { Enumerations, Forwarder, Input, InputChannel, Message, Note, Output, OutputChannel, Utilities, wm as WebMidi };
+export { Enumerations, e as EventEmitter, Forwarder, Input, InputChannel, t as Listener, Message, Note, Output, OutputChannel, Utilities, wm as WebMidi };
