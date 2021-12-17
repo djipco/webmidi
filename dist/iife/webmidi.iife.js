@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 12:43:00 */
+/* Version: 3.0.4 - December 17, 2021 12:46:47 */
 (function (exports) {
   'use strict';
 
@@ -9265,13 +9265,12 @@
 
   const wm = new WebMidi();
   wm.constructor = null;
+  // export {EventEmitter};
 
   exports.Enumerations = Enumerations;
-  exports.EventEmitter = EventEmitter;
   exports.Forwarder = Forwarder;
   exports.Input = Input;
   exports.InputChannel = InputChannel;
-  exports.Listener = Listener;
   exports.Message = Message;
   exports.Note = Note;
   exports.Output = Output;
