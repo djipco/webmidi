@@ -544,7 +544,7 @@ export class Forwarder {
  * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
  * [`InputChannel`](InputChannel) objects at once.
  *
- * @param {{WebMidi.MIDIAccess}} midiInput [`{WebMidi.MIDIAccess}`](https://developer.mozilla.org/en-US/docs/Web/API/{WebMidi.MIDIAccess})
+ * @param {WebMidi.MIDIAccess} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
  * object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
@@ -570,7 +570,7 @@ export class Forwarder {
 export class Input {
     constructor(midiInput: any);
     /**
-     * Reference to the actual {WebMidi.MIDIAccess} object
+     * Reference to the actual MIDIInput object
      * @private
      */
     private _midiInput;
