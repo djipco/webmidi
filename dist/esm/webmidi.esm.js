@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 12:52:20 */
+/* Version: 3.0.4 - December 17, 2021 12:56:08 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -379,7 +379,7 @@ class EventEmitter {
    * callback to match or one or more of the additional options.
    *
    * @param {string} [event] The event name.
-   * @param {Function} [callback] Only remove the listeners that match this exact
+   * @param {EventEmitter~callback} [callback] Only remove the listeners that match this exact
    * callback function.
    * @param {Object} [options]
    * @param {*} [options.context] Only remove the listeners that have this exact context.
