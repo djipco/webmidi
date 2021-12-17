@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 12:42:45 */
+/* Version: 3.0.4 - December 17, 2021 12:46:31 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -9873,4 +9873,7 @@ class WebMidi extends EventEmitter {
 const wm = new WebMidi();
 wm.constructor = null;
 
-export { Enumerations, EventEmitter, Forwarder, Input, InputChannel, Listener, Message, Note, Output, OutputChannel, Utilities, wm as WebMidi };
+// export {Listener};
+// export {EventEmitter};
+
+export { Enumerations, Forwarder, Input, InputChannel, Message, Note, Output, OutputChannel, Utilities, wm as WebMidi };
