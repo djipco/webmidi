@@ -10,8 +10,28 @@ const prependFile = require("prepend-file");
 const replace = require("replace-in-file");
 const system = require("system-commands");
 const pkg = require("../../package.json");
+const os = require("os");
+const fsPromises = require("fs").promises;
+const fs = require("fs-extra");
 
 const OUT_DIR = "dist";
+
+const WEB_MIDI_API_CLASSES = [
+  "MIDIAccess",
+  "MIDIConnectionEvent",
+  "MIDIConnectionEventInit",
+  "MIDIInput",
+  "MIDIInputMap",
+  "MIDIMessageEvent",
+  "MIDIMessageEventInit",
+  "MIDIOptions",
+  "MIDIOutput",
+  "MIDIOutputMap",
+  "MIDIPort",
+  "MIDIPortConnectionStatus",
+  "MIDIPortDeviceState",
+  "MIDIPortType"
+];
 
 const HEADER = `// Type definitions for ${pkg.webmidi.name} ${pkg.version}\n` +
   `// Project: ${pkg.homepage}\n` +
@@ -32,10 +52,37 @@ if (type === "all" || type === "esm")
 
 async function execute() {
 
+  // Temp dir
+  const TMP_DIR_PATH = await fsPromises.mkdtemp(path.join(os.tmpdir(), "webmidi-ts-"));
+
   targets.forEach(async target => {
 
+    // Make a copy of the source file so we can substitute some elements before parsing
+    const TMP_FILE_PATH = path.join(TMP_DIR_PATH, target.source);
+    await fs.copy(
+      path.join(OUT_DIR, target.name, target.source),
+      TMP_FILE_PATH,
+      {overwrite: true}
+    );
+
+    // Add TypeScript WebMidi namespace before native Web MIDI API objects
+    WEB_MIDI_API_CLASSES.forEach(element => {
+
+      const re = new RegExp("{" + element + "}", "g");
+
+      const options = {
+        files: TMP_FILE_PATH,
+        from: re,
+        to: () => `{WebMidi.${element}}`
+      };
+
+      replace.sync(options);
+
+    });
+
     // Generate declaration file
-    const cmd = "npx -p typescript tsc " + path.join(OUT_DIR, target.name, target.source) +
+    // const cmd = "npx -p typescript tsc " + path.join(OUT_DIR, target.name, target.source) +
+    const cmd = "npx -p typescript tsc " + TMP_FILE_PATH +
       " --declaration --allowJs --emitDeclarationOnly" +
       " --module " + target.type +
       " --lib ES2020,DOM --outDir " + path.join(OUT_DIR, target.name) ;
