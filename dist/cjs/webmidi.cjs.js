@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.4
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 16th, 2021.
+ * Build generated on December 17th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 16, 2021 09:10:56 */
+/* Version: 3.0.4 - December 17, 2021 08:01:26 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
