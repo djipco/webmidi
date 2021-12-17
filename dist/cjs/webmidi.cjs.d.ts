@@ -468,41 +468,6 @@ export class Enumerations {
     static get CHANNEL_EVENTS(): string[];
 }
 /**
- * djipevents v2.0.1
- * https://github.com/djipco/djipevents
- * Build generated on November 10th, 2021.
- *
- * © Copyright 2019-2021, Jean-Philippe Côté.
- *
- * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
- * in compliance with the License. You may obtain a copy of the License at
- *
- * http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software distributed under the License
- * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
- * or implied. See the License for the specific language governing permissions and limitations under
- * the License.
- */
-declare class e {
-    static get ANY_EVENT(): symbol;
-    constructor(e?: boolean);
-    eventMap: {};
-    eventsSuspended: boolean;
-    addListener(n: any, r: any, i?: {}): t;
-    addOneTimeListener(e: any, t: any, n?: {}): void;
-    hasListener(n: any, r: any): boolean;
-    get eventNames(): string[];
-    getListeners(e: any): any;
-    suspendEvent(e: any): void;
-    unsuspendEvent(e: any): void;
-    getListenerCount(e: any): any;
-    emit(t: any, ...n: any[]): any[];
-    removeListener(e: any, t: any, n?: {}): any;
-    waitFor(e: any, t?: {}): Promise<any>;
-    get eventCount(): number;
-}
-/**
  * The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When you
  * call its [`forward()`](#forward) method, it will send the specified [`Message`](Message) object
  * to all the outputs listed in its [`destinations`](#destinations) property.
@@ -607,7 +572,7 @@ export class Forwarder {
  * @extends EventEmitter
  * @license Apache-2.0
  */
-export class Input {
+export class Input extends EventEmitter {
     /**
      * Creates an `Input` object.
      *
@@ -684,363 +649,12 @@ export class Input {
      */
     private getChannelModeByNumber;
     /**
-     * Adds an event listener that will trigger a function callback when the specified event is
-     * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
-     *
-     * Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
-     * at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
-     * events target a specific channel. Usually, in this case, you would add the listener to the
-     * [`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
-     * channel-specific events directly on an `Input`. This allows you to react to a channel-specific
-     * event no matter which channel it actually came through.
-     *
-     * When listening for an event, you simply need to specify the event name and the function to
-     * execute:
-     *
-     * ```javascript
-     * const listener = WebMidi.inputs[0].addListener("midimessage", e => {
-     *   console.log(e);
-     * });
-     * ```
-     *
-     * Calling the function with an input-wide event (such as
-     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
-     * that was created.
-     *
-     * If you call the function with a channel-specific event (such as
-     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
-     * [`Listener`](Listener) objects that were created (one for each channel):
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
-     * ```
-     *
-     * You can also specify which channels you want to add the listener to:
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
-     * ```
-     *
-     * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
-     *
-     * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
-     * instance that actually gets a listener added and not the `Input` instance. You can check that
-     * by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
-     *
-     * There are 8 families of events you can listen to:
-     *
-     * 1. **MIDI System Common** Events (input-wide)
-     *
-     *    * [`songposition`]{@link Input#event:songposition}
-     *    * [`songselect`]{@link Input#event:songselect}
-     *    * [`sysex`]{@link Input#event:sysex}
-     *    * [`timecode`]{@link Input#event:timecode}
-     *    * [`tunerequest`]{@link Input#event:tunerequest}
-     *
-     * 2. **MIDI System Real-Time** Events (input-wide)
-     *
-     *    * [`clock`]{@link Input#event:clock}
-     *    * [`start`]{@link Input#event:start}
-     *    * [`continue`]{@link Input#event:continue}
-     *    * [`stop`]{@link Input#event:stop}
-     *    * [`activesensing`]{@link Input#event:activesensing}
-     *    * [`reset`]{@link Input#event:reset}
-     *
-     * 3. **State Change** Events (input-wide)
-     *
-     *    * [`opened`]{@link Input#event:opened}
-     *    * [`closed`]{@link Input#event:closed}
-     *    * [`disconnected`]{@link Input#event:disconnected}
-     *
-     * 4. **Catch-All** Events (input-wide)
-     *
-     *    * [`midimessage`]{@link Input#event:midimessage}
-     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
-     *
-     * 5. **Channel Voice** Events (channel-specific)
-     *
-     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
-     *    * [`controlchange`]{@link InputChannel#event:controlchange}
-     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
-     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
-     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
-     *      * (...)
-     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
-     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
-     *    * [`noteoff`]{@link InputChannel#event:noteoff}
-     *    * [`noteon`]{@link InputChannel#event:noteon}
-     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
-     *    * [`programchange`]{@link InputChannel#event:programchange}
-     *
-     *    Note: you can listen for a specific control change message by using an event name like this:
-     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
-     *    etc.
-     *
-     * 6. **Channel Mode** Events (channel-specific)
-     *
-     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
-     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
-     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
-     *    * [`monomode`]{@link InputChannel#event:monomode}
-     *    * [`omnimode`]{@link InputChannel#event:omnimode}
-     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
-     *
-     * 7. **NRPN** Events (channel-specific)
-     *
-     *    * [`nrpn`]{@link InputChannel#event:nrpn}
-     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
-     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
-     *
-     * 8. **RPN** Events (channel-specific)
-     *
-     *    * [`rpn`]{@link InputChannel#event:rpn}
-     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
-     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} A callback function to execute when the specified event is detected.
-     * This function will receive an event parameter object. For details on this object's properties,
-     * check out the documentation for the various events (links above).
-     *
-     * @param {object} [options={}]
-     *
-     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
-     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
-     *
-     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
-     * An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to
-     * listen on. If no channel is specified, all channels will be used. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {object} [options.context=this] The value of `this` in the callback function.
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
-     * automatically expires.
-     *
-     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array and thus be triggered before others.
-     *
-     * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
-     * should automatically be removed.
-     *
-     * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
-     * object is returned. If the event is channel-specific, an array of all the
-     * [`Listener`](Listener) objects is returned (one for each channel).
-     */
-    addListener(event: string, listener: Function, options?: {
-        arguments?: any[];
-        channels?: number | number[];
-        context?: object;
-        duration?: number;
-        prepend?: boolean;
-        remaining?: boolean;
-    }): Listener | Listener[];
-    /**
-     * Adds a one-time event listener that will trigger a function callback when the specified event
-     * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
-     * dispatched by [`InputChannel`]{@link InputChannel} objects and are tied to a specific MIDI
-     * channel while input-wide events are dispatched by the `Input` object itself and are not tied
-     * to a specific channel.
-     *
-     * Calling the function with an input-wide event (such as
-     * [`"midimessage"`]{@link #event:midimessage}), will return the [`Listener`](Listener) object
-     * that was created.
-     *
-     * If you call the function with a channel-specific event (such as
-     * [`"noteon"`]{@link InputChannel#event:noteon}), it will return an array of all
-     * [`Listener`](Listener) objects that were created (one for each channel):
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
-     * ```
-     *
-     * You can also specify which channels you want to add the listener to:
-     *
-     * ```javascript
-     * const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
-     * ```
-     *
-     * In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.
-     *
-     * The code above will add a listener for the `"noteon"` event and call `someFunction` when the
-     * event is triggered on MIDI channels `1`, `2` or `3`.
-     *
-     * Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
-     * that actually gets a listener added and not the `Input` instance.
-     *
-     * Note: if you want to add a listener to a single MIDI channel you should probably do so directly
-     * on the [`InputChannel`](InputChannel) object itself.
-     *
-     * There are 8 families of events you can listen to:
-     *
-     * 1. **MIDI System Common** Events (input-wide)
-     *
-     *    * [`songposition`]{@link Input#event:songposition}
-     *    * [`songselect`]{@link Input#event:songselect}
-     *    * [`sysex`]{@link Input#event:sysex}
-     *    * [`timecode`]{@link Input#event:timecode}
-     *    * [`tunerequest`]{@link Input#event:tunerequest}
-     *
-     * 2. **MIDI System Real-Time** Events (input-wide)
-     *
-     *    * [`clock`]{@link Input#event:clock}
-     *    * [`start`]{@link Input#event:start}
-     *    * [`continue`]{@link Input#event:continue}
-     *    * [`stop`]{@link Input#event:stop}
-     *    * [`activesensing`]{@link Input#event:activesensing}
-     *    * [`reset`]{@link Input#event:reset}
-     *
-     * 3. **State Change** Events (input-wide)
-     *
-     *    * [`opened`]{@link Input#event:opened}
-     *    * [`closed`]{@link Input#event:closed}
-     *    * [`disconnected`]{@link Input#event:disconnected}
-     *
-     * 4. **Catch-All** Events (input-wide)
-     *
-     *    * [`midimessage`]{@link Input#event:midimessage}
-     *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
-     *
-     * 5. **Channel Voice** Events (channel-specific)
-     *
-     *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
-     *    * [`controlchange`]{@link InputChannel#event:controlchange}
-     *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
-     *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
-     *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
-     *      * (...)
-     *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
-     *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
-     *    * [`noteoff`]{@link InputChannel#event:noteoff}
-     *    * [`noteon`]{@link InputChannel#event:noteon}
-     *    * [`pitchbend`]{@link InputChannel#event:pitchbend}
-     *    * [`programchange`]{@link InputChannel#event:programchange}
-     *
-     *    Note: you can listen for a specific control change message by using an event name like this:
-     *    `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
-     *    etc.
-     *
-     * 6. **Channel Mode** Events (channel-specific)
-     *
-     *    * [`allnotesoff`]{@link InputChannel#event:allnotesoff}
-     *    * [`allsoundoff`]{@link InputChannel#event:allsoundoff}
-     *    * [`localcontrol`]{@link InputChannel#event:localcontrol}
-     *    * [`monomode`]{@link InputChannel#event:monomode}
-     *    * [`omnimode`]{@link InputChannel#event:omnimode}
-     *    * [`resetallcontrollers`]{@link InputChannel#event:resetallcontrollers}
-     *
-     * 7. **NRPN** Events (channel-specific)
-     *
-     *    * [`nrpn`]{@link InputChannel#event:nrpn}
-     *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
-     *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-     *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-     *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
-     *
-     * 8. **RPN** Events (channel-specific)
-     *
-     *    * [`rpn`]{@link InputChannel#event:rpn}
-     *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
-     *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-     *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-     *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} A callback function to execute when the specified event is detected.
-     * This function will receive an event parameter object. For details on this object's properties,
-     * check out the documentation for the various events (links above).
-     *
-     * @param {object} [options={}]
-     *
-     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
-     * callback function. This array is stored in the [`arguments`](Listener#arguments) property of
-     * the [`Listener`](Listener) object and can be retrieved or modified as desired.
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to listen on. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {object} [options.context=this] The value of `this` in the callback function.
-     *
-     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
-     * automatically expires.
-     *
-     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
-     * of the listeners array and thus be triggered before others.
-     *
-     * @returns {Listener[]} An array of all [`Listener`](Listener) objects that were created.
-     */
-    addOneTimeListener(event: string, listener: Function, options?: {
-        arguments?: any[];
-        channels?: number | number[];
-        context?: object;
-        duration?: number;
-        prepend?: boolean;
-    }): Listener[];
-    /**
      * This is an alias to the [Input.addListener()]{@link Input#addListener} method.
      * @since 2.0.0
      * @deprecated since v3.0
      * @private
      */
     private on;
-    /**
-     * Checks if the specified event type is already defined to trigger the specified callback
-     * function. For channel-specific events, the function will return `true` only if all channels
-     * have the listener defined.
-     *
-     * @param event {string} The type of the event.
-     *
-     * @param listener {function} The callback function to check for.
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of such
-     * integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide
-     * events.
-     *
-     * @returns {boolean} Boolean value indicating whether or not the `Input` or
-     * [`InputChannel`](InputChannel) already has this listener defined.
-     */
-    hasListener(event: string, listener: Function, options?: {
-        channels?: number | number[];
-    }): boolean;
-    /**
-     * Removes the specified listener for the specified event. If no listener is specified, all
-     * listeners for the specified event will be removed. If no event is specified, all listeners for
-     * the `Input` as well as all listeners for all [`InputChannel`]{@link InputChannel} objects will
-     * be removed.
-     *
-     * By default, channel-specific listeners will be removed from all channels unless the
-     * `options.channel` narrows it down.
-     *
-     * @param [type] {string} The type of the event.
-     *
-     * @param [listener] {Function} The callback function to check for.
-     *
-     * @param {object} [options={}]
-     *
-     * @param {number|number[]} [options.channels]  An integer between 1 and 16 or an array of
-     * such integers representing the MIDI channel(s) to match. This parameter is ignored for
-     * input-wide events.
-     *
-     * @param {*} [options.context] Only remove the listeners that have this exact context.
-     *
-     * @param {number} [options.remaining] Only remove the listener if it has exactly that many
-     * remaining times to be executed.
-     */
-    removeListener(event: any, listener?: Function, options?: {
-        channels?: number | number[];
-        context?: any;
-        remaining?: number;
-    }): any;
     /**
      * Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
      * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
@@ -1190,7 +804,7 @@ export class Input {
  * @license Apache-2.0
  * @since 3.0.0
  */
-export class InputChannel {
+export class InputChannel extends EventEmitter {
     /**
      * Creates an `InputChannel` object.
      *
@@ -1342,18 +956,6 @@ export class InputChannel {
      * @private
      */
     private get nrpnEventsEnabled();
-}
-declare class t {
-    constructor(t: any, n: any, r: any, i?: {}, ...args: any[]);
-    arguments: any;
-    callback: any;
-    context: any;
-    count: number;
-    event: any;
-    remaining: number;
-    suspended: boolean;
-    target: any;
-    remove(): void;
 }
 /**
  * The `Message` class represents a single MIDI message. It has several properties that make it
@@ -1651,7 +1253,7 @@ export class Note {
  * @extends EventEmitter
  * @license Apache-2.0
  */
-export class Output {
+export class Output extends EventEmitter {
     /**
      * Creates an `Output` object.
      *
@@ -3246,7 +2848,7 @@ export class Output {
  * @license Apache-2.0
  * @since 3.0.0
  */
-export class OutputChannel {
+export class OutputChannel extends EventEmitter {
     /**
      * Creates an `OutputChannel` object.
      *
@@ -4719,6 +4321,287 @@ export class Utilities {
 }
 declare const wm: WebMidi;
 /**
+ * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
+ * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
+ * emitter.
+ *
+ * It is intended to be an abstract class meant to be extended by (or mixed into) other objects.
+ *
+ * @param {boolean} [eventsSuspended=false] Whether the `EventEmitter` is initially in a suspended
+ * state (i.e. not executing callbacks).
+ */
+declare class EventEmitter {
+    /**
+     * Identifier to use when adding or removing a listener that should be triggered when any events
+     * occur.
+     *
+     * @type {Symbol}
+     */
+    static get ANY_EVENT(): Symbol;
+    constructor(eventsSuspended?: boolean);
+    /**
+     * An object containing a property for each event with at least one registered listener. Each
+     * event property contains an array of all the [`Listener`]{@link Listener} objects registered
+     * for the event.
+     *
+     * @type {Object}
+     * @readonly
+     */
+    eventMap: any;
+    /**
+     * Whether or not the execution of callbacks is currently suspended for this emitter.
+     *
+     * @type {boolean}
+     */
+    eventsSuspended: boolean;
+    /**
+     * The callback function is executed when the associated event is triggered via [`emit()`](#emit).
+     * The [`emit()`](#emit) method relays all additional arguments it received to the callback
+     * functions. Since [`emit()`](#emit) can be passed a variable number of arguments, it is up to
+     * the developer to make sure the arguments match those of the associated callback. In addition,
+     * the callback also separately receives all the arguments present in the listener's
+     * [`arguments`](Listener#arguments) property. This makes it easy to pass data from where the
+     * listener is added to where the listener is executed.
+     *
+     * @callback EventEmitter~callback
+     * @param {...*} [args] A variable number of arguments matching the ones (if any) that were passed
+     * to the [`emit()`](#emit) method (except, the first one) followed by the arguments found in the
+     * listener's [`arguments`](Listener#arguments) array.
+     */
+    /**
+     * Adds a listener for the specified event. It returns the [`Listener`]{@link Listener} object
+     * that was created and attached to the event.
+     *
+     * To attach a global listener that will be triggered for any events, use
+     * [`EventEmitter.ANY_EVENT`]{@link #ANY_EVENT} as the first parameter. Note that a global
+     * listener will also be triggered by non-registered events.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} event The event to listen to.
+     * @param {EventEmitter~callback} callback The callback function to execute when the event occurs.
+     * @param {Object} [options={}]
+     * @param {Object} [options.context=this] The value of `this` in the callback function.
+     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+     * of the listeners array and thus executed first.
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+     * automatically expires.
+     * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+     * should automatically be removed.
+     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+     * callback function. This array is stored in the [`arguments`]{@link Listener#arguments}
+     * property of the [`Listener`]{@link Listener} object and can be retrieved or modified as
+     * desired.
+     *
+     * @returns {Listener} The newly created [`Listener`]{@link Listener} object.
+     *
+     * @throws {TypeError} The `event` parameter must be a string or
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
+     * @throws {TypeError} The `callback` parameter must be a function.
+     */
+    addListener(event: string | Symbol, callback: any, options?: {
+        context?: any;
+        prepend?: boolean;
+        duration?: number;
+        remaining?: boolean;
+        arguments?: any[];
+    }): Listener;
+    /**
+     * Adds a one-time listener for the specified event. The listener will be executed once and then
+     * destroyed. It returns the [`Listener`]{@link Listener} object that was created and attached
+     * to the event.
+     *
+     * To attach a global listener that will be triggered for any events, use
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the first parameter. Note that a
+     * global listener will also be triggered by non-registered events.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} event The event to listen to
+     * @param {EventEmitter~callback} callback The callback function to execute when the event occurs
+     * @param {Object} [options={}]
+     * @param {Object} [options.context=this] The context to invoke the callback function in.
+     * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
+     * of the listeners array and thus executed first.
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
+     * automatically expires.
+     * @param {array} [options.arguments] An array of arguments which will be passed separately to the
+     * callback function. This array is stored in the [`arguments`]{@link Listener#arguments}
+     * property of the [`Listener`]{@link Listener} object and can be retrieved or modified as
+     * desired.
+     *
+     * @returns {Listener} The newly created [`Listener`]{@link Listener} object.
+     *
+     * @throws {TypeError} The `event` parameter must be a string or
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
+     * @throws {TypeError} The `callback` parameter must be a function.
+     */
+    addOneTimeListener(event: string | Symbol, callback: any, options?: {
+        context?: any;
+        prepend?: boolean;
+        duration?: number;
+        arguments?: any[];
+    }): Listener;
+    /**
+     * Returns `true` if the specified event has at least one registered listener. If no event is
+     * specified, the method returns `true` if any event has at least one listener registered (this
+     * includes global listeners registered to
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}).
+     *
+     * Note: to specifically check for global listeners added with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}, use
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the parameter.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} [event=(any event)] The event to check
+     * @param {function|Listener} [callback=(any callback)] The actual function that was added to the
+     * event or the {@link Listener} object returned by `addListener()`.
+     * @returns {boolean}
+     */
+    hasListener(event?: string | Symbol, callback?: Function | Listener): boolean;
+    /**
+     * An array of all the unique event names for which the emitter has at least one registered
+     * listener.
+     *
+     * Note: this excludes global events registered with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} because they are not tied to a
+     * specific event.
+     *
+     * @type {string[]}
+     * @readonly
+     */
+    get eventNames(): string[];
+    /**
+     * Returns an array of all the [`Listener`]{@link Listener} objects that have been registered for
+     * a specific event.
+     *
+     * Please note that global events (those added with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}) are not returned for "regular"
+     * events. To get the list of global listeners, specifically use
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the parameter.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} event The event to get listeners for.
+     * @returns {Listener[]} An array of [`Listener`]{@link Listener} objects.
+     */
+    getListeners(event: string | Symbol): Listener[];
+    /**
+     * Suspends execution of all callbacks functions registered for the specified event type.
+     *
+     * You can suspend execution of callbacks registered with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} by passing
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} to `suspendEvent()`. Beware that this
+     * will not suspend all callbacks but only those registered with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}. While this may seem counter-intuitive
+     * at first glance, it allows the selective suspension of global listeners while leaving other
+     * listeners alone. If you truly want to suspends all callbacks for a specific
+     * [`EventEmitter`]{@link EventEmitter}, simply set its `eventsSuspended` property to `true`.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} event The event for which to suspend execution of all
+     * callback functions.
+     */
+    suspendEvent(event: string | Symbol): void;
+    /**
+     * Resumes execution of all suspended callback functions registered for the specified event type.
+     *
+     * You can resume execution of callbacks registered with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} by passing
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} to `unsuspendEvent()`. Beware that
+     * this will not resume all callbacks but only those registered with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}. While this may seem
+     * counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
+     * callbacks alone.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} event The event for which to resume execution of all
+     * callback functions.
+     */
+    unsuspendEvent(event: string | Symbol): void;
+    /**
+     * Returns the number of listeners registered for a specific event.
+     *
+     * Please note that global events (those added with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}) do not count towards the remaining
+     * number for a "regular" event. To get the number of global listeners, specifically use
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the parameter.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} event The event which is usually a string but can also
+     * be the special [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} symbol.
+     * @returns {number} An integer representing the number of listeners registered for the specified
+     * event.
+     */
+    getListenerCount(event: string | Symbol): number;
+    /**
+     * Executes the callback function of all the [`Listener`]{@link Listener} objects registered for
+     * a given event. The callback functions are passed the additional arguments passed to `emit()`
+     * (if any) followed by the arguments present in the [`arguments`](Listener#arguments) property of
+     * the [`Listener`](Listener) object (if any).
+     *
+     * If the [`eventsSuspended`]{@link #eventsSuspended} property is `true` or the
+     * [`Listener.suspended`]{@link Listener#suspended} property is `true`, the callback functions
+     * will not be executed.
+     *
+     * This function returns an array containing the return values of each of the callbacks.
+     *
+     * It should be noted that the regular listeners are triggered first followed by the global
+     * listeners (those added with [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}).
+     *
+     * @param {string} event The event
+     * @param {...*} args Arbitrary number of arguments to pass along to the callback functions
+     *
+     * @returns {Array} An array containing the return value of each of the executed listener
+     * functions.
+     *
+     * @throws {TypeError} The `event` parameter must be a string.
+     */
+    emit(event: string, ...args: any[]): any[];
+    /**
+     * Removes all the listeners that match the specified criterias. If no parameters are passed, all
+     * listeners will be removed. If only the `event` parameter is passed, all listeners for that
+     * event will be removed. You can remove global listeners by using
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the first parameter.
+     *
+     * To use more granular options, you must at least define the `event`. Then, you can specify the
+     * callback to match or one or more of the additional options.
+     *
+     * @param {string} [event=(any events)] The event name.
+     * @param {EventEmitter~callback} [callback=(any callbacks)] Only remove the listeners that match
+     * this exact callback function.
+     * @param {Object} [options={}]
+     * @param {*} [options.context=(any contexts)] Only remove the listeners that have this exact
+     * context.
+     * @param {number} [options.remaining=(any number)] Only remove the listener if it has exactly
+     * that many remaining times to be executed.
+     */
+    removeListener(event?: string, callback: any, options?: {
+        context?: any;
+        remaining?: number;
+    }): void;
+    /**
+     * The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
+     * when the specified event occurs. The event can be a regular event or
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} (if you want to resolve as soon as any
+     * event is emitted).
+     *
+     * If the `duration` option is set, the promise will only be fulfilled if the event is emitted
+     * within the specified duration. If the event has not been fulfilled after the specified
+     * duration, the promise is rejected. This makes it super easy to wait for an event and timeout
+     * after a certain time if the event is not triggered.
+     *
+     * @param {string|EventEmitter.ANY_EVENT} event The event to wait for
+     * @param {Object} [options={}]
+     * @param {number} [options.duration=Infinity] The number of milliseconds to wait before the
+     * promise is automatically rejected.
+     */
+    waitFor(event: string | Symbol, options?: {
+        duration?: number;
+    }): Promise<any>;
+    /**
+     * The number of unique events that have registered listeners.
+     *
+     * Note: this excludes global events registered with
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} because they are not tied to a
+     * specific event.
+     *
+     * @type {number}
+     * @readonly
+     */
+    get eventCount(): number;
+}
+/**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
  *
@@ -4736,7 +4619,12 @@ declare const wm: WebMidi;
  * @extends EventEmitter
  * @license Apache-2.0
  */
-declare class WebMidi {
+declare class WebMidi extends EventEmitter {
+    /**
+     * The WebMidi class is a singleton and you cannot instantiate it directly. It has already been
+     * instantiated for you.
+     */
+    constructor();
     /**
      * Object containing system-wide default values that can be changed to customize how the library
      * works.
@@ -5152,4 +5040,75 @@ declare class WebMidi {
      */
     private get NOTES();
 }
-export { e as EventEmitter, t as Listener, wm as WebMidi };
+/**
+ * The `Listener` class represents a single event listener object. Such objects keep all relevant
+ * contextual information such as the event being listened to, the object the listener was attached
+ * to, the callback function and so on.
+ *
+ * @param {string|EventEmitter.ANY_EVENT} event The event being listened to
+ * @param {EventEmitter} target The [`EventEmitter`]{@link EventEmitter} object that the listener is
+ * attached to.
+ * @param {EventEmitter~callback} callback The function to call when the listener is triggered
+ * @param {Object} [options={}]
+ * @param {Object} [options.context=target] The context to invoke the listener in (a.k.a. the
+ * value of `this` inside the callback function).
+ * @param {number} [options.remaining=Infinity] The remaining number of times after which the
+ * callback should automatically be removed.
+ * @param {array} [options.arguments] An array of arguments that will be passed separately to the
+ * callback function upon execution. The array is stored in the [`arguments`]{@link #arguments}
+ * property and can be retrieved or modified as desired.
+ *
+ * @throws {TypeError} The `event` parameter must be a string or
+ * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
+ * @throws {ReferenceError} The `target` parameter is mandatory.
+ * @throws {TypeError} The `callback` must be a function.
+ */
+declare class Listener {
+    constructor(event: any, target: any, callback: any, options?: {}, ...args: any[]);
+    /**
+     * An array of arguments to pass to the callback function upon execution.
+     * @type {array}
+     */
+    arguments: any[];
+    /**
+     * The callback function to execute.
+     * @type {Function}
+     */
+    callback: Function;
+    /**
+     * The context to execute the callback function in (a.k.a. the value of `this` inside the
+     * callback function)
+     * @type {Object}
+     */
+    context: any;
+    /**
+     * The number of times the listener function was executed.
+     * @type {number}
+     */
+    count: number;
+    /**
+     * The event name.
+     * @type {string}
+     */
+    event: string;
+    /**
+     * The remaining number of times after which the callback should automatically be removed.
+     * @type {number}
+     */
+    remaining: number;
+    /**
+     * Whether this listener is currently suspended or not.
+     * @type {boolean}
+     */
+    suspended: boolean;
+    /**
+     * The object that the event is attached to (or that emitted the event).
+     * @type {EventEmitter}
+     */
+    target: EventEmitter;
+    /**
+     * Removes the listener from its target.
+     */
+    remove(): void;
+}
+export { wm as WebMidi };
