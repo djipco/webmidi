@@ -1,4 +1,4 @@
-import babel from "rollup-plugin-babel";
+import babel from "@rollup/plugin-babel";
 import stripCode from "rollup-plugin-strip-code";
 const fs = require("fs");
 const license = require("rollup-plugin-license");
