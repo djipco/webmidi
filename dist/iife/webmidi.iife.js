@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 12:52:35 */
+/* Version: 3.0.4 - December 17, 2021 12:56:23 */
 (function (exports) {
   'use strict';
 
@@ -360,7 +360,7 @@
      * callback to match or one or more of the additional options.
      *
      * @param {string} [event] The event name.
-     * @param {Function} [callback] Only remove the listeners that match this exact
+     * @param {EventEmitter~callback} [callback] Only remove the listeners that match this exact
      * callback function.
      * @param {Object} [options]
      * @param {*} [options.context] Only remove the listeners that have this exact context.
