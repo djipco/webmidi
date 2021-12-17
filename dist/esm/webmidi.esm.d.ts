@@ -4575,14 +4575,14 @@ declare class EventEmitter {
      * callback to match or one or more of the additional options.
      *
      * @param {string} [event] The event name.
-     * @param {EventEmitter~callback} [callback] Only remove the listeners that match this exact
+     * @param {Function} [callback] Only remove the listeners that match this exact
      * callback function.
      * @param {Object} [options]
      * @param {*} [options.context] Only remove the listeners that have this exact context.
      * @param {number} [options.remaining] Only remove the listener if it has exactly that many
      * remaining times to be executed.
      */
-    removeListener(event?: string, callback: any, options?: {
+    removeListener(event?: string, callback?: Function, options?: {
         context?: any;
         remaining?: number;
     }): void;
