@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 12:07:04 */
+/* Version: 3.0.4 - December 17, 2021 12:12:38 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8887,9 +8887,11 @@ const wm = new WebMidi();
 wm.constructor = null;
 
 exports.Enumerations = Enumerations;
+exports.EventEmitter = e;
 exports.Forwarder = Forwarder;
 exports.Input = Input;
 exports.InputChannel = InputChannel;
+exports.Listener = t;
 exports.Message = Message;
 exports.Note = Note;
 exports.Output = Output;
