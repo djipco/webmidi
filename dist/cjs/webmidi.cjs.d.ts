@@ -597,7 +597,11 @@ export class Input {
      * @type {InputChannel[]}
      */
     channels: InputChannel[];
-    _forwarders: any[];
+    /**
+     * @type {Forwarder[]}
+     * @private
+     */
+    private _forwarders;
     /**
      * Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
      * unlinking the MIDI subsystem. This is mostly for internal use.
@@ -1221,7 +1225,11 @@ export class InputChannel {
      * @private
      */
     private _parseEventForStandardMessages;
-    _parseChannelModeMessage(e: any): void;
+    /**
+     * @param e {Object}
+     * @private
+     */
+    private _parseChannelModeMessage;
     /**
      * Parses inbound events to identify RPN/NRPN sequences.
      * @param e Event
@@ -3996,7 +4004,7 @@ export class OutputChannel {
      *
      * For further implementation details, refer to the manufacturer's documentation.
      *
-     * @param parameter {number[]} A two-position array specifying the two control bytes (0x63,
+     * @param nrpn {number[]} A two-position array specifying the two control bytes (0x63,
      * 0x62) that identify the non-registered parameter.
      *
      * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
@@ -4017,7 +4025,7 @@ export class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    sendNrpnValue(nrpn: any, data?: number | number[], options?: {
+    sendNrpnValue(nrpn: number[], data?: number | number[], options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4440,6 +4448,7 @@ export class Utilities {
      * -2, the resulting MIDI note number will be 36.
      *
      * @param input {string|number} A string or number to extract the MIDI note number from.
+     * @param octaveOffset {number} An integer to offset the octave by
      *
      * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
      * successfully be parsed to a note number.
@@ -4447,7 +4456,7 @@ export class Utilities {
      * @since 3.0.0
      * @static
      */
-    static guessNoteNumber(input: string | number, octaveOffset: any): number | false;
+    static guessNoteNumber(input: string | number, octaveOffset: number): number | false;
     /**
      * Returns an identifier string representing a note name (with optional accidental) followed by an
      * octave number. The octave can be offset by using the `octaveOffset` parameter.
@@ -4574,24 +4583,24 @@ export class Utilities {
      * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
      * input value cannot be converted to an integer, the method returns 0.
      *
-     * @param value A positive integer between 0 and 127 (inclusive)
+     * @param value {number} A positive integer between 0 and 127 (inclusive)
      * @returns {number} A number between 0 and 1 (inclusive)
      * @static
      */
-    static from7bitToFloat(value: any): number;
+    static from7bitToFloat(value: number): number;
     /**
-     * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-     * The input value should be number between 0 and 1 (inclusively). The returned value is
+     * Returns an integer between 0 and 127 which is the result of multiplying the input value by
+     * 127. The input value should be a number between 0 and 1 (inclusively). The returned value is
      * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
      *
      * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
      * the input value cannot be converted to a number, the method returns 0.
      *
-     * @param value A positive integer between 0 and 127 (inclusive)
-     * @returns {number} A number between 0 and 1 (inclusive)
+     * @param value {number} A positive float between 0 and 1 (inclusive)
+     * @returns {number} A number between 0 and 127 (inclusive)
      * @static
      */
-    static fromFloatTo7Bit(value: any): number;
+    static fromFloatTo7Bit(value: number): number;
     /**
      * Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
      * is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
@@ -4701,10 +4710,10 @@ declare class WebMidi {
      * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
-     * @type {?MIDIAccess}
+     * @type {WebMidi.MIDIAccess}
      * @readonly
      */
-    interface: MIDIAccess;
+    interface: WebMidi.MIDIAccess;
     /**
      * Indicates whether argument validation and backwards-compatibility checks are performed
      * throughout the WebMidi.js library for object methods and property setters.
@@ -4838,13 +4847,13 @@ declare class WebMidi {
      * are also destroyed.
      *
      * @async
-     * @returns {Promise}
+     * @returns {Promise<Array>}
      *
      * @throws {Error} The Web MIDI API is not supported by your environment.
      *
      * @since 2.0.0
      */
-    disable(): Promise<any>;
+    disable(): Promise<any[]>;
     /**
      * Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
      * matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
