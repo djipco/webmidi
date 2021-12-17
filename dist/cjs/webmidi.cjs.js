@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 08:01:26 */
+/* Version: 3.0.4 - December 17, 2021 11:54:17 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1170,6 +1170,7 @@ class Utilities {
    * -2, the resulting MIDI note number will be 36.
    *
    * @param input {string|number} A string or number to extract the MIDI note number from.
+   * @param octaveOffset {number} An integer to offset the octave by
    *
    * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
    * successfully be parsed to a note number.
@@ -1349,7 +1350,7 @@ class Utilities {
    * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
    * input value cannot be converted to an integer, the method returns 0.
    *
-   * @param value A positive integer between 0 and 127 (inclusive)
+   * @param value {number} A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
    * @static
    */
@@ -1361,15 +1362,15 @@ class Utilities {
     return Math.min(Math.max(value / 127, 0), 1);
   }
   /**
-   * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-   * The input value should be number between 0 and 1 (inclusively). The returned value is
+   * Returns an integer between 0 and 127 which is the result of multiplying the input value by
+   * 127. The input value should be a number between 0 and 1 (inclusively). The returned value is
    * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
    *
    * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
    * the input value cannot be converted to a number, the method returns 0.
    *
-   * @param value A positive integer between 0 and 127 (inclusive)
-   * @returns {number} A number between 0 and 1 (inclusive)
+   * @param value {number} A positive float between 0 and 1 (inclusive)
+   * @returns {number} A number between 0 and 127 (inclusive)
    * @static
    */
 
@@ -2677,7 +2678,7 @@ class OutputChannel extends e {
    *
    * For further implementation details, refer to the manufacturer's documentation.
    *
-   * @param parameter {number[]} A two-position array specifying the two control bytes (0x63,
+   * @param nrpn {number[]} A two-position array specifying the two control bytes (0x63,
    * 0x62) that identify the non-registered parameter.
    *
    * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
@@ -5956,6 +5957,11 @@ class InputChannel extends e {
 
     this.emit(event.type, event);
   }
+  /**
+   * @param e {Object}
+   * @private
+   */
+
 
   _parseChannelModeMessage(e) {
     // Make a shallow copy of the incoming event so we can use it as the new event.
@@ -6779,6 +6785,11 @@ class Input extends e {
     this.channels = [];
 
     for (let i = 1; i <= 16; i++) this.channels[i] = new InputChannel(this, i);
+    /**
+     * @type {Forwarder[]}
+     * @private
+     */
+
 
     this._forwarders = []; // Setup listeners
 
@@ -7900,7 +7911,7 @@ class WebMidi extends e {
      * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
-     * @type {?MIDIAccess}
+     * @type {MIDIAccess}
      * @readonly
      */
 
@@ -8175,7 +8186,7 @@ class WebMidi extends e {
    * are also destroyed.
    *
    * @async
-   * @returns {Promise}
+   * @returns {Promise<Array>}
    *
    * @throws {Error} The Web MIDI API is not supported by your environment.
    *
