@@ -544,7 +544,7 @@ export class Forwarder {
  * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
  * [`InputChannel`](InputChannel) objects at once.
  *
- * @param {WebMidi.MIDIAccess} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+ * @param {WebMidi.MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
  * object as provided by the MIDI subsystem (Web MIDI API).
  *
  * @fires Input#opened
@@ -1558,7 +1558,7 @@ export class Note {
  * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
  * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
  *
- * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+ * @param {WebMidi.MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
  * object as provided by the MIDI subsystem.
  *
  * @fires Output#opened
@@ -1572,7 +1572,7 @@ export class Output {
     constructor(midiOutput: any);
     /**
      * A reference to the `MIDIOutput` object
-     * @type {MIDIOutput}
+     * @type {WebMidi.MIDIOutput}
      * @private
      */
     private _midiOutput;

@@ -576,10 +576,10 @@ export class Input {
     /**
      * Creates an `Input` object.
      *
-     * @param {WebMidi.MIDIAccess} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+     * @param {WebMidi.MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
      * object as provided by the MIDI subsystem (Web MIDI API).
      */
-    constructor(midiInput: WebMidi.MIDIAccess);
+    constructor(midiInput: WebMidi.MIDIInput);
     /**
      * Reference to the actual MIDIInput object
      * @private
@@ -1600,13 +1600,13 @@ export class Output {
     /**
      * Creates an `Output` object.
      *
-     * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+     * @param {WebMidi.MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
      * object as provided by the MIDI subsystem.
      */
-    constructor(midiOutput: MIDIOutput);
+    constructor(midiOutput: WebMidi.MIDIOutput);
     /**
      * A reference to the `MIDIOutput` object
-     * @type {MIDIOutput}
+     * @type {WebMidi.MIDIOutput}
      * @private
      */
     private _midiOutput;
