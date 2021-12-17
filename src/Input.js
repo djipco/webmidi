@@ -76,6 +76,10 @@ export class Input extends EventEmitter {
     this.channels = [];
     for (let i = 1; i <= 16; i++) this.channels[i] = new InputChannel(this, i);
 
+    /**
+     * @type {Forwarder[]}
+     * @private
+     */
     this._forwarders = [];
 
     // Setup listeners

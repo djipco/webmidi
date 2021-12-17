@@ -80,7 +80,7 @@ class WebMidi extends EventEmitter {
      * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
-     * @type {?MIDIAccess}
+     * @type {MIDIAccess}
      * @readonly
      */
     this.interface = null;
@@ -367,7 +367,7 @@ class WebMidi extends EventEmitter {
    * are also destroyed.
    *
    * @async
-   * @returns {Promise}
+   * @returns {Promise<Array>}
    *
    * @throws {Error} The Web MIDI API is not supported by your environment.
    *

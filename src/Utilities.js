@@ -199,6 +199,7 @@ export class Utilities {
    * -2, the resulting MIDI note number will be 36.
    *
    * @param input {string|number} A string or number to extract the MIDI note number from.
+   * @param octaveOffset {number} An integer to offset the octave by
    *
    * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
    * successfully be parsed to a note number.
@@ -386,7 +387,7 @@ export class Utilities {
    * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
    * input value cannot be converted to an integer, the method returns 0.
    *
-   * @param value A positive integer between 0 and 127 (inclusive)
+   * @param value {number} A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
    * @static
    */
@@ -397,15 +398,15 @@ export class Utilities {
   }
 
   /**
-   * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-   * The input value should be number between 0 and 1 (inclusively). The returned value is
+   * Returns an integer between 0 and 127 which is the result of multiplying the input value by
+   * 127. The input value should be a number between 0 and 1 (inclusively). The returned value is
    * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
    *
    * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
    * the input value cannot be converted to a number, the method returns 0.
    *
-   * @param value A positive integer between 0 and 127 (inclusive)
-   * @returns {number} A number between 0 and 1 (inclusive)
+   * @param value {number} A positive float between 0 and 1 (inclusive)
+   * @returns {number} A number between 0 and 127 (inclusive)
    * @static
    */
   static fromFloatTo7Bit(value) {

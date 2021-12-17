@@ -452,6 +452,10 @@ export class InputChannel extends EventEmitter {
 
   }
 
+  /**
+   * @param e {Object}
+   * @private
+   */
   _parseChannelModeMessage(e) {
 
     // Make a shallow copy of the incoming event so we can use it as the new event.

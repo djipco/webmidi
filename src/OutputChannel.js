@@ -1277,7 +1277,7 @@ export class OutputChannel extends EventEmitter {
    *
    * For further implementation details, refer to the manufacturer's documentation.
    *
-   * @param parameter {number[]} A two-position array specifying the two control bytes (0x63,
+   * @param nrpn {number[]} A two-position array specifying the two control bytes (0x63,
    * 0x62) that identify the non-registered parameter.
    *
    * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
