@@ -5,7 +5,7 @@
 
 export var __esModule: boolean;
 /**
- * The `Enumerations` class contains enumerations and arrays of {WebMidi.MIDIAccess}s used throughout the
+ * The `Enumerations` class contains enumerations and arrays of elements used throughout the
  * library. All properties are static and should be referenced using the class name. For example:
  * `Enumerations.MIDI_CHANNEL_MESSAGES`.
  *
@@ -576,12 +576,12 @@ export class Input {
     /**
      * Creates an `Input` object.
      *
-     * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+     * @param {{WebMidi.MIDIAccess}} midiInput [`{WebMidi.MIDIAccess}`](https://developer.mozilla.org/en-US/docs/Web/API/{WebMidi.MIDIAccess})
      * object as provided by the MIDI subsystem (Web MIDI API).
      */
-    constructor(midiInput: MIDIInput);
+    constructor(midiInput: any);
     /**
-     * Reference to the actual MIDIInput object
+     * Reference to the actual {WebMidi.MIDIAccess} object
      * @private
      */
     private _midiInput;
@@ -4553,7 +4553,7 @@ export class Utilities {
      *
      * @returns {Note[]}
      *
-     * @throws TypeError An {WebMidi.MIDIAccess} could not be parsed as a note.
+     * @throws TypeError An element could not be parsed as a note.
      *
      * @since 3.0.0
      * @static
