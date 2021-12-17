@@ -790,7 +790,7 @@ export class Input {
         duration?: number;
         prepend?: boolean;
         remaining?: boolean;
-    }): any | any[];
+    }): Listener | Listener[];
     /**
      * Adds a one-time event listener that will trigger a function callback when the specified event
      * happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
@@ -933,7 +933,7 @@ export class Input {
         context?: object;
         duration?: number;
         prepend?: boolean;
-    }): any[];
+    }): Listener[];
     /**
      * This is an alias to the [Input.addListener()]{@link Input#addListener} method.
      * @since 2.0.0
@@ -4865,7 +4865,7 @@ declare class WebMidi {
      * @type {?MIDIAccess}
      * @readonly
      */
-    interface: any;
+    interface: MIDIAccess;
     /**
      * Indicates whether argument validation and backwards-compatibility checks are performed
      * throughout the WebMidi.js library for object methods and property setters.
