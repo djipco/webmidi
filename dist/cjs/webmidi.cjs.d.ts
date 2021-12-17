@@ -576,12 +576,12 @@ export class Input {
     /**
      * Creates an `Input` object.
      *
-     * @param {{WebMidi.MIDIAccess}} midiInput [`{WebMidi.MIDIAccess}`](https://developer.mozilla.org/en-US/docs/Web/API/{WebMidi.MIDIAccess})
+     * @param {WebMidi.MIDIAccess} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
      * object as provided by the MIDI subsystem (Web MIDI API).
      */
-    constructor(midiInput: any);
+    constructor(midiInput: WebMidi.MIDIAccess);
     /**
-     * Reference to the actual {WebMidi.MIDIAccess} object
+     * Reference to the actual MIDIInput object
      * @private
      */
     private _midiInput;
