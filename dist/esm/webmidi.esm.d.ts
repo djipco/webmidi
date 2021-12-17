@@ -477,24 +477,31 @@ export class Enumerations {
  * While it can be manually instantiated, you are more likely to come across a `Forwarder` object as
  * the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
  *
- * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such objects,
- * to forward the message to.
- *
- * @param {object} [options={}]
- * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such types
- * (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to be
- * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
- * messages are the ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
- * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
- * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
- * A MIDI channel number or an array of channel numbers that the message must match in order to be
- * forwarded. By default all MIDI channels are included (`1` to `16`).
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Forwarder {
-    constructor(destinations?: any[], options?: {});
+    /**
+     * Creates a `Forwarder` object.
+     *
+     * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+     * objects, to forward the message to.
+     *
+     * @param {object} [options={}]
+     * @param {string|string[]} [options.types=(all messages)] A MIDI message type or an array of such
+     * types (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to
+     * be forwarded. If this option is not specified, all types of messages will be forwarded. Valid
+     * messages are the ones found in either
+     * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
+     * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * A MIDI channel number or an array of channel numbers that the message must match in order to be
+     * forwarded. By default all MIDI channels are included (`1` to `16`).
+     */
+    constructor(destinations?: Output | Output[], options?: {
+        types?: string | string[];
+        channels?: number;
+    });
     /**
      * An array of [`Output`](Output) objects to forward the message to.
      * @type {Output[]}
@@ -544,9 +551,6 @@ export class Forwarder {
  * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
  * [`InputChannel`](InputChannel) objects at once.
  *
- * @param {WebMidi.MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
- * object as provided by the MIDI subsystem (Web MIDI API).
- *
  * @fires Input#opened
  * @fires Input#disconnected
  * @fires Input#closed
@@ -568,7 +572,13 @@ export class Forwarder {
  * @license Apache-2.0
  */
 export class Input {
-    constructor(midiInput: any);
+    /**
+     * Creates an `Input` object.
+     *
+     * @param {WebMidi.MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+     * object as provided by the MIDI subsystem (Web MIDI API).
+     */
+    constructor(midiInput: WebMidi.MIDIInput);
     /**
      * Reference to the actual MIDIInput object
      * @private
@@ -586,7 +596,11 @@ export class Input {
      * @type {InputChannel[]}
      */
     channels: InputChannel[];
-    _forwarders: any[];
+    /**
+     * @type {Forwarder[]}
+     * @private
+     */
+    private _forwarders;
     /**
      * Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
      * unlinking the MIDI subsystem. This is mostly for internal use.
@@ -1107,9 +1121,6 @@ export class Input {
  * All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
  * property.
  *
- * @param {Input} input The [`Input`](Input) object this channel belongs to.
- * @param {number} number The channel's MIDI number (1-16).
- *
  * @fires InputChannel#midimessage
  *
  * @fires InputChannel#noteoff
@@ -1144,7 +1155,13 @@ export class Input {
  * @since 3.0.0
  */
 export class InputChannel {
-    constructor(input: any, number: any);
+    /**
+     * Creates an `InputChannel` object.
+     *
+     * @param {Input} input The [`Input`](Input) object this channel belongs to.
+     * @param {number} number The channel's MIDI number (1-16).
+     */
+    constructor(input: Input, number: number);
     /**
      * @type {Input}
      * @private
@@ -1207,7 +1224,11 @@ export class InputChannel {
      * @private
      */
     private _parseEventForStandardMessages;
-    _parseChannelModeMessage(e: any): void;
+    /**
+     * @param e {Object}
+     * @private
+     */
+    private _parseChannelModeMessage;
     /**
      * Parses inbound events to identify RPN/NRPN sequences.
      * @param e Event
@@ -1290,15 +1311,18 @@ export class InputChannel {
  * The `Message` class represents a single MIDI message. It has several properties that make it
  * easy to make sense of the binary data it contains.
  *
- * @param {Uint8Array} data The raw data of the MIDI message as a
- * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
- * of integers between `0` and `255`.
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Message {
-    constructor(data: any);
+    /**
+     * Creates a new `Message` object from raw MIDI data.
+     *
+     * @param {Uint8Array} data The raw data of the MIDI message as a
+     * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+     * of integers between `0` and `255`.
+     */
+    constructor(data: Uint8Array);
     /**
      * A
      * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
@@ -1420,40 +1444,54 @@ export class Message {
  * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
  * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
- * @param {object} [options={}]
- *
- * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
- * explicitly stopped.
- *
- * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
- * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `attack` and `rawAttack` are specified, the latter has precedence.
- *
- * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
- * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
- * `release` and `rawRelease` are specified, the latter has precedence.
- *
- * @throws {Error} Invalid note identifier
- * @throws {RangeError} Invalid name value
- * @throws {RangeError} Invalid accidental value
- * @throws {RangeError} Invalid octave value
- * @throws {RangeError} Invalid duration value
- * @throws {RangeError} Invalid attack value
- * @throws {RangeError} Invalid release value
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Note {
-    constructor(value: any, options?: {});
+    /**
+     * Creates a `Note` object.
+     *
+     * @param value {string|number} The value used to create the note. If an identifier string is used,
+     * it must start with the note letter, optionally followed by an accidental and followed by the
+     * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
+     * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
+     *
+     * @param {object} [options={}]
+     *
+     * @param {number} [options.duration=Infinity] The number of milliseconds before the note should be
+     * explicitly stopped.
+     *
+     * @param {number} [options.attack=0.5] The note's attack velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawAttack` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.release=0.5] The note's release velocity as a float between 0 and 1. If
+     * you wish to use an integer between 0 and 127, use the `rawRelease` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawAttack=64] The note's attack velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `attack` and `rawAttack` are specified, the latter has precedence.
+     *
+     * @param {number} [options.rawRelease=64] The note's release velocity as an integer between 0 and
+     * 127. If you wish to use a float between 0 and 1, use the `release` option instead. If both
+     * `release` and `rawRelease` are specified, the latter has precedence.
+     *
+     * @throws {Error} Invalid note identifier
+     * @throws {RangeError} Invalid name value
+     * @throws {RangeError} Invalid accidental value
+     * @throws {RangeError} Invalid octave value
+     * @throws {RangeError} Invalid duration value
+     * @throws {RangeError} Invalid attack value
+     * @throws {RangeError} Invalid release value
+     */
+    constructor(value: string | number, options?: {
+        duration?: number;
+        attack?: number;
+        release?: number;
+        rawAttack?: number;
+        rawRelease?: number;
+    });
     set duration(arg: number);
     /**
      * The duration of the note as a positive decimal number representing the number of milliseconds
@@ -1558,9 +1596,6 @@ export class Note {
  * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
  * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
  *
- * @param {WebMidi.MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
- * object as provided by the MIDI subsystem.
- *
  * @fires Output#opened
  * @fires Output#disconnected
  * @fires Output#closed
@@ -1569,7 +1604,13 @@ export class Note {
  * @license Apache-2.0
  */
 export class Output {
-    constructor(midiOutput: any);
+    /**
+     * Creates an `Output` object.
+     *
+     * @param {WebMidi.MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+     * object as provided by the MIDI subsystem.
+     */
+    constructor(midiOutput: WebMidi.MIDIOutput);
     /**
      * A reference to the `MIDIOutput` object
      * @type {WebMidi.MIDIOutput}
@@ -3158,7 +3199,13 @@ export class Output {
  * @since 3.0.0
  */
 export class OutputChannel {
-    constructor(output: any, number: any);
+    /**
+     * Creates an `OutputChannel` object.
+     *
+     * @param {Output} output The [`Output`](Output) this channel belongs to.
+     * @param {number} number The MIDI channel number (`1` - `16`).
+     */
+    constructor(output: Output, number: number);
     /**
      * @type {Output}
      * @private
@@ -3956,7 +4003,7 @@ export class OutputChannel {
      *
      * For further implementation details, refer to the manufacturer's documentation.
      *
-     * @param parameter {number[]} A two-position array specifying the two control bytes (0x63,
+     * @param nrpn {number[]} A two-position array specifying the two control bytes (0x63,
      * 0x62) that identify the non-registered parameter.
      *
      * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
@@ -3977,7 +4024,7 @@ export class OutputChannel {
      *
      * @returns {OutputChannel} Returns the `OutputChannel` object so methods can be chained.
      */
-    sendNrpnValue(nrpn: any, data?: number | number[], options?: {
+    sendNrpnValue(nrpn: number[], data?: number | number[], options?: {
         time?: number | string;
     }): OutputChannel;
     /**
@@ -4400,6 +4447,7 @@ export class Utilities {
      * -2, the resulting MIDI note number will be 36.
      *
      * @param input {string|number} A string or number to extract the MIDI note number from.
+     * @param octaveOffset {number} An integer to offset the octave by
      *
      * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
      * successfully be parsed to a note number.
@@ -4407,7 +4455,7 @@ export class Utilities {
      * @since 3.0.0
      * @static
      */
-    static guessNoteNumber(input: string | number, octaveOffset: any): number | false;
+    static guessNoteNumber(input: string | number, octaveOffset: number): number | false;
     /**
      * Returns an identifier string representing a note name (with optional accidental) followed by an
      * octave number. The octave can be offset by using the `octaveOffset` parameter.
@@ -4534,24 +4582,24 @@ export class Utilities {
      * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
      * input value cannot be converted to an integer, the method returns 0.
      *
-     * @param value A positive integer between 0 and 127 (inclusive)
+     * @param value {number} A positive integer between 0 and 127 (inclusive)
      * @returns {number} A number between 0 and 1 (inclusive)
      * @static
      */
-    static from7bitToFloat(value: any): number;
+    static from7bitToFloat(value: number): number;
     /**
-     * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-     * The input value should be number between 0 and 1 (inclusively). The returned value is
+     * Returns an integer between 0 and 127 which is the result of multiplying the input value by
+     * 127. The input value should be a number between 0 and 1 (inclusively). The returned value is
      * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
      *
      * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
      * the input value cannot be converted to a number, the method returns 0.
      *
-     * @param value A positive integer between 0 and 127 (inclusive)
-     * @returns {number} A number between 0 and 1 (inclusive)
+     * @param value {number} A positive float between 0 and 1 (inclusive)
+     * @returns {number} A number between 0 and 127 (inclusive)
      * @static
      */
-    static fromFloatTo7Bit(value: any): number;
+    static fromFloatTo7Bit(value: number): number;
     /**
      * Combines and converts MSB and LSB values (0-127) to a float between 0 and 1. The returned value
      * is within between 0 and 1 even if the result is greater than 1 or smaller than 0.
@@ -4862,10 +4910,10 @@ declare class WebMidi {
      * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
-     * @type {?MIDIAccess}
+     * @type {WebMidi.MIDIAccess}
      * @readonly
      */
-    interface: MIDIAccess;
+    interface: WebMidi.MIDIAccess;
     /**
      * Indicates whether argument validation and backwards-compatibility checks are performed
      * throughout the WebMidi.js library for object methods and property setters.
@@ -4999,13 +5047,13 @@ declare class WebMidi {
      * are also destroyed.
      *
      * @async
-     * @returns {Promise}
+     * @returns {Promise<Array>}
      *
      * @throws {Error} The Web MIDI API is not supported by your environment.
      *
      * @since 2.0.0
      */
-    disable(): Promise<any>;
+    disable(): Promise<any[]>;
     /**
      * Returns the [`Input`](Input) object that matches the specified ID string or `false` if no
      * matching input is found. As per the Web MIDI API specification, IDs are strings (not integers).
