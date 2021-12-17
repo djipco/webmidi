@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.4 - December 17, 2021 12:07:33 */
+/* Version: 3.0.4 - December 17, 2021 12:13:06 */
 (function (exports) {
   'use strict';
 
@@ -8866,9 +8866,11 @@
   wm.constructor = null;
 
   exports.Enumerations = Enumerations;
+  exports.EventEmitter = e;
   exports.Forwarder = Forwarder;
   exports.Input = Input;
   exports.InputChannel = InputChannel;
+  exports.Listener = t;
   exports.Message = Message;
   exports.Note = Note;
   exports.Output = Output;
