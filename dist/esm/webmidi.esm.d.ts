@@ -467,6 +467,59 @@ export class Enumerations {
     static get CHANNEL_EVENTS(): string[];
 }
 /**
+ * WebMidi.js v3.0.4
+ * A JavaScript library to kickstart your MIDI projects
+ * https://webmidijs.org
+ * Build generated on December 17th, 2021.
+ *
+ * © Copyright 2015-2021, Jean-Philippe Côté.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+/**
+ * djipevents v2.0.1
+ * https://github.com/djipco/djipevents
+ * Build generated on November 10th, 2021.
+ *
+ * © Copyright 2019-2021, Jean-Philippe Côté.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
+ * in compliance with the License. You may obtain a copy of the License at
+ *
+ * http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software distributed under the License
+ * is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express
+ * or implied. See the License for the specific language governing permissions and limitations under
+ * the License.
+ */
+declare class e {
+    static get ANY_EVENT(): symbol;
+    constructor(e?: boolean);
+    eventMap: {};
+    eventsSuspended: boolean;
+    addListener(n: any, r: any, i?: {}): t;
+    addOneTimeListener(e: any, t: any, n?: {}): void;
+    hasListener(n: any, r: any): boolean;
+    get eventNames(): string[];
+    getListeners(e: any): any;
+    suspendEvent(e: any): void;
+    unsuspendEvent(e: any): void;
+    getListenerCount(e: any): any;
+    emit(t: any, ...n: any[]): any[];
+    removeListener(e: any, t: any, n?: {}): any;
+    waitFor(e: any, t?: {}): Promise<any>;
+    get eventCount(): number;
+}
+/**
  * The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When you
  * call its [`forward()`](#forward) method, it will send the specified [`Message`](Message) object
  * to all the outputs listed in its [`destinations`](#destinations) property.
@@ -1306,6 +1359,18 @@ export class InputChannel {
      * @private
      */
     private get nrpnEventsEnabled();
+}
+declare class t {
+    constructor(t: any, n: any, r: any, i?: {}, ...args: any[]);
+    arguments: any;
+    callback: any;
+    context: any;
+    count: number;
+    event: any;
+    remaining: number;
+    suspended: boolean;
+    target: any;
+    remove(): void;
 }
 /**
  * The `Message` class represents a single MIDI message. It has several properties that make it
@@ -5305,4 +5370,4 @@ declare class WebMidi {
      */
     private get NOTES();
 }
-export { wm as WebMidi };
+export { e as EventEmitter, t as Listener, wm as WebMidi };
