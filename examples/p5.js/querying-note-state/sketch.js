@@ -1,4 +1,4 @@
-let channel, ready;
+let channel;
 
 async function setup() {
 
@@ -20,7 +20,7 @@ async function setup() {
 
 function draw() {
 
-  if (!ready) return;
+  if (!WebMidi.enabled) return;
 
   // Draw blank keys
   for (let i = 0; i < 8; i++) {
