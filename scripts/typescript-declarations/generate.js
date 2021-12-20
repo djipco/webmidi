@@ -81,8 +81,8 @@ async function execute() {
     // Replace callback type by simply "function"
     replace.sync({
       files: TMP_FILE_PATH,
-      from: new RegExp("EventEmitter~callback", "g"),
-      to: () => "function"
+      from: new RegExp("{EventEmitter~callback}", "g"),
+      to: () => "{function}"
     });
 
     // Generate declaration file
