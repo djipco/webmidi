@@ -540,8 +540,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getInputById("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getInputById("0000000")).to.equal(undefined);
     });
 
     it("should return the right input", function() {
@@ -566,11 +566,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when invalid id is provided", function() {
+    it("should return 'undefined' when invalid id is provided", function() {
 
       if (WebMidi.inputs.length > 0) {
         [null, undefined, "", [], {}].forEach(id => {
-          expect(WebMidi.getInputById(id)).to.equal(false);
+          expect(WebMidi.getInputById(id)).to.equal(undefined);
         });
       } else {
         this.skip();
@@ -599,8 +599,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getInputByName("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getInputByName("0000000")).to.equal(undefined);
     });
 
     it("should return the right input", function() {
@@ -625,11 +625,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when an invalid name is provided", function() {
+    it("should return 'undefined' when an invalid name is provided", function() {
 
       if (WebMidi.inputs.length > 0) {
         [null, undefined, ""].forEach(name => {
-          expect(WebMidi.getInputByName(name)).to.equal(false);
+          expect(WebMidi.getInputByName(name)).to.equal(undefined);
         });
       } else {
         this.skip();
@@ -658,8 +658,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getOutputById("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getOutputById("0000000")).to.equal(undefined);
     });
 
     it("should return the right output", function() {
@@ -684,11 +684,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when a weird id is provided", function() {
+    it("should return 'undefined' when a weird id is provided", function() {
 
       if (WebMidi.inputs.length > 0) {
         [null, undefined, "", [], {}].forEach(id => {
-          expect(WebMidi.getOutputById(id)).to.equal(false);
+          expect(WebMidi.getOutputById(id)).to.equal(undefined);
         });
       } else {
         this.skip();
@@ -717,8 +717,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getOutputByName("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getOutputByName("0000000")).to.equal(undefined);
     });
 
     it("should return the right output", function() {
@@ -743,11 +743,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when an invalid name is provided", function() {
+    it("should return 'undefined' when an invalid name is provided", function() {
 
       if (WebMidi.outputs.length > 0) {
         [null, undefined, ""].forEach(name => {
-          expect(WebMidi.getOutputByName(name)).to.equal(false);
+          expect(WebMidi.getOutputByName(name)).to.equal(undefined);
         });
       } else {
         this.skip();
