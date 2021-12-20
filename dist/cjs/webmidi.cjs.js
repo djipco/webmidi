@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.5 - December 20, 2021 12:20:10 */
+/* Version: 3.0.5 - December 20, 2021 12:24:50 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8646,7 +8646,7 @@ class WebMidi extends EventEmitter {
   getInputById(id) {
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
     for (let i = 0; i < this.inputs.length; i++) {
@@ -8672,7 +8672,7 @@ class WebMidi extends EventEmitter {
   getInputByName(name) {
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
@@ -8699,7 +8699,7 @@ class WebMidi extends EventEmitter {
   getOutputByName(name) {
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
@@ -8729,7 +8729,7 @@ class WebMidi extends EventEmitter {
   getOutputById(id) {
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
     for (let i = 0; i < this.outputs.length; i++) {
