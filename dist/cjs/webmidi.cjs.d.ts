@@ -4557,13 +4557,13 @@ declare class EventEmitter {
      * To use more granular options, you must at least define the `event`. Then, you can specify the
      * callback to match or one or more of the additional options.
      *
-     * @param {string} [event=(any events)] The event name.
-     * @param {EventEmitter~callback} [callback=(any callbacks)] Only remove the listeners that match
+     * @param {string} [event] The event name.
+     * @param {EventEmitter~callback} [callback] Only remove the listeners that match
      * this exact callback function.
-     * @param {Object} [options={}]
-     * @param {*} [options.context=(any contexts)] Only remove the listeners that have this exact
+     * @param {Object} [options]
+     * @param {*} [options.context] Only remove the listeners that have this exact
      * context.
-     * @param {number} [options.remaining=(any number)] Only remove the listener if it has exactly
+     * @param {number} [options.remaining] Only remove the listener if it has exactly
      * that many remaining times to be executed.
      */
     removeListener(event?: string, callback: any, options?: {
