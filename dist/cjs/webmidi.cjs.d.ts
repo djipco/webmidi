@@ -4377,7 +4377,7 @@ declare class EventEmitter {
      * listener will also be triggered by non-registered events.
      *
      * @param {string|EventEmitter.ANY_EVENT} event The event to listen to.
-     * @param {EventEmitter~callback} callback The callback function to execute when the event occurs.
+     * @param {function} callback The callback function to execute when the event occurs.
      * @param {Object} [options={}]
      * @param {Object} [options.context=this] The value of `this` in the callback function.
      * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
@@ -4397,7 +4397,7 @@ declare class EventEmitter {
      * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
      * @throws {TypeError} The `callback` parameter must be a function.
      */
-    addListener(event: string | Symbol, callback: any, options?: {
+    addListener(event: string | Symbol, callback: Function, options?: {
         context?: any;
         prepend?: boolean;
         duration?: number;
@@ -4414,7 +4414,7 @@ declare class EventEmitter {
      * global listener will also be triggered by non-registered events.
      *
      * @param {string|EventEmitter.ANY_EVENT} event The event to listen to
-     * @param {EventEmitter~callback} callback The callback function to execute when the event occurs
+     * @param {function} callback The callback function to execute when the event occurs
      * @param {Object} [options={}]
      * @param {Object} [options.context=this] The context to invoke the callback function in.
      * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
@@ -4432,7 +4432,7 @@ declare class EventEmitter {
      * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
      * @throws {TypeError} The `callback` parameter must be a function.
      */
-    addOneTimeListener(event: string | Symbol, callback: any, options?: {
+    addOneTimeListener(event: string | Symbol, callback: Function, options?: {
         context?: any;
         prepend?: boolean;
         duration?: number;
@@ -4559,7 +4559,7 @@ declare class EventEmitter {
      *
      * @method
      * @param {string} [event] The event name.
-     * @param {EventEmitter~callback} [callback] Only remove the listeners that match
+     * @param {function} [callback] Only remove the listeners that match
      * this exact callback function.
      * @param {Object} [options]
      * @param {*} [options.context] Only remove the listeners that have this exact
@@ -4567,7 +4567,7 @@ declare class EventEmitter {
      * @param {number} [options.remaining] Only remove the listener if it has exactly
      * that many remaining times to be executed.
      */
-    removeListener(event?: string, callback: any, options?: {
+    removeListener(event?: string, callback?: Function, options?: {
         context?: any;
         remaining?: number;
     }): void;
@@ -5049,7 +5049,7 @@ declare class WebMidi extends EventEmitter {
  * @param {string|EventEmitter.ANY_EVENT} event The event being listened to
  * @param {EventEmitter} target The [`EventEmitter`]{@link EventEmitter} object that the listener is
  * attached to.
- * @param {EventEmitter~callback} callback The function to call when the listener is triggered
+ * @param {function} callback The function to call when the listener is triggered
  * @param {Object} [options={}]
  * @param {Object} [options.context=target] The context to invoke the listener in (a.k.a. the
  * value of `this` inside the callback function).
