@@ -1,6 +1,6 @@
 # Using WEBMIDI.js with p5.js
 
-A collection of examples to use WebMidi.js inside the p5.js framework.
+A collection of examples to use WEBMIDI.js inside the p5.js framework.
 
 ## Examples
 
