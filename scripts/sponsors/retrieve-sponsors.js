@@ -68,7 +68,7 @@ getSponsors().then(async data => {
 
     const sponsor = entity.sponsorEntity;
 
-    if (sponsor.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars < 10) {
+    if (sponsor.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars < 6) {
       return;
     }
 
