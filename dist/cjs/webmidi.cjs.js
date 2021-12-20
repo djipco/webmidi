@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.5 - December 19, 2021 21:06:47 */
+/* Version: 3.0.5 - December 19, 2021 21:09:09 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -361,7 +361,7 @@ class EventEmitter {
    * callback to match or one or more of the additional options.
    *
    * @param {string} [event] The event name.
-   * @param {EventEmitter~callback} [callback] Only remove the listeners that match
+   * @param {callback} [callback] Only remove the listeners that match
    * this exact callback function.
    * @param {Object} [options]
    * @param {*} [options.context] Only remove the listeners that have this exact
