@@ -4801,14 +4801,14 @@ declare class WebMidi extends EventEmitter {
      * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
      * are strings.
      *
-     * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
+     * @returns {Input} An [`Input`](Input) object matching the specified ID string or `undefined`
      * if no matching input can be found.
      *
      * @throws {Error} WebMidi is not enabled.
      *
      * @since 2.0.0
      */
-    getInputById(id: string): Input | false;
+    getInputById(id: string): Input;
     /**
      * Returns the first [`Input`](Input) object whose name **contains** the specified string. Note
      * that the port names change from one environment to another. For example, Chrome does not report
@@ -4817,14 +4817,14 @@ declare class WebMidi extends EventEmitter {
      * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
      * those visible in the [inputs](WebMidi#inputs) array).
      *
-     * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
+     * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
      * specified name.
      *
      * @throws {Error} WebMidi is not enabled.
      *
      * @since 2.0.0
      */
-    getInputByName(name: string): Input | false;
+    getInputByName(name: string): Input;
     /**
      * Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
      * that the port names change from one environment to another. For example, Chrome does not report
@@ -4833,14 +4833,14 @@ declare class WebMidi extends EventEmitter {
      * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
      * those visible in the [`outputs`](#outputs) array).
      *
-     * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
+     * @returns {Output} The [`Output`](Output) that was found or `undefined` if no output matched
      * the specified name.
      *
      * @throws {Error} WebMidi is not enabled.
      *
      * @since 2.0.0
      */
-    getOutputByName(name: string): Output | false;
+    getOutputByName(name: string): Output;
     /**
      * Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
      * matching output is found. As per the Web MIDI API specification, IDs are strings (not
@@ -4852,14 +4852,14 @@ declare class WebMidi extends EventEmitter {
      * @param id {string} The ID string of the port. IDs can be viewed by looking at the
      * [`WebMidi.outputs`](WebMidi#outputs) array.
      *
-     * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
-     * matching output can be found, the method returns `false`.
+     * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
+     * matching output can be found, the method returns `undefined`.
      *
      * @throws {Error} WebMidi is not enabled.
      *
      * @since 2.0.0
      */
-    getOutputById(id: string): Output | false;
+    getOutputById(id: string): Output;
     /**
      * @private
      * @deprecated since version 3.0.0, use Utilities.toNoteNumber() instead.
