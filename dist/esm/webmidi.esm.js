@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.5
+ * WebMidi.js v3.0.6
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on December 20th, 2021.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.5 - December 20, 2021 12:20:22 */
+/* Version: 3.0.6 - December 20, 2021 12:33:22 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -9173,7 +9173,7 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
     for (let i = 0; i < this.inputs.length; i++) {
@@ -9201,7 +9201,7 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
@@ -9230,7 +9230,7 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
@@ -9262,7 +9262,7 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
     for (let i = 0; i < this.outputs.length; i++) {
@@ -9761,7 +9761,7 @@ class WebMidi extends EventEmitter {
    * @type string
    */
   get version() {
-    return "3.0.5";
+    return "3.0.6";
   }
 
   /**
