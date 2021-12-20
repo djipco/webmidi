@@ -37,6 +37,10 @@ the project on GitHub.
 
 <img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
 
+<a href="https://github.com/Enkerli" title="Alexandre Enkerli">
+	<img class="user-icon" src="https://avatars.githubusercontent.com/u/327544?v=4" alt="Alexandre Enkerli" width="100" height="100" />
+</a>
+
 <!-- SPONSOR END -->
 
 ## About Software Development...
