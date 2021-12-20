@@ -2,7 +2,7 @@
  * WebMidi.js v3.0.5
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 19th, 2021.
+ * Build generated on December 20th, 2021.
  *
  * © Copyright 2015-2021, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.5 - December 19, 2021 22:08:58 */
+/* Version: 3.0.5 - December 20, 2021 12:15:41 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8636,7 +8636,7 @@ class WebMidi extends EventEmitter {
    * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
    * are strings.
    *
-   * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
+   * @returns {Input} An [`Input`](Input) object matching the specified ID string or `undefined`
    * if no matching input can be found.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -8652,8 +8652,6 @@ class WebMidi extends EventEmitter {
     for (let i = 0; i < this.inputs.length; i++) {
       if (this.inputs[i].id === id.toString()) return this.inputs[i];
     }
-
-    return false;
   }
 
   /**
@@ -8664,7 +8662,7 @@ class WebMidi extends EventEmitter {
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [inputs](WebMidi#inputs) array).
    *
-   * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
+   * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
    * specified name.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -8681,8 +8679,6 @@ class WebMidi extends EventEmitter {
     for (let i = 0; i < this.inputs.length; i++) {
       if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
     }
-
-    return false;
   }
 
   /**
@@ -8693,7 +8689,7 @@ class WebMidi extends EventEmitter {
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [`outputs`](#outputs) array).
    *
-   * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
+   * @returns {Output} The [`Output`](Output) that was found or `undefined` if no output matched
    * the specified name.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -8710,8 +8706,6 @@ class WebMidi extends EventEmitter {
     for (let i = 0; i < this.outputs.length; i++) {
       if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
     }
-
-    return false;
   }
 
   /**
@@ -8725,8 +8719,8 @@ class WebMidi extends EventEmitter {
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
    * [`WebMidi.outputs`](WebMidi#outputs) array.
    *
-   * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
-   * matching output can be found, the method returns `false`.
+   * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
+   * matching output can be found, the method returns `undefined`.
    *
    * @throws {Error} WebMidi is not enabled.
    *
@@ -8741,8 +8735,6 @@ class WebMidi extends EventEmitter {
     for (let i = 0; i < this.outputs.length; i++) {
       if (this.outputs[i].id === id.toString()) return this.outputs[i];
     }
-
-    return false;
   }
 
   /**
