@@ -4557,6 +4557,7 @@ declare class EventEmitter {
      * To use more granular options, you must at least define the `event`. Then, you can specify the
      * callback to match or one or more of the additional options.
      *
+     * @method
      * @param {string} [event] The event name.
      * @param {EventEmitter~callback} [callback] Only remove the listeners that match
      * this exact callback function.

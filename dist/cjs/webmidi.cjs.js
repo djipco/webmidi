@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.5 - December 19, 2021 21:27:20 */
+/* Version: 3.0.5 - December 19, 2021 21:35:30 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -360,6 +360,7 @@ class EventEmitter {
    * To use more granular options, you must at least define the `event`. Then, you can specify the
    * callback to match or one or more of the additional options.
    *
+   * @method
    * @param {string} [event] The event name.
    * @param {EventEmitter~callback} [callback] Only remove the listeners that match
    * this exact callback function.
