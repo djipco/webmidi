@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.5
+ * WebMidi.js v3.0.6
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on December 20th, 2021.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.5 - December 20, 2021 12:20:37 */
+/* Version: 3.0.6 - December 20, 2021 12:33:37 */
 (function (exports) {
   'use strict';
 
@@ -8625,7 +8625,7 @@
     getInputById(id) {
       if (this.validation) {
         if (!this.enabled) throw new Error("WebMidi is not enabled.");
-        if (!id) return false;
+        if (!id) return;
       }
 
       for (let i = 0; i < this.inputs.length; i++) {
@@ -8651,7 +8651,7 @@
     getInputByName(name) {
       if (this.validation) {
         if (!this.enabled) throw new Error("WebMidi is not enabled.");
-        if (!name) return false;
+        if (!name) return;
         name = name.toString();
       }
 
@@ -8678,7 +8678,7 @@
     getOutputByName(name) {
       if (this.validation) {
         if (!this.enabled) throw new Error("WebMidi is not enabled.");
-        if (!name) return false;
+        if (!name) return;
         name = name.toString();
       }
 
@@ -8708,7 +8708,7 @@
     getOutputById(id) {
       if (this.validation) {
         if (!this.enabled) throw new Error("WebMidi is not enabled.");
-        if (!id) return false;
+        if (!id) return;
       }
 
       for (let i = 0; i < this.outputs.length; i++) {
@@ -9171,7 +9171,7 @@
 
 
     get version() {
-      return "3.0.5";
+      return "3.0.6";
     }
     /**
      * @private
