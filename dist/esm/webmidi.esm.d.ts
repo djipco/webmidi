@@ -1,4 +1,4 @@
-// Type definitions for WebMidi.js 3.0.5
+// Type definitions for WebMidi.js 3.0.6
 // Project: https://webmidijs.org
 // Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
@@ -4320,7 +4320,7 @@ export class Utilities {
 }
 declare const wm: WebMidi;
 /**
- * WebMidi.js v3.0.5
+ * WebMidi.js v3.0.6
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on December 20th, 2021.
