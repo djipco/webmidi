@@ -4377,7 +4377,7 @@ declare class EventEmitter {
      * listener will also be triggered by non-registered events.
      *
      * @param {string|EventEmitter.ANY_EVENT} event The event to listen to.
-     * @param {function} callback The callback function to execute when the event occurs.
+     * @param {EventEmitter~callback} callback The callback function to execute when the event occurs.
      * @param {Object} [options={}]
      * @param {Object} [options.context=this] The value of `this` in the callback function.
      * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
