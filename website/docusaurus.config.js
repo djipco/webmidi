@@ -194,7 +194,7 @@ module.exports = {
       placeholder: "Search website..."
     },
     image: "img/og-card.png",
-    metadatas: [{ name: "robots", content: "max-image-preview:large" }],
+    metadata: [{ name: "robots", content: "max-image-preview:large" }],
     announcementBar: {
       id: "sponsor-banner",
       content: "<a target='_blank' href='https://github.com/sponsors/djipco'>" +
@@ -242,6 +242,7 @@ module.exports = {
   ],
 
   plugins: [
+
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -251,9 +252,22 @@ module.exports = {
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
+
     [
       "docusaurus-plugin-sass",
       {}
+    ],
+
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: ["/latest/classes/WebMidi.html"], // string | string[]
+            to: "/api",
+          },
+        ],
+      },
     ],
 
   ],
