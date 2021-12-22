@@ -9,7 +9,7 @@
     <icon>https://webmidijs.org/img/favicon.ico</icon>
     <entry>
         <title type="html"><![CDATA[WEBMIDI.js v3 is available now!]]></title>
-        <id>WEBMIDI.js v3 is available now!</id>
+        <id>/2021/12/01/version-3-has-been-released</id>
         <link href="https://webmidijs.org/blog/2021/12/01/version-3-has-been-released"/>
         <updated>2021-12-01T00:00:00.000Z</updated>
         <summary type="html"><![CDATA[Version 3 of WEBMIDI.js, the library that lets you interact with your MIDI instruments and devices, is now available. It features Node.js and TypeScript support, various new objects (Message, Note, etc.) and a completely rewritten engine.]]></summary>
