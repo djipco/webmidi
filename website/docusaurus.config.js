@@ -264,7 +264,7 @@ module.exports = {
         redirects: [
           {
             from: ["/latest/classes/WebMidi.html"], // string | string[]
-            to: "/api",
+            to: "/api/",
           },
         ],
       },
