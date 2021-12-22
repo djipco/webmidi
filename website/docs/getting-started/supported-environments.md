@@ -17,14 +17,15 @@ have native support:
 * Edge v79+
 * Chrome 43+
 * Opera 30+
+* Firefox (coming soon!)
 
 It is also possible to use this library in other browsers if you install
 [Jazz-Plugin](https://jazz-soft.net/download/Jazz-Plugin/) v1.4+. This combination provides
 support for the following additional web browsers:
 
-* Firefox
 * Safari
 * Internet Explorer
+* Firefox
 
 Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/) that they would
 not natively support the Web MIDI API (and a host of other APIs) in Safari because of fingerprinting
