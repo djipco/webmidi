@@ -180,9 +180,9 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
     algolia: {
-      apiKey: "af63ae0f5f71033e19ac5047d02b08bb",
+      apiKey: "417771b74406a78671b6592f451f2453",
       indexName: "webmidi",
-      appId: "BH4D9OD16A",
+      appId: "KHO24V8B5T",
 
       // Optional: see doc section below
       contextualSearch: true,
