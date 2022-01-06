@@ -201,11 +201,12 @@ module.exports = {
         "<strong>Sponsor</strong></a> ❤️ WEBMIDI.js on GitHub!"
     },
     gtag: {
-      trackingID: "UA-162785934-1",
+      // trackingID: "UA-162785934-1",
+      trackingID: "G-Z65JF8XMJG",
     },
-    googleAnalytics: {
-      trackingID: "UA-162785934-1"
-    },
+    // googleAnalytics: {
+    //   trackingID: "UA-162785934-1"
+    // },
   },
 
   presets: [
