@@ -4323,9 +4323,9 @@ declare const wm: WebMidi;
  * WebMidi.js v3.0.6
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 20th, 2021.
+ * Build generated on January 8th, 2022.
  *
- * © Copyright 2015-2021, Jean-Philippe Côté.
+ * © Copyright 2015-2022, Jean-Philippe Côté.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
