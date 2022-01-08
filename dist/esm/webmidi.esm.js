@@ -2,9 +2,9 @@
  * WebMidi.js v3.0.6
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 20th, 2021.
+ * Build generated on January 8th, 2022.
  *
- * © Copyright 2015-2021, Jean-Philippe Côté.
+ * © Copyright 2015-2022, Jean-Philippe Côté.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - December 20, 2021 12:33:22 */
+/* Version: 3.0.6 - January 8, 2022 12:15:25 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8968,7 +8968,9 @@ class WebMidi extends EventEmitter {
       const jzz = await import('jzz');
       global["navigator"] = jzz.default;
       // eslint-disable-next-line no-empty
-    } catch (err) {} // ignored because it means we already have the modules
+    } catch (err) {
+      console.info("coucou", err);
+    } // ignored because it means we already have the modules
     /*END-ESM*/
 
     this.validation = (options.validation !== false);
