@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 8, 2022 12:15:25 */
+/* Version: 3.0.6 - January 8, 2022 12:28:25 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8962,15 +8962,17 @@ class WebMidi extends EventEmitter {
   async enable(options = {}, legacy = false) {
 
     /*START-ESM*/
-    // This is the way to import the necessary modules under Node.js when using "type: module" in
-    // the package.json file. This block will be stripped in IIFE and CJS versions.
+
+    // If this code is running under Node.js in "module" mode (because "type": "module" is used in
+    // the package.json file), then we must import the `jzz` module. This import attempt will fail
+    // in the browser, which is what we want (hence the empty catch clause). This block is stripped
+    // out in the IIFE and CJS versions where it isn't needed.
     try {
       const jzz = await import('jzz');
       global["navigator"] = jzz.default;
       // eslint-disable-next-line no-empty
-    } catch (err) {
-      console.info("coucou", err);
-    } // ignored because it means we already have the modules
+    } catch (err) {}
+
     /*END-ESM*/
 
     this.validation = (options.validation !== false);
