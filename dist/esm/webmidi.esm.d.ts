@@ -5340,4 +5340,5 @@ declare class Listener {
     remove(): void;
 }
 export { wm as WebMidi };
-export type EventEmitterCallback = (...args: any[]) => void;
+
+// This is automatically injected to fix a bug with the TypeScript compilerexport type EventEmitterCallback = (...args: any[]) => void;
