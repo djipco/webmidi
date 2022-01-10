@@ -36,7 +36,9 @@ try {
  * @fires WebMidi#disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
+ * @fires WebMidi#error
  * @fires WebMidi#midiaccessgranted
+ * @fires WebMidi#portschanged
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -722,10 +724,13 @@ class WebMidi extends EventEmitter {
         event.target = event.port;
       }
 
+      // Emit "connected" event
       this.emit(e.port.state, event);
 
-      event.type = "portschanged";
-      this.emit(event.type, event);
+      // Make a shallow copy of the event so we can use it for the "portschanged" event
+      const portsChangedEvent = Object.assign({}, event);
+      portsChangedEvent.type = "portschanged";
+      this.emit(portsChangedEvent.type, event);
 
       // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
@@ -741,12 +746,14 @@ class WebMidi extends EventEmitter {
         type: e.port.type
       };
 
+      // Emit "connected" event
       event.target = event.port;
-
       this.emit(e.port.state, event);
 
-      event.type = "portschanged";
-      this.emit(event.type, event);
+      // Make a shallow copy of the event so we can use it for the "portschanged" event
+      const portsChangedEvent = Object.assign({}, event);
+      portsChangedEvent.type = "portschanged";
+      this.emit(portsChangedEvent.type, event);
 
     }
 
