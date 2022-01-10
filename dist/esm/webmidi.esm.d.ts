@@ -2960,7 +2960,7 @@ export class OutputChannel extends EventEmitter {
      *
      * @throws RangeError Invalid key aftertouch value.
      */
-    sendKeyAftertouch(target: any, pressure?: number, options?: {
+    sendKeyAftertouch(note: number | Note | string | number[] | Note[] | string[], pressure?: number, options?: {
         rawValue?: boolean;
         time?: number | string;
     }): OutputChannel;
