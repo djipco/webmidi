@@ -5123,4 +5123,6 @@ declare class Listener {
 }
 export { wm as WebMidi };
 
-// This is automatically injected to fix a bug with the TypeScript compilerexport type EventEmitterCallback = (...args: any[]) => void;
+
+// This is automatically injected to fix a bug with the TypeScript compiler
+export type EventEmitterCallback = (...args: any[]) => void;
