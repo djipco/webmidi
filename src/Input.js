@@ -441,7 +441,7 @@ export class Input extends EventEmitter {
    *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
    *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
    *
-   * @param event {string} The type of the event.
+   * @param event {string | EventEmitter.ANY_EVENT} The type of the event.
    *
    * @param listener {function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object's properties,
@@ -781,8 +781,8 @@ export class Input extends EventEmitter {
    * messages are the ones found in either
    * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
    * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-   * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
-   * MIDI channel number or an array of channel numbers that the message must match in order to be
+   * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+   * A MIDI channel number or an array of channel numbers that the message must match in order to be
    * forwarded. By default all MIDI channels are included (`1` to `16`).
    *
    * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This

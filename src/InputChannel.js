@@ -700,6 +700,9 @@ export class InputChannel extends EventEmitter {
 
   }
 
+  /**
+   * @private
+   */
   _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
 
     type = type === "nrpn" ? "nrpn" : "rpn";

@@ -832,16 +832,6 @@ export class OutputChannel extends EventEmitter {
   }
 
   /**
-   * This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
-   *
-   * @see {@link OutputChannel#sendNoteOff}
-   *
-   * @param note
-   * @param options
-   * @returns {Output}
-   */
-
-  /**
    * Sends a **note off** message for the specified MIDI note number. The first parameter is the
    * note to stop. It can be a single value or an array of the following valid values:
    *

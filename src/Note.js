@@ -269,6 +269,7 @@ export class Note {
    * using C4 as a reference for middle C.
    *
    * @type {number}
+   * @readonly
    * @since 3.0.0
    */
   get number() {
