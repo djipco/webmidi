@@ -915,13 +915,13 @@ export class InputChannel extends EventEmitter {
      * If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
      * defined.
      *
-     * @param [input] {number|string|Note} The note to get the state for. The
+     * @param {number|string|Note} note The note to get the state for. The
      * [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and
      * [`Note`]{@link Note} objects.
      * @returns {boolean}
      * @since version 3.0.0
      */
-    getNoteState(note: any): boolean;
+    getNoteState(note: number | string | Note): boolean;
     set octaveOffset(arg: number);
     /**
      * An integer to offset the reported octave of incoming note-specific messages (`noteon`,
