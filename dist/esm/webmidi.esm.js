@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 15:35:57 */
+/* Version: 3.0.6 - January 10, 2022 16:16:31 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -7393,7 +7393,7 @@ class InputChannel extends EventEmitter {
    * If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
    * defined.
    *
-   * @param [input] {number|string|Note} The note to get the state for. The
+   * @param {number|string|Note} note The note to get the state for. The
    * [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and
    * [`Note`]{@link Note} objects.
    * @returns {boolean}
