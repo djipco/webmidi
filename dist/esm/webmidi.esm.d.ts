@@ -4684,8 +4684,8 @@ declare class EventEmitter {
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `songselect`
- * @property {string} song Song (or sequence) number to select (0-127)
+ * @property {string} value Song (or sequence) number to select (0-127)
+ * @property {string} rawValue Song (or sequence) number to select (0-127)
  *
  * @since 2.1
  */
@@ -4805,7 +4805,7 @@ declare class EventEmitter {
  * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
  * be, for example, one of the undefined/reserved messages.
  *
- * @event Input#unknownmidimessage
+ * @event Input#unknownmessage
  *
  * @type {Object}
  *
@@ -4814,7 +4814,7 @@ declare class EventEmitter {
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `unknownmidimessage`
+ * @property {string} type `unknownmessage`
  *
  * @since 2.1
  */
