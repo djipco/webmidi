@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 12:44:54 */
+/* Version: 3.0.6 - January 10, 2022 15:35:45 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -3725,14 +3725,9 @@ class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
+       * @property {Input} target The `Output` that triggered the event.
        * @property {object} target Object with properties describing the {@link Output} that
        * triggered the event. This is not the actual `Output` as it is no longer available.
-       * @property {string} target.connection `"closed"`
-       * @property {string} target.id ID of the input
-       * @property {string} target.manufacturer Manufacturer of the device that provided the input
-       * @property {string} target.name Name of the device that provided the input
-       * @property {string} target.state `"disconnected"`
-       * @property {string} target.type `"output"`
        */
       event.type = "disconnected";
       event.target = {
@@ -6598,6 +6593,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6619,6 +6616,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6640,6 +6639,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6661,6 +6662,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6682,6 +6685,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6703,6 +6708,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6724,6 +6731,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6745,6 +6754,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -6755,6 +6766,7 @@ class InputChannel extends EventEmitter {
     const event = {
       target: e.target,
       timestamp: e.timestamp,
+      message: e.message,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
       value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
@@ -6794,6 +6806,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} parameter The non-registered parameter number (0-16383)
      * @property {number} parameterMsb The MSB portion of the non-registered parameter number
      * (0-127)
@@ -6825,6 +6839,8 @@ class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -7271,14 +7287,7 @@ class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `disconnected`
-       * @property {object} target Object with properties describing the {@link Input} that
-       * triggered the event. This is not the actual `Input` as it is no longer available.
-       * @property {string} target.connection `"closed"`
-       * @property {string} target.id ID of the input
-       * @property {string} target.manufacturer Manufacturer of the device that provided the input
-       * @property {string} target.name Name of the device that provided the input
-       * @property {string} target.state `disconnected`
-       * @property {string} target.type `input`
+       * @property {Input} target The `Input` that triggered the event.
        */
       event.type = "disconnected";
       event.target = {
@@ -7360,7 +7369,10 @@ class Input extends EventEmitter {
     event.type = event.message.type || "unknownmidimessage"; // Add custom property for 'songselect'
 
     if (event.type === "songselect") {
-      event.song = e.data[1] + 1;
+      event.song = e.data[1] + 1; // deprecated
+
+      event.value = e.data[1];
+      event.rawValue = event.value;
     } // Emit event
 
 
@@ -7807,7 +7819,7 @@ class Input extends EventEmitter {
    *
    * @param [type] {string} The type of the event.
    *
-   * @param [listener] {Function} The callback function to check for.
+   * @param [listener] {function} The callback function to check for.
    *
    * @param {object} [options={}]
    *
@@ -8096,8 +8108,8 @@ class Input extends EventEmitter {
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `songselect`
- * @property {string} song Song (or sequence) number to select (0-127)
+ * @property {string} value Song (or sequence) number to select (0-127)
+ * @property {string} rawValue Song (or sequence) number to select (0-127)
  *
  * @since 2.1
  */
@@ -8225,7 +8237,7 @@ class Input extends EventEmitter {
  * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
  * be, for example, one of the undefined/reserved messages.
  *
- * @event Input#unknownmidimessage
+ * @event Input#unknownmessage
  *
  * @type {Object}
  *
@@ -8234,7 +8246,7 @@ class Input extends EventEmitter {
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `unknownmidimessage`
+ * @property {string} type `unknownmessage`
  *
  * @since 2.1
  */
@@ -8920,7 +8932,7 @@ class WebMidi extends EventEmitter {
 
       const portsChangedEvent = Object.assign({}, event);
       portsChangedEvent.type = "portschanged";
-      this.emit(portsChangedEvent.type, event); // We check if "connection" is "pending" because we do not always get the "closed" event
+      this.emit(portsChangedEvent.type, portsChangedEvent); // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
       // It feels more logical to include a `target` property instead of a `port` property. This is
       // the terminology used everywhere in the library.
@@ -8938,7 +8950,7 @@ class WebMidi extends EventEmitter {
 
       const portsChangedEvent = Object.assign({}, event);
       portsChangedEvent.type = "portschanged";
-      this.emit(portsChangedEvent.type, event);
+      this.emit(portsChangedEvent.type, portsChangedEvent);
     }
   }
 
