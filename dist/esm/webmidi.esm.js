@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 12:45:08 */
+/* Version: 3.0.6 - January 10, 2022 12:47:30 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -9473,7 +9473,7 @@ class WebMidi extends EventEmitter {
       // Make a shallow copy of the event so we can use it for the "portschanged" event
       const portsChangedEvent = Object.assign({}, event);
       portsChangedEvent.type = "portschanged";
-      this.emit(portsChangedEvent.type, event);
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
       // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
@@ -9496,7 +9496,7 @@ class WebMidi extends EventEmitter {
       // Make a shallow copy of the event so we can use it for the "portschanged" event
       const portsChangedEvent = Object.assign({}, event);
       portsChangedEvent.type = "portschanged";
-      this.emit(portsChangedEvent.type, event);
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
     }
 
