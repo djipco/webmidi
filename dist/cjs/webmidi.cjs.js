@@ -1,5 +1,5 @@
 /**
- * WebMidi.js v3.0.6
+ * WEBMIDI.js v3.0.6
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on January 10th, 2022.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 18:14:08 */
+/* Version: 3.0.6 - January 10, 2022 18:29:33 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -3841,8 +3841,7 @@ class Output extends EventEmitter {
       // If message is neither an array nor a Uint8Array, then we are in legacy mode
       if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
         message = [message];
-        if (Array.isArray(options)) message = message.concat(options); // options = legacy ? {time: legacy} : {time: 0};
-
+        if (Array.isArray(options)) message = message.concat(options);
         options = isNaN(legacy) ? {
           time: 0
         } : {
