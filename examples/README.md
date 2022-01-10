@@ -12,3 +12,7 @@ a README.md file to provide information regarding how the example should be used
 
   * [p5.js](p5.js/) 
   * [Vue.js](vue.js/) 
+
+## Languages
+
+  * [TypeScript](typescript/)
