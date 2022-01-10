@@ -165,14 +165,7 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `disconnected`
-       * @property {object} target Object with properties describing the {@link Input} that
-       * triggered the event. This is not the actual `Input` as it is no longer available.
-       * @property {string} target.connection `"closed"`
-       * @property {string} target.id ID of the input
-       * @property {string} target.manufacturer Manufacturer of the device that provided the input
-       * @property {string} target.name Name of the device that provided the input
-       * @property {string} target.state `disconnected`
-       * @property {string} target.type `input`
+       * @property {Input} target The `Input` that triggered the event.
        */
       event.type = "disconnected";
       event.target = {
@@ -257,7 +250,9 @@ export class Input extends EventEmitter {
 
     // Add custom property for 'songselect'
     if (event.type === "songselect") {
-      event.song = e.data[1] + 1;
+      event.song = e.data[1] + 1; // deprecated
+      event.value = e.data[1];
+      event.rawValue = event.value;
     }
 
     // Emit event
@@ -717,7 +712,7 @@ export class Input extends EventEmitter {
    *
    * @param [type] {string} The type of the event.
    *
-   * @param [listener] {Function} The callback function to check for.
+   * @param [listener] {function} The callback function to check for.
    *
    * @param {object} [options={}]
    *
@@ -1003,8 +998,8 @@ export class Input extends EventEmitter {
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `songselect`
- * @property {string} song Song (or sequence) number to select (0-127)
+ * @property {string} value Song (or sequence) number to select (0-127)
+ * @property {string} rawValue Song (or sequence) number to select (0-127)
  *
  * @since 2.1
  */
@@ -1132,7 +1127,7 @@ export class Input extends EventEmitter {
  * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
  * be, for example, one of the undefined/reserved messages.
  *
- * @event Input#unknownmidimessage
+ * @event Input#unknownmessage
  *
  * @type {Object}
  *
@@ -1141,7 +1136,7 @@ export class Input extends EventEmitter {
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `unknownmidimessage`
+ * @property {string} type `unknownmessage`
  *
  * @since 2.1
  */
