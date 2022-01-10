@@ -44,7 +44,7 @@
   "homepage": "https://webmidijs.org",
   "license": "Apache-2.0",
   "webmidi": {
-    "name": "WebMidi.js",
+    "name": "WEBMIDI.js",
     "tagline": "A JavaScript library to kickstart your MIDI projects"
   },
   "engines": {
