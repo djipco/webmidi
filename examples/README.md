@@ -1,6 +1,6 @@
 # WEBMIDI.js Usage Examples
 
-In this directory, you will find starter examples explaining how to use WebMidi.js in various 
+In this directory, you will find starter examples explaining how to use WEBMIDI.js in various 
 contexts or for various purposes. 
 
 ## More Examples wanted!
@@ -12,3 +12,7 @@ a README.md file to provide information regarding how the example should be used
 
   * [p5.js](p5.js/) 
   * [Vue.js](vue.js/) 
+
+## Languages
+
+  * [TypeScript](typescript/)
