@@ -79,7 +79,7 @@ async function execute() {
     });
 
     // Replace callback type by simply "EventEmitterCallback" (this is needed because tsc does not
-    // support tilde character in types.
+    // support tilde character in types. See below...
     replace.sync({
       files: TMP_FILE_PATH,
       from: new RegExp("{EventEmitter~callback}", "g"),
@@ -109,7 +109,9 @@ async function execute() {
     // Inject EventEmitterCallback type declaration
     fs.appendFileSync(
       file,
-      "export type EventEmitterCallback = (...args: any[]) => void;\n"
+      `\n\n` +
+      `// This is automatically injected to fix a bug with the TypeScript compiler\n` +
+      `export type EventEmitterCallback = (...args: any[]) => void;\n`
     );
 
     // Commit
