@@ -730,7 +730,7 @@ class WebMidi extends EventEmitter {
       // Make a shallow copy of the event so we can use it for the "portschanged" event
       const portsChangedEvent = Object.assign({}, event);
       portsChangedEvent.type = "portschanged";
-      this.emit(portsChangedEvent.type, event);
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
       // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
@@ -753,7 +753,7 @@ class WebMidi extends EventEmitter {
       // Make a shallow copy of the event so we can use it for the "portschanged" event
       const portsChangedEvent = Object.assign({}, event);
       portsChangedEvent.type = "portschanged";
-      this.emit(portsChangedEvent.type, event);
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
     }
 
