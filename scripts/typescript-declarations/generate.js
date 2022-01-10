@@ -78,11 +78,12 @@ async function execute() {
 
     });
 
-    // Replace callback type by simply "function"
+    // Replace callback type by simply "EventEmitterCallback" (this is needed because tsc does not
+    // support tilde character in types.
     replace.sync({
       files: TMP_FILE_PATH,
       from: new RegExp("{EventEmitter~callback}", "g"),
-      to: () => "{function}"
+      to: () => "{EventEmitterCallback}"
     });
 
     // Generate declaration file
@@ -104,6 +105,12 @@ async function execute() {
     // Prepend header for DefinitelyTyped
     await prependFile(file, HEADER);
     log("Saved " + target.type + " TypeScript declaration file to '" + file + "'");
+
+    // Inject EventEmitterCallback type declaration
+    fs.appendFileSync(
+      file,
+      "export type EventEmitterCallback = (...args: any[]) => void;\n"
+    );
 
     // Commit
     await git.add([file]);
