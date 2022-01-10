@@ -130,14 +130,9 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
+       * @property {Input} target The `Output` that triggered the event.
        * @property {object} target Object with properties describing the {@link Output} that
        * triggered the event. This is not the actual `Output` as it is no longer available.
-       * @property {string} target.connection `"closed"`
-       * @property {string} target.id ID of the input
-       * @property {string} target.manufacturer Manufacturer of the device that provided the input
-       * @property {string} target.name Name of the device that provided the input
-       * @property {string} target.state `"disconnected"`
-       * @property {string} target.type `"output"`
        */
       event.type = "disconnected";
       event.target = {
