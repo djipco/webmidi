@@ -13,6 +13,7 @@ import {Enumerations} from "./Enumerations.js";
  * property.
  *
  * @fires InputChannel#midimessage
+ * @fires InputChannel#unknownmessage
  *
  * @fires InputChannel#noteoff
  * @fires InputChannel#noteon
@@ -166,7 +167,7 @@ export class InputChannel extends EventEmitter {
   _parseEventForStandardMessages(e) {
 
     const event = Object.assign({}, e);
-    event.type = event.message.type || "unknownmidimessage";
+    event.type = event.message.type || "unknownmessage";
 
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
