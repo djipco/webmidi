@@ -4341,9 +4341,6 @@ declare const wm: WebMidi;
  * emitter.
  *
  * It is intended to be an abstract class meant to be extended by (or mixed into) other objects.
- *
- * @param {boolean} [eventsSuspended=false] Whether the `EventEmitter` is initially in a suspended
- * state (i.e. not executing callbacks).
  */
 declare class EventEmitter {
     /**
@@ -4353,6 +4350,12 @@ declare class EventEmitter {
      * @type {Symbol}
      */
     static get ANY_EVENT(): Symbol;
+    /**
+     * Creates a new `EventEmitter`object.
+     *
+     * @param {boolean} [eventsSuspended=false] Whether the `EventEmitter` is initially in a suspended
+     * state (i.e. not executing callbacks).
+     */
     constructor(eventsSuspended?: boolean);
     /**
      * An object containing a property for each event with at least one registered listener. Each
@@ -5262,26 +5265,34 @@ declare class WebMidi extends EventEmitter {
  * contextual information such as the event being listened to, the object the listener was attached
  * to, the callback function and so on.
  *
- * @param {string|Symbol} event The event being listened to
- * @param {EventEmitter} target The [`EventEmitter`]{@link EventEmitter} object that the listener is
- * attached to.
- * @param {EventEmitterCallback} callback The function to call when the listener is triggered
- * @param {Object} [options={}]
- * @param {Object} [options.context=target] The context to invoke the listener in (a.k.a. the
- * value of `this` inside the callback function).
- * @param {number} [options.remaining=Infinity] The remaining number of times after which the
- * callback should automatically be removed.
- * @param {array} [options.arguments] An array of arguments that will be passed separately to the
- * callback function upon execution. The array is stored in the [`arguments`]{@link #arguments}
- * property and can be retrieved or modified as desired.
- *
- * @throws {TypeError} The `event` parameter must be a string or
- * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
- * @throws {ReferenceError} The `target` parameter is mandatory.
- * @throws {TypeError} The `callback` must be a function.
  */
 declare class Listener {
-    constructor(event: any, target: any, callback: any, options?: {}, ...args: any[]);
+    /**
+     * Creates a new `Listener` object
+     *
+     * @param {string|Symbol} event The event being listened to
+     * @param {EventEmitter} target The [`EventEmitter`]{@link EventEmitter} object that the listener
+     * is attached to.
+     * @param {EventEmitterCallback} callback The function to call when the listener is triggered
+     * @param {Object} [options={}]
+     * @param {Object} [options.context=target] The context to invoke the listener in (a.k.a. the
+     * value of `this` inside the callback function).
+     * @param {number} [options.remaining=Infinity] The remaining number of times after which the
+     * callback should automatically be removed.
+     * @param {array} [options.arguments] An array of arguments that will be passed separately to the
+     * callback function upon execution. The array is stored in the [`arguments`]{@link #arguments}
+     * property and can be retrieved or modified as desired.
+     *
+     * @throws {TypeError} The `event` parameter must be a string or
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
+     * @throws {ReferenceError} The `target` parameter is mandatory.
+     * @throws {TypeError} The `callback` must be a function.
+     */
+    constructor(event: string | Symbol, target: EventEmitter, callback: EventEmitterCallback, options?: {
+        context?: any;
+        remaining?: number;
+        arguments?: any[];
+    }, ...args: any[]);
     /**
      * An array of arguments to pass to the callback function upon execution.
      * @type {array}
