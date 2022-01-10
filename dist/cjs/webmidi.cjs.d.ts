@@ -1346,7 +1346,7 @@ export class Output extends EventEmitter {
      */
     send(message: number[] | Uint8Array | Message, options?: {
         time?: number | string;
-    }, legacy?: any): Output;
+    }, legacy?: number): Output;
     /**
      * Sends a MIDI [**system exclusive**]{@link
       * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
