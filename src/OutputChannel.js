@@ -109,7 +109,7 @@ export class OutputChannel extends EventEmitter {
    * aftertouch. For a channel-wide aftertouch message, use
    * [`sendChannelAftertouch()`]{@link #sendChannelAftertouch}.
    *
-   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
+   * @param target {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
    * an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a
    * [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the
    * previous types. When using a note identifier, octave range must be between `-1` and `9`. The
