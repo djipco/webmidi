@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 16:43:53 */
+/* Version: 3.0.6 - January 10, 2022 16:46:36 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -7875,7 +7875,7 @@ class Input extends EventEmitter {
    * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
    * the added benefit of being able to filter which data is forwarded.
    *
-   * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+   * @param {Output|Output[]} output An [`Output`](Output) object, or an array of such
    * objects, to forward messages to.
    * @param {object} [options={}]
    * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
