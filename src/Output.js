@@ -226,7 +226,7 @@ export class Output extends EventEmitter {
    *
    * @license Apache-2.0
    */
-  send(message, options = {time: 0}, legacy = undefined) {
+  send(message, options = {time: 0}, legacy = 0) {
 
     // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
     // does not support using Uint8Array).
@@ -247,7 +247,7 @@ export class Output extends EventEmitter {
       if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        options = legacy ? {time: legacy} : {time: 0};
+        options = isNaN(legacy) ? {time: 0} : {time: legacy};
       }
 
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
