@@ -27,6 +27,7 @@ import {WebMidi} from "./WebMidi.js";
  * @fires Input#disconnected
  * @fires Input#closed
  * @fires Input#midimessage
+ *
  * @fires Input#sysex
  * @fires Input#timecode
  * @fires Input#songposition
@@ -38,6 +39,7 @@ import {WebMidi} from "./WebMidi.js";
  * @fires Input#stop
  * @fires Input#activesensing
  * @fires Input#reset
+ *
  * @fires Input#unknownmidimessage
  *
  * @extends EventEmitter
@@ -197,7 +199,6 @@ export class Input extends EventEmitter {
    * @private
    */
   _onMidiMessage(e) {
-
 
     // Create Message object from MIDI data
     const message = new Message(e.data);
