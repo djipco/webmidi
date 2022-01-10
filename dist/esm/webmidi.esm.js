@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 16:16:31 */
+/* Version: 3.0.6 - January 10, 2022 16:18:44 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -2111,7 +2111,7 @@ class OutputChannel extends EventEmitter {
    *
    * @throws RangeError Invalid key aftertouch value.
    */
-  sendKeyAftertouch(target, pressure, options = {}) {
+  sendKeyAftertouch(note, pressure, options = {}) {
 
     if (wm.validation) {
 
