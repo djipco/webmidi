@@ -2927,7 +2927,7 @@ export class OutputChannel extends EventEmitter {
      * aftertouch. For a channel-wide aftertouch message, use
      * [`sendChannelAftertouch()`]{@link #sendChannelAftertouch}.
      *
-     * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
+     * @param target {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
      * an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a
      * [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the
      * previous types. When using a note identifier, octave range must be between `-1` and `9`. The
@@ -2960,7 +2960,7 @@ export class OutputChannel extends EventEmitter {
      *
      * @throws RangeError Invalid key aftertouch value.
      */
-    sendKeyAftertouch(note: number | Note | string | number[] | Note[] | string[], pressure?: number, options?: {
+    sendKeyAftertouch(target: number | Note | string | number[] | Note[] | string[], pressure?: number, options?: {
         rawValue?: boolean;
         time?: number | string;
     }): OutputChannel;
@@ -4391,7 +4391,7 @@ declare class EventEmitter {
      * [`EventEmitter.ANY_EVENT`]{@link #ANY_EVENT} as the first parameter. Note that a global
      * listener will also be triggered by non-registered events.
      *
-     * @param {string|EventEmitter.ANY_EVENT} event The event to listen to.
+     * @param {string|Symbol} event The event to listen to.
      * @param {EventEmitterCallback} callback The callback function to execute when the event occurs.
      * @param {Object} [options={}]
      * @param {Object} [options.context=this] The value of `this` in the callback function.
@@ -4428,7 +4428,7 @@ declare class EventEmitter {
      * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the first parameter. Note that a
      * global listener will also be triggered by non-registered events.
      *
-     * @param {string|EventEmitter.ANY_EVENT} event The event to listen to
+     * @param {string|Symbol} event The event to listen to
      * @param {EventEmitterCallback} callback The callback function to execute when the event occurs
      * @param {Object} [options={}]
      * @param {Object} [options.context=this] The context to invoke the callback function in.
@@ -4463,7 +4463,7 @@ declare class EventEmitter {
      * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}, use
      * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the parameter.
      *
-     * @param {string|EventEmitter.ANY_EVENT} [event=(any event)] The event to check
+     * @param {string|Symbol} [event=(any event)] The event to check
      * @param {function|Listener} [callback=(any callback)] The actual function that was added to the
      * event or the {@link Listener} object returned by `addListener()`.
      * @returns {boolean}
@@ -4490,7 +4490,7 @@ declare class EventEmitter {
      * events. To get the list of global listeners, specifically use
      * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the parameter.
      *
-     * @param {string|EventEmitter.ANY_EVENT} event The event to get listeners for.
+     * @param {string|Symbol} event The event to get listeners for.
      * @returns {Listener[]} An array of [`Listener`]{@link Listener} objects.
      */
     getListeners(event: string | Symbol): Listener[];
@@ -4506,8 +4506,8 @@ declare class EventEmitter {
      * listeners alone. If you truly want to suspends all callbacks for a specific
      * [`EventEmitter`]{@link EventEmitter}, simply set its `eventsSuspended` property to `true`.
      *
-     * @param {string|EventEmitter.ANY_EVENT} event The event for which to suspend execution of all
-     * callback functions.
+     * @param {string|Symbol} event The event name (or `EventEmitter.ANY_EVENT`) for which to suspend
+     * execution of all callback functions.
      */
     suspendEvent(event: string | Symbol): void;
     /**
@@ -4521,8 +4521,8 @@ declare class EventEmitter {
      * counter-intuitive, it allows the selective unsuspension of global listeners while leaving other
      * callbacks alone.
      *
-     * @param {string|EventEmitter.ANY_EVENT} event The event for which to resume execution of all
-     * callback functions.
+     * @param {string|Symbol} event The event name (or `EventEmitter.ANY_EVENT`) for which to resume
+     * execution of all callback functions.
      */
     unsuspendEvent(event: string | Symbol): void;
     /**
@@ -4533,8 +4533,8 @@ declare class EventEmitter {
      * number for a "regular" event. To get the number of global listeners, specifically use
      * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} as the parameter.
      *
-     * @param {string|EventEmitter.ANY_EVENT} event The event which is usually a string but can also
-     * be the special [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} symbol.
+     * @param {string|Symbol} event The event which is usually a string but can also be the special
+     * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT} symbol.
      * @returns {number} An integer representing the number of listeners registered for the specified
      * event.
      */
@@ -4572,15 +4572,13 @@ declare class EventEmitter {
      * To use more granular options, you must at least define the `event`. Then, you can specify the
      * callback to match or one or more of the additional options.
      *
-     * @method
      * @param {string} [event] The event name.
-     * @param {EventEmitterCallback} [callback] Only remove the listeners that match
-     * this exact callback function.
+     * @param {EventEmitterCallback} [callback] Only remove the listeners that match this exact
+     * callback function.
      * @param {Object} [options]
-     * @param {*} [options.context] Only remove the listeners that have this exact
-     * context.
-     * @param {number} [options.remaining] Only remove the listener if it has exactly
-     * that many remaining times to be executed.
+     * @param {*} [options.context] Only remove the listeners that have this exact context.
+     * @param {number} [options.remaining] Only remove the listener if it has exactly that many
+     * remaining times to be executed.
      */
     removeListener(event?: string, callback?: EventEmitterCallback, options?: {
         context?: any;
@@ -4597,7 +4595,7 @@ declare class EventEmitter {
      * duration, the promise is rejected. This makes it super easy to wait for an event and timeout
      * after a certain time if the event is not triggered.
      *
-     * @param {string|EventEmitter.ANY_EVENT} event The event to wait for
+     * @param {string|Symbol} event The event to wait for
      * @param {Object} [options={}]
      * @param {number} [options.duration=Infinity] The number of milliseconds to wait before the
      * promise is automatically rejected.
@@ -5264,7 +5262,7 @@ declare class WebMidi extends EventEmitter {
  * contextual information such as the event being listened to, the object the listener was attached
  * to, the callback function and so on.
  *
- * @param {string|EventEmitter.ANY_EVENT} event The event being listened to
+ * @param {string|Symbol} event The event being listened to
  * @param {EventEmitter} target The [`EventEmitter`]{@link EventEmitter} object that the listener is
  * attached to.
  * @param {EventEmitterCallback} callback The function to call when the listener is triggered
