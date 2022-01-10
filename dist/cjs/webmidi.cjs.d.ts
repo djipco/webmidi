@@ -40,7 +40,7 @@ export class Enumerations {
         pitchbend: number;
     };
     /**
-     * An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
+     * A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
      *
      * @type {number[]}
      * @readonly
@@ -495,13 +495,13 @@ export class Forwarder {
      * messages are the ones found in either
      * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
      * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
      * A MIDI channel number or an array of channel numbers that the message must match in order to be
      * forwarded. By default all MIDI channels are included (`1` to `16`).
      */
     constructor(destinations?: Output | Output[], options?: {
         types?: string | string[];
-        channels?: number;
+        channels?: number | number[];
     });
     /**
      * An array of [`Output`](Output) objects to forward the message to.
@@ -556,6 +556,7 @@ export class Forwarder {
  * @fires Input#disconnected
  * @fires Input#closed
  * @fires Input#midimessage
+ *
  * @fires Input#sysex
  * @fires Input#timecode
  * @fires Input#songposition
@@ -567,6 +568,7 @@ export class Forwarder {
  * @fires Input#stop
  * @fires Input#activesensing
  * @fires Input#reset
+ *
  * @fires Input#unknownmidimessage
  *
  * @extends EventEmitter
@@ -669,8 +671,8 @@ export class Input extends EventEmitter {
      * messages are the ones found in either
      * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
      * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
-     * MIDI channel number or an array of channel numbers that the message must match in order to be
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * A MIDI channel number or an array of channel numbers that the message must match in order to be
      * forwarded. By default all MIDI channels are included (`1` to `16`).
      *
      * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
@@ -678,7 +680,7 @@ export class Input extends EventEmitter {
      */
     addForwarder(output: any, options?: {
         types?: string | string[];
-        channels?: number;
+        channels?: number | number[];
     }): Forwarder;
     /**
      * Removes the specified [`Forwarder`](Forwarder) object from the input.
@@ -772,6 +774,7 @@ export class Input extends EventEmitter {
  * property.
  *
  * @fires InputChannel#midimessage
+ * @fires InputChannel#unknownmessage
  *
  * @fires InputChannel#noteoff
  * @fires InputChannel#noteon
@@ -892,7 +895,10 @@ export class InputChannel extends EventEmitter {
      * @private
      */
     private _isRpnOrNrpnController;
-    _dispatchParameterNumberEvent(type: any, paramMsb: any, paramLsb: any, e: any): void;
+    /**
+     * @private
+     */
+    private _dispatchParameterNumberEvent;
     /**
      * @deprecated since version 3.
      * @private
@@ -1218,6 +1224,7 @@ export class Note {
      * using C4 as a reference for middle C.
      *
      * @type {number}
+     * @readonly
      * @since 3.0.0
      */
     get number(): number;
@@ -3375,15 +3382,6 @@ export class OutputChannel extends EventEmitter {
         rawRelease?: number;
     }): OutputChannel;
     /**
-     * This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
-     *
-     * @see {@link OutputChannel#sendNoteOff}
-     *
-     * @param note
-     * @param options
-     * @returns {Output}
-     */
-    /**
      * Sends a **note off** message for the specified MIDI note number. The first parameter is the
      * note to stop. It can be a single value or an array of the following valid values:
      *
@@ -4615,7 +4613,9 @@ declare class EventEmitter {
  * @fires WebMidi#disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
+ * @fires WebMidi#error
  * @fires WebMidi#midiaccessgranted
+ * @fires WebMidi#portschanged
  *
  * @extends EventEmitter
  * @license Apache-2.0
