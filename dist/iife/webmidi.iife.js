@@ -2,9 +2,9 @@
  * WebMidi.js v3.0.6
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on December 20th, 2021.
+ * Build generated on January 10th, 2022.
  *
- * © Copyright 2015-2021, Jean-Philippe Côté.
+ * © Copyright 2015-2022, Jean-Philippe Côté.
  *
  * Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except
  * in compliance with the License. You may obtain a copy of the License at
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - December 20, 2021 12:33:37 */
+/* Version: 3.0.6 - January 10, 2022 12:45:23 */
 (function (exports) {
   'use strict';
 
@@ -609,7 +609,7 @@
       };
     }
     /**
-     * An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
+     * A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
      *
      * @type {number[]}
      * @readonly
@@ -1354,6 +1354,7 @@
      * using C4 as a reference for middle C.
      *
      * @type {number}
+     * @readonly
      * @since 3.0.0
      */
 
@@ -2675,16 +2676,6 @@
       });
       return this;
     }
-    /**
-     * This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
-     *
-     * @see {@link OutputChannel#sendNoteOff}
-     *
-     * @param note
-     * @param options
-     * @returns {Output}
-     */
-
     /**
      * Sends a **note off** message for the specified MIDI note number. The first parameter is the
      * note to stop. It can be a single value or an array of the following valid values:
@@ -5868,7 +5859,7 @@
      * messages are the ones found in either
      * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
      * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
      * A MIDI channel number or an array of channel numbers that the message must match in order to be
      * forwarded. By default all MIDI channels are included (`1` to `16`).
      */
@@ -5968,6 +5959,7 @@
    * property.
    *
    * @fires InputChannel#midimessage
+   * @fires InputChannel#unknownmessage
    *
    * @fires InputChannel#noteoff
    * @fires InputChannel#noteon
@@ -6118,7 +6110,7 @@
 
     _parseEventForStandardMessages(e) {
       const event = Object.assign({}, e);
-      event.type = event.message.type || "unknownmidimessage";
+      event.type = event.message.type || "unknownmessage";
       const data1 = e.message.dataBytes[0];
       const data2 = e.message.dataBytes[1];
 
@@ -6584,6 +6576,10 @@
       controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparametercoarse || // 100
       controller === Enumerations.MIDI_CONTROL_CHANGE_MESSAGES.registeredparameterfine; // 101
     }
+    /**
+     * @private
+     */
+
 
     _dispatchParameterNumberEvent(type, paramMsb, paramLsb, e) {
       type = type === "nrpn" ? "nrpn" : "rpn";
@@ -7139,6 +7135,7 @@
    * @fires Input#disconnected
    * @fires Input#closed
    * @fires Input#midimessage
+   *
    * @fires Input#sysex
    * @fires Input#timecode
    * @fires Input#songposition
@@ -7150,6 +7147,7 @@
    * @fires Input#stop
    * @fires Input#activesensing
    * @fires Input#reset
+   *
    * @fires Input#unknownmidimessage
    *
    * @extends EventEmitter
@@ -7541,7 +7539,7 @@
      *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
      *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
      *
-     * @param event {string} The type of the event.
+     * @param event {string | EventEmitter.ANY_EVENT} The type of the event.
      *
      * @param listener {function} A callback function to execute when the specified event is detected.
      * This function will receive an event parameter object. For details on this object's properties,
@@ -7868,8 +7866,8 @@
      * messages are the ones found in either
      * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
      * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-     * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
-     * MIDI channel number or an array of channel numbers that the message must match in order to be
+     * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+     * A MIDI channel number or an array of channel numbers that the message must match in order to be
      * forwarded. By default all MIDI channels are included (`1` to `16`).
      *
      * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
@@ -8253,7 +8251,9 @@
    * @fires WebMidi#disabled
    * @fires WebMidi#disconnected
    * @fires WebMidi#enabled
+   * @fires WebMidi#error
    * @fires WebMidi#midiaccessgranted
+   * @fires WebMidi#portschanged
    *
    * @extends EventEmitter
    * @license Apache-2.0
@@ -8893,11 +8893,14 @@
           event.port = this.getInputById(e.port.id); // legacy
 
           event.target = event.port;
-        }
+        } // Emit "connected" event
 
-        this.emit(e.port.state, event);
-        event.type = "portschanged";
-        this.emit(event.type, event); // We check if "connection" is "pending" because we do not always get the "closed" event
+
+        this.emit(e.port.state, event); // Make a shallow copy of the event so we can use it for the "portschanged" event
+
+        const portsChangedEvent = Object.assign({}, event);
+        portsChangedEvent.type = "portschanged";
+        this.emit(portsChangedEvent.type, event); // We check if "connection" is "pending" because we do not always get the "closed" event
       } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
         // It feels more logical to include a `target` property instead of a `port` property. This is
         // the terminology used everywhere in the library.
@@ -8908,11 +8911,14 @@
           name: e.port.name,
           state: e.port.state,
           type: e.port.type
-        };
+        }; // Emit "connected" event
+
         event.target = event.port;
-        this.emit(e.port.state, event);
-        event.type = "portschanged";
-        this.emit(event.type, event);
+        this.emit(e.port.state, event); // Make a shallow copy of the event so we can use it for the "portschanged" event
+
+        const portsChangedEvent = Object.assign({}, event);
+        portsChangedEvent.type = "portschanged";
+        this.emit(portsChangedEvent.type, event);
       }
     }
 
