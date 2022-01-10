@@ -722,6 +722,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -743,6 +745,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -764,6 +768,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -785,6 +791,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -806,6 +814,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -827,6 +837,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -848,6 +860,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -869,6 +883,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
@@ -879,6 +895,7 @@ export class InputChannel extends EventEmitter {
     const event = {
       target: e.target,
       timestamp: e.timestamp,
+      message: e.message,
       parameterMsb: paramMsb,
       parameterLsb: paramLsb,
       value: Utilities.from7bitToFloat(e.message.dataBytes[1]),
@@ -907,7 +924,6 @@ export class InputChannel extends EventEmitter {
     event.type = `${type}-${subtype}`;
     this.emit(event.type, event);
 
-
     /**
      * Event emitted when any NRPN message is received on the input. There are four subtypes of NRPN
      * messages:
@@ -928,6 +944,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {number} parameter The non-registered parameter number (0-16383)
      * @property {number} parameterMsb The MSB portion of the non-registered parameter number
      * (0-127)
@@ -959,6 +977,8 @@ export class InputChannel extends EventEmitter {
      * @property {InputChannel} target The `InputChannel` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
+     * @property {Message} message A [`Message`](Message) object containing information about the
+     * incoming MIDI message.
      * @property {string} parameter The registered parameter's name
      * @property {number} parameterMsb The MSB portion of the registered parameter (0-127)
      * @property {number} parameterLsb: The LSB portion of the registered parameter (0-127)
