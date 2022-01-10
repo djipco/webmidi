@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 16:44:06 */
+/* Version: 3.0.6 - January 10, 2022 16:46:49 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8408,7 +8408,7 @@ class Input extends EventEmitter {
    * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
    * the added benefit of being able to filter which data is forwarded.
    *
-   * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+   * @param {Output|Output[]} output An [`Output`](Output) object, or an array of such
    * objects, to forward messages to.
    * @param {object} [options={}]
    * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
