@@ -5331,3 +5331,4 @@ declare class Listener {
     remove(): void;
 }
 export { wm as WebMidi };
+export type EventEmitterCallback = (...args: any[]) => void;
