@@ -661,7 +661,7 @@ export class Input extends EventEmitter {
      * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
      * the added benefit of being able to filter which data is forwarded.
      *
-     * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+     * @param {Output|Output[]} output An [`Output`](Output) object, or an array of such
      * objects, to forward messages to.
      * @param {object} [options={}]
      * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
@@ -677,7 +677,7 @@ export class Input extends EventEmitter {
      * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
      * is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
      */
-    addForwarder(output: any, options?: {
+    addForwarder(output: Output | Output[], options?: {
         types?: string | string[];
         channels?: number | number[];
     }): Forwarder;
