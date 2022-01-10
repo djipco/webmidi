@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 16:44:21 */
+/* Version: 3.0.6 - January 10, 2022 16:47:05 */
 (function (exports) {
   'use strict';
 
@@ -7874,7 +7874,7 @@
      * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
      * the added benefit of being able to filter which data is forwarded.
      *
-     * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+     * @param {Output|Output[]} output An [`Output`](Output) object, or an array of such
      * objects, to forward messages to.
      * @param {object} [options={}]
      * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
