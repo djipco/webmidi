@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 16:47:05 */
+/* Version: 3.0.6 - January 10, 2022 18:14:35 */
 (function (exports) {
   'use strict';
 
@@ -3822,7 +3822,7 @@
 
     send(message, options = {
       time: 0
-    }, legacy = undefined) {
+    }, legacy = 0) {
       // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
       // does not support using Uint8Array).
       if (message instanceof Message) {
@@ -3840,11 +3840,12 @@
         // If message is neither an array nor a Uint8Array, then we are in legacy mode
         if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
           message = [message];
-          if (Array.isArray(options)) message = message.concat(options);
-          options = legacy ? {
-            time: legacy
-          } : {
+          if (Array.isArray(options)) message = message.concat(options); // options = legacy ? {time: legacy} : {time: 0};
+
+          options = isNaN(legacy) ? {
             time: 0
+          } : {
+            time: legacy
           };
         }
 
