@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 16:46:49 */
+/* Version: 3.0.6 - January 10, 2022 18:14:20 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -4020,7 +4020,7 @@ class Output extends EventEmitter {
    *
    * @license Apache-2.0
    */
-  send(message, options = {time: 0}, legacy = undefined) {
+  send(message, options = {time: 0}, legacy = 0) {
 
     // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
     // does not support using Uint8Array).
@@ -4041,7 +4041,8 @@ class Output extends EventEmitter {
       if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        options = legacy ? {time: legacy} : {time: 0};
+        // options = legacy ? {time: legacy} : {time: 0};
+        options = isNaN(legacy) ? {time: 0} : {time: legacy};
       }
 
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
