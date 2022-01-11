@@ -1,5 +1,5 @@
 /**
- * WEBMIDI.js v3.0.6
+ * WEBMIDI.js v3.0.7
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on January 10th, 2022.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 21:39:44 */
+/* Version: 3.0.7 - January 10, 2022 21:44:20 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -9783,7 +9783,7 @@ class WebMidi extends EventEmitter {
    * @type string
    */
   get version() {
-    return "3.0.6";
+    return "3.0.7";
   }
 
   /**
