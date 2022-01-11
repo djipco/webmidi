@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 20:41:19 */
+/* Version: 3.0.6 - January 10, 2022 20:45:51 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8270,9 +8270,11 @@ class Input extends EventEmitter {
 // } catch (err) {
 //   jzz = null;
 // }
+// On Node.js, we need to import the `jzz` module
 
 if (typeof window === "undefined") {
-  let jzz; // eval('jzz = require("jzz")');
+  let jzz;
+  eval('jzz = require("jzz")'); // This hides the import from Webpack.
 
   global["navigator"] = jzz;
 }
