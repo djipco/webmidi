@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 19:19:50 */
+/* Version: 3.0.6 - January 10, 2022 19:33:04 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8374,6 +8374,26 @@ class WebMidi extends EventEmitter {
 
     this._octaveOffset = 0;
   }
+
+  async _loadJzzModule() {
+    /*START-CJS*/
+    // This code is only executed when the CommonJS module is used. This is typically under Node.js
+    // but it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a
+    // bundle meant for browsers. While this works, it means that, if Webpack is used, the "jzz"
+    // module will be unnecessarily included in the bundle and it will never be used.
+    //
+    // Note: this block of code will be stripped from IIFE and ESM versions.
+    let jzz = require("jzz"); // import happens in Node (fine) and in Webpack bundle (unnecessary)
+
+
+    try {
+      global["navigator"] = jzz;
+    } catch (err) {
+      jzz = null;
+    }
+    /*END-CJS*/
+
+  }
   /**
    * Checks if the Web MIDI API is available in the current environment and then tries to connect to
    * the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
@@ -8447,24 +8467,7 @@ class WebMidi extends EventEmitter {
 
 
   async enable(options = {}, legacy = false) {
-    /*START-CJS*/
-    // This code is only executed when the CommonJS module is used. This is typically under Node.js but
-    // it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a bundle meant
-    // for browsers. While this works, it means that, if Webpack is used, the "jzz" module will be
-    // unnecessarily included in the bundle and it will never be used.
-    //
-    // Note: this block of code will be stripped from IIFE and ESM versions.
-    let jzz = require("jzz"); // import happens in Node (fine) and in Webpack bundle (unnecessary)
-
-
-    try {
-      global["navigator"] = jzz;
-    } catch (err) {
-      jzz = null;
-    }
-    /*END-CJS*/
-
-
+    // await this._loadJzzModule();
     this.validation = options.validation !== false;
 
     if (this.validation) {
