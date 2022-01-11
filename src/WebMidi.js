@@ -6,19 +6,15 @@ import {Enumerations} from "./Enumerations.js";
 
 /*START-CJS*/
 
-// This code is only executed when the CommonJS module is used. This is typically under Node.js but
-// it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a bundle meant
-// for browsers. While this works, it means that, if Webpack is used, the "jzz" module will be
-// unnecessarily included in the bundle and it will never be used.
-//
-// Note: this block of code will be stripped from IIFE and ESM versions.
+// This code will only be included in the CJS version (CommonJS).
 
-let jzz = require("jzz"); // import happens in Node.js (fine) and in Webpack bundle (unnecessary)
-
-try {
+// If this code is executed by Node.js then we must import the `jzz` module. I import it in this
+// convoluted way to prevent Webpack from automatically bundling it in browser bundles where it
+// isn't needed.
+if (Utilities.isNode) {
+  let jzz;
+  eval('jzz = require("jzz")');
   global["navigator"] = jzz;
-} catch (err) {
-  jzz = null;
 }
 
 /*END-CJS*/
@@ -218,15 +214,17 @@ class WebMidi extends EventEmitter {
 
     /*START-ESM*/
 
-    // If this code is running under Node.js in "module" mode (because "type": "module" is used in
-    // the package.json file), then we must import the `jzz` module. This import attempt will fail
-    // in the browser, which is what we want (hence the empty catch clause). This block is stripped
-    // out in the IIFE and CJS versions where it isn't needed.
-    try {
-      const jzz = await import("jzz");
-      global["navigator"] = jzz.default;
-      // eslint-disable-next-line no-empty
-    } catch (err) {}
+    // This block is stripped out of the IIFE and CJS versions where it isn't needed.
+
+    // If this code is executed by Node.js in "module" mode (when "type": "module" is used in the
+    // package.json file), then we must import the `jzz` module. I import it in this convoluted way
+    // to prevent Webpack from automatically bundling it in browser bundles where it isn't needed.
+    if (Utilities.isNode) {
+      global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
+        jzz = await import("jzz");
+        return jzz.default;
+      `)();
+    }
 
     /*END-ESM*/
 

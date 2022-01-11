@@ -541,4 +541,20 @@ export class Utilities {
 
   }
 
+  /**
+   * Indicates whether the execution environment is Node.js (`true`) or not (`false`)
+   * @type {boolean}
+   */
+  static get isNode() {
+    return new Function("try { return this === global; } catch(e) { return false; }")();
+  }
+
+  /**
+   * Indicates whether the execution environment is a browser (`true`) or not (`false`)
+   * @type {boolean}
+   */
+  static get isBrowser() {
+    return new Function("try { return this === window; } catch(e) { return false; }")();
+  }
+
 }
