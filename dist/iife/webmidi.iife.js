@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 10:28:05 */
+/* Version: 3.0.7 - January 11, 2022 10:46:34 */
 (function (exports) {
   'use strict';
 
@@ -3844,12 +3844,12 @@
       // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
       // does not support using Uint8Array).
       if (message instanceof Message) {
-        message = wm.isNode ? message.data : message.rawData;
+        message = Utilities.isNode ? message.data : message.rawData;
       } // If the data is a Uint8Array and we are on Node, we must convert it to array so it works with
       // the jzz module.
 
 
-      if (message instanceof Uint8Array && wm.isNode) {
+      if (message instanceof Uint8Array && Utilities.isNode) {
         message = Array.from(message);
       } // Validation
 
@@ -9051,7 +9051,7 @@
     // injectPluginMarkup(parent) {
     //
     //   // Silently ignore on Node.js
-    //   if (this.isNode) return;
+    //   if (Utilities.isNode) return;
     //
     //   // Default to <body> if no parent is specified
     //   if (!(parent instanceof Element) && !(parent instanceof HTMLDocument)) {
@@ -9092,29 +9092,30 @@
       return this._inputs;
     }
     /**
-     * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-     * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-     * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-     * @type {boolean}
+     * @private
+     * @deprecated
      */
 
 
     get isNode() {
-      return Object.prototype.toString.call(typeof process !== "undefined" ? process : 0) === "[object process]"; // Alternative way to try
-      // return typeof process !== "undefined" &&
-      //   process.versions != null &&
-      //   process.versions.node != null;
+      if (this.validation) {
+        console.warn("WebMidi.isNode has been deprecated. Use Utilities.isNode instead.");
+      }
+
+      return Utilities.isNode;
     }
     /**
-     * Indicates whether the current environment is a browser environment or not. If you need to check
-     * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-     * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-     * @type {boolean}
+     * @private
+     * @deprecated
      */
 
 
     get isBrowser() {
-      return typeof window !== "undefined" && typeof window.document !== "undefined";
+      if (this.validation) {
+        console.warn("WebMidi.isBrowser has been deprecated. Use Utilities.isBrowser instead.");
+      }
+
+      return Utilities.isBrowser;
     }
     /**
      * An integer to offset the octave of notes received from external devices or sent to external
