@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 21:06:32 */
+/* Version: 3.0.6 - January 10, 2022 21:10:54 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8781,6 +8781,13 @@ class Input extends EventEmitter {
  * @since 2.1
  */
 
+if (typeof window === "undefined") {
+  let jzz;
+  eval('jzz = require("jzz")');
+  global["navigator"] = jzz;
+}
+
+
 /*START-ESM*/
 
 // If this code is running under Node.js in "module" mode (because "type": "module" is used in
@@ -8793,11 +8800,11 @@ class Input extends EventEmitter {
 //   // eslint-disable-next-line no-empty
 // } catch (err) {}
 
-if (typeof window === "undefined") {
-  let jzz;
-  // eval('jzz = require("jzz")');
-  global["navigator"] = jzz;
-}
+// if (typeof window === "undefined") {
+//   let jzz;
+//   eval('jzz = require("jzz")');
+//   global["navigator"] = jzz;
+// }
 
 /*END-ESM*/
 
