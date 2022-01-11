@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WebMidi.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.4 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -53,7 +53,7 @@
 		<div class="container">
 			<div class="navbar-header">
 				<a class="navbar-brand" href="index.html">
-					WebMidi.js API
+					WEBMIDI.js API
 				</a>
 				<!-- displayed on small devices -->
 				<button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#topNavigation">
@@ -107,7 +107,7 @@
 			<div class="col-md-12 main-content">
 		<section class="source-section">
 			<article></article>
-			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
+			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">import {EventEmitter} from "../node_modules/djipevents/src/djipevents.js";
 import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Utilities} from "./Utilities.js";
@@ -115,21 +115,15 @@ import {Enumerations} from "./Enumerations.js";
 
 /*START-CJS*/
 
-// This code is only executed when the CommonJS module is used. This is typically under Node.js but
-// might also happen when a bundler (i.e. Webpack) parses the file.
-//
-// Note: this block of code will be stripped from IIFE and ESM versions.
+// This code will only be included in the CJS version (CommonJS).
 
-let jzz = require("jzz");
-// import jzz from "jzz";
-
-try {
-  // This will fail in Webpack because the "global" object (i.e. window) cannot be assigned to. This
-  // is what we want because if window is available, this means we are actually inside a browser and
-  // not inside Node.js where the jzz module is required.
+// If this code is executed by Node.js then we must import the `jzz` module. I import it in this
+// convoluted way to prevent Webpack from automatically bundling it in browser bundles where it
+// isn't needed.
+if (Utilities.isNode) {
+  let jzz;
+  eval('jzz = require("jzz")');
   global["navigator"] = jzz;
-} catch (err) {
-  jzz = null;
 }
 
 /*END-CJS*/
@@ -147,7 +141,9 @@ try {
  * @fires WebMidi#disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
+ * @fires WebMidi#error
  * @fires WebMidi#midiaccessgranted
+ * @fires WebMidi#portschanged
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -155,7 +151,8 @@ try {
 class WebMidi extends EventEmitter {
 
   /**
-   * Creates a `WebMidi` object.
+   * The WebMidi class is a singleton and you cannot instantiate it directly. It has already been
+   * instantiated for you.
    */
   constructor() {
 
@@ -188,7 +185,7 @@ class WebMidi extends EventEmitter {
      * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
-     * @type {?MIDIAccess}
+     * @type {MIDIAccess}
      * @readonly
      */
     this.interface = null;
@@ -325,13 +322,19 @@ class WebMidi extends EventEmitter {
   async enable(options = {}, legacy = false) {
 
     /*START-ESM*/
-    // This is the way to import the necessary modules under Node.js when using "type: module" in
-    // the package.json file. This block will be stripped in IIFE and CJS versions.
-    try {
-      const jzz = await import("jzz");
-      global["navigator"] = jzz.default;
-      // eslint-disable-next-line no-empty
-    } catch (err) {} // ignored because it means we already have the modules
+
+    // This block is stripped out of the IIFE and CJS versions where it isn't needed.
+
+    // If this code is executed by Node.js in "module" mode (when "type": "module" is used in the
+    // package.json file), then we must import the `jzz` module. I import it in this convoluted way
+    // to prevent Webpack from automatically bundling it in browser bundles where it isn't needed.
+    if (Utilities.isNode) {
+      global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
+        jzz = await import("jzz");
+        return jzz.default;
+      `)();
+    }
+
     /*END-ESM*/
 
     this.validation = (options.validation !== false);
@@ -475,7 +478,7 @@ class WebMidi extends EventEmitter {
    * are also destroyed.
    *
    * @async
-   * @returns {Promise}
+   * @returns {Promise&lt;Array>}
    *
    * @throws {Error} The Web MIDI API is not supported by your environment.
    *
@@ -525,7 +528,7 @@ class WebMidi extends EventEmitter {
    * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
    * are strings.
    *
-   * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
+   * @returns {Input} An [`Input`](Input) object matching the specified ID string or `undefined`
    * if no matching input can be found.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -536,14 +539,12 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
     for (let i = 0; i &lt; this.inputs.length; i++) {
       if (this.inputs[i].id === id.toString()) return this.inputs[i];
     }
-
-    return false;
 
   };
 
@@ -555,7 +556,7 @@ class WebMidi extends EventEmitter {
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [inputs](WebMidi#inputs) array).
    *
-   * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
+   * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
    * specified name.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -566,15 +567,13 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
     for (let i = 0; i &lt; this.inputs.length; i++) {
       if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
     }
-
-    return false;
 
   };
 
@@ -586,7 +585,7 @@ class WebMidi extends EventEmitter {
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [`outputs`](#outputs) array).
    *
-   * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
+   * @returns {Output} The [`Output`](Output) that was found or `undefined` if no output matched
    * the specified name.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -597,15 +596,13 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
     for (let i = 0; i &lt; this.outputs.length; i++) {
       if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
     }
-
-    return false;
 
   };
 
@@ -620,8 +617,8 @@ class WebMidi extends EventEmitter {
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
    * [`WebMidi.outputs`](WebMidi#outputs) array.
    *
-   * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
-   * matching output can be found, the method returns `false`.
+   * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
+   * matching output can be found, the method returns `undefined`.
    *
    * @throws {Error} WebMidi is not enabled.
    *
@@ -631,14 +628,12 @@ class WebMidi extends EventEmitter {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
     for (let i = 0; i &lt; this.outputs.length; i++) {
       if (this.outputs[i].id === id.toString()) return this.outputs[i];
     }
-
-    return false;
 
   };
 
@@ -836,10 +831,13 @@ class WebMidi extends EventEmitter {
         event.target = event.port;
       }
 
+      // Emit "connected" event
       this.emit(e.port.state, event);
 
-      event.type = "portschanged";
-      this.emit(event.type, event);
+      // Make a shallow copy of the event so we can use it for the "portschanged" event
+      const portsChangedEvent = Object.assign({}, event);
+      portsChangedEvent.type = "portschanged";
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
       // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" &amp;&amp; e.port.connection === "pending") {
@@ -855,12 +853,14 @@ class WebMidi extends EventEmitter {
         type: e.port.type
       };
 
+      // Emit "connected" event
       event.target = event.port;
-
       this.emit(e.port.state, event);
 
-      event.type = "portschanged";
-      this.emit(event.type, event);
+      // Make a shallow copy of the event so we can use it for the "portschanged" event
+      const portsChangedEvent = Object.assign({}, event);
+      portsChangedEvent.type = "portschanged";
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
     }
 
@@ -973,7 +973,7 @@ class WebMidi extends EventEmitter {
   // injectPluginMarkup(parent) {
   //
   //   // Silently ignore on Node.js
-  //   if (this.isNode) return;
+  //   if (Utilities.isNode) return;
   //
   //   // Default to &lt;body> if no parent is specified
   //   if (!(parent instanceof Element) &amp;&amp; !(parent instanceof HTMLDocument)) {
@@ -1014,32 +1014,31 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-   * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-   * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-   * @type {boolean}
+   * @private
+   * @deprecated
    */
   get isNode() {
 
-    return (Object.prototype.toString.call(
-      typeof process !== "undefined" ? process : 0
-    ) === "[object process]");
+    if (this.validation) {
+      console.warn("WebMidi.isNode has been deprecated. Use Utilities.isNode instead.");
+    }
 
-    // Alternative way to try
-    // return typeof process !== "undefined" &amp;&amp;
-    //   process.versions != null &amp;&amp;
-    //   process.versions.node != null;
+    return Utilities.isNode;
 
   }
 
   /**
-   * Indicates whether the current environment is a browser environment or not. If you need to check
-   * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-   * @type {boolean}
+   * @private
+   * @deprecated
    */
   get isBrowser() {
-    return typeof window !== "undefined" &amp;&amp; typeof window.document !== "undefined";
+
+    if (this.validation) {
+      console.warn("WebMidi.isBrowser has been deprecated. Use Utilities.isBrowser instead.");
+    }
+
+    return Utilities.isBrowser;
+
   }
 
   /**
@@ -1255,8 +1254,8 @@ export {wm as WebMidi};
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2021. WebMidi.js v3.0.4 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on December 15th 2021 @ 19:39:39 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on January 11th 2022 @ 10:53:43 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

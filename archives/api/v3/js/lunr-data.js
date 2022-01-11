@@ -1389,7 +1389,6 @@ window.lunrData = {
           "benefit",
           "criteria",
           "data",
-          "destin",
           "destination(",
           "filter",
           "forward",
@@ -2296,7 +2295,6 @@ window.lunrData = {
           "g#5",
           "getnotest",
           "identifi",
-          "input",
           "inputchannel#getnotest",
           "integ",
           "method",
@@ -2901,6 +2899,7 @@ window.lunrData = {
           "c4",
           "deriv",
           "identifi",
+          "lt;readonly&gt",
           "member",
           "middl",
           "midi",
@@ -5717,7 +5716,6 @@ window.lunrData = {
           "key",
           "messag",
           "midi",
-          "note",
           "option",
           "outputchannel",
           "outputchannel#sendkeyaftertouch",
@@ -5727,6 +5725,7 @@ window.lunrData = {
           "sendchannelaftertouch",
           "sendkeyaftertouch",
           "specif",
+          "target",
           "time",
           "us",
           "wide"
@@ -6513,6 +6512,34 @@ window.lunrData = {
           "util",
           "utilities.getnotedetails(\"c4"
         ],
+        "Utilities.html#.isBrowser": [
+          "boolean",
+          "browser",
+          "environ",
+          "execut",
+          "fals",
+          "indic",
+          "isbrows",
+          "lt;static&gt",
+          "member",
+          "true",
+          "utilities.isbrows",
+          "whether"
+        ],
+        "Utilities.html#.isNode": [
+          "boolean",
+          "environ",
+          "execut",
+          "fals",
+          "indic",
+          "isnod",
+          "lt;static&gt",
+          "member",
+          "node.j",
+          "true",
+          "utilities.isnod",
+          "whether"
+        ],
         "Utilities.html#.buildNote": [
           "0",
           "127",
@@ -6620,6 +6647,7 @@ window.lunrData = {
           "inclus",
           "infin",
           "input",
+          "integ",
           "lt;static&gt",
           "method",
           "multipli",
@@ -7123,64 +7151,15 @@ window.lunrData = {
           "know",
           "level",
           "lower",
-          "lt;readonli",
+          "lt;readonly&gt",
           "member",
           "midi",
           "midiaccess",
-          "nullable&gt",
           "talk",
           "unless",
           "us",
           "web",
           "webmidi#interfac"
-        ],
-        "WebMidi.html#isBrowser": [
-          "boolean",
-          "both",
-          "browser",
-          "certain",
-          "check",
-          "current",
-          "electron",
-          "environ",
-          "indic",
-          "isbrows",
-          "isnod",
-          "member",
-          "need",
-          "node.j",
-          "nw.j",
-          "same",
-          "such",
-          "time",
-          "true",
-          "us",
-          "webmidi#isbrows",
-          "whether"
-        ],
-        "WebMidi.html#isNode": [
-          "boolean",
-          "both",
-          "browser",
-          "certain",
-          "check",
-          "current",
-          "electron",
-          "environ",
-          "indic",
-          "isbrows",
-          "isnod",
-          "member",
-          "need",
-          "node.j",
-          "nw.j",
-          "same",
-          "such",
-          "time",
-          "true",
-          "us",
-          "webmidi#isnod",
-          "whether"
         ],
         "WebMidi.html#octaveOffset": [
           "1",
@@ -7419,7 +7398,7 @@ window.lunrData = {
           "object",
           "open",
           "output",
-          "promis",
+          "promise.&lt;array&gt",
           "subsystem'",
           "unlink",
           "webmidi",
@@ -7579,7 +7558,6 @@ window.lunrData = {
           "host",
           "id",
           "input",
-          "input|fals",
           "integ",
           "jazz",
           "kind",
@@ -7611,7 +7589,6 @@ window.lunrData = {
           "function",
           "getinputbynam",
           "input",
-          "input|fals",
           "jazz",
           "name",
           "note",
@@ -7695,7 +7672,6 @@ window.lunrData = {
           "object",
           "on",
           "output",
-          "output|fals",
           "per",
           "pleas",
           "plugin",
@@ -7725,7 +7701,6 @@ window.lunrData = {
           "object",
           "on",
           "output",
-          "output|fals",
           "plugin",
           "port",
           "report",
@@ -13737,17 +13712,17 @@ window.lunrData = {
                       "ref": "Message.html#isSystemMessage",
                       "tf": 5.555555555555555
                     },
+                    "Utilities.html#.isBrowser": {
+                      "ref": "Utilities.html#.isBrowser",
+                      "tf": 7.142857142857142
+                    },
+                    "Utilities.html#.isNode": {
+                      "ref": "Utilities.html#.isNode",
+                      "tf": 7.142857142857142
+                    },
                     "WebMidi.html#enabled": {
                       "ref": "WebMidi.html#enabled",
                       "tf": 7.142857142857142
-                    },
-                    "WebMidi.html#isBrowser": {
-                      "ref": "WebMidi.html#isBrowser",
-                      "tf": 2.272727272727273
-                    },
-                    "WebMidi.html#isNode": {
-                      "ref": "WebMidi.html#isNode",
-                      "tf": 2.380952380952381
                     },
                     "WebMidi.html#supported": {
                       "ref": "WebMidi.html#supported",
@@ -13931,7 +13906,7 @@ window.lunrData = {
                         "docs": {
                           "WebMidi.html#interface": {
                             "ref": "WebMidi.html#interface",
-                            "tf": 675
+                            "tf": 683.3333333333334
                           },
                           "WebMidi.html#disable": {
                             "ref": "WebMidi.html#disable",
@@ -14082,6 +14057,10 @@ window.lunrData = {
                     "Utilities.html#.from7bitToFloat": {
                       "ref": "Utilities.html#.from7bitToFloat",
                       "tf": 1.2195121951219512
+                    },
+                    "Utilities.html#.fromFloatTo7Bit": {
+                      "ref": "Utilities.html#.fromFloatTo7Bit",
+                      "tf": 1.1111111111111112
                     },
                     "Utilities.html#.guessNoteNumber": {
                       "ref": "Utilities.html#.guessNoteNumber",
@@ -14247,10 +14226,6 @@ window.lunrData = {
                       "ref": "InputChannel.html#destroy",
                       "tf": 5.555555555555555
                     },
-                    "InputChannel.html#getNoteState": {
-                      "ref": "InputChannel.html#getNoteState",
-                      "tf": 33.33333333333333
-                    },
                     "Output.html": {
                       "ref": "Output.html",
                       "tf": 0.9259259259259258
@@ -14273,7 +14248,7 @@ window.lunrData = {
                     },
                     "Utilities.html#.guessNoteNumber": {
                       "ref": "Utilities.html#.guessNoteNumber",
-                      "tf": 27.63157894736842
+                      "tf": 22.63157894736842
                     },
                     "WebMidi.html#inputs": {
                       "ref": "WebMidi.html#inputs",
@@ -14293,11 +14268,11 @@ window.lunrData = {
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
-                      "tf": 2.941176470588235
+                      "tf": 36.27450980392156
                     },
                     "WebMidi.html#getInputByName": {
                       "ref": "WebMidi.html#getInputByName",
-                      "tf": 4
+                      "tf": 37.33333333333333
                     },
                     "WebMidi.html#getOutputByName": {
                       "ref": "WebMidi.html#getOutputByName",
@@ -15864,30 +15839,6 @@ window.lunrData = {
                         "tf": 1.8518518518518516
                       }
                     }
-                  },
-                  "|": {
-                    "docs": {},
-                    "f": {
-                      "docs": {},
-                      "a": {
-                        "docs": {},
-                        "l": {
-                          "docs": {},
-                          "s": {
-                            "docs": {
-                              "WebMidi.html#getInputById": {
-                                "ref": "WebMidi.html#getInputById",
-                                "tf": 33.33333333333333
-                              },
-                              "WebMidi.html#getInputByName": {
-                                "ref": "WebMidi.html#getInputByName",
-                                "tf": 33.33333333333333
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -16547,13 +16498,9 @@ window.lunrData = {
                     "docs": {},
                     "s": {
                       "docs": {
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 702.2727272727273
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 4.761904761904762
+                        "Utilities.html#.isBrowser": {
+                          "ref": "Utilities.html#.isBrowser",
+                          "tf": 683.3333333333334
                         }
                       }
                     }
@@ -16567,13 +16514,9 @@ window.lunrData = {
                 "docs": {},
                 "d": {
                   "docs": {
-                    "WebMidi.html#isBrowser": {
-                      "ref": "WebMidi.html#isBrowser",
-                      "tf": 4.545454545454546
-                    },
-                    "WebMidi.html#isNode": {
-                      "ref": "WebMidi.html#isNode",
-                      "tf": 702.3809523809524
+                    "Utilities.html#.isNode": {
+                      "ref": "Utilities.html#.isNode",
+                      "tf": 683.3333333333334
                     }
                   }
                 }
@@ -17795,6 +17738,14 @@ window.lunrData = {
                                     "ref": "EventEmitter.html#.ANY_EVENT",
                                     "tf": 33.33333333333333
                                   },
+                                  "Utilities.html#.isBrowser": {
+                                    "ref": "Utilities.html#.isBrowser",
+                                    "tf": 33.33333333333333
+                                  },
+                                  "Utilities.html#.isNode": {
+                                    "ref": "Utilities.html#.isNode",
+                                    "tf": 33.33333333333333
+                                  },
                                   "Utilities.html#.buildNote": {
                                     "ref": "Utilities.html#.buildNote",
                                     "tf": 20
@@ -17837,7 +17788,7 @@ window.lunrData = {
                                   },
                                   "Utilities.html#.guessNoteNumber": {
                                     "ref": "Utilities.html#.guessNoteNumber",
-                                    "tf": 25
+                                    "tf": 20
                                   },
                                   "Utilities.html#.offsetNumber": {
                                     "ref": "Utilities.html#.offsetNumber",
@@ -17995,6 +17946,10 @@ window.lunrData = {
                                         "ref": "Message.html#type",
                                         "tf": 33.33333333333333
                                       },
+                                      "Note.html#number": {
+                                        "ref": "Note.html#number",
+                                        "tf": 33.33333333333333
+                                      },
                                       "Output.html#connection": {
                                         "ref": "Output.html#connection",
                                         "tf": 33.33333333333333
@@ -18063,6 +18018,10 @@ window.lunrData = {
                                         "ref": "WebMidi.html#inputs",
                                         "tf": 33.33333333333333
                                       },
+                                      "WebMidi.html#interface": {
+                                        "ref": "WebMidi.html#interface",
+                                        "tf": 33.33333333333333
+                                      },
                                       "WebMidi.html#outputs": {
                                         "ref": "WebMidi.html#outputs",
                                         "tf": 33.33333333333333
@@ -18085,14 +18044,6 @@ window.lunrData = {
                                       }
                                     }
                                   }
-                                }
-                              }
-                            },
-                            "i": {
-                              "docs": {
-                                "WebMidi.html#interface": {
-                                  "ref": "WebMidi.html#interface",
-                                  "tf": 25
                                 }
                               }
                             }
@@ -19401,7 +19352,7 @@ window.lunrData = {
                             "docs": {
                               "WebMidi.html#interface": {
                                 "ref": "WebMidi.html#interface",
-                                "tf": 28.57142857142857
+                                "tf": 36.9047619047619
                               }
                             },
                             "g": {
@@ -19885,6 +19836,14 @@ window.lunrData = {
                         "ref": "OutputChannel.html#output",
                         "tf": 110
                       },
+                      "Utilities.html#.isBrowser": {
+                        "ref": "Utilities.html#.isBrowser",
+                        "tf": 110
+                      },
+                      "Utilities.html#.isNode": {
+                        "ref": "Utilities.html#.isNode",
+                        "tf": 110
+                      },
                       "WebMidi.html#defaults": {
                         "ref": "WebMidi.html#defaults",
                         "tf": 110
@@ -19915,14 +19874,6 @@ window.lunrData = {
                       },
                       "WebMidi.html#interface": {
                         "ref": "WebMidi.html#interface",
-                        "tf": 110
-                      },
-                      "WebMidi.html#isBrowser": {
-                        "ref": "WebMidi.html#isBrowser",
-                        "tf": 110
-                      },
-                      "WebMidi.html#isNode": {
-                        "ref": "WebMidi.html#isNode",
                         "tf": 110
                       },
                       "WebMidi.html#octaveOffset": {
@@ -22225,10 +22176,6 @@ window.lunrData = {
                         "ref": "OutputChannel.html#waitFor",
                         "tf": 4.3478260869565215
                       },
-                      "WebMidi.html#disable": {
-                        "ref": "WebMidi.html#disable",
-                        "tf": 33.33333333333333
-                      },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
                         "tf": 1.1764705882352942
@@ -22339,6 +22286,35 @@ window.lunrData = {
                                                       "ref": "Output.html#open",
                                                       "tf": 33.33333333333333
                                                     }
+                                                  }
+                                                }
+                                              }
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "a": {
+                                  "docs": {},
+                                  "r": {
+                                    "docs": {},
+                                    "r": {
+                                      "docs": {},
+                                      "a": {
+                                        "docs": {},
+                                        "y": {
+                                          "docs": {},
+                                          "&": {
+                                            "docs": {},
+                                            "g": {
+                                              "docs": {},
+                                              "t": {
+                                                "docs": {
+                                                  "WebMidi.html#disable": {
+                                                    "ref": "WebMidi.html#disable",
+                                                    "tf": 33.33333333333333
                                                   }
                                                 }
                                               }
@@ -23584,7 +23560,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#sendNrpnValue": {
                           "ref": "OutputChannel.html#sendNrpnValue",
-                          "tf": 20.96153846153846
+                          "tf": 0.9615384615384616
                         },
                         "OutputChannel.html#sendPitchBendRange": {
                           "ref": "OutputChannel.html#sendPitchBendRange",
@@ -27657,43 +27633,6 @@ window.lunrData = {
                                 }
                               }
                             }
-                          },
-                          "s": {
-                            "docs": {},
-                            "b": {
-                              "docs": {},
-                              "r": {
-                                "docs": {},
-                                "o": {
-                                  "docs": {},
-                                  "w": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {
-                                        "WebMidi.html#isBrowser": {
-                                          "ref": "WebMidi.html#isBrowser",
-                                          "tf": 1150
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            },
-                            "n": {
-                              "docs": {},
-                              "o": {
-                                "docs": {},
-                                "d": {
-                                  "docs": {
-                                    "WebMidi.html#isNode": {
-                                      "ref": "WebMidi.html#isNode",
-                                      "tf": 1150
-                                    }
-                                  }
-                                }
-                              }
-                            }
                           }
                         },
                         "o": {
@@ -28394,6 +28333,14 @@ window.lunrData = {
                           "ref": "OutputChannel.html#eventsSuspended",
                           "tf": 8.333333333333332
                         },
+                        "Utilities.html#.isBrowser": {
+                          "ref": "Utilities.html#.isBrowser",
+                          "tf": 7.142857142857142
+                        },
+                        "Utilities.html#.isNode": {
+                          "ref": "Utilities.html#.isNode",
+                          "tf": 7.142857142857142
+                        },
                         "WebMidi.html#enabled": {
                           "ref": "WebMidi.html#enabled",
                           "tf": 7.142857142857142
@@ -28401,14 +28348,6 @@ window.lunrData = {
                         "WebMidi.html#eventsSuspended": {
                           "ref": "WebMidi.html#eventsSuspended",
                           "tf": 8.333333333333332
-                        },
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 2.272727272727273
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 2.380952380952381
                         },
                         "WebMidi.html#supported": {
                           "ref": "WebMidi.html#supported",
@@ -29106,10 +29045,6 @@ window.lunrData = {
                       "Forwarder.html#destinations": {
                         "ref": "Forwarder.html#destinations",
                         "tf": 700
-                      },
-                      "Input.html#addForwarder": {
-                        "ref": "Input.html#addForwarder",
-                        "tf": 25
                       }
                     },
                     "a": {
@@ -31470,7 +31405,7 @@ window.lunrData = {
                                   "docs": {
                                     "Utilities.html#.guessNoteNumber": {
                                       "ref": "Utilities.html#.guessNoteNumber",
-                                      "tf": 675
+                                      "tf": 670
                                     }
                                   }
                                 }
@@ -34046,14 +33981,6 @@ window.lunrData = {
                       "ref": "OutputChannel.html#hasListener",
                       "tf": 1.6129032258064515
                     },
-                    "WebMidi.html#isBrowser": {
-                      "ref": "WebMidi.html#isBrowser",
-                      "tf": 2.272727272727273
-                    },
-                    "WebMidi.html#isNode": {
-                      "ref": "WebMidi.html#isNode",
-                      "tf": 2.380952380952381
-                    },
                     "WebMidi.html#validation": {
                       "ref": "WebMidi.html#validation",
                       "tf": 1.6129032258064515
@@ -34205,14 +34132,6 @@ window.lunrData = {
                           "ref": "OutputChannel.html#waitFor",
                           "tf": 1.0869565217391304
                         },
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 2.272727272727273
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 2.380952380952381
-                        },
                         "WebMidi.html#waitFor": {
                           "ref": "WebMidi.html#waitFor",
                           "tf": 1.0869565217391304
@@ -34327,14 +34246,6 @@ window.lunrData = {
                         "WebMidi.html#inputs": {
                           "ref": "WebMidi.html#inputs",
                           "tf": 10
-                        },
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 2.272727272727273
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 2.380952380952381
                         },
                         "WebMidi.html#outputs": {
                           "ref": "WebMidi.html#outputs",
@@ -35021,30 +34932,6 @@ window.lunrData = {
                     }
                   }
                 }
-              },
-              "c": {
-                "docs": {},
-                "t": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "o": {
-                      "docs": {},
-                      "n": {
-                        "docs": {
-                          "WebMidi.html#isBrowser": {
-                            "ref": "WebMidi.html#isBrowser",
-                            "tf": 2.272727272727273
-                          },
-                          "WebMidi.html#isNode": {
-                            "ref": "WebMidi.html#isNode",
-                            "tf": 2.380952380952381
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
               }
             },
             "a": {
@@ -35608,13 +35495,13 @@ window.lunrData = {
                     "docs": {},
                     "n": {
                       "docs": {
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 6.8181818181818175
+                        "Utilities.html#.isBrowser": {
+                          "ref": "Utilities.html#.isBrowser",
+                          "tf": 7.142857142857142
                         },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 4.761904761904762
+                        "Utilities.html#.isNode": {
+                          "ref": "Utilities.html#.isNode",
+                          "tf": 7.142857142857142
                         },
                         "WebMidi.html#supported": {
                           "ref": "WebMidi.html#supported",
@@ -36125,6 +36012,14 @@ window.lunrData = {
                       "OutputChannel.html#unsuspendEvent": {
                         "ref": "OutputChannel.html#unsuspendEvent",
                         "tf": 2.941176470588235
+                      },
+                      "Utilities.html#.isBrowser": {
+                        "ref": "Utilities.html#.isBrowser",
+                        "tf": 7.142857142857142
+                      },
+                      "Utilities.html#.isNode": {
+                        "ref": "Utilities.html#.isNode",
+                        "tf": 7.142857142857142
                       },
                       "WebMidi.html#eventsSuspended": {
                         "ref": "WebMidi.html#eventsSuspended",
@@ -38699,7 +38594,7 @@ window.lunrData = {
                   },
                   "InputChannel.html#getNoteState": {
                     "ref": "InputChannel.html#getNoteState",
-                    "tf": 8.333333333333332
+                    "tf": 41.66666666666666
                   },
                   "InputChannel.html#hasListener": {
                     "ref": "InputChannel.html#hasListener",
@@ -38908,10 +38803,6 @@ window.lunrData = {
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
                     "tf": 0.205761316872428
-                  },
-                  "OutputChannel.html#sendKeyAftertouch": {
-                    "ref": "OutputChannel.html#sendKeyAftertouch",
-                    "tf": 20
                   },
                   "OutputChannel.html#sendNoteOff": {
                     "ref": "OutputChannel.html#sendNoteOff",
@@ -39656,13 +39547,9 @@ window.lunrData = {
                   "docs": {},
                   "j": {
                     "docs": {
-                      "WebMidi.html#isBrowser": {
-                        "ref": "WebMidi.html#isBrowser",
-                        "tf": 2.272727272727273
-                      },
-                      "WebMidi.html#isNode": {
-                        "ref": "WebMidi.html#isNode",
-                        "tf": 2.380952380952381
+                      "Utilities.html#.isNode": {
+                        "ref": "Utilities.html#.isNode",
+                        "tf": 7.142857142857142
                       }
                     }
                   }
@@ -39778,7 +39665,7 @@ window.lunrData = {
                       },
                       "Note.html#number": {
                         "ref": "Note.html#number",
-                        "tf": 757.1428571428571
+                        "tf": 723.8095238095237
                       },
                       "Note.html#octave": {
                         "ref": "Note.html#octave",
@@ -39906,7 +39793,7 @@ window.lunrData = {
                       },
                       "Utilities.html#.fromFloatTo7Bit": {
                         "ref": "Utilities.html#.fromFloatTo7Bit",
-                        "tf": 28.333333333333332
+                        "tf": 27.22222222222222
                       },
                       "Utilities.html#.fromMsbLsbToFloat": {
                         "ref": "Utilities.html#.fromMsbLsbToFloat",
@@ -40003,7 +39890,7 @@ window.lunrData = {
                               "docs": {
                                 "Utilities.html#.guessNoteNumber": {
                                   "ref": "Utilities.html#.guessNoteNumber",
-                                  "tf": 25
+                                  "tf": 20
                                 },
                                 "Utilities.html#.toTimestamp": {
                                   "ref": "Utilities.html#.toTimestamp",
@@ -40057,38 +39944,6 @@ window.lunrData = {
                   }
                 }
               }
-            },
-            "l": {
-              "docs": {},
-              "l": {
-                "docs": {},
-                "a": {
-                  "docs": {},
-                  "b": {
-                    "docs": {},
-                    "l": {
-                      "docs": {},
-                      "e": {
-                        "docs": {},
-                        "&": {
-                          "docs": {},
-                          "g": {
-                            "docs": {},
-                            "t": {
-                              "docs": {
-                                "WebMidi.html#interface": {
-                                  "ref": "WebMidi.html#interface",
-                                  "tf": 25
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                }
-              }
             }
           },
           "e": {
@@ -40138,14 +39993,6 @@ window.lunrData = {
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
                     "tf": 0.4807692307692308
-                  },
-                  "WebMidi.html#isBrowser": {
-                    "ref": "WebMidi.html#isBrowser",
-                    "tf": 2.272727272727273
-                  },
-                  "WebMidi.html#isNode": {
-                    "ref": "WebMidi.html#isNode",
-                    "tf": 2.380952380952381
                   }
                 }
               }
@@ -40217,25 +40064,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
-                    "tf": 2.403846153846154
-                  }
-                }
-              }
-            }
-          },
-          "w": {
-            "docs": {},
-            ".": {
-              "docs": {},
-              "j": {
-                "docs": {
-                  "WebMidi.html#isBrowser": {
-                    "ref": "WebMidi.html#isBrowser",
-                    "tf": 2.272727272727273
-                  },
-                  "WebMidi.html#isNode": {
-                    "ref": "WebMidi.html#isNode",
-                    "tf": 2.380952380952381
+                    "tf": 22.403846153846153
                   }
                 }
               }
@@ -42595,14 +42424,6 @@ window.lunrData = {
                   "OutputChannel.html#sendResetAllControllers": {
                     "ref": "OutputChannel.html#sendResetAllControllers",
                     "tf": 3.8461538461538463
-                  },
-                  "WebMidi.html#isBrowser": {
-                    "ref": "WebMidi.html#isBrowser",
-                    "tf": 2.272727272727273
-                  },
-                  "WebMidi.html#isNode": {
-                    "ref": "WebMidi.html#isNode",
-                    "tf": 2.380952380952381
                   }
                 }
               },
@@ -45074,14 +44895,6 @@ window.lunrData = {
                     "ref": "Utilities.html#.buildNoteArray",
                     "tf": 1.1111111111111112
                   },
-                  "WebMidi.html#isBrowser": {
-                    "ref": "WebMidi.html#isBrowser",
-                    "tf": 2.272727272727273
-                  },
-                  "WebMidi.html#isNode": {
-                    "ref": "WebMidi.html#isNode",
-                    "tf": 2.380952380952381
-                  },
                   "WebMidi.html#octaveOffset": {
                     "ref": "WebMidi.html#octaveOffset",
                     "tf": 0.9259259259259258
@@ -45900,13 +45713,13 @@ window.lunrData = {
                     "ref": "OutputChannel.html#suspendEvent",
                     "tf": 1.0869565217391304
                   },
-                  "WebMidi.html#isBrowser": {
-                    "ref": "WebMidi.html#isBrowser",
-                    "tf": 2.272727272727273
+                  "Utilities.html#.isBrowser": {
+                    "ref": "Utilities.html#.isBrowser",
+                    "tf": 7.142857142857142
                   },
-                  "WebMidi.html#isNode": {
-                    "ref": "WebMidi.html#isNode",
-                    "tf": 2.380952380952381
+                  "Utilities.html#.isNode": {
+                    "ref": "Utilities.html#.isNode",
+                    "tf": 7.142857142857142
                   },
                   "WebMidi.html#supported": {
                     "ref": "WebMidi.html#supported",
@@ -46477,14 +46290,6 @@ window.lunrData = {
                     "ref": "Utilities.html#.toTimestamp",
                     "tf": 26.666666666666668
                   },
-                  "WebMidi.html#isBrowser": {
-                    "ref": "WebMidi.html#isBrowser",
-                    "tf": 2.272727272727273
-                  },
-                  "WebMidi.html#isNode": {
-                    "ref": "WebMidi.html#isNode",
-                    "tf": 2.380952380952381
-                  },
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
                     "tf": 688.0208333333334
@@ -46913,6 +46718,10 @@ window.lunrData = {
                       "Message.html#manufacturerId": {
                         "ref": "Message.html#manufacturerId",
                         "tf": 1.7857142857142856
+                      },
+                      "OutputChannel.html#sendKeyAftertouch": {
+                        "ref": "OutputChannel.html#sendKeyAftertouch",
+                        "tf": 20
                       }
                     }
                   }
@@ -47347,14 +47156,6 @@ window.lunrData = {
               "WebMidi.html#interface": {
                 "ref": "WebMidi.html#interface",
                 "tf": 7.142857142857142
-              },
-              "WebMidi.html#isBrowser": {
-                "ref": "WebMidi.html#isBrowser",
-                "tf": 2.272727272727273
-              },
-              "WebMidi.html#isNode": {
-                "ref": "WebMidi.html#isNode",
-                "tf": 2.380952380952381
               },
               "WebMidi.html#validation": {
                 "ref": "WebMidi.html#validation",
@@ -48310,6 +48111,46 @@ window.lunrData = {
                                 }
                               }
                             },
+                            "i": {
+                              "docs": {},
+                              "s": {
+                                "docs": {},
+                                "b": {
+                                  "docs": {},
+                                  "r": {
+                                    "docs": {},
+                                    "o": {
+                                      "docs": {},
+                                      "w": {
+                                        "docs": {},
+                                        "s": {
+                                          "docs": {
+                                            "Utilities.html#.isBrowser": {
+                                              "ref": "Utilities.html#.isBrowser",
+                                              "tf": 1150
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                },
+                                "n": {
+                                  "docs": {},
+                                  "o": {
+                                    "docs": {},
+                                    "d": {
+                                      "docs": {
+                                        "Utilities.html#.isNode": {
+                                          "ref": "Utilities.html#.isNode",
+                                          "tf": 1150
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            },
                             "b": {
                               "docs": {},
                               "u": {
@@ -49125,13 +48966,9 @@ window.lunrData = {
                           "ref": "Output.html#clear",
                           "tf": 2.272727272727273
                         },
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 2.272727272727273
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
-                          "tf": 2.380952380952381
+                        "Utilities.html#.isBrowser": {
+                          "ref": "Utilities.html#.isBrowser",
+                          "tf": 7.142857142857142
                         },
                         "WebMidi.html#time": {
                           "ref": "WebMidi.html#time",
@@ -49242,20 +49079,20 @@ window.lunrData = {
                           "ref": "OutputChannel.html#hasListener",
                           "tf": 25
                         },
+                        "Utilities.html#.isBrowser": {
+                          "ref": "Utilities.html#.isBrowser",
+                          "tf": 33.33333333333333
+                        },
+                        "Utilities.html#.isNode": {
+                          "ref": "Utilities.html#.isNode",
+                          "tf": 33.33333333333333
+                        },
                         "WebMidi.html#enabled": {
                           "ref": "WebMidi.html#enabled",
                           "tf": 33.33333333333333
                         },
                         "WebMidi.html#eventsSuspended": {
                           "ref": "WebMidi.html#eventsSuspended",
-                          "tf": 50
-                        },
-                        "WebMidi.html#isBrowser": {
-                          "ref": "WebMidi.html#isBrowser",
-                          "tf": 50
-                        },
-                        "WebMidi.html#isNode": {
-                          "ref": "WebMidi.html#isNode",
                           "tf": 50
                         },
                         "WebMidi.html#supported": {
@@ -49317,14 +49154,6 @@ window.lunrData = {
                   "Utilities.html#.buildNoteArray": {
                     "ref": "Utilities.html#.buildNoteArray",
                     "tf": 1.1111111111111112
-                  },
-                  "WebMidi.html#isBrowser": {
-                    "ref": "WebMidi.html#isBrowser",
-                    "tf": 2.272727272727273
-                  },
-                  "WebMidi.html#isNode": {
-                    "ref": "WebMidi.html#isNode",
-                    "tf": 2.380952380952381
                   }
                 }
               }
@@ -51372,7 +51201,7 @@ window.lunrData = {
                                   },
                                   "Utilities.html#.guessNoteNumber": {
                                     "ref": "Utilities.html#.guessNoteNumber",
-                                    "tf": 1.7543859649122806
+                                    "tf": 21.75438596491228
                                   },
                                   "Utilities.html#.offsetNumber": {
                                     "ref": "Utilities.html#.offsetNumber",
@@ -51960,7 +51789,7 @@ window.lunrData = {
                       },
                       "Input.html#addForwarder": {
                         "ref": "Input.html#addForwarder",
-                        "tf": 2.272727272727273
+                        "tf": 27.272727272727273
                       },
                       "Note.html": {
                         "ref": "Note.html",
@@ -52192,11 +52021,11 @@ window.lunrData = {
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
-                        "tf": 2.941176470588235
+                        "tf": 36.27450980392156
                       },
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
-                        "tf": 2
+                        "tf": 35.33333333333333
                       }
                     },
                     ".": {
@@ -55452,30 +55281,6 @@ window.lunrData = {
                           "tf": 1.5151515151515151
                         }
                       }
-                    },
-                    "|": {
-                      "docs": {},
-                      "f": {
-                        "docs": {},
-                        "a": {
-                          "docs": {},
-                          "l": {
-                            "docs": {},
-                            "s": {
-                              "docs": {
-                                "WebMidi.html#getOutputById": {
-                                  "ref": "WebMidi.html#getOutputById",
-                                  "tf": 33.33333333333333
-                                },
-                                "WebMidi.html#getOutputByName": {
-                                  "ref": "WebMidi.html#getOutputByName",
-                                  "tf": 33.33333333333333
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
                     }
                   }
                 }
@@ -57932,6 +57737,14 @@ window.lunrData = {
                     "ref": "InputChannel.html#notesState",
                     "tf": 3.125
                   },
+                  "Utilities.html#.isBrowser": {
+                    "ref": "Utilities.html#.isBrowser",
+                    "tf": 7.142857142857142
+                  },
+                  "Utilities.html#.isNode": {
+                    "ref": "Utilities.html#.isNode",
+                    "tf": 7.142857142857142
+                  },
                   "Utilities.html#.getChannelModeByNumber": {
                     "ref": "Utilities.html#.getChannelModeByNumber",
                     "tf": 4.166666666666666
@@ -58334,7 +58147,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 7287
+      "length": 7262
     },
     "corpusTokens": [
       "0",
@@ -58832,7 +58645,6 @@ window.lunrData = {
       "effectcontrol2coars",
       "effectcontrol2fin",
       "elaps",
-      "electron",
       "element",
       "elev",
       "elevationangl",
@@ -59071,7 +58883,6 @@ window.lunrData = {
       "inputchannel#unsuspendev",
       "inputchannel#waitfor",
       "inputchannel.haslisten",
-      "input|fals",
       "insid",
       "instal",
       "instanc",
@@ -59138,7 +58949,6 @@ window.lunrData = {
       "lower",
       "lsb",
       "lt;async&gt",
-      "lt;readonli",
       "lt;readonly&gt",
       "lt;static",
       "lt;static&gt",
@@ -59238,12 +59048,10 @@ window.lunrData = {
       "noth",
       "novat",
       "nrpn",
-      "nullable&gt",
       "number",
       "number&gt",
       "number|fals",
       "numer",
-      "nw.j",
       "object",
       "object'",
       "object.&lt;str",
@@ -59387,7 +59195,6 @@ window.lunrData = {
       "outputchannel#waitfor",
       "outputchannel.playnot",
       "outputchannel.stopnot",
-      "output|fals",
       "over",
       "page",
       "pair",
@@ -59447,6 +59254,7 @@ window.lunrData = {
       "programchang",
       "project",
       "promis",
+      "promise.&lt;array&gt",
       "promise.&lt;input&gt",
       "promise.&lt;output&gt",
       "promise.&lt;void&gt",
@@ -59722,6 +59530,8 @@ window.lunrData = {
       "utilities.getnotedetails(\"c4",
       "utilities.getpropertybyvalu",
       "utilities.guessnotenumb",
+      "utilities.isbrows",
+      "utilities.isnod",
       "utilities.offsetnumb",
       "utilities.sanitizechannel",
       "utilities.tonoteidentifi",
@@ -59766,8 +59576,6 @@ window.lunrData = {
       "webmidi#haslisten",
       "webmidi#input",
       "webmidi#interfac",
-      "webmidi#isbrows",
-      "webmidi#isnod",
       "webmidi#octaveoffset",
       "webmidi#output",
       "webmidi#removelisten",
@@ -59824,9 +59632,9 @@ window.lunrData = {
     "index.html": {
       "id": "index.html",
       "kind": "readme",
-      "title": "WebMidi.js API",
+      "title": "WEBMIDI.js API",
       "longname": "index",
-      "name": "WebMidi.js API",
+      "name": "WEBMIDI.js API",
       "tags": "index",
       "summary": "A JavaScript library to kickstart your MIDI projects",
       "description": "",
@@ -59903,7 +59711,7 @@ window.lunrData = {
       "name": "MIDI_CHANNEL_NUMBERS",
       "tags": "Enumerations.MIDI_CHANNEL_NUMBERS MIDI_CHANNEL_NUMBERS",
       "summary": "",
-      "description": "An simple array of the 16 valid MIDI channel numbers (1 to 16):"
+      "description": "A simple array of the 16 valid MIDI channel numbers (1 to 16):"
     },
     "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
       "id": "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES",
@@ -60301,7 +60109,7 @@ window.lunrData = {
     "Input.html#addForwarder": {
       "id": "Input.html#addForwarder",
       "kind": "function",
-      "title": "addForwarder( [ destinations [, options ] ] ) → {Forwarder}",
+      "title": "addForwarder( output [, options ] ) → {Forwarder}",
       "longname": "Input#addForwarder",
       "name": "addForwarder",
       "tags": "Input#addForwarder addForwarder",
@@ -60622,7 +60430,7 @@ window.lunrData = {
     "InputChannel.html#getNoteState": {
       "id": "InputChannel.html#getNoteState",
       "kind": "function",
-      "title": "getNoteState( [ input ] ) → {boolean}",
+      "title": "getNoteState( note ) → {boolean}",
       "longname": "InputChannel#getNoteState",
       "name": "getNoteState",
       "tags": "InputChannel#getNoteState getNoteState",
@@ -60965,7 +60773,7 @@ window.lunrData = {
     "Note.html#number": {
       "id": "Note.html#number",
       "kind": "member",
-      "title": "number :number",
+      "title": "&lt;readonly&gt; number :number",
       "longname": "Note#number",
       "name": "number",
       "tags": "Note#number number",
@@ -61887,7 +61695,7 @@ window.lunrData = {
     "OutputChannel.html#sendKeyAftertouch": {
       "id": "OutputChannel.html#sendKeyAftertouch",
       "kind": "function",
-      "title": "sendKeyAftertouch( note [, pressure [, options ] ] ) → {OutputChannel}",
+      "title": "sendKeyAftertouch( target [, pressure [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#sendKeyAftertouch",
       "name": "sendKeyAftertouch",
       "tags": "OutputChannel#sendKeyAftertouch sendKeyAftertouch",
@@ -61947,7 +61755,7 @@ window.lunrData = {
     "OutputChannel.html#sendNrpnValue": {
       "id": "OutputChannel.html#sendNrpnValue",
       "kind": "function",
-      "title": "sendNrpnValue( parameter [, data [, options ] ] ) → {OutputChannel}",
+      "title": "sendNrpnValue( nrpn [, data [, options ] ] ) → {OutputChannel}",
       "longname": "OutputChannel#sendNrpnValue",
       "name": "sendNrpnValue",
       "tags": "OutputChannel#sendNrpnValue sendNrpnValue",
@@ -62115,6 +61923,26 @@ window.lunrData = {
       "description": "The Utilities class contains general-purpose utility methods. All methods are static and should be called using the class name. For example: Utilities.getNoteDetails(\"C4\").",
       "body": ""
     },
+    "Utilities.html#.isBrowser": {
+      "id": "Utilities.html#.isBrowser",
+      "kind": "member",
+      "title": "&lt;static&gt; isBrowser :boolean",
+      "longname": "Utilities.isBrowser",
+      "name": "isBrowser",
+      "tags": "Utilities.isBrowser isBrowser",
+      "summary": "",
+      "description": "Indicates whether the execution environment is a browser (true) or not (false)"
+    },
+    "Utilities.html#.isNode": {
+      "id": "Utilities.html#.isNode",
+      "kind": "member",
+      "title": "&lt;static&gt; isNode :boolean",
+      "longname": "Utilities.isNode",
+      "name": "isNode",
+      "tags": "Utilities.isNode isNode",
+      "summary": "",
+      "description": "Indicates whether the execution environment is Node.js (true) or not (false)"
+    },
     "Utilities.html#.buildNote": {
       "id": "Utilities.html#.buildNote",
       "kind": "function",
@@ -62153,7 +61981,7 @@ window.lunrData = {
       "name": "fromFloatTo7Bit",
       "tags": "Utilities.fromFloatTo7Bit fromFloatTo7Bit",
       "summary": "",
-      "description": "Returns a number between 0 and 127 which is the result of multiplying the input value by 127. The input value should be number between 0 and 1 (inclusively). The returned value is restricted between 0 and 127 even if the input is greater than 1 or smaller than 0. Passing Infinity will return 127 and passing -Infinity will return 0. Otherwise, when the input value cannot be converted to a number, the method returns 0."
+      "description": "Returns an integer between 0 and 127 which is the result of multiplying the input value by 127. The input value should be a number between 0 and 1 (inclusively). The returned value is restricted between 0 and 127 even if the input is greater than 1 or smaller than 0. Passing Infinity will return 127 and passing -Infinity will return 0. Otherwise, when the input value cannot be converted to a number, the method returns 0."
     },
     "Utilities.html#.fromFloatToMsbLsb": {
       "id": "Utilities.html#.fromFloatToMsbLsb",
@@ -62218,7 +62046,7 @@ window.lunrData = {
     "Utilities.html#.guessNoteNumber": {
       "id": "Utilities.html#.guessNoteNumber",
       "kind": "function",
-      "title": "&lt;static&gt; guessNoteNumber( input ) → {number|false}",
+      "title": "&lt;static&gt; guessNoteNumber( input, octaveOffset ) → {number|false}",
       "longname": "Utilities.guessNoteNumber",
       "name": "guessNoteNumber",
       "tags": "Utilities.guessNoteNumber guessNoteNumber",
@@ -62359,32 +62187,12 @@ window.lunrData = {
     "WebMidi.html#interface": {
       "id": "WebMidi.html#interface",
       "kind": "member",
-      "title": "&lt;readonly, nullable&gt; interface :MIDIAccess",
+      "title": "&lt;readonly&gt; interface :MIDIAccess",
       "longname": "WebMidi#interface",
       "name": "interface",
       "tags": "WebMidi#interface interface",
       "summary": "",
       "description": "The MIDIAccess instance used to talk to the lower-level Web MIDI API. This should not be used directly unless you know what you are doing."
-    },
-    "WebMidi.html#isBrowser": {
-      "id": "WebMidi.html#isBrowser",
-      "kind": "member",
-      "title": "isBrowser :boolean",
-      "longname": "WebMidi#isBrowser",
-      "name": "isBrowser",
-      "tags": "WebMidi#isBrowser isBrowser",
-      "summary": "",
-      "description": "Indicates whether the current environment is a browser environment or not. If you need to check if we are in Node.js, use isNode. In certain environments (such as Electron and NW.js) isNode and isBrowser can both be true at the same time."
-    },
-    "WebMidi.html#isNode": {
-      "id": "WebMidi.html#isNode",
-      "kind": "member",
-      "title": "isNode :boolean",
-      "longname": "WebMidi#isNode",
-      "name": "isNode",
-      "tags": "WebMidi#isNode isNode",
-      "summary": "",
-      "description": "Indicates whether the current environment is Node.js or not. If you need to check if we are in browser, use isBrowser. In certain environments (such as Electron and NW.js) isNode and isBrowser can both be true at the same time."
     },
     "WebMidi.html#octaveOffset": {
       "id": "WebMidi.html#octaveOffset",
@@ -62479,7 +62287,7 @@ window.lunrData = {
     "WebMidi.html#disable": {
       "id": "WebMidi.html#disable",
       "kind": "function",
-      "title": "&lt;async&gt; disable() → {Promise}",
+      "title": "&lt;async&gt; disable() → {Promise.&lt;Array&gt;}",
       "longname": "WebMidi#disable",
       "name": "disable",
       "tags": "WebMidi#disable disable",
@@ -62509,7 +62317,7 @@ window.lunrData = {
     "WebMidi.html#getInputById": {
       "id": "WebMidi.html#getInputById",
       "kind": "function",
-      "title": "getInputById( id ) → {Input|false}",
+      "title": "getInputById( id ) → {Input}",
       "longname": "WebMidi#getInputById",
       "name": "getInputById",
       "tags": "WebMidi#getInputById getInputById",
@@ -62519,7 +62327,7 @@ window.lunrData = {
     "WebMidi.html#getInputByName": {
       "id": "WebMidi.html#getInputByName",
       "kind": "function",
-      "title": "getInputByName( name ) → {Input|false}",
+      "title": "getInputByName( name ) → {Input}",
       "longname": "WebMidi#getInputByName",
       "name": "getInputByName",
       "tags": "WebMidi#getInputByName getInputByName",
@@ -62549,7 +62357,7 @@ window.lunrData = {
     "WebMidi.html#getOutputById": {
       "id": "WebMidi.html#getOutputById",
       "kind": "function",
-      "title": "getOutputById( id ) → {Output|false}",
+      "title": "getOutputById( id ) → {Output}",
       "longname": "WebMidi#getOutputById",
       "name": "getOutputById",
       "tags": "WebMidi#getOutputById getOutputById",
@@ -62559,7 +62367,7 @@ window.lunrData = {
     "WebMidi.html#getOutputByName": {
       "id": "WebMidi.html#getOutputByName",
       "kind": "function",
-      "title": "getOutputByName( name ) → {Output|false}",
+      "title": "getOutputByName( name ) → {Output}",
       "longname": "WebMidi#getOutputByName",
       "name": "getOutputByName",
       "tags": "WebMidi#getOutputByName getOutputByName",
