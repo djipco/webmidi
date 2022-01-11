@@ -5160,19 +5160,15 @@ declare class WebMidi extends EventEmitter {
      */
     get inputs(): Input[];
     /**
-     * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-     * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-     * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-     * @type {boolean}
+     * @private
+     * @deprecated
      */
-    get isNode(): boolean;
+    private get isNode();
     /**
-     * Indicates whether the current environment is a browser environment or not. If you need to check
-     * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-     * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-     * @type {boolean}
+     * @private
+     * @deprecated
      */
-    get isBrowser(): boolean;
+    private get isBrowser();
     set octaveOffset(arg: number);
     /**
      * An integer to offset the octave of notes received from external devices or sent to external
