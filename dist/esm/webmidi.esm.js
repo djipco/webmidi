@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 10:18:12 */
+/* Version: 3.0.7 - January 11, 2022 10:27:49 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -1975,13 +1975,20 @@ class Utilities {
 
   }
 
-  static isNode() {
-
-    // const isNode = new Function("try { return this === global; } catch(e) { return false; }");
-    // return isNode();
-
+  /**
+   * Indicates whether the execution environment is Node.js (`true`) or not (`false`)
+   * @type {boolean}
+   */
+  static get isNode() {
     return new Function("try { return this === global; } catch(e) { return false; }")();
+  }
 
+  /**
+   * Indicates whether the execution environment is a browser (`true`) or not (`false`)
+   * @type {boolean}
+   */
+  static get isBrowser() {
+    return new Function("try { return this === window; } catch(e) { return false; }")();
   }
 
 }
@@ -8996,7 +9003,7 @@ class WebMidi extends EventEmitter {
     //   // eslint-disable-next-line no-empty
     // } catch (err) {}
 
-    if (Utilities.isNode()) {
+    if (Utilities.isNode) {
       global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
         jzz = await import("jzz");
         return jzz.default;
