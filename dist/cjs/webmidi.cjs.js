@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 20:38:54 */
+/* Version: 3.0.6 - January 10, 2022 20:39:37 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8272,8 +8272,8 @@ class Input extends EventEmitter {
 // }
 
 if (typeof window === "undefined") {
-  let jzz;
-  eval('jzz = require("jzz")');
+  let jzz; // eval('jzz = require("jzz")');
+
   global["navigator"] = jzz;
 }
 /*END-CJS*/
