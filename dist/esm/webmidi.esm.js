@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 21:00:26 */
+/* Version: 3.0.6 - January 10, 2022 21:04:44 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8781,6 +8781,28 @@ class Input extends EventEmitter {
  * @since 2.1
  */
 
+/*START-ESM*/
+
+// If this code is running under Node.js in "module" mode (because "type": "module" is used in
+// the package.json file), then we must import the `jzz` module. This import attempt will fail
+// in the browser, which is what we want (hence the empty catch clause). This block is stripped
+// out in the IIFE and CJS versions where it isn't needed.
+// try {
+//   const jzz = await import("jzz");
+//   global["navigator"] = jzz.default;
+//   // eslint-disable-next-line no-empty
+// } catch (err) {}
+
+if (typeof window === "undefined") {
+  let jzz;
+  eval('jzz = require("jzz")');
+  global["navigator"] = jzz;
+}
+
+/*END-ESM*/
+
+
+
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -8973,26 +8995,6 @@ class WebMidi extends EventEmitter {
    * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
-
-    /*START-ESM*/
-
-    // If this code is running under Node.js in "module" mode (because "type": "module" is used in
-    // the package.json file), then we must import the `jzz` module. This import attempt will fail
-    // in the browser, which is what we want (hence the empty catch clause). This block is stripped
-    // out in the IIFE and CJS versions where it isn't needed.
-    // try {
-    //   const jzz = await import("jzz");
-    //   global["navigator"] = jzz.default;
-    //   // eslint-disable-next-line no-empty
-    // } catch (err) {}
-
-    if (typeof window === "undefined") {
-      let jzz;
-      eval('jzz = await import("jzz")');
-      global["navigator"] = jzz;
-    }
-
-    /*END-ESM*/
 
     this.validation = (options.validation !== false);
 
