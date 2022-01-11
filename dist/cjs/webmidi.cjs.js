@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 18:29:33 */
+/* Version: 3.0.6 - January 10, 2022 19:19:50 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8256,24 +8256,6 @@ class Input extends EventEmitter {
  * @since 2.1
  */
 
-/*START-CJS*/
-// This code is only executed when the CommonJS module is used. This is typically under Node.js but
-// it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a bundle meant
-// for browsers. While this works, it means that, if Webpack is used, the "jzz" module will be
-// unnecessarily included in the bundle and it will never be used.
-//
-// Note: this block of code will be stripped from IIFE and ESM versions.
-
-let jzz = require("jzz"); // import happens in Node.js (fine) and in Webpack bundle (unnecessary)
-
-
-try {
-  global["navigator"] = jzz;
-} catch (err) {
-  jzz = null;
-}
-/*END-CJS*/
-
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -8294,7 +8276,6 @@ try {
  * @extends EventEmitter
  * @license Apache-2.0
  */
-
 
 class WebMidi extends EventEmitter {
   /**
@@ -8466,6 +8447,24 @@ class WebMidi extends EventEmitter {
 
 
   async enable(options = {}, legacy = false) {
+    /*START-CJS*/
+    // This code is only executed when the CommonJS module is used. This is typically under Node.js but
+    // it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a bundle meant
+    // for browsers. While this works, it means that, if Webpack is used, the "jzz" module will be
+    // unnecessarily included in the bundle and it will never be used.
+    //
+    // Note: this block of code will be stripped from IIFE and ESM versions.
+    let jzz = require("jzz"); // import happens in Node (fine) and in Webpack bundle (unnecessary)
+
+
+    try {
+      global["navigator"] = jzz;
+    } catch (err) {
+      jzz = null;
+    }
+    /*END-CJS*/
+
+
     this.validation = options.validation !== false;
 
     if (this.validation) {
