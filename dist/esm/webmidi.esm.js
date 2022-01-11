@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 18:29:45 */
+/* Version: 3.0.6 - January 10, 2022 19:20:02 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8973,6 +8973,7 @@ class WebMidi extends EventEmitter {
    * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
+
 
     /*START-ESM*/
 
