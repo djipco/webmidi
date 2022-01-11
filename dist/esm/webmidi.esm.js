@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 10:13:56 */
+/* Version: 3.0.7 - January 11, 2022 10:18:12 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -1976,11 +1976,11 @@ class Utilities {
   }
 
   static isNode() {
-    // return typeof process !== "undefined" && process.versions != null && process.versions.node != null;
 
-    // const isBrowser=new Function("try {return this===window;}catch(e){ return false;}");
-    const isNode = new Function("try { return this === global; } catch(e) { return false; }");
-    return isNode();
+    // const isNode = new Function("try { return this === global; } catch(e) { return false; }");
+    // return isNode();
+
+    return new Function("try { return this === global; } catch(e) { return false; }")();
 
   }
 
