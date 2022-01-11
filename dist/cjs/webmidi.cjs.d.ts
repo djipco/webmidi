@@ -4902,7 +4902,6 @@ declare class WebMidi extends EventEmitter {
      * @private
      */
     private _octaveOffset;
-    _loadJzzModule(): Promise<void>;
     /**
      * Checks if the Web MIDI API is available in the current environment and then tries to connect to
      * the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
