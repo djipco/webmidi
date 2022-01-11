@@ -2,7 +2,7 @@
  * WEBMIDI.js v3.0.7
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 10th, 2022.
+ * Build generated on January 11th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 10, 2022 21:44:20 */
+/* Version: 3.0.7 - January 11, 2022 09:42:34 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8781,20 +8781,6 @@ class Input extends EventEmitter {
  * @since 2.1
  */
 
-// If the code is being executed on Node.js, we need to load the `jzz` module. As you can see below,
-// I use a hackish eval() to import the module. The reason for that is that it hides the import
-// from Webpack. When Webpack sees an "import" or a "require" during compilation, it tries to bundle
-// the module. The problem is that `jzz` is never used in the browser and bundling it only adds
-// unnecessary weight to the final bundle.
-//
-// This code works with the traditional CommonJS "require' and with the modern "import" (when
-// "type": "module" is used in the package.json file)
-if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
-  let jzz;
-  eval('jzz = require("jzz")');
-  global["navigator"] = jzz;
-}
-
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -8987,6 +8973,31 @@ class WebMidi extends EventEmitter {
    * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
+
+    /*START-ESM*/
+
+    // This block is stripped out in the IIFE and CJS versions where it isn't needed.
+
+    // If this code is running under Node.js in "module" mode (because "type": "module" is used in
+    // the package.json file), then we must import the `jzz` module. This import attempt will fail
+    // in the browser, which is what we want (hence the empty catch clause).
+    // try {
+    //   const jzz = await import("jzz");
+    //   global["navigator"] = jzz.default;
+    //   // eslint-disable-next-line no-empty
+    // } catch (err) {}
+
+    if (
+      typeof process !== "undefined" &&
+      process.versions != null &&
+      process.versions.node != null
+    ) {
+      let jzz;
+      eval('jzz = await import("jzz")');
+      global["navigator"] = jzz.default;
+    }
+
+    /*END-ESM*/
 
     this.validation = (options.validation !== false);
 
