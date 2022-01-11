@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 20:45:51 */
+/* Version: 3.0.6 - January 10, 2022 21:10:42 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8256,6 +8256,11 @@ class Input extends EventEmitter {
  * @since 2.1
  */
 
+if (typeof window === "undefined") {
+  let jzz;
+  eval('jzz = require("jzz")');
+  global["navigator"] = jzz;
+}
 /*START-CJS*/
 // This code is only executed when the CommonJS module is used. This is typically under Node.js
 // but it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a
@@ -8271,13 +8276,12 @@ class Input extends EventEmitter {
 //   jzz = null;
 // }
 // On Node.js, we need to import the `jzz` module
+// if (typeof window === "undefined") {
+//   let jzz;
+//   eval('jzz = require("jzz")'); // This hides the import from Webpack (I feel dirty).
+//   global["navigator"] = jzz;
+// }
 
-if (typeof window === "undefined") {
-  let jzz;
-  eval('jzz = require("jzz")'); // This hides the import from Webpack.
-
-  global["navigator"] = jzz;
-}
 /*END-CJS*/
 
 /**
