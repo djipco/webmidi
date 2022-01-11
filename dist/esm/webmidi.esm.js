@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 20:55:40 */
+/* Version: 3.0.6 - January 10, 2022 20:58:31 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8795,7 +8795,7 @@ class Input extends EventEmitter {
 
 if (typeof window === "undefined") {
   let jzz;
-  eval('jzz = await import("jzz")'); // This hides the import from Webpack (I feel dirty).
+  eval('(async () => { jzz = await import("jzz") })()');
   global["navigator"] = jzz;
 }
 
