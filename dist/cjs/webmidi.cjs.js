@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 21:10:42 */
+/* Version: 3.0.6 - January 10, 2022 21:24:52 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8255,6 +8255,14 @@ class Input extends EventEmitter {
  *
  * @since 2.1
  */
+
+// I use a hackish eval() to import the module. The reason for that is that it hides the import
+// from Webpack. When Webpack sees an "import" or a "require" during compilation, it tries to bundle
+// the module. The problem is that `jzz` is never used in the browser and bundling it only adds
+// unnecessary weight to the final bundle.
+//
+// This code works in traditional with traditional CommonJS "require' and modern "import" (when
+// "type": "module" is used in the package.json file)
 
 if (typeof window === "undefined") {
   let jzz;
