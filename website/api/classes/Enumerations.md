@@ -26,7 +26,7 @@ events and RPN/NRPN events.
 **Attributes**: read-only, static<br />
 
 
-An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
+A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
 
 
 

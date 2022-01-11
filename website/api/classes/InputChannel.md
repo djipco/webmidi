@@ -13,7 +13,7 @@ property.
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`channelaftertouch`](#event:channelaftertouch), [`controlchange`](#event:controlchange), [`controlchange-controllerxxx`](#event:controlchange-controllerxxx), [`keyaftertouch`](#event:keyaftertouch), [`localcontrol`](#event:localcontrol), [`midimessage`](#event:midimessage), [`monomode`](#event:monomode), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`nrpn`](#event:nrpn), [`nrpn-databuttondecrement`](#event:nrpn-databuttondecrement), [`nrpn-databuttonincrement`](#event:nrpn-databuttonincrement), [`nrpn-dataentrycoarse`](#event:nrpn-dataentrycoarse), [`nrpn-dataentryfine`](#event:nrpn-dataentryfine), [`omnimode`](#event:omnimode), [`pitchbend`](#event:pitchbend), [`programchange`](#event:programchange), [`resetallcontrollers`](#event:resetallcontrollers), [`rpn`](#event:rpn), [`rpn-databuttondecrement`](#event:rpn-databuttondecrement), [`rpn-databuttonincrement`](#event:rpn-databuttonincrement), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse), [`rpn-dataentryfine`](#event:rpn-dataentryfine)
+**Fires**: [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`channelaftertouch`](#event:channelaftertouch), [`controlchange`](#event:controlchange), [`controlchange-controllerxxx`](#event:controlchange-controllerxxx), [`keyaftertouch`](#event:keyaftertouch), [`localcontrol`](#event:localcontrol), [`midimessage`](#event:midimessage), [`monomode`](#event:monomode), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`nrpn`](#event:nrpn), [`nrpn-databuttondecrement`](#event:nrpn-databuttondecrement), [`nrpn-databuttonincrement`](#event:nrpn-databuttonincrement), [`nrpn-dataentrycoarse`](#event:nrpn-dataentrycoarse), [`nrpn-dataentryfine`](#event:nrpn-dataentryfine), [`omnimode`](#event:omnimode), [`pitchbend`](#event:pitchbend), [`programchange`](#event:programchange), [`resetallcontrollers`](#event:resetallcontrollers), [`rpn`](#event:rpn), [`rpn-databuttondecrement`](#event:rpn-databuttondecrement), [`rpn-databuttonincrement`](#event:rpn-databuttonincrement), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse), [`rpn-dataentryfine`](#event:rpn-dataentryfine), [`unknownmessage`](#event:unknownmessage)
 
 ### `Constructor`
 
@@ -161,7 +161,7 @@ listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to.|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to.|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
@@ -206,7 +206,7 @@ global listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
@@ -304,7 +304,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -339,7 +339,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -366,13 +366,13 @@ defined.
 
   **Parameters**
 
-  > Signature: `getNoteState([input])`
+  > Signature: `getNoteState(note)`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`input`**] | number<br />string<br />Note<br /> ||The note to get the state for. The [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and [`Note`](Note) objects.|
+    |**`note`** | number<br />string<br />Note<br /> ||The note to get the state for. The [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and [`Note`](Note) objects.|
 
   </div>
 
@@ -405,7 +405,7 @@ Note: to specifically check for global listeners added with
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> |(any event)|The event to check|
+    |[**`event`**] | string<br />Symbol<br /> |(any event)|The event to check|
     |[**`callback`**] | function<br />Listener<br /> |(any callback)|The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
@@ -438,11 +438,11 @@ callback to match or one or more of the additional options.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br /> |(any events)|The event name.|
-    |[**`callback`**] | EventEmitter~callback<br /> |(any callbacks)|Only remove the listeners that match this exact callback function.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.context`**] | *<br /> |(any contexts)|Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] | number<br /> |(any number)|Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`event`**] | string<br /> ||The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`options`**] | Object<br /> |||
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
 
   </div>
 
@@ -474,7 +474,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -505,7 +505,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -537,7 +537,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 
@@ -819,6 +819,7 @@ The parameter to which the message applies can be found in the event's `paramete
   |**`subtype`** |string|The precise type of NRPN message that was received.|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |number|The non-registered parameter number (0-16383)|
   |**`parameterMsb`** |number|The MSB portion of the non-registered parameter number (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the non-registered parameter number (0-127)|
@@ -845,6 +846,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`nrpn-databuttondecrement`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -871,6 +873,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`nrpn-databuttonincrement`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -897,6 +900,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`nrpn-dataentrycoarse`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -923,6 +927,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`nrpn-dataentryfine`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -1038,6 +1043,7 @@ It is one of the ones defined in
   |**`subtype`** |string|The precise type of RPN message that was received.|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -1064,6 +1070,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`rpn-databuttondecrement`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -1090,6 +1097,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`rpn-databuttonincrement`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -1116,6 +1124,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`rpn-dataentrycoarse`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
@@ -1142,6 +1151,7 @@ property. It is one of the ones defined in
   |**`type`** |string|`rpn-dataentryfine`|
   |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
   |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
   |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|

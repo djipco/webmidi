@@ -13,7 +13,7 @@ module) version, you get an already-instantiated object when you import the modu
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`connected`](#event:connected), [`disabled`](#event:disabled), [`disconnected`](#event:disconnected), [`enabled`](#event:enabled), [`midiaccessgranted`](#event:midiaccessgranted)
+**Fires**: [`connected`](#event:connected), [`disabled`](#event:disabled), [`disconnected`](#event:disconnected), [`enabled`](#event:enabled), [`error`](#event:error), [`midiaccessgranted`](#event:midiaccessgranted), [`portschanged`](#event:portschanged)
 
 ### `Constructor`
 
@@ -104,30 +104,12 @@ An array of all currently available MIDI inputs.
 
 ### `.interface` {#interface}
 **Type**: MIDIAccess<br />
-**Attributes**: read-only, nullable<br />
+**Attributes**: read-only<br />
 
 
 The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
 instance used to talk to the lower-level Web MIDI API. This should not be used directly
 unless you know what you are doing.
-
-
-### `.isBrowser` {#isBrowser}
-**Type**: boolean<br />
-
-
-Indicates whether the current environment is a browser environment or not. If you need to check
-if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-
-
-### `.isNode` {#isNode}
-**Type**: boolean<br />
-
-
-Indicates whether the current environment is Node.js or not. If you need to check if we are in
-browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-[`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
 
 
 ### `.octaveOffset` {#octaveOffset}
@@ -237,7 +219,7 @@ listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to.|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to.|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
@@ -282,7 +264,7 @@ global listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
@@ -319,7 +301,7 @@ are also destroyed.
 
 **Return Value**
 
-> Returns: `Promise`<br />
+> Returns: `Promise.<Array>`<br />
 
 
 **Throws**:
@@ -476,9 +458,9 @@ kind of IDs as Jazz-Plugin.
 
 **Return Value**
 
-> Returns: `Input` or `false`<br />
+> Returns: `Input`<br />
 
-An [`Input`](Input) object matching the specified ID string or `false`
+An [`Input`](Input) object matching the specified ID string or `undefined`
 if no matching input can be found.
 
 
@@ -510,9 +492,9 @@ input names in the same way as the Jazz-Plugin does.
 
 **Return Value**
 
-> Returns: `Input` or `false`<br />
+> Returns: `Input`<br />
 
-The [`Input`](Input) that was found or `false` if no input contained the
+The [`Input`](Input) that was found or `undefined` if no input contained the
 specified name.
 
 
@@ -539,7 +521,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -574,7 +556,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -615,10 +597,10 @@ kind of IDs as Jazz-Plugin.
 
 **Return Value**
 
-> Returns: `Output` or `false`<br />
+> Returns: `Output`<br />
 
 An [`Output`](Output) object matching the specified ID string. If no
-matching output can be found, the method returns `false`.
+matching output can be found, the method returns `undefined`.
 
 
 **Throws**:
@@ -649,9 +631,9 @@ input names in the same way as the Jazz-Plugin does.
 
 **Return Value**
 
-> Returns: `Output` or `false`<br />
+> Returns: `Output`<br />
 
-The [`Output`](Output) that was found or `false` if no output matched
+The [`Output`](Output) that was found or `undefined` if no output matched
 the specified name.
 
 
@@ -680,7 +662,7 @@ Note: to specifically check for global listeners added with
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> |(any event)|The event to check|
+    |[**`event`**] | string<br />Symbol<br /> |(any event)|The event to check|
     |[**`callback`**] | function<br />Listener<br /> |(any callback)|The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
@@ -713,11 +695,11 @@ callback to match or one or more of the additional options.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br /> |(any events)|The event name.|
-    |[**`callback`**] | EventEmitter~callback<br /> |(any callbacks)|Only remove the listeners that match this exact callback function.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.context`**] | *<br /> |(any contexts)|Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] | number<br /> |(any number)|Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`event`**] | string<br /> ||The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`options`**] | Object<br /> |||
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
 
   </div>
 
@@ -749,7 +731,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -780,7 +762,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -812,7 +794,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 

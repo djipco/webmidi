@@ -100,6 +100,7 @@ The name (letter) of the note
 ### `.number` {#number}
 **Since**: 3.0.0<br />
 **Type**: number<br />
+**Attributes**: read-only<br />
 
 
 The MIDI number of the note (`0` - `127`). This number is derived from the note identifier

@@ -177,16 +177,16 @@ the added benefit of being able to filter which data is forwarded.
 
   **Parameters**
 
-  > Signature: `addForwarder([destinations], [options])`
+  > Signature: `addForwarder(output, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`destinations`**] | Output<br />Array.&lt;Output&gt;<br /> |\[\]|An [`Output`](Output) object, or an array of such objects, to forward messages to.|
+    |**`output`** | Output<br />Array.&lt;Output&gt;<br /> ||An [`Output`](Output) object, or an array of such objects, to forward messages to.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.types`**] | string<br />Array.&lt;string&gt;<br /> |(all messages)|A message type, or an array of such types (`noteon`, `controlchange`, etc.), that the message type must match in order to be forwarded. If this option is not specified, all types of messages will be forwarded. Valid messages are the ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).|
-    |[**`options.channels`**] | number<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. By default all MIDI channels are included (`1` to `16`).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. By default all MIDI channels are included (`1` to `16`).|
 
   </div>
 
@@ -330,7 +330,7 @@ There are 8 families of events you can listen to:
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br /> ||The type of the event.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
@@ -594,7 +594,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -629,7 +629,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -801,7 +801,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -832,7 +832,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -864,7 +864,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 
@@ -974,13 +974,7 @@ when the MIDI device is unplugged.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`disconnected`|
-  |**`target`** |object|Object with properties describing the [Input](Input) that triggered the event. This is not the actual `Input` as it is no longer available.|
-  |**`target.connection`** |string|`"closed"`|
-  |**`target.id`** |string|ID of the input|
-  |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
-  |**`target.name`** |string|Name of the device that provided the input|
-  |**`target.state`** |string|`disconnected`|
-  |**`target.type`** |string|`input`|
+  |**`target`** |Input|The `Input` that triggered the event.|
 
 
 ### `midimessage` {#event-midimessage}
@@ -1079,8 +1073,8 @@ Input-wide (system) event emitted when a **song select** message has been receiv
   |**`target`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`songselect`|
-  |**`song`** |string|Song (or sequence) number to select (0-127)|
+  |**`value`** |string|Song (or sequence) number to select (0-127)|
+  |**`rawValue`** |string|Song (or sequence) number to select (0-127)|
 
 
 ### `start` {#event-start}
@@ -1190,9 +1184,9 @@ Input-wide (system) event emitted when a **tune request** message has been recei
   |**`type`** |string|`tunerequest`|
 
 
-### `unknownmidimessage` {#event-unknownmidimessage}
+### `unknownmessage` {#event-unknownmessage}
 
-<a id="event:unknownmidimessage"></a>
+<a id="event:unknownmessage"></a>
 
 
 Input-wide (system) event emitted when an unknown MIDI message has been received. It could
@@ -1208,7 +1202,7 @@ be, for example, one of the undefined/reserved messages.
   |**`target`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`unknownmidimessage`|
+  |**`type`** |string|`unknownmessage`|
 
 
 
