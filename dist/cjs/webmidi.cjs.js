@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 10:18:00 */
+/* Version: 3.0.7 - January 11, 2022 10:27:36 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1907,11 +1907,23 @@ class Utilities {
 
     return false;
   }
+  /**
+   * Indicates whether the execution environment is Node.js (`true`) or not (`false`)
+   * @type {boolean}
+   */
 
-  static isNode() {
-    // const isNode = new Function("try { return this === global; } catch(e) { return false; }");
-    // return isNode();
+
+  static get isNode() {
     return new Function("try { return this === global; } catch(e) { return false; }")();
+  }
+  /**
+   * Indicates whether the execution environment is a browser (`true`) or not (`false`)
+   * @type {boolean}
+   */
+
+
+  static get isBrowser() {
+    return new Function("try { return this === window; } catch(e) { return false; }")();
   }
 
 }
@@ -8271,7 +8283,7 @@ class Input extends EventEmitter {
 // weight.
 // if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
 
-if (Utilities.isNode()) {
+if (Utilities.isNode) {
   let jzz;
   eval('jzz = require("jzz")');
   global["navigator"] = jzz;
