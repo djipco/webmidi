@@ -2,7 +2,7 @@
  * WEBMIDI.js v3.0.7
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 10th, 2022.
+ * Build generated on January 11th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 10, 2022 21:44:08 */
+/* Version: 3.0.7 - January 11, 2022 10:13:44 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1906,6 +1906,13 @@ class Utilities {
     }
 
     return false;
+  }
+
+  static isNode() {
+    // return typeof process !== "undefined" && process.versions != null && process.versions.node != null;
+    // const isBrowser=new Function("try {return this===window;}catch(e){ return false;}");
+    const isNode = new Function("try { return this === global; } catch(e) { return false; }");
+    return isNode();
   }
 
 }
@@ -8256,19 +8263,22 @@ class Input extends EventEmitter {
  * @since 2.1
  */
 
+/*START-CJS*/
+// This code will only be included in the CJS version (CommonJS).
+// If the code is being executed by Node.js, we need to load the `jzz` module. As you can see below,
 // I use a hackish eval() to import the module. The reason for that is that it hides the import
-// from Webpack. When Webpack sees an "import" or a "require" during compilation, it tries to bundle
-// the module. The problem is that `jzz` is never used in the browser and bundling it only adds
-// unnecessary weight to the final bundle.
-//
-// This code works with the traditional CommonJS "require' and with the modern "import" (when
-// "type": "module" is used in the package.json file)
+// from Webpack. When Webpack sees a "require" during compilation, it tries to bundle the module.
+// The problem is that `jzz` is never used in the browser and bundling it only adds unnecessary
+// weight.
+// if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
 
-if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
+if (Utilities.isNode()) {
   let jzz;
   eval('jzz = require("jzz")');
   global["navigator"] = jzz;
 }
+/*END-CJS*/
+
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
