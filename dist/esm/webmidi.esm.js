@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 21:04:44 */
+/* Version: 3.0.6 - January 10, 2022 21:06:32 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8795,7 +8795,7 @@ class Input extends EventEmitter {
 
 if (typeof window === "undefined") {
   let jzz;
-  eval('jzz = require("jzz")');
+  // eval('jzz = require("jzz")');
   global["navigator"] = jzz;
 }
 
