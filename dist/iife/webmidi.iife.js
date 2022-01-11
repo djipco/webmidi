@@ -1,5 +1,5 @@
 /**
- * WEBMIDI.js v3.0.7
+ * WEBMIDI.js v3.0.8
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on January 11th, 2022.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 10:56:39 */
+/* Version: 3.0.8 - January 11, 2022 11:03:57 */
 (function (exports) {
   'use strict';
 
@@ -9213,7 +9213,7 @@
 
 
     get version() {
-      return "3.0.7";
+      return "3.0.8";
     }
     /**
      * @private
