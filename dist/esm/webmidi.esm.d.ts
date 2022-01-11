@@ -4315,7 +4315,16 @@ export class Utilities {
      * @since 2.0.0
      */
     static getChannelModeByNumber(number: number): string | false;
-    static isNode(): any;
+    /**
+     * Indicates whether the execution environment is Node.js (`true`) or not (`false`)
+     * @type {boolean}
+     */
+    static get isNode(): boolean;
+    /**
+     * Indicates whether the execution environment is a browser (`true`) or not (`false`)
+     * @type {boolean}
+     */
+    static get isBrowser(): boolean;
 }
 declare const wm: WebMidi;
 /**
