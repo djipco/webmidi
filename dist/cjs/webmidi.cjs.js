@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 21:24:52 */
+/* Version: 3.0.6 - January 10, 2022 21:39:33 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8261,37 +8261,14 @@ class Input extends EventEmitter {
 // the module. The problem is that `jzz` is never used in the browser and bundling it only adds
 // unnecessary weight to the final bundle.
 //
-// This code works in traditional with traditional CommonJS "require' and modern "import" (when
+// This code works with the traditional CommonJS "require' and with the modern "import" (when
 // "type": "module" is used in the package.json file)
 
-if (typeof window === "undefined") {
+if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
   let jzz;
   eval('jzz = require("jzz")');
   global["navigator"] = jzz;
 }
-/*START-CJS*/
-// This code is only executed when the CommonJS module is used. This is typically under Node.js
-// but it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a
-// bundle meant for browsers. While this works, it means that, if Webpack is used, the "jzz"
-// module will be unnecessarily included in the bundle and it will never be used.
-//
-// Note: this block of code will be stripped from IIFE and ESM versions.
-// let jzz = require("jzz"); // import happens in Node (fine) and in Webpack bundle (unnecessary)
-//
-// try {
-//   global["navigator"] = jzz;
-// } catch (err) {
-//   jzz = null;
-// }
-// On Node.js, we need to import the `jzz` module
-// if (typeof window === "undefined") {
-//   let jzz;
-//   eval('jzz = require("jzz")'); // This hides the import from Webpack (I feel dirty).
-//   global["navigator"] = jzz;
-// }
-
-/*END-CJS*/
-
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
