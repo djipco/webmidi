@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 19:39:13 */
+/* Version: 3.0.6 - January 10, 2022 20:23:41 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8256,6 +8256,28 @@ class Input extends EventEmitter {
  * @since 2.1
  */
 
+/*START-CJS*/
+// This code is only executed when the CommonJS module is used. This is typically under Node.js
+// but it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a
+// bundle meant for browsers. While this works, it means that, if Webpack is used, the "jzz"
+// module will be unnecessarily included in the bundle and it will never be used.
+//
+// Note: this block of code will be stripped from IIFE and ESM versions.
+// let jzz = require("jzz"); // import happens in Node (fine) and in Webpack bundle (unnecessary)
+//
+// try {
+//   global["navigator"] = jzz;
+// } catch (err) {
+//   jzz = null;
+// }
+
+if (typeof window === "undefined") {
+  let jzz;
+  eval('jzz = require("jzz")');
+  global["navigator"] = jzz;
+}
+/*END-CJS*/
+
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -8276,6 +8298,7 @@ class Input extends EventEmitter {
  * @extends EventEmitter
  * @license Apache-2.0
  */
+
 
 class WebMidi extends EventEmitter {
   /**
@@ -8373,26 +8396,6 @@ class WebMidi extends EventEmitter {
      */
 
     this._octaveOffset = 0;
-  }
-
-  async _loadJzzModule() {
-    /*START-CJS*/
-    // This code is only executed when the CommonJS module is used. This is typically under Node.js
-    // but it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a
-    // bundle meant for browsers. While this works, it means that, if Webpack is used, the "jzz"
-    // module will be unnecessarily included in the bundle and it will never be used.
-    //
-    // Note: this block of code will be stripped from IIFE and ESM versions.
-    let jzz = require("jzz"); // import happens in Node (fine) and in Webpack bundle (unnecessary)
-
-
-    try {
-      global["navigator"] = jzz;
-    } catch (err) {
-      jzz = null;
-    }
-    /*END-CJS*/
-
   }
   /**
    * Checks if the Web MIDI API is available in the current environment and then tries to connect to
