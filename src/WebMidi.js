@@ -4,20 +4,24 @@ import {Output} from "./Output.js";
 import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";
 
-// If the code is being executed on Node.js, we need to load the `jzz` module. As you can see below,
-// I use a hackish eval() to import the module. The reason for that is that it hides the import
-// from Webpack. When Webpack sees an "import" or a "require" during compilation, it tries to bundle
-// the module. The problem is that `jzz` is never used in the browser and bundling it only adds
-// unnecessary weight to the final bundle.
+/*START-CJS*/
+
+// This code is only executed when the CommonJS module is used. This is typically under Node.js but
+// it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a bundle meant
+// for browsers. While this works, it means that, if Webpack is used, the "jzz" module will be
+// unnecessarily included in the bundle and it will never be used.
 //
-// This code works with the traditional CommonJS "require' BUT WILL IT WORK with the modern "import"
-// (when "type": "module" is used in the package.json file)
-// @todo more tests needed when using import in Node.js
-if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
-  let jzz;
-  eval('jzz = require("jzz")');
+// Note: this block of code will be stripped from IIFE and ESM versions.
+
+let jzz = require("jzz"); // import happens in Node.js (fine) and in Webpack bundle (unnecessary)
+
+try {
   global["navigator"] = jzz;
+} catch (err) {
+  jzz = null;
 }
+
+/*END-CJS*/
 
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
@@ -211,6 +215,20 @@ class WebMidi extends EventEmitter {
    * @throws {Error} Jazz-Plugin must be installed to use WebMIDIAPIShim.
    */
   async enable(options = {}, legacy = false) {
+
+    /*START-ESM*/
+
+    // If this code is running under Node.js in "module" mode (because "type": "module" is used in
+    // the package.json file), then we must import the `jzz` module. This import attempt will fail
+    // in the browser, which is what we want (hence the empty catch clause). This block is stripped
+    // out in the IIFE and CJS versions where it isn't needed.
+    try {
+      const jzz = await import("jzz");
+      global["navigator"] = jzz.default;
+      // eslint-disable-next-line no-empty
+    } catch (err) {}
+
+    /*END-ESM*/
 
     this.validation = (options.validation !== false);
 
