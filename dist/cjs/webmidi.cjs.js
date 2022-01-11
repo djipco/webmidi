@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 10:27:36 */
+/* Version: 3.0.7 - January 11, 2022 10:46:06 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -3845,12 +3845,12 @@ class Output extends EventEmitter {
     // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
     // does not support using Uint8Array).
     if (message instanceof Message) {
-      message = wm.isNode ? message.data : message.rawData;
+      message = Utilities.isNode ? message.data : message.rawData;
     } // If the data is a Uint8Array and we are on Node, we must convert it to array so it works with
     // the jzz module.
 
 
-    if (message instanceof Uint8Array && wm.isNode) {
+    if (message instanceof Uint8Array && Utilities.isNode) {
       message = Array.from(message);
     } // Validation
 
@@ -8276,12 +8276,9 @@ class Input extends EventEmitter {
 
 /*START-CJS*/
 // This code will only be included in the CJS version (CommonJS).
-// If the code is being executed by Node.js, we need to load the `jzz` module. As you can see below,
-// I use a hackish eval() to import the module. The reason for that is that it hides the import
-// from Webpack. When Webpack sees a "require" during compilation, it tries to bundle the module.
-// The problem is that `jzz` is never used in the browser and bundling it only adds unnecessary
-// weight.
-// if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
+// If this code is executed by Node.js then we must import the `jzz` module. I import it in this
+// convoluted way to prevent Webpack from automatically bundling it in browser bundles where it
+// isn't needed.
 
 if (Utilities.isNode) {
   let jzz;
@@ -9069,7 +9066,7 @@ class WebMidi extends EventEmitter {
   // injectPluginMarkup(parent) {
   //
   //   // Silently ignore on Node.js
-  //   if (this.isNode) return;
+  //   if (Utilities.isNode) return;
   //
   //   // Default to <body> if no parent is specified
   //   if (!(parent instanceof Element) && !(parent instanceof HTMLDocument)) {
@@ -9110,29 +9107,30 @@ class WebMidi extends EventEmitter {
     return this._inputs;
   }
   /**
-   * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-   * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-   * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-   * @type {boolean}
+   * @private
+   * @deprecated
    */
 
 
   get isNode() {
-    return Object.prototype.toString.call(typeof process !== "undefined" ? process : 0) === "[object process]"; // Alternative way to try
-    // return typeof process !== "undefined" &&
-    //   process.versions != null &&
-    //   process.versions.node != null;
+    if (this.validation) {
+      console.warn("WebMidi.isNode has been deprecated. Use Utilities.isNode instead.");
+    }
+
+    return Utilities.isNode;
   }
   /**
-   * Indicates whether the current environment is a browser environment or not. If you need to check
-   * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-   * @type {boolean}
+   * @private
+   * @deprecated
    */
 
 
   get isBrowser() {
-    return typeof window !== "undefined" && typeof window.document !== "undefined";
+    if (this.validation) {
+      console.warn("WebMidi.isBrowser has been deprecated. Use Utilities.isBrowser instead.");
+    }
+
+    return Utilities.isBrowser;
   }
   /**
    * An integer to offset the octave of notes received from external devices or sent to external
