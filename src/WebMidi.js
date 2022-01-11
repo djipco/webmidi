@@ -10,8 +10,9 @@ import {Enumerations} from "./Enumerations.js";
 // the module. The problem is that `jzz` is never used in the browser and bundling it only adds
 // unnecessary weight to the final bundle.
 //
-// This code works with the traditional CommonJS "require' and with the modern "import" (when
-// "type": "module" is used in the package.json file)
+// This code works with the traditional CommonJS "require' BUT WILL IT WORK with the modern "import"
+// (when "type": "module" is used in the package.json file)
+// @todo more tests needed when using import in Node.js
 if (typeof process !== "undefined" && process.versions != null && process.versions.node != null) {
   let jzz;
   eval('jzz = require("jzz")');
