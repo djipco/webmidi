@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 20:46:18 */
+/* Version: 3.0.6 - January 10, 2022 21:11:09 */
 (function (exports) {
   'use strict';
 
@@ -8255,6 +8255,11 @@
    * @since 2.1
    */
 
+  if (typeof window === "undefined") {
+    let jzz;
+    eval('jzz = require("jzz")');
+    global["navigator"] = jzz;
+  }
   /**
    * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
    * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -8275,6 +8280,7 @@
    * @extends EventEmitter
    * @license Apache-2.0
    */
+
 
   class WebMidi extends EventEmitter {
     /**
