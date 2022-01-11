@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 21:11:09 */
+/* Version: 3.0.6 - January 10, 2022 21:25:17 */
 (function (exports) {
   'use strict';
 
@@ -8255,11 +8255,60 @@
    * @since 2.1
    */
 
+  // I use a hackish eval() to import the module. The reason for that is that it hides the import
+  // from Webpack. When Webpack sees an "import" or a "require" during compilation, it tries to bundle
+  // the module. The problem is that `jzz` is never used in the browser and bundling it only adds
+  // unnecessary weight to the final bundle.
+  //
+  // This code works in traditional with traditional CommonJS "require' and modern "import" (when
+  // "type": "module" is used in the package.json file)
+
   if (typeof window === "undefined") {
     let jzz;
     eval('jzz = require("jzz")');
     global["navigator"] = jzz;
   }
+  /*START-CJS*/
+  // This code is only executed when the CommonJS module is used. This is typically under Node.js
+  // but it might also be run in a browser if a bundler (i.e. Webpack) includes the file in a
+  // bundle meant for browsers. While this works, it means that, if Webpack is used, the "jzz"
+  // module will be unnecessarily included in the bundle and it will never be used.
+  //
+  // Note: this block of code will be stripped from IIFE and ESM versions.
+  // let jzz = require("jzz"); // import happens in Node (fine) and in Webpack bundle (unnecessary)
+  //
+  // try {
+  //   global["navigator"] = jzz;
+  // } catch (err) {
+  //   jzz = null;
+  // }
+  // On Node.js, we need to import the `jzz` module
+  // if (typeof window === "undefined") {
+  //   let jzz;
+  //   eval('jzz = require("jzz")'); // This hides the import from Webpack (I feel dirty).
+  //   global["navigator"] = jzz;
+  // }
+
+  /*END-CJS*/
+
+  /*START-ESM*/
+  // If this code is running under Node.js in "module" mode (because "type": "module" is used in
+  // the package.json file), then we must import the `jzz` module. This import attempt will fail
+  // in the browser, which is what we want (hence the empty catch clause). This block is stripped
+  // out in the IIFE and CJS versions where it isn't needed.
+  // try {
+  //   const jzz = await import("jzz");
+  //   global["navigator"] = jzz.default;
+  //   // eslint-disable-next-line no-empty
+  // } catch (err) {}
+  // if (typeof window === "undefined") {
+  //   let jzz;
+  //   eval('jzz = require("jzz")');
+  //   global["navigator"] = jzz;
+  // }
+
+  /*END-ESM*/
+
   /**
    * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
    * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
