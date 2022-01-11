@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 19:38:12 */
+/* Version: 3.0.6 - January 10, 2022 19:39:13 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8467,7 +8467,6 @@ class WebMidi extends EventEmitter {
 
 
   async enable(options = {}, legacy = false) {
-    await this._loadJzzModule();
     this.validation = options.validation !== false;
 
     if (this.validation) {
