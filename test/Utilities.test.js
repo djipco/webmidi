@@ -1192,6 +1192,24 @@ describe("Utilities Object", function() {
 
   });
 
+  describe("isNode", function() {
+
+    it("should return the correct value depending on environment", function () {
+      // Assert
+      expect(Utilities.isNode).to.be.true;
+    });
+
+  });
+
+  describe("isBrowser", function() {
+
+    it("should return the correct value depending on environment", function () {
+      // Assert
+      expect(Utilities.isBrowser).to.be.false;
+    });
+
+  });
+
   describe("getPropertyByValue()", function() {
 
     it("should return the correct property");

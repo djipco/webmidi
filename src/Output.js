@@ -231,12 +231,12 @@ export class Output extends EventEmitter {
     // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
     // does not support using Uint8Array).
     if (message instanceof Message) {
-      message = WebMidi.isNode ? message.data : message.rawData;
+      message = Utilities.isNode ? message.data : message.rawData;
     }
 
     // If the data is a Uint8Array and we are on Node, we must convert it to array so it works with
     // the jzz module.
-    if (message instanceof Uint8Array && WebMidi.isNode) {
+    if (message instanceof Uint8Array && Utilities.isNode) {
       message = Array.from(message);
     }
 
