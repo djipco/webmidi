@@ -4316,6 +4316,7 @@ export class Utilities {
      * @since 2.0.0
      */
     static getChannelModeByNumber(number: number): string | false;
+    static isNode(): any;
 }
 declare const wm: WebMidi;
 /**
