@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 09:58:33 */
+/* Version: 3.0.7 - January 11, 2022 10:02:03 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -8992,10 +8992,11 @@ class WebMidi extends EventEmitter {
       process.versions != null &&
       process.versions.node != null
     ) {
-      let jzz;
-      // eval('jzz = await import("jzz")');
-      await Object.getPrototypeOf(async function() {}).constructor('jzz = await import("jzz")')();
-      global["navigator"] = jzz.default;
+      let jzz = await Object.getPrototypeOf(async function() {}).constructor(`
+        jzz = await import("jzz");
+        return jzz.default;
+      `)();
+      global["navigator"] = jzz;
     }
 
 
