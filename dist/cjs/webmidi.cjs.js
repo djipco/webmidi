@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.7 - January 11, 2022 10:13:44 */
+/* Version: 3.0.7 - January 11, 2022 10:18:00 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -1909,10 +1909,9 @@ class Utilities {
   }
 
   static isNode() {
-    // return typeof process !== "undefined" && process.versions != null && process.versions.node != null;
-    // const isBrowser=new Function("try {return this===window;}catch(e){ return false;}");
-    const isNode = new Function("try { return this === global; } catch(e) { return false; }");
-    return isNode();
+    // const isNode = new Function("try { return this === global; } catch(e) { return false; }");
+    // return isNode();
+    return new Function("try { return this === global; } catch(e) { return false; }")();
   }
 
 }
