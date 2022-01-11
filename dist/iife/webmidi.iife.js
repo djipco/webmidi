@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.6 - January 10, 2022 19:20:17 */
+/* Version: 3.0.6 - January 10, 2022 19:33:32 */
 (function (exports) {
   'use strict';
 
@@ -8373,6 +8373,8 @@
 
       this._octaveOffset = 0;
     }
+
+    async _loadJzzModule() {}
     /**
      * Checks if the Web MIDI API is available in the current environment and then tries to connect to
      * the host's MIDI subsystem. This is an asynchronous operation and it causes a security prompt to
@@ -8446,6 +8448,7 @@
 
 
     async enable(options = {}, legacy = false) {
+      // await this._loadJzzModule();
       this.validation = options.validation !== false;
 
       if (this.validation) {
