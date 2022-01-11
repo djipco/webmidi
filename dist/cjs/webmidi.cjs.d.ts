@@ -1,4 +1,4 @@
-// Type definitions for WEBMIDI.js 3.0.6
+// Type definitions for WEBMIDI.js 3.0.7
 // Project: https://webmidijs.org
 // Definitions by: Jean-Philippe Côté <https://github.com/djipco/>
 // Definitions: https://github.com/DefinitelyTyped/DefinitelyTyped
