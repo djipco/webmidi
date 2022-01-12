@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 12, 2022 11:35:19 */
+/* Version: 3.0.8 - January 12, 2022 11:36:21 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
