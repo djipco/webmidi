@@ -2,7 +2,7 @@
  * WEBMIDI.js v3.0.8
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 11th, 2022.
+ * Build generated on January 12th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 11, 2022 11:03:57 */
+/* Version: 3.0.8 - January 12, 2022 11:35:33 */
 (function (exports) {
   'use strict';
 
@@ -6905,15 +6905,15 @@
       return Utilities.getCcNameByNumber(number);
     }
     /**
-     * Return the playing status of the specified note. The `note` parameter can be an unsigned
-     * integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`]{@link Note} object.
+     * Returns the playing status of the specified note (`true` if the note is currently playing,
+     * `false` if it is not). The `note` parameter can be an unsigned integer (0-127), a note
+     * identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`]{@link Note} object.
      *
-     * If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
-     * defined.
+     * IF the note is specified using an integer (0-127), no octave offset will be applied.
      *
      * @param {number|string|Note} note The note to get the state for. The
-     * [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and
-     * [`Note`]{@link Note} objects.
+     * [`octaveOffset`](#octaveOffset) (channel, input and global) will be factored in for note
+     * identifiers and [`Note`]{@link Note} objects.
      * @returns {boolean}
      * @since version 3.0.0
      */
