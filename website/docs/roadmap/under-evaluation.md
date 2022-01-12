@@ -29,6 +29,9 @@ category of our GitHub Discussions so I can properly triage them.
 * Explore compatibility with WebMidiLink. Could we create an output that points to a WebMidiLinked
 device?
 
+* Could we allow `WebMidi.time` to be reset? (see 
+[discussion #213](https://github.com/djipco/webmidi/discussions/213))
+
 * Add throttling option to `sendSysex`
 
 * Calculate BPM from clock messages 
