@@ -26,6 +26,9 @@ category of our GitHub Discussions so I can properly triage them.
 * Add support for Web BLE MIDI ([browser implementation](https://github.com/skratchdot/ble-midi),
 [Node implementation](https://github.com/natcl/ble-midi))
 
+* Explore compatibility with WebMidiLink. Could we create an output that points to a WebMidiLinked
+device?
+
 * Add throttling option to `sendSysex`
 
 * Calculate BPM from clock messages 
