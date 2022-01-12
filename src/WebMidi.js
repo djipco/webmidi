@@ -1008,6 +1008,8 @@ class WebMidi extends EventEmitter {
    * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
    * browser might only be accurate to one millisecond.
    *
+   * Note: `WebMidi.time` is simply an alias to `performance.now()`.
+   *
    * @type {DOMHighResTimeStamp}
    * @readonly
    */
