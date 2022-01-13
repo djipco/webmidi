@@ -173,6 +173,8 @@ floating-point number, it has sub-millisecond accuracy. According to the
 time should be accurate to 5 µs (microseconds). However, due to various constraints, the
 browser might only be accurate to one millisecond.
 
+Note: `WebMidi.time` is simply an alias to `performance.now()`.
+
 
 ### `.validation` {#validation}
 **Type**: boolean<br />

@@ -357,11 +357,11 @@ An array of [`Listener`](Listener) objects.
 
 **Since**: version 3.0.0<br />
 
-Return the playing status of the specified note. The `note` parameter can be an unsigned
-integer (0-127), a note identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`](Note) object.
+Returns the playing status of the specified note (`true` if the note is currently playing,
+`false` if it is not). The `note` parameter can be an unsigned integer (0-127), a note
+identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`](Note) object.
 
-If a  is passed in, the method will take into account any [`octaveOffset`](#octaveOffset)
-defined.
+IF the note is specified using an integer (0-127), no octave offset will be applied.
 
 
   **Parameters**
@@ -372,7 +372,7 @@ defined.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />string<br />Note<br /> ||The note to get the state for. The [`octaveOffset`](#octaveOffset) will be factored in for note identifiers and [`Note`](Note) objects.|
+    |**`note`** | number<br />string<br />Note<br /> ||The note to get the state for. The [`octaveOffset`](#octaveOffset) (channel, input and global) will be factored in for note identifiers and [`Note`](Note) objects.|
 
   </div>
 
