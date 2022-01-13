@@ -138,3 +138,77 @@ execute().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m")
 function log(message) {
   console.info("\x1b[32m", message, "\x1b[0m");
 }
+
+
+/**
+ * Generic Event
+ * opened, closed, disconnected, midiaccessgranted, enabled, disabled, portschanged, connected
+ */
+// export interface Event {
+//   timestamp: DOMHighResTimeStamp;
+//   type: string;
+//   target: any;
+// }
+
+/**
+ * ErrorEvent
+ * error
+ */
+// export interface ErrorEvent extends Event {
+//   error: any;
+// }
+
+// MAYBE I SHOULD CREATE SYSTEMMESSAGEEVENT AND CHANNELMESSAGEEVENT (MAKES MORE SENSE!)
+// THE NOTEMESSAGEEVENT WOULD DISAPPEAR AND THE NOTE PARAMETER BE OPTIONAL
+
+/**
+ * MessageEvent (for system messages and some channel messages)
+ * sysex, timecode, songposition, tunerequest, clock, start, continue, stop, activesensing, reset,
+ * unknownmessage, midimessage, songselect, programchange, channelaftertouch, pitchbend,
+ * allsoundoff, resetallcontrollers, localcontrol, allnotesoff, omnimode, monomode
+ */
+// export interface MessageEvent extends Event {
+//   message: Message;
+//   value?: number | boolean;
+//   rawValue?: number;
+// }
+
+/**
+ * NoteMessageEvent (specifically for noteon and noteoff)
+ * noteoff, noteon
+ */
+// export interface NoteMessageEvent extends MessageEvent {
+//   note: Note;
+// }
+
+/**
+ * keyaftertouch
+ */
+// export interface KeyaftertouchMessageEvent extends MessageEvent {
+//   identifier: string;
+//   key: number;
+//   rawKey: number;
+// }
+
+/**
+ * ControlchangeMessageEvent
+ * controlchange, controlchange-controllerxxx
+ */
+// export interface ControlchangeMessageEvent extends MessageEvent {
+//   controller: {
+//     number: number;
+//     name: string;
+//   };
+//   subtype?: string
+// }
+
+/**
+ * rpn-dataentrycoarse, rpn-dataentryfine, rpn-databuttonincrement, rpn-databuttondecrement,
+ * nrpn-dataentrycoarse, nrpn-dataentryfine, nrpn-databuttonincrement, nrpn-databuttondecrement,
+ * nrpn, rpn
+ */
+// export interface RpnNrpnMessageEvent extends MessageEvent {
+//   parameter: string;
+//   parameterMsb: number;
+//   parameterLsb: number;
+// }
