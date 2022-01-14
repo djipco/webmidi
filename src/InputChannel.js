@@ -513,9 +513,12 @@ export class InputChannel extends EventEmitter {
      *
      * @property {boolean} value For local control on, the value is `true`. For local control off,
      * the value is `false`.
+     * @property {boolean} rawValue For local control on, the value is `127`. For local control off,
+     * the value is `0`.
      */
     if (event.type === "localcontrol") {
       event.value = event.message.data[2] === 127 ? true : false;
+      event.rawValue = event.message.data[2];
     }
 
     /**
@@ -551,14 +554,18 @@ export class InputChannel extends EventEmitter {
      * milliseconds since the navigation start of the document).
      *
      * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+     * @property {boolean} rawValue The raw MIDI value
      */
     if (event.type === "omnimodeon") {
       event.type = "omnimode";
       event.value = true;
+      event.rawValue = event.message.data[2];
     } else if (event.type === "omnimodeoff") {
       event.type = "omnimode";
       event.value = false;
+      event.rawValue = event.message.data[2];
     }
+
 
     /**
      * Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
@@ -578,13 +585,16 @@ export class InputChannel extends EventEmitter {
      * milliseconds since the navigation start of the document).
      *
      * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+     * @property {boolean} rawValue The raw MIDI value
      */
     if (event.type === "monomodeon") {
       event.type = "monomode";
       event.value = true;
+      event.rawValue = event.message.data[2];
     } else if (event.type === "polymodeon") {
       event.type = "monomode";
       event.value = false;
+      event.rawValue = event.message.data[2];
     }
 
     this.emit(event.type, event);
