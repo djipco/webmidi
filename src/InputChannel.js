@@ -274,33 +274,26 @@ export class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {string} identifier The note identifier of the key to apply the aftertouch to.
-       * This includes any octave offset applied at the channel, input or global level.
-       * @property {number} key The MIDI note number of the key to apply the aftertouch to. This
-       * includes any octave offset applied at the channel, input or global level.
-       * @property {number} rawKey The MIDI note number of the key to apply the aftertouch to. This
-       * excludes any octave offset defined at the channel, input or global level.
+       * @property {object} note A [`Note`](Note) object containing information such as note name
+       * and number.
        * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
-      event.identifier = Utilities.toNoteIdentifier(
-        data1, WebMidi.octaveOffset + this.input.octaveOffset + this.octaveOffset
-      );
-
-      event.key = Utilities.toNoteNumber(event.identifier);
-      event.rawKey = data1;
-
-      event.value = Utilities.from7bitToFloat(data2);
-      event.rawValue = data2;
-
-      // This is kept for backwards-compatibility but is gone from the documentation. It will be
-      // removed from future versions (@deprecated).
       event.note = new Note(
         Utilities.offsetNumber(
           data1, this.octaveOffset + this.input.octaveOffset + WebMidi.octaveOffset
         )
       );
+
+      // Aftertouch value
+      event.value = Utilities.from7bitToFloat(data2);
+      event.rawValue = data2;
+
+      // @deprecated
+      event.identifier = event.note.identifier;
+      event.key = event.note.number;
+      event.rawKey = data1;
 
     } else if (event.type === "controlchange") {
 
