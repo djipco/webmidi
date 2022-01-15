@@ -462,7 +462,7 @@ export class Input extends EventEmitter {
    * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
    * of the listeners array and thus be triggered before others.
    *
-   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+   * @param {number} [options.remaining=Infinity] The number of times after which the callback
    * should automatically be removed.
    *
    * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
@@ -660,7 +660,7 @@ export class Input extends EventEmitter {
    * function. For channel-specific events, the function will return `true` only if all channels
    * have the listener defined.
    *
-   * @param event {string} The type of the event.
+   * @param event {string|Symbol} The type of the event.
    *
    * @param listener {function} The callback function to check for.
    *
