@@ -136,6 +136,7 @@ export class InputChannel extends EventEmitter {
     // Create and emit a new 'midimessage' event based on the incoming one
     const event = Object.assign({}, e);
     event.target = this;
+    event.channel = this.number;
     event.type = "midimessage";
 
     /**
