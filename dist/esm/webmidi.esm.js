@@ -2,7 +2,7 @@
  * WEBMIDI.js v3.0.8
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 15th, 2022.
+ * Build generated on January 16th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 15, 2022 16:53:05 */
+/* Version: 3.0.8 - January 16, 2022 11:23:36 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -6509,6 +6509,7 @@ class InputChannel extends EventEmitter {
     // Create and emit a new 'midimessage' event based on the incoming one
     const event = Object.assign({}, e);
     event.target = this;
+    event.channel = this.number;
     event.type = "midimessage";
 
     /**
