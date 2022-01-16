@@ -5796,7 +5796,7 @@ export type EventEmitterCallback = (...args: any[]) => void;
  *
  */
 export interface Event {
-  target: any;
+  target: Input | InputChannel | Output | WebMidi;
   timestamp: DOMHighResTimeStamp;
   type: string;
 }
@@ -5815,6 +5815,7 @@ export interface Event {
  */
 export interface ErrorEvent extends Event {
   error: any;
+  target: WebMidi;
 }
 
 /**
@@ -5837,8 +5838,10 @@ export interface ErrorEvent extends Event {
  * @property {number | boolean} [value] The value of the message (if any)
  */
 export interface MessageEvent extends Event {
+  channel?: number;
   message: Message;
   rawValue?: number;
+  target: Input | InputChannel;
   value?: number | boolean;
 }
 
@@ -5862,11 +5865,13 @@ export interface MessageEvent extends Event {
  * @property {string} [subtype] The actual controller event type
  */
 export interface ControlChangeMessageEvent extends MessageEvent {
+  channel: number;
   controller: {
     name: string;
     number: number;
   };
-  subtype?: string
+  subtype?: string;
+  target: InputChannel;
 }
 
 /**
@@ -5885,7 +5890,9 @@ export interface ControlChangeMessageEvent extends MessageEvent {
  * @property {Note} note A Note object with details about the triggered note.
  */
 export interface NoteMessageEvent extends MessageEvent {
+  channel: number;
   note: Note;
+  target: InputChannel;
 }
 
 /**
@@ -5919,9 +5926,11 @@ export interface NoteMessageEvent extends MessageEvent {
  *
  */
 export interface ParameterNumberMessageEvent extends MessageEvent {
+  channel: number;
   parameter: string;
   parameterMsb: number;
   parameterLsb: number;
+  target: InputChannel;
 }
 
 /**
