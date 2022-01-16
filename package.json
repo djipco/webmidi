@@ -113,7 +113,7 @@
     "gh-pages": "^2.2.0",
     "handlebars": "^4.7.7",
     "jsdoc": "^3.6.7",
-    "jsdoc-to-markdown": "^7.0.1",
+    "jsdoc-to-markdown": "^7.1.0",
     "markdown-it": "^12.3.2",
     "marked": "^3.0.7",
     "midi": "^1.0.0",
