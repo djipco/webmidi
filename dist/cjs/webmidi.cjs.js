@@ -2,7 +2,7 @@
  * WEBMIDI.js v3.0.8
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 12th, 2022.
+ * Build generated on January 16th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 12, 2022 11:36:07 */
+/* Version: 3.0.8 - January 16, 2022 11:21:26 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -85,7 +85,7 @@ class EventEmitter {
    * of the listeners array and thus executed first.
    * @param {number} [options.duration=Infinity] The number of milliseconds before the listener
    * automatically expires.
-   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+   * @param {number} [options.remaining=Infinity] The number of times after which the callback
    * should automatically be removed.
    * @param {array} [options.arguments] An array of arguments which will be passed separately to the
    * callback function. This array is stored in the [`arguments`]{@link Listener#arguments}
@@ -1107,11 +1107,6 @@ class Enumerations {
  * `Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
  * method such as [`OutputChannel.stopNote()`]{@link OutputChannel#stopNote},
  * [`Output.stopNote()`]{@link Output#stopNote} or similar.
- *
- * @param value {string|number} The value used to create the note. If an identifier string is used,
- * it must start with the note letter, optionally followed by an accidental and followed by the
- * octave number (`"C3"`, `"G#4"`, `"F-1"`, `"Db7"`, etc.). If a number is used, it must be an
- * integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -3748,7 +3743,6 @@ class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {Input} target The `Output` that triggered the event.
        * @property {object} target Object with properties describing the {@link Output} that
        * triggered the event. This is not the actual `Output` as it is no longer available.
        */
@@ -6100,6 +6094,7 @@ class InputChannel extends EventEmitter {
     // Create and emit a new 'midimessage' event based on the incoming one
     const event = Object.assign({}, e);
     event.target = this;
+    event.channel = this.number;
     event.type = "midimessage";
     /**
      * Event emitted when a MIDI message of any kind is received by an `InputChannel`
@@ -6217,24 +6212,20 @@ class InputChannel extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        *
-       * @property {string} identifier The note identifier of the key to apply the aftertouch to.
-       * This includes any octave offset applied at the channel, input or global level.
-       * @property {number} key The MIDI note number of the key to apply the aftertouch to. This
-       * includes any octave offset applied at the channel, input or global level.
-       * @property {number} rawKey The MIDI note number of the key to apply the aftertouch to. This
-       * excludes any octave offset defined at the channel, input or global level.
+       * @property {object} note A [`Note`](Note) object containing information such as note name
+       * and number.
        * @property {number} value The aftertouch amount expressed as a float between 0 and 1.
        * @property {number} rawValue The aftertouch amount expressed as an integer (between 0 and
        * 127).
        */
-      event.identifier = Utilities.toNoteIdentifier(data1, wm.octaveOffset + this.input.octaveOffset + this.octaveOffset);
-      event.key = Utilities.toNoteNumber(event.identifier);
-      event.rawKey = data1;
-      event.value = Utilities.from7bitToFloat(data2);
-      event.rawValue = data2; // This is kept for backwards-compatibility but is gone from the documentation. It will be
-      // removed from future versions (@deprecated).
+      event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset)); // Aftertouch value
 
-      event.note = new Note(Utilities.offsetNumber(data1, this.octaveOffset + this.input.octaveOffset + wm.octaveOffset));
+      event.value = Utilities.from7bitToFloat(data2);
+      event.rawValue = data2; // @deprecated
+
+      event.identifier = event.note.identifier;
+      event.key = event.note.number;
+      event.rawKey = data1;
     } else if (event.type === "controlchange") {
       /**
        * Event emitted when a **control change** MIDI message has been received.
@@ -6430,10 +6421,13 @@ class InputChannel extends EventEmitter {
      *
      * @property {boolean} value For local control on, the value is `true`. For local control off,
      * the value is `false`.
+     * @property {boolean} rawValue For local control on, the value is `127`. For local control off,
+     * the value is `0`.
      */
 
     if (event.type === "localcontrol") {
       event.value = event.message.data[2] === 127 ? true : false;
+      event.rawValue = event.message.data[2];
     }
     /**
      * Event emitted when an "all notes off" channel-mode MIDI message has been received.
@@ -6468,15 +6462,18 @@ class InputChannel extends EventEmitter {
      * milliseconds since the navigation start of the document).
      *
      * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+     * @property {boolean} rawValue The raw MIDI value
      */
 
 
     if (event.type === "omnimodeon") {
       event.type = "omnimode";
       event.value = true;
+      event.rawValue = event.message.data[2];
     } else if (event.type === "omnimodeoff") {
       event.type = "omnimode";
       event.value = false;
+      event.rawValue = event.message.data[2];
     }
     /**
      * Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
@@ -6496,15 +6493,18 @@ class InputChannel extends EventEmitter {
      * milliseconds since the navigation start of the document).
      *
      * @property {boolean} value The value is `true` for omni mode on and false for omni mode off.
+     * @property {boolean} rawValue The raw MIDI value
      */
 
 
     if (event.type === "monomodeon") {
       event.type = "monomode";
       event.value = true;
+      event.rawValue = event.message.data[2];
     } else if (event.type === "polymodeon") {
       event.type = "monomode";
       event.value = false;
+      event.rawValue = event.message.data[2];
     }
 
     this.emit(event.type, event);
@@ -7600,7 +7600,7 @@ class Input extends EventEmitter {
    * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
    * of the listeners array and thus be triggered before others.
    *
-   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+   * @param {number} [options.remaining=Infinity] The number of times after which the callback
    * should automatically be removed.
    *
    * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
@@ -7793,7 +7793,7 @@ class Input extends EventEmitter {
    * function. For channel-specific events, the function will return `true` only if all channels
    * have the listener defined.
    *
-   * @param event {string} The type of the event.
+   * @param event {string|Symbol} The type of the event.
    *
    * @param listener {function} The callback function to check for.
    *
@@ -9210,6 +9210,8 @@ class WebMidi extends EventEmitter {
    * [documentation](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
    * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
    * browser might only be accurate to one millisecond.
+   *
+   * Note: `WebMidi.time` is simply an alias to `performance.now()`.
    *
    * @type {DOMHighResTimeStamp}
    * @readonly
