@@ -55,12 +55,10 @@
     "library:build-and-commit-cjs": "node scripts/library/build.js -t cjs -c true && npm run typescript-declaration:generate -- -t cjs -c true",
     "library:build-and-commit-esm": "node scripts/library/build.js -t esm -c true && npm run typescript-declaration:generate -- -t esm -c true",
     "library:build-and-commit-iife": "node scripts/library/build.js -t iife -c true",
-
     "library:build-all": "npm run lint && npm run library:build-cjs && npm run library:build-esm && npm run library:build-iife",
     "library:build-cjs": "node scripts/library/build.js -t cjs && npm run typescript-declaration:generate -- -t cjs",
     "library:build-esm": "node scripts/library/build.js -t esm && npm run typescript-declaration:generate -- -t esm",
     "library:build-iife": "node scripts/library/build.js -t iife",
-
     "test-coverage:report-as-text": "nyc --reporter=text mocha",
     "test-coverage:report-as-html": "nyc --reporter=html mocha",
     "website:build": "npm run --prefix website build",
@@ -89,7 +87,7 @@
   "dependencies": {
     "@rollup/plugin-babel": "^5.3.0",
     "@types/webmidi": "^2.0.6",
-    "djipevents": "^2.0.3"
+    "djipevents": "^2.0.4"
   },
   "optionalDependencies": {
     "jzz": "^1.4.5"
