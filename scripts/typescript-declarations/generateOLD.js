@@ -100,8 +100,10 @@ async function execute() {
       " --lib ES2020,DOM --outDir " + path.join(OUT_DIR, target.name) ;
     await system(cmd);
 
-    // Remove readonly flag
+    // Path to current .d.ts file
     const file = path.join(OUT_DIR, target.name, target.source.replace(".js", ".d.ts"));
+
+    // Remove readonly flag
     const options = {
       files: [file],
       from: /readonly /g,
@@ -109,17 +111,38 @@ async function execute() {
     };
     await replace(options);
 
+
+
+
+
+    // // Inject correct definitions for Input class
+    // await replace({
+    //   files: [file],
+    //   from: /export class Input extends EventEmitter \{/,
+    //   to: fs.readFileSync(
+    //     path.join(__dirname, "injections", "Input.txt"), {encoding: "utf8", flag: "r"}
+    //   )
+    // });
+    //
+
+
+
+
+
+
     // Prepend header for DefinitelyTyped
     await prependFile(file, HEADER);
     log("Saved " + target.type + " TypeScript declaration file to '" + file + "'");
 
-    // Inject EventEmitterCallback type declaration
-    fs.appendFileSync(
-      file,
-      `\n\n` +
-      `// This is automatically injected to fix a bug with the TypeScript compiler\n` +
-      `export type EventEmitterCallback = (...args: any[]) => void;\n`
-    );
+    // // Inject EventEmitterCallback type declaration
+    // fs.appendFileSync(
+    //   file,
+    //   `\n\n` +
+    //   `// This is automatically injected to fix a bug with the TypeScript compiler\n` +
+    //   `export type EventEmitterCallback = (...args: any[]) => void;\n`
+    //   // dans Tone.js, ils utilisent:
+    //   //`export type EventEmitterCallback<A extends any[] = any[]> = (...args: A) => void;`
+    // );
 
     // Commit
     if (commit) {
@@ -138,77 +161,3 @@ execute().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m")
 function log(message) {
   console.info("\x1b[32m", message, "\x1b[0m");
 }
-
-
-/**
- * Generic Event
- * opened, closed, disconnected, midiaccessgranted, enabled, disabled, portschanged, connected
- */
-// export interface Event {
-//   timestamp: DOMHighResTimeStamp;
-//   type: string;
-//   target: any;
-// }
-
-/**
- * ErrorEvent
- * error
- */
-// export interface ErrorEvent extends Event {
-//   error: any;
-// }
-
-// MAYBE I SHOULD CREATE SYSTEMMESSAGEEVENT AND CHANNELMESSAGEEVENT (MAKES MORE SENSE!)
-// THE NOTEMESSAGEEVENT WOULD DISAPPEAR AND THE NOTE PARAMETER BE OPTIONAL
-
-/**
- * MessageEvent (for system messages and some channel messages)
- * sysex, timecode, songposition, tunerequest, clock, start, continue, stop, activesensing, reset,
- * unknownmessage, midimessage, songselect, programchange, channelaftertouch, pitchbend,
- * allsoundoff, resetallcontrollers, localcontrol, allnotesoff, omnimode, monomode
- */
-// export interface MessageEvent extends Event {
-//   message: Message;
-//   value?: number | boolean;
-//   rawValue?: number;
-// }
-
-/**
- * NoteMessageEvent (specifically for noteon and noteoff)
- * noteoff, noteon
- */
-// export interface NoteMessageEvent extends MessageEvent {
-//   note: Note;
-// }
-
-/**
- * keyaftertouch
- */
-// export interface KeyaftertouchMessageEvent extends MessageEvent {
-//   identifier: string;
-//   key: number;
-//   rawKey: number;
-// }
-
-/**
- * ControlchangeMessageEvent
- * controlchange, controlchange-controllerxxx
- */
-// export interface ControlchangeMessageEvent extends MessageEvent {
-//   controller: {
-//     number: number;
-//     name: string;
-//   };
-//   subtype?: string
-// }
-
-/**
- * rpn-dataentrycoarse, rpn-dataentryfine, rpn-databuttonincrement, rpn-databuttondecrement,
- * nrpn-dataentrycoarse, nrpn-dataentryfine, nrpn-databuttonincrement, nrpn-databuttondecrement,
- * nrpn, rpn
- */
-// export interface RpnNrpnMessageEvent extends MessageEvent {
-//   parameter: string;
-//   parameterMsb: number;
-//   parameterLsb: number;
-// }
