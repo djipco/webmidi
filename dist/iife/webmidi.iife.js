@@ -2,7 +2,7 @@
  * WEBMIDI.js v3.0.8
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 15th, 2022.
+ * Build generated on January 16th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 15, 2022 16:53:18 */
+/* Version: 3.0.8 - January 16, 2022 11:23:42 */
 (function (exports) {
   'use strict';
 
@@ -6093,6 +6093,7 @@
       // Create and emit a new 'midimessage' event based on the incoming one
       const event = Object.assign({}, e);
       event.target = this;
+      event.channel = this.number;
       event.type = "midimessage";
       /**
        * Event emitted when a MIDI message of any kind is received by an `InputChannel`
