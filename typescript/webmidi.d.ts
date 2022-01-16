@@ -13,8 +13,8 @@
 declare class EventEmitter {
 
   /**
-   * Identifier to use when adding or removing a listener that should be triggered when any events
-   * occur.
+   * Identifier (Symbol) to use when adding or removing a listener that should be triggered when any
+   * events occur.
    *
    * @type {Symbol}
    */
