@@ -1,8 +1,8 @@
 /**
- * WEBMIDI.js v3.0.8
+ * WEBMIDI.js v3.0.9
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 16th, 2022.
+ * Build generated on January 17th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 16, 2022 11:23:36 */
+/* Version: 3.0.9 - January 17, 2022 09:33:26 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -6546,9 +6546,11 @@ class InputChannel extends EventEmitter {
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
 
+
     if ( event.type === "noteoff" || (event.type === "noteon" && data2 === 0) ) {
 
       this.notesState[data1] = false;
+      event.type = "noteoff"; // necessary for note on with 0 velocity
 
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
@@ -8996,10 +8998,18 @@ class WebMidi extends EventEmitter {
     // package.json file), then we must import the `jzz` module. I import it in this convoluted way
     // to prevent Webpack from automatically bundling it in browser bundles where it isn't needed.
     if (Utilities.isNode) {
-      global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
+
+      // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React
+      // Native, etc.) so we also check for the presence of the window.navigator property.
+      try {
+        window.navigator;
+      } catch (err) {
+        global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
         jzz = await import("jzz");
         return jzz.default;
       `)();
+      }
+
     }
 
     /*END-ESM*/
@@ -9155,7 +9165,7 @@ class WebMidi extends EventEmitter {
 
     return this._destroyInputsAndOutputs().then(() => {
 
-      if (typeof navigator.close === "function") navigator.close();
+      if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
 
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
@@ -9800,7 +9810,7 @@ class WebMidi extends EventEmitter {
    * @type string
    */
   get version() {
-    return "3.0.8";
+    return "3.0.9";
   }
 
   /**

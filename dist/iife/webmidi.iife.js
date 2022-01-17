@@ -1,8 +1,8 @@
 /**
- * WEBMIDI.js v3.0.8
+ * WEBMIDI.js v3.0.9
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 16th, 2022.
+ * Build generated on January 17th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 16, 2022 11:23:42 */
+/* Version: 3.0.9 - January 17, 2022 09:33:31 */
 (function (exports) {
   'use strict';
 
@@ -6129,6 +6129,8 @@
 
       if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
         this.notesState[data1] = false;
+        event.type = "noteoff"; // necessary for note on with 0 velocity
+
         /**
          * Event emitted when a **note off** MIDI message has been received on the channel.
          *
@@ -8613,7 +8615,8 @@
 
     async disable() {
       return this._destroyInputsAndOutputs().then(() => {
-        if (typeof navigator.close === "function") navigator.close();
+        if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
+
         if (this.interface) this.interface.onstatechange = undefined;
         this.interface = null; // also resets enabled, sysexEnabled
 
@@ -9215,7 +9218,7 @@
 
 
     get version() {
-      return "3.0.8";
+      return "3.0.9";
     }
     /**
      * @private

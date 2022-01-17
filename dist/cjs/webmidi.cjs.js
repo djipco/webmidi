@@ -1,8 +1,8 @@
 /**
- * WEBMIDI.js v3.0.8
+ * WEBMIDI.js v3.0.9
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 16th, 2022.
+ * Build generated on January 17th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.8 - January 16, 2022 11:23:31 */
+/* Version: 3.0.9 - January 17, 2022 09:48:51 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -6130,6 +6130,8 @@ class InputChannel extends EventEmitter {
 
     if (event.type === "noteoff" || event.type === "noteon" && data2 === 0) {
       this.notesState[data1] = false;
+      event.type = "noteoff"; // necessary for note on with 0 velocity
+
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
        *
@@ -8281,9 +8283,15 @@ class Input extends EventEmitter {
 // isn't needed.
 
 if (Utilities.isNode) {
-  let jzz;
-  eval('jzz = require("jzz")');
-  global["navigator"] = jzz;
+  // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React Native,
+  // etc.) so we also check for the presence of the window.navigator property.
+  try {
+    window.navigator;
+  } catch (err) {
+    let jzz;
+    eval('jzz = require("jzz")');
+    global["navigator"] = jzz;
+  }
 }
 /*END-CJS*/
 
@@ -8628,7 +8636,8 @@ class WebMidi extends EventEmitter {
 
   async disable() {
     return this._destroyInputsAndOutputs().then(() => {
-      if (typeof navigator.close === "function") navigator.close();
+      if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
+
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
 
@@ -9230,7 +9239,7 @@ class WebMidi extends EventEmitter {
 
 
   get version() {
-    return "3.0.8";
+    return "3.0.9";
   }
   /**
    * @private
