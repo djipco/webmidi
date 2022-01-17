@@ -12,9 +12,17 @@ import {Enumerations} from "./Enumerations.js";
 // convoluted way to prevent Webpack from automatically bundling it in browser bundles where it
 // isn't needed.
 if (Utilities.isNode) {
-  let jzz;
-  eval('jzz = require("jzz")');
-  global["navigator"] = jzz;
+
+  // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React Native,
+  // etc.) so we also check for the presence of the window.navigator property.
+  try {
+    window.navigator;
+  } catch (err) {
+    let jzz;
+    eval('jzz = require("jzz")');
+    global["navigator"] = jzz;
+  }
+
 }
 
 /*END-CJS*/
@@ -220,10 +228,18 @@ class WebMidi extends EventEmitter {
     // package.json file), then we must import the `jzz` module. I import it in this convoluted way
     // to prevent Webpack from automatically bundling it in browser bundles where it isn't needed.
     if (Utilities.isNode) {
-      global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
+
+      // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React
+      // Native, etc.) so we also check for the presence of the window.navigator property.
+      try {
+        window.navigator;
+      } catch (err) {
+        global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
         jzz = await import("jzz");
         return jzz.default;
       `)();
+      }
+
     }
 
     /*END-ESM*/
@@ -379,7 +395,7 @@ class WebMidi extends EventEmitter {
 
     return this._destroyInputsAndOutputs().then(() => {
 
-      if (typeof navigator.close === "function") navigator.close();
+      if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
 
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
