@@ -108,6 +108,40 @@ describe("InputChannel Object", function() {
 
   });
 
+  it("should dispatch 'noteoff' event when receiving 'noteon' with 0 velocity", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "noteoff";
+    let velocity = 0;
+    let status = 0x90; // note on
+    let index = 0;
+    channel.addListener(event, assert);
+
+    // Act
+    for (let i = 0; i <= 127; i++) {
+      VIRTUAL_INPUT.PORT.sendMessage([status, i, velocity]);
+    }
+
+    // Assert
+    function assert(e) {
+
+      expect(e.type).to.equal(event);
+      expect(e.note.identifier).to.equal(Utilities.toNoteIdentifier(index));
+      expect(e.note.attack).to.equal(0); // the note must have an attack of 0 to be a noteoff
+      expect(e.note.rawRelease).to.equal(velocity);
+      expect(e.note.duration).to.equal(WebMidi.defaults.note.duration);
+      expect(e.value).to.equal(Utilities.from7bitToFloat(velocity));
+      expect(e.rawValue).to.equal(velocity);
+      expect(e.target).to.equal(channel);
+
+      index++;
+      if (index > 127) done();
+
+    }
+
+  });
+
   it("should report correct octave for 'noteoff' event (with octaveOffset)", function (done) {
 
     // Arrange

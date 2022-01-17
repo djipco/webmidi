@@ -176,6 +176,7 @@ export class InputChannel extends EventEmitter {
     if ( event.type === "noteoff" || (event.type === "noteon" && data2 === 0) ) {
 
       this.notesState[data1] = false;
+      event.type = "noteoff"; // necessary for note on with 0 velocity
 
       /**
        * Event emitted when a **note off** MIDI message has been received on the channel.
