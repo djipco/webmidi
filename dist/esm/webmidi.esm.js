@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.9 - January 17, 2022 09:33:26 */
+/* Version: 3.0.9 - January 17, 2022 09:48:55 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -6545,7 +6545,6 @@ class InputChannel extends EventEmitter {
 
     const data1 = e.message.dataBytes[0];
     const data2 = e.message.dataBytes[1];
-
 
     if ( event.type === "noteoff" || (event.type === "noteon" && data2 === 0) ) {
 
