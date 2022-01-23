@@ -1,8 +1,8 @@
 /**
- * WEBMIDI.js v3.0.9
+ * WEBMIDI.js v3.0.10
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 17th, 2022.
+ * Build generated on January 23rd, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.9 - January 17, 2022 09:49:02 */
+/* Version: 3.0.10 - January 23, 2022 15:12:03 */
 (function (exports) {
   'use strict';
 
@@ -3712,10 +3712,13 @@
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"opened"`
-         * @property {Output} target The object that triggered the event
+         * @property {Output} target The object to which the listener was originally added (`Output`).
+         * @property {Output} port The port that was opened
          */
         event.type = "opened";
         event.target = this;
+        event.port = event.target; // for consistency
+
         this.emit("opened", event);
       } else if (e.port.connection === "closed" && e.port.state === "connected") {
         /**
@@ -3727,10 +3730,13 @@
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"closed"`
-         * @property {Output} target The object that triggered the event
+         * @property {Output} target The object to which the listener was originally added (`Output`).
+         * @property {Output} port The port that was closed
          */
         event.type = "closed";
         event.target = this;
+        event.port = event.target; // for consistency
+
         this.emit("closed", event);
       } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
         /**
@@ -3742,11 +3748,12 @@
          * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `"disconnected"`
-         * @property {object} target Object with properties describing the {@link Output} that
-         * triggered the event. This is not the actual `Output` as it is no longer available.
+         * @property {Output} target The object to which the listener was originally added (`Output`).
+         * @property {object} port Object with properties describing the {@link Output} that was
+         * disconnected. This is not the actual `Output` as it is no longer available.
          */
         event.type = "disconnected";
-        event.target = {
+        event.port = {
           connection: e.port.connection,
           id: e.port.id,
           manufacturer: e.port.manufacturer,
@@ -6092,8 +6099,8 @@
     _processMidiMessageEvent(e) {
       // Create and emit a new 'midimessage' event based on the incoming one
       const event = Object.assign({}, e);
+      event.port = this.input;
       event.target = this;
-      event.channel = this.number;
       event.type = "midimessage";
       /**
        * Event emitted when a MIDI message of any kind is received by an `InputChannel`
@@ -6103,7 +6110,8 @@
        * @type {object}
        *
        * @property {string} type `midimessage`
-       * @property {Input} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6139,8 +6147,8 @@
          * @type {object}
          * @property {string} type `noteoff`
          *
-         * @property {InputChannel} target The object that triggered the event (the
-         * [`InputChannel`](InputChannel) object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the incoming
          * MIDI message.
          * @property {number} timestamp The moment
@@ -6174,8 +6182,8 @@
          *
          * @type {object}
          * @property {string} type `noteon`
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the
          * incoming MIDI message.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6206,8 +6214,8 @@
          * @type {object}
          * @property {string} type `"keyaftertouch"`
          *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the
          * incoming MIDI message.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6237,8 +6245,8 @@
          * @property {string} type `controlchange`
          * @property {string} subtype The type of control change message that was received.
          *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the
          * incoming MIDI message.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6268,8 +6276,8 @@
          * @property {string} type `controlchange-controllerxxx`
          * @property {string} subtype The type of control change message that was received.
          *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the
          * incoming MIDI message.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6301,8 +6309,8 @@
          * @type {object}
          * @property {string} type `programchange`
          *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the
          * incoming MIDI message.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6322,8 +6330,8 @@
          * @type {object}
          * @property {string} type `channelaftertouch`
          *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the
          * incoming MIDI message.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6343,8 +6351,8 @@
          * @type {object}
          * @property {string} type `pitchbend`
          *
-         * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-         * object).
+         * @property {InputChannel} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          * @property {Message} message A [`Message`](Message) object containing information about the
          * incoming MIDI message.
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6380,8 +6388,8 @@
        * @type {object}
        * @property {string} type `allsoundoff`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6395,8 +6403,8 @@
        *
        * @type {object}
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6413,8 +6421,8 @@
        * @type {object}
        * @property {string} type `localcontrol`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6438,8 +6446,8 @@
        * @type {object}
        * @property {string} type `allnotesoff`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6455,8 +6463,8 @@
        * @type {object}
        * @property {string} type `"omnimode"`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6486,8 +6494,8 @@
        * @type {object}
        * @property {string} type `monomode`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -6614,7 +6622,8 @@
        * @type {object}
        *
        * @property {string} type `rpn-dataentrycoarse`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6637,7 +6646,8 @@
        * @type {object}
        *
        * @property {string} type `rpn-dataentryfine`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6660,7 +6670,8 @@
        * @type {object}
        *
        * @property {string} type `rpn-databuttonincrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6683,7 +6694,8 @@
        * @type {object}
        *
        * @property {string} type `rpn-databuttondecrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6706,7 +6718,8 @@
        * @type {object}
        *
        * @property {string} type `nrpn-dataentrycoarse`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6729,7 +6742,8 @@
        * @type {object}
        *
        * @property {string} type `nrpn-dataentryfine`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6752,7 +6766,8 @@
        * @type {object}
        *
        * @property {string} type `nrpn-databuttonincrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6775,7 +6790,8 @@
        * @type {object}
        *
        * @property {string} type `nrpn-databuttondecrement`
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6827,7 +6843,8 @@
        *
        * @property {string} type `nrpn`
        * @property {string} subtype The precise type of NRPN message that was received.
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -6860,7 +6877,8 @@
        *
        * @property {string} type `rpn`
        * @property {string} subtype The precise type of RPN message that was received.
-       * @property {InputChannel} target The `InputChannel` that triggered the event.
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {Message} message A [`Message`](Message) object containing information about the
@@ -7270,7 +7288,9 @@
     _onStateChange(e) {
       let event = {
         timestamp: wm.time,
-        target: this
+        target: this,
+        port: this // for consistency
+
       };
 
       if (e.port.connection === "open") {
@@ -7283,7 +7303,8 @@
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `opened`
-         * @property {Input} target The `Input` that triggered the event.
+         * @property {Input} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          */
         event.type = "opened";
         this.emit("opened", event);
@@ -7297,7 +7318,8 @@
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `closed`
-         * @property {Input} target The `Input` that triggered the event.
+         * @property {Input} target The object that dispatched the event.
+         * @property {Input} port The `Input` that triggered the event.
          */
         event.type = "closed";
         this.emit("closed", event);
@@ -7311,10 +7333,12 @@
          * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
          * milliseconds since the navigation start of the document).
          * @property {string} type `disconnected`
-         * @property {Input} target The `Input` that triggered the event.
+         * @property {Input} port Object with properties describing the {@link Input} that was
+         * disconnected. This is not the actual `Input` as it is no longer available.
+         * @property {Input} target The object that dispatched the event.
          */
         event.type = "disconnected";
-        event.target = {
+        event.port = {
           connection: e.port.connection,
           id: e.port.id,
           manufacturer: e.port.manufacturer,
@@ -7344,7 +7368,8 @@
        *
        * @type {object}
        *
-       * @property {Input} target The `Input`that triggered the event.
+       * @property {Input} port The `Input` that triggered the event.
+       * @property {Input} target The object that dispatched the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -7355,6 +7380,7 @@
        */
 
       const event = {
+        port: this,
         target: this,
         message: message,
         timestamp: e.timeStamp,
@@ -8076,7 +8102,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8093,7 +8120,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8110,7 +8138,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8127,7 +8156,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8145,7 +8175,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8162,7 +8193,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8179,7 +8211,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8196,7 +8229,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8213,7 +8247,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8230,7 +8265,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8247,7 +8283,8 @@
    *
    * @type {object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8265,7 +8302,8 @@
    *
    * @type {Object}
    *
-   * @property {Input} target The `Input` that triggered the event.
+   * @property {Input} port The `Input` that triggered the event.
+   * @property {Input} target The object that dispatched the event.
    * @property {Message} message A [`Message`](Message) object containing information about the
    * incoming MIDI message.
    * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -8881,7 +8919,8 @@
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
        * (in milliseconds since the navigation start of the document).
        * @property {string} type `portschanged`
-       * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+       * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+       * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
        * triggered the event.
        *
        * @since 3.0.2
@@ -8897,7 +8936,8 @@
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
        * (in milliseconds since the navigation start of the document).
        * @property {string} type `connected`
-       * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+       * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+       * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
        * triggered the event.
        */
 
@@ -8911,7 +8951,8 @@
        * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
        * since the navigation start of the document).
        * @property {string} type `disconnected`
-       * @property {object} target Object with properties describing the [`Input`](Input) or
+       * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+       * @property {object} port Generic object with properties describing the [`Input`](Input) or
        * [`Output`](Output) that triggered the event.
        */
 
@@ -8924,13 +8965,11 @@
 
       if (e.port.state === "connected" && e.port.connection === "open") {
         if (e.port.type === "output") {
-          event.port = this.getOutputById(e.port.id); // legacy
-
-          event.target = event.port;
+          event.port = this.getOutputById(e.port.id);
+          event.target = this;
         } else if (e.port.type === "input") {
-          event.port = this.getInputById(e.port.id); // legacy
-
-          event.target = event.port;
+          event.port = this.getInputById(e.port.id);
+          event.target = this;
         } // Emit "connected" event
 
 
@@ -8940,8 +8979,6 @@
         portsChangedEvent.type = "portschanged";
         this.emit(portsChangedEvent.type, portsChangedEvent); // We check if "connection" is "pending" because we do not always get the "closed" event
       } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
-        // It feels more logical to include a `target` property instead of a `port` property. This is
-        // the terminology used everywhere in the library.
         event.port = {
           connection: "closed",
           id: e.port.id,
@@ -8951,7 +8988,7 @@
           type: e.port.type
         }; // Emit "connected" event
 
-        event.target = event.port;
+        event.target = this;
         this.emit(e.port.state, event); // Make a shallow copy of the event so we can use it for the "portschanged" event
 
         const portsChangedEvent = Object.assign({}, event);
@@ -9218,7 +9255,7 @@
 
 
     get version() {
-      return "3.0.9";
+      return "3.0.10";
     }
     /**
      * @private
