@@ -96,10 +96,12 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"opened"`
-       * @property {Output} target The object that triggered the event
+       * @property {Output} target The object to which the listener was originally added (`Output`).
+       * @property {Output} port The port that was opened
        */
       event.type = "opened";
       event.target = this;
+      event.port = event.target; // for consistency
       this.emit("opened", event);
 
     } else if (e.port.connection === "closed" && e.port.state === "connected") {
@@ -113,10 +115,12 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"closed"`
-       * @property {Output} target The object that triggered the event
+       * @property {Output} target The object to which the listener was originally added (`Output`).
+       * @property {Output} port The port that was closed
        */
       event.type = "closed";
       event.target = this;
+      event.port = event.target; // for consistency
       this.emit("closed", event);
 
     } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
@@ -130,11 +134,12 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {object} target Object with properties describing the {@link Output} that
-       * triggered the event. This is not the actual `Output` as it is no longer available.
+       * @property {Output} target The object to which the listener was originally added (`Output`).
+       * @property {object} port Object with properties describing the {@link Output} that was
+       * disconnected. This is not the actual `Output` as it is no longer available.
        */
       event.type = "disconnected";
-      event.target = {
+      event.port = {
         connection: e.port.connection,
         id: e.port.id,
         manufacturer: e.port.manufacturer,

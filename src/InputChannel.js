@@ -135,8 +135,8 @@ export class InputChannel extends EventEmitter {
 
     // Create and emit a new 'midimessage' event based on the incoming one
     const event = Object.assign({}, e);
+    event.port = this.input;
     event.target = this;
-    event.channel = this.number;
     event.type = "midimessage";
 
     /**
@@ -147,7 +147,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `midimessage`
-     * @property {Input} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -186,8 +187,8 @@ export class InputChannel extends EventEmitter {
        * @type {object}
        * @property {string} type `noteoff`
        *
-       * @property {InputChannel} target The object that triggered the event (the
-       * [`InputChannel`](InputChannel) object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the incoming
        * MIDI message.
        * @property {number} timestamp The moment
@@ -231,8 +232,8 @@ export class InputChannel extends EventEmitter {
        *
        * @type {object}
        * @property {string} type `noteon`
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -269,8 +270,8 @@ export class InputChannel extends EventEmitter {
        * @type {object}
        * @property {string} type `"keyaftertouch"`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -308,8 +309,8 @@ export class InputChannel extends EventEmitter {
        * @property {string} type `controlchange`
        * @property {string} subtype The type of control change message that was received.
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -341,8 +342,8 @@ export class InputChannel extends EventEmitter {
        * @property {string} type `controlchange-controllerxxx`
        * @property {string} subtype The type of control change message that was received.
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -380,8 +381,8 @@ export class InputChannel extends EventEmitter {
        * @type {object}
        * @property {string} type `programchange`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -403,8 +404,8 @@ export class InputChannel extends EventEmitter {
        * @type {object}
        * @property {string} type `channelaftertouch`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -426,8 +427,8 @@ export class InputChannel extends EventEmitter {
        * @type {object}
        * @property {string} type `pitchbend`
        *
-       * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-       * object).
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        * @property {Message} message A [`Message`](Message) object containing information about the
        * incoming MIDI message.
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -466,8 +467,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      * @property {string} type `allsoundoff`
      *
-     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-     * object).
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -481,8 +482,8 @@ export class InputChannel extends EventEmitter {
      *
      * @type {object}
      *
-     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-     * object).
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -499,8 +500,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      * @property {string} type `localcontrol`
      *
-     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-     * object).
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -524,8 +525,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      * @property {string} type `allnotesoff`
      *
-     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-     * object).
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -541,8 +542,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      * @property {string} type `"omnimode"`
      *
-     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-     * object).
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -572,8 +573,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      * @property {string} type `monomode`
      *
-     * @property {InputChannel} target The object that triggered the event (the `InputChannel`
-     * object).
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -724,7 +725,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `rpn-dataentrycoarse`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -747,7 +749,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `rpn-dataentryfine`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -770,7 +773,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `rpn-databuttonincrement`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -793,7 +797,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `rpn-databuttondecrement`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -816,7 +821,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `nrpn-dataentrycoarse`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -839,7 +845,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `nrpn-dataentryfine`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -862,7 +869,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `nrpn-databuttonincrement`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -885,7 +893,8 @@ export class InputChannel extends EventEmitter {
      * @type {object}
      *
      * @property {string} type `nrpn-databuttondecrement`
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -946,7 +955,8 @@ export class InputChannel extends EventEmitter {
      *
      * @property {string} type `nrpn`
      * @property {string} subtype The precise type of NRPN message that was received.
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the
@@ -979,7 +989,8 @@ export class InputChannel extends EventEmitter {
      *
      * @property {string} type `rpn`
      * @property {string} subtype The precise type of RPN message that was received.
-     * @property {InputChannel} target The `InputChannel` that triggered the event.
+     * @property {InputChannel} target The object that dispatched the event.
+     * @property {Input} port The `Input` that triggered the event.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
      * milliseconds since the navigation start of the document).
      * @property {Message} message A [`Message`](Message) object containing information about the

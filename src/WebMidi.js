@@ -688,7 +688,8 @@ class WebMidi extends EventEmitter {
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
      * @property {string} type `portschanged`
-     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
      *
      * @since 3.0.2
@@ -704,7 +705,8 @@ class WebMidi extends EventEmitter {
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
      * @property {string} type `connected`
-     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
      */
 
@@ -718,7 +720,8 @@ class WebMidi extends EventEmitter {
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {string} type `disconnected`
-     * @property {object} target Object with properties describing the [`Input`](Input) or
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {object} port Generic object with properties describing the [`Input`](Input) or
      * [`Output`](Output) that triggered the event.
      */
     let event = {
@@ -731,11 +734,11 @@ class WebMidi extends EventEmitter {
     if (e.port.state === "connected" && e.port.connection === "open") {
 
       if (e.port.type === "output") {
-        event.port = this.getOutputById(e.port.id); // legacy
-        event.target = event.port;
+        event.port = this.getOutputById(e.port.id);
+        event.target = this;
       } else if (e.port.type === "input") {
-        event.port = this.getInputById(e.port.id); // legacy
-        event.target = event.port;
+        event.port = this.getInputById(e.port.id);
+        event.target = this;
       }
 
       // Emit "connected" event
@@ -749,8 +752,6 @@ class WebMidi extends EventEmitter {
       // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
 
-      // It feels more logical to include a `target` property instead of a `port` property. This is
-      // the terminology used everywhere in the library.
       event.port = {
         connection: "closed",
         id: e.port.id,
@@ -761,7 +762,7 @@ class WebMidi extends EventEmitter {
       };
 
       // Emit "connected" event
-      event.target = event.port;
+      event.target = this;
       this.emit(e.port.state, event);
 
       // Make a shallow copy of the event so we can use it for the "portschanged" event

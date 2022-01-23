@@ -5771,25 +5771,12 @@ export type EventEmitterCallback = (...args: any[]) => void;
 /**
  * The `Event` object is transmitted when state change events occur.
  *
- * Input
- *  * closed
- *  * disconnected
- *  * opened
- *
- * Output
- *  * closed
- *  * disconnected
- *  * opened
- *
  * WebMidi
- *  * connected
  *  * disabled
- *  * disconnected
  *  * enabled
  *  * midiaccessgranted
- *  * portschanged
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {WebMidi} target The object that dispatched the event.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
  * @property {string} type The type of the event
@@ -5805,7 +5792,7 @@ export interface Event {
  * The `ErrorEvent` object is transmitted when an error occurs. Only the `WebMidi` object dispatches
  * this type of event.
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
  * @property {string} type The type of the event
@@ -5819,16 +5806,46 @@ export interface ErrorEvent extends Event {
 }
 
 /**
+ * The `PortEvent` object is transmitted when an event occurs on an `Input` or `Output` port.
+ *
+ * Input
+ *  * closed
+ *  * disconnected
+ *  * opened
+ *
+ * Output
+ *  * closed
+ *  * disconnected
+ *  * opened
+ *
+ * WebMidi
+ *  * connected
+ *  * disconnected
+ *  * portschanged
+ *
+ * @property {Input|Output} port The `Input` or `Output` that triggered the event (if any)
+ * @property {Input | InputChannel | Output | WebMidi} target The object that dispatched the event.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type The type of the event
+ *
+ */
+export interface PortEvent extends Event {
+  port: Input | Output;
+}
+
+/**
  * The `MessageEvent` object is transmitted when a MIDI message has been received. These events
  * are dispatched by `Input` and `InputChannel` classes:
  *
- * `Input`: activesensing, clock, continue, midimessage, reset, songposition, songselect, start, stop,
- * sysex, timecode, tunerequest, unknownmessage
+ * `Input`: activesensing, clock, continue, midimessage, reset, songposition, songselect, start,
+ * stop, sysex, timecode, tunerequest, unknownmessage
  *
  * `InputChannel`: allnotesoff, allsoundoff, midimessage, resetallcontrollers, channelaftertouch,
  * localcontrol, monomode, omnimode, pitchbend, programchange
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input | InputChannel} target The object that dispatched the event.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
  * @property {string} type The type of the event
@@ -5837,9 +5854,9 @@ export interface ErrorEvent extends Event {
  * @property {number} [rawValue] The raw value of the message (if any) between 0-127.
  * @property {number | boolean} [value] The value of the message (if any)
  */
-export interface MessageEvent extends Event {
-  channel?: number;
+export interface MessageEvent extends PortEvent {
   message: Message;
+  port: Input;
   rawValue?: number;
   target: Input | InputChannel;
   value?: number | boolean;
@@ -5850,7 +5867,8 @@ export interface MessageEvent extends Event {
  * received. There is a general `controlchange` event and a specific `controlchange-controllerxxx`
  * for each controller.
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input | InputChannel} target The object that dispatched the event.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
  * @property {string} type The type of the event
@@ -5870,15 +5888,17 @@ export interface ControlChangeMessageEvent extends MessageEvent {
     name: string;
     number: number;
   };
+  port: Input;
   subtype?: string;
-  target: InputChannel;
+  target: Input | InputChannel;
 }
 
 /**
  * The `NoteMessageEvent` object is transmitted when a note-related MIDI message (`noteoff`,
  * `noteon` or `keyaftertouch`) is received on an input channel
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input | InputChannel} target The object that dispatched the event.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
  * @property {string} type The type of the event
@@ -5892,7 +5912,8 @@ export interface ControlChangeMessageEvent extends MessageEvent {
 export interface NoteMessageEvent extends MessageEvent {
   channel: number;
   note: Note;
-  target: InputChannel;
+  port: Input;
+  target: Input | InputChannel;
 }
 
 /**
@@ -5911,7 +5932,8 @@ export interface NoteMessageEvent extends MessageEvent {
  *  * rpn-dataentrycoarse
  *  * rpn-dataentryfine
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input | InputChannel} target The object that dispatched the event.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
  * @property {string} type The type of the event
@@ -5930,7 +5952,8 @@ export interface ParameterNumberMessageEvent extends MessageEvent {
   parameter: string;
   parameterMsb: number;
   parameterLsb: number;
-  target: InputChannel;
+  port: Input;
+  target: Input | InputChannel;
 }
 
 /**
@@ -5939,9 +5962,9 @@ export interface ParameterNumberMessageEvent extends MessageEvent {
 export interface InputEventMap {
 
   // Stage Change
-  "closed": (e: Event) => void;
-  "disconnected": (e: Event) => void;
-  "opened": (e: Event) => void;
+  "closed": (e: PortEvent) => void;
+  "disconnected": (e: PortEvent) => void;
+  "opened": (e: PortEvent) => void;
 
   // System Common and System Real-Time
   "activesensing": (e: MessageEvent) => void;
@@ -6299,20 +6322,20 @@ export interface InputChannelEventMap {
  * A map of all the events that can be passed to `Output.addListener()`.
  */
 export interface OutputEventMap {
-  "closed": (e: Event) => void;
-  "disconnected": (e: Event) => void;
-  "opened": (e: Event) => void;
+  "closed": (e: PortEvent) => void;
+  "disconnected": (e: PortEvent) => void;
+  "opened": (e: PortEvent) => void;
 }
 
 /**
  * A map of all the events that can be passed to `Output.addListener()`.
  */
 export interface WebMidiEventMap {
-  "connected": (e: Event) => void;
+  "connected": (e: PortEvent) => void;
   "disabled": (e: Event) => void;
-  "disconnected": (e: Event) => void;
+  "disconnected": (e: PortEvent) => void;
   "enabled": (e: Event) => void;
   "midiaccessgranted": (e: Event) => void;
-  "portschanged": (e: Event) => void;
+  "portschanged": (e: PortEvent) => void;
   "error": (e: ErrorEvent) => void;
 }

@@ -119,7 +119,8 @@ export class Input extends EventEmitter {
 
     let event = {
       timestamp: WebMidi.time,
-      target: this
+      target: this,
+      port: this // for consistency
     };
 
     if (e.port.connection === "open") {
@@ -133,7 +134,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `opened`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        */
       event.type = "opened";
       this.emit("opened", event);
@@ -149,7 +151,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `closed`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        */
       event.type = "closed";
       this.emit("closed", event);
@@ -165,10 +168,12 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `disconnected`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} port Object with properties describing the {@link Input} that was
+       * disconnected. This is not the actual `Input` as it is no longer available.
+       * @property {Input} target The object that dispatched the event.
        */
       event.type = "disconnected";
-      event.target = {
+      event.port = {
         connection: e.port.connection,
         id: e.port.id,
         manufacturer: e.port.manufacturer,
@@ -203,7 +208,8 @@ export class Input extends EventEmitter {
      *
      * @type {object}
      *
-     * @property {Input} target The `Input`that triggered the event.
+     * @property {Input} port The `Input` that triggered the event.
+     * @property {Input} target The object that dispatched the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -213,6 +219,7 @@ export class Input extends EventEmitter {
      * @since 2.1
      */
     const event = {
+      port: this,
       target: this,
       message: message,
       timestamp: e.timeStamp,
@@ -228,7 +235,7 @@ export class Input extends EventEmitter {
 
     // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
-    if (message.isSystemMessage) {                                         // system messages
+    if (message.isSystemMessage) {           // system messages
       this._parseEvent(event);
     } else if (message.isChannelMessage) {   // channel messages
       this.channels[message.channel]._processMidiMessageEvent(event);
@@ -942,7 +949,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -959,7 +967,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -976,7 +985,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -993,7 +1003,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1011,7 +1022,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1028,7 +1040,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1045,7 +1058,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1062,7 +1076,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1079,7 +1094,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1096,7 +1112,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1113,7 +1130,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1131,7 +1149,8 @@ export class Input extends EventEmitter {
  *
  * @type {Object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
