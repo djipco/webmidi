@@ -106,6 +106,9 @@ musical notes.
 * Check if something specific needs to be done to support Electron 
 ([this discussion](https://www.electronjs.org/docs/api/session#sessetpermissionrequesthandlerhandler)).
 
+* Evaluate whether if would be worth it to switch from the `midi` module to the `web-midi-test` 
+module for unit tests.
+
 ## Enhancements Put On Hold For Now
 
 * Consider usage of 
