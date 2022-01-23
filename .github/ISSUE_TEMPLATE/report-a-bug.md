@@ -1,6 +1,6 @@
 ---
 name: Report a bug
-about: This is to report a bug, issue or problem
+about: This is only to report a bug, issue or problem.
 title: ''
 labels: ''
 assignees: ''
@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 **Describe the bug and how to reproduce it**
-Describe the problem and how to reproduce it. If appropriate, include code samples, screenshots, error messages, etc.
+Describe the problem and how to reproduce it. If appropriate, include code samples, screenshots, error messages, etc. 
 
 **Environment:**
 Specify the environment where you are witnessing the problem:
