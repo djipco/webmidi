@@ -8,13 +8,15 @@ assignees: ''
 ---
 
 **Describe the bug and how to reproduce it**
-A clear and concise description of what the problem is and how to reproduce it. If appropriate, include code samples, screenshots, etc.
+Describe the problem and how to reproduce it. If appropriate, include code samples, screenshots, error messages, etc.
 
 **Environment:**
 Specify the environment where you are witnessing the problem:
- - Operating system
- - Browser name and version (or Node.js version)
- - Library version
+  - Library version
+  - Library flavour (CJS, ESM or IIFE)
+  - Browser name and version or Node.js version
+  - JavaScript or TypeScript
+  - Operating system
 
 **Additional context**
 Add any other context about the problem here.
