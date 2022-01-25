@@ -5552,6 +5552,8 @@ declare class WebMidi extends EventEmitter {
    * @param id {string} The ID string of the input. IDs can be viewed by looking at the
    * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
    * are strings.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
    * @returns {Input} An [`Input`](Input) object matching the specified ID string or `undefined`
    * if no matching input can be found.
@@ -5560,7 +5562,9 @@ declare class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getInputById(id: string): Input;
+  getInputById(id: string, options?: {
+    disconnected?: boolean;
+  }): Input;
 
   /**
    * Returns the first [`Input`](Input) object whose name **contains** the specified string. Note
@@ -5572,12 +5576,16 @@ declare class WebMidi extends EventEmitter {
    *
    * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
    * specified name.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
    * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
-  getInputByName(name: string): Input;
+  getInputByName(name: string, options?: {
+    disconnected?: boolean;
+  }): Input;
 
   /**
    * Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
@@ -5589,6 +5597,8 @@ declare class WebMidi extends EventEmitter {
    *
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
    * [`WebMidi.outputs`](WebMidi#outputs) array.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
    * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
    * matching output can be found, the method returns `undefined`.
@@ -5597,7 +5607,9 @@ declare class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getOutputById(id: string): Output;
+  getOutputById(id: string, options?: {
+    disconnected?: boolean;
+  }): Output;
 
   /**
    * Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
@@ -5606,6 +5618,8 @@ declare class WebMidi extends EventEmitter {
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [`outputs`](#outputs) array).
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
    * @returns {Output} The [`Output`](Output) that was found or `undefined` if no output matched
    * the specified name.
@@ -5614,7 +5628,9 @@ declare class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getOutputByName(name: string): Output;
+  getOutputByName(name: string, options?: {
+    disconnected?: boolean;
+  }): Output;
 
   /**
    * Checks if the specified event type is already defined to trigger the specified callback
@@ -5827,7 +5843,7 @@ export interface ErrorEvent extends Event {
  *  * disconnected
  *  * portschanged
  *
- * @property {Input|Output} port The `Input` or `Output` that triggered the event (if any)
+ * @property {Input|Output} port The `Input` or `Output` that triggered the event
  * @property {Input | InputChannel | Output | WebMidi} target The object that dispatched the event.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).

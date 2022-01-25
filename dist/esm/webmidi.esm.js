@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.13 - January 25, 2022 10:10:15 */
+/* Version: 3.0.13 - January 25, 2022 11:11:08 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -9249,6 +9249,8 @@ class WebMidi extends EventEmitter {
    * @param id {string} The ID string of the input. IDs can be viewed by looking at the
    * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
    * are strings.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
    * @returns {Input} An [`Input`](Input) object matching the specified ID string or `undefined`
    * if no matching input can be found.
@@ -9257,15 +9259,21 @@ class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getInputById(id) {
+  getInputById(id, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!id) return;
     }
 
-    for (let i = 0; i < this.inputs.length; i++) {
-      if (this.inputs[i].id === id.toString()) return this.inputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedInputs.length; i++) {
+        if (this._disconnectedInputs[i].id === id.toString()) return this._disconnectedInputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.inputs.length; i++) {
+        if (this.inputs[i].id === id.toString()) return this.inputs[i];
+      }
     }
 
   };
@@ -9280,12 +9288,14 @@ class WebMidi extends EventEmitter {
    *
    * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
    * specified name.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
    * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
-  getInputByName(name) {
+  getInputByName(name, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
@@ -9293,8 +9303,14 @@ class WebMidi extends EventEmitter {
       name = name.toString();
     }
 
-    for (let i = 0; i < this.inputs.length; i++) {
-      if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedInputs.length; i++) {
+        if (~this._disconnectedInputs[i].name.indexOf(name)) return this._disconnectedInputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.inputs.length; i++) {
+        if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
+      }
     }
 
   };
@@ -9306,6 +9322,8 @@ class WebMidi extends EventEmitter {
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [`outputs`](#outputs) array).
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
    * @returns {Output} The [`Output`](Output) that was found or `undefined` if no output matched
    * the specified name.
@@ -9314,7 +9332,7 @@ class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getOutputByName(name) {
+  getOutputByName(name, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
@@ -9322,8 +9340,14 @@ class WebMidi extends EventEmitter {
       name = name.toString();
     }
 
-    for (let i = 0; i < this.outputs.length; i++) {
-      if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedOutputs.length; i++) {
+        if (~this._disconnectedOutputs[i].name.indexOf(name)) return this._disconnectedOutputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.outputs.length; i++) {
+        if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
+      }
     }
 
   };
@@ -9338,6 +9362,8 @@ class WebMidi extends EventEmitter {
    *
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
    * [`WebMidi.outputs`](WebMidi#outputs) array.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
    * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
    * matching output can be found, the method returns `undefined`.
@@ -9346,15 +9372,21 @@ class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getOutputById(id) {
+  getOutputById(id, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!id) return;
     }
 
-    for (let i = 0; i < this.outputs.length; i++) {
-      if (this.outputs[i].id === id.toString()) return this.outputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedOutputs.length; i++) {
+        if (this._disconnectedOutputs[i].id === id.toString()) return this._disconnectedOutputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.outputs.length; i++) {
+        if (this.outputs[i].id === id.toString()) return this.outputs[i];
+      }
     }
 
   };
@@ -9536,12 +9568,13 @@ class WebMidi extends EventEmitter {
      * since the navigation start of the document).
      * @property {string} type `disconnected`
      * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
-     * @property {object} port Generic object with properties describing the [`Input`](Input) or
-     * [`Output`](Output) that triggered the event.
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
      */
     let event = {
       timestamp: e.timeStamp,
-      type: e.port.state
+      type: e.port.state,
+      target: this
     };
 
     // We check if "connection" is "open" because connected events are also triggered with
@@ -9550,10 +9583,8 @@ class WebMidi extends EventEmitter {
 
       if (e.port.type === "output") {
         event.port = this.getOutputById(e.port.id);
-        event.target = this;
       } else if (e.port.type === "input") {
         event.port = this.getInputById(e.port.id);
-        event.target = this;
       }
 
       // Emit "connected" event
@@ -9564,20 +9595,16 @@ class WebMidi extends EventEmitter {
       portsChangedEvent.type = "portschanged";
       this.emit(portsChangedEvent.type, portsChangedEvent);
 
-      // We check if "connection" is "pending" because we do not always get the "closed" event
+    // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
 
-      event.port = {
-        connection: "closed",
-        id: e.port.id,
-        manufacturer: e.port.manufacturer,
-        name: e.port.name,
-        state: e.port.state,
-        type: e.port.type
-      };
+      if (e.port.type === "input") {
+        event.port = this.getInputById(e.port.id, {disconnected: true});
+      } else if (e.port.type === "output") {
+        event.port = this.getOutputById(e.port.id, {disconnected: true});
+      }
 
-      // Emit "connected" event
-      event.target = this;
+      // Emit "disconnected" event
       this.emit(e.port.state, event);
 
       // Make a shallow copy of the event so we can use it for the "portschanged" event
