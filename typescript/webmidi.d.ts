@@ -251,10 +251,14 @@ declare class EventEmitter {
    * @param {number} [options.remaining] Only remove the listener if it has exactly that many
    * remaining times to be executed.
    */
-  removeListener(event?: string | Symbol, callback?: EventEmitterCallback, options?: {
-    context?: any;
-    remaining?: number;
-  }): void;
+  removeListener(
+    event?: string | Symbol,
+    callback?: EventEmitterCallback,
+    options?: {
+      context?: any;
+      remaining?: number;
+    }
+  ): void;
 
   /**
    * The `waitFor()` method is an async function which returns a promise. The promise is fulfilled
@@ -1819,8 +1823,8 @@ export class InputChannel extends EventEmitter {
    * remaining times to be executed.
    */
   removeListener<T extends keyof InputChannelEventMap>(
-    e: Symbol | T,
-    listener: InputChannelEventMap[T],
+    type?: Symbol | T,
+    listener?: InputChannelEventMap[T],
     options?: {
       "channels"?: number | number[];
       "context"?: any;
@@ -2441,8 +2445,8 @@ export class Output extends EventEmitter {
    * remaining times to be executed.
    */
   removeListener<T extends keyof OutputEventMap>(
-    e: Symbol | T,
-    listener: OutputEventMap[T],
+    type?: Symbol | T,
+    listener?: OutputEventMap[T],
     options?: {
       "context"?: any;
       "remaining"?: number;
@@ -5646,8 +5650,8 @@ declare class WebMidi extends EventEmitter {
    * remaining times to be executed.
    */
   removeListener<T extends keyof WebMidiEventMap>(
-    e: Symbol | T,
-    listener: WebMidiEventMap[T],
+    type?: Symbol | T,
+    listener?: WebMidiEventMap[T],
     options?: {
       "context"?: any;
       "remaining"?: number;
