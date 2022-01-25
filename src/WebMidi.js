@@ -20,13 +20,22 @@ if (Utilities.isNode) {
   } catch (err) {
     let jzz;
     eval('jzz = require("jzz")');
-    global["navigator"] = jzz;
+    global.navigator = jzz;
+  }
+
+  // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
+  // imported only in v16+.
+  try {
+    performance;
+  } catch (err) {
+    let performance;
+    eval('performance = require("perf_hooks").performance');
+    global.performance = performance;
   }
 
 }
 
 /*END-CJS*/
-
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -234,10 +243,21 @@ class WebMidi extends EventEmitter {
       try {
         window.navigator;
       } catch (err) {
-        global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
-        jzz = await import("jzz");
+        global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
+        let jzz = await import("jzz");
         return jzz.default;
-      `)();
+        `)();
+      }
+
+      // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
+      // imported only in v16+.
+      try {
+        performance;
+      } catch (err) {
+        global.performance = await Object.getPrototypeOf(async function() {}).constructor(`
+        let perf_hooks = await import("perf_hooks");
+        return perf_hooks.performance;
+        `)();
       }
 
     }
