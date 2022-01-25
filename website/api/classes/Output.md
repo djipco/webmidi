@@ -186,7 +186,7 @@ listener will also be triggered by non-registered events.
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
@@ -2160,7 +2160,8 @@ Event emitted when the [Output](Output) has been closed by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"closed"`|
-  |**`target`** |Output|The object that triggered the event|
+  |**`target`** |Output|The object to which the listener was originally added (`Output`).|
+  |**`port`** |Output|The port that was closed|
 
 
 ### `disconnected` {#event-disconnected}
@@ -2179,8 +2180,8 @@ when the MIDI device is unplugged.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"disconnected"`|
-  |**`target`** |Input|The `Output` that triggered the event.|
-  |**`target`** |object|Object with properties describing the [Output](Output) that triggered the event. This is not the actual `Output` as it is no longer available.|
+  |**`target`** |Output|The object to which the listener was originally added (`Output`).|
+  |**`port`** |object|Object with properties describing the [Output](Output) that was disconnected. This is not the actual `Output` as it is no longer available.|
 
 
 ### `opened` {#event-opened}
@@ -2199,7 +2200,8 @@ Event emitted when the [Output](Output) has been opened by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"opened"`|
-  |**`target`** |Output|The object that triggered the event|
+  |**`target`** |Output|The object to which the listener was originally added (`Output`).|
+  |**`port`** |Output|The port that was opened|
 
 
 

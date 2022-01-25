@@ -338,7 +338,7 @@ There are 8 families of events you can listen to:
     |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus be triggered before others.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
 
   </div>
 
@@ -686,7 +686,7 @@ have the listener defined.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br /> ||The type of the event.|
+    |**`event`** | string<br />Symbol<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||The callback function to check for.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
@@ -893,7 +893,8 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`activesensing`|
@@ -913,7 +914,8 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`clock`|
@@ -935,7 +937,8 @@ Event emitted when the `Input` has been closed by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`closed`|
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
 
 
 ### `continue` {#event-continue}
@@ -952,7 +955,8 @@ Input-wide (system) event emitted when a **continue** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`continue`|
@@ -974,7 +978,8 @@ when the MIDI device is unplugged.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`disconnected`|
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|Object with properties describing the [Input](Input) that was disconnected. This is not the actual `Input` as it is no longer available.|
+  |**`target`** |Input|The object that dispatched the event.|
 
 
 ### `midimessage` {#event-midimessage}
@@ -991,7 +996,8 @@ Event emitted when any MIDI message is received on an `Input`.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input`that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`midimessage`|
@@ -1013,7 +1019,8 @@ method.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`opened`|
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
 
 
 ### `reset` {#event-reset}
@@ -1030,7 +1037,8 @@ Input-wide (system) event emitted when a **reset** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`reset`|
@@ -1050,7 +1058,8 @@ Input-wide (system) event emitted when a **song position** message has been rece
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`songposition`|
@@ -1070,7 +1079,8 @@ Input-wide (system) event emitted when a **song select** message has been receiv
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |string|Song (or sequence) number to select (0-127)|
@@ -1091,7 +1101,8 @@ Input-wide (system) event emitted when a **start** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`start`|
@@ -1111,7 +1122,8 @@ Input-wide (system) event emitted when a **stop** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`stop`|
@@ -1137,7 +1149,8 @@ WebMidi.enable({sysex: true})
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`sysex`|
@@ -1158,7 +1171,8 @@ received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`timecode`|
@@ -1178,7 +1192,8 @@ Input-wide (system) event emitted when a **tune request** message has been recei
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`tunerequest`|
@@ -1199,7 +1214,8 @@ be, for example, one of the undefined/reserved messages.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`unknownmessage`|

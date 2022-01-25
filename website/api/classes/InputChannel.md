@@ -167,7 +167,7 @@ listener will also be triggered by non-registered events.
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
@@ -566,7 +566,8 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`allnotesoff`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
@@ -585,7 +586,8 @@ Event emitted when an "all sound off" channel-mode MIDI message has been receive
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`allsoundoff`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
@@ -604,7 +606,8 @@ Event emitted when a control change MIDI message has been received.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`channelaftertouch`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
@@ -626,7 +629,8 @@ Event emitted when a **control change** MIDI message has been received.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`controlchange`|
   |**`subtype`** |string|The type of control change message that was received.|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`controller`** |object||
@@ -653,7 +657,8 @@ controller number (0-127).
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`controlchange-controllerxxx`|
   |**`subtype`** |string|The type of control change message that was received.|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`controller`** |object||
@@ -677,12 +682,11 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"keyaftertouch"`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`identifier`** |string|The note identifier of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
-  |**`key`** |number|The MIDI note number of the key to apply the aftertouch to. This includes any octave offset applied at the channel, input or global level.|
-  |**`rawKey`** |number|The MIDI note number of the key to apply the aftertouch to. This excludes any octave offset defined at the channel, input or global level.|
+  |**`note`** |object|A [`Note`](Note) object containing information such as note name and number.|
   |**`value`** |number|The aftertouch amount expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The aftertouch amount expressed as an integer (between 0 and 127).|
 
@@ -703,10 +707,12 @@ off).
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`localcontrol`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |boolean|For local control on, the value is `true`. For local control off, the value is `false`.|
+  |**`rawValue`** |boolean|For local control on, the value is `127`. For local control off, the value is `0`.|
 
 
 ### `midimessage` {#event-midimessage}
@@ -723,7 +729,8 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`midimessage`|
-  |**`target`** |Input|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
@@ -744,10 +751,12 @@ poly mode on).
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`monomode`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
+  |**`rawValue`** |boolean|The raw MIDI value|
 
 
 ### `noteoff` {#event-noteoff}
@@ -764,7 +773,8 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`noteoff`|
-  |**`target`** |InputChannel|The object that triggered the event (the [`InputChannel`](InputChannel) object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment ([`DOMHighResTimeStamp`](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp)) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`note`** |object|A [`Note`](Note) object containing information such as note name, octave and release velocity.|
@@ -786,7 +796,8 @@ Event emitted when a **note on** MIDI message has been received.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`noteon`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`note`** |object|A [`Note`](Note) object containing information such as note name, octave and release velocity.|
@@ -817,7 +828,8 @@ The parameter to which the message applies can be found in the event's `paramete
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`nrpn`|
   |**`subtype`** |string|The precise type of NRPN message that was received.|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |number|The non-registered parameter number (0-16383)|
@@ -844,7 +856,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`nrpn-databuttondecrement`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -871,7 +884,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`nrpn-databuttonincrement`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -898,7 +912,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`nrpn-dataentrycoarse`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -925,7 +940,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`nrpn-dataentryfine`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -950,10 +966,12 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`"omnimode"`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |boolean|The value is `true` for omni mode on and false for omni mode off.|
+  |**`rawValue`** |boolean|The raw MIDI value|
 
 
 ### `pitchbend` {#event-pitchbend}
@@ -970,7 +988,8 @@ Event emitted when a pitch bend MIDI message has been received.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`pitchbend`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
@@ -991,7 +1010,8 @@ Event emitted when a **program change** MIDI message has been received.
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`programchange`|
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`value`** |number|The value expressed as an integer between 0 and 127.|
@@ -1011,7 +1031,8 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |InputChannel|The object that triggered the event (the `InputChannel` object).|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
 
@@ -1041,7 +1062,8 @@ It is one of the ones defined in
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`rpn`|
   |**`subtype`** |string|The precise type of RPN message that was received.|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -1068,7 +1090,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`rpn-databuttondecrement`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -1095,7 +1118,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`rpn-databuttonincrement`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -1122,7 +1146,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`rpn-dataentrycoarse`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|
@@ -1149,7 +1174,8 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`rpn-dataentryfine`|
-  |**`target`** |InputChannel|The `InputChannel` that triggered the event.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`parameter`** |string|The registered parameter's name|

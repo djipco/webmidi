@@ -227,7 +227,7 @@ listener will also be triggered by non-registered events.
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
@@ -447,13 +447,15 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
-  > Signature: `getInputById(id)`
+  > Signature: `getInputById(id, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`id`** | string<br /> ||The ID string of the input. IDs can be viewed by looking at the [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs are strings.|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected input|
 
   </div>
 
@@ -481,13 +483,15 @@ input names in the same way as the Jazz-Plugin does.
 
   **Parameters**
 
-  > Signature: `getInputByName(name)`
+  > Signature: `getInputByName(name, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`name`** | string<br /> ||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs](WebMidi#inputs) array).|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected input|
 
   </div>
 
@@ -586,13 +590,15 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
-  > Signature: `getOutputById(id)`
+  > Signature: `getOutputById(id, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`id`** | string<br /> ||The ID string of the port. IDs can be viewed by looking at the [`WebMidi.outputs`](WebMidi#outputs) array.|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected output|
 
   </div>
 
@@ -620,13 +626,15 @@ input names in the same way as the Jazz-Plugin does.
 
   **Parameters**
 
-  > Signature: `getOutputByName(name)`
+  > Signature: `getOutputByName(name, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`name`** | string<br /> ||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [`outputs`](#outputs) array).|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected output|
 
   </div>
 
@@ -828,7 +836,8 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`connected`|
-  |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
+  |**`target`** |WebMidi|The object to which the listener was originally added (`WebMidi`)|
+  |**`port`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 ### `disabled` {#event-disabled}
@@ -866,7 +875,8 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`disconnected`|
-  |**`target`** |object|Object with properties describing the [`Input`](Input) or [`Output`](Output) that triggered the event.|
+  |**`target`** |WebMidi|The object to which the listener was originally added (`WebMidi`)|
+  |**`port`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 ### `enabled` {#event-enabled}
@@ -944,7 +954,8 @@ and/or outputs (which is often the case).
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`portschanged`|
-  |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
+  |**`target`** |WebMidi|The object to which the listener was originally added (`WebMidi`)|
+  |**`port`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 
