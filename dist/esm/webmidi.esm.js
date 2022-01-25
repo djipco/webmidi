@@ -1,8 +1,8 @@
 /**
- * WEBMIDI.js v3.0.10
+ * WEBMIDI.js v3.0.11
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on January 23rd, 2022.
+ * Build generated on January 25th, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.10 - January 23, 2022 15:16:29 */
+/* Version: 3.0.11 - January 25, 2022 09:45:31 */
 /**
  * The `EventEmitter` class provides methods to implement the _observable_ design pattern. This
  * pattern allows one to _register_ a function to execute when a specific event is _emitted_ by the
@@ -9038,10 +9038,21 @@ class WebMidi extends EventEmitter {
       try {
         window.navigator;
       } catch (err) {
-        global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
-        jzz = await import("jzz");
+        global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
+        let jzz = await import("jzz");
         return jzz.default;
-      `)();
+        `)();
+      }
+
+      // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
+      // imported only in v16+.
+      try {
+        performance;
+      } catch (err) {
+        global.performance = await Object.getPrototypeOf(async function() {}).constructor(`
+        let perf_hooks = await import("perf_hooks");
+        return perf_hooks.performance;
+        `)();
       }
 
     }
@@ -9845,7 +9856,7 @@ class WebMidi extends EventEmitter {
    * @type string
    */
   get version() {
-    return "3.0.10";
+    return "3.0.11";
   }
 
   /**
