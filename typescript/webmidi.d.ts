@@ -1427,8 +1427,8 @@ export class Input extends EventEmitter {
    * remaining times to be executed.
    */
   removeListener<T extends keyof InputEventMap>(
-    e: Symbol | T,
-    listener: InputEventMap[T],
+    type?: Symbol | T,
+    listener?: InputEventMap[T],
     options?: {
       "channels"?: number | number[];
       "context"?: any;
