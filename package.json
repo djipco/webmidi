@@ -136,6 +136,7 @@
     "sinon-browser-only": "^1.12.1",
     "system-commands": "^1.1.7",
     "test-value": "^3.0.0",
-    "util": "^0.12.4"
+    "util": "^0.12.4",
+    "web-midi-test": "^1.1.9"
   }
 }
