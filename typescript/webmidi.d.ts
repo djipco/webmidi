@@ -5570,7 +5570,7 @@ declare class WebMidi extends EventEmitter {
     sysex?: boolean;
     validation?: boolean;
     software?: boolean;
-    requestMIDIAccessFunction: Function;
+    requestMIDIAccessFunction?: Function;
   }): Promise<WebMidi>;
 
   /**
