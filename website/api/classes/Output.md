@@ -1790,12 +1790,27 @@ Returns the `Output` object so methods can be chained.
 
 
 Sends a MIDI [**system exclusive**](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
-(*sysex*) message. The `data` parameter should only contain the data of the message. When
-sending out the actual MIDI message, WEBMIDI.js will automatically prepend the data with the
-**sysex byte** (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
-the message with the **sysex end byte** (`0xF7`).
+(*sysex*) message. There are two categories of system exclusive messages: manufacturer-specific
+messages or universal messages. Universal messages are further divided into three subtypes:
 
-The data can be an array of unsigned integers (`0` - `127`) or a `Uint8Array` object.
+  * Universal non-commercial (for research, testing, etc.)
+  * Universal non-realtime
+  * Universal realtime
+
+The method's first parameter (`identification`) identifies the type of message. If the value of
+`identification` is `0x7D` (125), `0x7E` (126) or `0x7F` (127), the message will be identified
+as a **universal non-commercial**, **universal non-realtime** or **universal realtime** message
+(respectively).
+
+If the `identification` value is an array or an integer between 0 and 124, it will be used to
+identify the manufacturer targeted by the message. The *MIDI Manufacturers Association*
+maintains a full list of
+[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
+
+The `data` parameter should only contain the data of the message. When sending out the actual
+MIDI message, WEBMIDI.js will automatically prepend the data with the **sysex byte** (`0xF0`)
+and the identification byte(s). It will also automatically terminate the message with the
+**sysex end byte** (`0xF7`).
 
 To use the `sendSysex()` method, system exclusive message support must have been enabled. To
 do so, you must set the `sysex` option to `true` when calling
@@ -1832,23 +1847,20 @@ as the first parameter. For example, to send the same sysex message to a
 WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 ```
 
-The **MIDI Manufacturers Association** is in charge of maintaining the full updated list of
-[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
-
 There is no limit for the length of the data array. However, it is generally suggested to keep
 system exclusive messages to 64Kb or less.
 
 
   **Parameters**
 
-  > Signature: `sendSysex(manufacturer, [data], [options])`
+  > Signature: `sendSysex(identification, [data], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`manufacturer`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between `0` and `127` that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).|
-    |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> |[]|A `Uint8Array` or an array of unsigned integers between `0` and `127`. This is the data you wish to transfer.|
+    |**`identification`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between `0` and `127` that either identify the manufacturer or sets the message to be a **universal non-commercial message** (`0x7D`), a **universal non-realtime message** (`0x7E`) or a **universal realtime message** (`0x7F`), The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).|
+    |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> |number[]|A `Uint8Array` or an array of unsigned integers between `0` and `127`. This is the data you wish to transfer.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
