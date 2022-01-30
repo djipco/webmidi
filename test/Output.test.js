@@ -7,12 +7,13 @@ WMT.midi = true;
 WMT.sysex = true;
 const requestMIDIAccessFunction = WMT.requestMIDIAccess;
 
-const noop = () => {};
+function noop() {}
 
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
 let VIRTUAL_OUTPUT_NAME = "Virtual Output";
 let VIRTUAL_OUTPUT = new WMT.MidiDst(VIRTUAL_OUTPUT_NAME);
+/** @type {import("../dist/cjs/webmidi.cjs.js").Output} */
 let WEBMIDI_OUTPUT;
 
 describe("Output Object", function() {
