@@ -1852,9 +1852,9 @@ system exclusive messages to 64Kb or less.
 
 ##### Example of universal system exclusive message
 
-If you want to send a universal message, simply assign the correct identification number in the
-first parameter. Number `0x7D` (125) is for non-commercial, `0x7E` (126) is for non-realtime
-and `0x7F` (127) is for realtime.
+If you want to send a universal sysex message, simply assign the correct identification number
+in the first parameter. Number `0x7D` (125) is for non-commercial, `0x7E` (126) is for
+non-realtime and `0x7F` (127) is for realtime.
 
 So, for example, if you wanted to send an identity request non-realtime message (`0x7E`), you
 could use the following:
@@ -1862,6 +1862,9 @@ could use the following:
 ```js
 WebMidi.outputs[0].sendSysex(0x7E, [0x7F, 0x06, 0x01]);
 ```
+
+For more details on the format of universal message, consult the list of
+[universal sysex messages](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages).
 
 
   **Parameters**
