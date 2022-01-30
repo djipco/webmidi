@@ -1863,7 +1863,7 @@ could use the following:
 WebMidi.outputs[0].sendSysex(0x7E, [0x7F, 0x06, 0x01]);
 ```
 
-For more details on the format of universal message, consult the list of
+For more details on the format of universal messages, consult the list of
 [universal sysex messages](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages).
 
 
@@ -1876,7 +1876,7 @@ For more details on the format of universal message, consult the list of
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`identification`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between `0` and `127` that either identify the manufacturer or sets the message to be a **universal non-commercial message** (`0x7D`), a **universal non-realtime message** (`0x7E`) or a **universal realtime message** (`0x7F`), The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).|
-    |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> |number[]|A `Uint8Array` or an array of unsigned integers between `0` and `127`. This is the data you wish to transfer.|
+    |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> ||A `Uint8Array` or an array of unsigned integers between `0` and `127`. This is the data you wish to transfer.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
