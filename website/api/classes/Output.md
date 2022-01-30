@@ -1821,7 +1821,7 @@ WebMidi.enable({sysex: true})
   .then(() => console.log("System exclusive messages are enabled");
 ```
 
-##### Examples
+##### Examples of manufacturer-specific system exclusive messages
 
 If you want to send a sysex message to a Korg device connected to the first output, you would
 use the following code:
@@ -1849,6 +1849,8 @@ WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 
 There is no limit for the length of the data array. However, it is generally suggested to keep
 system exclusive messages to 64Kb or less.
+
+##### Examples of universal system exclusive messages
 
 If you want to send a universal message, simply assign the correct identification number in the
 first parameter. Number `0x7D` (125) is for non-commercial, `0x7E` (126) is for non-realtime
