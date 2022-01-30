@@ -1,25 +1,26 @@
 const expect = require("chai").expect;
-const midi = require("midi");
+const WMT = require("web-midi-test");
 const {WebMidi, Utilities, Enumerations, Note} = require("../dist/cjs/webmidi.cjs.js");
 
 // Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
 // an input from WebMidi's perspective. To avoid confusion, the property names adopt WebMidi's point
 // of view.
 let VIRTUAL_INPUT = {
-  PORT: new midi.Output(),
+  PORT: new WMT.MidiSrc("Virtual input"),
   NAME: "Virtual input"
 };
 
+/** @type {import("../dist/cjs/webmidi.cjs.js").Input} */
 let WEBMIDI_INPUT;
 
 describe("InputChannel Object", function() {
 
   before(function () {
-    VIRTUAL_INPUT.PORT.openVirtualPort(VIRTUAL_INPUT.NAME);
+    VIRTUAL_INPUT.PORT.connect();
   });
 
   after(function () {
-    VIRTUAL_INPUT.PORT.closePort();
+    VIRTUAL_INPUT.PORT.disconnect();
   });
 
   beforeEach("Check support and enable", async function () {
@@ -58,7 +59,7 @@ describe("InputChannel Object", function() {
 
     // Act
     messages.forEach(message => {
-      VIRTUAL_INPUT.PORT.sendMessage(message);
+      VIRTUAL_INPUT.PORT.emit(message);
     });
 
     // Assert
@@ -86,7 +87,7 @@ describe("InputChannel Object", function() {
 
     // Act
     for (let i = 0; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, velocity]);
+      VIRTUAL_INPUT.PORT.emit([status, i, velocity]);
     }
 
     // Assert
@@ -120,7 +121,7 @@ describe("InputChannel Object", function() {
 
     // Act
     for (let i = 0; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, velocity]);
+      VIRTUAL_INPUT.PORT.emit([status, i, velocity]);
     }
 
     // Assert
@@ -156,7 +157,7 @@ describe("InputChannel Object", function() {
 
     // Act
     channel.addListener(event, assert);
-    VIRTUAL_INPUT.PORT.sendMessage(message);
+    VIRTUAL_INPUT.PORT.emit(message);
 
     // Assert
     function assert(e) {
@@ -180,7 +181,7 @@ describe("InputChannel Object", function() {
 
     // Act
     for (let i = 0; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, velocity]);
+      VIRTUAL_INPUT.PORT.emit([status, i, velocity]);
     }
 
     // Assert
@@ -211,7 +212,7 @@ describe("InputChannel Object", function() {
 
     // Act
     channel.addListener(event, assert);
-    VIRTUAL_INPUT.PORT.sendMessage(message);
+    VIRTUAL_INPUT.PORT.emit(message);
 
     // Assert
     function assert(e) {
@@ -234,7 +235,7 @@ describe("InputChannel Object", function() {
 
     // Act
     for (let i = 0; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, velocity]);
+      VIRTUAL_INPUT.PORT.emit([status, i, velocity]);
     }
 
     // Assert
@@ -266,7 +267,7 @@ describe("InputChannel Object", function() {
 
     // Act
     channel.addListener(event, assert);
-    VIRTUAL_INPUT.PORT.sendMessage(message);
+    VIRTUAL_INPUT.PORT.emit(message);
 
     // Assert
     function assert(e) {
@@ -289,7 +290,7 @@ describe("InputChannel Object", function() {
 
     // Act
     for (let i = 0; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, value]);
+      VIRTUAL_INPUT.PORT.emit([status, i, value]);
     }
 
     // Assert
@@ -321,7 +322,7 @@ describe("InputChannel Object", function() {
 
     // Act
     for (let i = 0; i <= 127; i++) {
-      VIRTUAL_INPUT.PORT.sendMessage([status, i, value]);
+      VIRTUAL_INPUT.PORT.emit([status, i, value]);
     }
 
     // Assert
@@ -349,7 +350,7 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, value]);
+    VIRTUAL_INPUT.PORT.emit([status, value]);
 
     // Assert
     function assert(e) {
@@ -372,7 +373,7 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, value]);
+    VIRTUAL_INPUT.PORT.emit([status, value]);
 
     // Assert
     function assert(e) {
@@ -395,7 +396,7 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, lsb, msb]);
+    VIRTUAL_INPUT.PORT.emit([status, lsb, msb]);
 
     // Assert
     function assert(e) {
@@ -418,7 +419,7 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, mode, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, mode, 0]);
 
     // Assert
     function assert(e) {
@@ -439,7 +440,7 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, mode, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, mode, 0]);
 
     // Assert
     function assert(e) {
@@ -461,8 +462,8 @@ describe("InputChannel Object", function() {
     let index = 0;
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, mode, 0]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, mode, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, mode, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, mode, 127]);
 
     // Assert
     function assert(e) {
@@ -493,7 +494,7 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, mode, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, mode, 0]);
 
     // Assert
     function assert(e) {
@@ -514,8 +515,8 @@ describe("InputChannel Object", function() {
     let index = 0;
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 126, 0]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 127, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, 126, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, 127, 0]);
 
     // Assert
     function assert(e) {
@@ -546,8 +547,8 @@ describe("InputChannel Object", function() {
     let index = 0;
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 124, 0]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 125, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, 124, 0]);
+    VIRTUAL_INPUT.PORT.emit([status, 125, 0]);
 
     // Assert
     function assert(e) {
@@ -583,11 +584,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 6, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 6, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -618,11 +619,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 38, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 38, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -653,11 +654,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 96, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 96, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -688,11 +689,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 97, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -723,15 +724,15 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
 
-    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 97, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -763,11 +764,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 6, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 6, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -801,11 +802,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 38, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 38, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -839,11 +840,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 96, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 96, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -877,11 +878,11 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert2);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 97, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert1(e) {
@@ -914,15 +915,15 @@ describe("InputChannel Object", function() {
     channel.addListener(event, assert);
 
     // Act
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 97, 456]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 97, 456]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, parameterLsb]);
 
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
-    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.emit([status, 97, value]);
+    VIRTUAL_INPUT.PORT.emit([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.emit([status, 100, 127]);
 
     // Assert
     function assert(e) {
@@ -1076,7 +1077,7 @@ describe("InputChannel Object", function() {
       channel.addListener(event, assert);
 
       // Act
-      VIRTUAL_INPUT.PORT.sendMessage([status, note, velocity]);
+      VIRTUAL_INPUT.PORT.emit([status, note, velocity]);
 
       // Assert
       function assert() {
@@ -1122,7 +1123,7 @@ describe("InputChannel Object", function() {
 
       // Act
       notes.forEach(note => {
-        VIRTUAL_INPUT.PORT.sendMessage([status, note.number, velocity]);
+        VIRTUAL_INPUT.PORT.emit([status, note.number, velocity]);
       });
 
       // Assert
