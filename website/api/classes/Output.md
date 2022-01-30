@@ -1793,9 +1793,9 @@ Sends a MIDI [**system exclusive**](https://www.midi.org/specifications-old/item
 (*sysex*) message. There are two categories of system exclusive messages: manufacturer-specific
 messages and universal messages. Universal messages are further divided into three subtypes:
 
-  * Universal non-commercial - for research, testing, etc. (`0x7D`)
-  * Universal non-realtime (`0x7E`)
-  * Universal realtime (`0x7F`)
+  * Universal non-commercial (for research and testing): `0x7D`
+  * Universal non-realtime `0x7E`
+  * Universal realtime `0x7F`
 
 The method's first parameter (`identification`) identifies the type of message. If the value of
 `identification` is `0x7D` (125), `0x7E` (126) or `0x7F` (127), the message will be identified
