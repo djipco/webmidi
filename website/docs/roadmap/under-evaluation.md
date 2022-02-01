@@ -32,7 +32,8 @@ device?
 * Could we allow `WebMidi.time` to be reset? (see 
 [discussion #213](https://github.com/djipco/webmidi/discussions/213))
 
-* Add throttling option to `sendSysex`
+* Add throttling option to `sendSysex` (see discussion
+[#235](https://github.com/djipco/webmidi/discussions/235)).
 
 * Calculate BPM from clock messages 
 ([Discussion #177](https://github.com/djipco/webmidi/discussions/177))
