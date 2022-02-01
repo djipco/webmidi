@@ -103,6 +103,10 @@ module.exports = {
               to: "blog",
               label: "Blog",
             },
+            {
+              to: "research",
+              label: "Academic Research",
+            },
           ]
         },
 
