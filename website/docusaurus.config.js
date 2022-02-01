@@ -199,14 +199,7 @@ module.exports = {
       id: "sponsor-banner",
       content: "<a target='_blank' href='https://github.com/sponsors/djipco'>" +
         "<strong>Sponsor</strong></a> ❤️ WEBMIDI.js on GitHub!"
-    },
-    gtag: {
-      // trackingID: "UA-162785934-1",
-      trackingID: "G-Z65JF8XMJG",
-    },
-    googleAnalytics: {
-      trackingID: "UA-162785934-1"
-    },
+    }
   },
 
   presets: [
@@ -229,7 +222,6 @@ module.exports = {
           editUrl: "https://github.com/djipco/webmidi/edit/master/website/",
         },
 
-
         blog: {
           path: "blog",
           blogTitle: "Blog de Docusaurus !",
@@ -238,7 +230,18 @@ module.exports = {
         },
 
         pages: {},
-      },
+
+        gtag: {
+          // trackingID: "UA-162785934-1",
+          trackingID: "G-Z65JF8XMJG",
+        },
+
+        googleAnalytics: {
+          trackingID: "UA-162785934-1"
+        }
+
+      }
+
     ],
   ],
 
