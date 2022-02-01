@@ -5,8 +5,8 @@
 
 | Version       | Support            | Notes                                                         |
 | ------------- | ------------------ | ------------------------------------------------------------- |
-| 3.0.x (alpha) |                    | Please report security problems but do not use in production. |
-| 2.5.x         | :white_check_mark: | This is the current, officially-supported version.            |
+| 3.0.x (alpha) | :white_check_mark: | This is the current, officially-supported version.            |
+| 2.5.x         | :white_check_mark: | Bug and security fixes only.                                  |
 | 1.0.x         | :x:                | This version has reached end of life.                         |
 
 ## Reporting a Vulnerability
