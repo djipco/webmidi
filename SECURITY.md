@@ -12,4 +12,4 @@
 ## Reporting a Vulnerability
 
 To report a security-related problem, **you should not file an issue on GitHub** as this might put 
-users at risk. **Instead, send an email to info@webmidijs.org**.
+users at risk. **Instead, send an email to jp@cote.cc**.
