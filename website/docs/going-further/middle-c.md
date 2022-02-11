@@ -41,12 +41,12 @@ that the external device places middle C one octave higher than WebMidi.js. In t
 For most scenarios, setting the global `WebMidi.octaveOffset` is enough. However, the `octaveOffset`
 property is available for several objects to allow for better granularity:
 
-* [Input](http://localhost:3000/webmidi/api/classes/Input)
-* [InputChannel](http://localhost:3000/webmidi/api/classes/InputChannel)
-* [Output](http://localhost:3000/webmidi/api/classes/Output)
-* [OutputChannel](http://localhost:3000/webmidi/api/classes/OutputChannel)
-* [Note](http://localhost:3000/webmidi/api/classes/Note)
-* [WebMidi](http://localhost:3000/webmidi/api/classes/WebMidi)
+* [Input](https://webmidijs.org/api/classes/InputChannel)
+* [InputChannel](https://webmidijs.org/api/classes/InputChannel)
+* [Output](https://webmidijs.org/api/classes/Output)
+* [OutputChannel](https://webmidijs.org/api/classes/OutputChannel)
+* [Note](https://webmidijs.org/api/classes/Note)
+* [WebMidi](https://webmidijs.org/api/classes/WebMidi)
 
 If you define `octaveOffset` on several objects, their value will be added. For example, if you 
 set `WebMidi.octaveOffset` to `-1` and set `octaveOffset` on a specific channel to `1`, the 
