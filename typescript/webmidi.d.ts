@@ -2241,9 +2241,9 @@ export class Output extends EventEmitter {
    *
    * @returns {Listener} The listener object that was created
    */
-  addListener<T extends keyof OutputEventMap>(
+  addListener<T extends keyof PortEventMap>(
     e: Symbol | T,
-    listener: OutputEventMap[T],
+    listener: PortEventMap[T],
     options?: {
       "arguments"?: any[];
       "context"?: any;
@@ -2281,9 +2281,9 @@ export class Output extends EventEmitter {
    *
    * @returns {Listener} The listener object that was created
    */
-  addOneTimeListener<T extends keyof OutputEventMap>(
+  addOneTimeListener<T extends keyof PortEventMap>(
     e: Symbol | T,
-    listener: OutputEventMap[T],
+    listener: PortEventMap[T],
     options?: {
       "arguments"?: any[];
       "context"?: any;
@@ -2334,9 +2334,9 @@ export class Output extends EventEmitter {
    * @returns {boolean} Boolean value indicating whether or not the `Input` or `InputChannel`
    * already has this listener defined.
    */
-  hasListener<T extends keyof OutputEventMap>(
+  hasListener<T extends keyof PortEventMap>(
     e: Symbol | T,
-    listener: OutputEventMap[T]
+    listener: PortEventMap[T]
   ): boolean;
 
   /**
@@ -2444,9 +2444,9 @@ export class Output extends EventEmitter {
    * @param {number} [options.remaining] Only remove the listener if it has exactly that many
    * remaining times to be executed.
    */
-  removeListener<T extends keyof OutputEventMap>(
+  removeListener<T extends keyof PortEventMap>(
     type?: Symbol | T,
-    listener?: OutputEventMap[T],
+    listener?: PortEventMap[T],
     options?: {
       "context"?: any;
       "remaining"?: number;
@@ -5881,7 +5881,8 @@ export interface ErrorEvent extends Event {
  *
  */
 export interface PortEvent extends Event {
-  port: Input | Output;
+  // port: Input | Output;
+  port: any; // temporary fix, see issue #229
 }
 
 /**
@@ -6007,14 +6008,190 @@ export interface ParameterNumberMessageEvent extends MessageEvent {
 }
 
 /**
- * A map of all the events that can be passed to `Input.addListener()`.
+ * A map of all the events that can be passed to `InputChannel.addListener()`.
  */
-export interface InputEventMap {
+export interface InputChannelEventMap {
 
-  // Stage Change
+  // Catch-ALl
+  "midimessage": (e: MessageEvent) => void;
+
+  // Channel Mode
+  "channelaftertouch": (e: MessageEvent) => void;
+  "keyaftertouch": (e: NoteMessageEvent) => void;
+  "noteoff": (e: NoteMessageEvent) => void;
+  "noteon": (e: NoteMessageEvent) => void;
+  "pitchbend": (e: MessageEvent) => void;
+  "programchange": (e: MessageEvent) => void;
+
+  // Control Change
+  "controlchange": (e: ControlChangeMessageEvent) => void;
+
+  "controlchange-controller0": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller1": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller2": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller3": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller4": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller5": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller6": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller7": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller8": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller9": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller10": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller11": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller12": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller13": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller14": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller15": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller16": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller17": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller18": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller19": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller20": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller21": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller22": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller23": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller24": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller25": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller26": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller27": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller28": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller29": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller30": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller31": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller32": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller33": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller34": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller35": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller36": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller37": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller38": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller39": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller40": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller41": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller42": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller43": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller44": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller45": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller46": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller47": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller48": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller49": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller50": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller51": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller52": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller53": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller54": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller55": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller56": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller57": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller58": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller59": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller60": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller61": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller62": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller63": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller64": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller65": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller66": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller67": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller68": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller69": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller70": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller71": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller72": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller73": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller74": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller75": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller76": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller77": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller78": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller79": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller80": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller81": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller82": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller83": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller84": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller85": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller86": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller87": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller88": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller89": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller90": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller91": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller92": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller93": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller94": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller95": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller96": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller97": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller98": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller99": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller100": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller101": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller102": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller103": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller104": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller105": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller106": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller107": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller108": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller109": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller110": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller111": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller112": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller113": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller114": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller115": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller116": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller117": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller118": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller119": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller120": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller121": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller122": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller123": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller124": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller125": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller126": (e: ControlChangeMessageEvent) => void;
+  "controlchange-controller127": (e: ControlChangeMessageEvent) => void;
+
+  // Channel Voice
+  "allnotesoff": (e: MessageEvent) => void;
+  "allsoundoff": (e: MessageEvent) => void;
+  "localcontrol": (e: MessageEvent) => void;
+  "monomode": (e: MessageEvent) => void;
+  "omnimode": (e: MessageEvent) => void;
+  "resetallcontrollers": (e: MessageEvent) => void;
+
+  // NRPN
+  "nrpn": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
+
+  // RPN
+  "rpn": (e: ParameterNumberMessageEvent) => void;
+  "rpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
+  "rpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
+  "rpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
+  "rpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
+
+}
+
+/**
+ * A map of all the events that can be passed to `Output.addListener()`.
+ */
+export interface PortEventMap {
   "closed": (e: PortEvent) => void;
   "disconnected": (e: PortEvent) => void;
   "opened": (e: PortEvent) => void;
+}
+
+/**
+ * A map of all the events that can be passed to `Input.addListener()`.
+ */
+export interface InputEventMap extends PortEventMap {
 
   // System Common and System Real-Time
   "activesensing": (e: MessageEvent) => void;
@@ -6194,187 +6371,6 @@ export interface InputEventMap {
   "rpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
   "rpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
 
-}
-
-/**
- * A map of all the events that can be passed to `InputChannel.addListener()`.
- */
-export interface InputChannelEventMap {
-
-  // Catch-ALl
-  "midimessage": (e: MessageEvent) => void;
-
-  // Channel Mode
-  "channelaftertouch": (e: MessageEvent) => void;
-  "keyaftertouch": (e: NoteMessageEvent) => void;
-  "noteoff": (e: NoteMessageEvent) => void;
-  "noteon": (e: NoteMessageEvent) => void;
-  "pitchbend": (e: MessageEvent) => void;
-  "programchange": (e: MessageEvent) => void;
-
-  // Control Change
-  "controlchange": (e: ControlChangeMessageEvent) => void;
-
-  "controlchange-controller0": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller1": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller2": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller3": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller4": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller5": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller6": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller7": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller8": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller9": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller10": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller11": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller12": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller13": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller14": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller15": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller16": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller17": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller18": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller19": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller20": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller21": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller22": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller23": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller24": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller25": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller26": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller27": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller28": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller29": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller30": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller31": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller32": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller33": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller34": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller35": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller36": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller37": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller38": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller39": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller40": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller41": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller42": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller43": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller44": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller45": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller46": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller47": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller48": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller49": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller50": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller51": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller52": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller53": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller54": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller55": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller56": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller57": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller58": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller59": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller60": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller61": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller62": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller63": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller64": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller65": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller66": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller67": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller68": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller69": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller70": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller71": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller72": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller73": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller74": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller75": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller76": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller77": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller78": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller79": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller80": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller81": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller82": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller83": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller84": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller85": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller86": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller87": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller88": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller89": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller90": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller91": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller92": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller93": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller94": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller95": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller96": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller97": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller98": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller99": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller100": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller101": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller102": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller103": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller104": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller105": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller106": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller107": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller108": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller109": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller110": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller111": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller112": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller113": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller114": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller115": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller116": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller117": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller118": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller119": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller120": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller121": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller122": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller123": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller124": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller125": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller126": (e: ControlChangeMessageEvent) => void;
-  "controlchange-controller127": (e: ControlChangeMessageEvent) => void;
-
-  // Channel Voice
-  "allnotesoff": (e: MessageEvent) => void;
-  "allsoundoff": (e: MessageEvent) => void;
-  "localcontrol": (e: MessageEvent) => void;
-  "monomode": (e: MessageEvent) => void;
-  "omnimode": (e: MessageEvent) => void;
-  "resetallcontrollers": (e: MessageEvent) => void;
-
-  // NRPN
-  "nrpn": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
-
-  // RPN
-  "rpn": (e: ParameterNumberMessageEvent) => void;
-  "rpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
-  "rpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
-  "rpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
-  "rpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
-
-}
-
-/**
- * A map of all the events that can be passed to `Output.addListener()`.
- */
-export interface OutputEventMap {
-  "closed": (e: PortEvent) => void;
-  "disconnected": (e: PortEvent) => void;
-  "opened": (e: PortEvent) => void;
 }
 
 /**
