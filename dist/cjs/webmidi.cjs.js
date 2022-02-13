@@ -1,5 +1,5 @@
 /**
- * WEBMIDI.js v3.0.14
+ * WEBMIDI.js v3.0.15
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
  * Build generated on February 13th, 2022.
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.14 - February 13, 2022 12:25:26 */
+/* Version: 3.0.15 - February 13, 2022 12:26:57 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -9356,7 +9356,7 @@ class WebMidi extends EventEmitter {
 
 
   get version() {
-    return "3.0.14";
+    return "3.0.15";
   }
   /**
    * @private
