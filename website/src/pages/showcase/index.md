@@ -45,6 +45,12 @@ page on GitHub and submit a pull request.
   Shared Piano is a simple tool for remote music teaching and collaboration that lets you play music
   together live on the web.
 
+* ### [Chromatone](https://chromatone.center/)
+  Created by: **Denis Starov**
+
+  An interactive educational web-site for the visual music language based on associating chromatic 
+  notes with spectral colors.
+
 * ### [WebAudio Generator](https://webaudio.simmsreeve.com/)
   Created by: **Joe Reeve & Magnus**
 
