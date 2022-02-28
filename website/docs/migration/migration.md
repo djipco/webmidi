@@ -1,9 +1,8 @@
 ---
 sidebar_position: 1
-slug: /migration
 ---
 
-# Migration
+# Migrating from 2.5.x to 3.x
 
 :::caution
 
@@ -138,6 +137,13 @@ array. These arrays contain, respectively, a list [`Input`](../api/classes/Input
 [`Output`](../api/classes/Output)  objects have a `channels` array that contains a list of 
 [`InputChannel`](../api/classes/InputChannel) or [`OutputChannel`](../api/classes/OutputChannel)
 objects.
+
+:::info
+
+You can also check the [CHANGELOG.md](https://github.com/djipco/webmidi/blob/master/CHANGELOG.md) 
+file for more hints of what has changed in version 3.
+
+:::
 
 ## Things to Watch Out For
 
