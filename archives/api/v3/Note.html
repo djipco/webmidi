@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -112,7 +112,7 @@
 					<section>
 							<dl class="symbol primary">
 								<dt class="symbol-title class collapsible-symbol expanded">
-			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"></span></h2>
+			<h2 class="class"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></h2>
 </dt>
 <dd class="symbol-details class  collapsible-symbol expanded" style="max-height: 9999px;">
 	<div class="symbol-details-inner">
@@ -138,6 +138,8 @@
 					<tr>
 							<th>Name</th>
 						<th>Type</th>
+							<th>Attributes</th>
+							<th>Default</th>
 						<th class="last">Description</th>
 					</tr>
 					</thead>
@@ -145,11 +147,88 @@
 						<tr>
 								<td><code>value</code></td>
 							<td><span class="param-type">string</span> | <span class="param-type">number</span></td>
+								<td class="attributes"></td>
+								<td></td>
 							<td class="last">
 									<p>The value used to create the note. If an identifier string is used,
 			it must start with the note letter, optionally followed by an accidental and followed by the
 			octave number (<code>&quot;C3&quot;</code>, <code>&quot;G#4&quot;</code>, <code>&quot;F-1&quot;</code>, <code>&quot;Db7&quot;</code>, etc.). If a number is used, it must be an
 			integer between 0 and 127. In this case, middle C is considered to be C4 (note number 60).</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>options</code></td>
+							<td><span class="param-type">object</span></td>
+								<td class="attributes">&lt;optional&gt;<br/></td>
+								<td>{}</td>
+							<td class="last">
+										<table class="params table table-striped">
+											<thead>
+											<tr>
+													<th>Name</th>
+												<th>Type</th>
+													<th>Attributes</th>
+													<th>Default</th>
+												<th class="last">Description</th>
+											</tr>
+											</thead>
+											<tbody>
+												<tr>
+														<td><code>duration</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>Infinity</td>
+													<td class="last">
+															<p>The number of milliseconds before the note should be
+									explicitly stopped.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>attack</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The note's attack velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawAttack</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>release</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>0.5</td>
+													<td class="last">
+															<p>The note's release velocity as a float between 0 and 1. If
+									you wish to use an integer between 0 and 127, use the <code>rawRelease</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawAttack</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>64</td>
+													<td class="last">
+															<p>The note's attack velocity as an integer between 0 and
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>attack</code> and <code>rawAttack</code> are specified, the latter has precedence.</p>
+													</td>
+												</tr>
+												<tr>
+														<td><code>rawRelease</code></td>
+													<td><span class="param-type">number</span></td>
+														<td class="attributes">&lt;optional&gt;<br/></td>
+														<td>64</td>
+													<td class="last">
+															<p>The note's release velocity as an integer between 0 and
+									127. If you wish to use a float between 0 and 1, use the <code>release</code> option instead. If both
+									<code>release</code> and <code>rawRelease</code> are specified, the latter has precedence.</p>
+													</td>
+												</tr>
+											</tbody>
+										</table>
 							</td>
 						</tr>
 					</tbody>
@@ -233,7 +312,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-33">line 33</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-28">line 28</a></p>
 								</div>
 							</div>
 			
@@ -249,7 +328,7 @@
 									<dl class="symbol">
 											<hr/>
 											<dt class="symbol-title class public">
-			<h4 id="Note" class="class public"><a href="Note.html"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">value</span>&nbsp;)</span><span class="signature-type"></span></a></h4>
+			<h4 id="Note" class="class public"><a href="Note.html"><span class="signature-new">new&nbsp;</span><span class="name">Note</span><span class="signature-params">( <span class="signature-param">value</span> [,&nbsp;<span class="signature-param">options</span>&nbsp;]&nbsp;)</span><span class="signature-type"></span></a></h4>
 		</dt>
 <dd class="symbol-details class public">
 	<div class="symbol-details-inner">
@@ -299,7 +378,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-145">line 145</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-140">line 140</a></p>
 								</div>
 							</div>
 			
@@ -350,7 +429,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-206">line 206</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-201">line 201</a></p>
 								</div>
 							</div>
 			
@@ -402,7 +481,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-185">line 185</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-180">line 180</a></p>
 								</div>
 							</div>
 			
@@ -453,7 +532,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-102">line 102</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-97">line 97</a></p>
 								</div>
 							</div>
 			
@@ -504,7 +583,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-124">line 124</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-119">line 119</a></p>
 								</div>
 							</div>
 			
@@ -556,7 +635,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-275">line 275</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-270">line 270</a></p>
 								</div>
 							</div>
 			
@@ -607,7 +686,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-164">line 164</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-159">line 159</a></p>
 								</div>
 							</div>
 			
@@ -658,7 +737,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-248">line 248</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-243">line 243</a></p>
 								</div>
 							</div>
 			
@@ -709,7 +788,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-260">line 260</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-255">line 255</a></p>
 								</div>
 							</div>
 			
@@ -760,7 +839,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-227">line 227</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-222">line 222</a></p>
 								</div>
 							</div>
 			
@@ -844,7 +923,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-288">line 288</a></p>
+									<p class="form-control-static"><a href="src_Note.js.html">src/Note.js</a>, <a href="src_Note.js.html#line-283">line 283</a></p>
 								</div>
 							</div>
 			
@@ -864,8 +943,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on January 11th 2022 @ 10:53:43 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on March 26th 2022 @ 12:27:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

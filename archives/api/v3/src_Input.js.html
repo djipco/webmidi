@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -228,7 +228,8 @@ export class Input extends EventEmitter {
 
     let event = {
       timestamp: WebMidi.time,
-      target: this
+      target: this,
+      port: this // for consistency
     };
 
     if (e.port.connection === "open") {
@@ -242,7 +243,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `opened`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        */
       event.type = "opened";
       this.emit("opened", event);
@@ -258,7 +260,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `closed`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        */
       event.type = "closed";
       this.emit("closed", event);
@@ -274,10 +277,12 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `disconnected`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} port Object with properties describing the {@link Input} that was
+       * disconnected. This is not the actual `Input` as it is no longer available.
+       * @property {Input} target The object that dispatched the event.
        */
       event.type = "disconnected";
-      event.target = {
+      event.port = {
         connection: e.port.connection,
         id: e.port.id,
         manufacturer: e.port.manufacturer,
@@ -312,7 +317,8 @@ export class Input extends EventEmitter {
      *
      * @type {object}
      *
-     * @property {Input} target The `Input`that triggered the event.
+     * @property {Input} port The `Input` that triggered the event.
+     * @property {Input} target The object that dispatched the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -322,6 +328,7 @@ export class Input extends EventEmitter {
      * @since 2.1
      */
     const event = {
+      port: this,
       target: this,
       message: message,
       timestamp: e.timeStamp,
@@ -337,7 +344,7 @@ export class Input extends EventEmitter {
 
     // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
-    if (message.isSystemMessage) {                                         // system messages
+    if (message.isSystemMessage) {           // system messages
       this._parseEvent(event);
     } else if (message.isChannelMessage) {   // channel messages
       this.channels[message.channel]._processMidiMessageEvent(event);
@@ -571,7 +578,7 @@ export class Input extends EventEmitter {
    * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
    * of the listeners array and thus be triggered before others.
    *
-   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+   * @param {number} [options.remaining=Infinity] The number of times after which the callback
    * should automatically be removed.
    *
    * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
@@ -769,7 +776,7 @@ export class Input extends EventEmitter {
    * function. For channel-specific events, the function will return `true` only if all channels
    * have the listener defined.
    *
-   * @param event {string} The type of the event.
+   * @param event {string|Symbol} The type of the event.
    *
    * @param listener {function} The callback function to check for.
    *
@@ -1051,7 +1058,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1068,7 +1076,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1085,7 +1094,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1102,7 +1112,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1120,7 +1131,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1137,7 +1149,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1154,7 +1167,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1171,7 +1185,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1188,7 +1203,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1205,7 +1221,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1222,7 +1239,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1240,7 +1258,8 @@ export class Input extends EventEmitter {
  *
  * @type {Object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1255,8 +1274,8 @@ export class Input extends EventEmitter {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on January 11th 2022 @ 10:53:43 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on March 26th 2022 @ 12:27:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

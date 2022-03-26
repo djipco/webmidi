@@ -41,7 +41,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = true;
 			window.DOCLET_AFILTER_ENABLED = true;
 		</script>
@@ -665,7 +665,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1093">line 1093</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1109">line 1109</a></p>
 								</div>
 							</div>
 			
@@ -761,7 +761,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1102">line 1102</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1118">line 1118</a></p>
 								</div>
 							</div>
 			
@@ -819,7 +819,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1074">line 1074</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1090">line 1090</a></p>
 								</div>
 							</div>
 			
@@ -972,7 +972,7 @@
 												</tr>
 												<tr>
 														<td><code>remaining</code></td>
-													<td><span class="param-type">boolean</span></td>
+													<td><span class="param-type">number</span></td>
 														<td class="attributes">&lt;optional&gt;<br/></td>
 														<td>Infinity</td>
 													<td class="last">
@@ -1564,10 +1564,10 @@
 		</dt>
 <dd class="symbol-details function public  collapsible-symbol">
 	<div class="symbol-details-inner">
-			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Return the playing status of the specified note. The <code>note</code> parameter can be an unsigned
-			integer (0-127), a note identifier (<code>&quot;C4&quot;</code>, <code>&quot;G#5&quot;</code>, etc.) or a <a href="Note.html"><code>Note</code></a> object.</p>
-			<p>If a  is passed in, the method will take into account any <a href="#octaveOffset"><code>octaveOffset</code></a>
-			defined.</p></div>
+			<div class="callout callout-primary"><h5>Description</h5>		<div class="description"><p>Returns the playing status of the specified note (<code>true</code> if the note is currently playing,
+			<code>false</code> if it is not). The <code>note</code> parameter can be an unsigned integer (0-127), a note
+			identifier (<code>&quot;C4&quot;</code>, <code>&quot;G#5&quot;</code>, etc.) or a <a href="Note.html"><code>Note</code></a> object.</p>
+			<p>IF the note is specified using an integer (0-127), no octave offset will be applied.</p></div>
 			</div>			<div class="callout callout-info">
 				<h5>Parameters</h5>
 				<table class="params table table-striped">
@@ -1584,8 +1584,8 @@
 							<td><span class="param-type">number</span> | <span class="param-type">string</span> | <span class="param-type"><a href="Note.html">Note</a></span></td>
 							<td class="last">
 									<p>The note to get the state for. The
-			<a href="#octaveOffset"><code>octaveOffset</code></a> will be factored in for note identifiers and
-			<a href="Note.html"><code>Note</code></a> objects.</p>
+			<a href="#octaveOffset"><code>octaveOffset</code></a> (channel, input and global) will be factored in for note
+			identifiers and <a href="Note.html"><code>Note</code></a> objects.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -1626,7 +1626,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1044">line 1044</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-1060">line 1060</a></p>
 								</div>
 							</div>
 			
@@ -2167,8 +2167,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2217,7 +2223,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-521">line 521</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-520">line 520</a></p>
 								</div>
 							</div>
 			
@@ -2256,8 +2262,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2306,7 +2318,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-466">line 466</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-462">line 462</a></p>
 								</div>
 							</div>
 			
@@ -2345,8 +2357,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2409,7 +2427,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-403">line 403</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-399">line 399</a></p>
 								</div>
 							</div>
 			
@@ -2455,8 +2473,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2550,7 +2574,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-307">line 307</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-303">line 303</a></p>
 								</div>
 							</div>
 			
@@ -2598,8 +2622,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2693,7 +2723,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-338">line 338</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-334">line 334</a></p>
 								</div>
 							</div>
 			
@@ -2732,8 +2762,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2753,27 +2789,11 @@
 							</td>
 						</tr>
 						<tr>
-								<td><code>identifier</code></td>
-							<td><span class="param-type">string</span></td>
+								<td><code>note</code></td>
+							<td><span class="param-type">object</span></td>
 							<td class="last">
-									<p>The note identifier of the key to apply the aftertouch to.
-			This includes any octave offset applied at the channel, input or global level.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>key</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MIDI note number of the key to apply the aftertouch to. This
-			includes any octave offset applied at the channel, input or global level.</p>
-							</td>
-						</tr>
-						<tr>
-								<td><code>rawKey</code></td>
-							<td><span class="param-type">number</span></td>
-							<td class="last">
-									<p>The MIDI note number of the key to apply the aftertouch to. This
-			excludes any octave offset defined at the channel, input or global level.</p>
+									<p>A <a href="Note"><code>Note</code></a> object containing information such as note name
+			and number.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2821,7 +2841,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-262">line 262</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-265">line 265</a></p>
 								</div>
 							</div>
 			
@@ -2862,8 +2882,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -2888,6 +2914,14 @@
 							<td class="last">
 									<p>For local control on, the value is <code>true</code>. For local control off,
 			the value is <code>false</code>.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">boolean</span></td>
+							<td class="last">
+									<p>For local control on, the value is <code>127</code>. For local control off,
+			the value is <code>0</code>.</p>
 							</td>
 						</tr>
 					</tbody>
@@ -2920,7 +2954,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-497">line 497</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-493">line 493</a></p>
 								</div>
 							</div>
 			
@@ -2957,9 +2991,16 @@
 						</tr>
 						<tr>
 								<td><code>target</code></td>
+							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
+							<td class="last">
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
 							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3008,7 +3049,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-141">line 141</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-142">line 142</a></p>
 								</div>
 							</div>
 			
@@ -3049,8 +3090,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3074,6 +3121,13 @@
 							<td><span class="param-type">boolean</span></td>
 							<td class="last">
 									<p>The value is <code>true</code> for omni mode on and false for omni mode off.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">boolean</span></td>
+							<td class="last">
+									<p>The raw MIDI value</p>
 							</td>
 						</tr>
 					</tbody>
@@ -3106,7 +3160,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-563">line 563</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-566">line 566</a></p>
 								</div>
 							</div>
 			
@@ -3145,8 +3199,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the
-			<a href="InputChannel"><code>InputChannel</code></a> object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3219,7 +3279,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-179">line 179</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-182">line 182</a></p>
 								</div>
 							</div>
 			
@@ -3258,8 +3318,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3331,7 +3397,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-225">line 225</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-228">line 228</a></p>
 								</div>
 							</div>
 			
@@ -3385,7 +3451,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3471,7 +3544,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-927">line 927</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-941">line 941</a></p>
 								</div>
 							</div>
 			
@@ -3513,7 +3586,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3597,7 +3677,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-872">line 872</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-885">line 885</a></p>
 								</div>
 							</div>
 			
@@ -3639,7 +3719,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3723,7 +3810,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-849">line 849</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-861">line 861</a></p>
 								</div>
 							</div>
 			
@@ -3765,7 +3852,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3849,7 +3943,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-803">line 803</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-813">line 813</a></p>
 								</div>
 							</div>
 			
@@ -3891,7 +3985,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -3975,7 +4076,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-826">line 826</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-837">line 837</a></p>
 								</div>
 							</div>
 			
@@ -4015,8 +4116,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4040,6 +4147,13 @@
 							<td><span class="param-type">boolean</span></td>
 							<td class="last">
 									<p>The value is <code>true</code> for omni mode on and false for omni mode off.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>rawValue</code></td>
+							<td><span class="param-type">boolean</span></td>
+							<td class="last">
+									<p>The raw MIDI value</p>
 							</td>
 						</tr>
 					</tbody>
@@ -4072,7 +4186,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-537">line 537</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-536">line 536</a></p>
 								</div>
 							</div>
 			
@@ -4111,8 +4225,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4176,7 +4296,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-426">line 426</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-422">line 422</a></p>
 								</div>
 							</div>
 			
@@ -4215,8 +4335,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4279,7 +4405,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-380">line 380</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-376">line 376</a></p>
 								</div>
 							</div>
 			
@@ -4311,8 +4437,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The object that triggered the event (the <code>InputChannel</code>
-			object).</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4361,7 +4493,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-482">line 482</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-478">line 478</a></p>
 								</div>
 							</div>
 			
@@ -4417,7 +4549,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4501,7 +4640,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-958">line 958</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-973">line 973</a></p>
 								</div>
 							</div>
 			
@@ -4543,7 +4682,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4627,7 +4773,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-780">line 780</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-789">line 789</a></p>
 								</div>
 							</div>
 			
@@ -4669,7 +4815,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4753,7 +4906,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-757">line 757</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-765">line 765</a></p>
 								</div>
 							</div>
 			
@@ -4795,7 +4948,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -4879,7 +5039,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-711">line 711</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-717">line 717</a></p>
 								</div>
 							</div>
 			
@@ -4921,7 +5081,14 @@
 								<td><code>target</code></td>
 							<td><span class="param-type"><a href="InputChannel.html">InputChannel</a></span></td>
 							<td class="last">
-									<p>The <code>InputChannel</code> that triggered the event.</p>
+									<p>The object that dispatched the event.</p>
+							</td>
+						</tr>
+						<tr>
+								<td><code>port</code></td>
+							<td><span class="param-type"><a href="Input.html">Input</a></span></td>
+							<td class="last">
+									<p>The <code>Input</code> that triggered the event.</p>
 							</td>
 						</tr>
 						<tr>
@@ -5005,7 +5172,7 @@
 							<div class="form-group">
 								<label class="col-sm-3 control-label">Source</label>
 								<div class="col-sm-9">
-									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-734">line 734</a></p>
+									<p class="form-control-static"><a href="src_InputChannel.js.html">src/InputChannel.js</a>, <a href="src_InputChannel.js.html#line-741">line 741</a></p>
 								</div>
 							</div>
 			
@@ -5025,8 +5192,8 @@
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on January 11th 2022 @ 10:53:43 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on March 26th 2022 @ 12:27:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>

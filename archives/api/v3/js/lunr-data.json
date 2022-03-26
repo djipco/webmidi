@@ -2286,29 +2286,30 @@
         "InputChannel.html#getNoteState": [
           "0",
           "127",
-          "account",
+          "appli",
           "boolean",
           "c4",
-          "defin",
+          "current",
           "etc",
+          "fals",
           "function",
           "g#5",
           "getnotest",
           "identifi",
           "inputchannel#getnotest",
           "integ",
-          "method",
           "note",
           "object",
-          "octaveoffset",
+          "octav",
+          "offset",
           "paramet",
-          "pass",
           "play",
           "return",
           "specifi",
           "statu",
-          "take",
-          "unsign"
+          "true",
+          "unsign",
+          "us"
         ],
         "InputChannel.html#hasListener": [
           "ad",
@@ -4642,6 +4643,8 @@
         ],
         "Output.html#sendSysex": [
           "0",
+          "0x01",
+          "0x06",
           "0x09",
           "0x1",
           "0x2",
@@ -4650,9 +4653,15 @@
           "0x4",
           "0x42",
           "0x5",
+          "0x7d",
+          "0x7e",
+          "0x7f",
           "0xf0",
           "0xf7",
           "1",
+          "124",
+          "125",
+          "126",
           "127",
           "2",
           "3",
@@ -4662,22 +4671,29 @@
           "abov",
           "actual",
           "array",
+          "assign",
           "associ",
           "automat",
           "be",
+          "between",
           "binari",
           "byte",
           "byte(",
           "call",
           "case",
-          "charg",
+          "categori",
           "code",
+          "commerci",
           "connect",
           "console.log(\"system",
+          "consult",
           "contain",
+          "correct",
           "data",
           "decim",
+          "detail",
           "devic",
+          "divid",
           "enabl",
           "end",
           "equival",
@@ -4686,12 +4702,16 @@
           "exclus",
           "first",
           "follow",
+          "format",
           "full",
           "function",
+          "further",
           "gener",
           "gt",
           "hex",
           "id",
+          "ident",
+          "identif",
           "identifi",
           "instrument",
           "integ",
@@ -4705,11 +4725,13 @@
           "manufactur",
           "messag",
           "method",
+          "method'",
           "midi",
+          "more",
           "nativ",
+          "non",
           "notat",
           "number",
-          "object",
           "option",
           "out",
           "output",
@@ -4717,28 +4739,40 @@
           "paramet",
           "posit",
           "prepend",
+          "realtim",
+          "request",
+          "research",
+          "respect",
           "same",
           "send",
           "sendsysex",
           "sent",
           "set",
+          "simpli",
+          "specif",
           "specifi",
+          "subtyp",
           "suggest",
           "support",
           "sysex",
           "system",
+          "target",
           "termin",
+          "test",
           "therefor",
+          "three",
           "true",
-          "uint8array",
-          "unsign",
-          "updat",
+          "two",
+          "type",
+          "univers",
           "us",
+          "valu",
           "want",
           "webmidi.en",
           "webmidi.enable({sysex",
           "webmidi.j",
           "webmidi.outputs[0].sendsysex(0x42",
+          "webmidi.outputs[0].sendsysex(0x7",
           "webmidi.outputs[0].sendsysex(66",
           "webmidi.outputs[0].sendsysex([0x00"
         ],
@@ -7261,6 +7295,7 @@
           "accord",
           "accur",
           "accuraci",
+          "alia",
           "be",
           "browser",
           "constraint",
@@ -7274,18 +7309,21 @@
           "member",
           "microsecond",
           "millisecond",
+          "note",
           "number",
           "on",
           "origin",
           "page",
           "pass",
+          "performance.now",
           "point",
           "s",
           "simpli",
           "sub",
           "time",
           "variou",
-          "webmidi#tim"
+          "webmidi#tim",
+          "webmidi.tim"
         ],
         "WebMidi.html#validation": [
           "advanc",
@@ -7566,6 +7604,7 @@
           "note",
           "object",
           "on",
+          "option",
           "per",
           "pleas",
           "plugin",
@@ -7594,6 +7633,7 @@
           "note",
           "object",
           "on",
+          "option",
           "plugin",
           "port",
           "report",
@@ -7671,6 +7711,7 @@
           "note",
           "object",
           "on",
+          "option",
           "output",
           "per",
           "pleas",
@@ -7700,6 +7741,7 @@
           "note",
           "object",
           "on",
+          "option",
           "output",
           "plugin",
           "port",
@@ -7878,7 +7920,7 @@
             },
             "InputChannel.html#getNoteState": {
               "ref": "InputChannel.html#getNoteState",
-              "tf": 2.083333333333333
+              "tf": 3.125
             },
             "Message.html#data": {
               "ref": "Message.html#data",
@@ -7962,7 +8004,7 @@
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
-              "tf": 0.30303030303030304
+              "tf": 0.1779359430604982
             },
             "Output.html#stopNote": {
               "ref": "Output.html#stopNote",
@@ -8092,6 +8134,10 @@
                   "Output.html#sendRpnValue": {
                     "ref": "Output.html#sendRpnValue",
                     "tf": 1.098901098901099
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.1779359430604982
                   },
                   "OutputChannel.html#sendRpnDecrement": {
                     "ref": "OutputChannel.html#sendRpnDecrement",
@@ -8253,6 +8299,10 @@
                     "ref": "Output.html#sendRpnValue",
                     "tf": 0.5494505494505495
                   },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.1779359430604982
+                  },
                   "OutputChannel.html#sendRpnDecrement": {
                     "ref": "OutputChannel.html#sendRpnDecrement",
                     "tf": 0.5434782608695652
@@ -8335,7 +8385,7 @@
                 "docs": {
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   }
                 }
               },
@@ -8345,7 +8395,7 @@
               "docs": {
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.9090909090909091
+                  "tf": 0.5338078291814947
                 }
               }
             },
@@ -8354,14 +8404,14 @@
                 "docs": {
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   }
                 }
               },
               "docs": {
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.9090909090909091
+                  "tf": 0.5338078291814947
                 }
               }
             },
@@ -8369,7 +8419,7 @@
               "docs": {
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.9090909090909091
+                  "tf": 0.5338078291814947
                 }
               },
               "d": {
@@ -8410,14 +8460,14 @@
                 "docs": {
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   }
                 }
               },
               "docs": {
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.9090909090909091
+                  "tf": 0.5338078291814947
                 }
               }
             },
@@ -8425,7 +8475,7 @@
               "docs": {
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.9090909090909091
+                  "tf": 0.5338078291814947
                 }
               }
             },
@@ -8476,6 +8526,10 @@
                   "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES": {
                     "ref": "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES",
                     "tf": 1.3513513513513513
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.5338078291814947
                   }
                 }
               },
@@ -8484,6 +8538,10 @@
                   "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES": {
                     "ref": "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES",
                     "tf": 1.3513513513513513
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.7117437722419928
                   }
                 }
               },
@@ -8492,6 +8550,10 @@
                   "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES": {
                     "ref": "Enumerations.html#.MIDI_CHANNEL_MODE_MESSAGES",
                     "tf": 1.3513513513513513
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.7117437722419928
                   }
                 }
               }
@@ -8562,7 +8624,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   }
                 }
               },
@@ -8606,7 +8668,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   }
                 }
               },
@@ -9037,6 +9099,10 @@
                   "ref": "Output.html#sendControlChange",
                   "tf": 0.24509803921568626
                 },
+                "Output.html#sendSysex": {
+                  "ref": "Output.html#sendSysex",
+                  "tf": 0.1779359430604982
+                },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.7042253521126761
@@ -9064,6 +9130,10 @@
                 "Output.html#sendControlChange": {
                   "ref": "Output.html#sendControlChange",
                   "tf": 0.24509803921568626
+                },
+                "Output.html#sendSysex": {
+                  "ref": "Output.html#sendSysex",
+                  "tf": 0.3558718861209964
                 },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
@@ -9093,6 +9163,10 @@
                   "ref": "Output.html#sendControlChange",
                   "tf": 0.24509803921568626
                 },
+                "Output.html#sendSysex": {
+                  "ref": "Output.html#sendSysex",
+                  "tf": 0.3558718861209964
+                },
                 "OutputChannel.html#sendChannelMode": {
                   "ref": "OutputChannel.html#sendChannelMode",
                   "tf": 0.7042253521126761
@@ -9119,7 +9193,7 @@
                 },
                 "InputChannel.html#getNoteState": {
                   "ref": "InputChannel.html#getNoteState",
-                  "tf": 2.083333333333333
+                  "tf": 3.125
                 },
                 "Note.html": {
                   "ref": "Note.html",
@@ -9167,7 +9241,7 @@
                 },
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.30303030303030304
+                  "tf": 0.3558718861209964
                 },
                 "Output.html#stopNote": {
                   "ref": "Output.html#stopNote",
@@ -9564,7 +9638,7 @@
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
-              "tf": 0.30303030303030304
+              "tf": 0.1779359430604982
             },
             "Output.html#stopNote": {
               "ref": "Output.html#stopNote",
@@ -9930,7 +10004,7 @@
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
-              "tf": 0.30303030303030304
+              "tf": 0.1779359430604982
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
@@ -10122,7 +10196,7 @@
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
-              "tf": 0.9090909090909091
+              "tf": 0.5338078291814947
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
@@ -10274,7 +10348,7 @@
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
-              "tf": 0.30303030303030304
+              "tf": 0.1779359430604982
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
@@ -10397,7 +10471,7 @@
             },
             "Output.html#sendSysex": {
               "ref": "Output.html#sendSysex",
-              "tf": 0.30303030303030304
+              "tf": 0.1779359430604982
             },
             "OutputChannel.html#sendControlChange": {
               "ref": "OutputChannel.html#sendControlChange",
@@ -10405,7 +10479,7 @@
             },
             "WebMidi.html#time": {
               "ref": "WebMidi.html#time",
-              "tf": 1.5625
+              "tf": 1.3513513513513513
             }
           }
         },
@@ -10523,7 +10597,7 @@
                 "docs": {
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   }
                 }
               }
@@ -11205,6 +11279,21 @@
             },
             "p": {
               "docs": {},
+              "l": {
+                "docs": {},
+                "i": {
+                  "docs": {
+                    "InputChannel.html#getNoteState": {
+                      "ref": "InputChannel.html#getNoteState",
+                      "tf": 1.5625
+                    },
+                    "OutputChannel.html#sendNoteOn": {
+                      "ref": "OutputChannel.html#sendNoteOn",
+                      "tf": 0.5050505050505051
+                    }
+                  }
+                }
+              },
               "r": {
                 "docs": {},
                 "o": {
@@ -11221,17 +11310,6 @@
                           }
                         }
                       }
-                    }
-                  }
-                }
-              },
-              "l": {
-                "docs": {},
-                "i": {
-                  "docs": {
-                    "OutputChannel.html#sendNoteOn": {
-                      "ref": "OutputChannel.html#sendNoteOn",
-                      "tf": 0.5050505050505051
                     }
                   }
                 }
@@ -11400,7 +11478,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.9090909090909091
+                      "tf": 0.5338078291814947
                     },
                     "Output.html#stopNote": {
                       "ref": "Output.html#stopNote",
@@ -12006,11 +12084,29 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
+                        "tf": 0.1779359430604982
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
                         "tf": 1.0204081632653061
+                      }
+                    }
+                  }
+                }
+              },
+              "i": {
+                "docs": {},
+                "g": {
+                  "docs": {},
+                  "n": {
+                    "docs": {
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.1779359430604982
+                      },
+                      "Utilities.html#.getCcNameByNumber": {
+                        "ref": "Utilities.html#.getCcNameByNumber",
+                        "tf": 1.9230769230769231
                       }
                     }
                   }
@@ -12023,20 +12119,6 @@
                     "OutputChannel.html#sendNoteOn": {
                       "ref": "OutputChannel.html#sendNoteOn",
                       "tf": 0.5050505050505051
-                    }
-                  }
-                }
-              },
-              "i": {
-                "docs": {},
-                "g": {
-                  "docs": {},
-                  "n": {
-                    "docs": {
-                      "Utilities.html#.getCcNameByNumber": {
-                        "ref": "Utilities.html#.getCcNameByNumber",
-                        "tf": 1.9230769230769231
-                      }
                     }
                   }
                 }
@@ -12392,6 +12474,17 @@
                   }
                 }
               }
+            },
+            "i": {
+              "docs": {},
+              "a": {
+                "docs": {
+                  "WebMidi.html#time": {
+                    "ref": "WebMidi.html#time",
+                    "tf": 1.3513513513513513
+                  }
+                }
+              }
             }
           },
           "z": {
@@ -12553,7 +12646,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
+                        "tf": 0.1779359430604982
                       },
                       "OutputChannel.html#sendMasterTuning": {
                         "ref": "OutputChannel.html#sendMasterTuning",
@@ -12628,21 +12721,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.5625
-                      }
-                    }
-                  }
-                },
-                "u": {
-                  "docs": {},
-                  "n": {
-                    "docs": {},
-                    "t": {
-                      "docs": {
-                        "InputChannel.html#getNoteState": {
-                          "ref": "InputChannel.html#getNoteState",
-                          "tf": 2.083333333333333
-                        }
+                        "tf": 1.3513513513513513
                       }
                     }
                   }
@@ -12706,7 +12785,7 @@
                   "docs": {
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 3.125
+                      "tf": 2.7027027027027026
                     }
                   },
                   "a": {
@@ -12717,7 +12796,7 @@
                         "docs": {
                           "WebMidi.html#time": {
                             "ref": "WebMidi.html#time",
-                            "tf": 1.5625
+                            "tf": 1.3513513513513513
                           }
                         }
                       }
@@ -13225,7 +13304,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   },
                   "OutputChannel.html#sendChannelMode": {
                     "ref": "OutputChannel.html#sendChannelMode",
@@ -13486,7 +13565,7 @@
                         },
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.6060606060606061
+                          "tf": 0.3558718861209964
                         }
                       }
                     }
@@ -13944,7 +14023,7 @@
                     },
                     "InputChannel.html#getNoteState": {
                       "ref": "InputChannel.html#getNoteState",
-                      "tf": 2.083333333333333
+                      "tf": 3.125
                     },
                     "Message.html#command": {
                       "ref": "Message.html#command",
@@ -14008,7 +14087,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     },
                     "Output.html#stopNote": {
                       "ref": "Output.html#stopNote",
@@ -14268,11 +14347,11 @@
                     },
                     "WebMidi.html#getInputById": {
                       "ref": "WebMidi.html#getInputById",
-                      "tf": 36.27450980392156
+                      "tf": 27.941176470588236
                     },
                     "WebMidi.html#getInputByName": {
                       "ref": "WebMidi.html#getInputByName",
-                      "tf": 37.33333333333333
+                      "tf": 29
                     },
                     "WebMidi.html#getOutputByName": {
                       "ref": "WebMidi.html#getOutputByName",
@@ -15980,7 +16059,7 @@
                               },
                               "Output.html#sendSysex": {
                                 "ref": "Output.html#sendSysex",
-                                "tf": 0.30303030303030304
+                                "tf": 0.1779359430604982
                               },
                               "OutputChannel.html#sendLocalControl": {
                                 "ref": "OutputChannel.html#sendLocalControl",
@@ -16120,15 +16199,15 @@
               },
               "Output.html#sendSysex": {
                 "ref": "Output.html#sendSysex",
-                "tf": 0.9090909090909091
+                "tf": 0.3558718861209964
               },
               "WebMidi.html#getInputById": {
                 "ref": "WebMidi.html#getInputById",
-                "tf": 39.2156862745098
+                "tf": 30.88235294117647
               },
               "WebMidi.html#getOutputById": {
                 "ref": "WebMidi.html#getOutputById",
-                "tf": 39.2156862745098
+                "tf": 30.88235294117647
               }
             },
             "e": {
@@ -16136,11 +16215,21 @@
               "n": {
                 "docs": {},
                 "t": {
-                  "docs": {},
+                  "docs": {
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 0.1779359430604982
+                    }
+                  },
                   "i": {
                     "docs": {},
                     "f": {
-                      "docs": {},
+                      "docs": {
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 20.889679715302492
+                        }
+                      },
                       "i": {
                         "docs": {
                           "Enumerations.html#.MIDI_CONTROL_CHANGE_MESSAGES": {
@@ -16153,7 +16242,7 @@
                           },
                           "InputChannel.html#getNoteState": {
                             "ref": "InputChannel.html#getNoteState",
-                            "tf": 2.083333333333333
+                            "tf": 1.5625
                           },
                           "Message.html#command": {
                             "ref": "Message.html#command",
@@ -16185,7 +16274,7 @@
                           },
                           "Output.html#sendSysex": {
                             "ref": "Output.html#sendSysex",
-                            "tf": 0.30303030303030304
+                            "tf": 0.7117437722419928
                           },
                           "Output.html#stopNote": {
                             "ref": "Output.html#stopNote",
@@ -16767,7 +16856,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   }
                 }
               }
@@ -16807,7 +16896,7 @@
                 "docs": {
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.6060606060606061
+                    "tf": 0.3558718861209964
                   }
                 }
               }
@@ -16928,7 +17017,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.3558718861209964
                   },
                   "OutputChannel.html#getListeners": {
                     "ref": "OutputChannel.html#getListeners",
@@ -17661,7 +17750,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     },
                     "OutputChannel.html#sendRpnValue": {
                       "ref": "OutputChannel.html#sendRpnValue",
@@ -18299,7 +18388,7 @@
                 "docs": {
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 1.5625
+                    "tf": 1.3513513513513513
                   }
                 }
               }
@@ -18476,7 +18565,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   },
                   "Utilities.html#.offsetNumber": {
                     "ref": "Utilities.html#.offsetNumber",
@@ -18495,7 +18584,7 @@
                     "docs": {
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
+                        "tf": 0.1779359430604982
                       }
                     }
                   }
@@ -18846,7 +18935,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.9090909090909091
+                    "tf": 0.5338078291814947
                   },
                   "Output.html#sendTimecodeQuarterFrame": {
                     "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -19441,7 +19530,7 @@
                                 },
                                 "WebMidi.html#time": {
                                   "ref": "WebMidi.html#time",
-                                  "tf": 6.25
+                                  "tf": 5.405405405405405
                                 }
                               }
                             }
@@ -19473,7 +19562,7 @@
                               "docs": {
                                 "WebMidi.html#time": {
                                   "ref": "WebMidi.html#time",
-                                  "tf": 1.5625
+                                  "tf": 1.3513513513513513
                                 }
                               }
                             }
@@ -20159,7 +20248,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 2.727272727272727
+                        "tf": 4.092526690391459
                       },
                       "Output.html#sendTimecodeQuarterFrame": {
                         "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -20667,10 +20756,6 @@
                         "ref": "Input.html#waitFor",
                         "tf": 1.0869565217391304
                       },
-                      "InputChannel.html#getNoteState": {
-                        "ref": "InputChannel.html#getNoteState",
-                        "tf": 2.083333333333333
-                      },
                       "InputChannel.html#hasListener": {
                         "ref": "InputChannel.html#hasListener",
                         "tf": 1.6129032258064515
@@ -20737,7 +20822,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
+                        "tf": 0.1779359430604982
                       },
                       "Output.html#waitFor": {
                         "ref": "Output.html#waitFor",
@@ -20825,6 +20910,10 @@
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
                           "tf": 0.4132231404958678
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.1779359430604982
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
@@ -21205,6 +21294,10 @@
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
                     "tf": 0.24509803921568626
+                  },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.1779359430604982
                   },
                   "OutputChannel.html#removeListener": {
                     "ref": "OutputChannel.html#removeListener",
@@ -21606,7 +21699,7 @@
                               },
                               "Output.html#sendSysex": {
                                 "ref": "Output.html#sendSysex",
-                                "tf": 21.515151515151516
+                                "tf": 1.2455516014234875
                               },
                               "OutputChannel.html#send": {
                                 "ref": "OutputChannel.html#send",
@@ -21704,7 +21797,7 @@
                         "docs": {
                           "Output.html#sendSysex": {
                             "ref": "Output.html#sendSysex",
-                            "tf": 0.30303030303030304
+                            "tf": 0.1779359430604982
                           }
                         }
                       }
@@ -22663,7 +22756,7 @@
                       "docs": {
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
+                          "tf": 0.1779359430604982
                         }
                       }
                     }
@@ -23177,7 +23270,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     },
                     "OutputChannel.html#sendNrpnValue": {
                       "ref": "OutputChannel.html#sendNrpnValue",
@@ -23199,7 +23292,7 @@
                   "docs": {
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 1.5625
+                      "tf": 1.3513513513513513
                     }
                   }
                 }
@@ -23420,7 +23513,7 @@
                         },
                         "InputChannel.html#getNoteState": {
                           "ref": "InputChannel.html#getNoteState",
-                          "tf": 2.083333333333333
+                          "tf": 1.5625
                         },
                         "InputChannel.html#hasListener": {
                           "ref": "InputChannel.html#hasListener",
@@ -23496,7 +23589,7 @@
                         },
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.9090909090909091
+                          "tf": 0.8896797153024912
                         },
                         "Output.html#sendTuningBank": {
                           "ref": "Output.html#sendTuningBank",
@@ -23823,10 +23916,6 @@
                     "ref": "InputChannel.html#emit",
                     "tf": 2
                   },
-                  "InputChannel.html#getNoteState": {
-                    "ref": "InputChannel.html#getNoteState",
-                    "tf": 2.083333333333333
-                  },
                   "InputChannel.html#removeListener": {
                     "ref": "InputChannel.html#removeListener",
                     "tf": 2.857142857142857
@@ -23917,7 +24006,7 @@
                   },
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 1.5625
+                    "tf": 1.3513513513513513
                   },
                   "WebMidi.html#emit": {
                     "ref": "WebMidi.html#emit",
@@ -23948,7 +24037,7 @@
                 "docs": {
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 1.5625
+                    "tf": 1.3513513513513513
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
@@ -24166,7 +24255,7 @@
                   },
                   "InputChannel.html#getNoteState": {
                     "ref": "InputChannel.html#getNoteState",
-                    "tf": 2.083333333333333
+                    "tf": 3.125
                   },
                   "Note.html": {
                     "ref": "Note.html",
@@ -24389,6 +24478,35 @@
                           "ref": "WebMidi.html#validation",
                           "tf": 3.225806451612903
                         }
+                      },
+                      "a": {
+                        "docs": {},
+                        "n": {
+                          "docs": {},
+                          "c": {
+                            "docs": {},
+                            "e": {
+                              "docs": {},
+                              ".": {
+                                "docs": {},
+                                "n": {
+                                  "docs": {},
+                                  "o": {
+                                    "docs": {},
+                                    "w": {
+                                      "docs": {
+                                        "WebMidi.html#time": {
+                                          "ref": "WebMidi.html#time",
+                                          "tf": 1.3513513513513513
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
                       }
                     }
                   }
@@ -24513,6 +24631,20 @@
                   "Output.html#sendTuneRequest": {
                     "ref": "Output.html#sendTuneRequest",
                     "tf": 7.142857142857142
+                  }
+                },
+                "t": {
+                  "docs": {},
+                  "i": {
+                    "docs": {},
+                    "m": {
+                      "docs": {
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 1.2455516014234875
+                        }
+                      }
+                    }
                   }
                 }
               },
@@ -24790,6 +24922,23 @@
                       }
                     }
                   }
+                },
+                "a": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "h": {
+                        "docs": {
+                          "Output.html#sendSysex": {
+                            "ref": "Output.html#sendSysex",
+                            "tf": 0.1779359430604982
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               },
               "o": {
@@ -24950,6 +25099,20 @@
                         "OutputChannel.html#sendOmniMode": {
                           "ref": "OutputChannel.html#sendOmniMode",
                           "tf": 2.941176470588235
+                        }
+                      }
+                    }
+                  }
+                },
+                "e": {
+                  "docs": {},
+                  "c": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.1779359430604982
                         }
                       }
                     }
@@ -25896,7 +26059,7 @@
                       },
                       "InputChannel.html#getNoteState": {
                         "ref": "InputChannel.html#getNoteState",
-                        "tf": 2.083333333333333
+                        "tf": 1.5625
                       },
                       "InputChannel.html#hasListener": {
                         "ref": "InputChannel.html#hasListener",
@@ -26253,6 +26416,10 @@
                     "docs": {},
                     "t": {
                       "docs": {
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.1779359430604982
+                        },
                         "Output.html#sendTuneRequest": {
                           "ref": "Output.html#sendTuneRequest",
                           "tf": 7.142857142857142
@@ -26690,7 +26857,7 @@
                             },
                             "Output.html#sendSysex": {
                               "ref": "Output.html#sendSysex",
-                              "tf": 0.30303030303030304
+                              "tf": 0.1779359430604982
                             },
                             "WebMidi.html": {
                               "ref": "WebMidi.html",
@@ -27176,11 +27343,19 @@
                                                                           "docs": {
                                                                             "Output.html#sendSysex": {
                                                                               "ref": "Output.html#sendSysex",
-                                                                              "tf": 0.30303030303030304
+                                                                              "tf": 0.1779359430604982
                                                                             }
                                                                           }
                                                                         },
                                                                         "docs": {}
+                                                                      },
+                                                                      "7": {
+                                                                        "docs": {
+                                                                          "Output.html#sendSysex": {
+                                                                            "ref": "Output.html#sendSysex",
+                                                                            "tf": 0.1779359430604982
+                                                                          }
+                                                                        }
                                                                       },
                                                                       "docs": {}
                                                                     }
@@ -27190,7 +27365,7 @@
                                                                       "docs": {
                                                                         "Output.html#sendSysex": {
                                                                           "ref": "Output.html#sendSysex",
-                                                                          "tf": 0.30303030303030304
+                                                                          "tf": 0.1779359430604982
                                                                         }
                                                                       }
                                                                     },
@@ -27206,7 +27381,7 @@
                                                                             "docs": {
                                                                               "Output.html#sendSysex": {
                                                                                 "ref": "Output.html#sendSysex",
-                                                                                "tf": 0.30303030303030304
+                                                                                "tf": 0.1779359430604982
                                                                               }
                                                                             }
                                                                           },
@@ -27368,7 +27543,7 @@
                             "docs": {
                               "Output.html#sendSysex": {
                                 "ref": "Output.html#sendSysex",
-                                "tf": 0.30303030303030304
+                                "tf": 0.1779359430604982
                               }
                             },
                             "a": {
@@ -27395,7 +27570,7 @@
                                                   "docs": {
                                                     "Output.html#sendSysex": {
                                                       "ref": "Output.html#sendSysex",
-                                                      "tf": 0.30303030303030304
+                                                      "tf": 0.1779359430604982
                                                     }
                                                   }
                                                 }
@@ -27429,6 +27604,20 @@
                                       }
                                     }
                                   }
+                                }
+                              }
+                            }
+                          }
+                        },
+                        "t": {
+                          "docs": {},
+                          "i": {
+                            "docs": {},
+                            "m": {
+                              "docs": {
+                                "WebMidi.html#time": {
+                                  "ref": "WebMidi.html#time",
+                                  "tf": 1.3513513513513513
                                 }
                               }
                             }
@@ -28456,7 +28645,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.5338078291814947
                   },
                   "Output.html#suspendEvent": {
                     "ref": "Output.html#suspendEvent",
@@ -28766,7 +28955,7 @@
                           },
                           "WebMidi.html#time": {
                             "ref": "WebMidi.html#time",
-                            "tf": 1.5625
+                            "tf": 1.3513513513513513
                           }
                         }
                       }
@@ -28921,7 +29110,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     },
                     "OutputChannel.html#sendMasterTuning": {
                       "ref": "OutputChannel.html#sendMasterTuning",
@@ -29103,10 +29292,6 @@
                     "InputChannel.html#octaveOffset": {
                       "ref": "InputChannel.html#octaveOffset",
                       "tf": 1.7857142857142856
-                    },
-                    "InputChannel.html#getNoteState": {
-                      "ref": "InputChannel.html#getNoteState",
-                      "tf": 2.083333333333333
                     },
                     "InputChannel.html#removeListener": {
                       "ref": "InputChannel.html#removeListener",
@@ -29318,7 +29503,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.6060606060606061
+                      "tf": 0.3558718861209964
                     },
                     "OutputChannel.html": {
                       "ref": "OutputChannel.html",
@@ -29427,6 +29612,10 @@
                         "ref": "Output.html#sendNrpnValue",
                         "tf": 0.40650406504065045
                       },
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.1779359430604982
+                      },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
                         "tf": 1.0204081632653061
@@ -29507,7 +29696,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 21.818181818181817
+                    "tf": 20.889679715302492
                   },
                   "Output.html#sendTimecodeQuarterFrame": {
                     "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -29992,6 +30181,10 @@
                 "docs": {},
                 "d": {
                   "docs": {
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 0.1779359430604982
+                    },
                     "Utilities.html#.from7bitToFloat": {
                       "ref": "Utilities.html#.from7bitToFloat",
                       "tf": 1.2195121951219512
@@ -30061,7 +30254,7 @@
               "docs": {
                 "WebMidi.html#time": {
                   "ref": "WebMidi.html#time",
-                  "tf": 1.5625
+                  "tf": 1.3513513513513513
                 }
               }
             }
@@ -30460,7 +30653,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     },
                     "OutputChannel.html#sendMasterTuning": {
                       "ref": "OutputChannel.html#sendMasterTuning",
@@ -30849,7 +31042,7 @@
                                   "docs": {
                                     "WebMidi.html#getOutputById": {
                                       "ref": "WebMidi.html#getOutputById",
-                                      "tf": 683.3333333333334
+                                      "tf": 675
                                     }
                                   }
                                 }
@@ -30862,7 +31055,7 @@
                                     "docs": {
                                       "WebMidi.html#getOutputByName": {
                                         "ref": "WebMidi.html#getOutputByName",
-                                        "tf": 683.3333333333334
+                                        "tf": 675
                                       }
                                     }
                                   }
@@ -31037,7 +31230,7 @@
                                 "docs": {
                                   "WebMidi.html#getInputById": {
                                     "ref": "WebMidi.html#getInputById",
-                                    "tf": 683.3333333333334
+                                    "tf": 675
                                   }
                                 }
                               }
@@ -31050,7 +31243,7 @@
                                   "docs": {
                                     "WebMidi.html#getInputByName": {
                                       "ref": "WebMidi.html#getInputByName",
-                                      "tf": 683.3333333333334
+                                      "tf": 675
                                     }
                                   }
                                 }
@@ -31284,7 +31477,7 @@
               },
               "Output.html#sendSysex": {
                 "ref": "Output.html#sendSysex",
-                "tf": 0.30303030303030304
+                "tf": 0.1779359430604982
               },
               "WebMidi.html#enable": {
                 "ref": "WebMidi.html#enable",
@@ -31337,7 +31530,7 @@
               "docs": {
                 "InputChannel.html#getNoteState": {
                   "ref": "InputChannel.html#getNoteState",
-                  "tf": 2.083333333333333
+                  "tf": 1.5625
                 },
                 "Utilities.html#.buildNote": {
                   "ref": "Utilities.html#.buildNote",
@@ -31486,7 +31679,7 @@
               },
               "InputChannel.html#getNoteState": {
                 "ref": "InputChannel.html#getNoteState",
-                "tf": 2.083333333333333
+                "tf": 1.5625
               },
               "Note.html#number": {
                 "ref": "Note.html#number",
@@ -31820,7 +32013,7 @@
                         },
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
+                          "tf": 0.1779359430604982
                         },
                         "OutputChannel.html#eventMap": {
                           "ref": "OutputChannel.html#eventMap",
@@ -32691,7 +32884,7 @@
                         },
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
+                          "tf": 0.1779359430604982
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
@@ -32741,7 +32934,7 @@
                                               "docs": {
                                                 "Output.html#sendSysex": {
                                                   "ref": "Output.html#sendSysex",
-                                                  "tf": 0.30303030303030304
+                                                  "tf": 0.1779359430604982
                                                 }
                                               }
                                             }
@@ -32814,7 +33007,7 @@
                             "docs": {
                               "WebMidi.html#time": {
                                 "ref": "WebMidi.html#time",
-                                "tf": 1.5625
+                                "tf": 1.3513513513513513
                               }
                             }
                           }
@@ -32832,6 +33025,10 @@
                         "Output.html#sendControlChange": {
                           "ref": "Output.html#sendControlChange",
                           "tf": 0.24509803921568626
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.1779359430604982
                         },
                         "OutputChannel.html#sendControlChange": {
                           "ref": "OutputChannel.html#sendControlChange",
@@ -33038,6 +33235,23 @@
                         "OutputChannel.html#stopNote": {
                           "ref": "OutputChannel.html#stopNote",
                           "tf": 1.1627906976744187
+                        }
+                      }
+                    }
+                  }
+                },
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "c": {
+                      "docs": {},
+                      "i": {
+                        "docs": {
+                          "Output.html#sendSysex": {
+                            "ref": "Output.html#sendSysex",
+                            "tf": 0.5338078291814947
+                          }
                         }
                       }
                     }
@@ -33249,7 +33463,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.9090909090909091
+                    "tf": 0.5338078291814947
                   },
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
@@ -33313,6 +33527,26 @@
                     "OutputChannel.html#sendRpnIncrement": {
                       "ref": "OutputChannel.html#sendRpnIncrement",
                       "tf": 0.5434782608695652
+                    }
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "r": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "c": {
+                    "docs": {},
+                    "t": {
+                      "docs": {
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.1779359430604982
+                        }
+                      }
                     }
                   }
                 }
@@ -33882,17 +34116,6 @@
                     }
                   }
                 }
-              },
-              "r": {
-                "docs": {},
-                "g": {
-                  "docs": {
-                    "Output.html#sendSysex": {
-                      "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
-                    }
-                  }
-                }
               }
             },
             "o": {
@@ -34207,6 +34430,10 @@
                           "ref": "InputChannel.html#notesState",
                           "tf": 6.25
                         },
+                        "InputChannel.html#getNoteState": {
+                          "ref": "InputChannel.html#getNoteState",
+                          "tf": 1.5625
+                        },
                         "Listener.html#suspended": {
                           "ref": "Listener.html#suspended",
                           "tf": 12.5
@@ -34315,7 +34542,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   },
                   "Utilities.html": {
                     "ref": "Utilities.html",
@@ -34609,7 +34836,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.6060606060606061
+                    "tf": 0.3558718861209964
                   },
                   "OutputChannel.html#sendNoteOn": {
                     "ref": "OutputChannel.html#sendNoteOn",
@@ -34650,6 +34877,26 @@
                     "Input.html#addOneTimeListener": {
                       "ref": "Input.html#addOneTimeListener",
                       "tf": 0.2074688796680498
+                    }
+                  }
+                }
+              },
+              "e": {
+                "docs": {},
+                "g": {
+                  "docs": {},
+                  "o": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "i": {
+                        "docs": {
+                          "Output.html#sendSysex": {
+                            "ref": "Output.html#sendSysex",
+                            "tf": 0.1779359430604982
+                          }
+                        }
+                      }
                     }
                   }
                 }
@@ -34946,7 +35193,7 @@
                     },
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 1.5625
+                      "tf": 1.3513513513513513
                     }
                   }
                 }
@@ -35385,7 +35632,7 @@
                 },
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.30303030303030304
+                  "tf": 0.1779359430604982
                 },
                 "OutputChannel.html#playNote": {
                   "ref": "OutputChannel.html#playNote",
@@ -35417,7 +35664,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.6060606060606061
+                      "tf": 0.3558718861209964
                     },
                     "OutputChannel.html#sendLocalControl": {
                       "ref": "OutputChannel.html#sendLocalControl",
@@ -35570,7 +35817,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.6060606060606061
+                        "tf": 0.7117437722419928
                       },
                       "OutputChannel.html#sendControlChange": {
                         "ref": "OutputChannel.html#sendControlChange",
@@ -36132,7 +36379,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 1.2121212121212122
+                        "tf": 1.2455516014234875
                       },
                       "WebMidi.html#sysexEnabled": {
                         "ref": "WebMidi.html#sysexEnabled",
@@ -38058,7 +38305,7 @@
                 },
                 "InputChannel.html#getNoteState": {
                   "ref": "InputChannel.html#getNoteState",
-                  "tf": 2.083333333333333
+                  "tf": 1.5625
                 },
                 "Message.html#type": {
                   "ref": "Message.html#type",
@@ -38074,7 +38321,7 @@
                 },
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.30303030303030304
+                  "tf": 0.1779359430604982
                 },
                 "OutputChannel.html#send": {
                   "ref": "OutputChannel.html#send",
@@ -38121,7 +38368,7 @@
                         },
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
+                          "tf": 0.1779359430604982
                         },
                         "OutputChannel.html#playNote": {
                           "ref": "OutputChannel.html#playNote",
@@ -38352,11 +38599,11 @@
                   },
                   "WebMidi.html#getInputByName": {
                     "ref": "WebMidi.html#getInputByName",
-                    "tf": 39.33333333333333
+                    "tf": 31
                   },
                   "WebMidi.html#getOutputByName": {
                     "ref": "WebMidi.html#getOutputByName",
-                    "tf": 39.33333333333333
+                    "tf": 31
                   }
                 }
               }
@@ -38386,7 +38633,7 @@
                   "docs": {
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     }
                   }
                 }
@@ -38594,7 +38841,7 @@
                   },
                   "InputChannel.html#getNoteState": {
                     "ref": "InputChannel.html#getNoteState",
-                    "tf": 41.66666666666666
+                    "tf": 42.70833333333333
                   },
                   "InputChannel.html#hasListener": {
                     "ref": "InputChannel.html#hasListener",
@@ -38883,6 +39130,10 @@
                   "WebMidi.html#supported": {
                     "ref": "WebMidi.html#supported",
                     "tf": 1.7241379310344827
+                  },
+                  "WebMidi.html#time": {
+                    "ref": "WebMidi.html#time",
+                    "tf": 1.3513513513513513
                   },
                   "WebMidi.html#addListener": {
                     "ref": "WebMidi.html#addListener",
@@ -39314,7 +39565,7 @@
                   "docs": {
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     },
                     "Utilities.html#.toNoteNumber": {
                       "ref": "Utilities.html#.toNoteNumber",
@@ -39365,6 +39616,10 @@
                 "Output.html#sendNrpnValue": {
                   "ref": "Output.html#sendNrpnValue",
                   "tf": 0.40650406504065045
+                },
+                "Output.html#sendSysex": {
+                  "ref": "Output.html#sendSysex",
+                  "tf": 1.2455516014234875
                 },
                 "OutputChannel.html#addListener": {
                   "ref": "OutputChannel.html#addListener",
@@ -39729,7 +39984,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.6060606060606061
+                        "tf": 0.7117437722419928
                       },
                       "Output.html#stopNote": {
                         "ref": "Output.html#stopNote",
@@ -39845,7 +40100,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 3.125
+                        "tf": 2.7027027027027026
                       },
                       "WebMidi.html#getListenerCount": {
                         "ref": "WebMidi.html#getListenerCount",
@@ -40075,7 +40330,7 @@
           "docs": {
             "WebMidi.html#time": {
               "ref": "WebMidi.html#time",
-              "tf": 1.5625
+              "tf": 1.3513513513513513
             }
           },
           "t": {
@@ -40159,7 +40414,7 @@
                   "docs": {
                     "InputChannel.html#getNoteState": {
                       "ref": "InputChannel.html#getNoteState",
-                      "tf": 2.083333333333333
+                      "tf": 1.5625
                     },
                     "Message.html#dataBytes": {
                       "ref": "Message.html#dataBytes",
@@ -40805,6 +41060,10 @@
                         "ref": "Output.html#sendRpnValue",
                         "tf": 0.5494505494505495
                       },
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.3558718861209964
+                      },
                       "Output.html#suspendEvent": {
                         "ref": "Output.html#suspendEvent",
                         "tf": 1.0869565217391304
@@ -40990,7 +41249,7 @@
                         },
                         "InputChannel.html#getNoteState": {
                           "ref": "InputChannel.html#getNoteState",
-                          "tf": 2.083333333333333
+                          "tf": 3.125
                         },
                         "InputChannel.html#hasListener": {
                           "ref": "InputChannel.html#hasListener",
@@ -41106,7 +41365,7 @@
                         },
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
+                          "tf": 0.1779359430604982
                         },
                         "Output.html#stopNote": {
                           "ref": "Output.html#stopNote",
@@ -41355,6 +41614,10 @@
                         "ref": "Output.html#sendControlChange",
                         "tf": 0.24509803921568626
                       },
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.1779359430604982
+                      },
                       "Output.html#suspendEvent": {
                         "ref": "Output.html#suspendEvent",
                         "tf": 1.0869565217391304
@@ -41381,7 +41644,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.5625
+                        "tf": 2.7027027027027026
                       },
                       "WebMidi.html#suspendEvent": {
                         "ref": "WebMidi.html#suspendEvent",
@@ -42267,7 +42530,7 @@
                         },
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
+                          "tf": 0.1779359430604982
                         },
                         "OutputChannel.html#sendOmniMode": {
                           "ref": "OutputChannel.html#sendOmniMode",
@@ -42302,7 +42565,7 @@
               "docs": {
                 "WebMidi.html#time": {
                   "ref": "WebMidi.html#time",
-                  "tf": 1.5625
+                  "tf": 1.3513513513513513
                 }
               },
               "s": {
@@ -42363,6 +42626,20 @@
                             }
                           }
                         }
+                      }
+                    }
+                  }
+                }
+              },
+              "t": {
+                "docs": {},
+                "y": {
+                  "docs": {},
+                  "p": {
+                    "docs": {
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.1779359430604982
                       }
                     }
                   }
@@ -42501,7 +42778,7 @@
                       "docs": {
                         "Output.html#sendSysex": {
                           "ref": "Output.html#sendSysex",
-                          "tf": 0.30303030303030304
+                          "tf": 0.1779359430604982
                         }
                       }
                     }
@@ -42538,7 +42815,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   },
                   "OutputChannel.html#playNote": {
                     "ref": "OutputChannel.html#playNote",
@@ -42682,7 +42959,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 1.2121212121212122
+                    "tf": 1.0676156583629894
                   },
                   "Output.html#sendTimecodeQuarterFrame": {
                     "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -43642,7 +43919,7 @@
                           "docs": {
                             "Output.html#sendSysex": {
                               "ref": "Output.html#sendSysex",
-                              "tf": 670.3030303030303
+                              "tf": 670.1779359430604
                             }
                           }
                         }
@@ -44269,7 +44546,7 @@
                 },
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.30303030303030304
+                  "tf": 0.1779359430604982
                 },
                 "Output.html#sendTuningBank": {
                   "ref": "Output.html#sendTuningBank",
@@ -44707,7 +44984,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 1.8181818181818181
+                      "tf": 1.4234875444839856
                     },
                     "WebMidi.html#enable": {
                       "ref": "WebMidi.html#enable",
@@ -44787,7 +45064,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.9090909090909091
+                        "tf": 1.0676156583629894
                       },
                       "WebMidi.html#defaults": {
                         "ref": "WebMidi.html#defaults",
@@ -44881,7 +45158,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   },
                   "OutputChannel.html#sendModulationRange": {
                     "ref": "OutputChannel.html#sendModulationRange",
@@ -45217,6 +45494,17 @@
                     "tf": 2.272727272727273
                   }
                 }
+              },
+              "e": {
+                "docs": {},
+                "e": {
+                  "docs": {
+                    "Output.html#sendSysex": {
+                      "ref": "Output.html#sendSysex",
+                      "tf": 0.1779359430604982
+                    }
+                  }
+                }
               }
             },
             "o": {
@@ -45433,7 +45721,7 @@
                           },
                           "Output.html#sendSysex": {
                             "ref": "Output.html#sendSysex",
-                            "tf": 0.30303030303030304
+                            "tf": 0.1779359430604982
                           },
                           "OutputChannel.html#sendNrpnValue": {
                             "ref": "OutputChannel.html#sendNrpnValue",
@@ -45677,6 +45965,10 @@
                     "ref": "InputChannel.html#emit",
                     "tf": 2
                   },
+                  "InputChannel.html#getNoteState": {
+                    "ref": "InputChannel.html#getNoteState",
+                    "tf": 1.5625
+                  },
                   "InputChannel.html#hasListener": {
                     "ref": "InputChannel.html#hasListener",
                     "tf": 3.225806451612903
@@ -45695,7 +45987,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.6060606060606061
+                    "tf": 0.3558718861209964
                   },
                   "Output.html#suspendEvent": {
                     "ref": "Output.html#suspendEvent",
@@ -46292,7 +46584,7 @@
                   },
                   "WebMidi.html#time": {
                     "ref": "WebMidi.html#time",
-                    "tf": 688.0208333333334
+                    "tf": 687.3873873873874
                   },
                   "WebMidi.html#addOneTimeListener": {
                     "ref": "WebMidi.html#addOneTimeListener",
@@ -46405,6 +46697,10 @@
                 "Output.html#sendRpnValue": {
                   "ref": "Output.html#sendRpnValue",
                   "tf": 0.5494505494505495
+                },
+                "Output.html#sendSysex": {
+                  "ref": "Output.html#sendSysex",
+                  "tf": 0.1779359430604982
                 },
                 "OutputChannel.html#sendMasterTuning": {
                   "ref": "OutputChannel.html#sendMasterTuning",
@@ -46631,6 +46927,10 @@
                     "ref": "Output.html#sendChannelMode",
                     "tf": 0.684931506849315
                   },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.1779359430604982
+                  },
                   "Output.html#suspendEvent": {
                     "ref": "Output.html#suspendEvent",
                     "tf": 1.0869565217391304
@@ -46719,22 +47019,15 @@
                         "ref": "Message.html#manufacturerId",
                         "tf": 1.7857142857142856
                       },
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.1779359430604982
+                      },
                       "OutputChannel.html#sendKeyAftertouch": {
                         "ref": "OutputChannel.html#sendKeyAftertouch",
                         "tf": 20
                       }
                     }
-                  }
-                }
-              }
-            },
-            "k": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "InputChannel.html#getNoteState": {
-                    "ref": "InputChannel.html#getNoteState",
-                    "tf": 2.083333333333333
                   }
                 }
               }
@@ -46797,7 +47090,7 @@
                     "docs": {
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
+                        "tf": 0.1779359430604982
                       }
                     }
                   }
@@ -46808,6 +47101,10 @@
               "docs": {},
               "t": {
                 "docs": {
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.1779359430604982
+                  },
                   "WebMidi.html#validation": {
                     "ref": "WebMidi.html#validation",
                     "tf": 1.6129032258064515
@@ -46900,6 +47197,10 @@
               "InputChannel.html#getListeners": {
                 "ref": "InputChannel.html#getListeners",
                 "tf": 2.083333333333333
+              },
+              "InputChannel.html#getNoteState": {
+                "ref": "InputChannel.html#getNoteState",
+                "tf": 1.5625
               },
               "InputChannel.html#hasListener": {
                 "ref": "InputChannel.html#hasListener",
@@ -47023,7 +47324,7 @@
               },
               "Output.html#sendSysex": {
                 "ref": "Output.html#sendSysex",
-                "tf": 1.5151515151515151
+                "tf": 1.2455516014234875
               },
               "Output.html#sendTuningBank": {
                 "ref": "Output.html#sendTuningBank",
@@ -47504,6 +47805,23 @@
                     }
                   }
                 }
+              },
+              "v": {
+                "docs": {},
+                "e": {
+                  "docs": {},
+                  "r": {
+                    "docs": {},
+                    "s": {
+                      "docs": {
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 2.135231316725979
+                        }
+                      }
+                    }
+                  }
+                }
               }
             },
             "s": {
@@ -47593,15 +47911,11 @@
                     "docs": {
                       "InputChannel.html#getNoteState": {
                         "ref": "InputChannel.html#getNoteState",
-                        "tf": 2.083333333333333
+                        "tf": 1.5625
                       },
                       "Output.html#send": {
                         "ref": "Output.html#send",
                         "tf": 1.0204081632653061
-                      },
-                      "Output.html#sendSysex": {
-                        "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -47756,20 +48070,6 @@
                 }
               }
             },
-            "d": {
-              "docs": {},
-              "a": {
-                "docs": {},
-                "t": {
-                  "docs": {
-                    "Output.html#sendSysex": {
-                      "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
-                    }
-                  }
-                }
-              }
-            },
             "p": {
               "docs": {},
               "e": {
@@ -47822,10 +48122,6 @@
                               "Output.html#send": {
                                 "ref": "Output.html#send",
                                 "tf": 1.0204081632653061
-                              },
-                              "Output.html#sendSysex": {
-                                "ref": "Output.html#sendSysex",
-                                "tf": 0.30303030303030304
                               },
                               "OutputChannel.html#send": {
                                 "ref": "OutputChannel.html#send",
@@ -48608,7 +48904,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
+                        "tf": 0.1779359430604982
                       }
                     }
                   }
@@ -48972,7 +49268,7 @@
                         },
                         "WebMidi.html#time": {
                           "ref": "WebMidi.html#time",
-                          "tf": 1.5625
+                          "tf": 1.3513513513513513
                         },
                         "WebMidi.html#enable": {
                           "ref": "WebMidi.html#enable",
@@ -49183,7 +49479,7 @@
               },
               "Output.html#sendSysex": {
                 "ref": "Output.html#sendSysex",
-                "tf": 0.30303030303030304
+                "tf": 0.1779359430604982
               },
               "Output.html#sendTimecodeQuarterFrame": {
                 "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -49207,7 +49503,7 @@
               },
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
-                "tf": 1.5625
+                "tf": 1.3513513513513513
               }
             },
             "w": {
@@ -49419,6 +49715,10 @@
                           "ref": "Output.html#sendSongPosition",
                           "tf": 2.631578947368421
                         },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.1779359430604982
+                        },
                         "Output.html#stopNote": {
                           "ref": "Output.html#stopNote",
                           "tf": 1.1111111111111112
@@ -49599,7 +49899,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.9090909090909091
+                    "tf": 0.5338078291814947
                   },
                   "OutputChannel.html#sendNrpnValue": {
                     "ref": "OutputChannel.html#sendNrpnValue",
@@ -49622,7 +49922,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.30303030303030304
+                      "tf": 0.1779359430604982
                     }
                   }
                 }
@@ -49664,7 +49964,7 @@
               "docs": {
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.30303030303030304
+                  "tf": 0.1779359430604982
                 }
               },
               "a": {
@@ -50369,7 +50669,7 @@
                       },
                       "InputChannel.html#getNoteState": {
                         "ref": "InputChannel.html#getNoteState",
-                        "tf": 2.083333333333333
+                        "tf": 1.5625
                       },
                       "Listener.html": {
                         "ref": "Listener.html",
@@ -50430,10 +50730,6 @@
                       "Output.html#sendNoteOn": {
                         "ref": "Output.html#sendNoteOn",
                         "tf": 0.8771929824561403
-                      },
-                      "Output.html#sendSysex": {
-                        "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
                       },
                       "Output.html#stopNote": {
                         "ref": "Output.html#stopNote",
@@ -50768,7 +51064,7 @@
                       },
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.5625
+                        "tf": 1.3513513513513513
                       },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
@@ -50970,7 +51266,7 @@
               },
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
-                "tf": 1.5625
+                "tf": 1.3513513513513513
               },
               "WebMidi.html#addOneTimeListener": {
                 "ref": "WebMidi.html#addOneTimeListener",
@@ -51100,6 +51396,10 @@
                       "ref": "InputChannel.html#octaveOffset",
                       "tf": 1.7857142857142856
                     },
+                    "InputChannel.html#getNoteState": {
+                      "ref": "InputChannel.html#getNoteState",
+                      "tf": 1.5625
+                    },
                     "Note.html#identifier": {
                       "ref": "Note.html#identifier",
                       "tf": 8.333333333333332
@@ -51178,10 +51478,6 @@
                                   "InputChannel.html#octaveOffset": {
                                     "ref": "InputChannel.html#octaveOffset",
                                     "tf": 701.7857142857143
-                                  },
-                                  "InputChannel.html#getNoteState": {
-                                    "ref": "InputChannel.html#getNoteState",
-                                    "tf": 2.083333333333333
                                   },
                                   "Note.html#getOffsetNumber": {
                                     "ref": "Note.html#getOffsetNumber",
@@ -51443,7 +51739,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 20.303030303030305
+                        "tf": 20.177935943060497
                       },
                       "Output.html#sendTimecodeQuarterFrame": {
                         "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -51617,6 +51913,22 @@
                         "ref": "WebMidi.html#enable",
                         "tf": 26.764705882352942
                       },
+                      "WebMidi.html#getInputById": {
+                        "ref": "WebMidi.html#getInputById",
+                        "tf": 25
+                      },
+                      "WebMidi.html#getInputByName": {
+                        "ref": "WebMidi.html#getInputByName",
+                        "tf": 25
+                      },
+                      "WebMidi.html#getOutputById": {
+                        "ref": "WebMidi.html#getOutputById",
+                        "tf": 25
+                      },
+                      "WebMidi.html#getOutputByName": {
+                        "ref": "WebMidi.html#getOutputByName",
+                        "tf": 25
+                      },
                       "WebMidi.html#removeListener": {
                         "ref": "WebMidi.html#removeListener",
                         "tf": 27.857142857142858
@@ -51754,7 +52066,7 @@
                 },
                 "Output.html#sendSysex": {
                   "ref": "Output.html#sendSysex",
-                  "tf": 0.30303030303030304
+                  "tf": 0.1779359430604982
                 },
                 "OutputChannel.html#sendAllNotesOff": {
                   "ref": "OutputChannel.html#sendAllNotesOff",
@@ -51969,7 +52281,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 20.303030303030305
+                        "tf": 20.177935943060497
                       },
                       "Output.html#sendTimecodeQuarterFrame": {
                         "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -52021,11 +52333,11 @@
                       },
                       "WebMidi.html#getOutputById": {
                         "ref": "WebMidi.html#getOutputById",
-                        "tf": 36.27450980392156
+                        "tf": 27.941176470588236
                       },
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
-                        "tf": 35.33333333333333
+                        "tf": 27
                       }
                     },
                     ".": {
@@ -55324,6 +55636,10 @@
                         "ref": "InputChannel.html#octaveOffset",
                         "tf": 1.7857142857142856
                       },
+                      "InputChannel.html#getNoteState": {
+                        "ref": "InputChannel.html#getNoteState",
+                        "tf": 1.5625
+                      },
                       "Note.html#getOffsetNumber": {
                         "ref": "Note.html#getOffsetNumber",
                         "tf": 2
@@ -55672,6 +55988,10 @@
                     "ref": "Output.html#sendSongSelect",
                     "tf": 25
                   },
+                  "Output.html#sendSysex": {
+                    "ref": "Output.html#sendSysex",
+                    "tf": 0.3558718861209964
+                  },
                   "Output.html#sendTimecodeQuarterFrame": {
                     "ref": "Output.html#sendTimecodeQuarterFrame",
                     "tf": 25
@@ -55906,7 +56226,7 @@
                     "docs": {
                       "WebMidi.html#time": {
                         "ref": "WebMidi.html#time",
-                        "tf": 1.5625
+                        "tf": 1.3513513513513513
                       }
                     }
                   }
@@ -56245,7 +56565,7 @@
                       },
                       "Output.html#sendSysex": {
                         "ref": "Output.html#sendSysex",
-                        "tf": 0.30303030303030304
+                        "tf": 0.3558718861209964
                       },
                       "Output.html#stopNote": {
                         "ref": "Output.html#stopNote",
@@ -56583,6 +56903,10 @@
                       "Output.html#send": {
                         "ref": "Output.html#send",
                         "tf": 1.0204081632653061
+                      },
+                      "Output.html#sendSysex": {
+                        "ref": "Output.html#sendSysex",
+                        "tf": 0.1779359430604982
                       },
                       "Output.html#sendTimecodeQuarterFrame": {
                         "ref": "Output.html#sendTimecodeQuarterFrame",
@@ -57389,7 +57713,7 @@
                   },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
-                    "tf": 0.30303030303030304
+                    "tf": 0.1779359430604982
                   },
                   "OutputChannel.html#sendRpnDecrement": {
                     "ref": "OutputChannel.html#sendRpnDecrement",
@@ -57423,6 +57747,10 @@
                         "Output.html#sendNrpnValue": {
                           "ref": "Output.html#sendNrpnValue",
                           "tf": 0.40650406504065045
+                        },
+                        "Output.html#sendSysex": {
+                          "ref": "Output.html#sendSysex",
+                          "tf": 0.1779359430604982
                         },
                         "OutputChannel.html#sendNrpnValue": {
                           "ref": "OutputChannel.html#sendNrpnValue",
@@ -57539,7 +57867,7 @@
                     },
                     "Output.html#sendSysex": {
                       "ref": "Output.html#sendSysex",
-                      "tf": 0.6060606060606061
+                      "tf": 0.7117437722419928
                     },
                     "Output.html#stopNote": {
                       "ref": "Output.html#stopNote",
@@ -57736,6 +58064,10 @@
                   "InputChannel.html#notesState": {
                     "ref": "InputChannel.html#notesState",
                     "tf": 3.125
+                  },
+                  "InputChannel.html#getNoteState": {
+                    "ref": "InputChannel.html#getNoteState",
+                    "tf": 1.5625
                   },
                   "Utilities.html#.isBrowser": {
                     "ref": "Utilities.html#.isBrowser",
@@ -58011,7 +58343,7 @@
                     },
                     "WebMidi.html#time": {
                       "ref": "WebMidi.html#time",
-                      "tf": 1.5625
+                      "tf": 1.3513513513513513
                     }
                   }
                 }
@@ -58147,7 +58479,7 @@
           }
         }
       },
-      "length": 7262
+      "length": 7304
     },
     "corpusTokens": [
       "0",
@@ -58356,7 +58688,6 @@
       "accident",
       "accompani",
       "accord",
-      "account",
       "accur",
       "accuraci",
       "achiev",
@@ -58375,6 +58706,7 @@
       "aftertouch",
       "again",
       "akin",
+      "alia",
       "allnotesoff",
       "allow",
       "allsoundoff",
@@ -58461,6 +58793,7 @@
       "carefulli",
       "case",
       "catch",
+      "categori",
       "caus",
       "celestelevel",
       "cent",
@@ -58474,7 +58807,6 @@
       "channelcoarsetun",
       "channelfinetun",
       "channels/typ",
-      "charg",
       "check",
       "choruslevel",
       "chrome",
@@ -58491,6 +58823,7 @@
       "combin",
       "come",
       "command",
+      "commerci",
       "common",
       "commonj",
       "compat",
@@ -58583,6 +58916,7 @@
       "controllerxxx",
       "conveni",
       "convert",
+      "correct",
       "count",
       "counter",
       "creat",
@@ -58809,6 +59143,8 @@
       "https://bugs.chromium.org/p/chromium/issues/detail?id=471798",
       "https://www.midi.org/specif",
       "id",
+      "ident",
+      "identif",
       "identifi",
       "ignor",
       "iif",
@@ -59212,6 +59548,7 @@
       "pend",
       "per",
       "perform",
+      "performance.now",
       "phaserlevel",
       "pitch",
       "pitchbend",
@@ -59281,6 +59618,7 @@
       "readm",
       "readonly&gt",
       "real",
+      "realtim",
       "reason",
       "receiv",
       "refer",
@@ -59303,12 +59641,14 @@
       "repres",
       "request",
       "requir",
+      "research",
       "reserv",
       "reset",
       "resetallcontrol",
       "resolut",
       "resolv",
       "reson",
+      "respect",
       "respond",
       "restrict",
       "result",
@@ -59433,6 +59773,7 @@
       "sub",
       "subsystem",
       "subsystem'",
+      "subtyp",
       "successfulli",
       "such",
       "suggest",
@@ -59454,7 +59795,6 @@
       "sysexend",
       "system",
       "tabl",
-      "take",
       "talk",
       "target",
       "tell",
@@ -59465,6 +59805,7 @@
       "thoroughli",
       "those",
       "though",
+      "three",
       "through",
       "throughout",
       "thrown",
@@ -59500,6 +59841,7 @@
       "undefined/reserv",
       "under",
       "uniqu",
+      "univers",
       "unknownmidimessag",
       "unknownsystemmessag",
       "unless",
@@ -59510,7 +59852,6 @@
       "unsuspens",
       "until",
       "up",
-      "updat",
       "upon",
       "uppercas",
       "us",
@@ -59607,8 +59948,10 @@
       "webmidi.outputs[0].sendnrpnvalue([1",
       "webmidi.outputs[0].sendnrpnvalue([2",
       "webmidi.outputs[0].sendsysex(0x42",
+      "webmidi.outputs[0].sendsysex(0x7",
       "webmidi.outputs[0].sendsysex(66",
       "webmidi.outputs[0].sendsysex([0x00",
+      "webmidi.tim",
       "webmidiapishim.j",
       "well",
       "wheel'",
@@ -60435,7 +60778,7 @@
       "name": "getNoteState",
       "tags": "InputChannel#getNoteState getNoteState",
       "summary": "",
-      "description": "Return the playing status of the specified note. The note parameter can be an unsigned integer (0-127), a note identifier (\"C4\", \"G#5\", etc.) or a Note object. If a is passed in, the method will take into account any octaveOffset defined."
+      "description": "Returns the playing status of the specified note (true if the note is currently playing, false if it is not). The note parameter can be an unsigned integer (0-127), a note identifier (\"C4\", \"G#5\", etc.) or a Note object. IF the note is specified using an integer (0-127), no octave offset will be applied."
     },
     "InputChannel.html#hasListener": {
       "id": "InputChannel.html#hasListener",
@@ -61384,12 +61727,12 @@
     "Output.html#sendSysex": {
       "id": "Output.html#sendSysex",
       "kind": "function",
-      "title": "sendSysex( manufacturer [, data [, options ] ] ) → {Output}",
+      "title": "sendSysex( identification [, data [, options ] ] ) → {Output}",
       "longname": "Output#sendSysex",
       "name": "sendSysex",
       "tags": "Output#sendSysex sendSysex",
       "summary": "",
-      "description": "Sends a MIDI system exclusive (sysex) message. The data parameter should only contain the data of the message. When sending out the actual MIDI message, WEBMIDI.js will automatically prepend the data with the sysex byte (0xF0) and the manufacturer ID byte(s). It will also automatically terminate the message with the sysex end byte (0xF7). The data can be an array of unsigned integers (0 - 127) or a Uint8Array object. To use the sendSysex() method, system exclusive message support must have been enabled. To do so, you must set the sysex option to true when calling WebMidi.enable(): WebMidi.enable({sysex: true}) .then(() =&gt; console.log(\"System exclusive messages are enabled\"); Examples If you want to send a sysex message to a Korg device connected to the first output, you would use the following code: WebMidi.outputs[0].sendSysex(0x42, [0x1, 0x2, 0x3, 0x4, 0x5]); In this case 0x42 is the ID of the manufacturer (Korg) and [0x1, 0x2, 0x3, 0x4, 0x5] is the data being sent. The parameters can be specified using any number notation (decimal, hex, binary, etc.). Therefore, the code above is equivalent to this code: WebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]); Some manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as the first parameter. For example, to send the same sysex message to a Native Instruments device: WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]); The MIDI Manufacturers Association is in charge of maintaining the full updated list of Manufacturer ID Numbers. There is no limit for the length of the data array. However, it is generally suggested to keep system exclusive messages to 64Kb or less."
+      "description": "Sends a MIDI system exclusive (sysex) message. There are two categories of system exclusive messages: manufacturer-specific messages and universal messages. Universal messages are further divided into three subtypes: Universal non-commercial (for research and testing): 0x7D Universal non-realtime: 0x7E Universal realtime: 0x7F The method's first parameter (identification) identifies the type of message. If the value of identification is 0x7D (125), 0x7E (126) or 0x7F (127), the message will be identified as a universal non-commercial, universal non-realtime or universal realtime message (respectively). If the identification value is an array or an integer between 0 and 124, it will be used to identify the manufacturer targeted by the message. The MIDI Manufacturers Association maintains a full list of Manufacturer ID Numbers. The data parameter should only contain the data of the message. When sending out the actual MIDI message, WEBMIDI.js will automatically prepend the data with the sysex byte (0xF0) and the identification byte(s). It will also automatically terminate the message with the sysex end byte (0xF7). To use the sendSysex() method, system exclusive message support must have been enabled. To do so, you must set the sysex option to true when calling WebMidi.enable(): WebMidi.enable({sysex: true}) .then(() =&gt; console.log(\"System exclusive messages are enabled\"); Examples of manufacturer-specific system exclusive messages If you want to send a sysex message to a Korg device connected to the first output, you would use the following code: WebMidi.outputs[0].sendSysex(0x42, [0x1, 0x2, 0x3, 0x4, 0x5]); In this case 0x42 is the ID of the manufacturer (Korg) and [0x1, 0x2, 0x3, 0x4, 0x5] is the data being sent. The parameters can be specified using any number notation (decimal, hex, binary, etc.). Therefore, the code above is equivalent to this code: WebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]); Some manufacturers are identified using 3 bytes. In this case, you would use a 3-position array as the first parameter. For example, to send the same sysex message to a Native Instruments device: WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]); There is no limit for the length of the data array. However, it is generally suggested to keep system exclusive messages to 64Kb or less. Example of universal system exclusive message If you want to send a universal sysex message, simply assign the correct identification number in the first parameter. Number 0x7D (125) is for non-commercial, 0x7E (126) is for non-realtime and 0x7F (127) is for realtime. So, for example, if you wanted to send an identity request non-realtime message (0x7E), you could use the following: WebMidi.outputs[0].sendSysex(0x7E, [0x7F, 0x06, 0x01]); For more details on the format of universal messages, consult the list of universal sysex messages."
     },
     "Output.html#sendTimecodeQuarterFrame": {
       "id": "Output.html#sendTimecodeQuarterFrame",
@@ -62242,7 +62585,7 @@
       "name": "time",
       "tags": "WebMidi#time time",
       "summary": "",
-      "description": "The elapsed time, in milliseconds, since the time origin. Said simply, it is the number of milliseconds that passed since the page was loaded. Being a floating-point number, it has sub-millisecond accuracy. According to the documentation, the time should be accurate to 5 µs (microseconds). However, due to various constraints, the browser might only be accurate to one millisecond."
+      "description": "The elapsed time, in milliseconds, since the time origin. Said simply, it is the number of milliseconds that passed since the page was loaded. Being a floating-point number, it has sub-millisecond accuracy. According to the documentation, the time should be accurate to 5 µs (microseconds). However, due to various constraints, the browser might only be accurate to one millisecond. Note: WebMidi.time is simply an alias to performance.now()."
     },
     "WebMidi.html#validation": {
       "id": "WebMidi.html#validation",
@@ -62317,7 +62660,7 @@
     "WebMidi.html#getInputById": {
       "id": "WebMidi.html#getInputById",
       "kind": "function",
-      "title": "getInputById( id ) → {Input}",
+      "title": "getInputById( id [, options ] ) → {Input}",
       "longname": "WebMidi#getInputById",
       "name": "getInputById",
       "tags": "WebMidi#getInputById getInputById",
@@ -62327,7 +62670,7 @@
     "WebMidi.html#getInputByName": {
       "id": "WebMidi.html#getInputByName",
       "kind": "function",
-      "title": "getInputByName( name ) → {Input}",
+      "title": "getInputByName( name [, options ] ) → {Input}",
       "longname": "WebMidi#getInputByName",
       "name": "getInputByName",
       "tags": "WebMidi#getInputByName getInputByName",
@@ -62357,7 +62700,7 @@
     "WebMidi.html#getOutputById": {
       "id": "WebMidi.html#getOutputById",
       "kind": "function",
-      "title": "getOutputById( id ) → {Output}",
+      "title": "getOutputById( id [, options ] ) → {Output}",
       "longname": "WebMidi#getOutputById",
       "name": "getOutputById",
       "tags": "WebMidi#getOutputById getOutputById",
@@ -62367,7 +62710,7 @@
     "WebMidi.html#getOutputByName": {
       "id": "WebMidi.html#getOutputByName",
       "kind": "function",
-      "title": "getOutputByName( name ) → {Output}",
+      "title": "getOutputByName( name [, options ] ) → {Output}",
       "longname": "WebMidi#getOutputByName",
       "name": "getOutputByName",
       "tags": "WebMidi#getOutputByName getOutputByName",

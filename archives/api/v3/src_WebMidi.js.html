@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://djip.co\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -121,13 +121,30 @@ import {Enumerations} from "./Enumerations.js";
 // convoluted way to prevent Webpack from automatically bundling it in browser bundles where it
 // isn't needed.
 if (Utilities.isNode) {
-  let jzz;
-  eval('jzz = require("jzz")');
-  global["navigator"] = jzz;
+
+  // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React Native,
+  // etc.) so we also check for the presence of the window.navigator property.
+  try {
+    window.navigator;
+  } catch (err) {
+    let jzz;
+    eval('jzz = require("jzz")');
+    global.navigator = jzz;
+  }
+
+  // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
+  // imported only in v16+.
+  try {
+    performance;
+  } catch (err) {
+    let performance;
+    eval('performance = require("perf_hooks").performance');
+    global.performance = performance;
+  }
+
 }
 
 /*END-CJS*/
-
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -310,6 +327,11 @@ class WebMidi extends EventEmitter {
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
+   * 
+   * @param [options.requestMIDIAccessFunction] {function} A custom function to use to return 
+   * the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API 
+   * or if you want to use a custom implementation of the Web MIDI API - probably for testing
+   * purposes.
    *
    * @async
    *
@@ -329,10 +351,29 @@ class WebMidi extends EventEmitter {
     // package.json file), then we must import the `jzz` module. I import it in this convoluted way
     // to prevent Webpack from automatically bundling it in browser bundles where it isn't needed.
     if (Utilities.isNode) {
-      global["navigator"] = await Object.getPrototypeOf(async function() {}).constructor(`
-        jzz = await import("jzz");
+
+      // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React
+      // Native, etc.) so we also check for the presence of the window.navigator property.
+      try {
+        window.navigator;
+      } catch (err) {
+        global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
+        let jzz = await import("jzz");
         return jzz.default;
-      `)();
+        `)();
+      }
+
+      // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
+      // imported only in v16+.
+      try {
+        performance;
+      } catch (err) {
+        global.performance = await Object.getPrototypeOf(async function() {}).constructor(`
+        let perf_hooks = await import("perf_hooks");
+        return perf_hooks.performance;
+        `)();
+      }
+
     }
 
     /*END-ESM*/
@@ -433,9 +474,15 @@ class WebMidi extends EventEmitter {
 
     // Request MIDI access (this iw where the prompt will appear)
     try {
-      this.interface = await navigator.requestMIDIAccess(
-        {sysex: options.sysex, software: options.software}
-      );
+      if (typeof options.requestMIDIAccessFunction === "function") {
+        this.interface = await options.requestMIDIAccessFunction(
+          {sysex: options.sysex, software: options.software}
+        );
+      } else {
+        this.interface = await navigator.requestMIDIAccess(
+          {sysex: options.sysex, software: options.software}
+        );
+      }
     } catch(err) {
       errorEvent.error = err;
       this.emit("error", errorEvent);
@@ -488,7 +535,7 @@ class WebMidi extends EventEmitter {
 
     return this._destroyInputsAndOutputs().then(() => {
 
-      if (typeof navigator.close === "function") navigator.close();
+      if (navigator &amp;&amp; typeof navigator.close === "function") navigator.close(); // jzz
 
       if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
@@ -527,6 +574,8 @@ class WebMidi extends EventEmitter {
    * @param id {string} The ID string of the input. IDs can be viewed by looking at the
    * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
    * are strings.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
    * @returns {Input} An [`Input`](Input) object matching the specified ID string or `undefined`
    * if no matching input can be found.
@@ -535,15 +584,21 @@ class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getInputById(id) {
+  getInputById(id, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!id) return;
     }
 
-    for (let i = 0; i &lt; this.inputs.length; i++) {
-      if (this.inputs[i].id === id.toString()) return this.inputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i &lt; this._disconnectedInputs.length; i++) {
+        if (this._disconnectedInputs[i].id === id.toString()) return this._disconnectedInputs[i];
+      }
+    } else {
+      for (let i = 0; i &lt; this.inputs.length; i++) {
+        if (this.inputs[i].id === id.toString()) return this.inputs[i];
+      }
     }
 
   };
@@ -558,12 +613,14 @@ class WebMidi extends EventEmitter {
    *
    * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
    * specified name.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
    * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
-  getInputByName(name) {
+  getInputByName(name, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
@@ -571,8 +628,14 @@ class WebMidi extends EventEmitter {
       name = name.toString();
     }
 
-    for (let i = 0; i &lt; this.inputs.length; i++) {
-      if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i &lt; this._disconnectedInputs.length; i++) {
+        if (~this._disconnectedInputs[i].name.indexOf(name)) return this._disconnectedInputs[i];
+      }
+    } else {
+      for (let i = 0; i &lt; this.inputs.length; i++) {
+        if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
+      }
     }
 
   };
@@ -584,6 +647,8 @@ class WebMidi extends EventEmitter {
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [`outputs`](#outputs) array).
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
    * @returns {Output} The [`Output`](Output) that was found or `undefined` if no output matched
    * the specified name.
@@ -592,7 +657,7 @@ class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getOutputByName(name) {
+  getOutputByName(name, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
@@ -600,8 +665,14 @@ class WebMidi extends EventEmitter {
       name = name.toString();
     }
 
-    for (let i = 0; i &lt; this.outputs.length; i++) {
-      if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i &lt; this._disconnectedOutputs.length; i++) {
+        if (~this._disconnectedOutputs[i].name.indexOf(name)) return this._disconnectedOutputs[i];
+      }
+    } else {
+      for (let i = 0; i &lt; this.outputs.length; i++) {
+        if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
+      }
     }
 
   };
@@ -616,6 +687,8 @@ class WebMidi extends EventEmitter {
    *
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
    * [`WebMidi.outputs`](WebMidi#outputs) array.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
    * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
    * matching output can be found, the method returns `undefined`.
@@ -624,15 +697,21 @@ class WebMidi extends EventEmitter {
    *
    * @since 2.0.0
    */
-  getOutputById(id) {
+  getOutputById(id, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
       if (!id) return;
     }
 
-    for (let i = 0; i &lt; this.outputs.length; i++) {
-      if (this.outputs[i].id === id.toString()) return this.outputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i &lt; this._disconnectedOutputs.length; i++) {
+        if (this._disconnectedOutputs[i].id === id.toString()) return this._disconnectedOutputs[i];
+      }
+    } else {
+      for (let i = 0; i &lt; this.outputs.length; i++) {
+        if (this.outputs[i].id === id.toString()) return this.outputs[i];
+      }
     }
 
   };
@@ -781,7 +860,8 @@ class WebMidi extends EventEmitter {
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
      * @property {string} type `portschanged`
-     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
      *
      * @since 3.0.2
@@ -797,7 +877,8 @@ class WebMidi extends EventEmitter {
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
      * @property {string} type `connected`
-     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
      */
 
@@ -811,12 +892,14 @@ class WebMidi extends EventEmitter {
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
      * @property {string} type `disconnected`
-     * @property {object} target Object with properties describing the [`Input`](Input) or
-     * [`Output`](Output) that triggered the event.
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
      */
     let event = {
       timestamp: e.timeStamp,
-      type: e.port.state
+      type: e.port.state,
+      target: this
     };
 
     // We check if "connection" is "open" because connected events are also triggered with
@@ -824,11 +907,9 @@ class WebMidi extends EventEmitter {
     if (e.port.state === "connected" &amp;&amp; e.port.connection === "open") {
 
       if (e.port.type === "output") {
-        event.port = this.getOutputById(e.port.id); // legacy
-        event.target = event.port;
+        event.port = this.getOutputById(e.port.id);
       } else if (e.port.type === "input") {
-        event.port = this.getInputById(e.port.id); // legacy
-        event.target = event.port;
+        event.port = this.getInputById(e.port.id);
       }
 
       // Emit "connected" event
@@ -839,22 +920,16 @@ class WebMidi extends EventEmitter {
       portsChangedEvent.type = "portschanged";
       this.emit(portsChangedEvent.type, portsChangedEvent);
 
-      // We check if "connection" is "pending" because we do not always get the "closed" event
+    // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" &amp;&amp; e.port.connection === "pending") {
 
-      // It feels more logical to include a `target` property instead of a `port` property. This is
-      // the terminology used everywhere in the library.
-      event.port = {
-        connection: "closed",
-        id: e.port.id,
-        manufacturer: e.port.manufacturer,
-        name: e.port.name,
-        state: e.port.state,
-        type: e.port.type
-      };
+      if (e.port.type === "input") {
+        event.port = this.getInputById(e.port.id, {disconnected: true});
+      } else if (e.port.type === "output") {
+        event.port = this.getOutputById(e.port.id, {disconnected: true});
+      }
 
-      // Emit "connected" event
-      event.target = event.port;
+      // Emit "disconnected" event
       this.emit(e.port.state, event);
 
       // Make a shallow copy of the event so we can use it for the "portschanged" event
@@ -1117,6 +1192,8 @@ class WebMidi extends EventEmitter {
    * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
    * browser might only be accurate to one millisecond.
    *
+   * Note: `WebMidi.time` is simply an alias to `performance.now()`.
+   *
    * @type {DOMHighResTimeStamp}
    * @readonly
    */
@@ -1254,8 +1331,8 @@ export {wm as WebMidi};
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://djip.co">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.7 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on January 11th 2022 @ 10:53:43 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.15 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.7</a> on March 26th 2022 @ 12:27:23 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
