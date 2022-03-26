@@ -26,7 +26,6 @@ page on GitHub and submit a pull request.
   Digital Audio Workstation (DAW) application built using web technologies and distributed as a 
   native application using Electron.
 
-
 ## Education
 
 * ### [Learn Push 2](https://github.com/greyivy/learn-push2-with-svelte)
