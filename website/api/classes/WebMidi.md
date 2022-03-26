@@ -417,6 +417,7 @@ WebMidi.enable().then(() => {
     |[**`options.sysex`**] | boolean<br /> |false|Whether to enable MIDI system exclusive messages or not.|
     |[**`options.validation`**] | boolean<br /> |true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting [`validation`](#validation) to `false` improves performance but should only be done once the project has been thoroughly tested with [`validation`](#validation)  turned on.|
     |[**`options.software`**] | boolean<br /> |false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
+    |[**`options.requestMIDIAccessFunction`**] | function<br /> ||A custom function to use to return  the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API  or if you want to use a custom implementation of the Web MIDI API - probably for testing purposes.|
 
   </div>
 
