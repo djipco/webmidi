@@ -5,7 +5,7 @@
 // Modules
 const fs = require("fs-extra");
 const fsPromises = require("fs").promises;
-const git = require("simple-git/promise")();
+const git = require("simple-git")();
 const pkg = require("../../package.json");
 const moment = require("moment");
 const path = require("path");

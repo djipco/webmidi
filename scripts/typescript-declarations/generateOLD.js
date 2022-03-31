@@ -8,7 +8,7 @@
 // Options are true or false.
 
 // Modules
-const git = require("simple-git/promise")();
+const git = require("simple-git")();
 const moment = require("moment");
 const path = require("path");
 const prependFile = require("prepend-file");

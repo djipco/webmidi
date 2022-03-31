@@ -10,7 +10,7 @@
 
 // Modules
 const moment = require("moment");
-const git = require("simple-git/promise")();
+const git = require("simple-git")();
 const system = require("system-commands");
 
 // Parse arguments (default type is esm). Use -t as type (if valid)
