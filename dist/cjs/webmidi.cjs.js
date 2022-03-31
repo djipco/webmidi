@@ -2,7 +2,7 @@
  * WEBMIDI.js v3.0.15
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on February 13th, 2022.
+ * Build generated on March 31st, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.15 - February 13, 2022 12:26:57 */
+/* Version: 3.0.15 - March 31, 2022 15:20:30 */
 'use strict';
 
 Object.defineProperty(exports, '__esModule', { value: true });
@@ -8553,6 +8553,11 @@ class WebMidi extends EventEmitter {
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
+   * 
+   * @param [options.requestMIDIAccessFunction] {function} A custom function to use to return 
+   * the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API 
+   * or if you want to use a custom implementation of the Web MIDI API - probably for testing
+   * purposes.
    *
    * @async
    *
@@ -8663,10 +8668,17 @@ class WebMidi extends EventEmitter {
     }; // Request MIDI access (this iw where the prompt will appear)
 
     try {
-      this.interface = await navigator.requestMIDIAccess({
-        sysex: options.sysex,
-        software: options.software
-      });
+      if (typeof options.requestMIDIAccessFunction === "function") {
+        this.interface = await options.requestMIDIAccessFunction({
+          sysex: options.sysex,
+          software: options.software
+        });
+      } else {
+        this.interface = await navigator.requestMIDIAccess({
+          sysex: options.sysex,
+          software: options.software
+        });
+      }
     } catch (err) {
       errorEvent.error = err;
       this.emit("error", errorEvent);
