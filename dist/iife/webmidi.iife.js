@@ -1,8 +1,8 @@
 /**
- * WEBMIDI.js v3.0.15
+ * WEBMIDI.js v3.0.16
  * A JavaScript library to kickstart your MIDI projects
  * https://webmidijs.org
- * Build generated on March 31st, 2022.
+ * Build generated on April 1st, 2022.
  *
  * © Copyright 2015-2022, Jean-Philippe Côté.
  *
@@ -17,7 +17,7 @@
  * the License.
  */
 
-/* Version: 3.0.15 - March 31, 2022 15:20:41 */
+/* Version: 3.0.16 - April 1, 2022 09:33:14 */
 (function (exports) {
   'use strict';
 
@@ -9337,7 +9337,7 @@
 
 
     get version() {
-      return "3.0.15";
+      return "3.0.16";
     }
     /**
      * @private
