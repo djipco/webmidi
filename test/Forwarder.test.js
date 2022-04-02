@@ -1,26 +1,29 @@
 const expect = require("chai").expect;
 const {Message, WebMidi, Note, Forwarder} = require("../dist/cjs/webmidi.cjs.js");
-const midi = require("midi");
+const WMT = require("web-midi-test");
 
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
-let VIRTUAL_OUTPUT = new midi.Input();
 let VIRTUAL_OUTPUT_NAME = "Virtual Output";
+let VIRTUAL_OUTPUT = new WMT.MidiDst(VIRTUAL_OUTPUT_NAME);
+/** @type {import("../dist/cjs/webmidi.cjs.js").Output} */
 let WEBMIDI_OUTPUT;
+
+function noop() {}
 
 describe("Forwarder Object", function() {
 
   before(function () {
-    VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
-    VIRTUAL_OUTPUT.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
+    VIRTUAL_OUTPUT.connect();
+    // VIRTUAL_OUTPUT.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
   });
 
   after(function () {
-    VIRTUAL_OUTPUT.closePort();
+    VIRTUAL_OUTPUT.disconnect();
   });
 
   beforeEach("Check support and enable WebMidi.js", async function () {
-    await WebMidi.enable({sysex: true});
+    await WebMidi.enable({sysex: true, requestMIDIAccessFunction: WMT.requestMIDIAccess});
     WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
   });
 
@@ -97,15 +100,15 @@ describe("Forwarder Object", function() {
       const data = [0x90, 64, 127];
       const msg = new Message(data);
       const forwarder = new Forwarder(WEBMIDI_OUTPUT);
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       forwarder.forward(msg);
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
         expect(message).to.have.ordered.members(msg.data);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -119,19 +122,19 @@ describe("Forwarder Object", function() {
       const msg = new Message(data);
       const forwarder = new Forwarder(WEBMIDI_OUTPUT);
       forwarder.suspended = true;
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       forwarder.forward(msg);
 
       const id = setTimeout(() => {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }, 250);
 
       // Assert
       function assert(deltaTime, message) {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         clearTimeout(id);
         done(new Error("Callback should not have been triggered. " + message));
       }
@@ -147,11 +150,11 @@ describe("Forwarder Object", function() {
       const msg4 = new Message([0x9F, 64, 127]); // note on on ch. 16
       const channel = 10;
       const forwarder = new Forwarder(WEBMIDI_OUTPUT, {channels: channel});
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       const id = setTimeout(() => {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }, 250);
 
@@ -162,7 +165,7 @@ describe("Forwarder Object", function() {
 
       // Assert
       function assert(deltaTime, message) {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         clearTimeout(id);
         done(new Error("Callback should not have been triggered. " + message));
       }
@@ -182,11 +185,11 @@ describe("Forwarder Object", function() {
         0xD0
       ];
       const forwarder = new Forwarder(WEBMIDI_OUTPUT, {types: target.name});
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       const id = setTimeout(() => {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }, 250);
 
@@ -196,7 +199,7 @@ describe("Forwarder Object", function() {
 
       // Assert
       function assert(deltaTime, message) {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         clearTimeout(id);
         done(new Error("Callback should not have been triggered. " + message));
       }

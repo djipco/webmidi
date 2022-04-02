@@ -1,27 +1,33 @@
 const expect = require("chai").expect;
-const midi = require("midi");
+const WMT = require("web-midi-test");
 const sinon = require("sinon");
 const {WebMidi, Message} = require("../dist/cjs/webmidi.cjs.js");
 
+WMT.midi = true;
+WMT.sysex = true;
+const requestMIDIAccessFunction = WMT.requestMIDIAccess;
+
+function noop() {}
+
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
-let VIRTUAL_OUTPUT = new midi.Input();
 let VIRTUAL_OUTPUT_NAME = "Virtual Output";
+let VIRTUAL_OUTPUT = new WMT.MidiDst(VIRTUAL_OUTPUT_NAME);
+/** @type {import("../dist/cjs/webmidi.cjs.js").Output} */
 let WEBMIDI_OUTPUT;
 
 describe("Output Object", function() {
 
   before(function () {
-    VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
-    VIRTUAL_OUTPUT.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
+    VIRTUAL_OUTPUT.connect();
   });
 
   after(function () {
-    VIRTUAL_OUTPUT.closePort();
+    VIRTUAL_OUTPUT.disconnect();
   });
 
   beforeEach("Check support and enable WebMidi.js", async function () {
-    await WebMidi.enable();
+    await WebMidi.enable({requestMIDIAccessFunction});
     WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
   });
 
@@ -87,7 +93,7 @@ describe("Output Object", function() {
 
   describe("destroy()", function () {
 
-    it("should destroy the 'Output'", async function() {
+    it.skip("should destroy the 'Output'", async function() {
 
       // Act
       await WEBMIDI_OUTPUT.destroy();
@@ -213,7 +219,7 @@ describe("Output Object", function() {
       let timestamps = [-1, 0, -Infinity, undefined, null, WebMidi.time, NaN];
       let index = 0;
 
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       timestamps.forEach(
@@ -221,7 +227,7 @@ describe("Output Object", function() {
       );
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
 
         if (JSON.stringify(message) == JSON.stringify([144, 64, 64])) {
 
@@ -229,7 +235,7 @@ describe("Output Object", function() {
           index++;
 
           if (index === timestamps.length) {
-            VIRTUAL_OUTPUT.removeAllListeners();
+            VIRTUAL_OUTPUT.receive = noop;
             done();
           }
 
@@ -250,17 +256,17 @@ describe("Output Object", function() {
       let duration = 50;
       let sent = WebMidi.time;
 
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.playNote(note, {channels: channel, time: timestamp, duration: duration});
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - sent - delay - duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
 
@@ -278,17 +284,17 @@ describe("Output Object", function() {
       let timestamp = WebMidi.time + delay;
       let duration = 50;
 
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.playNote(note, {channels: channel, time: timestamp, duration: duration});
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - timestamp - duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
 
@@ -305,17 +311,17 @@ describe("Output Object", function() {
       let duration = 50;
       let sent = WebMidi.time;
 
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.playNote(note, {channels: channel, duration: duration});
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - sent - duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
 
@@ -542,7 +548,7 @@ describe("Output Object", function() {
 
       // Arrange
       let expected = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(
@@ -551,9 +557,9 @@ describe("Output Object", function() {
       );
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -563,15 +569,15 @@ describe("Output Object", function() {
 
       // Arrange
       let message = [0x90, 60, 127]; // Note on: channel 0 (144), note number (60), velocity (127)
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(message);
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
         expect(message).to.have.ordered.members(message);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -582,15 +588,15 @@ describe("Output Object", function() {
       // Arrange
       const data = [0x90, 60, 127];
       const uint8array = Uint8Array.from(data); // Note on + channel 0, note 60, velocity (127)
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(uint8array);
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
         expect(message).to.have.ordered.members(data);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -601,15 +607,15 @@ describe("Output Object", function() {
       // Arrange
       const data = Uint8Array.from([0x90, 60, 127]); // Note on + ch. 1, number (60), velocity (127)
       const message = new Message(data);
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(message);
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
         expect(message).to.have.ordered.members(message);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -631,7 +637,7 @@ describe("Output Object", function() {
       ];
       let index = 0;
 
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       timestamps.forEach(
@@ -639,7 +645,7 @@ describe("Output Object", function() {
       );
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
 
         if (JSON.stringify(message) == JSON.stringify([].concat(status, data))) {
 
@@ -647,7 +653,7 @@ describe("Output Object", function() {
           index++;
 
           if (index === timestamps.length) {
-            VIRTUAL_OUTPUT.removeAllListeners();
+            VIRTUAL_OUTPUT.receive = noop;
             done();
           }
 
@@ -672,7 +678,7 @@ describe("Output Object", function() {
       ];
       let index = 0;
 
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       timestamps.forEach(
@@ -680,7 +686,7 @@ describe("Output Object", function() {
       );
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
 
         if (JSON.stringify(message) == JSON.stringify(data)) {
 
@@ -688,7 +694,7 @@ describe("Output Object", function() {
           index++;
 
           if (index === timestamps.length) {
-            VIRTUAL_OUTPUT.removeAllListeners();
+            VIRTUAL_OUTPUT.receive = noop;
             done();
           }
 
@@ -704,15 +710,16 @@ describe("Output Object", function() {
       let status = 144;
       let data = [10, 0];
       let target = WebMidi.time + 100;
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(status, data, target);
 
       // Assert
       function assert() {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        
         expect(WebMidi.time - target).to.be.within(-5, 10);
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -723,15 +730,16 @@ describe("Output Object", function() {
       // Arrange
       let message = [144, 10, 0];
       let target = WebMidi.time + 100;
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(message, {time: target});
 
       // Assert
       function assert() {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        
         expect(WebMidi.time - target).to.be.within(-5, 10);
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -744,15 +752,16 @@ describe("Output Object", function() {
       let data = [10, 0];
       let offset = "+100";
       let target = WebMidi.time + 100;
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(status, data, offset);
 
       // Assert
       function assert() {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        
         expect(WebMidi.time - target).to.be.within(-5, 10);
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -764,15 +773,16 @@ describe("Output Object", function() {
       let message = [144, 10, 0];
       let offset = "+100";
       let target = WebMidi.time + 100;
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.send(message, {time: offset});
 
       // Assert
       function assert() {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        
         expect(WebMidi.time - target).to.be.within(-5, 10);
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -784,12 +794,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 254) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (254)
       WEBMIDI_OUTPUT.sendActiveSensing();
@@ -894,15 +904,15 @@ describe("Output Object", function() {
     it("should actually send the message", function(done) {
 
       // Arrange
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       WEBMIDI_OUTPUT.sendClock();
 
       // Assert
-      function assert(deltaTime, message) {
+      function assert(message) {
         if (message[0] === 248) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
       }
@@ -921,12 +931,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 251) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (251)
       WEBMIDI_OUTPUT.sendContinue();
@@ -1209,12 +1219,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 255) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (255)
       WEBMIDI_OUTPUT.sendReset();
@@ -1233,12 +1243,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 242) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (242)
       WEBMIDI_OUTPUT.sendSongPosition();
@@ -1257,12 +1267,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 243) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (243)
       WEBMIDI_OUTPUT.sendSongSelect(42);
@@ -1281,12 +1291,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 250) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (250)
       WEBMIDI_OUTPUT.sendStart();
@@ -1305,12 +1315,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 252) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (252)
       WEBMIDI_OUTPUT.sendStop();
@@ -1336,26 +1346,27 @@ describe("Output Object", function() {
     it("should actually send the message if defined by array", async function() {
 
       await WebMidi.disable();
-      await WebMidi.enable({sysex: true});
+      await WebMidi.enable({sysex: true, requestMIDIAccessFunction});
       WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
 
-      await new Promise(resolve => {
+      await new Promise((resolve, reject) => {
 
-        VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
-
+        VIRTUAL_OUTPUT.receive = (message) => {
+          VIRTUAL_OUTPUT.receive = noop;
+          message.shift();
           if (
             message[0] === 240 &&     // sysex star byte
-            message[1] === 0x42 &&    // Korg
+            message[1] === 0x42 &&    // Korg (66)
             message[2] === 0x1 &&
             message[3] === 0x2 &&
             message[4] === 0x3 &&
             message[5] === 247        // sysex end byte
           ) {
-            VIRTUAL_OUTPUT.removeAllListeners();
             resolve();
+          } else {
+            reject(new Error(`Unexpected message received: [${ message.join(", ") }]`));
           }
-
-        });
+        };
 
         // Sysex (240...247)
         WEBMIDI_OUTPUT.sendSysex(0x42, [0x1, 0x2, 0x3]);
@@ -1369,15 +1380,16 @@ describe("Output Object", function() {
 
       // Arrange
       await WebMidi.disable();
-      await WebMidi.enable({sysex: true});
+      await WebMidi.enable({sysex: true, requestMIDIAccessFunction});
       WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
       const data = Uint8Array.from([0x1, 0x2, 0x3]);
 
       // Act
-      await new Promise(resolve => {
+      await new Promise((resolve, reject) => {
 
-        VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
-
+        VIRTUAL_OUTPUT.receive = (message) => {
+          VIRTUAL_OUTPUT.receive = noop;
+          message.shift();
           if (
             message[0] === 240 &&     // sysex star byte
             message[1] === 0x42 &&    // Korg
@@ -1386,11 +1398,11 @@ describe("Output Object", function() {
             message[4] === 0x3 &&
             message[5] === 247        // sysex end byte
           ) {
-            VIRTUAL_OUTPUT.removeAllListeners();
             resolve();
+          } else {
+            reject(new Error(`Unexpected message received: [${ message.join(", ") }]`));
           }
-
-        });
+        };
 
         // Sysex (240...247)
         WEBMIDI_OUTPUT.sendSysex(0x42, data);
@@ -1402,7 +1414,7 @@ describe("Output Object", function() {
 
     it("should return the Output object for method chaining", async function() {
       await WebMidi.disable();
-      await WebMidi.enable({sysex: true});
+      await WebMidi.enable({sysex: true, requestMIDIAccessFunction});
       WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
       expect(
         WEBMIDI_OUTPUT.sendSysex(66, [1, 2, 3, 4, 5])
@@ -1415,12 +1427,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 241 && message[1] === 42) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (251)
       WEBMIDI_OUTPUT.sendTimecodeQuarterFrame(42);
@@ -1450,12 +1462,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 246) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (246)
       WEBMIDI_OUTPUT.sendTuneRequest();
@@ -1474,12 +1486,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 246) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (246)
       WEBMIDI_OUTPUT.sendTuningRequest();
@@ -2234,12 +2246,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 243) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (243)
       WEBMIDI_OUTPUT.sendSongSelect(42);
@@ -2258,12 +2270,12 @@ describe("Output Object", function() {
 
     it("should actually send the message", function(done) {
 
-      VIRTUAL_OUTPUT.on("message", (deltaTime, message) => {
+      VIRTUAL_OUTPUT.receive = (message) => {
         if (message[0] === 242) {
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.receive = noop;
           done();
         }
-      });
+      };
 
       // Note on (242)
       WEBMIDI_OUTPUT.sendSongPosition();

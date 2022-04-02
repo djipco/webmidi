@@ -1,14 +1,21 @@
 const expect = require("chai").expect;
 const {WebMidi, Utilities} = require("../dist/cjs/webmidi.cjs.js");
-const midi = require("midi");
+const WMT = require("web-midi-test");
 const semver = require("semver");
+
+// enable permissions for midi and sysex
+WMT.midi = true;
+WMT.sysex = true;
+const requestMIDIAccessFunction = WMT.requestMIDIAccess;
 
 // The virtual port from the 'midi' library is an "external" device so an output is seen as an input
 // by WebMidi. To avoid confusion, the naming scheme adopts WebMidi's perspective.
 const VIRTUAL_INPUT_NAME = "Virtual Input";
-const VIRTUAL_INPUT = new midi.Output(VIRTUAL_INPUT_NAME);
+const VIRTUAL_INPUT = new WMT.MidiSrc(VIRTUAL_INPUT_NAME);
+// VIRTUAL_INPUT.busy = false;
 const VIRTUAL_OUTPUT_NAME = "Virtual Output";
-const VIRTUAL_OUTPUT = new midi.Input(VIRTUAL_OUTPUT_NAME);
+const VIRTUAL_OUTPUT = new WMT.MidiDst(VIRTUAL_OUTPUT_NAME);
+// VIRTUAL_OUTPUT.busy = false;
 
 describe("WebMidi Object", function() {
 
@@ -141,7 +148,7 @@ describe("WebMidi Object", function() {
   describe("constructor()", function() {
 
     beforeEach("Enable WebMidi", async function() {
-      await WebMidi.enable({sysex: true});
+      await WebMidi.enable({sysex: true, requestMIDIAccessFunction});
     });
 
     it("should adjust to Node.js environment", function() {
@@ -158,7 +165,7 @@ describe("WebMidi Object", function() {
   describe("disable()", function() {
 
     beforeEach("Enable WebMidi", async function() {
-      await WebMidi.enable({sysex: true});
+      await WebMidi.enable({sysex: true, requestMIDIAccessFunction});
     });
 
     it("should set 'enabled' property to false", function(done) {
@@ -419,35 +426,37 @@ describe("WebMidi Object", function() {
     it("should trigger 'connected' events for already connected inputs", function(done) {
 
       // Arrange
-      VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
+      VIRTUAL_INPUT.connect();
+      // expect(connected).to.equal(true);
 
       WebMidi.addListener("connected", e => {
         if (e.port.name === VIRTUAL_INPUT_NAME) {
           WebMidi.removeListener();
-          VIRTUAL_INPUT.closePort();
+          VIRTUAL_INPUT.disconnect();
           done();
         }
       });
 
       // Assert
-      WebMidi.enable();
+      WebMidi.enable({requestMIDIAccessFunction});
 
     });
 
     it("should trigger 'connected' events for already connected outputs", function(done) {
 
-      VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
+      VIRTUAL_OUTPUT.connect();
+      // expect(connected).to.equal(true);
 
       WebMidi.addListener("connected", e => {
         if (e.port.name === VIRTUAL_OUTPUT_NAME) {
           WebMidi.removeListener();
-          VIRTUAL_OUTPUT.closePort();
+          VIRTUAL_OUTPUT.disconnect();
           done();
         }
       });
 
       // Assert
-      WebMidi.enable();
+      WebMidi.enable({requestMIDIAccessFunction});
 
     });
 

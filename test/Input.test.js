@@ -1,38 +1,42 @@
 const expect = require("chai").expect;
-const midi = require("midi");
+const WMT = require("web-midi-test");
 const sinon = require("sinon");
 const {WebMidi, Enumerations, Forwarder} = require("../dist/cjs/webmidi.cjs.js");
 
+// Enable MIDI + Sysex permissions in the mock environment.
+WMT.midi = true;
+WMT.sysex = true;
+
 // The virtual port is an "external" device so an output is seen as an input by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
-let VIRTUAL_INPUT = new midi.Output();
 let VIRTUAL_INPUT_NAME = "Virtual Input";
+let VIRTUAL_INPUT = new WMT.MidiSrc(VIRTUAL_INPUT_NAME);
+/** @type {import("../dist/cjs/webmidi.cjs.js").Input} */
 let WEBMIDI_INPUT;
 
 // The virtual port is an "external" device so an input is seen as an output by WebMidi. To avoid
 // confusion, the naming scheme adopts WebMidi's perspective.
-let VIRTUAL_OUTPUT = new midi.Input();
 let VIRTUAL_OUTPUT_NAME = "Virtual Output";
+let VIRTUAL_OUTPUT = new WMT.MidiDst(VIRTUAL_OUTPUT_NAME);
+/** @type {import("../dist/cjs/webmidi.cjs.js").Output} */
 let WEBMIDI_OUTPUT;
+
+function noop() {}
 
 describe("Input Object", function() {
 
   before(function () {
-
-    VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
-
-    VIRTUAL_OUTPUT.openVirtualPort(VIRTUAL_OUTPUT_NAME);
-    VIRTUAL_OUTPUT.ignoreTypes(false, false, false); // enable sysex, timing & active sensing
-
+    VIRTUAL_INPUT.connect();
+    VIRTUAL_OUTPUT.connect();
   });
 
   after(function () {
-    VIRTUAL_INPUT.closePort();
-    VIRTUAL_OUTPUT.closePort();
+    VIRTUAL_INPUT.disconnect();
+    VIRTUAL_OUTPUT.disconnect();
   });
 
   beforeEach("Check support and enable WebMidi.js", async function () {
-    await WebMidi.enable({sysex: true});
+    await WebMidi.enable({sysex: true, requestMIDIAccessFunction: WMT.requestMIDIAccess});
     WEBMIDI_INPUT = WebMidi.getInputByName(VIRTUAL_INPUT_NAME);
     WEBMIDI_OUTPUT = WebMidi.getOutputByName(VIRTUAL_OUTPUT_NAME);
   });
@@ -55,7 +59,7 @@ describe("Input Object", function() {
     WEBMIDI_INPUT.addListener("sysex", assert);
 
     // Act
-    VIRTUAL_INPUT.sendMessage(data);
+    VIRTUAL_INPUT.emit(data);
 
     // Assert
     function assert(e) {
@@ -82,7 +86,7 @@ describe("Input Object", function() {
 
     // Act
     items.forEach(item => {
-      VIRTUAL_INPUT.sendMessage(
+      VIRTUAL_INPUT.emit(
         [Enumerations.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
       );
     });
@@ -113,7 +117,7 @@ describe("Input Object", function() {
 
     // Act
     items.forEach(item => {
-      VIRTUAL_INPUT.sendMessage(
+      VIRTUAL_INPUT.emit(
         [Enumerations.MIDI_SYSTEM_MESSAGES[item.type]].concat(item.data)
       );
     });
@@ -146,7 +150,7 @@ describe("Input Object", function() {
 
     // Act
     events.forEach(event => {
-      VIRTUAL_INPUT.sendMessage(
+      VIRTUAL_INPUT.emit(
         [Enumerations.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
@@ -180,7 +184,7 @@ describe("Input Object", function() {
 
     // Act
     events.forEach(event => {
-      VIRTUAL_INPUT.sendMessage(
+      VIRTUAL_INPUT.emit(
         [Enumerations.MIDI_SYSTEM_MESSAGES[event]]
       );
     });
@@ -214,7 +218,7 @@ describe("Input Object", function() {
 
     // Act
     messages.forEach(msg => {
-      VIRTUAL_INPUT.sendMessage(msg);
+      VIRTUAL_INPUT.emit(msg);
     });
 
     // Assert
@@ -245,7 +249,7 @@ describe("Input Object", function() {
 
     // Act
     messages.forEach(msg => {
-      VIRTUAL_INPUT.sendMessage(msg);
+      VIRTUAL_INPUT.emit(msg);
     });
 
     // Assert
@@ -291,7 +295,7 @@ describe("Input Object", function() {
   //   VIRTUAL_INPUT.closePort();
   //
   //   setTimeout(() => {
-  //     VIRTUAL_INPUT.openVirtualPort(VIRTUAL_INPUT_NAME);
+  //     VIRTUAL_INPUT.connect(VIRTUAL_INPUT_NAME);
   //   }, 100);
   //
   // });
@@ -856,15 +860,15 @@ describe("Input Object", function() {
       // Arrange
       const data = [0x90, 64, 127];
       WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT);
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
-      VIRTUAL_INPUT.sendMessage(data);
+      VIRTUAL_INPUT.emit(data);
 
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(data);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -880,15 +884,15 @@ describe("Input Object", function() {
         target,
       ];
       WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {channels: 10});
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
-      data.forEach(item => VIRTUAL_INPUT.sendMessage(item));
+      data.forEach(item => VIRTUAL_INPUT.emit(item));
 
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(target);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -899,22 +903,22 @@ describe("Input Object", function() {
       // Arrange
       const channel = 10;
       WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {channels: channel});
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]
         .filter(x => x !== channel).forEach(i => {
-          VIRTUAL_INPUT.sendMessage([0x90 + i - 1, 64, 127]);
+          VIRTUAL_INPUT.emit([0x90 + i - 1, 64, 127]);
         });
 
       // Assert
       const id = setTimeout(() => {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }, 750);
 
       function assert(deltaTime, message) {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         clearTimeout(id);
         done(new Error("Callback should not have been triggered. " + message));
       }
@@ -932,15 +936,15 @@ describe("Input Object", function() {
         target            // control change on channel 3
       ];
       WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {types: type});
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
-      data.forEach(item => VIRTUAL_INPUT.sendMessage(item));
+      data.forEach(item => VIRTUAL_INPUT.emit(item));
 
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(target);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }
 
@@ -960,21 +964,21 @@ describe("Input Object", function() {
         0xE0
       ];
       WEBMIDI_INPUT.addForwarder(WEBMIDI_OUTPUT, {types: target.name});
-      VIRTUAL_OUTPUT.on("message", assert);
+      VIRTUAL_OUTPUT.receive = assert;
 
       // Act
       messages.filter(x => x !== target.number).forEach(i => {
-        VIRTUAL_INPUT.sendMessage([i, 64, 127]);
+        VIRTUAL_INPUT.emit([i, 64, 127]);
       });
 
       // Assert
       const id = setTimeout(() => {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         done();
       }, 750);
 
       function assert(deltaTime, message) {
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.receive = noop;
         clearTimeout(id);
         done(new Error("Callback should not have been triggered. " + message));
       }
