@@ -67,7 +67,7 @@
     "lint": "eslint ./src/*.js",
     "release": "dotenv release-it --",
     "release:alpha": "npm run release -- --preRelease=alpha  --npm.tag=next --github.preRelease",
-    "release:patch": "npm version patch && npm run library:build-all && node scripts/release/release.js && npm publish",
+    "release:patch": "npm run release -- patch",
     "sponsors:update": "node scripts/sponsors/retrieve-sponsors.js",
     "test:all": "mocha",
     "test:Input": "mocha test/Input.test.js",
