@@ -65,7 +65,8 @@
     "jsdoc:generate-markdown+push": "node scripts/api-documentation/generate-markdown.js",
     "typescript-declaration:generate": "node scripts/typescript-declarations/generate.js",
     "lint": "eslint ./src/*.js",
-    "release:alpha": "npm version prerelease && npm run library:build-all && node scripts/release/release.js && npm publish --tag next",
+    "release": "dotenv release-it --",
+    "release:alpha": "npm run release -- --preRelease=alpha  --npm.tag=next --github.preRelease",
     "release:patch": "npm version patch && npm run library:build-all && node scripts/release/release.js && npm publish",
     "sponsors:update": "node scripts/sponsors/retrieve-sponsors.js",
     "test:all": "mocha",
@@ -99,6 +100,7 @@
     "babel-plugin-istanbul": "^6.0.0",
     "chai": "^4.3.3",
     "docusaurus": "^1.14.7",
+    "dotenv-cli": "^5.1.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^7.2.0",
     "eslint-plugin-react": "^7.26.1",
@@ -119,6 +121,7 @@
     "object-get": "^2.1.1",
     "prepend-file": "^2.0.0",
     "reduce-flatten": "^3.0.1",
+    "release-it": "^14.14.0",
     "replace-in-file": "^6.3.2",
     "rollup": "^2.3.3",
     "rollup-plugin-license": "^2.3.0",
@@ -132,5 +135,22 @@
     "system-commands": "^1.1.7",
     "test-value": "^3.0.0",
     "util": "^0.12.4"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "Release v${version}"
+    },
+    "github": {
+      "release": true,
+      "draft": false,
+      "releaseName": "Release v${version}",
+      "assets": ["webmidi-*.tgz"]
+    },
+    "hooks": {
+      "before:init": [
+        "npm run library:build-all",
+        "npm pack"
+      ]
+    }
   }
 }
