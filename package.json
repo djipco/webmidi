@@ -51,10 +51,6 @@
     "node": ">=8.5"
   },
   "scripts": {
-    "library:build-and-commit-all": "npm run lint && npm run library:build-and-commit-cjs && npm run library:build-and-commit-esm && npm run library:build-and-commit-iife",
-    "library:build-and-commit-cjs": "node scripts/library/build.js -t cjs -c true && npm run typescript-declaration:generate -- -t cjs -c true",
-    "library:build-and-commit-esm": "node scripts/library/build.js -t esm -c true && npm run typescript-declaration:generate -- -t esm -c true",
-    "library:build-and-commit-iife": "node scripts/library/build.js -t iife -c true",
     "library:build-all": "npm run lint && npm run library:build-cjs && npm run library:build-esm && npm run library:build-iife",
     "library:build-cjs": "node scripts/library/build.js -t cjs && npm run typescript-declaration:generate -- -t cjs",
     "library:build-esm": "node scripts/library/build.js -t esm && npm run typescript-declaration:generate -- -t esm",
@@ -69,8 +65,8 @@
     "jsdoc:generate-markdown+push": "node scripts/api-documentation/generate-markdown.js",
     "typescript-declaration:generate": "node scripts/typescript-declarations/generate.js",
     "lint": "eslint ./src/*.js",
-    "release:alpha": "npm version prerelease && npm run library:build-and-commit-all && node scripts/release/release.js && npm publish --tag next",
-    "release:patch": "npm version patch && npm run library:build-and-commit-all && node scripts/release/release.js && npm publish",
+    "release:alpha": "npm version prerelease && npm run library:build-all && node scripts/release/release.js && npm publish --tag next",
+    "release:patch": "npm version patch && npm run library:build-all && node scripts/release/release.js && npm publish",
     "sponsors:update": "node scripts/sponsors/retrieve-sponsors.js",
     "test:all": "mocha",
     "test:Input": "mocha test/Input.test.js",
