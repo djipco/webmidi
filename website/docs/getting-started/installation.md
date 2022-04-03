@@ -51,10 +51,11 @@ If you want more control over versions and flavours, check out the
 
 ## Installing Manually
 
-Obviously, you can also install the library the old-fashioned way by manually downloading the
-[latest release](https://github.com/djipco/webmidi/releases/latest) (zip file). Then, simply 
-uncompress the package, grab the `./dist/iife/webmidi.iife.js` file and copy it to your project. 
-Link to it from your HTML page using a `<script>` tag as usual.
+Obviously, you can also install the library the old-fashioned way by manually downloading it. To do
+that, go to the page of the [latest release](https://github.com/djipco/webmidi/releases/latest) and 
+download the `webmidi-x.x.x.tgz` file. Then, simply uncompress the package, grab the 
+`./dist/iife/webmidi.iife.js` file and copy it to your project. Link to it from your HTML page 
+using a `<script>` tag as usual.
 
 ## Installing with NPM
 
