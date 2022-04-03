@@ -149,10 +149,8 @@
       ]
     },
     "hooks": {
-      "before:init": [
-        "npm run library:build-all",
-        "npm pack"
-      ]
+      "after:bump": ["npm run library:build-all"],
+      "before:git:release": ["npm pack"]
     }
   }
 }
