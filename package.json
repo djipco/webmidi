@@ -154,7 +154,8 @@
       ],
       "before:git:release": [
         "npm pack"
-      ]
+      ],
+      "after:release": "rimraf webmidi-${version}.tgz"
     }
   }
 }
