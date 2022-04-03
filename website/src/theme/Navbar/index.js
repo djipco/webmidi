@@ -8,7 +8,8 @@ import React, {useCallback, useState, useEffect} from 'react';
 import clsx from 'clsx';
 import Translate from '@docusaurus/Translate';
 import SearchBar from '@theme/SearchBar';
-import Toggle from '@theme/Toggle';
+// import Toggle from '@theme/Toggle';
+import Toggle from '@theme/Navbar/ColorModeToggle';
 // import useThemeContext from '@theme/hooks/useThemeContext'; => colorMode
 
 import {
