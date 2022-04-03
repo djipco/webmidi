@@ -145,7 +145,7 @@
       "draft": false,
       "releaseName": "Release v${version}",
       "assets": [
-        "webmidi-*.tgz"
+        "webmidi-${version}.tgz"
       ]
     },
     "hooks": {
