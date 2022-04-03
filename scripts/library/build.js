@@ -4,21 +4,14 @@
 //
 // Calling this script with the -t argument allows building only of them. Options are: cjs, esm and
 // iife.
-//
-// Calling this script with the -c argument allows you to commit and push the generated files.
-// Options are true or false.
 
 // Modules
-const moment = require("moment");
-const git = require("simple-git")();
 const system = require("system-commands");
 
 // Parse arguments (default type is esm). Use -t as type (if valid)
 let type = "esm";
 const argv = require("minimist")(process.argv.slice(2));
 if (["cjs", "esm", "iife"].includes(argv.t)) type = argv.t;
-
-const commit = argv.c === "true";
 
 // Prepare general command
 let cmd = `./node_modules/.bin/rollup ` +
@@ -53,17 +46,8 @@ async function execute() {
     `The "${type}" non-minified build was saved to "dist/${type}/webmidi.${type}.js"`,
     "\x1b[0m"   // reset font
   );
-
-  // Commit and push
-  if (commit) {
-    let message = "Built on " + moment().format();
-    await git.add(["dist"]);
-    await git.commit(message, ["dist"]);
-    await git.push();
-    console.info("\x1b[32m", `Changes committed and pushed`, "\x1b[0m");
-  }
-
 }
 
 // Execute and catch errors if any (in red)
 execute().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m"));
+
