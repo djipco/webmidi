@@ -10,7 +10,7 @@ with your MIDI instrument in less than 5 minutes.
 
 :::info
 
-Documentation for [version 2.5.x](archives/api/v2/) and 
+Documentation for [version 2.5.x](https://webmidijs.org/archives/api/v2/) and 
 [version 1.0.0](http://webmidijs.org/archives/api/v1/classes/WebMidi.html) is also available.
 
 :::
