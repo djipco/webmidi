@@ -10,7 +10,8 @@ with your MIDI instrument in less than 5 minutes.
 
 :::info
 
-Documentation for [version 2.5.x](archives/v2) and [version 1.0.0](archives/v1) is also available.
+Documentation for [version 2.5.x](archives/api/v2/) and 
+[version 1.0.0](http://webmidijs.org/archives/api/v1/classes/WebMidi.html) is also available.
 
 :::
 
@@ -129,7 +130,7 @@ WebMidi.inputs[0].addListener("noteon", e => {
 ## Step 5 - Have fun!
 
 **That's it!** To go further, please take some time to check out the 
-[Getting Started](getting-started) section. It covers important topics such as installation 
+[Getting Started](docs/getting-started) section. It covers important topics such as installation 
 options, compatibility, security, etc.
 
 :::tip
