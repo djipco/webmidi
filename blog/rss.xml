@@ -7,6 +7,7 @@
         <lastBuildDate>Wed, 01 Dec 2021 00:00:00 GMT</lastBuildDate>
         <docs>https://validator.w3.org/feed/docs/rss2.html</docs>
         <generator>https://github.com/jpmonette/feed</generator>
+        <language>en</language>
         <item>
             <title><![CDATA[WEBMIDI.js v3 is available now!]]></title>
             <link>https://webmidijs.org/blog/2021/12/01/version-3-has-been-released</link>
@@ -15,7 +16,7 @@
             <description><![CDATA[Version 3 of WEBMIDI.js, the library that lets you interact with your MIDI instruments and devices, is now available. It features Node.js and TypeScript support, various new objects (Message, Note, etc.) and a completely rewritten engine.]]></description>
             <content:encoded><![CDATA[<p>After a lot of work and testing, I am happy to announce today that version 3 of the go-to MIDI
 library for JavaScript has been released! You can <a href="https://webmidijs.org/docs" target="_blank" rel="noopener noreferrer">try it out</a> right
-now!</p><p><img loading="lazy" src="/assets/images/webmidi.js-is-available-now-0cf305766346f90680e0eb13da7df2b1.png" width="1318" height="500"></p><h3 class="anchor anchorWithStickyNavbar_mojV" id="about-webmidijs">About WEBMIDI.js<a class="hash-link" href="#about-webmidijs" title="Direct link to heading">​</a></h3><p><a href="https://webmidijs.org" target="_blank" rel="noopener noreferrer"><strong>WEBMIDI.js</strong></a> exists to make it easier for developers to use the
+now!</p><p><img loading="lazy" src="/assets/images/webmidi.js-is-available-now-0cf305766346f90680e0eb13da7df2b1.png" width="1318" height="500" class="img_E7b_"></p><h3 class="anchor anchorWithStickyNavbar_mojV" id="about-webmidijs">About WEBMIDI.js<a class="hash-link" href="#about-webmidijs" title="Direct link to heading">​</a></h3><p><a href="https://webmidijs.org" target="_blank" rel="noopener noreferrer"><strong>WEBMIDI.js</strong></a> exists to make it easier for developers to use the
 <a href="https://webaudio.github.io/web-midi-api/" target="_blank" rel="noopener noreferrer">Web MIDI API</a>. The Web MIDI API is a really exciting
 addition to the web platform allowing a web page to interact directly with MIDI musical instruments
 and devices.</p><p>While great, many developers will find the API to be too low-level for their needs. Having to
