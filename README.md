@@ -22,8 +22,8 @@ and efficiently as possible.
 The [**official website**](https://webmidijs.org) site is the best place to get started. Over there,
 you will find, amongst others, two key resources:
 
-* [Documentation](https://webmidijs.org/docs/)
-* [API Reference](https://webmidijs.org/api/)
+* [Documentation](https://webmidijs.org/docs)
+* [API Reference](https://webmidijs.org/api)
 
 To exchange with fellow users and myself, you can visit our [**Forum**](https://github.com/djipco/webmidi/discussions)
 which is hosted on the GitHub Discussions platform: 

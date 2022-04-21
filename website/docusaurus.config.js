@@ -17,6 +17,8 @@ module.exports = {
   organizationName: "djipco",
   projectName: "webmidi",
 
+  trailingSlash: false,
+
   scripts: [
     // Inject MailChimp newsletter pop-up in <head>
     // {
@@ -51,11 +53,11 @@ module.exports = {
             },
             {
               label: "2.5.3",
-              href: "https://djipco.github.io/webmidi/archives/api/v2/",
+              href: "https://webmidijs.org/archives/api/v2/",
             },
             {
               label: "1.0.0-beta.15",
-              href: "https://djipco.github.io/webmidi/archives/api/v1/classes/WebMidi.html"
+              href: "http://webmidijs.org/archives/api/v1/classes/WebMidi.html"
             }
           ]
         },
@@ -270,10 +272,14 @@ module.exports = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          {
-            from: ["/latest/classes/WebMidi.html"], // string | string[]
-            to: "/api/",
-          },
+          // {
+          //   from: ["/latest/classes/WebMidi.html"], // string | string[]
+          //   to: "/api/",
+          // },
+          // {
+          //   from: "/api/", // string | string[]
+          //   to: "/api",
+          // },
         ],
       },
     ],
