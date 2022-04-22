@@ -17,7 +17,7 @@ module.exports = {
   organizationName: "djipco",
   projectName: "webmidi",
 
-  trailingSlash: false,
+  // trailingSlash: false,
 
   scripts: [
     // Inject MailChimp newsletter pop-up in <head>
@@ -49,7 +49,7 @@ module.exports = {
           items: [
             {
               label: "3.x",
-              to: "api"
+              to: "api/"
             },
             {
               label: "2.5.3",
@@ -272,14 +272,10 @@ module.exports = {
       "@docusaurus/plugin-client-redirects",
       {
         redirects: [
-          // {
-          //   from: ["/latest/classes/WebMidi.html"], // string | string[]
-          //   to: "/api/",
-          // },
-          // {
-          //   from: "/api/", // string | string[]
-          //   to: "/api",
-          // },
+          {
+            from: ["/latest/classes/WebMidi.html"], // string | string[]
+            to: "/api/",
+          },
         ],
       },
     ],
