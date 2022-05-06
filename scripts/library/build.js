@@ -7,6 +7,8 @@
 
 // Modules
 const system = require("system-commands");
+const fs = require("fs");
+const path = require("path");
 
 // Parse arguments (default type is esm). Use -t as type (if valid)
 let type = "esm";
@@ -27,7 +29,34 @@ let minified = cmd + ` --file dist/${type}/webmidi.${type}.min.js ` +
 let normal = cmd + ` --file dist/${type}/webmidi.${type}.js ` +
   `--config ${__dirname}/rollup.config.${type}.js`;
 
-async function execute() {
+async function execute(type) {
+
+  // Write package.json file so proper versions are imported by Node
+  if (type === "esm") {
+
+    fs.writeFileSync(
+      path.join(process.cwd(), "dist", "esm", "package.json"), '{"type": "module"}'
+    );
+
+    console.info(
+      "\x1b[32m", // green font
+      `Custom package.json file ("type": "module") saved to "dist/${type}/package.json"`,
+      "\x1b[0m"   // reset font
+    );
+
+  } else if (type === "cjs") {
+
+    fs.writeFileSync(
+      path.join(process.cwd(), "dist", "cjs", "package.json"), '{"type": "commonjs"}'
+    );
+
+    console.info(
+      "\x1b[32m", // green font
+      `Custom package.json file ("type": "commonjs") saved to "dist/${type}/package.json"`,
+      "\x1b[0m"   // reset font
+    );
+
+  }
 
   // Production build
   await system(minified);
@@ -49,5 +78,5 @@ async function execute() {
 }
 
 // Execute and catch errors if any (in red)
-execute().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m"));
+execute(type).catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m"));
 
