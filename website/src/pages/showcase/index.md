@@ -67,8 +67,7 @@ page on GitHub and submit a pull request.
 * ### [Eternal](https://github.com/kousun12/eternal)
   Created by: **Rob Cheung**
 
-  This experiment lets you play a piano duet with the computer. Just play some notes, and the 
-  computer will respond to your melody.
+  Eternal is node-based sound and music programming and exploration environment.
 
 * ### [Mideo](https://github.com/jwktje/mideo)
   Created by: **Jan Willem Kilkman**
