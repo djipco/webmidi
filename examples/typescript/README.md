@@ -9,5 +9,5 @@ To use the example, `cd` into the example directory, install the necessary modul
 
 ## Examples
 
-* [**Basic Node.js Example**](basic-nodejs-example): listing input and output ports and reacting to 
+* [**Basic Example**](basic-nodejs-example): listing input and output ports and reacting to 
   pressed keyboard keys.
