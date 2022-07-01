@@ -1,0 +1,16 @@
+{
+  "name": "webmidijs-electron-demo",
+  "version": "1.0.0",
+  "description": "A minimal Electron application",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "license": "CC0-1.0",
+  "devDependencies": {
+    "electron": "^19.0.6"
+  },
+  "dependencies": {
+    "webmidi": "^3.0.21"
+  }
+}
