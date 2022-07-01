@@ -7,11 +7,8 @@ async function setup() {
 
   // Display available inputs in console (use the name to retrieve it)
   console.log(WebMidi.inputs);
-  const input = WebMidi.getInputByName("nanoKEY2 KEYBOARD");
+  const input = WebMidi.getInputByName("MPK mini 3");
   channel = input.channels[1];
-
-  // Once WebMidi is enabled, we can start using it in draw()
-  ready = true;
 
   // Create canvas
   createCanvas(500, 200);
@@ -20,7 +17,8 @@ async function setup() {
 
 function draw() {
 
-  if (!WebMidi.enabled) return;
+  // Check if WebMidi is enabled and channel has been assigned before moving on
+  if (!channel) return;
 
   // Draw blank keys
   for (let i = 0; i < 8; i++) {
@@ -28,7 +26,7 @@ function draw() {
     // Default fill is white
     fill("white");
 
-    // Each key has its own color. When its pressed, we draw it in color (instead of white)
+    // Each key has its own color. When it's pressed, we draw it in color (instead of white)
     if (i === 0 && channel.getNoteState("C4")) {
       fill("yellow");
     } else if (i === 1 && channel.getNoteState("D4")) {
