@@ -130,7 +130,7 @@ WebMidi.inputs[0].addListener("noteon", e => {
 ## Step 5 - Have fun!
 
 **That's it!** To go further, please take some time to check out the 
-[Getting Started](docs/getting-started) section. It covers important topics such as installation 
+[Getting Started](getting-started) section. It covers important topics such as installation 
 options, compatibility, security, etc.
 
 :::tip
