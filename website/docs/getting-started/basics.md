@@ -244,6 +244,35 @@ WebMidi.outputs[0].channels[1].stopNote("C3");
 WebMidi.outputs[0].channels[1].stopNote("C3", {time: "+2500"});
 ```
 
+### Sending a control change (a.k.a. CC) message
+
+There are various ways to send a control change message. The most common way is to send the message
+to a single channel. The first parameter is the controller, the second number is the value:
+
+```javascript
+// Use controller number
+WebMidi.outputs[0].channels[1].sendControlChange(72, 64);
+
+// Use controller name
+WebMidi.outputs[0].channels[1].sendControlChange("volumecoarse", 123);
+```
+
+As you can see above, you can use either a name or number (0-127) to identify the controller to 
+target. A 
+[list of controller names](https://webmidijs.org/api/classes/OutputChannel#sendControlChange) can be
+found in the API reference.
+
+You can also send the control change message to several channels at once by using the 
+`sendControlChange()` method of the `Output` object:
+
+```javascript
+// Send to channels 1 through 3
+WebMidi.outputs[0].sendControlChange("pancoarse", 123, {channels: [1, 2, 3]});
+
+// Send to all channels
+WebMidi.outputs[0].sendControlChange(72, 56);
+```
+
 ### Set polyphonic aftertouch
 
 Send polyphonic aftertouch message to channel 8:
