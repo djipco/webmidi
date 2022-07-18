@@ -1,2 +1,4 @@
 /website/
 .credentials
+dist
+.env
