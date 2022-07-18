@@ -35,7 +35,7 @@ Create an HTML document and include the library (this will install the latest al
   <head>
     <meta charset="UTF-8">
     <title>WebMidi.js Quick Start</title>
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>
   </head>
   
   <body>
