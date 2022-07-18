@@ -1381,7 +1381,7 @@ export class OutputChannel extends EventEmitter {
         }
 
         if (!(value >= -1 && value <= 1)) {
-          throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+          throw new RangeError("The pitch bend value must be a float between -1 and 1.");
         }
 
       }
