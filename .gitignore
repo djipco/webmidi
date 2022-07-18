@@ -2,3 +2,5 @@
 .credentials
 dist
 .env
+examples
+scripts
