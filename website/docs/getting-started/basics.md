@@ -257,7 +257,7 @@ WebMidi.outputs[0].channels[8].sendKeyAftertouch("B#3", 0.25);
 The value is between -1 and 1 (a value of 0 means no bend).
 
 ```javascript
-WebMidi.outputs[0].channels[8].setPitchBend(-0.25);
+WebMidi.outputs[0].channels[8].sendPitchBend(-0.25);
 ```
 You can set the range of the bend with 
 [`OutputChannel.sendPitchBendRange()`](/api/classes/OutputChannel#sendPitchBendRange).
@@ -268,7 +268,7 @@ Most methods return `this` so you can chain them:
 
 ```javascript
 WebMidi.outputs[0].channels[8]
-    .setPitchBend(-0.25)
+    .sendPitchBend(-0.25)
     .playNote("F4");
 ```
 
