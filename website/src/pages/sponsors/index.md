@@ -11,15 +11,13 @@ the project on GitHub.
 ---
 
 <a href="https://www.cegepmontpetit.ca/">
-  <img class="logo-cem" src="/img/sponsors/edouard-montpetit-logo.svg" width="150" height="150" />
+  <img class="logo-cem" src="/img/sponsors/edouard-montpetit-logo.svg" width="150" height="150" /> 
 </a>
 
 ## Sponsors
 ---
 
 <!-- SPONSOR START -->
-
-<img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
 
 <img class="user-icon" src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" />
 
