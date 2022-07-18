@@ -17,7 +17,7 @@ have native support:
 * Edge v79+
 * Chrome 43+
 * Opera 30+
-* Firefox (coming soon!)
+* Firefox ([experimental support]([url](https://bugzilla.mozilla.org/show_bug.cgi?id=836897)) behind flag)
 
 It is also possible to use this library in other browsers if you install
 [Jazz-Plugin](https://jazz-soft.net/download/Jazz-Plugin/) v1.4+. This combination provides
