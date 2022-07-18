@@ -5,10 +5,18 @@ wherever appropriate in your publications and references.
 
 ## Citing this Software
 
-Here's an example of how to cite it ([APA Style](https://apastyle.apa.org/)):
+I wrote a 
+[paper about WEBMIDI.js](https://nime.pubpub.org/pub/user-friendly-midi-in-the-web-browser) and, 
+more specifically, about how it tries to address the usability shortcomings of the Web MIDI API. I
+invite academics to cite it in their publication whenever appropriate: 
 
-> Côté, J. P. (2021). WebMidi.js v3.0.0 [Computer Software]. Retrieved from 
-> https​://github.com/djipco/webmidi
+> Côté, J.-P. (2022). User-Friendly MIDI in the Web Browser. NIME 2022.
+> https://doi.org/10.21428/92fbeb44.388e4764
+
+You can also cite the library itself like so:
+
+> Côté, J. P. (2022). WebMidi.js v3.0.21 [Computer Software]. Retrieved from 
+> https://github.com/djipco/webmidi
 
 ## Papers Citing Usage of WEBMIDI.js
 
