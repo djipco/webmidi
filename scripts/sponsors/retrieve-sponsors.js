@@ -74,13 +74,13 @@ getSponsors().then(async data => {
 
     if (sponsor.sponsorshipForViewerAsSponsorable.privacyLevel === "PUBLIC") {
       const name = sponsor.name || sponsor.login;
-      output += `<a href="${sponsor.url}" title="${name}">\n`;
-      output += `\t<img class="user-icon" src="${sponsor.avatarUrl}" `;
+      output += `<a href="${sponsor.url}" title="${name}" class="user-icon">\n`;
+      output += `\t<img src="${sponsor.avatarUrl}" `;
       output += `alt="${name}" width="100" height="100" />\n`;
       output += `</a>\n\n`;
     } else {
-      output += `<img class="user-icon" src="/img/sponsors/user.png" `;
-      output += `alt="Anonymous" width="100" height="100" />\n\n`;
+      output += `<a class="user-icon"><img src="/img/sponsors/user.png" `;
+      output += `alt="Anonymous" width="100" height="100" /></a>\n\n`;
     }
 
   });

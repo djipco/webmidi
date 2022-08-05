@@ -244,12 +244,12 @@ h3 {
 }
 
 
-html[data-theme=light] img.logo-cem {
+html[data-theme=light] a.cem-logo img {
   filter: invert(1);
 }
 
 
-img.user-icon {
+a.user-icon img {
   border-radius: 50px;
   border: 1px solid black;
   margin: 0.5rem;
