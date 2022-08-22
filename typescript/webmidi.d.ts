@@ -5845,7 +5845,7 @@ declare class WebMidi extends EventEmitter {
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [inputs](WebMidi#inputs) array).
    *
-   * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
+   * @returns {Input | undefined} The [`Input`](Input) that was found or `undefined` if no input contained the
    * specified name.
    * @param [options] {object}
    * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
@@ -5856,7 +5856,7 @@ declare class WebMidi extends EventEmitter {
    */
   getInputByName(name: string, options?: {
     disconnected?: boolean;
-  }): Input;
+  }): Input | undefined;
 
   /**
    * Returns the [`Output`](Output) object that matches the specified ID string or `false` if no
@@ -5871,7 +5871,7 @@ declare class WebMidi extends EventEmitter {
    * @param [options] {object}
    * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
-   * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
+   * @returns {Output | undefined} An [`Output`](Output) object matching the specified ID string. If no
    * matching output can be found, the method returns `undefined`.
    *
    * @throws {Error} WebMidi is not enabled.
@@ -5880,7 +5880,7 @@ declare class WebMidi extends EventEmitter {
    */
   getOutputById(id: string, options?: {
     disconnected?: boolean;
-  }): Output;
+  }): Output | undefined;
 
   /**
    * Returns the first [`Output`](Output) object whose name **contains** the specified string. Note
