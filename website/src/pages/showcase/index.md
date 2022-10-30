@@ -55,6 +55,12 @@ page on GitHub and submit a pull request.
 
   A user interface to facilitate the generation of linear WebAudio code.
 
+* ### [Midi Sandbox](https://midisandbox.com/)
+  Created by: **Jon Lee**
+
+  A collection of midi responsive widgets made to aid musicians, teachers, and students in their education,
+  creative process, and practice routine.
+
 
 ## Experiments
 
