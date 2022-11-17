@@ -250,7 +250,7 @@ declare namespace WebMidiApi {
  *
  * It is intended to be an abstract class meant to be extended by (or mixed into) other objects.
  */
-declare class EventEmitter {
+export declare class EventEmitter {
 
   /**
    * Identifier (Symbol) to use when adding or removing a listener that should be triggered when any
@@ -540,7 +540,7 @@ declare class EventEmitter {
  * to, the callback function and so on.
  *
  */
-declare class Listener {
+export declare class Listener {
 
   /**
    * Creates a new `Listener` object
@@ -6039,9 +6039,6 @@ declare class WebMidi extends EventEmitter {
 
 declare const wm: WebMidi;
 export { wm as WebMidi };
-
-
-
 
 /**
  * The callback function is executed when the associated event is triggered via [`emit()`](#emit).
