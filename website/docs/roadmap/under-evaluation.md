@@ -102,8 +102,6 @@ musical notes.
 
 * SMF Support
 
-* Piano roll
-
 * Check if something specific needs to be done to support Electron 
 ([this discussion](https://www.electronjs.org/docs/api/session#sessetpermissionrequesthandlerhandler)).
 
@@ -118,3 +116,9 @@ for patching webmidi function calls to a sequence
  
 * Consider using [middleware](https://github.com/unbug/js-middleware) approach for making the app 
 pluggable
+
+* Investigate the possibility to add a `Device` object that would group inputs and outputs for a
+  single device (see [discussion #280](https://github.com/djipco/webmidi/discussions/280) for 
+  details)
+
+* Piano roll
