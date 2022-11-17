@@ -7,16 +7,13 @@ const replace = require("replace-in-file");
 const pkg = require("../../package.json");
 const fs = require("fs-extra");
 
-// THERE WAS THIS EXTRA LINE IN THE CJS FILE
-// export var __esModule: boolean;
-
-// Source declaration file
+// Path to source declaration file
 const SOURCE_FILE = path.join(__dirname, "../../typescript", "webmidi.d.ts");
 
 // Output directory
 const OUTPUT_DIR = "dist";
 
-// Get console arguments
+// Console arguments
 const argv = require("minimist")(process.argv.slice(2));
 
 // Get targets to save the file for
