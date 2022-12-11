@@ -8,7 +8,7 @@
     ".": {
       "require": {
         "types": "./dist/cjs/webmidi.cjs.d.ts",
-        "default": "./dist/cjs/webmidi.cjs.min.js",
+        "default": "./dist/cjs/webmidi.cjs.min.js"
       },
       "import": {
         "types": "./dist/esm/webmidi.esm.d.ts",
