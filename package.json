@@ -5,12 +5,15 @@
   "main": "./dist/cjs/webmidi.cjs.min.js",
   "types": "./dist/cjs/webmidi.cjs.d.ts",
   "exports": {
-    "require": {
-      "types": "./dist/cjs/webmidi.cjs.d.ts",
-      "default": "./dist/cjs/webmidi.cjs.min.js",
-    "import": {
-      "types": "./dist/esm/webmidi.esm.d.ts",
-      "default": "./dist/esm/webmidi.esm.js"
+    ".": {
+      "require": {
+        "types": "./dist/cjs/webmidi.cjs.d.ts",
+        "default": "./dist/cjs/webmidi.cjs.min.js",
+      },
+      "import": {
+        "types": "./dist/esm/webmidi.esm.d.ts",
+        "default": "./dist/esm/webmidi.esm.js"
+      }
     }
   },
   "author": {
