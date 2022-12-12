@@ -11,6 +11,6 @@
     "electron": "^22.0.0"
   },
   "dependencies": {
-    "webmidi": "^3.0.21"
+    "webmidi": "^3.0.23"
   }
 }
