@@ -529,9 +529,10 @@ Returns the `Output` object so methods can be chained.
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes all the listeners that match the specified criterias. If no parameters are passed, all
-listeners will be removed. If only the `event` parameter is passed, all listeners for that
-event will be removed. You can remove global listeners by using
+Removes all the listeners that were added to the object upon which the method is called and
+that match the specified criterias. If no parameters are passed, all listeners added to this
+object will be removed. If only the `event` parameter is passed, all listeners for that event
+will be removed from that object. You can remove global listeners by using
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter.
 
 To use more granular options, you must at least define the `event`. Then, you can specify the
