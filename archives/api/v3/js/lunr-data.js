@@ -883,7 +883,9 @@ window.lunrData = {
           "us"
         ],
         "EventEmitter.html#removeListener": [
+          "ad",
           "addit",
+          "call",
           "callback",
           "criteria",
           "defin",
@@ -896,7 +898,9 @@ window.lunrData = {
           "granular",
           "listen",
           "match",
+          "method",
           "more",
+          "object",
           "on",
           "option",
           "paramet",
@@ -904,6 +908,7 @@ window.lunrData = {
           "remov",
           "removelisten",
           "specifi",
+          "upon",
           "us"
         ],
         "EventEmitter.html#suspendEvent": [
@@ -2336,7 +2341,9 @@ window.lunrData = {
           "us"
         ],
         "InputChannel.html#removeListener": [
+          "ad",
           "addit",
+          "call",
           "callback",
           "criteria",
           "defin",
@@ -2349,7 +2356,9 @@ window.lunrData = {
           "inputchannel#removelisten",
           "listen",
           "match",
+          "method",
           "more",
+          "object",
           "on",
           "option",
           "paramet",
@@ -2357,6 +2366,7 @@ window.lunrData = {
           "remov",
           "removelisten",
           "specifi",
+          "upon",
           "us"
         ],
         "InputChannel.html#suspendEvent": [
@@ -3507,7 +3517,9 @@ window.lunrData = {
           "via"
         ],
         "Output.html#removeListener": [
+          "ad",
           "addit",
+          "call",
           "callback",
           "criteria",
           "defin",
@@ -3519,7 +3531,9 @@ window.lunrData = {
           "granular",
           "listen",
           "match",
+          "method",
           "more",
+          "object",
           "on",
           "option",
           "output#removelisten",
@@ -3528,6 +3542,7 @@ window.lunrData = {
           "remov",
           "removelisten",
           "specifi",
+          "upon",
           "us"
         ],
         "Output.html#send": [
@@ -5353,7 +5368,9 @@ window.lunrData = {
           "via"
         ],
         "OutputChannel.html#removeListener": [
+          "ad",
           "addit",
+          "call",
           "callback",
           "criteria",
           "defin",
@@ -5365,7 +5382,9 @@ window.lunrData = {
           "granular",
           "listen",
           "match",
+          "method",
           "more",
+          "object",
           "on",
           "option",
           "outputchannel#removelisten",
@@ -5374,6 +5393,7 @@ window.lunrData = {
           "remov",
           "removelisten",
           "specifi",
+          "upon",
           "us"
         ],
         "OutputChannel.html#send": [
@@ -7779,7 +7799,9 @@ window.lunrData = {
           "webmidi#haslisten"
         ],
         "WebMidi.html#removeListener": [
+          "ad",
           "addit",
+          "call",
           "callback",
           "criteria",
           "defin",
@@ -7791,7 +7813,9 @@ window.lunrData = {
           "granular",
           "listen",
           "match",
+          "method",
           "more",
+          "object",
           "on",
           "option",
           "paramet",
@@ -7799,6 +7823,7 @@ window.lunrData = {
           "remov",
           "removelisten",
           "specifi",
+          "upon",
           "us",
           "webmidi#removelisten"
         ],
@@ -12845,6 +12870,10 @@ window.lunrData = {
                 "ref": "EventEmitter.html#hasListener",
                 "tf": 1.6129032258064515
               },
+              "EventEmitter.html#removeListener": {
+                "ref": "EventEmitter.html#removeListener",
+                "tf": 2.3255813953488373
+              },
               "EventEmitter.html#~callback": {
                 "ref": "EventEmitter.html#~callback",
                 "tf": 1.0638297872340425
@@ -12889,6 +12918,10 @@ window.lunrData = {
                 "ref": "InputChannel.html#hasListener",
                 "tf": 1.6129032258064515
               },
+              "InputChannel.html#removeListener": {
+                "ref": "InputChannel.html#removeListener",
+                "tf": 2.3255813953488373
+              },
               "Output.html#emit": {
                 "ref": "Output.html#emit",
                 "tf": 1
@@ -12905,6 +12938,10 @@ window.lunrData = {
                 "ref": "Output.html#hasListener",
                 "tf": 1.6129032258064515
               },
+              "Output.html#removeListener": {
+                "ref": "Output.html#removeListener",
+                "tf": 2.3255813953488373
+              },
               "OutputChannel.html#emit": {
                 "ref": "OutputChannel.html#emit",
                 "tf": 1
@@ -12920,6 +12957,10 @@ window.lunrData = {
               "OutputChannel.html#hasListener": {
                 "ref": "OutputChannel.html#hasListener",
                 "tf": 1.6129032258064515
+              },
+              "OutputChannel.html#removeListener": {
+                "ref": "OutputChannel.html#removeListener",
+                "tf": 2.3255813953488373
               },
               "WebMidi.html#disable": {
                 "ref": "WebMidi.html#disable",
@@ -12940,6 +12981,10 @@ window.lunrData = {
               "WebMidi.html#hasListener": {
                 "ref": "WebMidi.html#hasListener",
                 "tf": 1.6129032258064515
+              },
+              "WebMidi.html#removeListener": {
+                "ref": "WebMidi.html#removeListener",
+                "tf": 2.3255813953488373
               }
             },
             "d": {
@@ -13011,7 +13056,7 @@ window.lunrData = {
                     },
                     "EventEmitter.html#removeListener": {
                       "ref": "EventEmitter.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "EventEmitter.html#~callback": {
                       "ref": "EventEmitter.html#~callback",
@@ -13027,7 +13072,7 @@ window.lunrData = {
                     },
                     "InputChannel.html#removeListener": {
                       "ref": "InputChannel.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "Output.html#emit": {
                       "ref": "Output.html#emit",
@@ -13035,7 +13080,7 @@ window.lunrData = {
                     },
                     "Output.html#removeListener": {
                       "ref": "Output.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "OutputChannel.html#emit": {
                       "ref": "OutputChannel.html#emit",
@@ -13043,7 +13088,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "WebMidi.html#emit": {
                       "ref": "WebMidi.html#emit",
@@ -13051,7 +13096,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#removeListener": {
                       "ref": "WebMidi.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     }
                   }
                 }
@@ -17117,7 +17162,7 @@ window.lunrData = {
                       },
                       "EventEmitter.html#removeListener": {
                         "ref": "EventEmitter.html#removeListener",
-                        "tf": 5.714285714285714
+                        "tf": 4.651162790697675
                       },
                       "EventEmitter.html#suspendEvent": {
                         "ref": "EventEmitter.html#suspendEvent",
@@ -17233,7 +17278,7 @@ window.lunrData = {
                       },
                       "InputChannel.html#removeListener": {
                         "ref": "InputChannel.html#removeListener",
-                        "tf": 5.714285714285714
+                        "tf": 4.651162790697675
                       },
                       "InputChannel.html#suspendEvent": {
                         "ref": "InputChannel.html#suspendEvent",
@@ -17301,7 +17346,7 @@ window.lunrData = {
                       },
                       "Output.html#removeListener": {
                         "ref": "Output.html#removeListener",
-                        "tf": 5.714285714285714
+                        "tf": 4.651162790697675
                       },
                       "Output.html#suspendEvent": {
                         "ref": "Output.html#suspendEvent",
@@ -17349,7 +17394,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#removeListener": {
                         "ref": "OutputChannel.html#removeListener",
-                        "tf": 5.714285714285714
+                        "tf": 4.651162790697675
                       },
                       "OutputChannel.html#suspendEvent": {
                         "ref": "OutputChannel.html#suspendEvent",
@@ -17405,7 +17450,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#removeListener": {
                         "ref": "WebMidi.html#removeListener",
-                        "tf": 5.714285714285714
+                        "tf": 4.651162790697675
                       },
                       "WebMidi.html#suspendEvent": {
                         "ref": "WebMidi.html#suspendEvent",
@@ -20736,6 +20781,10 @@ window.lunrData = {
                         "ref": "EventEmitter.html#hasListener",
                         "tf": 1.6129032258064515
                       },
+                      "EventEmitter.html#removeListener": {
+                        "ref": "EventEmitter.html#removeListener",
+                        "tf": 1.1627906976744187
+                      },
                       "EventEmitter.html#waitFor": {
                         "ref": "EventEmitter.html#waitFor",
                         "tf": 1.0869565217391304
@@ -20759,6 +20808,10 @@ window.lunrData = {
                       "InputChannel.html#hasListener": {
                         "ref": "InputChannel.html#hasListener",
                         "tf": 1.6129032258064515
+                      },
+                      "InputChannel.html#removeListener": {
+                        "ref": "InputChannel.html#removeListener",
+                        "tf": 1.1627906976744187
                       },
                       "InputChannel.html#waitFor": {
                         "ref": "InputChannel.html#waitFor",
@@ -20787,6 +20840,10 @@ window.lunrData = {
                       "Output.html#playNote": {
                         "ref": "Output.html#playNote",
                         "tf": 0.4132231404958678
+                      },
+                      "Output.html#removeListener": {
+                        "ref": "Output.html#removeListener",
+                        "tf": 1.1627906976744187
                       },
                       "Output.html#send": {
                         "ref": "Output.html#send",
@@ -20835,6 +20892,10 @@ window.lunrData = {
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
                         "tf": 0.4716981132075472
+                      },
+                      "OutputChannel.html#removeListener": {
+                        "ref": "OutputChannel.html#removeListener",
+                        "tf": 1.1627906976744187
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -20899,6 +20960,10 @@ window.lunrData = {
                       "WebMidi.html#hasListener": {
                         "ref": "WebMidi.html#hasListener",
                         "tf": 1.6129032258064515
+                      },
+                      "WebMidi.html#removeListener": {
+                        "ref": "WebMidi.html#removeListener",
+                        "tf": 1.1627906976744187
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -21269,7 +21334,7 @@ window.lunrData = {
                 "docs": {
                   "EventEmitter.html#removeListener": {
                     "ref": "EventEmitter.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "Forwarder.html": {
                     "ref": "Forwarder.html",
@@ -21277,7 +21342,7 @@ window.lunrData = {
                   },
                   "InputChannel.html#removeListener": {
                     "ref": "InputChannel.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "Note.html#getOffsetNumber": {
                     "ref": "Note.html#getOffsetNumber",
@@ -21289,7 +21354,7 @@ window.lunrData = {
                   },
                   "Output.html#removeListener": {
                     "ref": "Output.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
@@ -21301,7 +21366,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#removeListener": {
                     "ref": "OutputChannel.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
@@ -21313,7 +21378,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#removeListener": {
                     "ref": "WebMidi.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   }
                 }
               }
@@ -21459,7 +21524,7 @@ window.lunrData = {
                     },
                     "EventEmitter.html#removeListener": {
                       "ref": "EventEmitter.html#removeListener",
-                      "tf": 2.857142857142857
+                      "tf": 2.3255813953488373
                     },
                     "EventEmitter.html#~callback": {
                       "ref": "EventEmitter.html#~callback",
@@ -21487,7 +21552,7 @@ window.lunrData = {
                     },
                     "InputChannel.html#removeListener": {
                       "ref": "InputChannel.html#removeListener",
-                      "tf": 2.857142857142857
+                      "tf": 2.3255813953488373
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
@@ -21495,7 +21560,7 @@ window.lunrData = {
                     },
                     "Output.html#removeListener": {
                       "ref": "Output.html#removeListener",
-                      "tf": 2.857142857142857
+                      "tf": 2.3255813953488373
                     },
                     "Output.html#sendChannelMode": {
                       "ref": "Output.html#sendChannelMode",
@@ -21511,7 +21576,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
-                      "tf": 2.857142857142857
+                      "tf": 2.3255813953488373
                     },
                     "OutputChannel.html#sendChannelMode": {
                       "ref": "OutputChannel.html#sendChannelMode",
@@ -21543,7 +21608,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#removeListener": {
                       "ref": "WebMidi.html#removeListener",
-                      "tf": 2.857142857142857
+                      "tf": 2.3255813953488373
                     }
                   }
                 }
@@ -23481,7 +23546,7 @@ window.lunrData = {
                         },
                         "EventEmitter.html#removeListener": {
                           "ref": "EventEmitter.html#removeListener",
-                          "tf": 4.285714285714286
+                          "tf": 3.488372093023256
                         },
                         "Input.html#getListenerCount": {
                           "ref": "Input.html#getListenerCount",
@@ -23521,7 +23586,7 @@ window.lunrData = {
                         },
                         "InputChannel.html#removeListener": {
                           "ref": "InputChannel.html#removeListener",
-                          "tf": 4.285714285714286
+                          "tf": 3.488372093023256
                         },
                         "Output.html#addListener": {
                           "ref": "Output.html#addListener",
@@ -23549,7 +23614,7 @@ window.lunrData = {
                         },
                         "Output.html#removeListener": {
                           "ref": "Output.html#removeListener",
-                          "tf": 4.285714285714286
+                          "tf": 3.488372093023256
                         },
                         "Output.html#sendChannelMode": {
                           "ref": "Output.html#sendChannelMode",
@@ -23629,7 +23694,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#removeListener": {
                           "ref": "OutputChannel.html#removeListener",
-                          "tf": 4.285714285714286
+                          "tf": 3.488372093023256
                         },
                         "OutputChannel.html#sendChannelMode": {
                           "ref": "OutputChannel.html#sendChannelMode",
@@ -23729,7 +23794,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#removeListener": {
                           "ref": "WebMidi.html#removeListener",
-                          "tf": 4.285714285714286
+                          "tf": 3.488372093023256
                         }
                       },
                       "e": {
@@ -23886,7 +23951,7 @@ window.lunrData = {
                   },
                   "EventEmitter.html#removeListener": {
                     "ref": "EventEmitter.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "EventEmitter.html#suspendEvent": {
                     "ref": "EventEmitter.html#suspendEvent",
@@ -23918,7 +23983,7 @@ window.lunrData = {
                   },
                   "InputChannel.html#removeListener": {
                     "ref": "InputChannel.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "InputChannel.html#suspendEvent": {
                     "ref": "InputChannel.html#suspendEvent",
@@ -23942,7 +24007,7 @@ window.lunrData = {
                   },
                   "Output.html#removeListener": {
                     "ref": "Output.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "Output.html#sendNrpnValue": {
                     "ref": "Output.html#sendNrpnValue",
@@ -23962,7 +24027,7 @@ window.lunrData = {
                   },
                   "OutputChannel.html#removeListener": {
                     "ref": "OutputChannel.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "OutputChannel.html#sendControlChange": {
                     "ref": "OutputChannel.html#sendControlChange",
@@ -24018,7 +24083,7 @@ window.lunrData = {
                   },
                   "WebMidi.html#removeListener": {
                     "ref": "WebMidi.html#removeListener",
-                    "tf": 2.857142857142857
+                    "tf": 2.3255813953488373
                   },
                   "WebMidi.html#suspendEvent": {
                     "ref": "WebMidi.html#suspendEvent",
@@ -25809,7 +25874,7 @@ window.lunrData = {
                     },
                     "EventEmitter.html#removeListener": {
                       "ref": "EventEmitter.html#removeListener",
-                      "tf": 5.714285714285714
+                      "tf": 4.651162790697675
                     },
                     "Input.html#destroy": {
                       "ref": "Input.html#destroy",
@@ -25829,7 +25894,7 @@ window.lunrData = {
                     },
                     "InputChannel.html#removeListener": {
                       "ref": "InputChannel.html#removeListener",
-                      "tf": 5.714285714285714
+                      "tf": 4.651162790697675
                     },
                     "Listener.html#remaining": {
                       "ref": "Listener.html#remaining",
@@ -25845,15 +25910,15 @@ window.lunrData = {
                     },
                     "Output.html#removeListener": {
                       "ref": "Output.html#removeListener",
-                      "tf": 5.714285714285714
+                      "tf": 4.651162790697675
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
-                      "tf": 5.714285714285714
+                      "tf": 4.651162790697675
                     },
                     "WebMidi.html#removeListener": {
                       "ref": "WebMidi.html#removeListener",
-                      "tf": 5.714285714285714
+                      "tf": 4.651162790697675
                     }
                   },
                   "e": {
@@ -29275,7 +29340,7 @@ window.lunrData = {
                   "docs": {
                     "EventEmitter.html#removeListener": {
                       "ref": "EventEmitter.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "Forwarder.html": {
                       "ref": "Forwarder.html",
@@ -29295,7 +29360,7 @@ window.lunrData = {
                     },
                     "InputChannel.html#removeListener": {
                       "ref": "InputChannel.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "Output.html#octaveOffset": {
                       "ref": "Output.html#octaveOffset",
@@ -29311,7 +29376,7 @@ window.lunrData = {
                     },
                     "Output.html#removeListener": {
                       "ref": "Output.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "Output.html#sendPitchBend": {
                       "ref": "Output.html#sendPitchBend",
@@ -29331,7 +29396,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
@@ -29351,7 +29416,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#removeListener": {
                       "ref": "WebMidi.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     }
                   }
                 }
@@ -30365,7 +30430,7 @@ window.lunrData = {
                       },
                       "EventEmitter.html#removeListener": {
                         "ref": "EventEmitter.html#removeListener",
-                        "tf": 1.4285714285714286
+                        "tf": 1.1627906976744187
                       },
                       "EventEmitter.html#suspendEvent": {
                         "ref": "EventEmitter.html#suspendEvent",
@@ -30445,7 +30510,7 @@ window.lunrData = {
                       },
                       "InputChannel.html#removeListener": {
                         "ref": "InputChannel.html#removeListener",
-                        "tf": 1.4285714285714286
+                        "tf": 1.1627906976744187
                       },
                       "InputChannel.html#suspendEvent": {
                         "ref": "InputChannel.html#suspendEvent",
@@ -30493,7 +30558,7 @@ window.lunrData = {
                       },
                       "Output.html#removeListener": {
                         "ref": "Output.html#removeListener",
-                        "tf": 1.4285714285714286
+                        "tf": 1.1627906976744187
                       },
                       "Output.html#suspendEvent": {
                         "ref": "Output.html#suspendEvent",
@@ -30541,7 +30606,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#removeListener": {
                         "ref": "OutputChannel.html#removeListener",
-                        "tf": 1.4285714285714286
+                        "tf": 1.1627906976744187
                       },
                       "OutputChannel.html#suspendEvent": {
                         "ref": "OutputChannel.html#suspendEvent",
@@ -30589,7 +30654,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#removeListener": {
                         "ref": "WebMidi.html#removeListener",
-                        "tf": 1.4285714285714286
+                        "tf": 1.1627906976744187
                       },
                       "WebMidi.html#suspendEvent": {
                         "ref": "WebMidi.html#suspendEvent",
@@ -31357,23 +31422,23 @@ window.lunrData = {
                         "docs": {
                           "EventEmitter.html#removeListener": {
                             "ref": "EventEmitter.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "InputChannel.html#removeListener": {
                             "ref": "InputChannel.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "Output.html#removeListener": {
                             "ref": "Output.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "OutputChannel.html#removeListener": {
                             "ref": "OutputChannel.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "WebMidi.html#removeListener": {
                             "ref": "WebMidi.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           }
                         }
                       }
@@ -34516,6 +34581,10 @@ window.lunrData = {
               "docs": {},
               "l": {
                 "docs": {
+                  "EventEmitter.html#removeListener": {
+                    "ref": "EventEmitter.html#removeListener",
+                    "tf": 1.1627906976744187
+                  },
                   "Forwarder.html": {
                     "ref": "Forwarder.html",
                     "tf": 1.2195121951219512
@@ -34532,6 +34601,10 @@ window.lunrData = {
                     "ref": "Input.html#close",
                     "tf": 2.1739130434782608
                   },
+                  "InputChannel.html#removeListener": {
+                    "ref": "InputChannel.html#removeListener",
+                    "tf": 1.1627906976744187
+                  },
                   "Note.html": {
                     "ref": "Note.html",
                     "tf": 1.6853932584269662
@@ -34540,9 +34613,17 @@ window.lunrData = {
                     "ref": "Output.html#close",
                     "tf": 2.380952380952381
                   },
+                  "Output.html#removeListener": {
+                    "ref": "Output.html#removeListener",
+                    "tf": 1.1627906976744187
+                  },
                   "Output.html#sendSysex": {
                     "ref": "Output.html#sendSysex",
                     "tf": 0.1779359430604982
+                  },
+                  "OutputChannel.html#removeListener": {
+                    "ref": "OutputChannel.html#removeListener",
+                    "tf": 1.1627906976744187
                   },
                   "Utilities.html": {
                     "ref": "Utilities.html",
@@ -34559,6 +34640,10 @@ window.lunrData = {
                   "WebMidi.html#enable": {
                     "ref": "WebMidi.html#enable",
                     "tf": 0.29411764705882354
+                  },
+                  "WebMidi.html#removeListener": {
+                    "ref": "WebMidi.html#removeListener",
+                    "tf": 1.1627906976744187
                   }
                 },
                 "b": {
@@ -34591,7 +34676,7 @@ window.lunrData = {
                           },
                           "EventEmitter.html#removeListener": {
                             "ref": "EventEmitter.html#removeListener",
-                            "tf": 26.428571428571427
+                            "tf": 26.162790697674417
                           },
                           "EventEmitter.html#suspendEvent": {
                             "ref": "EventEmitter.html#suspendEvent",
@@ -34655,7 +34740,7 @@ window.lunrData = {
                           },
                           "InputChannel.html#removeListener": {
                             "ref": "InputChannel.html#removeListener",
-                            "tf": 26.428571428571427
+                            "tf": 26.162790697674417
                           },
                           "InputChannel.html#suspendEvent": {
                             "ref": "InputChannel.html#suspendEvent",
@@ -34707,7 +34792,7 @@ window.lunrData = {
                           },
                           "Output.html#removeListener": {
                             "ref": "Output.html#removeListener",
-                            "tf": 26.428571428571427
+                            "tf": 26.162790697674417
                           },
                           "Output.html#suspendEvent": {
                             "ref": "Output.html#suspendEvent",
@@ -34739,7 +34824,7 @@ window.lunrData = {
                           },
                           "OutputChannel.html#removeListener": {
                             "ref": "OutputChannel.html#removeListener",
-                            "tf": 26.428571428571427
+                            "tf": 26.162790697674417
                           },
                           "OutputChannel.html#suspendEvent": {
                             "ref": "OutputChannel.html#suspendEvent",
@@ -34775,7 +34860,7 @@ window.lunrData = {
                           },
                           "WebMidi.html#removeListener": {
                             "ref": "WebMidi.html#removeListener",
-                            "tf": 26.428571428571427
+                            "tf": 26.162790697674417
                           },
                           "WebMidi.html#suspendEvent": {
                             "ref": "WebMidi.html#suspendEvent",
@@ -35026,7 +35111,7 @@ window.lunrData = {
                         "docs": {
                           "EventEmitter.html#removeListener": {
                             "ref": "EventEmitter.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "Input.html#addForwarder": {
                             "ref": "Input.html#addForwarder",
@@ -35034,19 +35119,19 @@ window.lunrData = {
                           },
                           "InputChannel.html#removeListener": {
                             "ref": "InputChannel.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "Output.html#removeListener": {
                             "ref": "Output.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "OutputChannel.html#removeListener": {
                             "ref": "OutputChannel.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           },
                           "WebMidi.html#removeListener": {
                             "ref": "WebMidi.html#removeListener",
-                            "tf": 1.4285714285714286
+                            "tf": 1.1627906976744187
                           }
                         }
                       }
@@ -36478,7 +36563,7 @@ window.lunrData = {
                     },
                     "EventEmitter.html#removeListener": {
                       "ref": "EventEmitter.html#removeListener",
-                      "tf": 29.285714285714285
+                      "tf": 28.488372093023255
                     },
                     "EventEmitter.html#suspendEvent": {
                       "ref": "EventEmitter.html#suspendEvent",
@@ -36598,7 +36683,7 @@ window.lunrData = {
                     },
                     "InputChannel.html#removeListener": {
                       "ref": "InputChannel.html#removeListener",
-                      "tf": 29.285714285714285
+                      "tf": 28.488372093023255
                     },
                     "InputChannel.html#suspendEvent": {
                       "ref": "InputChannel.html#suspendEvent",
@@ -36666,7 +36751,7 @@ window.lunrData = {
                     },
                     "Output.html#removeListener": {
                       "ref": "Output.html#removeListener",
-                      "tf": 29.285714285714285
+                      "tf": 28.488372093023255
                     },
                     "Output.html#suspendEvent": {
                       "ref": "Output.html#suspendEvent",
@@ -36718,7 +36803,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
-                      "tf": 29.285714285714285
+                      "tf": 28.488372093023255
                     },
                     "OutputChannel.html#suspendEvent": {
                       "ref": "OutputChannel.html#suspendEvent",
@@ -36774,7 +36859,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#removeListener": {
                       "ref": "WebMidi.html#removeListener",
-                      "tf": 29.285714285714285
+                      "tf": 28.488372093023255
                     },
                     "WebMidi.html#suspendEvent": {
                       "ref": "WebMidi.html#suspendEvent",
@@ -36888,7 +36973,7 @@ window.lunrData = {
                                                 },
                                                 "EventEmitter.html#removeListener": {
                                                   "ref": "EventEmitter.html#removeListener",
-                                                  "tf": 1.4285714285714286
+                                                  "tf": 1.1627906976744187
                                                 },
                                                 "EventEmitter.html#suspendEvent": {
                                                   "ref": "EventEmitter.html#suspendEvent",
@@ -36968,7 +37053,7 @@ window.lunrData = {
                                                 },
                                                 "InputChannel.html#removeListener": {
                                                   "ref": "InputChannel.html#removeListener",
-                                                  "tf": 1.4285714285714286
+                                                  "tf": 1.1627906976744187
                                                 },
                                                 "InputChannel.html#suspendEvent": {
                                                   "ref": "InputChannel.html#suspendEvent",
@@ -37016,7 +37101,7 @@ window.lunrData = {
                                                 },
                                                 "Output.html#removeListener": {
                                                   "ref": "Output.html#removeListener",
-                                                  "tf": 1.4285714285714286
+                                                  "tf": 1.1627906976744187
                                                 },
                                                 "Output.html#suspendEvent": {
                                                   "ref": "Output.html#suspendEvent",
@@ -37064,7 +37149,7 @@ window.lunrData = {
                                                 },
                                                 "OutputChannel.html#removeListener": {
                                                   "ref": "OutputChannel.html#removeListener",
-                                                  "tf": 1.4285714285714286
+                                                  "tf": 1.1627906976744187
                                                 },
                                                 "OutputChannel.html#suspendEvent": {
                                                   "ref": "OutputChannel.html#suspendEvent",
@@ -37112,7 +37197,7 @@ window.lunrData = {
                                                 },
                                                 "WebMidi.html#removeListener": {
                                                   "ref": "WebMidi.html#removeListener",
-                                                  "tf": 1.4285714285714286
+                                                  "tf": 1.1627906976744187
                                                 },
                                                 "WebMidi.html#suspendEvent": {
                                                   "ref": "WebMidi.html#suspendEvent",
@@ -41177,7 +41262,7 @@ window.lunrData = {
                         },
                         "EventEmitter.html#removeListener": {
                           "ref": "EventEmitter.html#removeListener",
-                          "tf": 2.857142857142857
+                          "tf": 2.3255813953488373
                         },
                         "EventEmitter.html#suspendEvent": {
                           "ref": "EventEmitter.html#suspendEvent",
@@ -41257,7 +41342,7 @@ window.lunrData = {
                         },
                         "InputChannel.html#removeListener": {
                           "ref": "InputChannel.html#removeListener",
-                          "tf": 2.857142857142857
+                          "tf": 2.3255813953488373
                         },
                         "InputChannel.html#suspendEvent": {
                           "ref": "InputChannel.html#suspendEvent",
@@ -41289,7 +41374,7 @@ window.lunrData = {
                         },
                         "Output.html#removeListener": {
                           "ref": "Output.html#removeListener",
-                          "tf": 2.857142857142857
+                          "tf": 2.3255813953488373
                         },
                         "Output.html#send": {
                           "ref": "Output.html#send",
@@ -41401,7 +41486,7 @@ window.lunrData = {
                         },
                         "OutputChannel.html#removeListener": {
                           "ref": "OutputChannel.html#removeListener",
-                          "tf": 2.857142857142857
+                          "tf": 2.3255813953488373
                         },
                         "OutputChannel.html#send": {
                           "ref": "OutputChannel.html#send",
@@ -41521,7 +41606,7 @@ window.lunrData = {
                         },
                         "WebMidi.html#removeListener": {
                           "ref": "WebMidi.html#removeListener",
-                          "tf": 2.857142857142857
+                          "tf": 2.3255813953488373
                         },
                         "WebMidi.html#suspendEvent": {
                           "ref": "WebMidi.html#suspendEvent",
@@ -47152,7 +47237,7 @@ window.lunrData = {
               },
               "EventEmitter.html#removeListener": {
                 "ref": "EventEmitter.html#removeListener",
-                "tf": 2.857142857142857
+                "tf": 2.3255813953488373
               },
               "Input.html": {
                 "ref": "Input.html",
@@ -47208,7 +47293,7 @@ window.lunrData = {
               },
               "InputChannel.html#removeListener": {
                 "ref": "InputChannel.html#removeListener",
-                "tf": 2.857142857142857
+                "tf": 2.3255813953488373
               },
               "Note.html": {
                 "ref": "Note.html",
@@ -47260,7 +47345,7 @@ window.lunrData = {
               },
               "Output.html#removeListener": {
                 "ref": "Output.html#removeListener",
-                "tf": 2.857142857142857
+                "tf": 2.3255813953488373
               },
               "Output.html#send": {
                 "ref": "Output.html#send",
@@ -47364,7 +47449,7 @@ window.lunrData = {
               },
               "OutputChannel.html#removeListener": {
                 "ref": "OutputChannel.html#removeListener",
-                "tf": 2.857142857142857
+                "tf": 2.3255813953488373
               },
               "OutputChannel.html#send": {
                 "ref": "OutputChannel.html#send",
@@ -47496,7 +47581,7 @@ window.lunrData = {
               },
               "WebMidi.html#removeListener": {
                 "ref": "WebMidi.html#removeListener",
-                "tf": 2.857142857142857
+                "tf": 2.3255813953488373
               }
             },
             "u": {
@@ -48063,9 +48148,29 @@ window.lunrData = {
               "docs": {},
               "n": {
                 "docs": {
+                  "EventEmitter.html#removeListener": {
+                    "ref": "EventEmitter.html#removeListener",
+                    "tf": 1.1627906976744187
+                  },
+                  "InputChannel.html#removeListener": {
+                    "ref": "InputChannel.html#removeListener",
+                    "tf": 1.1627906976744187
+                  },
                   "Listener.html#arguments": {
                     "ref": "Listener.html#arguments",
                     "tf": 7.142857142857142
+                  },
+                  "Output.html#removeListener": {
+                    "ref": "Output.html#removeListener",
+                    "tf": 1.1627906976744187
+                  },
+                  "OutputChannel.html#removeListener": {
+                    "ref": "OutputChannel.html#removeListener",
+                    "tf": 1.1627906976744187
+                  },
+                  "WebMidi.html#removeListener": {
+                    "ref": "WebMidi.html#removeListener",
+                    "tf": 1.1627906976744187
                   }
                 }
               }
@@ -50587,6 +50692,10 @@ window.lunrData = {
                         "ref": "EventEmitter.html#getListeners",
                         "tf": 2.083333333333333
                       },
+                      "EventEmitter.html#removeListener": {
+                        "ref": "EventEmitter.html#removeListener",
+                        "tf": 3.488372093023256
+                      },
                       "Forwarder.html": {
                         "ref": "Forwarder.html",
                         "tf": 2.4390243902439024
@@ -50671,6 +50780,10 @@ window.lunrData = {
                         "ref": "InputChannel.html#getNoteState",
                         "tf": 1.5625
                       },
+                      "InputChannel.html#removeListener": {
+                        "ref": "InputChannel.html#removeListener",
+                        "tf": 3.488372093023256
+                      },
                       "Listener.html": {
                         "ref": "Listener.html",
                         "tf": 6.8181818181818175
@@ -50719,6 +50832,10 @@ window.lunrData = {
                         "ref": "Output.html#playNote",
                         "tf": 1.2396694214876034
                       },
+                      "Output.html#removeListener": {
+                        "ref": "Output.html#removeListener",
+                        "tf": 3.488372093023256
+                      },
                       "Output.html#send": {
                         "ref": "Output.html#send",
                         "tf": 2.0408163265306123
@@ -50762,6 +50879,10 @@ window.lunrData = {
                       "OutputChannel.html#playNote": {
                         "ref": "OutputChannel.html#playNote",
                         "tf": 1.4150943396226416
+                      },
+                      "OutputChannel.html#removeListener": {
+                        "ref": "OutputChannel.html#removeListener",
+                        "tf": 3.488372093023256
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -50858,6 +50979,10 @@ window.lunrData = {
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
                         "tf": 2
+                      },
+                      "WebMidi.html#removeListener": {
+                        "ref": "WebMidi.html#removeListener",
+                        "tf": 3.488372093023256
                       }
                     },
                     ".": {
@@ -51126,7 +51251,7 @@ window.lunrData = {
               },
               "EventEmitter.html#removeListener": {
                 "ref": "EventEmitter.html#removeListener",
-                "tf": 1.4285714285714286
+                "tf": 1.1627906976744187
               },
               "Input.html#eventMap": {
                 "ref": "Input.html#eventMap",
@@ -51162,7 +51287,7 @@ window.lunrData = {
               },
               "InputChannel.html#removeListener": {
                 "ref": "InputChannel.html#removeListener",
-                "tf": 1.4285714285714286
+                "tf": 1.1627906976744187
               },
               "Output.html#eventMap": {
                 "ref": "Output.html#eventMap",
@@ -51186,7 +51311,7 @@ window.lunrData = {
               },
               "Output.html#removeListener": {
                 "ref": "Output.html#removeListener",
-                "tf": 1.4285714285714286
+                "tf": 1.1627906976744187
               },
               "Output.html#send": {
                 "ref": "Output.html#send",
@@ -51226,7 +51351,7 @@ window.lunrData = {
               },
               "OutputChannel.html#removeListener": {
                 "ref": "OutputChannel.html#removeListener",
-                "tf": 1.4285714285714286
+                "tf": 1.1627906976744187
               },
               "OutputChannel.html#send": {
                 "ref": "OutputChannel.html#send",
@@ -51294,7 +51419,7 @@ window.lunrData = {
               },
               "WebMidi.html#removeListener": {
                 "ref": "WebMidi.html#removeListener",
-                "tf": 1.4285714285714286
+                "tf": 1.1627906976744187
               }
             },
             "c": {
@@ -51547,7 +51672,7 @@ window.lunrData = {
                       },
                       "EventEmitter.html#removeListener": {
                         "ref": "EventEmitter.html#removeListener",
-                        "tf": 27.857142857142858
+                        "tf": 27.325581395348838
                       },
                       "EventEmitter.html#waitFor": {
                         "ref": "EventEmitter.html#waitFor",
@@ -51587,7 +51712,7 @@ window.lunrData = {
                       },
                       "InputChannel.html#removeListener": {
                         "ref": "InputChannel.html#removeListener",
-                        "tf": 27.857142857142858
+                        "tf": 27.325581395348838
                       },
                       "InputChannel.html#waitFor": {
                         "ref": "InputChannel.html#waitFor",
@@ -51615,7 +51740,7 @@ window.lunrData = {
                       },
                       "Output.html#removeListener": {
                         "ref": "Output.html#removeListener",
-                        "tf": 27.857142857142858
+                        "tf": 27.325581395348838
                       },
                       "Output.html#send": {
                         "ref": "Output.html#send",
@@ -51779,7 +51904,7 @@ window.lunrData = {
                       },
                       "OutputChannel.html#removeListener": {
                         "ref": "OutputChannel.html#removeListener",
-                        "tf": 27.857142857142858
+                        "tf": 27.325581395348838
                       },
                       "OutputChannel.html#send": {
                         "ref": "OutputChannel.html#send",
@@ -51931,7 +52056,7 @@ window.lunrData = {
                       },
                       "WebMidi.html#removeListener": {
                         "ref": "WebMidi.html#removeListener",
-                        "tf": 27.857142857142858
+                        "tf": 27.325581395348838
                       },
                       "WebMidi.html#waitFor": {
                         "ref": "WebMidi.html#waitFor",
@@ -57799,7 +57924,7 @@ window.lunrData = {
                     },
                     "EventEmitter.html#removeListener": {
                       "ref": "EventEmitter.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "EventEmitter.html#suspendEvent": {
                       "ref": "EventEmitter.html#suspendEvent",
@@ -57827,7 +57952,7 @@ window.lunrData = {
                     },
                     "InputChannel.html#removeListener": {
                       "ref": "InputChannel.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "InputChannel.html#suspendEvent": {
                       "ref": "InputChannel.html#suspendEvent",
@@ -57851,7 +57976,7 @@ window.lunrData = {
                     },
                     "Output.html#removeListener": {
                       "ref": "Output.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "Output.html#sendNoteOff": {
                       "ref": "Output.html#sendNoteOff",
@@ -57895,7 +58020,7 @@ window.lunrData = {
                     },
                     "OutputChannel.html#removeListener": {
                       "ref": "OutputChannel.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "OutputChannel.html#sendNoteOff": {
                       "ref": "OutputChannel.html#sendNoteOff",
@@ -57939,7 +58064,7 @@ window.lunrData = {
                     },
                     "WebMidi.html#removeListener": {
                       "ref": "WebMidi.html#removeListener",
-                      "tf": 1.4285714285714286
+                      "tf": 1.1627906976744187
                     },
                     "WebMidi.html#suspendEvent": {
                       "ref": "WebMidi.html#suspendEvent",
@@ -58479,7 +58604,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 7304
+      "length": 7329
     },
     "corpusTokens": [
       "0",
@@ -60215,7 +60340,7 @@ window.lunrData = {
       "name": "removeListener",
       "tags": "EventEmitter#removeListener removeListener",
       "summary": "",
-      "description": "Removes all the listeners that match the specified criterias. If no parameters are passed, all listeners will be removed. If only the event parameter is passed, all listeners for that event will be removed. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
+      "description": "Removes all the listeners that were added to the object upon which the method is called and that match the specified criterias. If no parameters are passed, all listeners added to this object will be removed. If only the event parameter is passed, all listeners for that event will be removed from that object. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
     },
     "EventEmitter.html#suspendEvent": {
       "id": "EventEmitter.html#suspendEvent",
@@ -60798,7 +60923,7 @@ window.lunrData = {
       "name": "removeListener",
       "tags": "InputChannel#removeListener removeListener",
       "summary": "",
-      "description": "Removes all the listeners that match the specified criterias. If no parameters are passed, all listeners will be removed. If only the event parameter is passed, all listeners for that event will be removed. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
+      "description": "Removes all the listeners that were added to the object upon which the method is called and that match the specified criterias. If no parameters are passed, all listeners added to this object will be removed. If only the event parameter is passed, all listeners for that event will be removed from that object. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
     },
     "InputChannel.html#suspendEvent": {
       "id": "InputChannel.html#suspendEvent",
@@ -61422,7 +61547,7 @@ window.lunrData = {
       "name": "removeListener",
       "tags": "Output#removeListener removeListener",
       "summary": "",
-      "description": "Removes all the listeners that match the specified criterias. If no parameters are passed, all listeners will be removed. If only the event parameter is passed, all listeners for that event will be removed. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
+      "description": "Removes all the listeners that were added to the object upon which the method is called and that match the specified criterias. If no parameters are passed, all listeners added to this object will be removed. If only the event parameter is passed, all listeners for that event will be removed from that object. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
     },
     "Output.html#send": {
       "id": "Output.html#send",
@@ -61973,7 +62098,7 @@ window.lunrData = {
       "name": "removeListener",
       "tags": "OutputChannel#removeListener removeListener",
       "summary": "",
-      "description": "Removes all the listeners that match the specified criterias. If no parameters are passed, all listeners will be removed. If only the event parameter is passed, all listeners for that event will be removed. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
+      "description": "Removes all the listeners that were added to the object upon which the method is called and that match the specified criterias. If no parameters are passed, all listeners added to this object will be removed. If only the event parameter is passed, all listeners for that event will be removed from that object. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
     },
     "OutputChannel.html#send": {
       "id": "OutputChannel.html#send",
@@ -62735,7 +62860,7 @@ window.lunrData = {
       "name": "removeListener",
       "tags": "WebMidi#removeListener removeListener",
       "summary": "",
-      "description": "Removes all the listeners that match the specified criterias. If no parameters are passed, all listeners will be removed. If only the event parameter is passed, all listeners for that event will be removed. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
+      "description": "Removes all the listeners that were added to the object upon which the method is called and that match the specified criterias. If no parameters are passed, all listeners added to this object will be removed. If only the event parameter is passed, all listeners for that event will be removed from that object. You can remove global listeners by using EventEmitter.ANY_EVENT as the first parameter. To use more granular options, you must at least define the event. Then, you can specify the callback to match or one or more of the additional options."
     },
     "WebMidi.html#suspendEvent": {
       "id": "WebMidi.html#suspendEvent",
