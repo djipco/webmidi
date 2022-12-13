@@ -88,9 +88,6 @@
     "test:Utilities": "mocha test/Utilities.test.js",
     "test:WebMidi": "mocha test/WebMidi.test.js"
   },
-  "dependencies": {
-    "djipevents": "^2.0.5"
-  },
   "optionalDependencies": {
     "jzz": "^1.4.5"
   },
@@ -164,5 +161,8 @@
       ],
       "after:release": "rimraf webmidi-${version}.tgz"
     }
+  },
+  "dependencies": {
+    "djipevents": "^2.0.7"
   }
 }
