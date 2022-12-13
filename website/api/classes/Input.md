@@ -747,13 +747,14 @@ Removes the specified [`Forwarder`](Forwarder) object from the input.
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes the specified listener for the specified event. If no listener is specified, all
-listeners for the specified event will be removed. If no event is specified, all listeners for
-the `Input` as well as all listeners for all [`InputChannel`](InputChannel) objects will
-be removed.
+Removes the specified event listener. If no listener is specified, all listeners matching the
+specified event will be removed. If the event is channel-specific, the listener will be removed
+from all [`InputChannel`](InputChannel) objects belonging to that channel. If no event is
+specified, all listeners for the `Input` as well as all listeners for all
+[`InputChannel`](InputChannel) objects belonging to the `Input` will be removed.
 
-By default, channel-specific listeners will be removed from all channels unless the
-`options.channel` narrows it down.
+By default, channel-specific listeners will be removed from all
+[`InputChannel`](InputChannel) objects unless the `options.channel` narrows it down.
 
 
   **Parameters**
