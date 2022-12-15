@@ -364,7 +364,8 @@ export class Input extends EventEmitter {
    * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
    * ```
    *
-   * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
+   * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects. The order of
+   * the listeners in the array follows the order the channels were specified in.
    *
    * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
    * instance that actually gets a listener added and not the `Input` instance. You can check that
