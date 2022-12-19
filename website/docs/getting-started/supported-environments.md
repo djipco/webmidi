@@ -43,3 +43,10 @@ should just work in the following environments (with Node.js 8.5+):
 Support for the Node.js environment has been made possible in large part by the good folks of
 [Jazz-Soft](https://jazz-soft.net/) via their [JZZ](https://www.npmjs.com/package/jzz) module.
 
+## TypeScript Support
+
+Starting with version 3, TypeScript is officially supported. You will find the TypeScript definition
+file in these locations in side tje library's folder:
+
+* `/dist/cjs/webmidi.cjs.d.ts` (Node.js module)
+* `/dist/esm/webmidi.esm.d.ts` (ECMAScript module)
