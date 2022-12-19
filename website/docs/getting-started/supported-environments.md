@@ -17,7 +17,7 @@ have native support:
 * Edge v79+
 * Chrome 43+
 * Opera 30+
-* Firefox ([experimental support](https://bugzilla.mozilla.org/show_bug.cgi?id=836897) behind flag)
+* Firefox 108+
 
 It is also possible to use this library in other browsers if you install
 [Jazz-Plugin](https://jazz-soft.net/download/Jazz-Plugin/) v1.4+. This combination provides
@@ -25,7 +25,6 @@ support for the following additional web browsers:
 
 * Safari
 * Internet Explorer
-* Firefox
 
 Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/) that they would
 not natively support the Web MIDI API (and a host of other APIs) in Safari because of fingerprinting
@@ -43,3 +42,4 @@ should just work in the following environments (with Node.js 8.5+):
 
 Support for the Node.js environment has been made possible in large part by the good folks of
 [Jazz-Soft](https://jazz-soft.net/) via their [JZZ](https://www.npmjs.com/package/jzz) module.
+
