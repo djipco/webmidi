@@ -2,3 +2,4 @@
 .credentials
 dist
 .env
+/examples
