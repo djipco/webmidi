@@ -3,4 +3,3 @@
 dist
 .env
 /examples
-/node_modules
