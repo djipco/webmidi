@@ -1,5 +1,6 @@
 import babel from "@rollup/plugin-babel";
 import stripCode from "rollup-plugin-strip-code";
+import replace from "@rollup/plugin-replace";
 
 const fs = require("fs");
 const license = require("rollup-plugin-license");
@@ -17,6 +18,7 @@ export default {
 
   plugins: [
     versionInjector(),
+    replace({__flavour__: "iife"}),
     stripCode({
       start_comment: "START-CJS",
       end_comment: "END-CJS"

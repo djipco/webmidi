@@ -6035,6 +6035,18 @@ declare class WebMidi extends EventEmitter {
    */
   get version(): string;
 
+  /**
+   * The flavour of the library. Can be one of:
+   *
+   * * `esm`: ECMAScript Module
+   * * `cjs`: CommonJS Module
+   * * `iife`: Immediately-Invoked Function Expression
+   *
+   * @readonly
+   * @type string
+   */
+  get flavour(): string;
+
 }
 
 declare const wm: WebMidi;

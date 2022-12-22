@@ -53,6 +53,10 @@ describe("WebMidi Object", function() {
     expect(semver.valid(WebMidi.version)).to.not.be.null;
   });
 
+  it("should report valid flavour", function() {
+    expect(WebMidi.flavour).to.equal("cjs");
+  });
+
   // THIS WORKS BY ITSELF BUT STOPS WORKING WHEN THE OTHER TESTS ARE RUN!
   it("should trigger 'connected' events for new inputs");
   // it("should trigger 'connected' events for new inputs", function(done) {

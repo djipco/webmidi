@@ -1103,6 +1103,20 @@ class WebMidi extends EventEmitter {
   }
 
   /**
+   * The flavour of the library. Can be one of:
+   *
+   * * `esm`: ECMAScript Module
+   * * `cjs`: CommonJS Module
+   * * `iife`: Immediately-Invoked Function Expression
+   *
+   * @readonly
+   * @type string
+   */
+  get flavour() {
+    return "__flavour__"; // will be replaced during bundling by the correct identifier
+  }
+
+  /**
    * @private
    * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
