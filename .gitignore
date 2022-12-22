@@ -3,3 +3,5 @@
 dist
 .env
 /examples
+/node_modules
+/scripts
