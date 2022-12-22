@@ -52,7 +52,7 @@ function Footer() {
       </div>
 
       <Helmet>
-        <script id="mcjs" src="/scripts/newsletter-popup.js" type="text/javascript" />
+        <script id="mcjs" src="/js/newsletter-popup.js" type="text/javascript" />
       </Helmet>
 
     </footer>
