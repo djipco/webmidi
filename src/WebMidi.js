@@ -218,9 +218,9 @@ class WebMidi extends EventEmitter {
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
-   * 
-   * @param [options.requestMIDIAccessFunction] {function} A custom function to use to return 
-   * the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API 
+   *
+   * @param [options.requestMIDIAccessFunction] {function} A custom function to use to return
+   * the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API
    * or if you want to use a custom implementation of the Web MIDI API - probably for testing
    * purposes.
    *
@@ -363,7 +363,7 @@ class WebMidi extends EventEmitter {
       type: "enabled"
     };
 
-    // Request MIDI access (this iw where the prompt will appear)
+    // Request MIDI access (this is where the prompt will appear)
     try {
       if (typeof options.requestMIDIAccessFunction === "function") {
         this.interface = await options.requestMIDIAccessFunction(
