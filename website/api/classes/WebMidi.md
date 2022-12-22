@@ -95,6 +95,7 @@ Whether or not the execution of callbacks is currently suspended for this emitte
 
 
 ### `.flavour` {#flavour}
+**Since**: 3.0.25<br />
 **Type**: string<br />
 **Attributes**: read-only<br />
 
