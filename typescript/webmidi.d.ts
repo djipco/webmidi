@@ -6044,6 +6044,7 @@ declare class WebMidi extends EventEmitter {
    *
    * @readonly
    * @type string
+   * @since 3.0.25
    */
   get flavour(): string;
 

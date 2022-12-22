@@ -1111,6 +1111,7 @@ class WebMidi extends EventEmitter {
    *
    * @readonly
    * @type string
+   * @since 3.0.25
    */
   get flavour() {
     return "__flavour__"; // will be replaced during bundling by the correct identifier
