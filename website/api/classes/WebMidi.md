@@ -94,6 +94,18 @@ specific event.
 Whether or not the execution of callbacks is currently suspended for this emitter.
 
 
+### `.flavour` {#flavour}
+**Type**: string<br />
+**Attributes**: read-only<br />
+
+
+The flavour of the library. Can be one of:
+
+* `esm`: ECMAScript Module
+* `cjs`: CommonJS Module
+* `iife`: Immediately-Invoked Function Expression
+
+
 ### `.inputs` {#inputs}
 **Type**: Array.&lt;Input&gt;<br />
 **Attributes**: read-only<br />
@@ -417,7 +429,7 @@ WebMidi.enable().then(() => {
     |[**`options.sysex`**] | boolean<br /> |false|Whether to enable MIDI system exclusive messages or not.|
     |[**`options.validation`**] | boolean<br /> |true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting [`validation`](#validation) to `false` improves performance but should only be done once the project has been thoroughly tested with [`validation`](#validation)  turned on.|
     |[**`options.software`**] | boolean<br /> |false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
-    |[**`options.requestMIDIAccessFunction`**] | function<br /> ||A custom function to use to return  the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API  or if you want to use a custom implementation of the Web MIDI API - probably for testing purposes.|
+    |[**`options.requestMIDIAccessFunction`**] | function<br /> ||A custom function to use to return the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API or if you want to use a custom implementation of the Web MIDI API - probably for testing purposes.|
 
   </div>
 
