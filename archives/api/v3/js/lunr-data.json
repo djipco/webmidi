@@ -7189,6 +7189,25 @@
           "webmidi#eventssuspend",
           "whether"
         ],
+        "WebMidi.html#flavour": [
+          "cj",
+          "commonj",
+          "ecmascript",
+          "esm",
+          "express",
+          "flavour",
+          "function",
+          "iif",
+          "immedi",
+          "invok",
+          "librari",
+          "lt;readonly&gt",
+          "member",
+          "modul",
+          "on",
+          "string",
+          "webmidi#flavour"
+        ],
         "WebMidi.html#inputs": [
           "array",
           "array.&lt;input&gt",
@@ -7929,7 +7948,7 @@
           "within"
         ]
       },
-      "length": 278
+      "length": 279
     },
     "tokenStore": {
       "root": {
@@ -16176,6 +16195,17 @@
                     }
                   }
                 }
+              },
+              "o": {
+                "docs": {},
+                "k": {
+                  "docs": {
+                    "WebMidi.html#flavour": {
+                      "ref": "WebMidi.html#flavour",
+                      "tf": 3.571428571428571
+                    }
+                  }
+                }
               }
             },
             "f": {
@@ -16500,6 +16530,10 @@
                       "OutputChannel.html#sendAllNotesOff": {
                         "ref": "OutputChannel.html#sendAllNotesOff",
                         "tf": 2.631578947368421
+                      },
+                      "WebMidi.html#flavour": {
+                        "ref": "WebMidi.html#flavour",
+                        "tf": 3.571428571428571
                       }
                     }
                   }
@@ -16693,6 +16727,10 @@
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
                   "tf": 0.9803921568627451
+                },
+                "WebMidi.html#flavour": {
+                  "ref": "WebMidi.html#flavour",
+                  "tf": 3.571428571428571
                 }
               }
             }
@@ -16993,6 +17031,10 @@
                         "WebMidi.html#defaults": {
                           "ref": "WebMidi.html#defaults",
                           "tf": 5
+                        },
+                        "WebMidi.html#flavour": {
+                          "ref": "WebMidi.html#flavour",
+                          "tf": 3.571428571428571
                         },
                         "WebMidi.html#validation": {
                           "ref": "WebMidi.html#validation",
@@ -18150,6 +18192,10 @@
                                       },
                                       "WebMidi.html#eventNames": {
                                         "ref": "WebMidi.html#eventNames",
+                                        "tf": 33.33333333333333
+                                      },
+                                      "WebMidi.html#flavour": {
+                                        "ref": "WebMidi.html#flavour",
                                         "tf": 33.33333333333333
                                       },
                                       "WebMidi.html#inputs": {
@@ -20006,6 +20052,10 @@
                         "ref": "WebMidi.html#eventsSuspended",
                         "tf": 110
                       },
+                      "WebMidi.html#flavour": {
+                        "ref": "WebMidi.html#flavour",
+                        "tf": 110
+                      },
                       "WebMidi.html#inputs": {
                         "ref": "WebMidi.html#inputs",
                         "tf": 110
@@ -21118,6 +21168,10 @@
                     "WebMidi.html": {
                       "ref": "WebMidi.html",
                       "tf": 1.9607843137254901
+                    },
+                    "WebMidi.html#flavour": {
+                      "ref": "WebMidi.html#flavour",
+                      "tf": 7.142857142857142
                     }
                   },
                   "a": {
@@ -27854,6 +27908,32 @@
                             }
                           }
                         },
+                        "f": {
+                          "docs": {},
+                          "l": {
+                            "docs": {},
+                            "a": {
+                              "docs": {},
+                              "v": {
+                                "docs": {},
+                                "o": {
+                                  "docs": {},
+                                  "u": {
+                                    "docs": {},
+                                    "r": {
+                                      "docs": {
+                                        "WebMidi.html#flavour": {
+                                          "ref": "WebMidi.html#flavour",
+                                          "tf": 1150
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
                         "i": {
                           "docs": {},
                           "n": {
@@ -33254,6 +33334,10 @@
                         "WebMidi.html": {
                           "ref": "WebMidi.html",
                           "tf": 0.9803921568627451
+                        },
+                        "WebMidi.html#flavour": {
+                          "ref": "WebMidi.html#flavour",
+                          "tf": 3.571428571428571
                         }
                       }
                     }
@@ -35165,6 +35249,10 @@
               "WebMidi.html": {
                 "ref": "WebMidi.html",
                 "tf": 0.9803921568627451
+              },
+              "WebMidi.html#flavour": {
+                "ref": "WebMidi.html#flavour",
+                "tf": 3.571428571428571
               }
             }
           }
@@ -36003,6 +36091,10 @@
                         "Output.html#sendSongPosition": {
                           "ref": "Output.html#sendSongPosition",
                           "tf": 2.631578947368421
+                        },
+                        "WebMidi.html#flavour": {
+                          "ref": "WebMidi.html#flavour",
+                          "tf": 3.571428571428571
                         }
                       },
                       "i": {
@@ -38529,6 +38621,42 @@
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
                   "tf": 0.9803921568627451
+                },
+                "WebMidi.html#flavour": {
+                  "ref": "WebMidi.html#flavour",
+                  "tf": 3.571428571428571
+                }
+              }
+            }
+          },
+          "c": {
+            "docs": {},
+            "m": {
+              "docs": {},
+              "a": {
+                "docs": {},
+                "s": {
+                  "docs": {},
+                  "c": {
+                    "docs": {},
+                    "r": {
+                      "docs": {},
+                      "i": {
+                        "docs": {},
+                        "p": {
+                          "docs": {},
+                          "t": {
+                            "docs": {
+                              "WebMidi.html#flavour": {
+                                "ref": "WebMidi.html#flavour",
+                                "tf": 3.571428571428571
+                              }
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
                 }
               }
             }
@@ -40843,6 +40971,10 @@
                       "Utilities.html#.toTimestamp": {
                         "ref": "Utilities.html#.toTimestamp",
                         "tf": 1.6666666666666667
+                      },
+                      "WebMidi.html#flavour": {
+                        "ref": "WebMidi.html#flavour",
+                        "tf": 33.33333333333333
                       },
                       "WebMidi.html#version": {
                         "ref": "WebMidi.html#version",
@@ -51405,6 +51537,10 @@
                 "ref": "WebMidi.html#eventNames",
                 "tf": 2.941176470588235
               },
+              "WebMidi.html#flavour": {
+                "ref": "WebMidi.html#flavour",
+                "tf": 3.571428571428571
+              },
               "WebMidi.html#time": {
                 "ref": "WebMidi.html#time",
                 "tf": 1.3513513513513513
@@ -57731,6 +57867,10 @@
                             "ref": "Utilities.html#.toTimestamp",
                             "tf": 110
                           },
+                          "WebMidi.html#flavour": {
+                            "ref": "WebMidi.html#flavour",
+                            "tf": 3.571428571428571
+                          },
                           "WebMidi.html#supported": {
                             "ref": "WebMidi.html#supported",
                             "tf": 1.7241379310344827
@@ -58503,6 +58643,23 @@
                     "tf": 1.5873015873015872
                   }
                 }
+              },
+              "v": {
+                "docs": {},
+                "o": {
+                  "docs": {},
+                  "u": {
+                    "docs": {},
+                    "r": {
+                      "docs": {
+                        "WebMidi.html#flavour": {
+                          "ref": "WebMidi.html#flavour",
+                          "tf": 686.9047619047619
+                        }
+                      }
+                    }
+                  }
+                }
               }
             }
           },
@@ -58624,7 +58781,7 @@
           }
         }
       },
-      "length": 7333
+      "length": 7350
     },
     "corpusTokens": [
       "0",
@@ -59119,6 +59276,7 @@
       "easi",
       "easier",
       "eb",
+      "ecmascript",
       "effectcontrol1coars",
       "effectcontrol1fin",
       "effectcontrol2coars",
@@ -59203,6 +59361,7 @@
       "first",
       "fit",
       "flat",
+      "flavour",
       "float",
       "follow",
       "footcontrollercoars",
@@ -59376,6 +59535,7 @@
       "intern",
       "intuit",
       "invalid",
+      "invok",
       "isbrows",
       "ischannelmessag",
       "isnod",
@@ -60053,6 +60213,7 @@
       "webmidi#eventmap",
       "webmidi#eventnam",
       "webmidi#eventssuspend",
+      "webmidi#flavour",
       "webmidi#getinputbyid",
       "webmidi#getinputbynam",
       "webmidi#getlisten",
@@ -62661,6 +62822,16 @@
       "tags": "WebMidi#eventsSuspended eventsSuspended",
       "summary": "",
       "description": "Whether or not the execution of callbacks is currently suspended for this emitter."
+    },
+    "WebMidi.html#flavour": {
+      "id": "WebMidi.html#flavour",
+      "kind": "member",
+      "title": "&lt;readonly&gt; flavour :string",
+      "longname": "WebMidi#flavour",
+      "name": "flavour",
+      "tags": "WebMidi#flavour flavour",
+      "summary": "",
+      "description": "The flavour of the library. Can be one of: esm: ECMAScript Module cjs: CommonJS Module iife: Immediately-Invoked Function Expression"
     },
     "WebMidi.html#inputs": {
       "id": "WebMidi.html#inputs",

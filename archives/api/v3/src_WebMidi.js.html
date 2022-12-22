@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.23 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.24 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -327,9 +327,9 @@ class WebMidi extends EventEmitter {
    * @param [options.software=false] {boolean} Whether to request access to software synthesizers on
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
-   * 
-   * @param [options.requestMIDIAccessFunction] {function} A custom function to use to return 
-   * the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API 
+   *
+   * @param [options.requestMIDIAccessFunction] {function} A custom function to use to return
+   * the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API
    * or if you want to use a custom implementation of the Web MIDI API - probably for testing
    * purposes.
    *
@@ -472,7 +472,7 @@ class WebMidi extends EventEmitter {
       type: "enabled"
     };
 
-    // Request MIDI access (this iw where the prompt will appear)
+    // Request MIDI access (this is where the prompt will appear)
     try {
       if (typeof options.requestMIDIAccessFunction === "function") {
         this.interface = await options.requestMIDIAccessFunction(
@@ -1212,6 +1212,20 @@ class WebMidi extends EventEmitter {
   }
 
   /**
+   * The flavour of the library. Can be one of:
+   *
+   * * `esm`: ECMAScript Module
+   * * `cjs`: CommonJS Module
+   * * `iife`: Immediately-Invoked Function Expression
+   *
+   * @readonly
+   * @type string
+   */
+  get flavour() {
+    return "__flavour__"; // will be replaced during bundling by the correct identifier
+  }
+
+  /**
    * @private
    * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
    */
@@ -1331,8 +1345,8 @@ export {wm as WebMidi};
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.23 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on December 19th 2022 @ 9:51:06 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2022. WEBMIDI.js v3.0.24 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on December 22nd 2022 @ 12:10:58 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
