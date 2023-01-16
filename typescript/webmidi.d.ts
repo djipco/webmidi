@@ -5799,7 +5799,7 @@ declare class WebMidi extends EventEmitter {
    *
    * @async
    *
-   * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object fro
+   * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object for
    * chainability
    *
    * @throws {Error} The Web MIDI API is not supported in your environment.
