@@ -285,6 +285,37 @@ found.
 
 
 
+### `.getCcNumberByName(...)` {#getCcNumberByName}
+
+
+Returns the number of a control change message matching the specified name.
+
+
+  **Parameters**
+
+  > Signature: `getCcNumberByName(name)`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`name`** | string<br /> ||A string representing the control change message|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `string` or `undefined`<br />
+
+The matching control change number or `undefined` if no match was
+found.
+
+
+**Attributes**: static
+
+
+
 ### `.getChannelModeByNumber(...)` {#getChannelModeByNumber}
 
 **Since**: 2.0.0<br />
