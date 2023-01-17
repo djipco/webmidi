@@ -439,7 +439,7 @@ WebMidi.enable().then(() => {
 
 > Returns: `Promise.<WebMidi>`<br />
 
-The promise is fulfilled with the `WebMidi` object fro
+The promise is fulfilled with the `WebMidi` object for
 chainability
 
 
