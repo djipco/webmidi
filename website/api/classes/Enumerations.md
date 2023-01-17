@@ -23,11 +23,11 @@ events and RPN/NRPN events.
 
 ### `.CONTROL_CHANGE_MESSAGES` {#CONTROL_CHANGE_MESSAGES}
 **Since**: 3.0.26<br />
-**Type**: <br />
+**Type**: Array.&lt;Object&gt;<br />
 **Attributes**: read-only, static<br />
 
 
-Anb array of control change message objects, ordered by control number. Each object in the
+An array of control change message objects, ordered by control number. Each object in the
 array can have up to 4 properties:
 
  * `number`: control number
@@ -37,7 +37,7 @@ array can have up to 4 properties:
  * `position`: whether this controller's value should be considered an `msb` or `lsb` (if
  appropriate)
 
-Not all numbers have a perdefined control function. For those that don't, the control function
+Not all numbers have a predefined control function. For those that don't, the control function
 is identified as the word "controller" followed by the number (e.g. `controller123`).
 
 | Control Function               | Control Number |
@@ -170,13 +170,6 @@ is identified as the word "controller" followed by the number (e.g. `controller1
 | `omnimodeon`                   | 125            |
 | `monomodeon`                   | 126            |
 | `polymodeon`                   | 127            |
-
-
-  **Properties**
-
-  | Property     | Type         | Description  |
-  | ------------ | ------------ | ------------ |
-    |**``** |array||
 
 
 ### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
