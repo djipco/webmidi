@@ -22,7 +22,7 @@ events and RPN/NRPN events.
 
 
 ### `.CONTROL_CHANGE_MESSAGES` {#CONTROL_CHANGE_MESSAGES}
-**Since**: 3.0.26<br />
+**Since**: 3.1<br />
 **Type**: Array.&lt;Object&gt;<br />
 **Attributes**: read-only, static<br />
 

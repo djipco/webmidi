@@ -287,6 +287,7 @@ found.
 
 ### `.getCcNumberByName(...)` {#getCcNumberByName}
 
+**Since**: 3.1<br />
 
 Returns the number of a control change message matching the specified name.
 

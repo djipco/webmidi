@@ -641,6 +641,292 @@ Event emitted when a **control change** MIDI message has been received.
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
 
+### `controlchange-allnotesoff` {#event-controlchange-allnotesoff}
+
+<a id="event:controlchange-allnotesoff"></a>
+
+
+Event emitted when a **controlchange-allnotesoff** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-allnotesoff`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-allsoundoff` {#event-controlchange-allsoundoff}
+
+<a id="event:controlchange-allsoundoff"></a>
+
+
+Event emitted when a **controlchange-allsoundoff** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-allsoundoff`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-attacktime` {#event-controlchange-attacktime}
+
+<a id="event:controlchange-attacktime"></a>
+
+
+Event emitted when a **controlchange-attacktime** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-attacktime`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-balancecoarse` {#event-controlchange-balancecoarse}
+
+<a id="event:controlchange-balancecoarse"></a>
+
+
+Event emitted when a **controlchange-balancecoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-balancecoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-balancefine` {#event-controlchange-balancefine}
+
+<a id="event:controlchange-balancefine"></a>
+
+
+Event emitted when a **controlchange-balancefine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-balancefine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-bankselectcoarse` {#event-controlchange-bankselectcoarse}
+
+<a id="event:controlchange-bankselectcoarse"></a>
+
+
+Event emitted when a **controlchange-bankselectcoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-bankselectcoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-bankselectfine` {#event-controlchange-bankselectfine}
+
+<a id="event:controlchange-bankselectfine"></a>
+
+
+Event emitted when a **controlchange-bankselectfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-bankselectfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-breathcontrollercoarse` {#event-controlchange-breathcontrollercoarse}
+
+<a id="event:controlchange-breathcontrollercoarse"></a>
+
+
+Event emitted when a **controlchange-breathcontrollercoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-breathcontrollercoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-breathcontrollerfine` {#event-controlchange-breathcontrollerfine}
+
+<a id="event:controlchange-breathcontrollerfine"></a>
+
+
+Event emitted when a **controlchange-breathcontrollerfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-breathcontrollerfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-brightness` {#event-controlchange-brightness}
+
+<a id="event:controlchange-brightness"></a>
+
+
+Event emitted when a **controlchange-brightness** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-brightness`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-channelvolumefine` {#event-controlchange-channelvolumefine}
+
+<a id="event:controlchange-channelvolumefine"></a>
+
+
+Event emitted when a **controlchange-channelvolumefine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-channelvolumefine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
 ### `controlchange-controllerxxx` {#event-controlchange-controllerxxx}
 
 <a id="event:controlchange-controllerxxx"></a>
@@ -658,6 +944,1488 @@ controller number (0-127).
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`controlchange-controllerxxx`|
   |**`subtype`** |string|The type of control change message that was received.|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-damperpedal` {#event-controlchange-damperpedal}
+
+<a id="event:controlchange-damperpedal"></a>
+
+
+Event emitted when a **controlchange-damperpedal** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-damperpedal`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-datadecrement` {#event-controlchange-datadecrement}
+
+<a id="event:controlchange-datadecrement"></a>
+
+
+Event emitted when a **controlchange-datadecrement** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-datadecrement`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-dataentrycoarse` {#event-controlchange-dataentrycoarse}
+
+<a id="event:controlchange-dataentrycoarse"></a>
+
+
+Event emitted when a **controlchange-dataentrycoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-dataentrycoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-dataentryfine` {#event-controlchange-dataentryfine}
+
+<a id="event:controlchange-dataentryfine"></a>
+
+
+Event emitted when a **controlchange-dataentryfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-dataentryfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-dataincrement` {#event-controlchange-dataincrement}
+
+<a id="event:controlchange-dataincrement"></a>
+
+
+Event emitted when a **controlchange-dataincrement** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-dataincrement`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-decaytime` {#event-controlchange-decaytime}
+
+<a id="event:controlchange-decaytime"></a>
+
+
+Event emitted when a **controlchange-decaytime** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-decaytime`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effect1depth` {#event-controlchange-effect1depth}
+
+<a id="event:controlchange-effect1depth"></a>
+
+
+Event emitted when a **controlchange-effect1depth** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effect1depth`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effect2depth` {#event-controlchange-effect2depth}
+
+<a id="event:controlchange-effect2depth"></a>
+
+
+Event emitted when a **controlchange-effect2depth** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effect2depth`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effect3depth` {#event-controlchange-effect3depth}
+
+<a id="event:controlchange-effect3depth"></a>
+
+
+Event emitted when a **controlchange-effect3depth** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effect3depth`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effect4depth` {#event-controlchange-effect4depth}
+
+<a id="event:controlchange-effect4depth"></a>
+
+
+Event emitted when a **controlchange-effect4depth** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effect4depth`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effect5depth` {#event-controlchange-effect5depth}
+
+<a id="event:controlchange-effect5depth"></a>
+
+
+Event emitted when a **controlchange-effect5depth** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effect5depth`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effectcontrol1coarse` {#event-controlchange-effectcontrol1coarse}
+
+<a id="event:controlchange-effectcontrol1coarse"></a>
+
+
+Event emitted when a **controlchange-effectcontrol1coarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effectcontrol1coarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effectcontrol1fine` {#event-controlchange-effectcontrol1fine}
+
+<a id="event:controlchange-effectcontrol1fine"></a>
+
+
+Event emitted when a **controlchange-effectcontrol1fine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effectcontrol1fine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effectcontrol2coarse` {#event-controlchange-effectcontrol2coarse}
+
+<a id="event:controlchange-effectcontrol2coarse"></a>
+
+
+Event emitted when a **controlchange-effectcontrol2coarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effectcontrol2coarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-effectcontrol2fine` {#event-controlchange-effectcontrol2fine}
+
+<a id="event:controlchange-effectcontrol2fine"></a>
+
+
+Event emitted when a **controlchange-effectcontrol2fine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-effectcontrol2fine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-expressioncoarse` {#event-controlchange-expressioncoarse}
+
+<a id="event:controlchange-expressioncoarse"></a>
+
+
+Event emitted when a **controlchange-expressioncoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-expressioncoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-expressionfine` {#event-controlchange-expressionfine}
+
+<a id="event:controlchange-expressionfine"></a>
+
+
+Event emitted when a **controlchange-expressionfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-expressionfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-footcontrollercoarse` {#event-controlchange-footcontrollercoarse}
+
+<a id="event:controlchange-footcontrollercoarse"></a>
+
+
+Event emitted when a **controlchange-footcontrollercoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-footcontrollercoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-footcontrollerfine` {#event-controlchange-footcontrollerfine}
+
+<a id="event:controlchange-footcontrollerfine"></a>
+
+
+Event emitted when a **controlchange-footcontrollerfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-footcontrollerfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller1` {#event-controlchange-generalpurposecontroller1}
+
+<a id="event:controlchange-generalpurposecontroller1"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller1** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller1`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller2` {#event-controlchange-generalpurposecontroller2}
+
+<a id="event:controlchange-generalpurposecontroller2"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller2** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller2`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller3` {#event-controlchange-generalpurposecontroller3}
+
+<a id="event:controlchange-generalpurposecontroller3"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller3** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller3`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller4` {#event-controlchange-generalpurposecontroller4}
+
+<a id="event:controlchange-generalpurposecontroller4"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller4** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller4`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller5` {#event-controlchange-generalpurposecontroller5}
+
+<a id="event:controlchange-generalpurposecontroller5"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller5** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller5`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller6` {#event-controlchange-generalpurposecontroller6}
+
+<a id="event:controlchange-generalpurposecontroller6"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller6** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller6`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller7` {#event-controlchange-generalpurposecontroller7}
+
+<a id="event:controlchange-generalpurposecontroller7"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller7** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller7`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-generalpurposecontroller8` {#event-controlchange-generalpurposecontroller8}
+
+<a id="event:controlchange-generalpurposecontroller8"></a>
+
+
+Event emitted when a **controlchange-generalpurposecontroller8** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-generalpurposecontroller8`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-highresolutionvelocityprefix` {#event-controlchange-highresolutionvelocityprefix}
+
+<a id="event:controlchange-highresolutionvelocityprefix"></a>
+
+
+Event emitted when a **controlchange-highresolutionvelocityprefix** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-highresolutionvelocityprefix`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-hold2` {#event-controlchange-hold2}
+
+<a id="event:controlchange-hold2"></a>
+
+
+Event emitted when a **controlchange-hold2** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-hold2`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-legatopedal` {#event-controlchange-legatopedal}
+
+<a id="event:controlchange-legatopedal"></a>
+
+
+Event emitted when a **controlchange-legatopedal** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-legatopedal`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-localcontrol` {#event-controlchange-localcontrol}
+
+<a id="event:controlchange-localcontrol"></a>
+
+
+Event emitted when a **controlchange-localcontrol** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-localcontrol`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-modulationwheelcoarse` {#event-controlchange-modulationwheelcoarse}
+
+<a id="event:controlchange-modulationwheelcoarse"></a>
+
+
+Event emitted when a **controlchange-modulationwheelcoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-modulationwheelcoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-modulationwheelfine` {#event-controlchange-modulationwheelfine}
+
+<a id="event:controlchange-modulationwheelfine"></a>
+
+
+Event emitted when a **controlchange-modulationwheelfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-modulationwheelfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-monomodeon` {#event-controlchange-monomodeon}
+
+<a id="event:controlchange-monomodeon"></a>
+
+
+Event emitted when a **controlchange-monomodeon** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-monomodeon`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-nonregisteredparametercoarse` {#event-controlchange-nonregisteredparametercoarse}
+
+<a id="event:controlchange-nonregisteredparametercoarse"></a>
+
+
+Event emitted when a **controlchange-nonregisteredparametercoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-nonregisteredparametercoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-nonregisteredparameterfine` {#event-controlchange-nonregisteredparameterfine}
+
+<a id="event:controlchange-nonregisteredparameterfine"></a>
+
+
+Event emitted when a **controlchange-nonregisteredparameterfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-nonregisteredparameterfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-omnimodeoff` {#event-controlchange-omnimodeoff}
+
+<a id="event:controlchange-omnimodeoff"></a>
+
+
+Event emitted when a **controlchange-omnimodeoff** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-omnimodeoff`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-omnimodeon` {#event-controlchange-omnimodeon}
+
+<a id="event:controlchange-omnimodeon"></a>
+
+
+Event emitted when a **controlchange-omnimodeon** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-omnimodeon`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-pancoarse` {#event-controlchange-pancoarse}
+
+<a id="event:controlchange-pancoarse"></a>
+
+
+Event emitted when a **controlchange-pancoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-pancoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-panfine` {#event-controlchange-panfine}
+
+<a id="event:controlchange-panfine"></a>
+
+
+Event emitted when a **controlchange-panfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-panfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-polymodeon` {#event-controlchange-polymodeon}
+
+<a id="event:controlchange-polymodeon"></a>
+
+
+Event emitted when a **controlchange-polymodeon** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-polymodeon`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-portamento` {#event-controlchange-portamento}
+
+<a id="event:controlchange-portamento"></a>
+
+
+Event emitted when a **controlchange-portamento** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-portamento`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-portamentocontrol` {#event-controlchange-portamentocontrol}
+
+<a id="event:controlchange-portamentocontrol"></a>
+
+
+Event emitted when a **controlchange-portamentocontrol** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-portamentocontrol`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-portamentotimecoarse` {#event-controlchange-portamentotimecoarse}
+
+<a id="event:controlchange-portamentotimecoarse"></a>
+
+
+Event emitted when a **controlchange-portamentotimecoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-portamentotimecoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-portamentotimefine` {#event-controlchange-portamentotimefine}
+
+<a id="event:controlchange-portamentotimefine"></a>
+
+
+Event emitted when a **controlchange-portamentotimefine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-portamentotimefine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-registeredparametercoarse` {#event-controlchange-registeredparametercoarse}
+
+<a id="event:controlchange-registeredparametercoarse"></a>
+
+
+Event emitted when a **controlchange-registeredparametercoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-registeredparametercoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-registeredparameterfine` {#event-controlchange-registeredparameterfine}
+
+<a id="event:controlchange-registeredparameterfine"></a>
+
+
+Event emitted when a **controlchange-registeredparameterfine** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-registeredparameterfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-releasetime` {#event-controlchange-releasetime}
+
+<a id="event:controlchange-releasetime"></a>
+
+
+Event emitted when a **controlchange-releasetime** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-releasetime`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-resetallcontrollers` {#event-controlchange-resetallcontrollers}
+
+<a id="event:controlchange-resetallcontrollers"></a>
+
+
+Event emitted when a **controlchange-resetallcontrollers** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-resetallcontrollers`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-resonance` {#event-controlchange-resonance}
+
+<a id="event:controlchange-resonance"></a>
+
+
+Event emitted when a **controlchange-resonance** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-resonance`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-softpedal` {#event-controlchange-softpedal}
+
+<a id="event:controlchange-softpedal"></a>
+
+
+Event emitted when a **controlchange-softpedal** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-softpedal`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-sostenuto` {#event-controlchange-sostenuto}
+
+<a id="event:controlchange-sostenuto"></a>
+
+
+Event emitted when a **controlchange-sostenuto** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-sostenuto`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-soundvariation` {#event-controlchange-soundvariation}
+
+<a id="event:controlchange-soundvariation"></a>
+
+
+Event emitted when a **controlchange-soundvariation** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-soundvariation`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-vibratodelay` {#event-controlchange-vibratodelay}
+
+<a id="event:controlchange-vibratodelay"></a>
+
+
+Event emitted when a **controlchange-vibratodelay** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-vibratodelay`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-vibratodepth` {#event-controlchange-vibratodepth}
+
+<a id="event:controlchange-vibratodepth"></a>
+
+
+Event emitted when a **controlchange-vibratodepth** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-vibratodepth`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-vibratorate` {#event-controlchange-vibratorate}
+
+<a id="event:controlchange-vibratorate"></a>
+
+
+Event emitted when a **controlchange-vibratorate** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-vibratorate`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-volumecoarse` {#event-controlchange-volumecoarse}
+
+<a id="event:controlchange-volumecoarse"></a>
+
+
+Event emitted when a **controlchange-volumecoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-volumecoarse`|
   |**`target`** |InputChannel|The object that dispatched the event.|
   |**`port`** |Input|The `Input` that triggered the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
@@ -816,8 +2584,8 @@ messages:
 
   * `nrpn-dataentrycoarse`
   * `nrpn-dataentryfine`
-  * `nrpn-databuttonincrement`
-  * `nrpn-databuttondecrement`
+  * `nrpn-dataincrement`
+  * `nrpn-datadecrement`
 
 The parameter to which the message applies can be found in the event's `parameter` property.
 
@@ -840,14 +2608,14 @@ The parameter to which the message applies can be found in the event's `paramete
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `nrpn-databuttondecrement` {#event-nrpn-databuttondecrement}
+### `nrpn-datadecrement` {#event-nrpn-datadecrement}
 
-<a id="event:nrpn-databuttondecrement"></a>
+<a id="event:nrpn-datadecrement"></a>
 
 
-Event emitted when an **NRPN data button decrement** message is received on the input. The
-specific parameter to which the message applies can be found in the event's `parameter`
-property. It is one of the ones defined in
+Event emitted when an **NRPN data decrement** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
 [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
 
 
@@ -856,35 +2624,7 @@ property. It is one of the ones defined in
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`nrpn-databuttondecrement`|
-  |**`target`** |InputChannel|The object that dispatched the event.|
-  |**`port`** |Input|The `Input` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
-  |**`parameter`** |string|The registered parameter's name|
-  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `nrpn-databuttonincrement` {#event-nrpn-databuttonincrement}
-
-<a id="event:nrpn-databuttonincrement"></a>
-
-
-Event emitted when an **NRPN data button increment** message is received on the input. The
-specific parameter to which the message applies can be found in the event's `parameter`
-property. It is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`nrpn-databuttonincrement`|
+  |**`type`** |string|`nrpn-datadecrement`|
   |**`target`** |InputChannel|The object that dispatched the event.|
   |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -941,6 +2681,34 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`nrpn-dataentryfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`parameter`** |string|The registered parameter's name|
+  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
+
+### `nrpn-dataincrement` {#event-nrpn-dataincrement}
+
+<a id="event:nrpn-dataincrement"></a>
+
+
+Event emitted when an **NRPN data increment** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
+[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`nrpn-dataincrement`|
   |**`target`** |InputChannel|The object that dispatched the event.|
   |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -1048,8 +2816,8 @@ messages:
 
   * `rpn-dataentrycoarse`
   * `rpn-dataentryfine`
-  * `rpn-databuttonincrement`
-  * `rpn-databuttondecrement`
+  * `rpn-dataincrement`
+  * `rpn-datadecrement`
 
 The parameter to which the message applies can be found in the event's `parameter` property.
 It is one of the ones defined in
@@ -1074,14 +2842,14 @@ It is one of the ones defined in
   |**`rawValue`** |number|The value as received (0-127)|
 
 
-### `rpn-databuttondecrement` {#event-rpn-databuttondecrement}
+### `rpn-datadecrement` {#event-rpn-datadecrement}
 
-<a id="event:rpn-databuttondecrement"></a>
+<a id="event:rpn-datadecrement"></a>
 
 
-Event emitted when an **RPN data button decrement** message is received on the input. The
-specific parameter to which the message applies can be found in the event's `parameter`
-property. It is one of the ones defined in
+Event emitted when an **RPN data decrement** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
 [`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
 
 
@@ -1090,35 +2858,7 @@ property. It is one of the ones defined in
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`rpn-databuttondecrement`|
-  |**`target`** |InputChannel|The object that dispatched the event.|
-  |**`port`** |Input|The `Input` that triggered the event.|
-  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
-  |**`parameter`** |string|The registered parameter's name|
-  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
-  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
-  |**`value`** |number|The received value as a normalized number between 0 and 1.|
-  |**`rawValue`** |number|The value as received (0-127)|
-
-
-### `rpn-databuttonincrement` {#event-rpn-databuttonincrement}
-
-<a id="event:rpn-databuttonincrement"></a>
-
-
-Event emitted when an **RPN data button increment** message is received on the input. The
-specific parameter to which the message applies can be found in the event's `parameter`
-property. It is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
-
-
-
-**Event Properties**
-
-| Property                 | Type                     | Description              |
-| ------------------------ | ------------------------ | ------------------------ |
-  |**`type`** |string|`rpn-databuttonincrement`|
+  |**`type`** |string|`rpn-datadecrement`|
   |**`target`** |InputChannel|The object that dispatched the event.|
   |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
@@ -1175,6 +2915,34 @@ property. It is one of the ones defined in
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`type`** |string|`rpn-dataentryfine`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`parameter`** |string|The registered parameter's name|
+  |**`parameterMsb`** |number|The MSB portion of the registered parameter (0-127)|
+  |**`parameterLsb:`** |number|The LSB portion of the registered parameter (0-127)|
+  |**`value`** |number|The received value as a normalized number between 0 and 1.|
+  |**`rawValue`** |number|The value as received (0-127)|
+
+
+### `rpn-dataincrement` {#event-rpn-dataincrement}
+
+<a id="event:rpn-dataincrement"></a>
+
+
+Event emitted when an **RPN data increment** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
+[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`rpn-dataincrement`|
   |**`target`** |InputChannel|The object that dispatched the event.|
   |**`port`** |Input|The `Input` that triggered the event.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
