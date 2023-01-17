@@ -27,20 +27,20 @@ events and RPN/NRPN events.
 **Attributes**: read-only, static<br />
 
 
-An array of control change message objects, ordered by control number. Each object in the
-array can have up to 4 properties:
+An array of objects, ordered by control number, describing control change messages. Each object
+in the array can have up to 4 properties:
 
- * `number`: control number
- * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) taht can be
- listened to
- * `description`: user-friendly representation of the controller's purpose
+ * `number`: MIDI control number (0-127);
+ * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
+ listened to;
+ * `description`: user-friendly description of the controller's purpose;
  * `position`: whether this controller's value should be considered an `msb` or `lsb` (if
- appropriate)
+ appropriate).
 
-Not all numbers have a predefined control function. For those that don't, the control function
-is identified as the word "controller" followed by the number (e.g. `controller123`).
+Not all controllers have a predefined function. For those that don't, name is the word
+"controller" followed by the number (e.g. `controller112`).
 
-| Control Function               | Control Number |
+| Event name                     | Control Number |
 |--------------------------------|----------------|
 | `bankselectcoarse`             | 0              |
 | `modulationwheelcoarse`        | 1              |
