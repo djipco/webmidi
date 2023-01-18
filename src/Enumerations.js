@@ -65,6 +65,7 @@ export class Enumerations {
    *
    * @type {number[]}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get CHANNEL_NUMBERS() {
@@ -108,6 +109,7 @@ export class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get CHANNEL_MODE_MESSAGES() {
@@ -1203,6 +1205,7 @@ export class Enumerations {
    *
    * @enum {Object.<string, number[]>}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get REGISTERED_PARAMETERS() {
@@ -1294,6 +1297,7 @@ export class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get SYSTEM_MESSAGES() {
