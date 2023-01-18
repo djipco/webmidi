@@ -397,7 +397,8 @@ export class InputChannel extends EventEmitter {
       event.controller = {
         number: data1,
         name: Enumerations.CONTROL_CHANGE_MESSAGES[data1].name,
-        description: Enumerations.CONTROL_CHANGE_MESSAGES[data1].description
+        description: Enumerations.CONTROL_CHANGE_MESSAGES[data1].description,
+        position: Enumerations.CONTROL_CHANGE_MESSAGES[data1].position,
       };
 
       event.subtype = event.controller.name || "controller" + data1;
@@ -436,6 +437,58 @@ export class InputChannel extends EventEmitter {
       this.emit(numberedEvent.type, numberedEvent);
 
       /**
+       * Event emitted when a **controlchange-bankselectcoarse** MIDI message has been
+       * received.
+       *
+       * @event InputChannel#controlchange-bankselectcoarse
+       *
+       * @type {object}
+       * @property {string} type `controlchange-bankselectcoarse`
+       *
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       *
+       * @property {object} controller
+       * @property {object} controller.number The number of the controller.
+       * @property {object} controller.name The usual name or function of the controller.
+       * @property {object} controller.description A user-friendly representation of the
+       * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
+       * @property {number} value The value expressed as a float between 0 and 1.
+       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+       */
+
+      /**
+       * Event emitted when a **controlchange-modulationwheelcoarse** MIDI message has been
+       * received.
+       *
+       * @event InputChannel#controlchange-modulationwheelcoarse
+       *
+       * @type {object}
+       * @property {string} type `controlchange-modulationwheelcoarse`
+       *
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       *
+       * @property {object} controller
+       * @property {object} controller.number The number of the controller.
+       * @property {object} controller.name The usual name or function of the controller.
+       * @property {object} controller.description A user-friendly representation of the
+       * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
+       * @property {number} value The value expressed as a float between 0 and 1.
+       * @property {number} rawValue The value expressed as an integer (between 0 and 127).
+       */
+
+      /**
        * Event emitted when a **controlchange-breathcontrollercoarse** MIDI message has been
        * received.
        *
@@ -456,6 +509,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -481,6 +535,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -506,6 +561,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -531,6 +587,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -556,6 +613,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -581,6 +639,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -606,6 +665,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -631,6 +691,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -656,6 +717,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -681,6 +743,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -706,6 +769,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -731,6 +795,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -756,6 +821,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -781,6 +847,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -806,6 +873,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -831,6 +899,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -856,6 +925,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -881,6 +951,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -906,6 +977,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -931,6 +1003,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -956,6 +1029,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -981,6 +1055,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1006,6 +1081,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1031,6 +1107,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1056,6 +1133,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1081,6 +1159,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1106,6 +1185,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1131,6 +1211,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1156,6 +1237,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1181,6 +1263,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1206,6 +1289,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1231,6 +1315,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1256,6 +1341,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1281,6 +1367,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1306,6 +1393,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1331,6 +1419,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1356,6 +1445,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1381,6 +1471,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1406,6 +1497,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1431,6 +1523,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1456,6 +1549,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1481,6 +1575,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1506,6 +1601,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1531,6 +1627,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1556,6 +1653,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1581,6 +1679,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1606,6 +1705,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1631,6 +1731,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1656,6 +1757,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1681,6 +1783,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1706,6 +1809,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1731,6 +1835,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1756,6 +1861,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1781,6 +1887,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1806,6 +1913,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1831,6 +1939,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1856,6 +1965,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1881,6 +1991,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1906,6 +2017,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1931,6 +2043,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1956,6 +2069,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -1981,6 +2095,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -2006,6 +2121,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -2031,6 +2147,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -2056,6 +2173,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */
@@ -2081,6 +2199,7 @@ export class InputChannel extends EventEmitter {
        * @property {object} controller.name The usual name or function of the controller.
        * @property {object} controller.description A user-friendly representation of the
        * controller's default function
+       * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
        * @property {number} value The value expressed as a float between 0 and 1.
        * @property {number} rawValue The value expressed as an integer (between 0 and 127).
        */

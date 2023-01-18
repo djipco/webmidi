@@ -6144,6 +6144,9 @@ export interface MessageEvent extends PortEvent {
  * @property {object} controller
  * @property {string} controller.name The name of the controller
  * @property {number} controller.number The number of the controller (between 0-127)
+ * @property {string} controller.description Uesr-friendly representation of the controller's
+ * default function.
+ * @property {string} controller.position Whether the controller is meant to be an `msb` or `lsb`
  * @property {string} [subtype] The actual controller event type
  */
 export interface ControlChangeMessageEvent extends MessageEvent {
@@ -6152,6 +6155,7 @@ export interface ControlChangeMessageEvent extends MessageEvent {
     name: string;
     number: number;
     description: string;
+    position: string;
   };
   port: Input;
   subtype?: string;
