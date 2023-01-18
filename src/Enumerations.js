@@ -1232,6 +1232,7 @@ export class Enumerations {
    * @enum {Object.<string, number[]>}
    * @readonly
    * @deprecated since 3.1 (use Enumerations.REGISTERED_PARAMETERS instead)
+   * @private
    * @static
    */
   static get MIDI_REGISTERED_PARAMETERS() {
@@ -1328,6 +1329,7 @@ export class Enumerations {
    * @enum {Object.<string, number>}
    * @readonly
    * @deprecated since 3.1 (use Enumerations.SYSTEM_MESSAGES instead)
+   * @private
    * @static
    */
   static get MIDI_SYSTEM_MESSAGES() {
