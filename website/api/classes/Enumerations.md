@@ -217,16 +217,6 @@ Enumeration of all MIDI channel mode message names and their associated numerica
 | `omnimodeon`          | 0x7D        | 125     |
 | `monomodeon`          | 0x7E        | 126     |
 | `polymodeon`          | 0x7F        | 127     |
-### `.MIDI_REGISTERED_PARAMETERS` {#MIDI_REGISTERED_PARAMETERS}
-**Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
-**Attributes**: static
-
-
-### `.MIDI_SYSTEM_MESSAGES` {#MIDI_SYSTEM_MESSAGES}
-**Type**: Object.&lt;string, number&gt;<br />
-**Attributes**: static
-
-
 ### `.REGISTERED_PARAMETERS` {#REGISTERED_PARAMETERS}
 **Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
 **Attributes**: static
