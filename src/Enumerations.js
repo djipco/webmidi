@@ -1,7 +1,7 @@
 /**
  * The `Enumerations` class contains enumerations and arrays of elements used throughout the
- * library. All properties are static and should be referenced using the class name. For example:
- * `Enumerations.CHANNEL_MESSAGES`.
+ * library. All its properties are static and should be referenced using the class name. For
+ * example: `Enumerations.CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -300,14 +300,14 @@ export class Enumerations {
 
   /**
    * An array of objects, ordered by control number, describing control change messages. Each object
-   * in the array can have up to 4 properties:
+   * in the array has 3 properties with some objects having a fourth one (`position`) :
    *
    *  * `number`: MIDI control number (0-127);
-   *  * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
+   *  * `name`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
    *  listened to;
    *  * `description`: user-friendly description of the controller's purpose;
-   *  * `position`: whether this controller's value should be considered an `msb` or `lsb` (if
-   *  appropriate).
+   *  * `position` (optional): whether this controller's value should be considered an `msb` or
+   *  `lsb`
    *
    * Not all controllers have a predefined function. For those that don't, name is the word
    * "controller" followed by the number (e.g. `controller112`).
@@ -443,7 +443,7 @@ export class Enumerations {
    * | `monomodeon`                   | 126            |
    * | `polymodeon`                   | 127            |
    *
-   * @type {Object[]}
+   * @type {object[]}
    * @readonly
    * @static
    * @since 3.1
