@@ -6151,6 +6151,7 @@ export interface ControlChangeMessageEvent extends MessageEvent {
   controller: {
     name: string;
     number: number;
+    description: string;
   };
   port: Input;
   subtype?: string;

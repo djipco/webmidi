@@ -306,7 +306,7 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch event for all 'controlchange' numbered subtypes", function (done) {
+  it.only("should dispatch event for all 'controlchange' numbered subtypes", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
@@ -329,6 +329,9 @@ describe("InputChannel Object", function() {
     function assert(e, index) {
       expect(e.type).to.equal(`${event}-controller${index}`);
       expect(e.controller.number).to.equal(index);
+      expect(e.controller.name).to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].name);
+      expect(e.controller.description)
+        .to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].description);
       expect(e.rawValue).to.equal(value);
       expect(e.target).to.equal(channel);
       if (index === 127) done();
@@ -364,6 +367,9 @@ describe("InputChannel Object", function() {
     function assert(e, index) {
       expect(e.type).to.equal(`${event}-` + Enumerations.CONTROL_CHANGE_MESSAGES[index].name);
       expect(e.controller.number).to.equal(index);
+      expect(e.controller.name).to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].name);
+      expect(e.controller.description)
+        .to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].description);
       expect(e.rawValue).to.equal(value);
       expect(e.target).to.equal(channel);
       if (index === 127) done();
