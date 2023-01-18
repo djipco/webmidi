@@ -3,7 +3,7 @@
 
 The `Enumerations` class contains enumerations and arrays of elements used throughout the
 library. All properties are static and should be referenced using the class name. For example:
-`Enumerations.MIDI_CHANNEL_MESSAGES`.
+`Enumerations.CHANNEL_MESSAGES`.
 
 **Since**: 3.0.0
 
@@ -19,6 +19,14 @@ library. All properties are static and should be referenced using the class name
 
 Array of channel-specific event names that can be listened for. This includes channel mode
 events and RPN/NRPN events.
+
+
+### `.CHANNEL_NUMBERS` {#CHANNEL_NUMBERS}
+**Type**: Array.&lt;number&gt;<br />
+**Attributes**: read-only, static<br />
+
+
+A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
 
 
 ### `.CONTROL_CHANGE_MESSAGES` {#CONTROL_CHANGE_MESSAGES}
@@ -172,20 +180,12 @@ Not all controllers have a predefined function. For those that don't, name is th
 | `polymodeon`                   | 127            |
 
 
-### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
-**Type**: Array.&lt;number&gt;<br />
-**Attributes**: read-only, static<br />
-
-
-A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
-
-
 
 ***
 
 ## Enums
 
-### `.MIDI_CHANNEL_MESSAGES` {#MIDI_CHANNEL_MESSAGES}
+### `.CHANNEL_MESSAGES` {#CHANNEL_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
@@ -200,7 +200,7 @@ Enumeration of all MIDI channel message names and their associated 4-bit numeric
 | `programchange`     | 0xC         | 12      |
 | `channelaftertouch` | 0xD         | 13      |
 | `pitchbend`         | 0xE         | 14      |
-### `.MIDI_CHANNEL_MODE_MESSAGES` {#MIDI_CHANNEL_MODE_MESSAGES}
+### `.CHANNEL_MODE_MESSAGES` {#CHANNEL_MODE_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
@@ -218,6 +218,16 @@ Enumeration of all MIDI channel mode message names and their associated numerica
 | `monomodeon`          | 0x7E        | 126     |
 | `polymodeon`          | 0x7F        | 127     |
 ### `.MIDI_REGISTERED_PARAMETERS` {#MIDI_REGISTERED_PARAMETERS}
+**Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
+**Attributes**: static
+
+
+### `.MIDI_SYSTEM_MESSAGES` {#MIDI_SYSTEM_MESSAGES}
+**Type**: Object.&lt;string, number&gt;<br />
+**Attributes**: static
+
+
+### `.REGISTERED_PARAMETERS` {#REGISTERED_PARAMETERS}
 **Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
 **Attributes**: static
 
@@ -243,7 +253,7 @@ there are only a limited number of them:
 | `referencedistanceratio`     | [0x3D, 0x06] |
 | `panspreadangle`             | [0x3D, 0x07] |
 | `rollangle`                  | [0x3D, 0x08] |
-### `.MIDI_SYSTEM_MESSAGES` {#MIDI_SYSTEM_MESSAGES}
+### `.SYSTEM_MESSAGES` {#SYSTEM_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 

@@ -13,7 +13,7 @@ property.
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`channelaftertouch`](#event:channelaftertouch), [`controlchange`](#event:controlchange), [`controlchange-allnotesoff`](#event:controlchange-allnotesoff), [`controlchange-allsoundoff`](#event:controlchange-allsoundoff), [`controlchange-attacktime`](#event:controlchange-attacktime), [`controlchange-balancecoarse`](#event:controlchange-balancecoarse), [`controlchange-balancefine`](#event:controlchange-balancefine), [`controlchange-bankselectcoarse`](#event:controlchange-bankselectcoarse), [`controlchange-bankselectfine`](#event:controlchange-bankselectfine), [`controlchange-breathcontrollercoarse`](#event:controlchange-breathcontrollercoarse), [`controlchange-breathcontrollerfine`](#event:controlchange-breathcontrollerfine), [`controlchange-brightness`](#event:controlchange-brightness), [`controlchange-channelvolumefine`](#event:controlchange-channelvolumefine), [`controlchange-controllerxxx`](#event:controlchange-controllerxxx), [`controlchange-damperpedal`](#event:controlchange-damperpedal), [`controlchange-datadecrement`](#event:controlchange-datadecrement), [`controlchange-dataentrycoarse`](#event:controlchange-dataentrycoarse), [`controlchange-dataentryfine`](#event:controlchange-dataentryfine), [`controlchange-dataincrement`](#event:controlchange-dataincrement), [`controlchange-decaytime`](#event:controlchange-decaytime), [`controlchange-effect1depth`](#event:controlchange-effect1depth), [`controlchange-effect2depth`](#event:controlchange-effect2depth), [`controlchange-effect3depth`](#event:controlchange-effect3depth), [`controlchange-effect4depth`](#event:controlchange-effect4depth), [`controlchange-effect5depth`](#event:controlchange-effect5depth), [`controlchange-effectcontrol1coarse`](#event:controlchange-effectcontrol1coarse), [`controlchange-effectcontrol1fine`](#event:controlchange-effectcontrol1fine), [`controlchange-effectcontrol2coarse`](#event:controlchange-effectcontrol2coarse), [`controlchange-effectcontrol2fine`](#event:controlchange-effectcontrol2fine), [`controlchange-expressioncoarse`](#event:controlchange-expressioncoarse), [`controlchange-expressionfine`](#event:controlchange-expressionfine), [`controlchange-footcontrollercoarse`](#event:controlchange-footcontrollercoarse), [`controlchange-footcontrollerfine`](#event:controlchange-footcontrollerfine), [`controlchange-generalpurposecontroller1`](#event:controlchange-generalpurposecontroller1), [`controlchange-generalpurposecontroller2`](#event:controlchange-generalpurposecontroller2), [`controlchange-generalpurposecontroller3`](#event:controlchange-generalpurposecontroller3), [`controlchange-generalpurposecontroller4`](#event:controlchange-generalpurposecontroller4), [`controlchange-generalpurposecontroller5`](#event:controlchange-generalpurposecontroller5), [`controlchange-generalpurposecontroller6`](#event:controlchange-generalpurposecontroller6), [`controlchange-generalpurposecontroller7`](#event:controlchange-generalpurposecontroller7), [`controlchange-generalpurposecontroller8`](#event:controlchange-generalpurposecontroller8), [`controlchange-highresolutionvelocityprefix`](#event:controlchange-highresolutionvelocityprefix), [`controlchange-hold2`](#event:controlchange-hold2), [`controlchange-legatopedal`](#event:controlchange-legatopedal), [`controlchange-localcontrol`](#event:controlchange-localcontrol), [`controlchange-modulationwheelcoarse`](#event:controlchange-modulationwheelcoarse), [`controlchange-modulationwheelfine`](#event:controlchange-modulationwheelfine), [`controlchange-monomodeon`](#event:controlchange-monomodeon), [`controlchange-nonregisteredparametercoarse`](#event:controlchange-nonregisteredparametercoarse), [`controlchange-nonregisteredparameterfine`](#event:controlchange-nonregisteredparameterfine), [`controlchange-omnimodeoff`](#event:controlchange-omnimodeoff), [`controlchange-omnimodeon`](#event:controlchange-omnimodeon), [`controlchange-pancoarse`](#event:controlchange-pancoarse), [`controlchange-panfine`](#event:controlchange-panfine), [`controlchange-polymodeon`](#event:controlchange-polymodeon), [`controlchange-portamento`](#event:controlchange-portamento), [`controlchange-portamentocontrol`](#event:controlchange-portamentocontrol), [`controlchange-portamentotimecoarse`](#event:controlchange-portamentotimecoarse), [`controlchange-portamentotimefine`](#event:controlchange-portamentotimefine), [`controlchange-registeredparametercoarse`](#event:controlchange-registeredparametercoarse), [`controlchange-registeredparameterfine`](#event:controlchange-registeredparameterfine), [`controlchange-releasetime`](#event:controlchange-releasetime), [`controlchange-resetallcontrollers`](#event:controlchange-resetallcontrollers), [`controlchange-resonance`](#event:controlchange-resonance), [`controlchange-softpedal`](#event:controlchange-softpedal), [`controlchange-sostenuto`](#event:controlchange-sostenuto), [`controlchange-soundvariation`](#event:controlchange-soundvariation), [`controlchange-vibratodelay`](#event:controlchange-vibratodelay), [`controlchange-vibratodepth`](#event:controlchange-vibratodepth), [`controlchange-vibratorate`](#event:controlchange-vibratorate), [`controlchange-volumecoarse`](#event:controlchange-volumecoarse), [`event`](#event:event), [`keyaftertouch`](#event:keyaftertouch), [`localcontrol`](#event:localcontrol), [`midimessage`](#event:midimessage), [`monomode`](#event:monomode), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`nrpn`](#event:nrpn), [`nrpn-databuttondecrement`](#event:nrpn-databuttondecrement), [`nrpn-databuttonincrement`](#event:nrpn-databuttonincrement), [`nrpn-dataentrycoarse`](#event:nrpn-dataentrycoarse), [`nrpn-dataentryfine`](#event:nrpn-dataentryfine), [`omnimode`](#event:omnimode), [`pitchbend`](#event:pitchbend), [`programchange`](#event:programchange), [`resetallcontrollers`](#event:resetallcontrollers), [`rpn`](#event:rpn), [`rpn-databuttondecrement`](#event:rpn-databuttondecrement), [`rpn-databuttonincrement`](#event:rpn-databuttonincrement), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse), [`rpn-dataentryfine`](#event:rpn-dataentryfine), [`unknownmessage`](#event:unknownmessage)
+**Fires**: [`allnotesoff`](#event:allnotesoff), [`allsoundoff`](#event:allsoundoff), [`channelaftertouch`](#event:channelaftertouch), [`controlchange`](#event:controlchange), [`controlchange-allnotesoff`](#event:controlchange-allnotesoff), [`controlchange-allsoundoff`](#event:controlchange-allsoundoff), [`controlchange-attacktime`](#event:controlchange-attacktime), [`controlchange-balancecoarse`](#event:controlchange-balancecoarse), [`controlchange-balancefine`](#event:controlchange-balancefine), [`controlchange-bankselectcoarse`](#event:controlchange-bankselectcoarse), [`controlchange-bankselectfine`](#event:controlchange-bankselectfine), [`controlchange-breathcontrollercoarse`](#event:controlchange-breathcontrollercoarse), [`controlchange-breathcontrollerfine`](#event:controlchange-breathcontrollerfine), [`controlchange-brightness`](#event:controlchange-brightness), [`controlchange-channelvolumefine`](#event:controlchange-channelvolumefine), [`controlchange-controllerxxx`](#event:controlchange-controllerxxx), [`controlchange-damperpedal`](#event:controlchange-damperpedal), [`controlchange-datadecrement`](#event:controlchange-datadecrement), [`controlchange-dataentrycoarse`](#event:controlchange-dataentrycoarse), [`controlchange-dataentryfine`](#event:controlchange-dataentryfine), [`controlchange-dataincrement`](#event:controlchange-dataincrement), [`controlchange-decaytime`](#event:controlchange-decaytime), [`controlchange-effect1depth`](#event:controlchange-effect1depth), [`controlchange-effect2depth`](#event:controlchange-effect2depth), [`controlchange-effect3depth`](#event:controlchange-effect3depth), [`controlchange-effect4depth`](#event:controlchange-effect4depth), [`controlchange-effect5depth`](#event:controlchange-effect5depth), [`controlchange-effectcontrol1coarse`](#event:controlchange-effectcontrol1coarse), [`controlchange-effectcontrol1fine`](#event:controlchange-effectcontrol1fine), [`controlchange-effectcontrol2coarse`](#event:controlchange-effectcontrol2coarse), [`controlchange-effectcontrol2fine`](#event:controlchange-effectcontrol2fine), [`controlchange-expressioncoarse`](#event:controlchange-expressioncoarse), [`controlchange-expressionfine`](#event:controlchange-expressionfine), [`controlchange-footcontrollercoarse`](#event:controlchange-footcontrollercoarse), [`controlchange-footcontrollerfine`](#event:controlchange-footcontrollerfine), [`controlchange-generalpurposecontroller1`](#event:controlchange-generalpurposecontroller1), [`controlchange-generalpurposecontroller2`](#event:controlchange-generalpurposecontroller2), [`controlchange-generalpurposecontroller3`](#event:controlchange-generalpurposecontroller3), [`controlchange-generalpurposecontroller4`](#event:controlchange-generalpurposecontroller4), [`controlchange-generalpurposecontroller5`](#event:controlchange-generalpurposecontroller5), [`controlchange-generalpurposecontroller6`](#event:controlchange-generalpurposecontroller6), [`controlchange-generalpurposecontroller7`](#event:controlchange-generalpurposecontroller7), [`controlchange-generalpurposecontroller8`](#event:controlchange-generalpurposecontroller8), [`controlchange-highresolutionvelocityprefix`](#event:controlchange-highresolutionvelocityprefix), [`controlchange-hold2`](#event:controlchange-hold2), [`controlchange-legatopedal`](#event:controlchange-legatopedal), [`controlchange-localcontrol`](#event:controlchange-localcontrol), [`controlchange-modulationwheelcoarse`](#event:controlchange-modulationwheelcoarse), [`controlchange-modulationwheelfine`](#event:controlchange-modulationwheelfine), [`controlchange-monomodeon`](#event:controlchange-monomodeon), [`controlchange-nonregisteredparametercoarse`](#event:controlchange-nonregisteredparametercoarse), [`controlchange-nonregisteredparameterfine`](#event:controlchange-nonregisteredparameterfine), [`controlchange-omnimodeoff`](#event:controlchange-omnimodeoff), [`controlchange-omnimodeon`](#event:controlchange-omnimodeon), [`controlchange-pancoarse`](#event:controlchange-pancoarse), [`controlchange-panfine`](#event:controlchange-panfine), [`controlchange-polymodeon`](#event:controlchange-polymodeon), [`controlchange-portamento`](#event:controlchange-portamento), [`controlchange-portamentocontrol`](#event:controlchange-portamentocontrol), [`controlchange-portamentotimecoarse`](#event:controlchange-portamentotimecoarse), [`controlchange-portamentotimefine`](#event:controlchange-portamentotimefine), [`controlchange-registeredparametercoarse`](#event:controlchange-registeredparametercoarse), [`controlchange-registeredparameterfine`](#event:controlchange-registeredparameterfine), [`controlchange-releasetime`](#event:controlchange-releasetime), [`controlchange-resetallcontrollers`](#event:controlchange-resetallcontrollers), [`controlchange-resonance`](#event:controlchange-resonance), [`controlchange-softpedal`](#event:controlchange-softpedal), [`controlchange-sostenuto`](#event:controlchange-sostenuto), [`controlchange-soundvariation`](#event:controlchange-soundvariation), [`controlchange-vibratodelay`](#event:controlchange-vibratodelay), [`controlchange-vibratodepth`](#event:controlchange-vibratodepth), [`controlchange-vibratorate`](#event:controlchange-vibratorate), [`controlchange-volumecoarse`](#event:controlchange-volumecoarse), [`event`](#event:event), [`keyaftertouch`](#event:keyaftertouch), [`localcontrol`](#event:localcontrol), [`midimessage`](#event:midimessage), [`monomode`](#event:monomode), [`noteoff`](#event:noteoff), [`noteon`](#event:noteon), [`nrpn`](#event:nrpn), [`nrpn-datadecrement`](#event:nrpn-datadecrement), [`nrpn-dataentrycoarse`](#event:nrpn-dataentrycoarse), [`nrpn-dataentryfine`](#event:nrpn-dataentryfine), [`nrpn-dataincrement`](#event:nrpn-dataincrement), [`omnimode`](#event:omnimode), [`pitchbend`](#event:pitchbend), [`programchange`](#event:programchange), [`resetallcontrollers`](#event:resetallcontrollers), [`rpn`](#event:rpn), [`rpn-datadecrement`](#event:rpn-datadecrement), [`rpn-dataentrycoarse`](#event:rpn-dataentrycoarse), [`rpn-dataentryfine`](#event:rpn-dataentryfine), [`rpn-dataincrement`](#event:rpn-dataincrement), [`unknownmessage`](#event:unknownmessage)
 
 ### `Constructor`
 
@@ -2616,7 +2616,7 @@ The parameter to which the message applies can be found in the event's `paramete
 Event emitted when an **NRPN data decrement** message is received on the input. The specific
 parameter to which the message applies can be found in the event's `parameter` property. It
 is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2644,7 +2644,7 @@ is one of the ones defined in
 Event emitted when an **NRPN data entry coarse** message is received on the input. The
 specific parameter to which the message applies can be found in the event's `parameter`
 property. It is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2672,7 +2672,7 @@ property. It is one of the ones defined in
 Event emitted when an **NRPN data entry fine** message is received on the input. The
 specific parameter to which the message applies can be found in the event's `parameter`
 property. It is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2700,7 +2700,7 @@ property. It is one of the ones defined in
 Event emitted when an **NRPN data increment** message is received on the input. The specific
 parameter to which the message applies can be found in the event's `parameter` property. It
 is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2821,7 +2821,7 @@ messages:
 
 The parameter to which the message applies can be found in the event's `parameter` property.
 It is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2850,7 +2850,7 @@ It is one of the ones defined in
 Event emitted when an **RPN data decrement** message is received on the input. The specific
 parameter to which the message applies can be found in the event's `parameter` property. It
 is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2878,7 +2878,7 @@ is one of the ones defined in
 Event emitted when an **RPN data entry coarse** message is received on the input. The
 specific parameter to which the message applies can be found in the event's `parameter`
 property. It is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2906,7 +2906,7 @@ property. It is one of the ones defined in
 Event emitted when an **RPN data entry fine** message is received on the input. The
 specific parameter to which the message applies can be found in the event's `parameter`
 property. It is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`EnumerationsREGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2934,7 +2934,7 @@ property. It is one of the ones defined in
 Event emitted when an **RPN data increment** message is received on the input. The specific
 parameter to which the message applies can be found in the event's `parameter` property. It
 is one of the ones defined in
-[`Enumerations.MIDI_REGISTERED_PARAMETERS`](Enumerations#MIDI_REGISTERED_PARAMETERS).
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 

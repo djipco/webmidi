@@ -693,8 +693,8 @@ following common names:
 | 93     |`choruslevel`                  |
 | 94     |`celestelevel`                 |
 | 95     |`phaserlevel`                  |
-| 96     |`databuttonincrement`          |
-| 97     |`databuttondecrement`          |
+| 96     |`dataincrement`                |
+| 97     |`datadecrement`                |
 | 98     |`nonregisteredparametercoarse` |
 | 99     |`nonregisteredparameterfine`   |
 | 100    |`registeredparametercoarse`    |
