@@ -480,12 +480,12 @@ describe("Input Object", function() {
       let callbacks = [];
       let listeners = [];
 
-      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.CHANNEL_MESSAGES).forEach((key, index) => {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, callbacks[index], {channels: channels});
       });
 
-      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.CHANNEL_MESSAGES).forEach((key, index) => {
         expect(listeners[index].length).to.equal(channels.length);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });
@@ -499,12 +499,12 @@ describe("Input Object", function() {
       let callbacks = [];
       let listeners = [];
 
-      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.CHANNEL_MESSAGES).forEach((key, index) => {
         callbacks[index] = () => {};
         listeners[index] = WEBMIDI_INPUT.addListener(key, channels, callbacks[index]);
       });
 
-      Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES).forEach((key, index) => {
+      Object.keys(Enumerations.CHANNEL_MESSAGES).forEach((key, index) => {
         expect(listeners[index].length).to.equal(channels.length);
         expect(listeners[index][0].callback === callbacks[index]).to.be.true;
       });

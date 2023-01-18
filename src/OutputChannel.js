@@ -176,7 +176,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(target).forEach(n => {
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           pressure
         ],
@@ -246,8 +246,8 @@ export class OutputChannel extends EventEmitter {
    * | 93     |`choruslevel`                  |
    * | 94     |`celestelevel`                 |
    * | 95     |`phaserlevel`                  |
-   * | 96     |`databuttonincrement`          |
-   * | 97     |`databuttondecrement`          |
+   * | 96     |`dataincrement`                |
+   * | 97     |`datadecrement`                |
    * | 98     |`nonregisteredparametercoarse` |
    * | 99     |`nonregisteredparameterfine`   |
    * | 100    |`registeredparametercoarse`    |
@@ -307,7 +307,7 @@ export class OutputChannel extends EventEmitter {
   sendControlChange(controller, value, options = {}) {
 
     if (typeof controller === "string") {
-      controller = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      controller = Utilities.getCcNumberByName(controller);
     }
 
     if (!Array.isArray(value)) value = [value];
@@ -340,7 +340,7 @@ export class OutputChannel extends EventEmitter {
 
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
           controller + (index * 32),
           value[index]
         ],
@@ -548,7 +548,7 @@ export class OutputChannel extends EventEmitter {
    */
   sendRpnDecrement(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
 
@@ -558,10 +558,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.REGISTERED_PARAMETERS).forEach(p => {
         if (
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          Enumerations.REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -619,7 +619,7 @@ export class OutputChannel extends EventEmitter {
    */
   sendRpnIncrement(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
 
@@ -629,10 +629,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.REGISTERED_PARAMETERS).forEach(p => {
         if (
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          Enumerations.REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -819,7 +819,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawRelease,
         ],
@@ -958,7 +958,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawAttack
         ],
@@ -1012,7 +1012,7 @@ export class OutputChannel extends EventEmitter {
   sendChannelMode(command, value = 0, options = {}) {
 
     // Normalize command to integer
-    if (typeof command === "string") command = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[command];
+    if (typeof command === "string") command = Enumerations.CHANNEL_MODE_MESSAGES[command];
 
     if (WebMidi.validation) {
 
@@ -1032,7 +1032,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+        (Enumerations.CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
         command,
         value
       ],
@@ -1127,7 +1127,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
+        (Enumerations.CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
         Math.round(pressure * 127)
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1405,7 +1405,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
+        (Enumerations.CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
         lsb,
         msb
       ],
@@ -1499,7 +1499,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
+        (Enumerations.CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
         program
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1560,7 +1560,7 @@ export class OutputChannel extends EventEmitter {
    */
   sendRpnValue(rpn, data, options = {}) {
 
-    if (!Array.isArray(rpn)) rpn = Enumerations.MIDI_REGISTERED_PARAMETERS[rpn];
+    if (!Array.isArray(rpn)) rpn = Enumerations.REGISTERED_PARAMETERS[rpn];
 
     if (WebMidi.validation) {
 

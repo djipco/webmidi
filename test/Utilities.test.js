@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const {Utilities, WebMidi, Note} = require("../dist/cjs/webmidi.cjs.js");
+const {Utilities, WebMidi, Note, Enumerations} = require("../dist/cjs/webmidi.cjs.js");
 
 // VERIFIED
 describe("Utilities Object", function() {
@@ -184,6 +184,66 @@ describe("Utilities Object", function() {
           Utilities.toNoteNumber(item);
         }).to.throw(TypeError);
       }
+
+    });
+
+  });
+
+  describe("getCcNameByNumber()", function() {
+
+    it("should return the correct name", function () {
+
+      // Arrange
+      const items = [-1, 128, null, undefined, "test"];
+
+      // Act
+
+      // Assert
+      for (let i = 0; i <= 127; i++) {
+        expect(Utilities.getCcNameByNumber(i))
+          .to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[i].name);
+      }
+
+      items.forEach(item => {
+        expect(Utilities.getCcNameByNumber(item)).to.equal(undefined);
+      });
+
+    });
+
+  });
+
+  describe("getCcNumberByName()", function() {
+
+    it("should return the correct number", function () {
+
+      // Arrange
+      const items = [
+        {name: "bankselectcoarse", number: 0},
+        {name: "controller31", number: 31},
+        {name: "attacktime", number: 73},
+        {name: "polymodeon", number: 127},
+      ];
+
+      // Act
+
+      // Assert
+      items.forEach(item => {
+        expect(Utilities.getCcNumberByName(item.name)).to.equal(item.number);
+      });
+
+    });
+
+    it("should return undefined for invalid names", function () {
+
+      // Arrange
+      const items = ["", undefined, null, "test"];
+
+      // Act
+
+      // Assert
+      items.forEach(item => {
+        expect(Utilities.getCcNumberByName(item)).to.equal(undefined);
+      });
 
     });
 

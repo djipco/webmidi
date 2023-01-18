@@ -1132,48 +1132,48 @@ class WebMidi extends EventEmitter {
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_SYSTEM_MESSAGES instead.
+   * @deprecated since 3.0.0. Use Enumerations.SYSTEM_MESSAGES instead.
    */
   get MIDI_SYSTEM_MESSAGES() {
 
     if (this.validation) {
       console.warn(
         "The MIDI_SYSTEM_MESSAGES enum has been moved to " +
-        "Enumerations.MIDI_SYSTEM_MESSAGES."
+        "Enumerations.SYSTEM_MESSAGES."
       );
     }
 
-    return Enumerations.MIDI_SYSTEM_MESSAGES;
+    return Enumerations.SYSTEM_MESSAGES;
 
   }
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
+   * @deprecated since 3.0.0. Use Enumerations.CHANNEL_MODE_MESSAGES instead
    */
   get MIDI_CHANNEL_MODE_MESSAGES() {
 
     if (this.validation) {
       console.warn(
         "The MIDI_CHANNEL_MODE_MESSAGES enum has been moved to " +
-        "Enumerations.MIDI_CHANNEL_MODE_MESSAGES."
+        "Enumerations.CHANNEL_MODE_MESSAGES."
       );
     }
 
-    return Enumerations.MIDI_CHANNEL_MODE_MESSAGES;
+    return Enumerations.CHANNEL_MODE_MESSAGES;
 
   }
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
+   * @deprecated since 3.0.0. Use Enumerations.CONTROL_CHANGE_MESSAGES instead.
    */
   get MIDI_CONTROL_CHANGE_MESSAGES() {
 
     if (this.validation) {
       console.warn(
-        "The MIDI_CONTROL_CHANGE_MESSAGES enum has been moved to " +
-        "Enumerations.MIDI_CONTROL_CHANGE_MESSAGES."
+        "The MIDI_CONTROL_CHANGE_MESSAGES enum has been replaced by the " +
+        "Enumerations.CONTROL_CHANGE_MESSAGES array."
       );
     }
 
@@ -1182,7 +1182,7 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
+   * @deprecated since 3.0.0. Use Enumerations.REGISTERED_PARAMETERS instead.
    * @private
    */
   get MIDI_REGISTERED_PARAMETER() {
@@ -1190,11 +1190,11 @@ class WebMidi extends EventEmitter {
     if (this.validation) {
       console.warn(
         "The MIDI_REGISTERED_PARAMETER enum has been moved to " +
-        "Enumerations.MIDI_REGISTERED_PARAMETERS."
+        "Enumerations.REGISTERED_PARAMETERS."
       );
     }
 
-    return this.MIDI_REGISTERED_PARAMETERS;
+    return Enumerations.REGISTERED_PARAMETERS;
 
   }
 

@@ -127,7 +127,7 @@ export class Utilities {
 
     let channels;
 
-    if (this.validation) {
+    if (WebMidi.validation) {
 
       if (channel === "all") { // backwards-compatibility
         channels = ["all"];
@@ -509,7 +509,34 @@ export class Utilities {
    * @static
    */
   static getCcNameByNumber(number) {
-    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
+
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if (!(number >= 0 && number <= 127)) return undefined;
+    }
+
+    return Enumerations.CONTROL_CHANGE_MESSAGES[number].name;
+
+  }
+
+  /**
+   * Returns the number of a control change message matching the specified name.
+   *
+   * @param {string} name A string representing the control change message
+   * @returns {string|undefined} The matching control change number or `undefined` if no match was
+   * found.
+   *
+   * @since 3.1
+   * @static
+   */
+  static getCcNumberByName(name) {
+    let message = Enumerations.CONTROL_CHANGE_MESSAGES.find(element => element.name === name);
+    if (message) {
+      return message.number;
+    } else {
+      // Legacy (remove in v4)
+      return Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[name];
+    }
   }
 
   /**
@@ -526,11 +553,11 @@ export class Utilities {
 
     if ( !(number >= 120 && number <= 127) ) return false;
 
-    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
+    for (let cm in Enumerations.CHANNEL_MODE_MESSAGES) {
 
       if (
-        Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
-        number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]
+        Enumerations.CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === Enumerations.CHANNEL_MODE_MESSAGES[cm]
       ) {
         return cm;
       }

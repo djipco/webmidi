@@ -628,7 +628,7 @@ export declare class Listener {
 /**
  * The `Enumerations` class contains enumerations and arrays of elements used throughout the
  * library. All properties are static and should be referenced using the class name. For example:
- * `Enumerations.MIDI_CHANNEL_MESSAGES`.
+ * `Enumerations.CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -650,9 +650,10 @@ export class Enumerations {
    *
    * @enum {Object.<string, number>}
    * @readonly
+   * @since 3.1
    * @static
    */
-  static get MIDI_CHANNEL_MESSAGES(): {
+  static get CHANNEL_MESSAGES(): {
     noteoff: number;
     noteon: number;
     keyaftertouch: number;
@@ -669,7 +670,7 @@ export class Enumerations {
    * @readonly
    * @static
    */
-  static get MIDI_CHANNEL_NUMBERS(): number[];
+  static get CHANNEL_NUMBERS(): number[];
 
   /**
    * Enumeration of all MIDI channel mode message names and their associated numerical value:
@@ -690,7 +691,7 @@ export class Enumerations {
    * @readonly
    * @static
    */
-  static get MIDI_CHANNEL_MODE_MESSAGES(): {
+  static get CHANNEL_MODE_MESSAGES(): {
     allsoundoff: number;
     resetallcontrollers: number;
     localcontrol: number;
@@ -702,13 +703,20 @@ export class Enumerations {
   };
 
   /**
-   * Enumeration of all control change messages identifying the control function associated to its
-   * control number.
+   * An array of objects, ordered by control number, describing control change messages. Each object
+   * in the array can have up to 4 properties:
    *
-   * Not all numbers have a preassigned control function. For those that don't, the control function
-   * is identified as the word "controller" followed by the number (e.g. `controller123`).
+   *  * `number`: MIDI control number (0-127);
+   *  * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
+   *  listened to;
+   *  * `description`: user-friendly description of the controller's purpose;
+   *  * `position`: whether this controller's value should be considered an `msb` or `lsb` (if
+   *  appropriate).
    *
-   * | Control Function               | Control Number |
+   * Not all controllers have a predefined function. For those that don't, name is the word
+   * "controller" followed by the number (e.g. `controller112`).
+   *
+   * | Event name                     | Control Number |
    * |--------------------------------|----------------|
    * | `bankselectcoarse`             | 0              |
    * | `modulationwheelcoarse`        | 1              |
@@ -726,10 +734,10 @@ export class Enumerations {
    * | `effectcontrol2coarse`         | 13             |
    * | `controller14`                 | 14             |
    * | `controller15`                 | 15             |
-   * | `generalpurposeslider1`        | 16             |
-   * | `generalpurposeslider2`        | 17             |
-   * | `generalpurposeslider3`        | 18             |
-   * | `generalpurposeslider4`        | 19             |
+   * | `generalpurposecontroller1`    | 16             |
+   * | `generalpurposecontroller2`    | 17             |
+   * | `generalpurposecontroller3`    | 18             |
+   * | `generalpurposecontroller4`    | 19             |
    * | `controller20`                 | 20             |
    * | `controller21`                 | 21             |
    * | `controller22`                 | 22             |
@@ -749,7 +757,7 @@ export class Enumerations {
    * | `footcontrollerfine`           | 36             |
    * | `portamentotimefine`           | 37             |
    * | `dataentryfine`                | 38             |
-   * | `volumefine`                   | 39             |
+   * | `channelvolumefine`            | 39             |
    * | `balancefine`                  | 40             |
    * | `controller41`                 | 41             |
    * | `panfine`                      | 42             |
@@ -774,44 +782,44 @@ export class Enumerations {
    * | `controller61`                 | 61             |
    * | `controller62`                 | 62             |
    * | `controller63`                 | 63             |
-   * | `holdpedal`                    | 64             |
+   * | `damperpedal`                  | 64             |
    * | `portamento`                   | 65             |
-   * | `sustenutopedal`               | 66             |
+   * | `sostenuto`                    | 66             |
    * | `softpedal`                    | 67             |
    * | `legatopedal`                  | 68             |
-   * | `hold2pedal`                   | 69             |
+   * | `hold2`                        | 69             |
    * | `soundvariation`               | 70             |
    * | `resonance`                    | 71             |
-   * | `soundreleasetime`             | 72             |
-   * | `soundattacktime`              | 73             |
+   * | `releasetime`                  | 72             |
+   * | `attacktime`                   | 73             |
    * | `brightness`                   | 74             |
-   * | `soundcontrol6`                | 75             |
-   * | `soundcontrol7`                | 76             |
-   * | `soundcontrol8`                | 77             |
-   * | `soundcontrol9`                | 78             |
-   * | `soundcontrol10`               | 79             |
-   * | `generalpurposebutton1`        | 80             |
-   * | `generalpurposebutton2`        | 81             |
-   * | `generalpurposebutton3`        | 82             |
-   * | `generalpurposebutton4`        | 83             |
-   * | `controller84`                 | 84             |
+   * | `decaytime`                    | 75             |
+   * | `vibratorate`                  | 76             |
+   * | `vibratodepth`                 | 77             |
+   * | `vibratodelay`                 | 78             |
+   * | `controller79`                 | 79             |
+   * | `generalpurposecontroller5`    | 80             |
+   * | `generalpurposecontroller6`    | 81             |
+   * | `generalpurposecontroller7`    | 82             |
+   * | `generalpurposecontroller8`    | 83             |
+   * | `portamentocontrol`            | 84             |
    * | `controller85`                 | 85             |
    * | `controller86`                 | 86             |
    * | `controller87`                 | 87             |
-   * | `controller88`                 | 88             |
+   * | `highresolutionvelocityprefix` | 88             |
    * | `controller89`                 | 89             |
    * | `controller90`                 | 90             |
-   * | `reverblevel`                  | 91             |
-   * | `tremololevel`                 | 92             |
-   * | `choruslevel`                  | 93             |
-   * | `celestelevel`                 | 94             |
-   * | `phaserlevel`                  | 95             |
-   * | `databuttonincrement`          | 96             |
-   * | `databuttondecrement`          | 97             |
-   * | `nonregisteredparametercoarse` | 98             |
-   * | `nonregisteredparameterfine`   | 99             |
-   * | `registeredparametercoarse`    | 100            |
-   * | `registeredparameterfine`      | 101            |
+   * | `effect1depth`                 | 91             |
+   * | `effect2depth`                 | 92             |
+   * | `effect3depth`                 | 93             |
+   * | `effect4depth`                 | 94             |
+   * | `effect5depth`                 | 95             |
+   * | `dataincrement`                | 96             |
+   * | `datadecrement`                | 97             |
+   * | `nonregisteredparameterfine`   | 98             |
+   * | `nonregisteredparametercoarse` | 99             |
+   * | `nonregisteredparameterfine`   | 100            |
+   * | `registeredparametercoarse`    | 101            |
    * | `controller102`                | 102            |
    * | `controller103`                | 103            |
    * | `controller104`                | 104            |
@@ -839,140 +847,12 @@ export class Enumerations {
    * | `monomodeon`                   | 126            |
    * | `polymodeon`                   | 127            |
    *
-   * @enum {Object.<string, number>}
+   * @type {Object[]}
    * @readonly
    * @static
+   * @since 3.1
    */
-  static get MIDI_CONTROL_CHANGE_MESSAGES(): {
-    bankselectcoarse: number;
-    modulationwheelcoarse: number;
-    breathcontrollercoarse: number;
-    controller3: number;
-    footcontrollercoarse: number;
-    portamentotimecoarse: number;
-    dataentrycoarse: number;
-    volumecoarse: number;
-    balancecoarse: number;
-    controller9: number;
-    pancoarse: number;
-    expressioncoarse: number;
-    effectcontrol1coarse: number;
-    effectcontrol2coarse: number;
-    controller14: number;
-    controller15: number;
-    generalpurposeslider1: number;
-    generalpurposeslider2: number;
-    generalpurposeslider3: number;
-    generalpurposeslider4: number;
-    controller20: number;
-    controller21: number;
-    controller22: number;
-    controller23: number;
-    controller24: number;
-    controller25: number;
-    controller26: number;
-    controller27: number;
-    controller28: number;
-    controller29: number;
-    controller30: number;
-    controller31: number;
-    bankselectfine: number;
-    modulationwheelfine: number;
-    breathcontrollerfine: number;
-    controller35: number;
-    footcontrollerfine: number;
-    portamentotimefine: number;
-    dataentryfine: number;
-    volumefine: number;
-    balancefine: number;
-    controller41: number;
-    panfine: number;
-    expressionfine: number;
-    effectcontrol1fine: number;
-    effectcontrol2fine: number;
-    controller46: number;
-    controller47: number;
-    controller48: number;
-    controller49: number;
-    controller50: number;
-    controller51: number;
-    controller52: number;
-    controller53: number;
-    controller54: number;
-    controller55: number;
-    controller56: number;
-    controller57: number;
-    controller58: number;
-    controller59: number;
-    controller60: number;
-    controller61: number;
-    controller62: number;
-    controller63: number;
-    holdpedal: number;
-    portamento: number;
-    sustenutopedal: number;
-    softpedal: number;
-    legatopedal: number;
-    hold2pedal: number;
-    soundvariation: number;
-    resonance: number;
-    soundreleasetime: number;
-    soundattacktime: number;
-    brightness: number;
-    soundcontrol6: number;
-    soundcontrol7: number;
-    soundcontrol8: number;
-    soundcontrol9: number;
-    soundcontrol10: number;
-    generalpurposebutton1: number;
-    generalpurposebutton2: number;
-    generalpurposebutton3: number;
-    generalpurposebutton4: number;
-    controller84: number;
-    controller85: number;
-    controller86: number;
-    controller87: number;
-    controller88: number;
-    controller89: number;
-    controller90: number;
-    reverblevel: number;
-    tremololevel: number;
-    choruslevel: number;
-    celestelevel: number;
-    phaserlevel: number;
-    databuttonincrement: number;
-    databuttondecrement: number;
-    nonregisteredparametercoarse: number;
-    nonregisteredparameterfine: number;
-    registeredparametercoarse: number;
-    registeredparameterfine: number;
-    controller102: number;
-    controller103: number;
-    controller104: number;
-    controller105: number;
-    controller106: number;
-    controller107: number;
-    controller108: number;
-    controller109: number;
-    controller110: number;
-    controller111: number;
-    controller112: number;
-    controller113: number;
-    controller114: number;
-    controller115: number;
-    controller116: number;
-    controller117: number;
-    controller118: number;
-    controller119: number;
-    allsoundoff: number;
-    resetallcontrollers: number;
-    localcontrol: number;
-    allnotesoff: number;
-    omnimodeoff: number;
-    omnimodeon: number;
-    monomodeon: number;
-    polymodeon: number;
-  };
+  static get CONTROL_CHANGE_MESSAGES():object[]
 
   /**
    * Enumeration of all MIDI registered parameters and their associated pair of numerical values.
@@ -1002,7 +882,7 @@ export class Enumerations {
    * @readonly
    * @static
    */
-  static get MIDI_REGISTERED_PARAMETERS(): {
+  static get REGISTERED_PARAMETERS(): {
     pitchbendrange: number[];
     channelfinetuning: number[];
     channelcoarsetuning: number[];
@@ -1068,7 +948,7 @@ export class Enumerations {
    * @readonly
    * @static
    */
-  static get MIDI_SYSTEM_MESSAGES(): {
+  static get SYSTEM_MESSAGES(): {
     sysex: number;
     timecode: number;
     songposition: number;
@@ -1124,8 +1004,8 @@ export class Forwarder {
    * types (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to
    * be forwarded. If this option is not specified, all types of messages will be forwarded. Valid
    * messages are the ones found in either
-   * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
-   * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * [`SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES)
+   * or [`CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
    * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
    * A MIDI channel number or an array of channel numbers that the message must match in order to be
    * forwarded. By default all MIDI channels are included (`1` to `16`).
@@ -1144,8 +1024,8 @@ export class Forwarder {
   /**
    * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
    * for messages to be forwarded. By default, this array includes all
-   * [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
-   * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * [`Enumerations.SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) and
+   * [`Enumerations.CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
    * @type {string[]}
    */
   types: string[];
@@ -1249,8 +1129,8 @@ export class Input extends EventEmitter {
    * types (`noteon`, `controlchange`, etc.), that the message type must match in order to be
    * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
    * messages are the ones found in either
-   * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
-   * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * [`SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) or
+   * [`CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
    * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
    * A MIDI channel number or an array of channel numbers that the message must match in order to be
    * forwarded. By default all MIDI channels are included (`1` to `16`).
@@ -1370,16 +1250,16 @@ export class Input extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
    * @param event {string | Symbol} The type of the event.
    *
@@ -1525,16 +1405,16 @@ export class Input extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
    * @param event {string} The type of the event.
    *
@@ -1764,10 +1644,8 @@ export class Input extends EventEmitter {
  * @fires InputChannel#noteon
  * @fires InputChannel#keyaftertouch
  * @fires InputChannel#programchange
- * @fires InputChannel#event:controlchange-controllerxxx
  * @fires InputChannel#channelaftertouch
  * @fires InputChannel#pitchbend
- * @fires InputChannel#controlchange
  *
  * @fires InputChannel#allnotesoff
  * @fires InputChannel#allsoundoff
@@ -1779,13 +1657,85 @@ export class Input extends EventEmitter {
  * @fires InputChannel#event:nrpn
  * @fires InputChannel#event:nrpn-dataentrycoarse
  * @fires InputChannel#event:nrpn-dataentryfine
- * @fires InputChannel#event:nrpn-databuttonincrement
- * @fires InputChannel#event:nrpn-databuttondecrement
+ * @fires InputChannel#event:nrpn-dataincrement
+ * @fires InputChannel#event:nrpn-datadecrement
  * @fires InputChannel#event:rpn
  * @fires InputChannel#event:rpn-dataentrycoarse
  * @fires InputChannel#event:rpn-dataentryfine
- * @fires InputChannel#event:rpn-databuttonincrement
- * @fires InputChannel#event:rpn-databuttondecrement
+ * @fires InputChannel#event:rpn-dataincrement
+ * @fires InputChannel#event:rpn-datadecrement
+ *
+ * @fires InputChannel#controlchange
+ * @fires InputChannel#event:controlchange-controllerxxx
+ * @fires InputChannel#event:controlchange-bankselectcoarse
+ * @fires InputChannel#event:controlchange-modulationwheelcoarse
+ * @fires InputChannel#event:controlchange-breathcontrollercoarse
+ * @fires InputChannel#event:controlchange-footcontrollercoarse
+ * @fires InputChannel#event:controlchange-portamentotimecoarse
+ * @fires InputChannel#event:controlchange-dataentrycoarse
+ * @fires InputChannel#event:controlchange-volumecoarse
+ * @fires InputChannel#event:controlchange-balancecoarse
+ * @fires InputChannel#event:controlchange-pancoarse
+ * @fires InputChannel#event:controlchange-expressioncoarse
+ * @fires InputChannel#event:controlchange-effectcontrol1coarse
+ * @fires InputChannel#event:controlchange-effectcontrol2coarse
+ * @fires InputChannel#event:controlchange-generalpurposecontroller1
+ * @fires InputChannel#event:controlchange-generalpurposecontroller2
+ * @fires InputChannel#event:controlchange-generalpurposecontroller3
+ * @fires InputChannel#event:controlchange-generalpurposecontroller4
+ * @fires InputChannel#event:controlchange-bankselectfine
+ * @fires InputChannel#event:controlchange-modulationwheelfine
+ * @fires InputChannel#event:controlchange-breathcontrollerfine
+ * @fires InputChannel#event:controlchange-footcontrollerfine
+ * @fires InputChannel#event:controlchange-portamentotimefine
+ * @fires InputChannel#event:controlchange-dataentryfine
+ * @fires InputChannel#event:controlchange-channelvolumefine
+ * @fires InputChannel#event:controlchange-balancefine
+ * @fires InputChannel#event:controlchange-panfine
+ * @fires InputChannel#event:controlchange-expressionfine
+ * @fires InputChannel#event:controlchange-effectcontrol1fine
+ * @fires InputChannel#event:controlchange-effectcontrol2fine
+ * @fires InputChannel#event:controlchange-damperpedal
+ * @fires InputChannel#event:controlchange-portamento
+ * @fires InputChannel#event:controlchange-sostenuto
+ * @fires InputChannel#event:controlchange-softpedal
+ * @fires InputChannel#event:controlchange-legatopedal
+ * @fires InputChannel#event:controlchange-hold2
+ * @fires InputChannel#event:controlchange-soundvariation
+ * @fires InputChannel#event:controlchange-resonance
+ * @fires InputChannel#event:controlchange-releasetime
+ * @fires InputChannel#event:controlchange-attacktime
+ * @fires InputChannel#event:controlchange-brightness
+ * @fires InputChannel#event:controlchange-decaytime
+ * @fires InputChannel#event:controlchange-vibratorate
+ * @fires InputChannel#event:controlchange-vibratodepth
+ * @fires InputChannel#event:controlchange-vibratodelay
+ * @fires InputChannel#event:controlchange-generalpurposecontroller5
+ * @fires InputChannel#event:controlchange-generalpurposecontroller6
+ * @fires InputChannel#event:controlchange-generalpurposecontroller7
+ * @fires InputChannel#event:controlchange-generalpurposecontroller8
+ * @fires InputChannel#event:controlchange-portamentocontrol
+ * @fires InputChannel#event:controlchange-highresolutionvelocityprefix
+ * @fires InputChannel#event:controlchange-effect1depth
+ * @fires InputChannel#event:controlchange-effect2depth
+ * @fires InputChannel#event:controlchange-effect3depth
+ * @fires InputChannel#event:controlchange-effect4depth
+ * @fires InputChannel#event:controlchange-effect5depth
+ * @fires InputChannel#event:controlchange-dataincrement
+ * @fires InputChannel#event:controlchange-datadecrement
+ * @fires InputChannel#event:controlchange-nonregisteredparameterfine
+ * @fires InputChannel#event:controlchange-nonregisteredparametercoarse
+ * @fires InputChannel#event:controlchange-registeredparameterfine
+ * @fires InputChannel#event:controlchange-registeredparametercoarse
+ * @fires InputChannel#event:controlchange-allsoundoff
+ * @fires InputChannel#event:controlchange-resetallcontrollers
+ * @fires InputChannel#event:controlchange-localcontrol
+ * @fires InputChannel#event:controlchange-allnotesoff
+ * @fires InputChannel#event:controlchange-omnimodeoff
+ * @fires InputChannel#event:controlchange-omnimodeon
+ * @fires InputChannel#event:controlchange-monomodeon
+ * @fires InputChannel#event:controlchange-polymodeon
+ * @fires InputChannel#event:
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -1873,16 +1823,16 @@ export class InputChannel extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * **RPN** Events
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
    * @param event {string | Symbol} The type of the event.
    *
@@ -1960,16 +1910,16 @@ export class InputChannel extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * **RPN** Events
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
    * @param event {string | Symbol} The type of the event.
    *
@@ -3158,8 +3108,8 @@ export class Output extends EventEmitter {
    * | 93     |`choruslevel`                  |
    * | 94     |`celestelevel`                 |
    * | 95     |`phaserlevel`                  |
-   * | 96     |`databuttonincrement`          |
-   * | 97     |`databuttondecrement`          |
+   * | 96     |`dataincrement`          |
+   * | 97     |`datadecrement`          |
    * | 98     |`nonregisteredparametercoarse` |
    * | 99     |`nonregisteredparameterfine`   |
    * | 100    |`registeredparametercoarse`    |
@@ -4322,8 +4272,8 @@ export class OutputChannel extends EventEmitter {
    * | 93     |`choruslevel`                  |
    * | 94     |`celestelevel`                 |
    * | 95     |`phaserlevel`                  |
-   * | 96     |`databuttonincrement`          |
-   * | 97     |`databuttondecrement`          |
+   * | 96     |`dataincrement`          |
+   * | 97     |`datadecrement`          |
    * | 98     |`nonregisteredparametercoarse` |
    * | 99     |`nonregisteredparameterfine`   |
    * | 100    |`registeredparametercoarse`    |
@@ -5381,6 +5331,18 @@ export class Utilities {
   static getCcNameByNumber(number: number): string | undefined;
 
   /**
+   * Returns the number of a control change message matching the specified name.
+   *
+   * @param {string} name A string representing the control change message
+   * @returns {string|undefined} The matching control change number or `undefined` if no match was
+   * found.
+   *
+   * @since 3.1
+   * @static
+   */
+  static getCcNumberByName(name): number | undefined;
+
+  /**
    * Returns the channel mode name matching the specified number. If no match is found, the function
    * returns `false`.
    *
@@ -6223,14 +6185,14 @@ export interface NoteMessageEvent extends MessageEvent {
  * on an input channel.
  *
  *  * nrpn
- *  * nrpn-databuttondecrement
- *  * nrpn-databuttonincrement
+ *  * nrpn-datadecrement
+ *  * nrpn-dataincrement
  *  * nrpn-dataentrycoarse
  *  * nrpn-dataentryfine
  *
  *  * rpn
- *  * rpn-databuttondecrement
- *  * rpn-databuttonincrement
+ *  * rpn-datadecrement
+ *  * rpn-dataincrement
  *  * rpn-dataentrycoarse
  *  * rpn-dataentryfine
  *
@@ -6416,15 +6378,15 @@ export interface InputChannelEventMap {
 
   // NRPN
   "nrpn": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-datadecrement": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-dataincrement": (e: ParameterNumberMessageEvent) => void;
   "nrpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
   "nrpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
 
   // RPN
   "rpn": (e: ParameterNumberMessageEvent) => void;
-  "rpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
-  "rpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
+  "rpn-datadecrement": (e: ParameterNumberMessageEvent) => void;
+  "rpn-dataincrement": (e: ParameterNumberMessageEvent) => void;
   "rpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
   "rpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
 
@@ -6610,15 +6572,15 @@ export interface InputEventMap extends PortEventMap {
 
   // NRPN
   "nrpn": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
-  "nrpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-datadecrement": (e: ParameterNumberMessageEvent) => void;
+  "nrpn-dataincrement": (e: ParameterNumberMessageEvent) => void;
   "nrpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
   "nrpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
 
   // RPN
   "rpn": (e: ParameterNumberMessageEvent) => void;
-  "rpn-databuttondecrement": (e: ParameterNumberMessageEvent) => void;
-  "rpn-databuttonincrement": (e: ParameterNumberMessageEvent) => void;
+  "rpn-datadecrement": (e: ParameterNumberMessageEvent) => void;
+  "rpn-dataincrement": (e: ParameterNumberMessageEvent) => void;
   "rpn-dataentrycoarse": (e: ParameterNumberMessageEvent) => void;
   "rpn-dataentryfine": (e: ParameterNumberMessageEvent) => void;
 

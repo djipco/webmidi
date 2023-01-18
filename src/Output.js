@@ -389,14 +389,14 @@ export class Output extends EventEmitter {
     // Check if data is Uint8Array
     if (data instanceof Uint8Array) {
       const merged = new Uint8Array(1 + identification.length + data.length + 1);
-      merged[0] = Enumerations.MIDI_SYSTEM_MESSAGES.sysex;
+      merged[0] = Enumerations.SYSTEM_MESSAGES.sysex;
       merged.set(Uint8Array.from(identification), 1);
       merged.set(data, 1 + identification.length);
-      merged[merged.length - 1] = Enumerations.MIDI_SYSTEM_MESSAGES.sysexend;
+      merged[merged.length - 1] = Enumerations.SYSTEM_MESSAGES.sysexend;
       this.send(merged, {time: options.time});
     } else {
-      const merged = identification.concat(data, Enumerations.MIDI_SYSTEM_MESSAGES.sysexend);
-      this.send([Enumerations.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
+      const merged = identification.concat(data, Enumerations.SYSTEM_MESSAGES.sysexend);
+      this.send([Enumerations.SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
     }
 
     return this;
@@ -464,7 +464,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        Enumerations.MIDI_SYSTEM_MESSAGES.timecode,
+        Enumerations.SYSTEM_MESSAGES.timecode,
         value
       ],
       {time: options.time}
@@ -505,7 +505,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        Enumerations.MIDI_SYSTEM_MESSAGES.songposition,
+        Enumerations.SYSTEM_MESSAGES.songposition,
         msb,
         lsb
       ],
@@ -551,7 +551,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        Enumerations.MIDI_SYSTEM_MESSAGES.songselect,
+        Enumerations.SYSTEM_MESSAGES.songselect,
         value
       ],
       {time: options.time}
@@ -581,7 +581,7 @@ export class Output extends EventEmitter {
   sendTuneRequest(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.tunerequest],
+      [Enumerations.SYSTEM_MESSAGES.tunerequest],
       {time: options.time}
     );
 
@@ -608,7 +608,7 @@ export class Output extends EventEmitter {
   sendClock(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.clock],
+      [Enumerations.SYSTEM_MESSAGES.clock],
       {time: options.time}
     );
 
@@ -636,7 +636,7 @@ export class Output extends EventEmitter {
   sendStart(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.start],
+      [Enumerations.SYSTEM_MESSAGES.start],
       {time: options.time}
     );
 
@@ -664,7 +664,7 @@ export class Output extends EventEmitter {
   sendContinue(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.continue],
+      [Enumerations.SYSTEM_MESSAGES.continue],
       {time: options.time}
     );
 
@@ -691,7 +691,7 @@ export class Output extends EventEmitter {
   sendStop(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.stop],
+      [Enumerations.SYSTEM_MESSAGES.stop],
       {time: options.time}
     );
 
@@ -719,7 +719,7 @@ export class Output extends EventEmitter {
   sendActiveSensing(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.activesensing],
+      [Enumerations.SYSTEM_MESSAGES.activesensing],
       {time: options.time}
     );
 
@@ -746,7 +746,7 @@ export class Output extends EventEmitter {
   sendReset(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.reset],
+      [Enumerations.SYSTEM_MESSAGES.reset],
       {time: options.time}
     );
 
@@ -877,8 +877,8 @@ export class Output extends EventEmitter {
    * | 93     |`choruslevel`                  |
    * | 94     |`celestelevel`                 |
    * | 95     |`phaserlevel`                  |
-   * | 96     |`databuttonincrement`          |
-   * | 97     |`databuttondecrement`          |
+   * | 96     |`dataincrement`                |
+   * | 97     |`datadecrement`                |
    * | 98     |`nonregisteredparametercoarse` |
    * | 99     |`nonregisteredparameterfine`   |
    * | 100    |`registeredparametercoarse`    |

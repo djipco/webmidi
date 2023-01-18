@@ -434,16 +434,16 @@ export class Input extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
    * @param event {string | EventEmitter.ANY_EVENT} The type of the event.
    *
@@ -611,16 +611,16 @@ export class Input extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
    * @param event {string} The type of the event.
    *
@@ -784,8 +784,8 @@ export class Input extends EventEmitter {
    * types (`noteon`, `controlchange`, etc.), that the message type must match in order to be
    * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
    * messages are the ones found in either
-   * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
-   * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * [`SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) or
+   * [`CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
    * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
    * A MIDI channel number or an array of channel numbers that the message must match in order to be
    * forwarded. By default all MIDI channels are included (`1` to `16`).

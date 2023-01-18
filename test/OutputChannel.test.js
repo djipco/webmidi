@@ -198,7 +198,7 @@ describe("OutputChannel Object", function() {
       // Assert
       expect(
         spy.calledOnceWithExactly(
-          Enumerations.MIDI_REGISTERED_PARAMETERS["pitchbendrange"],
+          Enumerations.REGISTERED_PARAMETERS["pitchbendrange"],
           options
         )
       ).to.be.true;
@@ -435,7 +435,7 @@ describe("OutputChannel Object", function() {
       // Assert
       expect(
         spy.calledOnceWithExactly(
-          Enumerations.MIDI_REGISTERED_PARAMETERS["pitchbendrange"],
+          Enumerations.REGISTERED_PARAMETERS["pitchbendrange"],
           options
         )
       ).to.be.true;
@@ -1078,53 +1078,55 @@ describe("OutputChannel Object", function() {
         ["expressioncoarse", 11],
         ["effectcontrol1coarse", 12],
         ["effectcontrol2coarse", 13],
-        ["generalpurposeslider1", 16],
-        ["generalpurposeslider2", 17],
-        ["generalpurposeslider3", 18],
-        ["generalpurposeslider4", 19],
+        ["generalpurposecontroller1", 16],
+        ["generalpurposecontroller2", 17],
+        ["generalpurposecontroller3", 18],
+        ["generalpurposecontroller4", 19],
         ["bankselectfine", 32],
         ["modulationwheelfine", 33],
         ["breathcontrollerfine", 34],
         ["footcontrollerfine", 36],
         ["portamentotimefine", 37],
         ["dataentryfine", 38],
-        ["volumefine", 39],
+        ["channelvolumefine", 39],
         ["balancefine", 40],
         ["panfine", 42],
         ["expressionfine", 43],
         ["effectcontrol1fine", 44],
         ["effectcontrol2fine", 45],
-        ["holdpedal", 64],
+        ["damperpedal", 64],
         ["portamento", 65],
-        ["sustenutopedal", 66],
+        ["sostenuto", 66],
         ["softpedal", 67],
         ["legatopedal", 68],
-        ["hold2pedal", 69],
+        ["hold2", 69],
         ["soundvariation", 70],
         ["resonance", 71],
-        ["soundreleasetime", 72],
-        ["soundattacktime", 73],
+        ["releasetime", 72],
+        ["attacktime", 73],
         ["brightness", 74],
-        ["soundcontrol6", 75],
-        ["soundcontrol7", 76],
-        ["soundcontrol8", 77],
-        ["soundcontrol9", 78],
-        ["soundcontrol10", 79],
-        ["generalpurposebutton1", 80],
-        ["generalpurposebutton2", 81],
-        ["generalpurposebutton3", 82],
-        ["generalpurposebutton4", 83],
-        ["reverblevel", 91],
-        ["tremololevel", 92],
-        ["choruslevel", 93],
-        ["celestelevel", 94],
-        ["phaserlevel", 95],
-        ["databuttonincrement", 96],
-        ["databuttondecrement", 97],
-        ["nonregisteredparametercoarse", 98],
-        ["nonregisteredparameterfine", 99],
-        ["registeredparametercoarse", 100],
-        ["registeredparameterfine", 101],
+        ["decaytime", 75],
+        ["vibratorate", 76],
+        ["vibratodepth", 77],
+        ["vibratodelay", 78],
+        ["controller79", 79],
+        ["generalpurposecontroller5", 80],
+        ["generalpurposecontroller6", 81],
+        ["generalpurposecontroller7", 82],
+        ["generalpurposecontroller8", 83],
+        ["portamentocontrol", 84],
+        ["highresolutionvelocityprefix", 88],
+        ["effect1depth", 91],
+        ["effect2depth", 92],
+        ["effect3depth", 93],
+        ["effect4depth", 94],
+        ["effect5depth", 95],
+        ["dataincrement", 96],
+        ["datadecrement", 97],
+        ["nonregisteredparameterfine", 98],
+        ["nonregisteredparametercoarse", 99],
+        ["registeredparameterfine", 100],
+        ["registeredparametercoarse", 101],
 
         ["allsoundoff", 120],
         ["resetallcontrollers", 121],
@@ -1134,6 +1136,65 @@ describe("OutputChannel Object", function() {
         ["omnimodeon", 125],
         ["monomodeon", 126],
         ["polymodeon", 127]
+      ];
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      map.forEach(pair => WEBMIDI_OUTPUT.channels[1].sendControlChange(pair[0], 123));
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        expect(message[0]).to.equal(176);
+        expect(message[1]).to.equal(map[index][1]);
+        index++;
+
+        if (index >= map.length) {
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should properly send MIDI message for deprecated names (legacy)", function(done) {
+
+      // Arrange
+      let index = 0;
+      let map = [
+        ["generalpurposeslider1", 16],
+        ["generalpurposeslider2", 17],
+        ["generalpurposeslider3", 18],
+        ["generalpurposeslider4", 19],
+        ["volumefine", 39],
+        ["holdpedal", 64],
+        ["sustenutopedal", 66],
+        ["hold2pedal", 69],
+        ["soundreleasetime", 72],
+        ["soundattacktime", 73],
+        ["soundcontrol6", 75],
+        ["soundcontrol7", 76],
+        ["soundcontrol8", 77],
+        ["soundcontrol9", 78],
+        ["soundcontrol10", 79],
+        ["generalpurposebutton1", 80],
+        ["generalpurposebutton2", 81],
+        ["generalpurposebutton3", 82],
+        ["generalpurposebutton4", 83],
+        ["portamentocontrol", 84],
+        ["highresolutionvelocityprefix", 88],
+        ["reverblevel", 91],
+        ["tremololevel", 92],
+        ["choruslevel", 93],
+        ["celestelevel", 94],
+        ["phaserlevel", 95],
+        ["databuttonincrement", 96],
+        ["databuttondecrement", 97],
+        ["nonregisteredparameterfine", 98],
+        ["nonregisteredparametercoarse", 99],
+        ["registeredparameterfine", 100],
+        ["registeredparametercoarse", 101],
       ];
       VIRTUAL_OUTPUT.on("message", assert);
 

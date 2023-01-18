@@ -29,8 +29,8 @@ export class Forwarder {
    * types (`"noteon"`, `"controlchange"`, etc.), that the specified message must match in order to
    * be forwarded. If this option is not specified, all types of messages will be forwarded. Valid
    * messages are the ones found in either
-   * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES)
-   * or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+   * [`SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES)
+   * or [`CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
    * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
    * A MIDI channel number or an array of channel numbers that the message must match in order to be
    * forwarded. By default all MIDI channels are included (`1` to `16`).
@@ -46,13 +46,13 @@ export class Forwarder {
     /**
      * An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
      * for messages to be forwarded. By default, this array includes all
-     * [`Enumerations.MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) and
-     * [`Enumerations.MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
+     * [`Enumerations.SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) and
+     * [`Enumerations.CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
      * @type {string[]}
      */
     this.types = [
-      ...Object.keys(Enumerations.MIDI_SYSTEM_MESSAGES),
-      ...Object.keys(Enumerations.MIDI_CHANNEL_MESSAGES)
+      ...Object.keys(Enumerations.SYSTEM_MESSAGES),
+      ...Object.keys(Enumerations.CHANNEL_MESSAGES)
     ];
 
     /**
@@ -87,8 +87,8 @@ export class Forwarder {
 
         options.types.forEach(type => {
           if (
-            ! Enumerations.MIDI_SYSTEM_MESSAGES.hasOwnProperty(type) &&
-            ! Enumerations.MIDI_CHANNEL_MESSAGES.hasOwnProperty(type)
+            ! Enumerations.SYSTEM_MESSAGES.hasOwnProperty(type) &&
+            ! Enumerations.CHANNEL_MESSAGES.hasOwnProperty(type)
           ) {
             throw new TypeError("Type must be a valid message type.");
           }
