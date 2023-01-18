@@ -37,7 +37,7 @@ A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
 
 
 An array of objects, ordered by control number, describing control change messages. Each object
-in the array can have up to 4 properties:
+in the array has 3 properties with some objects having a fourth one (`position`) :
 
  * `number`: MIDI control number (0-127);
  * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
