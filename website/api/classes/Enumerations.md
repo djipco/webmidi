@@ -32,7 +32,7 @@ A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
 
 ### `.CONTROL_CHANGE_MESSAGES` {#CONTROL_CHANGE_MESSAGES}
 **Since**: 3.1<br />
-**Type**: Object<br />
+**Type**: Array.&lt;object&gt;<br />
 **Attributes**: read-only, static<br />
 
 
