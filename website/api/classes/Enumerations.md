@@ -40,7 +40,7 @@ An array of objects, ordered by control number, describing control change messag
 in the array has 3 properties with some objects having a fourth one (`position`) :
 
  * `number`: MIDI control number (0-127);
- * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
+ * `name`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
  listened to;
  * `description`: user-friendly description of the controller's purpose;
  * `position` (optional): whether this controller's value should be considered an `msb` or
