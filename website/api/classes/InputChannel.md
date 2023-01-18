@@ -665,6 +665,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -692,6 +693,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -719,6 +721,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -746,6 +749,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -773,6 +777,35 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-bankselectcoarse` {#event-controlchange-bankselectcoarse}
+
+<a id="event:controlchange-bankselectcoarse"></a>
+
+
+Event emitted when a **controlchange-bankselectcoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-bankselectcoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -800,6 +833,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -827,6 +861,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -854,6 +889,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -881,6 +917,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -908,6 +945,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -964,6 +1002,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -991,6 +1030,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1018,6 +1058,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1045,6 +1086,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1072,6 +1114,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1099,6 +1142,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1126,6 +1170,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1153,6 +1198,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1180,6 +1226,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1207,6 +1254,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1234,6 +1282,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1261,6 +1310,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1288,6 +1338,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1315,6 +1366,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1342,6 +1394,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1369,6 +1422,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1396,6 +1450,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1423,6 +1478,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1450,6 +1506,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1477,6 +1534,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1504,6 +1562,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1531,6 +1590,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1558,6 +1618,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1585,6 +1646,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1612,6 +1674,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1639,6 +1702,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1666,6 +1730,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1693,6 +1758,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1720,6 +1786,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1747,6 +1814,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1774,6 +1842,35 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
+  |**`value`** |number|The value expressed as a float between 0 and 1.|
+  |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
+
+
+### `controlchange-modulationwheelcoarse` {#event-controlchange-modulationwheelcoarse}
+
+<a id="event:controlchange-modulationwheelcoarse"></a>
+
+
+Event emitted when a **controlchange-modulationwheelcoarse** MIDI message has been
+received.
+
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`type`** |string|`controlchange-modulationwheelcoarse`|
+  |**`target`** |InputChannel|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`controller`** |object||
+  |**`controller.number`** |object|The number of the controller.|
+  |**`controller.name`** |object|The usual name or function of the controller.|
+  |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1801,6 +1898,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1828,6 +1926,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1855,6 +1954,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1882,6 +1982,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1909,6 +2010,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1936,6 +2038,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1963,6 +2066,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -1990,6 +2094,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2017,6 +2122,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2044,6 +2150,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2071,6 +2178,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2098,6 +2206,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2125,6 +2234,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2152,6 +2262,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2179,6 +2290,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2206,6 +2318,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2233,6 +2346,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2260,6 +2374,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2287,6 +2402,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2314,6 +2430,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2341,6 +2458,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2368,6 +2486,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2395,6 +2514,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2422,6 +2542,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
@@ -2449,6 +2570,7 @@ received.
   |**`controller.number`** |object|The number of the controller.|
   |**`controller.name`** |object|The usual name or function of the controller.|
   |**`controller.description`** |object|A user-friendly representation of the controller's default function|
+  |**`controller.position`** |string|Whether the controller is meant to be an `msb` or `lsb`|
   |**`value`** |number|The value expressed as a float between 0 and 1.|
   |**`rawValue`** |number|The value expressed as an integer (between 0 and 127).|
 
