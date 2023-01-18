@@ -2,8 +2,8 @@
 # Enumerations
 
 The `Enumerations` class contains enumerations and arrays of elements used throughout the
-library. All properties are static and should be referenced using the class name. For example:
-`Enumerations.CHANNEL_MESSAGES`.
+library. All its properties are static and should be referenced using the class name. For
+example: `Enumerations.CHANNEL_MESSAGES`.
 
 **Since**: 3.0.0
 
@@ -43,8 +43,8 @@ in the array can have up to 4 properties:
  * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
  listened to;
  * `description`: user-friendly description of the controller's purpose;
- * `position`: whether this controller's value should be considered an `msb` or `lsb` (if
- appropriate).
+ * `position` (optional): whether this controller's value should be considered an `msb` or
+ `lsb`
 
 Not all controllers have a predefined function. For those that don't, name is the word
 "controller" followed by the number (e.g. `controller112`).
