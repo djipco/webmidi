@@ -22,6 +22,7 @@ events and RPN/NRPN events.
 
 
 ### `.CHANNEL_NUMBERS` {#CHANNEL_NUMBERS}
+**Since**: 3.1<br />
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only, static<br />
 
