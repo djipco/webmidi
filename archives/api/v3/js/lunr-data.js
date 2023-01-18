@@ -496,24 +496,6 @@ window.lunrData = {
           "whether",
           "word"
         ],
-        "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": [
-          "array.&lt;number&gt;&gt",
-          "enumerations.midi_registered_paramet",
-          "lt;static",
-          "member",
-          "midi_registered_paramet",
-          "object.&lt;str",
-          "readonly&gt"
-        ],
-        "Enumerations.html#.MIDI_SYSTEM_MESSAGES": [
-          "enumerations.midi_system_messag",
-          "lt;static",
-          "member",
-          "midi_system_messag",
-          "number&gt",
-          "object.&lt;str",
-          "readonly&gt"
-        ],
         "Enumerations.html#.REGISTERED_PARAMETERS": [
           "0x00",
           "0x01",
@@ -8002,7 +7984,7 @@ window.lunrData = {
           "within"
         ]
       },
-      "length": 282
+      "length": 280
     },
     "tokenStore": {
       "root": {
@@ -11792,10 +11774,6 @@ window.lunrData = {
                                                     "docs": {},
                                                     "t": {
                                                       "docs": {
-                                                        "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-                                                          "ref": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-                                                          "tf": 20
-                                                        },
                                                         "Enumerations.html#.REGISTERED_PARAMETERS": {
                                                           "ref": "Enumerations.html#.REGISTERED_PARAMETERS",
                                                           "tf": 20
@@ -18004,14 +17982,6 @@ window.lunrData = {
                               "ref": "Enumerations.html#.CONTROL_CHANGE_MESSAGES",
                               "tf": 25
                             },
-                            "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-                              "ref": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-                              "tf": 20
-                            },
-                            "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                              "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-                              "tf": 20
-                            },
                             "Enumerations.html#.REGISTERED_PARAMETERS": {
                               "ref": "Enumerations.html#.REGISTERED_PARAMETERS",
                               "tf": 20
@@ -19334,112 +19304,6 @@ window.lunrData = {
                     "tf": 1.4705882352941175
                   }
                 },
-                "_": {
-                  "docs": {},
-                  "r": {
-                    "docs": {},
-                    "e": {
-                      "docs": {},
-                      "g": {
-                        "docs": {},
-                        "i": {
-                          "docs": {},
-                          "s": {
-                            "docs": {},
-                            "t": {
-                              "docs": {},
-                              "e": {
-                                "docs": {},
-                                "r": {
-                                  "docs": {},
-                                  "e": {
-                                    "docs": {},
-                                    "d": {
-                                      "docs": {},
-                                      "_": {
-                                        "docs": {},
-                                        "p": {
-                                          "docs": {},
-                                          "a": {
-                                            "docs": {},
-                                            "r": {
-                                              "docs": {},
-                                              "a": {
-                                                "docs": {},
-                                                "m": {
-                                                  "docs": {},
-                                                  "e": {
-                                                    "docs": {},
-                                                    "t": {
-                                                      "docs": {
-                                                        "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-                                                          "ref": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-                                                          "tf": 670
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  },
-                  "s": {
-                    "docs": {},
-                    "y": {
-                      "docs": {},
-                      "s": {
-                        "docs": {},
-                        "t": {
-                          "docs": {},
-                          "e": {
-                            "docs": {},
-                            "m": {
-                              "docs": {},
-                              "_": {
-                                "docs": {},
-                                "m": {
-                                  "docs": {},
-                                  "e": {
-                                    "docs": {},
-                                    "s": {
-                                      "docs": {},
-                                      "s": {
-                                        "docs": {},
-                                        "a": {
-                                          "docs": {},
-                                          "g": {
-                                            "docs": {
-                                              "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                                                "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-                                                "tf": 670
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
-                  }
-                },
                 "m": {
                   "docs": {},
                   "e": {
@@ -19659,14 +19523,6 @@ window.lunrData = {
                       },
                       "Enumerations.html#.CONTROL_CHANGE_MESSAGES": {
                         "ref": "Enumerations.html#.CONTROL_CHANGE_MESSAGES",
-                        "tf": 110
-                      },
-                      "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-                        "ref": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-                        "tf": 110
-                      },
-                      "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                        "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
                         "tf": 110
                       },
                       "Enumerations.html#.REGISTERED_PARAMETERS": {
@@ -24697,14 +24553,6 @@ window.lunrData = {
                                 "Enumerations.html#.CONTROL_CHANGE_MESSAGES": {
                                   "ref": "Enumerations.html#.CONTROL_CHANGE_MESSAGES",
                                   "tf": 25
-                                },
-                                "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-                                  "ref": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-                                  "tf": 20
-                                },
-                                "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                                  "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-                                  "tf": 20
                                 },
                                 "Enumerations.html#.REGISTERED_PARAMETERS": {
                                   "ref": "Enumerations.html#.REGISTERED_PARAMETERS",
@@ -35997,124 +35845,6 @@ window.lunrData = {
                                       }
                                     }
                                   },
-                                  "m": {
-                                    "docs": {},
-                                    "i": {
-                                      "docs": {},
-                                      "d": {
-                                        "docs": {},
-                                        "i": {
-                                          "docs": {},
-                                          "_": {
-                                            "docs": {},
-                                            "r": {
-                                              "docs": {},
-                                              "e": {
-                                                "docs": {},
-                                                "g": {
-                                                  "docs": {},
-                                                  "i": {
-                                                    "docs": {},
-                                                    "s": {
-                                                      "docs": {},
-                                                      "t": {
-                                                        "docs": {},
-                                                        "e": {
-                                                          "docs": {},
-                                                          "r": {
-                                                            "docs": {},
-                                                            "e": {
-                                                              "docs": {},
-                                                              "d": {
-                                                                "docs": {},
-                                                                "_": {
-                                                                  "docs": {},
-                                                                  "p": {
-                                                                    "docs": {},
-                                                                    "a": {
-                                                                      "docs": {},
-                                                                      "r": {
-                                                                        "docs": {},
-                                                                        "a": {
-                                                                          "docs": {},
-                                                                          "m": {
-                                                                            "docs": {},
-                                                                            "e": {
-                                                                              "docs": {},
-                                                                              "t": {
-                                                                                "docs": {
-                                                                                  "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-                                                                                    "ref": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-                                                                                    "tf": 1150
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            },
-                                            "s": {
-                                              "docs": {},
-                                              "y": {
-                                                "docs": {},
-                                                "s": {
-                                                  "docs": {},
-                                                  "t": {
-                                                    "docs": {},
-                                                    "e": {
-                                                      "docs": {},
-                                                      "m": {
-                                                        "docs": {},
-                                                        "_": {
-                                                          "docs": {},
-                                                          "m": {
-                                                            "docs": {},
-                                                            "e": {
-                                                              "docs": {},
-                                                              "s": {
-                                                                "docs": {},
-                                                                "s": {
-                                                                  "docs": {},
-                                                                  "a": {
-                                                                    "docs": {},
-                                                                    "g": {
-                                                                      "docs": {
-                                                                        "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                                                                          "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-                                                                          "tf": 1150
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  },
                                   "r": {
                                     "docs": {},
                                     "e": {
@@ -40931,10 +40661,6 @@ window.lunrData = {
                             },
                             "Enumerations.html#.CHANNEL_MODE_MESSAGES": {
                               "ref": "Enumerations.html#.CHANNEL_MODE_MESSAGES",
-                              "tf": 20
-                            },
-                            "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                              "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
                               "tf": 20
                             },
                             "Enumerations.html#.SYSTEM_MESSAGES": {
@@ -51898,14 +51624,6 @@ window.lunrData = {
                                         "ref": "Enumerations.html#.CHANNEL_MODE_MESSAGES",
                                         "tf": 20
                                       },
-                                      "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-                                        "ref": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-                                        "tf": 20
-                                      },
-                                      "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-                                        "ref": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-                                        "tf": 20
-                                      },
                                       "Enumerations.html#.REGISTERED_PARAMETERS": {
                                         "ref": "Enumerations.html#.REGISTERED_PARAMETERS",
                                         "tf": 20
@@ -59603,7 +59321,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 7398
+      "length": 7384
     },
     "corpusTokens": [
       "0",
@@ -60138,8 +59856,6 @@ window.lunrData = {
       "enumerations.channel_mode_messag",
       "enumerations.channel_numb",
       "enumerations.control_change_messag",
-      "enumerations.midi_registered_paramet",
-      "enumerations.midi_system_messag",
       "enumerations.registered_paramet",
       "enumerations.system_messag",
       "environ",
@@ -60477,8 +60193,6 @@ window.lunrData = {
       "middl",
       "midi",
       "midi'",
-      "midi_registered_paramet",
-      "midi_system_messag",
       "midiaccess",
       "midiaccessgr",
       "midimessag",
@@ -61226,26 +60940,6 @@ window.lunrData = {
       "tags": "Enumerations.CONTROL_CHANGE_MESSAGES CONTROL_CHANGE_MESSAGES",
       "summary": "",
       "description": "An array of objects, ordered by control number, describing control change messages. Each object in the array can have up to 4 properties: number: MIDI control number (0-127); event: name of emitted event (eg: bankselectcoarse, choruslevel, etc) that can be listened to; description: user-friendly description of the controller's purpose; position: whether this controller's value should be considered an msb or lsb (if appropriate). Not all controllers have a predefined function. For those that don't, name is the word \"controller\" followed by the number (e.g. controller112). Event name Control Number bankselectcoarse 0 modulationwheelcoarse 1 breathcontrollercoarse 2 controller3 3 footcontrollercoarse 4 portamentotimecoarse 5 dataentrycoarse 6 volumecoarse 7 balancecoarse 8 controller9 9 pancoarse 10 expressioncoarse 11 effectcontrol1coarse 12 effectcontrol2coarse 13 controller14 14 controller15 15 generalpurposecontroller1 16 generalpurposecontroller2 17 generalpurposecontroller3 18 generalpurposecontroller4 19 controller20 20 controller21 21 controller22 22 controller23 23 controller24 24 controller25 25 controller26 26 controller27 27 controller28 28 controller29 29 controller30 30 controller31 31 bankselectfine 32 modulationwheelfine 33 breathcontrollerfine 34 controller35 35 footcontrollerfine 36 portamentotimefine 37 dataentryfine 38 channelvolumefine 39 balancefine 40 controller41 41 panfine 42 expressionfine 43 effectcontrol1fine 44 effectcontrol2fine 45 controller46 46 controller47 47 controller48 48 controller49 49 controller50 50 controller51 51 controller52 52 controller53 53 controller54 54 controller55 55 controller56 56 controller57 57 controller58 58 controller59 59 controller60 60 controller61 61 controller62 62 controller63 63 damperpedal 64 portamento 65 sostenuto 66 softpedal 67 legatopedal 68 hold2 69 soundvariation 70 resonance 71 releasetime 72 attacktime 73 brightness 74 decaytime 75 vibratorate 76 vibratodepth 77 vibratodelay 78 controller79 79 generalpurposecontroller5 80 generalpurposecontroller6 81 generalpurposecontroller7 82 generalpurposecontroller8 83 portamentocontrol 84 controller85 85 controller86 86 controller87 87 highresolutionvelocityprefix 88 controller89 89 controller90 90 effect1depth 91 effect2depth 92 effect3depth 93 effect4depth 94 effect5depth 95 dataincrement 96 datadecrement 97 nonregisteredparameterfine 98 nonregisteredparametercoarse 99 nonregisteredparameterfine 100 registeredparametercoarse 101 controller102 102 controller103 103 controller104 104 controller105 105 controller106 106 controller107 107 controller108 108 controller109 109 controller110 110 controller111 111 controller112 112 controller113 113 controller114 114 controller115 115 controller116 116 controller117 117 controller118 118 controller119 119 allsoundoff 120 resetallcontrollers 121 localcontrol 122 allnotesoff 123 omnimodeoff 124 omnimodeon 125 monomodeon 126 polymodeon 127"
-    },
-    "Enumerations.html#.MIDI_REGISTERED_PARAMETERS": {
-      "id": "Enumerations.html#.MIDI_REGISTERED_PARAMETERS",
-      "kind": "member",
-      "title": "&lt;static, readonly&gt; MIDI_REGISTERED_PARAMETERS :Object.&lt;string, Array.&lt;number&gt;&gt;",
-      "longname": "Enumerations.MIDI_REGISTERED_PARAMETERS",
-      "name": "MIDI_REGISTERED_PARAMETERS",
-      "tags": "Enumerations.MIDI_REGISTERED_PARAMETERS MIDI_REGISTERED_PARAMETERS",
-      "summary": "",
-      "description": ""
-    },
-    "Enumerations.html#.MIDI_SYSTEM_MESSAGES": {
-      "id": "Enumerations.html#.MIDI_SYSTEM_MESSAGES",
-      "kind": "member",
-      "title": "&lt;static, readonly&gt; MIDI_SYSTEM_MESSAGES :Object.&lt;string, number&gt;",
-      "longname": "Enumerations.MIDI_SYSTEM_MESSAGES",
-      "name": "MIDI_SYSTEM_MESSAGES",
-      "tags": "Enumerations.MIDI_SYSTEM_MESSAGES MIDI_SYSTEM_MESSAGES",
-      "summary": "",
-      "description": ""
     },
     "Enumerations.html#.REGISTERED_PARAMETERS": {
       "id": "Enumerations.html#.REGISTERED_PARAMETERS",
