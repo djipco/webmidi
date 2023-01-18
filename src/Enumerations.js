@@ -309,7 +309,7 @@ export class Enumerations {
    *  * `position` (optional): whether this controller's value should be considered an `msb` or
    *  `lsb`
    *
-   * Not all controllers have a predefined function. For those that don't, name is the word
+   * Not all controllers have a predefined function. For those that don't, `name` is the word
    * "controller" followed by the number (e.g. `controller112`).
    *
    * | Event name                     | Control Number |
@@ -1252,7 +1252,7 @@ export class Enumerations {
   }
 
   /**
-   * Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
+   * Enumeration of all valid MIDI system messages and matching numerical values. This library also
    * uses two additional custom messages.
    *
    * **System Common Messages**
@@ -1285,7 +1285,7 @@ export class Enumerations {
    * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
    * simply states that they are undefined/reserved.
    *
-   * **Custom WebMidi.js Messages**
+   * **Custom Messages**
    *
    * These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
    * or forwarded.
