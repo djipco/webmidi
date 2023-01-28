@@ -5340,7 +5340,7 @@ export class Utilities {
    * @since 3.1
    * @static
    */
-  static getCcNumberByName(name): number | undefined;
+  static getCcNumberByName(name: string): number | undefined;
 
   /**
    * Returns the channel mode name matching the specified number. If no match is found, the function
