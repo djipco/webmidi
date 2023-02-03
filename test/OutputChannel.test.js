@@ -631,6 +631,31 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it("should call 'sendNoteOff()' if duration in Note object is valid", function (done) {
+
+      // Arrange
+      let note = new Note("C4", { duration: 250 });
+      let channel = WEBMIDI_OUTPUT.channels[1];
+      let expected = [128, note.number, 64]; // 128 = note off on ch 1
+      let sent = WebMidi.time;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      channel.playNote(note);
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - sent - note.duration).to.be.within(-5, 10);
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
   });
 
   describe("sendResetAllControllers()", function () {

@@ -720,17 +720,20 @@ export class OutputChannel extends EventEmitter {
     // Send note on and, optionally, note off message (if duration is a positive number)
     this.sendNoteOn(note, options);
 
-    // https://stackoverflow.com/questions/600763#answer-601877
-    if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
-
-      let noteOffOptions = {
-        time: (Utilities.toTimestamp(options.time) || WebMidi.time) + options.duration,
-        release: options.release,
-        rawRelease: options.rawRelease,
+    if (parseInt(note.duration) > 0) {
+      const noteOffOptions = {
+        time: (Utilities.toTimestamp(options.time) || WebMidi.time) + parseInt(note.duration),
+        release: note.release,
+        rawRelease: note.rawRelease
       };
-
       this.sendNoteOff(note, noteOffOptions);
-
+    } else if (parseInt(options.duration) > 0) {
+      const noteOffOptions = {
+        time: (Utilities.toTimestamp(options.time) || WebMidi.time) + parseInt(options.duration),
+        release: options.release,
+        rawRelease: options.rawRelease
+      };
+      this.sendNoteOff(note, noteOffOptions);
     }
 
     return this;
