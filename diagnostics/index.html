@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8">
+    <title>Web MIDI API Demo</title>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@latest"></script>
+  </head>
+
+  <body>
+
+    <h1>WEBMIDI.js Diagnostics</h1>
+
+    <p id="version">Version: </p>
+    <p id="flavour">Flavour: </p>
+    <p id="enabled">Enabled: </p>
+    <p id="time">Time: </p>
+    <p id="inputs">Time: </p>
+    <p id="outputs">Time: </p>
+
+    <script>
+
+      WebMidi
+        .enable()
+        .then(onEnabled)
+        .catch(err => alert(err));
+
+      function onEnabled() {
+
+        document.getElementById("version").append(WebMidi.version);
+        document.getElementById("flavour").append(WebMidi.flavour);
+        document.getElementById("enabled").append(WebMidi.enabled);
+        document.getElementById("time").append(WebMidi.time);
+
+        WebMidi.inputs.forEach(input => {
+          document.getElementById("inputs").append(input.name);
+        });
+        WebMidi.outputs.forEach(output => {
+          document.getElementById("outputs").append(input.name);
+        });
+
+      }
+
+    </script>
+
+  </body>
+
+</html>
