@@ -10,14 +10,34 @@
 
   <body>
 
-    <h1>WEBMIDI.js Diagnostics</h1>
+    <h1>WEBMIDI.js Diagnostic Tool</h1>
 
-    <p id="version">Version: </p>
-    <p id="flavour">Flavour: </p>
-    <p id="enabled">Enabled: </p>
-    <p id="time">Time: </p>
-    <p id="inputs">Time: </p>
-    <p id="outputs">Time: </p>
+    <table>
+      <tr>
+        <td id="version">Version</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="flavour">Flavour</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="enabled">Enabled</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="time">Time</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="inputs">Inputs</td>
+        <td></td>
+      </tr>
+      <tr>
+        <td id="outputs">Outputs</td>
+        <td></td>
+      </tr>
+    </table>
 
     <script>
 
@@ -34,10 +54,10 @@
         document.getElementById("time").append(WebMidi.time);
 
         WebMidi.inputs.forEach(input => {
-          document.getElementById("inputs").append(input.name);
+          document.getElementById("inputs").append(input.name + "<br>");
         });
         WebMidi.outputs.forEach(output => {
-          document.getElementById("outputs").append(input.name);
+          document.getElementById("outputs").append(output.name + "<br>");
         });
 
       }
