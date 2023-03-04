@@ -538,6 +538,50 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it("should call 'sendNoteOn()' with correct parameters if passed a Note", function () {
+
+      // Arrange
+      let note = new Note("C4", { duration: 250, attack: 0.5, rawAttack: 127 });
+      let options = { time: 10 };
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendNoteOff");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].playNote(note, options);
+
+      // Assert
+      expect(spy.calledOnceWith(note)).to.be.true;
+      expect(spy.args[0][0]).to.equal(note);
+      expect(spy.args[0][0].attack).to.equal(note.attack);
+      expect(spy.args[0][0].rawAttack).to.equal(note.rawAttack);
+      expect(spy.args[0][1].time).to.equal(options.time + note.duration);
+    });
+
+    it("should call 'sendNoteOff()' for each note if parameter is Note[]", function () {
+
+      // Arrange
+      let note = new Note("C4", { duration: 250 });
+      let notes = [
+        note,
+        new Note("D#2", { duration: 500 }),
+        new Note("F3", { duration: 250 })
+      ];
+
+      let options = {};
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendNoteOff");
+
+      // // Act
+      WEBMIDI_OUTPUT.channels[1].playNote(notes, options);
+
+      // // Assert
+      expect(spy.callCount).to.equal(3);
+      expect(spy.args[0][0]).to.equal(note);
+      // Hard to get exact timing values, assert in future
+      expect(spy.args[0][1].time).to.greaterThan(WebMidi.time);
+      expect(spy.args[0][1].release).to.equal(note.release);
+      expect(spy.args[0][1].rawRelease).to.equal(note.rawRelease);
+    });
+
+
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
         WEBMIDI_OUTPUT.channels[1].playNote("C3")
