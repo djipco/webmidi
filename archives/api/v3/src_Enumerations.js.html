@@ -42,7 +42,7 @@
 				}
 			</style>
 		<script type="text/javascript">
-			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2023. WEBMIDI.js v3.1.2 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
+			window.TEMPLATE_OPTIONS = {"includeDate":true,"dateFormat":"MMMM Do YYYY @ H:mm:ss","systemName":"WEBMIDI.js API","systemSummary":"A JavaScript library to kickstart your MIDI projects","systemLogo":"","systemColor":"#ffcf09","navMembers":[{"kind":"class","title":"Classes","summary":"All documented classes."},{"kind":"external","title":"Externals","summary":"All documented external members."},{"kind":"mixin","title":"Mixins","summary":"All documented mixins."},{"kind":"interface","title":"Interfaces","summary":"All documented interfaces."},{"kind":"module","title":"Modules","summary":"All documented modules."},{"kind":"namespace","title":"Namespaces","summary":"All documented namespaces."},{"kind":"tutorial","title":"Tutorials","summary":"All available tutorials."}],"footer":"","copyright":"© <a href=\"https://github.com/djipco/\">Jean-Philippe Côté</a>, 2015-2023. WEBMIDI.js v3.1.5 is released under the Apache-2.0 license.","linenums":true,"collapseSymbols":true,"inverseNav":true,"inlineNav":false,"outputSourceFiles":true,"sourceRootPath":null,"disablePackagePath":true,"outputSourcePath":false,"showTableOfContents":true,"showAccessFilter":true,"analytics":{"ua":"UA-162785934-1","domain":"https://djipco.github.io/webmidi"},"methodHeadingReturns":true,"sort":"longname, linenum, version, since","search":true,"favicon":null,"stylesheets":["../css/custom.css"],"scripts":[],"monospaceLinks":false,"cleverLinks":false};
 			window.DOCLET_TOC_ENABLED = false;
 			window.DOCLET_AFILTER_ENABLED = false;
 		</script>
@@ -109,8 +109,8 @@
 			<article></article>
 			<pre class="prettyprint source language-javascript line-numbers"><code class="language-javascript">/**
  * The `Enumerations` class contains enumerations and arrays of elements used throughout the
- * library. All properties are static and should be referenced using the class name. For example:
- * `Enumerations.CHANNEL_MESSAGES`.
+ * library. All its properties are static and should be referenced using the class name. For
+ * example: `Enumerations.CHANNEL_MESSAGES`.
  *
  * @license Apache-2.0
  * @since 3.0.0
@@ -174,6 +174,7 @@ export class Enumerations {
    *
    * @type {number[]}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get CHANNEL_NUMBERS() {
@@ -217,6 +218,7 @@ export class Enumerations {
    *
    * @enum {Object.&lt;string, number>}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get CHANNEL_MODE_MESSAGES() {
@@ -407,16 +409,16 @@ export class Enumerations {
 
   /**
    * An array of objects, ordered by control number, describing control change messages. Each object
-   * in the array can have up to 4 properties:
+   * in the array has 3 properties with some objects having a fourth one (`position`) :
    *
    *  * `number`: MIDI control number (0-127);
-   *  * `event`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
+   *  * `name`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
    *  listened to;
    *  * `description`: user-friendly description of the controller's purpose;
-   *  * `position`: whether this controller's value should be considered an `msb` or `lsb` (if
-   *  appropriate).
+   *  * `position` (optional): whether this controller's value should be considered an `msb` or
+   *  `lsb`
    *
-   * Not all controllers have a predefined function. For those that don't, name is the word
+   * Not all controllers have a predefined function. For those that don't, `name` is the word
    * "controller" followed by the number (e.g. `controller112`).
    *
    * | Event name                     | Control Number |
@@ -550,7 +552,7 @@ export class Enumerations {
    * | `monomodeon`                   | 126            |
    * | `polymodeon`                   | 127            |
    *
-   * @type {Object[]}
+   * @type {object[]}
    * @readonly
    * @static
    * @since 3.1
@@ -1312,6 +1314,7 @@ export class Enumerations {
    *
    * @enum {Object.&lt;string, number[]>}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get REGISTERED_PARAMETERS() {
@@ -1358,7 +1361,7 @@ export class Enumerations {
   }
 
   /**
-   * Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
+   * Enumeration of all valid MIDI system messages and matching numerical values. This library also
    * uses two additional custom messages.
    *
    * **System Common Messages**
@@ -1391,7 +1394,7 @@ export class Enumerations {
    * [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
    * simply states that they are undefined/reserved.
    *
-   * **Custom WebMidi.js Messages**
+   * **Custom Messages**
    *
    * These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
    * or forwarded.
@@ -1403,6 +1406,7 @@ export class Enumerations {
    *
    * @enum {Object.&lt;string, number>}
    * @readonly
+   * @since 3.1
    * @static
    */
   static get SYSTEM_MESSAGES() {
@@ -1510,8 +1514,8 @@ export class Enumerations {
 		</div>
 	</div>
 	<footer>
-				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2023. WEBMIDI.js v3.1.2 is released under the Apache-2.0 license.</div>
-			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on January 18th 2023 @ 8:06:29 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
+				<div class="copyright">© <a href="https://github.com/djipco/">Jean-Philippe Côté</a>, 2015-2023. WEBMIDI.js v3.1.5 is released under the Apache-2.0 license.</div>
+			<div class="generated-by">Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.10</a> on March 19th 2023 @ 9:16:55 using the <a href="https://github.com/steveush/foodoc">FooDoc template</a>.</div>
 	</footer>
 	<script src="js/jquery.min.js"></script>
 	<script src="js/bootstrap.min.js"></script>
