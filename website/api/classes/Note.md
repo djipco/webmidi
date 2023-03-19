@@ -100,7 +100,8 @@ The name, optional accidental and octave of the note, as a string.
 **Type**: string<br />
 
 
-The name (letter) of the note
+The name (letter) of the note. If you need the full name with octave and accidental, you can
+use the [`identifier`](#Note+identifier) property instead.
 
 
 ### `.number` {#number}
