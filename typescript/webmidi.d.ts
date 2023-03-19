@@ -2306,7 +2306,8 @@ export class Note {
   get identifier(): string;
 
   /**
-   * The name (letter) of the note
+   * The name (letter) of the note. If you need the full name with octave and accidental, you can
+   * use the [`identifier`]{@link Note#identifier} property instead.
    * @type {string}
    * @since 3.0.0
    */
