@@ -424,11 +424,13 @@ class WebMidi extends EventEmitter {
    */
   async disable() {
 
+    // This needs to be done right away to prevent racing conditions in listeners while the inputs
+    // are being destroyed.
+    if (this.interface) this.interface.onstatechange = undefined;
+
     return this._destroyInputsAndOutputs().then(() => {
 
       if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
-
-      if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
 
       /**

@@ -71,7 +71,10 @@ export class Output extends EventEmitter {
     this.removeListener();
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
-    this._midiOutput.onstatechange = null;
+
+    // We check if it's still there because it could have theoretically be destroyed manually
+    if (this._midiOutput) this._midiOutput.onstatechange = null;
+
     await this.close();
     this._midiOutput = null;
   }
