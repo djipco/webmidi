@@ -19,21 +19,9 @@ the project on GitHub.
 
 <!-- SPONSOR START -->
 
-<a class="user-icon"><img src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" /></a>
-
 <a href="https://github.com/awatterott" title="Andreas Watterott" class="user-icon">
 	<img src="https://avatars.githubusercontent.com/u/1488433?u=2a498d433dd252a2959c2c846a212624098a03d9&v=4" alt="Andreas Watterott" width="100" height="100" />
 </a>
-
-<a href="https://github.com/rubendax" title="Ruben Dax" class="user-icon">
-	<img src="https://avatars.githubusercontent.com/u/3331057?u=53969596e19481f2c0e49aa7933bc47ccf4f7ce3&v=4" alt="Ruben Dax" width="100" height="100" />
-</a>
-
-<a href="https://github.com/philmillman" title="Phil Miller" class="user-icon">
-	<img src="https://avatars.githubusercontent.com/u/3722211?v=4" alt="Phil Miller" width="100" height="100" />
-</a>
-
-<a class="user-icon"><img src="/img/sponsors/user.png" alt="Anonymous" width="100" height="100" /></a>
 
 <a href="https://github.com/Enkerli" title="Alexandre Enkerli" class="user-icon">
 	<img src="https://avatars.githubusercontent.com/u/327544?v=4" alt="Alexandre Enkerli" width="100" height="100" />
