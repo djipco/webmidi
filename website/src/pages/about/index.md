@@ -31,4 +31,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied. See the above license for the specific language governing permissions and limitations.
 
-© 2015-2021, Jean-Philippe Côté.
+© 2015-2023, Jean-Philippe Côté.
