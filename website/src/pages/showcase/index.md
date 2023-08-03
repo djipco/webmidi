@@ -61,6 +61,11 @@ page on GitHub and submit a pull request.
   A collection of midi responsive widgets made to aid musicians, teachers, and students in their 
   education, creative process, and practice routine.
 
+* ### [Virtual Piano Keyboard](https://muted.io/piano/)
+  Created by: **Sébastien Noël**
+
+  A simple way to practice playing a piano keyboard online with helpers like chord identification and locking to a scale.
+
 ## Experiments
 
 * ### [A.I. Duet](https://experiments.withgoogle.com/ai-duet)
