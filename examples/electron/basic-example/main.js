@@ -13,6 +13,24 @@ function createWindow () {
     }
   });
 
+  // Respond affirmatively to requests for MIDI and MIDI SysEx permissions
+  mainWindow.webContents.session.setPermissionRequestHandler((webContents, permission, callback, details) => {
+    if (permission === 'midi' || permission === 'midiSysex') {
+      callback(true);
+    } else {
+      callback(false);
+    }
+  })
+
+  // Respond affirmatively to checks for MIDI and MIDI SysEx permissions
+  mainWindow.webContents.session.setPermissionCheckHandler((webContents, permission, requestingOrigin) => {
+    if (permission === 'midi' || permission === 'midiSysex') {
+      return true;
+    }
+
+    return false;
+  });
+
   // and load the index.html of the app.
   mainWindow.loadFile("index.html");
 
