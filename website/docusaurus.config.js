@@ -238,7 +238,8 @@ module.exports = {
         },
 
         googleAnalytics: {
-          trackingID: "UA-162785934-1"
+          // trackingID: "UA-162785934-1",
+          trackingID: "G-Z65JF8XMJG",
         }
 
       }
