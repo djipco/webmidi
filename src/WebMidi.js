@@ -20,24 +20,8 @@ if (Utilities.isNode) {
   } catch (err) {
     let jzz;
     eval('jzz = require("jzz")');
-    // global.JZZ = jzz;
-
-    // We need to do it in this ugly way because Node.js v21+ introduced a read-only navigator
-    // property.
-    global.navigator.JZZ = jzz;
-    global.navigator.version = jzz.version;
-    global.navigator.info = jzz.info;
-    global.navigator.Widget = jzz.Widget,
-    global.navigator.addMidiIn = jzz.addMidiIn;
-    global.navigator.addMidiOut = jzz.addMidiOut;
-    global.navigator.SMPTE = jzz.SMPTE;
-    global.navigator.MIDI = jzz.MIDI;
-    global.navigator.Context = jzz.Context;
-    global.navigator.MPE = jzz.MPE;
-    global.navigator.lib = jzz.lib;
-    global.navigator.requestMIDIAccess = jzz.requestMIDIAccess;
-    global.navigator.close = jzz.close;
-
+    if (!global.navigator) global.navigator = {}; // for Node.js prior to v21
+    Object.assign(global.navigator, jzz);
   }
 
   // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
@@ -1081,14 +1065,6 @@ class WebMidi extends EventEmitter {
    */
   get supported() {
     return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
-
-    // if (Utilities.isNode) {
-    //   return (global.JZZ && global.JZZ.requestMIDIAccess) ||
-    //     (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
-    // } else {
-    //   return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
-    // }
-
   }
 
   /**
