@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 const {WebMidi, Utilities} = require("../dist/cjs/webmidi.cjs.js");
-const midi = require("midi");
+const midi = require("@julusian/midi");
 const semver = require("semver");
 
 // The virtual port from the 'midi' library is an "external" device so an output is seen as an input

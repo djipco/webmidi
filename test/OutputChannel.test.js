@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const midi = require("midi");
+const midi = require("@julusian/midi");
 const sinon = require("sinon");
 const {WebMidi, Note, Utilities, Message, Enumerations} = require("../dist/cjs/webmidi.cjs.js");
 
