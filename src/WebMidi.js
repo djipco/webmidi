@@ -20,7 +20,24 @@ if (Utilities.isNode) {
   } catch (err) {
     let jzz;
     eval('jzz = require("jzz")');
-    global.JZZ = jzz;
+    // global.JZZ = jzz;
+
+    // We need to do it in this ugly way because Node.js v21+ introduced a read-only navigator
+    // property.
+    global.navigator.JZZ = jzz;
+    global.navigator.version = jzz.version;
+    global.navigator.info = jzz.info;
+    global.navigator.Widget = jzz.Widget,
+    global.navigator.addMidiIn = jzz.addMidiIn;
+    global.navigator.addMidiOut = jzz.addMidiOut;
+    global.navigator.SMPTE = jzz.SMPTE;
+    global.navigator.MIDI = jzz.MIDI;
+    global.navigator.Context = jzz.Context;
+    global.navigator.MPE = jzz.MPE;
+    global.navigator.lib = jzz.lib;
+    global.navigator.requestMIDIAccess = jzz.requestMIDIAccess;
+    global.navigator.close = jzz.close;
+
   }
 
   // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
@@ -248,8 +265,7 @@ class WebMidi extends EventEmitter {
       try {
         window.navigator;
       } catch (err) {
-        // global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
-        global.JZZ = await Object.getPrototypeOf(async function() {}).constructor(`
+        global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
         let jzz = await import("jzz");
         return jzz.default;
         `)();
@@ -431,8 +447,7 @@ class WebMidi extends EventEmitter {
 
     return this._destroyInputsAndOutputs().then(() => {
 
-      // if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
-      if (Utilities.isNode) global.JZZ.close(); // jzz
+      if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
 
       this.interface = null; // also resets enabled, sysexEnabled
 
@@ -1065,14 +1080,14 @@ class WebMidi extends EventEmitter {
    * @type {boolean}
    */
   get supported() {
-    // return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
 
-    if (Utilities.isNode) {
-      return (global.JZZ && global.JZZ.requestMIDIAccess) ||
-        (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
-    } else {
-      return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
-    }
+    // if (Utilities.isNode) {
+    //   return (global.JZZ && global.JZZ.requestMIDIAccess) ||
+    //     (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    // } else {
+    //   return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    // }
 
   }
 
