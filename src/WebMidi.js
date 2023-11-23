@@ -20,7 +20,7 @@ if (Utilities.isNode) {
   } catch (err) {
     let jzz;
     eval('jzz = require("jzz")');
-    global.navigator = jzz;
+    global.JZZ = jzz;
   }
 
   // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
