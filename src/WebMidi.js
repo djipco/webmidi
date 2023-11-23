@@ -248,7 +248,8 @@ class WebMidi extends EventEmitter {
       try {
         window.navigator;
       } catch (err) {
-        global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
+        // global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
+        global.JZZ = await Object.getPrototypeOf(async function() {}).constructor(`
         let jzz = await import("jzz");
         return jzz.default;
         `)();
@@ -430,7 +431,9 @@ class WebMidi extends EventEmitter {
 
     return this._destroyInputsAndOutputs().then(() => {
 
-      if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
+      // if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
+      if (Utilities.isNode) global.JZZ.close(); // jzz
+
       this.interface = null; // also resets enabled, sysexEnabled
 
       /**
@@ -1062,7 +1065,15 @@ class WebMidi extends EventEmitter {
    * @type {boolean}
    */
   get supported() {
-    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    // return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+
+    if (Utilities.isNode) {
+      return (global.JZZ && global.JZZ.requestMIDIAccess) ||
+        (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    } else {
+      return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    }
+
   }
 
   /**
