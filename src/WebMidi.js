@@ -249,10 +249,12 @@ class WebMidi extends EventEmitter {
       try {
         window.navigator;
       } catch (err) {
-        global.navigator = await Object.getPrototypeOf(async function() {}).constructor(`
+        let jzz = await Object.getPrototypeOf(async function() {}).constructor(`
         let jzz = await import("jzz");
         return jzz.default;
         `)();
+        if (!global.navigator) global.navigator = {}; // for Node.js prior to v21
+        Object.assign(global.navigator, jzz);
       }
 
       // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
