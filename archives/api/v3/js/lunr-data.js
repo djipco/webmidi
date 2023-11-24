@@ -3667,8 +3667,8 @@ window.lunrData = {
           "releas",
           "send",
           "sendallnotesoff",
-          "sound",
-          "turnsoundoff"
+          "sendallsoundoff",
+          "sound"
         ],
         "Output.html#sendAllSoundOff": [
           "be",
@@ -43374,6 +43374,10 @@ window.lunrData = {
                                     "docs": {},
                                     "f": {
                                       "docs": {
+                                        "Output.html#sendAllNotesOff": {
+                                          "ref": "Output.html#sendAllNotesOff",
+                                          "tf": 2.631578947368421
+                                        },
                                         "Output.html#sendAllSoundOff": {
                                           "ref": "Output.html#sendAllSoundOff",
                                           "tf": 683.3333333333334
@@ -46541,35 +46545,6 @@ window.lunrData = {
                   "WebMidi.html#validation": {
                     "ref": "WebMidi.html#validation",
                     "tf": 1.6129032258064515
-                  }
-                },
-                "s": {
-                  "docs": {},
-                  "o": {
-                    "docs": {},
-                    "u": {
-                      "docs": {},
-                      "n": {
-                        "docs": {},
-                        "d": {
-                          "docs": {},
-                          "o": {
-                            "docs": {},
-                            "f": {
-                              "docs": {},
-                              "f": {
-                                "docs": {
-                                  "Output.html#sendAllNotesOff": {
-                                    "ref": "Output.html#sendAllNotesOff",
-                                    "tf": 2.631578947368421
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
-                    }
                   }
                 }
               }
@@ -60770,7 +60745,6 @@ window.lunrData = {
       "tuningbank",
       "tuningprogram",
       "turn",
-      "turnsoundoff",
       "two",
       "type",
       "type(",
@@ -62396,7 +62370,7 @@ window.lunrData = {
       "name": "sendAllNotesOff",
       "tags": "Output#sendAllNotesOff sendAllNotesOff",
       "summary": "",
-      "description": "Sends an all notes off channel mode message. This will make all currently playing notes fade out just as if their key had been released. This is different from the turnSoundOff() method which mutes all sounds immediately."
+      "description": "Sends an all notes off channel mode message. This will make all currently playing notes fade out just as if their key had been released. This is different from the sendAllSoundOff() method which mutes all sounds immediately."
     },
     "Output.html#sendAllSoundOff": {
       "id": "Output.html#sendAllSoundOff",
