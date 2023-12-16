@@ -1892,7 +1892,7 @@ describe("OutputChannel Object", function() {
 
   describe("sendChannelAftertouch()", function () {
 
-    it("should send correct MIDI message when using float", function(done) {
+    it("should send correct MIDI message when using float (0-1)", function(done) {
 
       // Arrange
       let index = 0;
@@ -1916,6 +1916,31 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should send correct MIDI message when using integer (0-127)", function(done) {
+
+      // Arrange
+      let index = 0;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      for (let i = 0; i < 128; i++) {
+        WEBMIDI_OUTPUT.channels[1].sendChannelAftertouch(i, {rawValue: true});
+      }
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        expect(message[1]).to.equal(index++);
+
+        if (index >= 128) {
           VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }

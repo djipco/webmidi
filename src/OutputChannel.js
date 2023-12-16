@@ -1132,10 +1132,13 @@ export class OutputChannel extends EventEmitter {
 
     }
 
+    // Normalize pressure to integer
+    if (!options.rawValue) pressure = Utilities.fromFloatTo7Bit(pressure);
+
     this.send(
       [
         (Enumerations.CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
-        Math.round(pressure * 127)
+        Math.round(pressure)
       ],
       {time: Utilities.toTimestamp(options.time)}
     );
