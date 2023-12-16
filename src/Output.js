@@ -404,13 +404,12 @@ export class Output extends EventEmitter {
   };
 
   /**
-   * Clears all messages that have been queued but not yet delivered.
+   * Clears all MIDI messages that have been queued and scheduled but not yet sent.
    *
-   * **Warning**: this method has been defined in the specification but has not been implemented
-   * yet. As soon as browsers implement it, it will work.
-   *
-   * You can check out the current status of this feature for Chromium (Chrome) here:
-   * https://bugs.chromium.org/p/chromium/issues/detail?id=471798
+   * **Warning**: this method is defined in the
+   * [Web MIDI API specification](https://www.w3.org/TR/webmidi/#MIDIOutput) but has not been
+   * implemented by all browsers yet. You can follow
+   * [this issue](https://github.com/djipco/webmidi/issues/52) for more info.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
