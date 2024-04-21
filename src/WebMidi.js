@@ -8,6 +8,17 @@ import {Enumerations} from "./Enumerations.js";
 
 // This code will only be included in the CJS version (CommonJS).
 
+/*
+
+coud we use this instead of eval():
+
+let jzz = await Object.getPrototypeOf(async function() {}).constructor(`
+  let jzz = await import("jzz");
+  return jzz.default;
+`)();
+
+ */
+
 // If this code is executed by Node.js then we must import the `jzz` module. I import it in this
 // convoluted way to prevent Webpack from automatically bundling it in browser bundles where it
 // isn't needed.
@@ -1037,7 +1048,7 @@ class WebMidi extends EventEmitter {
    * @type {boolean}
    */
   get supported() {
-    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    return (typeof navigator !== "undefined" && !!navigator.requestMIDIAccess);
   }
 
   /**
