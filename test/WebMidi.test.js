@@ -868,5 +868,17 @@ describe("WebMidi Object", function() {
 
   });
 
-});
+  describe("get supported()", function() {
 
+    it("should return true if midi available", function(done) {
+
+      WebMidi.enable().then(() => {
+        expect(WebMidi.supported).to.be.true;
+        done();
+      });
+
+    });
+
+  });
+
+});
