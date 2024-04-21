@@ -581,7 +581,6 @@ describe("OutputChannel Object", function() {
       expect(spy.args[0][1].rawRelease).to.equal(note.rawRelease);
     });
 
-
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
         WEBMIDI_OUTPUT.channels[1].playNote("C3")
@@ -604,13 +603,12 @@ describe("OutputChannel Object", function() {
       // Act
       WEBMIDI_OUTPUT.channels[channel].playNote(note, {time: timestamp, duration: duration});
 
-
       // Assert
       function assert(deltaTime, message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - sent - delay - duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.removeListener("message", assert);
           done();
         }
 
@@ -633,13 +631,12 @@ describe("OutputChannel Object", function() {
       // Act
       WEBMIDI_OUTPUT.channels[channel].playNote(note, {time: timestamp, duration: duration});
 
-
       // Assert
       function assert(deltaTime, message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - timestamp - duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.removeListener("message", assert);
           done();
         }
 
@@ -667,7 +664,7 @@ describe("OutputChannel Object", function() {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - sent - duration).to.be.within(-5, 15);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.removeListener("message", assert);
           done();
         }
 
@@ -692,7 +689,7 @@ describe("OutputChannel Object", function() {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - sent - note.duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.removeListener("message", assert);
           done();
         }
 
@@ -730,7 +727,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.removeListener("message", assert);
         done();
       }
 
