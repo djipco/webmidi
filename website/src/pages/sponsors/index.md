@@ -23,10 +23,6 @@ the project on GitHub.
 	<img src="https://avatars.githubusercontent.com/u/1488433?u=2a498d433dd252a2959c2c846a212624098a03d9&v=4" alt="Andreas Watterott" width="100" height="100" />
 </a>
 
-<a href="https://github.com/Enkerli" title="Alexandre Enkerli" class="user-icon">
-	<img src="https://avatars.githubusercontent.com/u/327544?v=4" alt="Alexandre Enkerli" width="100" height="100" />
-</a>
-
 <!-- SPONSOR END -->
 
 ## About Software Development...
