@@ -6125,6 +6125,10 @@ export interface MessageEvent extends PortEvent {
   rawValue?: number;
   target: Input | InputChannel;
   value?: number | boolean;
+  data: Uint8Array;
+  rawData: Uint8Array;
+  statusByte: Number;
+  dataBytes: Uint8Array;
 }
 
 /**
@@ -6151,7 +6155,6 @@ export interface MessageEvent extends PortEvent {
  * @property {string} [subtype] The actual controller event type
  */
 export interface ControlChangeMessageEvent extends MessageEvent {
-  channel: number;
   controller: {
     name: string;
     number: number;
@@ -6180,7 +6183,6 @@ export interface ControlChangeMessageEvent extends MessageEvent {
  * @property {Note} note A Note object with details about the triggered note.
  */
 export interface NoteMessageEvent extends MessageEvent {
-  channel: number;
   note: Note;
   port: Input;
   target: Input | InputChannel;
@@ -6218,7 +6220,6 @@ export interface NoteMessageEvent extends MessageEvent {
  *
  */
 export interface ParameterNumberMessageEvent extends MessageEvent {
-  channel: number;
   parameter: string;
   parameterMsb: number;
   parameterLsb: number;
