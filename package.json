@@ -91,9 +91,6 @@
   "dependencies": {
     "djipevents": "^2.0.7"
   },
-  "optionalDependencies": {
-    "jzz": "^1.5.6"
-  },
   "devDependencies": {
     "@alexbinary/rimraf": "^1.0.2",
     "@babel/cli": "^7.13.0",
@@ -165,5 +162,8 @@
       ],
       "after:release": "rimraf webmidi-${version}.tgz"
     }
+  },
+  "optionalDependencies": {
+    "jzz": "^1.8.5"
   }
 }
