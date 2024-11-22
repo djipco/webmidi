@@ -1563,10 +1563,10 @@ export class Input extends EventEmitter {
   /**
    * Input port's connection state: `pending`, `open` or `closed`.
    *
-   * @type {string}
+   * @type {WebMidiApi.MIDIPortConnectionState}
    * @readonly
    */
-  get connection(): string;
+  get connection(): WebMidiApi.MIDIPortConnectionState;
 
   /**
    * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
@@ -1614,18 +1614,18 @@ export class Input extends EventEmitter {
   /**
    * State of the input port: `connected` or `disconnected`.
    *
-   * @type {string}
+   * @type {WebMidiApi.MIDIPortDeviceState}
    * @readonly
    */
-  get state(): string;
+  get state(): WebMidiApi.MIDIPortDeviceState;
 
   /**
    * The port type. In the case of the `Input` object, this is always: `input`.
    *
-   * @type {string}
+   * @type {WebMidiApi.MIDIPortType}
    * @readonly
    */
-  get type(): string;
+  get type(): WebMidiApi.MIDIPortType;
 
 }
 
@@ -4042,10 +4042,10 @@ export class Output extends EventEmitter {
   /**
    * Output port's connection state: `pending`, `open` or `closed`.
    *
-   * @type {string}
+   * @type {WebMidiApi.MIDIPortConnectionState}
    * @readonly
    */
-  get connection(): string;
+  get connection(): WebMidiApi.MIDIPortConnectionState;
 
   /**
    * ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
@@ -4090,18 +4090,18 @@ export class Output extends EventEmitter {
   /**
    * State of the output port: `connected` or `disconnected`.
    *
-   * @type {string}
+   * @type {WebMidiApi.MIDIPortDeviceState}
    * @readonly
    */
-  get state(): string;
+  get state(): WebMidiApi.MIDIPortDeviceState;
 
   /**
    * Type of the output port (it will always be: `output`).
    *
-   * @type {string}
+   * @type {WebMidiApi.MIDIPortType}
    * @readonly
    */
-  get type(): string;
+  get type(): WebMidiApi.MIDIPortType;
 
 }
 
