@@ -2892,7 +2892,7 @@ window.lunrData = {
           "1",
           "attack",
           "between",
-          "integ",
+          "float",
           "member",
           "note",
           "note#attack",
@@ -3302,30 +3302,27 @@ window.lunrData = {
           "us"
         ],
         "Output.html#clear": [
+          "api",
           "browser",
-          "check",
-          "chrome",
-          "chromium",
           "clear",
-          "current",
           "defin",
-          "deliv",
-          "featur",
+          "follow",
           "function",
-          "here",
-          "https://bugs.chromium.org/p/chromium/issues/detail?id=471798",
           "implement",
+          "info",
+          "issu",
           "messag",
           "method",
-          "out",
+          "midi",
+          "more",
           "output",
           "output#clear",
           "queu",
-          "soon",
+          "schedul",
+          "sent",
           "specif",
-          "statu",
           "warn",
-          "work"
+          "web"
         ],
         "Output.html#close": [
           "again",
@@ -11345,6 +11342,10 @@ window.lunrData = {
                   "ref": "Enumerations.html#.SYSTEM_MESSAGES",
                   "tf": 0.4716981132075472
                 },
+                "Output.html#clear": {
+                  "ref": "Output.html#clear",
+                  "tf": 2.631578947368421
+                },
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
                   "tf": 0.9803921568627451
@@ -14202,10 +14203,6 @@ window.lunrData = {
                       "ref": "Message.html#statusByte",
                       "tf": 6.25
                     },
-                    "Note.html#attack": {
-                      "ref": "Note.html#attack",
-                      "tf": 7.142857142857142
-                    },
                     "Note.html#rawAttack": {
                       "ref": "Note.html#rawAttack",
                       "tf": 6.25
@@ -16309,6 +16306,10 @@ window.lunrData = {
               "docs": {},
               "o": {
                 "docs": {
+                  "Output.html#clear": {
+                    "ref": "Output.html#clear",
+                    "tf": 2.631578947368421
+                  },
                   "Output.html#sendControlChange": {
                     "ref": "Output.html#sendControlChange",
                     "tf": 0.24509803921568626
@@ -16373,7 +16374,7 @@ window.lunrData = {
                             },
                             "Output.html#clear": {
                               "ref": "Output.html#clear",
-                              "tf": 4.545454545454546
+                              "tf": 2.631578947368421
                             },
                             "Output.html#sendNrpnValue": {
                               "ref": "Output.html#sendNrpnValue",
@@ -16753,6 +16754,14 @@ window.lunrData = {
                         }
                       }
                     }
+                  }
+                }
+              },
+              "u": {
+                "docs": {
+                  "Output.html#clear": {
+                    "ref": "Output.html#clear",
+                    "tf": 2.631578947368421
                   }
                 }
               }
@@ -19057,6 +19066,10 @@ window.lunrData = {
                     "ref": "Output.html#octaveOffset",
                     "tf": 2.083333333333333
                   },
+                  "Output.html#clear": {
+                    "ref": "Output.html#clear",
+                    "tf": 5.263157894736842
+                  },
                   "Output.html#close": {
                     "ref": "Output.html#close",
                     "tf": 2.380952380952381
@@ -20074,7 +20087,7 @@ window.lunrData = {
                       },
                       "Output.html#clear": {
                         "ref": "Output.html#clear",
-                        "tf": 2.272727272727273
+                        "tf": 2.631578947368421
                       },
                       "Output.html#close": {
                         "ref": "Output.html#close",
@@ -20732,7 +20745,7 @@ window.lunrData = {
                       },
                       "Output.html#clear": {
                         "ref": "Output.html#clear",
-                        "tf": 2.272727272727273
+                        "tf": 2.631578947368421
                       },
                       "Output.html#hasListener": {
                         "ref": "Output.html#hasListener",
@@ -21256,6 +21269,10 @@ window.lunrData = {
                   "Note.html#getOffsetNumber": {
                     "ref": "Note.html#getOffsetNumber",
                     "tf": 2
+                  },
+                  "Output.html#clear": {
+                    "ref": "Output.html#clear",
+                    "tf": 2.631578947368421
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
@@ -26850,6 +26867,10 @@ window.lunrData = {
                   "ref": "Enumerations.html#.SYSTEM_MESSAGES",
                   "tf": 0.4716981132075472
                 },
+                "Output.html#clear": {
+                  "ref": "Output.html#clear",
+                  "tf": 2.631578947368421
+                },
                 "WebMidi.html": {
                   "ref": "WebMidi.html",
                   "tf": 0.9803921568627451
@@ -28656,10 +28677,6 @@ window.lunrData = {
                     "ref": "Note.html",
                     "tf": 0.5617977528089888
                   },
-                  "Output.html#clear": {
-                    "ref": "Output.html#clear",
-                    "tf": 2.272727272727273
-                  },
                   "Output.html#sendMasterTuning": {
                     "ref": "Output.html#sendMasterTuning",
                     "tf": 1.1363636363636365
@@ -28840,7 +28857,7 @@ window.lunrData = {
                 "docs": {
                   "Output.html#clear": {
                     "ref": "Output.html#clear",
-                    "tf": 2.272727272727273
+                    "tf": 2.631578947368421
                   }
                 }
               }
@@ -29434,7 +29451,7 @@ window.lunrData = {
                     },
                     "Output.html#clear": {
                       "ref": "Output.html#clear",
-                      "tf": 2.272727272727273
+                      "tf": 2.631578947368421
                     },
                     "Output.html#playNote": {
                       "ref": "Output.html#playNote",
@@ -29676,17 +29693,6 @@ window.lunrData = {
             },
             "l": {
               "docs": {},
-              "i": {
-                "docs": {},
-                "v": {
-                  "docs": {
-                    "Output.html#clear": {
-                      "ref": "Output.html#clear",
-                      "tf": 2.272727272727273
-                    }
-                  }
-                }
-              },
               "a": {
                 "docs": {},
                 "y": {
@@ -32151,7 +32157,7 @@ window.lunrData = {
                   "docs": {
                     "Output.html#clear": {
                       "ref": "Output.html#clear",
-                      "tf": 702.2727272727273
+                      "tf": 702.6315789473684
                     }
                   }
                 }
@@ -34584,10 +34590,6 @@ window.lunrData = {
                       "ref": "Message.html#manufacturerId",
                       "tf": 1.7857142857142856
                     },
-                    "Output.html#clear": {
-                      "ref": "Output.html#clear",
-                      "tf": 2.272727272727273
-                    },
                     "Output.html#close": {
                       "ref": "Output.html#close",
                       "tf": 2.380952380952381
@@ -34632,10 +34634,6 @@ window.lunrData = {
                         "ref": "Output.html#id",
                         "tf": 2.1739130434782608
                       },
-                      "Output.html#clear": {
-                        "ref": "Output.html#clear",
-                        "tf": 2.272727272727273
-                      },
                       "WebMidi.html#enable": {
                         "ref": "WebMidi.html#enable",
                         "tf": 0.29411764705882354
@@ -34655,20 +34653,6 @@ window.lunrData = {
                       "WebMidi.html#getOutputByName": {
                         "ref": "WebMidi.html#getOutputByName",
                         "tf": 2
-                      }
-                    }
-                  },
-                  "i": {
-                    "docs": {},
-                    "u": {
-                      "docs": {},
-                      "m": {
-                        "docs": {
-                          "Output.html#clear": {
-                            "ref": "Output.html#clear",
-                            "tf": 2.272727272727273
-                          }
-                        }
                       }
                     }
                   }
@@ -34728,10 +34712,6 @@ window.lunrData = {
                         "Output.html#eventsSuspended": {
                           "ref": "Output.html#eventsSuspended",
                           "tf": 8.333333333333332
-                        },
-                        "Output.html#clear": {
-                          "ref": "Output.html#clear",
-                          "tf": 2.272727272727273
                         },
                         "Output.html#sendAllNotesOff": {
                           "ref": "Output.html#sendAllNotesOff",
@@ -40988,10 +40968,6 @@ window.lunrData = {
                       "ref": "Message.html#statusByte",
                       "tf": 6.25
                     },
-                    "Output.html#clear": {
-                      "ref": "Output.html#clear",
-                      "tf": 2.272727272727273
-                    },
                     "Output.html#close": {
                       "ref": "Output.html#close",
                       "tf": 2.380952380952381
@@ -41590,7 +41566,7 @@ window.lunrData = {
                       },
                       "Output.html#clear": {
                         "ref": "Output.html#clear",
-                        "tf": 2.272727272727273
+                        "tf": 2.631578947368421
                       },
                       "Output.html#getListenerCount": {
                         "ref": "Output.html#getListenerCount",
@@ -42787,10 +42763,6 @@ window.lunrData = {
                     "ref": "InputChannel.html#waitFor",
                     "tf": 1.0869565217391304
                   },
-                  "Output.html#clear": {
-                    "ref": "Output.html#clear",
-                    "tf": 2.272727272727273
-                  },
                   "Output.html#waitFor": {
                     "ref": "Output.html#waitFor",
                     "tf": 1.0869565217391304
@@ -42846,6 +42818,10 @@ window.lunrData = {
                   "Enumerations.html#.SYSTEM_MESSAGES": {
                     "ref": "Enumerations.html#.SYSTEM_MESSAGES",
                     "tf": 0.4716981132075472
+                  },
+                  "Output.html#clear": {
+                    "ref": "Output.html#clear",
+                    "tf": 2.631578947368421
                   },
                   "Output.html#playNote": {
                     "ref": "Output.html#playNote",
@@ -45857,6 +45833,10 @@ window.lunrData = {
                     "docs": {},
                     "l": {
                       "docs": {
+                        "Output.html#clear": {
+                          "ref": "Output.html#clear",
+                          "tf": 2.631578947368421
+                        },
                         "Output.html#playNote": {
                           "ref": "Output.html#playNote",
                           "tf": 0.4132231404958678
@@ -49890,7 +49870,7 @@ window.lunrData = {
                       "docs": {
                         "Output.html#clear": {
                           "ref": "Output.html#clear",
-                          "tf": 2.272727272727273
+                          "tf": 2.631578947368421
                         },
                         "Utilities.html#.isBrowser": {
                           "ref": "Utilities.html#.isBrowser",
@@ -50633,33 +50613,6 @@ window.lunrData = {
                 }
               }
             },
-            "r": {
-              "docs": {},
-              "e": {
-                "docs": {
-                  "Output.html#clear": {
-                    "ref": "Output.html#clear",
-                    "tf": 2.272727272727273
-                  },
-                  "Output.html#sendRpnDecrement": {
-                    "ref": "Output.html#sendRpnDecrement",
-                    "tf": 0.5434782608695652
-                  },
-                  "Output.html#sendRpnIncrement": {
-                    "ref": "Output.html#sendRpnIncrement",
-                    "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#sendRpnDecrement": {
-                    "ref": "OutputChannel.html#sendRpnDecrement",
-                    "tf": 0.5434782608695652
-                  },
-                  "OutputChannel.html#sendRpnIncrement": {
-                    "ref": "OutputChannel.html#sendRpnIncrement",
-                    "tf": 0.5434782608695652
-                  }
-                }
-              }
-            },
             "l": {
               "docs": {},
               "p": {
@@ -50703,6 +50656,29 @@ window.lunrData = {
                       "ref": "OutputChannel.html#sendPolyphonicMode",
                       "tf": 4.166666666666666
                     }
+                  }
+                }
+              }
+            },
+            "r": {
+              "docs": {},
+              "e": {
+                "docs": {
+                  "Output.html#sendRpnDecrement": {
+                    "ref": "Output.html#sendRpnDecrement",
+                    "tf": 0.5434782608695652
+                  },
+                  "Output.html#sendRpnIncrement": {
+                    "ref": "Output.html#sendRpnIncrement",
+                    "tf": 0.5434782608695652
+                  },
+                  "OutputChannel.html#sendRpnDecrement": {
+                    "ref": "OutputChannel.html#sendRpnDecrement",
+                    "tf": 0.5434782608695652
+                  },
+                  "OutputChannel.html#sendRpnIncrement": {
+                    "ref": "OutputChannel.html#sendRpnIncrement",
+                    "tf": 0.5434782608695652
                   }
                 }
               }
@@ -51089,167 +51065,6 @@ window.lunrData = {
                                                                 "Message.html#manufacturerId": {
                                                                   "ref": "Message.html#manufacturerId",
                                                                   "tf": 1.7857142857142856
-                                                                }
-                                                              }
-                                                            }
-                                                          }
-                                                        }
-                                                      }
-                                                    }
-                                                  }
-                                                }
-                                              }
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "b": {
-                          "docs": {},
-                          "u": {
-                            "docs": {},
-                            "g": {
-                              "docs": {},
-                              "s": {
-                                "docs": {},
-                                ".": {
-                                  "docs": {},
-                                  "c": {
-                                    "docs": {},
-                                    "h": {
-                                      "docs": {},
-                                      "r": {
-                                        "docs": {},
-                                        "o": {
-                                          "docs": {},
-                                          "m": {
-                                            "docs": {},
-                                            "i": {
-                                              "docs": {},
-                                              "u": {
-                                                "docs": {},
-                                                "m": {
-                                                  "docs": {},
-                                                  ".": {
-                                                    "docs": {},
-                                                    "o": {
-                                                      "docs": {},
-                                                      "r": {
-                                                        "docs": {},
-                                                        "g": {
-                                                          "docs": {},
-                                                          "/": {
-                                                            "docs": {},
-                                                            "p": {
-                                                              "docs": {},
-                                                              "/": {
-                                                                "docs": {},
-                                                                "c": {
-                                                                  "docs": {},
-                                                                  "h": {
-                                                                    "docs": {},
-                                                                    "r": {
-                                                                      "docs": {},
-                                                                      "o": {
-                                                                        "docs": {},
-                                                                        "m": {
-                                                                          "docs": {},
-                                                                          "i": {
-                                                                            "docs": {},
-                                                                            "u": {
-                                                                              "docs": {},
-                                                                              "m": {
-                                                                                "docs": {},
-                                                                                "/": {
-                                                                                  "docs": {},
-                                                                                  "i": {
-                                                                                    "docs": {},
-                                                                                    "s": {
-                                                                                      "docs": {},
-                                                                                      "s": {
-                                                                                        "docs": {},
-                                                                                        "u": {
-                                                                                          "docs": {},
-                                                                                          "e": {
-                                                                                            "docs": {},
-                                                                                            "s": {
-                                                                                              "docs": {},
-                                                                                              "/": {
-                                                                                                "docs": {},
-                                                                                                "d": {
-                                                                                                  "docs": {},
-                                                                                                  "e": {
-                                                                                                    "docs": {},
-                                                                                                    "t": {
-                                                                                                      "docs": {},
-                                                                                                      "a": {
-                                                                                                        "docs": {},
-                                                                                                        "i": {
-                                                                                                          "docs": {},
-                                                                                                          "l": {
-                                                                                                            "docs": {},
-                                                                                                            "?": {
-                                                                                                              "docs": {},
-                                                                                                              "i": {
-                                                                                                                "docs": {},
-                                                                                                                "d": {
-                                                                                                                  "docs": {},
-                                                                                                                  "=": {
-                                                                                                                    "4": {
-                                                                                                                      "7": {
-                                                                                                                        "1": {
-                                                                                                                          "7": {
-                                                                                                                            "9": {
-                                                                                                                              "8": {
-                                                                                                                                "docs": {
-                                                                                                                                  "Output.html#clear": {
-                                                                                                                                    "ref": "Output.html#clear",
-                                                                                                                                    "tf": 2.272727272727273
-                                                                                                                                  }
-                                                                                                                                }
-                                                                                                                              },
-                                                                                                                              "docs": {}
-                                                                                                                            },
-                                                                                                                            "docs": {}
-                                                                                                                          },
-                                                                                                                          "docs": {}
-                                                                                                                        },
-                                                                                                                        "docs": {}
-                                                                                                                      },
-                                                                                                                      "docs": {}
-                                                                                                                    },
-                                                                                                                    "docs": {}
-                                                                                                                  }
-                                                                                                                }
-                                                                                                              }
-                                                                                                            }
-                                                                                                          }
-                                                                                                        }
-                                                                                                      }
-                                                                                                    }
-                                                                                                  }
-                                                                                                }
-                                                                                              }
-                                                                                            }
-                                                                                          }
-                                                                                        }
-                                                                                      }
-                                                                                    }
-                                                                                  }
-                                                                                }
-                                                                              }
-                                                                            }
-                                                                          }
-                                                                        }
-                                                                      }
-                                                                    }
-                                                                  }
                                                                 }
                                                               }
                                                             }
@@ -52823,10 +52638,6 @@ window.lunrData = {
                 "Message.html#manufacturerId": {
                   "ref": "Message.html#manufacturerId",
                   "tf": 1.7857142857142856
-                },
-                "Output.html#clear": {
-                  "ref": "Output.html#clear",
-                  "tf": 2.272727272727273
                 },
                 "Output.html#sendAllNotesOff": {
                   "ref": "Output.html#sendAllNotesOff",
@@ -57357,6 +57168,10 @@ window.lunrData = {
                         "ref": "InputChannel.html#emit",
                         "tf": 2
                       },
+                      "Output.html#clear": {
+                        "ref": "Output.html#clear",
+                        "tf": 2.631578947368421
+                      },
                       "Output.html#emit": {
                         "ref": "Output.html#emit",
                         "tf": 2
@@ -59172,26 +58987,6 @@ window.lunrData = {
               }
             }
           },
-          "e": {
-            "docs": {},
-            "a": {
-              "docs": {},
-              "t": {
-                "docs": {},
-                "u": {
-                  "docs": {},
-                  "r": {
-                    "docs": {
-                      "Output.html#clear": {
-                        "ref": "Output.html#clear",
-                        "tf": 2.272727272727273
-                      }
-                    }
-                  }
-                }
-              }
-            }
-          },
           "l": {
             "docs": {},
             "o": {
@@ -59200,6 +58995,10 @@ window.lunrData = {
                 "docs": {},
                 "t": {
                   "docs": {
+                    "Note.html#attack": {
+                      "ref": "Note.html#attack",
+                      "tf": 7.142857142857142
+                    },
                     "Utilities.html#.fromFloatToMsbLsb": {
                       "ref": "Utilities.html#.fromFloatToMsbLsb",
                       "tf": 7.142857142857142
@@ -59267,7 +59066,7 @@ window.lunrData = {
                 "docs": {
                   "Output.html#clear": {
                     "ref": "Output.html#clear",
-                    "tf": 2.272727272727273
+                    "tf": 2.631578947368421
                   }
                 }
               }
@@ -59363,7 +59162,7 @@ window.lunrData = {
           }
         }
       },
-      "length": 7394
+      "length": 7391
     },
     "corpusTokens": [
       "0",
@@ -59700,7 +59499,6 @@ window.lunrData = {
       "check",
       "choruslevel",
       "chrome",
-      "chromium",
       "cj",
       "class",
       "clear",
@@ -59830,7 +59628,6 @@ window.lunrData = {
       "default",
       "defin",
       "delay",
-      "deliv",
       "depth",
       "deriv",
       "describ",
@@ -59951,7 +59748,6 @@ window.lunrData = {
       "fall",
       "fals",
       "famili",
-      "featur",
       "file",
       "filter",
       "fine",
@@ -60054,7 +59850,6 @@ window.lunrData = {
       "host",
       "host'",
       "http",
-      "https://bugs.chromium.org/p/chromium/issues/detail?id=471798",
       "https://www.midi.org/specif",
       "id",
       "ident",
@@ -60149,6 +59944,7 @@ window.lunrData = {
       "isbrows",
       "ischannelmessag",
       "isnod",
+      "issu",
       "issystemmessag",
       "itself",
       "javascript",
@@ -61999,7 +61795,7 @@ window.lunrData = {
       "name": "attack",
       "tags": "Note#attack attack",
       "summary": "",
-      "description": "The attack velocity of the note as an integer between 0 and 1."
+      "description": "The attack velocity of the note as a float between 0 and 1."
     },
     "Note.html#duration": {
       "id": "Note.html#duration",
@@ -62250,7 +62046,7 @@ window.lunrData = {
       "name": "clear",
       "tags": "Output#clear clear",
       "summary": "",
-      "description": "Clears all messages that have been queued but not yet delivered. Warning: this method has been defined in the specification but has not been implemented yet. As soon as browsers implement it, it will work. You can check out the current status of this feature for Chromium (Chrome) here: https://bugs.chromium.org/p/chromium/issues/detail?id=471798"
+      "description": "Clears all MIDI messages that have been queued and scheduled but not yet sent. Warning: this method is defined in the Web MIDI API specification but has not been implemented by all browsers yet. You can follow this issue for more info."
     },
     "Output.html#close": {
       "id": "Output.html#close",
