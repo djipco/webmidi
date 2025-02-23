@@ -195,7 +195,7 @@ export class Note {
   }
 
   /**
-   * The attack velocity of the note as an integer between 0 and 1.
+   * The attack velocity of the note as a float between 0 and 1.
    * @type {number}
    * @since 3.0.0
    */
