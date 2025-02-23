@@ -181,3 +181,8 @@ page on GitHub and submit a pull request.
   The Dexter Development Environment, which is used to control the Dexter 7-axis robot arm, bundles
   WEBMIDI.js for MIDI control of the device. 
 
+## SysEx Librarian
+* ### [Patchup](https://www.patchup.app)
+  Created by: **Middledot Tech**
+
+  Patchup is a free web app for sending, receiving, saving, and managing System Exclusive messages. All data is saved to your browser's local storage.
