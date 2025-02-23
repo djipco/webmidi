@@ -75,7 +75,7 @@ The accidental (#, ##, b or bb) of the note.
 **Type**: number<br />
 
 
-The attack velocity of the note as an integer between 0 and 1.
+The attack velocity of the note as a float between 0 and 1.
 
 
 ### `.duration` {#duration}
