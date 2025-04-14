@@ -320,7 +320,7 @@ export declare class EventEmitter {
     duration?: number;
     remaining?: number;
     arguments?: any[];
-  }): Listener | Listener[];
+  }): Listener;
 
   /**
    * Adds a one-time listener for the specified event. The listener will be executed once and then
@@ -355,7 +355,7 @@ export declare class EventEmitter {
     prepend?: boolean;
     duration?: number;
     arguments?: any[];
-  }): Listener | Listener[];
+  }): Listener;
 
   /**
    * Returns `true` if the specified event has at least one registered listener. If no event is
@@ -1869,7 +1869,7 @@ export class InputChannel extends EventEmitter {
       "prepend"?: boolean;
       "remaining"?: number;
     }
-  ): Listener | Listener[];
+  ): Listener;
 
   /**
    * Adds a one-time event listener that will trigger a function callback when the specified event
@@ -1955,7 +1955,7 @@ export class InputChannel extends EventEmitter {
       "duration"?: number;
       "prepend"?: boolean;
     }
-  ): Listener | Listener[];
+  ): Listener;
 
   /**
    * Destroys the `InputChannel` by removing all listeners and severing the link with the MIDI
@@ -2442,7 +2442,7 @@ export class Output extends EventEmitter {
       "prepend"?: boolean;
       "remaining"?: number;
     }
-  ): Listener | Listener[];
+  ): Listener;
 
   /**
    * Adds a one-time event listener that will trigger a function callback when the specified event
@@ -2481,7 +2481,7 @@ export class Output extends EventEmitter {
       "duration"?: number;
       "prepend"?: boolean;
     }
-  ): Listener | Listener[];
+  ): Listener;
 
   /**
    * Clears all messages that have been queued but not yet delivered.
@@ -5641,7 +5641,7 @@ declare class WebMidi extends EventEmitter {
       "prepend"?: boolean;
       "remaining"?: number;
     }
-  ): Listener | Listener[];
+  ): Listener;
 
   /**
    * Adds a one-time event listener that will trigger a function callback when the specified event
@@ -5681,7 +5681,7 @@ declare class WebMidi extends EventEmitter {
       "duration"?: number;
       "prepend"?: boolean;
     }
-  ): Listener | Listener[];
+  ): Listener;
 
   /**
    * Completely disables **WebMidi.js** by unlinking the MIDI subsystem's interface and closing all
