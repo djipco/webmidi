@@ -124,6 +124,11 @@ page on GitHub and submit a pull request.
   A Desktop app to browse and manage guitar amp tones. Control your bluetooth amp, jam to video
   backing tracks.
 
+* ### [Sonicware Liven XFM Web Editor](https://aesqe.github.io/sonicware-liven-xfm-web-editor/)
+  Created by: **Bruno Babić**
+
+  Web editor for the Sonicware Liven XFM groovebox.
+
 
 ## Components & Languages
 
