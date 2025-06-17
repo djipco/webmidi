@@ -22,6 +22,8 @@ You can access all available `Output` objects by referring to the
 
 ### `Constructor`
 
+Creates an `Output` object.
+
 
   **Parameters**
 
@@ -178,13 +180,13 @@ listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to.|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to.|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
@@ -223,7 +225,7 @@ global listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
@@ -250,13 +252,12 @@ The newly created [`Listener`](Listener) object.
 ### `.clear()` {#clear}
 
 
-Clears all messages that have been queued but not yet delivered.
+Clears all MIDI messages that have been queued and scheduled but not yet sent.
 
-**Warning**: this method has been defined in the specification but has not been implemented
-yet. As soon as browsers implement it, it will work.
-
-You can check out the current status of this feature for Chromium (Chrome) here:
-https://bugs.chromium.org/p/chromium/issues/detail?id=471798
+**Warning**: this method is defined in the
+[Web MIDI API specification](https://www.w3.org/TR/webmidi/#MIDIOutput) but has not been
+implemented by all browsers yet. You can follow
+[this issue](https://github.com/djipco/webmidi/issues/52) for more info.
 
 
 **Return Value**
@@ -362,7 +363,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -397,7 +398,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -432,7 +433,7 @@ Note: to specifically check for global listeners added with
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> |(any event)|The event to check|
+    |[**`event`**] | string<br />Symbol<br /> |(any event)|The event to check|
     |[**`callback`**] | function<br />Listener<br /> |(any callback)|The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
@@ -507,11 +508,10 @@ functionally equivalent to a **note off** message.
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|The MIDI channel number (between `1` and `16`) or an array of channel numbers to use. If no channel is specified, all channels will be used.|
     |[**`options.duration`**] | number<br /> ||The number of milliseconds after which a **note off** message will be scheduled. If left undefined, only a **note on** message is sent.|
     |[**`options.attack`**] | number<br /> |0.5|The velocity at which to play the note (between `0` and `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
-    |[**`options.rawAttack`**] | number<br /> |0.5|The attack velocity at which to play the note (between `0` and `127`). This has priority over the `attack` property. An invalid velocity value will silently trigger the default of `0.5`.|
+    |[**`options.rawAttack`**] | number<br /> |64|The attack velocity at which to play the note (between `0` and `127`). This has priority over the `attack` property. An invalid velocity value will silently trigger the default of 64.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
-    |[**`options.rawRelease`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
+    |[**`options.rawRelease`**] | number<br /> |64|The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of 64. This is only used with the **note off** event triggered when `options.duration` is set.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-    |[**`options.attack`**] | number<br /> |0.5|The attack velocity to use when playing the note (between `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.|
 
   </div>
 
@@ -528,9 +528,10 @@ Returns the `Output` object so methods can be chained.
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes all the listeners that match the specified criterias. If no parameters are passed, all
-listeners will be removed. If only the `event` parameter is passed, all listeners for that
-event will be removed. You can remove global listeners by using
+Removes all the listeners that were added to the object upon which the method is called and
+that match the specified criterias. If no parameters are passed, all listeners added to this
+object will be removed. If only the `event` parameter is passed, all listeners for that event
+will be removed from that object. You can remove global listeners by using
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter.
 
 To use more granular options, you must at least define the `event`. Then, you can specify the
@@ -545,11 +546,11 @@ callback to match or one or more of the additional options.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br /> |(any events)|The event name.|
-    |[**`callback`**] | EventEmitter~callback<br /> |(any callbacks)|Only remove the listeners that match this exact callback function.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.context`**] | *<br /> |(any contexts)|Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] | number<br /> |(any number)|Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`event`**] | string<br /> ||The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`options`**] | Object<br /> |||
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
 
   </div>
 
@@ -638,7 +639,7 @@ Returns the `Output` object so methods can be chained.
 
 Sends an **all notes off** channel mode message. This will make all currently playing notes
 fade out just as if their key had been released. This is different from the
-[`turnSoundOff()`](#turnSoundOff) method which mutes all sounds immediately.
+[`sendAllSoundOff()`](#sendAllSoundOff) method which mutes all sounds immediately.
 
 
   **Parameters**
@@ -903,8 +904,8 @@ following common names:
 | 93     |`choruslevel`                  |
 | 94     |`celestelevel`                 |
 | 95     |`phaserlevel`                  |
-| 96     |`databuttonincrement`          |
-| 97     |`databuttondecrement`          |
+| 96     |`dataincrement`                |
+| 97     |`datadecrement`                |
 | 98     |`nonregisteredparametercoarse` |
 | 99     |`nonregisteredparameterfine`   |
 | 100    |`registeredparametercoarse`    |
@@ -1789,12 +1790,27 @@ Returns the `Output` object so methods can be chained.
 
 
 Sends a MIDI [**system exclusive**](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
-(*sysex*) message. The `data` parameter should only contain the data of the message. When
-sending out the actual MIDI message, WEBMIDI.js will automatically prepend the data with the
-**sysex byte** (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
-the message with the **sysex end byte** (`0xF7`).
+(*sysex*) message. There are two categories of system exclusive messages: manufacturer-specific
+messages and universal messages. Universal messages are further divided into three subtypes:
 
-The data can be an array of unsigned integers (`0` - `127`) or a `Uint8Array` object.
+  * Universal non-commercial (for research and testing): `0x7D`
+  * Universal non-realtime: `0x7E`
+  * Universal realtime: `0x7F`
+
+The method's first parameter (`identification`) identifies the type of message. If the value of
+`identification` is `0x7D` (125), `0x7E` (126) or `0x7F` (127), the message will be identified
+as a **universal non-commercial**, **universal non-realtime** or **universal realtime** message
+(respectively).
+
+If the `identification` value is an array or an integer between 0 and 124, it will be used to
+identify the manufacturer targeted by the message. The *MIDI Manufacturers Association*
+maintains a full list of
+[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
+
+The `data` parameter should only contain the data of the message. When sending out the actual
+MIDI message, WEBMIDI.js will automatically prepend the data with the **sysex byte** (`0xF0`)
+and the identification byte(s). It will also automatically terminate the message with the
+**sysex end byte** (`0xF7`).
 
 To use the `sendSysex()` method, system exclusive message support must have been enabled. To
 do so, you must set the `sysex` option to `true` when calling
@@ -1805,7 +1821,7 @@ WebMidi.enable({sysex: true})
   .then(() => console.log("System exclusive messages are enabled");
 ```
 
-##### Examples
+##### Examples of manufacturer-specific system exclusive messages
 
 If you want to send a sysex message to a Korg device connected to the first output, you would
 use the following code:
@@ -1831,23 +1847,36 @@ as the first parameter. For example, to send the same sysex message to a
 WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
 ```
 
-The **MIDI Manufacturers Association** is in charge of maintaining the full updated list of
-[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
-
 There is no limit for the length of the data array. However, it is generally suggested to keep
 system exclusive messages to 64Kb or less.
+
+##### Example of universal system exclusive message
+
+If you want to send a universal sysex message, simply assign the correct identification number
+in the first parameter. Number `0x7D` (125) is for non-commercial, `0x7E` (126) is for
+non-realtime and `0x7F` (127) is for realtime.
+
+So, for example, if you wanted to send an identity request non-realtime message (`0x7E`), you
+could use the following:
+
+```js
+WebMidi.outputs[0].sendSysex(0x7E, [0x7F, 0x06, 0x01]);
+```
+
+For more details on the format of universal messages, consult the list of
+[universal sysex messages](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages).
 
 
   **Parameters**
 
-  > Signature: `sendSysex(manufacturer, [data], [options])`
+  > Signature: `sendSysex(identification, [data], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`manufacturer`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between `0` and `127` that identify the targeted manufacturer. The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).|
-    |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> |[]|A `Uint8Array` or an array of unsigned integers between `0` and `127`. This is the data you wish to transfer.|
+    |**`identification`** | number<br />Array.&lt;number&gt;<br /> ||An unsigned integer or an array of three unsigned integers between `0` and `127` that either identify the manufacturer or sets the message to be a **universal non-commercial message** (`0x7D`), a **universal non-realtime message** (`0x7E`) or a **universal realtime message** (`0x7F`). The *MIDI Manufacturers Association* maintains a full list of [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).|
+    |[**`data`**] | Array.&lt;number&gt;<br />Uint8Array<br /> ||A `Uint8Array` or an array of unsigned integers between `0` and `127`. This is the data you wish to transfer.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
@@ -2065,7 +2094,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -2096,7 +2125,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -2128,7 +2157,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 
@@ -2159,7 +2188,8 @@ Event emitted when the [Output](Output) has been closed by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"closed"`|
-  |**`target`** |Output|The object that triggered the event|
+  |**`target`** |Output|The object to which the listener was originally added (`Output`).|
+  |**`port`** |Output|The port that was closed|
 
 
 ### `disconnected` {#event-disconnected}
@@ -2178,13 +2208,8 @@ when the MIDI device is unplugged.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp0 when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"disconnected"`|
-  |**`target`** |object|Object with properties describing the [Output](Output) that triggered the event. This is not the actual `Output` as it is no longer available.|
-  |**`target.connection`** |string|`"closed"`|
-  |**`target.id`** |string|ID of the input|
-  |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
-  |**`target.name`** |string|Name of the device that provided the input|
-  |**`target.state`** |string|`"disconnected"`|
-  |**`target.type`** |string|`"output"`|
+  |**`target`** |Output|The object to which the listener was originally added (`Output`).|
+  |**`port`** |object|Object with properties describing the [Output](Output) that was disconnected. This is not the actual `Output` as it is no longer available.|
 
 
 ### `opened` {#event-opened}
@@ -2203,7 +2228,8 @@ Event emitted when the [Output](Output) has been opened by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`"opened"`|
-  |**`target`** |Output|The object that triggered the event|
+  |**`target`** |Output|The object to which the listener was originally added (`Output`).|
+  |**`port`** |Output|The port that was opened|
 
 
 

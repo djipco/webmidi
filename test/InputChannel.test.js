@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const midi = require("midi");
+const midi = require("@julusian/midi");
 const {WebMidi, Utilities, Enumerations, Note} = require("../dist/cjs/webmidi.cjs.js");
 
 // Create virtual MIDI input port. Being an external device, the virtual device's output is seen as
@@ -81,6 +81,40 @@ describe("InputChannel Object", function() {
     let event = "noteoff";
     let velocity = 87;
     let status = 0x80;
+    let index = 0;
+    channel.addListener(event, assert);
+
+    // Act
+    for (let i = 0; i <= 127; i++) {
+      VIRTUAL_INPUT.PORT.sendMessage([status, i, velocity]);
+    }
+
+    // Assert
+    function assert(e) {
+
+      expect(e.type).to.equal(event);
+      expect(e.note.identifier).to.equal(Utilities.toNoteIdentifier(index));
+      expect(e.note.attack).to.equal(0); // the note must have an attack of 0 to be a noteoff
+      expect(e.note.rawRelease).to.equal(velocity);
+      expect(e.note.duration).to.equal(WebMidi.defaults.note.duration);
+      expect(e.value).to.equal(Utilities.from7bitToFloat(velocity));
+      expect(e.rawValue).to.equal(velocity);
+      expect(e.target).to.equal(channel);
+
+      index++;
+      if (index > 127) done();
+
+    }
+
+  });
+
+  it("should dispatch 'noteoff' event when receiving 'noteon' with 0 velocity", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "noteoff";
+    let velocity = 0;
+    let status = 0x90; // note on
     let index = 0;
     channel.addListener(event, assert);
 
@@ -272,17 +306,18 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch event for all 'controlchange' subtypes", function (done) {
+  it("should dispatch event for all 'controlchange' numbered subtypes", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "controlchange";
     let status = 0xB0;
     let value = 123;
-    let index = 0;
 
     for (let i = 0; i <= 127; i++) {
-      channel.addListener(`${event}-controller${i}`, assert);
+      channel.addListener(`${event}-controller${i}`, e => {
+        assert(e, i);
+      });
     }
 
     // Act
@@ -291,16 +326,57 @@ describe("InputChannel Object", function() {
     }
 
     // Assert
-    function assert(e) {
-
+    function assert(e, index) {
       expect(e.type).to.equal(`${event}-controller${index}`);
       expect(e.controller.number).to.equal(index);
+      expect(e.controller.name).to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].name);
+      expect(e.controller.description)
+        .to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].description);
+      expect(e.controller.position)
+        .to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].position);
       expect(e.rawValue).to.equal(value);
       expect(e.target).to.equal(channel);
+      if (index === 127) done();
+    }
 
-      index++;
-      if (index > 127) done();
+  });
 
+  it("should dispatch event for all 'controlchange' named subtypes", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "controlchange";
+    let status = 0xB0;
+    let value = 123;
+
+    for (let i = 0; i <= 127; i++) {
+
+      const name = Enumerations.CONTROL_CHANGE_MESSAGES[i].name;
+      if (name.indexOf("controller") !== 0) {
+        channel.addListener(`${event}-` + name, e => {
+          assert(e, i);
+        });
+      }
+
+    }
+
+    // Act
+    for (let i = 0; i <= 127; i++) {
+      VIRTUAL_INPUT.PORT.sendMessage([status, i, value]);
+    }
+
+    // Assert
+    function assert(e, index) {
+      expect(e.type).to.equal(`${event}-` + Enumerations.CONTROL_CHANGE_MESSAGES[index].name);
+      expect(e.controller.number).to.equal(index);
+      expect(e.controller.name).to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].name);
+      expect(e.controller.description)
+        .to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].description);
+      expect(e.controller.position)
+        .to.equal(Enumerations.CONTROL_CHANGE_MESSAGES[index].position);
+      expect(e.rawValue).to.equal(value);
+      expect(e.target).to.equal(channel);
+      if (index === 127) done();
     }
 
   });
@@ -320,7 +396,7 @@ describe("InputChannel Object", function() {
     // Assert
     function assert(e) {
       expect(e.type).to.equal(event);
-      expect(e.value).to.equal(value + 1);
+      expect(e.value).to.equal(value);
       expect(e.rawValue).to.equal(value);
       expect(e.target).to.equal(channel);
       done();
@@ -604,12 +680,12 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch nrpn-databuttonincrement", function (done) {
+  it("should dispatch nrpn-dataincrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "nrpn";
-    let subtype = "databuttonincrement";
+    let subtype = "dataincrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -639,12 +715,12 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch nrpn-databuttondecrement", function (done) {
+  it("should dispatch nrpn-datadecrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "nrpn";
-    let subtype = "databuttondecrement";
+    let subtype = "datadecrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -679,7 +755,7 @@ describe("InputChannel Object", function() {
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "nrpn";
-    let subtype = "databuttondecrement";
+    let subtype = "datadecrement";
     let status = 0xB0;      // control change
     let parameterMsb = 12;
     let parameterLsb = 34;
@@ -789,12 +865,12 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch rpn-databuttonincrement", function (done) {
+  it("should dispatch rpn-dataincrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "rpn";
-    let subtype = "databuttonincrement";
+    let subtype = "dataincrement";
     let status = 0xB0;      // control change
     let parameter = "tuningbank";
     let parameterMsb = 0;
@@ -827,12 +903,12 @@ describe("InputChannel Object", function() {
 
   });
 
-  it("should dispatch rpn-databuttondecrement", function (done) {
+  it("should dispatch rpn-datadecrement", function (done) {
 
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "rpn";
-    let subtype = "databuttondecrement";
+    let subtype = "datadecrement";
     let status = 0xB0;      // control change
     let parameter = "referencedistanceratio";
     let parameterMsb = 0x3D;
@@ -870,7 +946,7 @@ describe("InputChannel Object", function() {
     // Arrange
     let channel = WEBMIDI_INPUT.channels[1];
     let event = "rpn";
-    let subtype = "databuttondecrement";
+    let subtype = "datadecrement";
     let status = 0xB0;      // control change
     let parameter = "referencedistanceratio";
     let parameterMsb = 0x3D;
@@ -900,6 +976,128 @@ describe("InputChannel Object", function() {
     }
 
   });
+
+
+  it("should dispatch nrpn-databuttonincrement (legacy)", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "nrpn";
+    let subtype = "databuttonincrement";
+    let status = 0xB0;      // control change
+    let parameterMsb = 12;
+    let parameterLsb = 34;
+    let value = 56;
+
+    channel.addListener(`${event}-${subtype}`, assert1);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 96, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      done();
+    }
+
+  });
+
+  it("should dispatch nrpn-databuttondecrement (legacy)", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "nrpn";
+    let subtype = "databuttondecrement";
+    let status = 0xB0;      // control change
+    let parameterMsb = 12;
+    let parameterLsb = 34;
+    let value = 56;
+
+    channel.addListener(`${event}-${subtype}`, assert1);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 99, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 98, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      done();
+    }
+
+  });
+
+  it("should dispatch rpn-databuttonincrement (legacy)", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "rpn";
+    let subtype = "databuttonincrement";
+    let status = 0xB0;      // control change
+    let parameter = "tuningbank";
+    let parameterMsb = 0;
+    let parameterLsb = 4;
+    let value = 123;
+
+    channel.addListener(`${event}-${subtype}`, assert1);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 96, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+      done();
+    }
+
+  });
+
+  it("should dispatch rpn-databuttondecrement (legacy)", function (done) {
+
+    // Arrange
+    let channel = WEBMIDI_INPUT.channels[1];
+    let event = "rpn";
+    let subtype = "databuttondecrement";
+    let status = 0xB0;      // control change
+    let parameter = "referencedistanceratio";
+    let parameterMsb = 0x3D;
+    let parameterLsb = 0x06;
+    let value = 123;
+
+    channel.addListener(`${event}-${subtype}`, assert1);
+
+    // Act
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, parameterMsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, parameterLsb]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 97, value]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 101, 127]);
+    VIRTUAL_INPUT.PORT.sendMessage([status, 100, 127]);
+
+    // Assert
+    function assert1(e) {
+      expect(e.type).to.equal(`${event}-${subtype}`);
+      expect(e.rawValue).to.equal(value);
+      expect(e.parameter).to.equal(parameter);
+      done();
+    }
+
+  });
+
 
   describe("destroy()", function () {
 
@@ -942,8 +1140,8 @@ describe("InputChannel Object", function() {
       let results = [];
 
       // Act
-      for (let cc in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
-        let number = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cc];
+      for (let cc in Enumerations.CHANNEL_MODE_MESSAGES) {
+        let number = Enumerations.CHANNEL_MODE_MESSAGES[cc];
         results.push(channel.getChannelModeByNumber(number));
       }
 
@@ -1014,8 +1212,8 @@ describe("InputChannel Object", function() {
       let results = [];
 
       // Act
-      for (let cc in Enumerations.MIDI_CONTROL_CHANGE_MESSAGES) {
-        let number = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[cc];
+      for (let cc in Enumerations.CONTROL_CHANGE_MESSAGES) {
+        let number = Enumerations.CONTROL_CHANGE_MESSAGES[cc].number;
         results.push(channel.getCcNameByNumber(number));
       }
 

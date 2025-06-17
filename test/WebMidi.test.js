@@ -1,6 +1,6 @@
 const expect = require("chai").expect;
 const {WebMidi, Utilities} = require("../dist/cjs/webmidi.cjs.js");
-const midi = require("midi");
+const midi = require("@julusian/midi");
 const semver = require("semver");
 
 // The virtual port from the 'midi' library is an "external" device so an output is seen as an input
@@ -51,6 +51,10 @@ describe("WebMidi Object", function() {
 
   it("should report valid version", function() {
     expect(semver.valid(WebMidi.version)).to.not.be.null;
+  });
+
+  it("should report valid flavour", function() {
+    expect(WebMidi.flavour).to.equal("cjs");
   });
 
   // THIS WORKS BY ITSELF BUT STOPS WORKING WHEN THE OTHER TESTS ARE RUN!
@@ -540,8 +544,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getInputById("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getInputById("0000000")).to.equal(undefined);
     });
 
     it("should return the right input", function() {
@@ -566,11 +570,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when invalid id is provided", function() {
+    it("should return 'undefined' when invalid id is provided", function() {
 
       if (WebMidi.inputs.length > 0) {
         [null, undefined, "", [], {}].forEach(id => {
-          expect(WebMidi.getInputById(id)).to.equal(false);
+          expect(WebMidi.getInputById(id)).to.equal(undefined);
         });
       } else {
         this.skip();
@@ -599,8 +603,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getInputByName("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getInputByName("0000000")).to.equal(undefined);
     });
 
     it("should return the right input", function() {
@@ -625,11 +629,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when an invalid name is provided", function() {
+    it("should return 'undefined' when an invalid name is provided", function() {
 
       if (WebMidi.inputs.length > 0) {
         [null, undefined, ""].forEach(name => {
-          expect(WebMidi.getInputByName(name)).to.equal(false);
+          expect(WebMidi.getInputByName(name)).to.equal(undefined);
         });
       } else {
         this.skip();
@@ -658,8 +662,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getOutputById("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getOutputById("0000000")).to.equal(undefined);
     });
 
     it("should return the right output", function() {
@@ -684,11 +688,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when a weird id is provided", function() {
+    it("should return 'undefined' when a weird id is provided", function() {
 
       if (WebMidi.inputs.length > 0) {
         [null, undefined, "", [], {}].forEach(id => {
-          expect(WebMidi.getOutputById(id)).to.equal(false);
+          expect(WebMidi.getOutputById(id)).to.equal(undefined);
         });
       } else {
         this.skip();
@@ -717,8 +721,8 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return false if no device is found", function() {
-      expect(WebMidi.getOutputByName("0000000")).to.equal(false);
+    it("should return undefined if no device is found", function() {
+      expect(WebMidi.getOutputByName("0000000")).to.equal(undefined);
     });
 
     it("should return the right output", function() {
@@ -743,11 +747,11 @@ describe("WebMidi Object", function() {
 
     });
 
-    it("should return 'false' when an invalid name is provided", function() {
+    it("should return 'undefined' when an invalid name is provided", function() {
 
       if (WebMidi.outputs.length > 0) {
         [null, undefined, ""].forEach(name => {
-          expect(WebMidi.getOutputByName(name)).to.equal(false);
+          expect(WebMidi.getOutputByName(name)).to.equal(undefined);
         });
       } else {
         this.skip();
@@ -864,5 +868,17 @@ describe("WebMidi Object", function() {
 
   });
 
-});
+  describe("get supported()", function() {
 
+    it("should return true if midi available", function(done) {
+
+      WebMidi.enable().then(() => {
+        expect(WebMidi.supported).to.be.true;
+        done();
+      });
+
+    });
+
+  });
+
+});

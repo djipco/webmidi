@@ -12,6 +12,8 @@ It is intended to be an abstract class meant to be extended by (or mixed into) o
 
 ### `Constructor`
 
+Creates a new `EventEmitter`object.
+
 
   **Parameters**
 
@@ -106,13 +108,13 @@ listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to.|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to.|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
@@ -151,7 +153,7 @@ global listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
@@ -238,7 +240,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -273,7 +275,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -308,7 +310,7 @@ Note: to specifically check for global listeners added with
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> |(any event)|The event to check|
+    |[**`event`**] | string<br />Symbol<br /> |(any event)|The event to check|
     |[**`callback`**] | function<br />Listener<br /> |(any callback)|The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
@@ -324,9 +326,10 @@ Note: to specifically check for global listeners added with
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes all the listeners that match the specified criterias. If no parameters are passed, all
-listeners will be removed. If only the `event` parameter is passed, all listeners for that
-event will be removed. You can remove global listeners by using
+Removes all the listeners that were added to the object upon which the method is called and
+that match the specified criterias. If no parameters are passed, all listeners added to this
+object will be removed. If only the `event` parameter is passed, all listeners for that event
+will be removed from that object. You can remove global listeners by using
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter.
 
 To use more granular options, you must at least define the `event`. Then, you can specify the
@@ -341,11 +344,11 @@ callback to match or one or more of the additional options.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br /> |(any events)|The event name.|
-    |[**`callback`**] | EventEmitter~callback<br /> |(any callbacks)|Only remove the listeners that match this exact callback function.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.context`**] | *<br /> |(any contexts)|Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] | number<br /> |(any number)|Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`event`**] | string<br /> ||The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`options`**] | Object<br /> |||
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
 
   </div>
 
@@ -377,7 +380,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -408,7 +411,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -440,7 +443,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 

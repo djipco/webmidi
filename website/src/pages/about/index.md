@@ -31,30 +31,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied. See the above license for the specific language governing permissions and limitations.
 
-© 2015-2021, Jean-Philippe Côté.
-
-## Citing this Software in Research
-
-I invite academics to show their support for this project by properly citing it wherever appropriate
-in your references. Here's an example of how to cite it ([APA Style](https://apastyle.apa.org/)):
-
-> Côté, J. P. (2021). WebMidi.js v3.0.0 [Computer Software]. Retrieved from 
-> https​://github.com/djipco/webmidi
-
-Here are a few examples of academic papers citing WebMidi.js:
-
-* Lundh Haaland, M. (2020). The Player as a Conductor: Utilizing an Expressive Performance
-  System to Create an Interactive Video Game Soundtrack (Dissertation). Retrieved from
-  http://urn.kb.se/resolve?urn=urn:nbn:se:kth:diva-281324
-
-* Bazin, T. & Hadjeres, G. (2019). NONOTO: A Model-agnostic Web Interface for Interactive
-  Music Composition by Inpainting, presented at 10th International Conference on Computational
-  Creativity, Charlotte, 2019. Retrieved from https://arxiv.org/abs/1907.10380
-
-* Cárdenas, A. & Mauricio B. (2018). Diseño y desarrollo de un prototipo para integración de
-  Tecnología de Tracking 3d con Tecnología MIDI [Doctoral dissertation, Pontificia Universidad
-  Católica del Ecuador]. Retrieved from http://repositorio.puce.edu.ec/handle/22000/15838
-
-If you are using WEBMIDI.js in your research, I would love to know about it. To notify me, you can 
-simply drop me a note on [Twitter](https://twitter.com/djipco). By the way, I'm open to artistic
-or academic collaborations.
+© 2015-2023, Jean-Philippe Côté.

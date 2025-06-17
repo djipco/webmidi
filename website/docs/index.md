@@ -10,7 +10,8 @@ with your MIDI instrument in less than 5 minutes.
 
 :::info
 
-Documentation for [version 2.5.x](archives/v2) and [version 1.0.0](archives/v1) is also available.
+Documentation for [version 2.5.x](https://webmidijs.org/archives/api/v2/) and 
+[version 1.0.0](http://webmidijs.org/archives/api/v1/classes/WebMidi.html) is also available.
 
 :::
 
@@ -24,7 +25,7 @@ our GitHub repo.
 
 :::
 
-Create an HTML document and include the library (this will install the latest alpha version): 
+Create an HTML document and link to the library: 
 
 ```html
 <!DOCTYPE html>
@@ -34,7 +35,7 @@ Create an HTML document and include the library (this will install the latest al
   <head>
     <meta charset="UTF-8">
     <title>WebMidi.js Quick Start</title>
-    <script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>
   </head>
   
   <body>
@@ -53,13 +54,13 @@ machines, controllers, etc.):
 ```html
 <script type="module">
 
-  // Enable WebMidi.js and trigger the onEnabled() function when ready
+  // Enable WEBMIDI.js and trigger the onEnabled() function when ready
   WebMidi
     .enable()
     .then(onEnabled)
     .catch(err => alert(err));
 
-  // Function triggered when WebMidi.js is ready
+  // Function triggered when WEBMIDI.js is ready
   function onEnabled() {
 
     // Display available MIDI input devices
@@ -78,7 +79,8 @@ machines, controllers, etc.):
 ## Step 3 - Connect your device 
 
 🎹 Connect an input MIDI device (synth, drum machine, controller, etc.) and load the HTML page in a 
-compatible browser. You will be prompted to authorize the MIDI connection.
+[compatible browser](/docs/getting-started#browser-support). You will be 
+prompted to authorize the MIDI connection.
 
 After authorization, the page should detect the connected MIDI devices and display their name.
 

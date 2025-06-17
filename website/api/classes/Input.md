@@ -25,6 +25,8 @@ object does that. However, you can still use the
 
 ### `Constructor`
 
+Creates an `Input` object.
+
 
   **Parameters**
 
@@ -175,16 +177,16 @@ the added benefit of being able to filter which data is forwarded.
 
   **Parameters**
 
-  > Signature: `addForwarder([destinations], [options])`
+  > Signature: `addForwarder(output, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`destinations`**] | Output<br />Array.&lt;Output&gt;<br /> |\[\]|An [`Output`](Output) object, or an array of such objects, to forward messages to.|
+    |**`output`** | Output<br />Array.&lt;Output&gt;<br /> ||An [`Output`](Output) object, or an array of such objects, to forward messages to.|
     |[**`options`**] | object<br /> |{}||
-    |[**`options.types`**] | string<br />Array.&lt;string&gt;<br /> |(all messages)|A message type, or an array of such types (`noteon`, `controlchange`, etc.), that the message type must match in order to be forwarded. If this option is not specified, all types of messages will be forwarded. Valid messages are the ones found in either [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).|
-    |[**`options.channels`**] | number<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. By default all MIDI channels are included (`1` to `16`).|
+    |[**`options.types`**] | string<br />Array.&lt;string&gt;<br /> |(all messages)|A message type, or an array of such types (`noteon`, `controlchange`, etc.), that the message type must match in order to be forwarded. If this option is not specified, all types of messages will be forwarded. Valid messages are the ones found in either [`SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) or [`CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).|
+    |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> |[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]|A MIDI channel number or an array of channel numbers that the message must match in order to be forwarded. By default all MIDI channels are included (`1` to `16`).|
 
   </div>
 
@@ -239,7 +241,8 @@ You can also specify which channels you want to add the listener to:
 const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
 ```
 
-In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
+In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects. The order of
+the listeners in the array follows the order the channels were specified in.
 
 Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
 instance that actually gets a listener added and not the `Input` instance. You can check that
@@ -308,16 +311,16 @@ There are 8 families of events you can listen to:
    * [`nrpn`](InputChannel#event:nrpn)
    * [`nrpn-dataentrycoarse`](InputChannel#event:nrpn-dataentrycoarse)
    * [`nrpn-dataentryfine`](InputChannel#event:nrpn-dataentryfine)
-   * [`nrpn-databuttonincrement`](InputChannel#event:nrpn-databuttonincrement)
-   * [`nrpn-databuttondecrement`](InputChannel#event:nrpn-databuttondecrement)
+   * [`nrpn-dataincrement`](InputChannel#event:nrpn-dataincrement)
+   * [`nrpn-datadecrement`](InputChannel#event:nrpn-datadecrement)
 
 8. **RPN** Events (channel-specific)
 
    * [`rpn`](InputChannel#event:rpn)
    * [`rpn-dataentrycoarse`](InputChannel#event:rpn-dataentrycoarse)
    * [`rpn-dataentryfine`](InputChannel#event:rpn-dataentryfine)
-   * [`rpn-databuttonincrement`](InputChannel#event:rpn-databuttonincrement)
-   * [`rpn-databuttondecrement`](InputChannel#event:rpn-databuttondecrement)
+   * [`rpn-dataincrement`](InputChannel#event:rpn-dataincrement)
+   * [`rpn-datadecrement`](InputChannel#event:rpn-datadecrement)
 
 
   **Parameters**
@@ -328,7 +331,7 @@ There are 8 families of events you can listen to:
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br /> ||The type of the event.|
+    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||A callback function to execute when the specified event is detected. This function will receive an event parameter object. For details on this object's properties, check out the documentation for the various events (links above).|
     |[**`options`**] | object<br /> |{}||
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
@@ -336,7 +339,7 @@ There are 8 families of events you can listen to:
     |[**`options.context`**] | object<br /> |this|The value of `this` in the callback function.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus be triggered before others.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
 
   </div>
 
@@ -453,16 +456,16 @@ There are 8 families of events you can listen to:
    * [`nrpn`](InputChannel#event:nrpn)
    * [`nrpn-dataentrycoarse`](InputChannel#event:nrpn-dataentrycoarse)
    * [`nrpn-dataentryfine`](InputChannel#event:nrpn-dataentryfine)
-   * [`nrpn-databuttonincrement`](InputChannel#event:nrpn-databuttonincrement)
-   * [`nrpn-databuttondecrement`](InputChannel#event:nrpn-databuttondecrement)
+   * [`nrpn-dataincrement`](InputChannel#event:nrpn-dataincrement)
+   * [`nrpn-datadecrement`](InputChannel#event:nrpn-datadecrement)
 
 8. **RPN** Events (channel-specific)
 
    * [`rpn`](InputChannel#event:rpn)
    * [`rpn-dataentrycoarse`](InputChannel#event:rpn-dataentrycoarse)
    * [`rpn-dataentryfine`](InputChannel#event:rpn-dataentryfine)
-   * [`rpn-databuttonincrement`](InputChannel#event:rpn-databuttonincrement)
-   * [`rpn-databuttondecrement`](InputChannel#event:rpn-databuttondecrement)
+   * [`rpn-dataincrement`](InputChannel#event:rpn-dataincrement)
+   * [`rpn-datadecrement`](InputChannel#event:rpn-datadecrement)
 
 
   **Parameters**
@@ -592,7 +595,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -627,7 +630,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -684,7 +687,7 @@ have the listener defined.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br /> ||The type of the event.|
+    |**`event`** | string<br />Symbol<br /> ||The type of the event.|
     |**`listener`** | function<br /> ||The callback function to check for.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.channels`**] | number<br />Array.&lt;number&gt;<br /> ||An integer between 1 and 16 or an array of such integers representing the MIDI channel(s) to check. This parameter is ignored for input-wide events.|
@@ -745,13 +748,14 @@ Removes the specified [`Forwarder`](Forwarder) object from the input.
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes the specified listener for the specified event. If no listener is specified, all
-listeners for the specified event will be removed. If no event is specified, all listeners for
-the `Input` as well as all listeners for all [`InputChannel`](InputChannel) objects will
-be removed.
+Removes the specified event listener. If no listener is specified, all listeners matching the
+specified event will be removed. If the event is channel-specific, the listener will be removed
+from all [`InputChannel`](InputChannel) objects belonging to that channel. If no event is
+specified, all listeners for the `Input` as well as all listeners for all
+[`InputChannel`](InputChannel) objects belonging to the `Input` will be removed.
 
-By default, channel-specific listeners will be removed from all channels unless the
-`options.channel` narrows it down.
+By default, channel-specific listeners will be removed from all
+[`InputChannel`](InputChannel) objects unless the `options.channel` narrows it down.
 
 
   **Parameters**
@@ -799,7 +803,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -830,7 +834,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -862,7 +866,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 
@@ -891,7 +895,8 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`activesensing`|
@@ -911,7 +916,8 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`clock`|
@@ -933,7 +939,8 @@ Event emitted when the `Input` has been closed by calling the
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`closed`|
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
 
 
 ### `continue` {#event-continue}
@@ -950,7 +957,8 @@ Input-wide (system) event emitted when a **continue** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`continue`|
@@ -972,13 +980,8 @@ when the MIDI device is unplugged.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`disconnected`|
-  |**`target`** |object|Object with properties describing the [Input](Input) that triggered the event. This is not the actual `Input` as it is no longer available.|
-  |**`target.connection`** |string|`"closed"`|
-  |**`target.id`** |string|ID of the input|
-  |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
-  |**`target.name`** |string|Name of the device that provided the input|
-  |**`target.state`** |string|`disconnected`|
-  |**`target.type`** |string|`input`|
+  |**`port`** |Input|Object with properties describing the [Input](Input) that was disconnected. This is not the actual `Input` as it is no longer available.|
+  |**`target`** |Input|The object that dispatched the event.|
 
 
 ### `midimessage` {#event-midimessage}
@@ -995,7 +998,8 @@ Event emitted when any MIDI message is received on an `Input`.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input`that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`midimessage`|
@@ -1017,7 +1021,8 @@ method.
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`opened`|
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
 
 
 ### `reset` {#event-reset}
@@ -1034,7 +1039,8 @@ Input-wide (system) event emitted when a **reset** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`reset`|
@@ -1054,7 +1060,8 @@ Input-wide (system) event emitted when a **song position** message has been rece
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`songposition`|
@@ -1074,11 +1081,12 @@ Input-wide (system) event emitted when a **song select** message has been receiv
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`songselect`|
-  |**`song`** |string|Song (or sequence) number to select (0-127)|
+  |**`value`** |string|Song (or sequence) number to select (0-127)|
+  |**`rawValue`** |string|Song (or sequence) number to select (0-127)|
 
 
 ### `start` {#event-start}
@@ -1095,7 +1103,8 @@ Input-wide (system) event emitted when a **start** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`start`|
@@ -1115,7 +1124,8 @@ Input-wide (system) event emitted when a **stop** message has been received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`stop`|
@@ -1141,7 +1151,8 @@ WebMidi.enable({sysex: true})
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`sysex`|
@@ -1162,7 +1173,8 @@ received.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`timecode`|
@@ -1182,15 +1194,16 @@ Input-wide (system) event emitted when a **tune request** message has been recei
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
   |**`type`** |string|`tunerequest`|
 
 
-### `unknownmidimessage` {#event-unknownmidimessage}
+### `unknownmessage` {#event-unknownmessage}
 
-<a id="event:unknownmidimessage"></a>
+<a id="event:unknownmessage"></a>
 
 
 Input-wide (system) event emitted when an unknown MIDI message has been received. It could
@@ -1203,10 +1216,11 @@ be, for example, one of the undefined/reserved messages.
 
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
-  |**`target`** |Input|The `Input` that triggered the event.|
+  |**`port`** |Input|The `Input` that triggered the event.|
+  |**`target`** |Input|The object that dispatched the event.|
   |**`message`** |Message|A [`Message`](Message) object containing information about the incoming MIDI message.|
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`unknownmidimessage`|
+  |**`type`** |string|`unknownmessage`|
 
 
 

@@ -5,15 +5,18 @@ import {Enumerations} from "./Enumerations.js";
  * The `Message` class represents a single MIDI message. It has several properties that make it
  * easy to make sense of the binary data it contains.
  *
- * @param {Uint8Array} data The raw data of the MIDI message as a
- * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
- * of integers between `0` and `255`.
- *
  * @license Apache-2.0
  * @since 3.0.0
  */
 export class Message {
 
+  /**
+   * Creates a new `Message` object from raw MIDI data.
+   *
+   * @param {Uint8Array} data The raw data of the MIDI message as a
+   * [`Uint8Array`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
+   * of integers between `0` and `255`.
+   */
   constructor(data) {
 
     /**
@@ -133,14 +136,14 @@ export class Message {
 
     // Assign type (depending on whether the message is channel-specific or system)
     if (this.isChannelMessage) {
-      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_CHANNEL_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.CHANNEL_MESSAGES, this.command);
     } else if (this.isSystemMessage) {
-      this.type = Utilities.getPropertyByValue(Enumerations.MIDI_SYSTEM_MESSAGES, this.command);
+      this.type = Utilities.getPropertyByValue(Enumerations.SYSTEM_MESSAGES, this.command);
     }
 
     // When the message is a sysex message, we add a manufacturer property and strip out the id from
     // dataBytes and rawDataBytes.
-    if (this.statusByte === Enumerations.MIDI_SYSTEM_MESSAGES.sysex) {
+    if (this.statusByte === Enumerations.SYSTEM_MESSAGES.sysex) {
 
       if (this.dataBytes[0] === 0) {
         this.manufacturerId = this.dataBytes.slice(0, 3);

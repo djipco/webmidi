@@ -4,15 +4,17 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  */
-import React from 'react';
-import {useThemeConfig} from '@docusaurus/theme-common';
-import useBaseUrl from '@docusaurus/useBaseUrl';
-import styles from './styles.module.scss';
+import React from "react";
+import {useThemeConfig} from "@docusaurus/theme-common";
+import useBaseUrl from "@docusaurus/useBaseUrl";
+import styles from "./styles.module.scss";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
+import {Helmet} from "react-helmet";
 
 function Footer() {
 
   const {footer} = useThemeConfig();
+  // eslint-disable-next-line no-unused-vars
   const {sponsors = []} = useDocusaurusContext();
   const {copyright,} = footer || {};
 
@@ -30,7 +32,7 @@ function Footer() {
         <div className={styles.sponsor}>
           <p>This project is supported in part by:</p>
           <div className={styles.sponsors}>
-            <a href="https://www.cegepmontpetit.ca/" target={"_blank"}>
+            <a href="https://www.cegepmontpetit.ca/" target={"_blank"} rel="noreferrer">
               <img
                 src={sponsorLogoPath}
                 alt="Logo cegep Edouard-Montpetit"
@@ -40,7 +42,7 @@ function Footer() {
         </div>
         {copyright ? (
           <div
-            className={`footer__copyright ${styles.copyright}`} // Developer provided the HTML, so assume it's safe.
+            className={`footer__copyright ${styles.copyright}`} // Dev provided HTML, assume safe.
             // eslint-disable-next-line react/no-danger
             dangerouslySetInnerHTML={{
               __html: copyright,
@@ -48,6 +50,11 @@ function Footer() {
           />
         ) : null}
       </div>
+
+      <Helmet>
+        <script id="mcjs" src="/js/newsletter-popup.js" type="text/javascript" />
+      </Helmet>
+
     </footer>
   );
 }

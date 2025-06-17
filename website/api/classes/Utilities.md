@@ -9,6 +9,25 @@ should be called using the class name. For example: `Utilities.getNoteDetails("C
 
 ***
 
+## Properties
+
+### `.isBrowser` {#isBrowser}
+**Type**: boolean<br />
+
+
+Indicates whether the execution environment is a browser (`true`) or not (`false`)
+
+
+### `.isNode` {#isNode}
+**Type**: boolean<br />
+
+
+Indicates whether the execution environment is Node.js (`true`) or not (`false`)
+
+
+
+***
+
 ## Methods
 
 
@@ -121,7 +140,7 @@ input value cannot be converted to an integer, the method returns 0.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |  ||A positive integer between 0 and 127 (inclusive)|
+    |**`value`** | number<br /> ||A positive integer between 0 and 127 (inclusive)|
 
   </div>
 
@@ -140,8 +159,8 @@ A number between 0 and 1 (inclusive)
 ### `.fromFloatTo7Bit(...)` {#fromFloatTo7Bit}
 
 
-Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-The input value should be number between 0 and 1 (inclusively). The returned value is
+Returns an integer between 0 and 127 which is the result of multiplying the input value by
+127. The input value should be a number between 0 and 1 (inclusively). The returned value is
 restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
 
 Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
@@ -156,7 +175,7 @@ the input value cannot be converted to a number, the method returns 0.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`value`** |  ||A positive integer between 0 and 127 (inclusive)|
+    |**`value`** | number<br /> ||A positive float between 0 and 1 (inclusive)|
 
   </div>
 
@@ -165,7 +184,7 @@ the input value cannot be converted to a number, the method returns 0.
 
 > Returns: `number`<br />
 
-A number between 0 and 1 (inclusive)
+A number between 0 and 127 (inclusive)
 
 
 **Attributes**: static
@@ -259,6 +278,38 @@ In these cases, the method returns `controllerXXX` (where XXX is the number).
 > Returns: `string` or `undefined`<br />
 
 The matching control change name or `undefined` if no match was
+found.
+
+
+**Attributes**: static
+
+
+
+### `.getCcNumberByName(...)` {#getCcNumberByName}
+
+**Since**: 3.1<br />
+
+Returns the number of a control change message matching the specified name.
+
+
+  **Parameters**
+
+  > Signature: `getCcNumberByName(name)`
+
+  <div class="parameter-table-container">
+
+  | Parameter    | Type(s)      | Default      | Description  |
+  | ------------ | ------------ | ------------ | ------------ |
+    |**`name`** | string<br /> ||A string representing the control change message|
+
+  </div>
+
+
+**Return Value**
+
+> Returns: `string` or `undefined`<br />
+
+The matching control change number or `undefined` if no match was
 found.
 
 
@@ -384,13 +435,14 @@ parameter. For example, if you pass in "C4" (note number 60) and the `octaveOffs
 
   **Parameters**
 
-  > Signature: `guessNoteNumber(input)`
+  > Signature: `guessNoteNumber(input, octaveOffset)`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`input`** | string<br />number<br /> ||A string or number to extract the MIDI note number from.|
+    |**`octaveOffset`** | number<br /> ||An integer to offset the octave by|
 
   </div>
 
@@ -470,7 +522,7 @@ integers between 1 and 16 are silently ignored.
 
 **Return Value**
 
-> Returns: `Array`<br />
+> Returns: `Array.<number>`<br />
 
 An array of 0 or more valid MIDI channel numbers.
 

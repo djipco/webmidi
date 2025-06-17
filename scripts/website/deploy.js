@@ -4,7 +4,7 @@
 // Importation
 const fs = require("fs-extra");
 const fsPromises = require("fs").promises;
-const git = require("simple-git/promise")();
+const git = require("simple-git")();
 const moment = require("moment");
 const os = require("os");
 const path = require("path");

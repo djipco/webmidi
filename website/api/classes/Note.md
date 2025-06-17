@@ -27,6 +27,8 @@ method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
 
 ### `Constructor`
 
+Creates a `Note` object.
+
 
   **Parameters**
 
@@ -73,7 +75,7 @@ The accidental (#, ##, b or bb) of the note.
 **Type**: number<br />
 
 
-The attack velocity of the note as an integer between 0 and 1.
+The attack velocity of the note as a float between 0 and 1.
 
 
 ### `.duration` {#duration}
@@ -98,12 +100,14 @@ The name, optional accidental and octave of the note, as a string.
 **Type**: string<br />
 
 
-The name (letter) of the note
+The name (letter) of the note. If you need the full name with octave and accidental, you can
+use the [`identifier`](#Note+identifier) property instead.
 
 
 ### `.number` {#number}
 **Since**: 3.0.0<br />
 **Type**: number<br />
+**Attributes**: read-only<br />
 
 
 The MIDI number of the note (`0` - `127`). This number is derived from the note identifier

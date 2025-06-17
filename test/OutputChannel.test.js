@@ -1,5 +1,5 @@
 const expect = require("chai").expect;
-const midi = require("midi");
+const midi = require("@julusian/midi");
 const sinon = require("sinon");
 const {WebMidi, Note, Utilities, Message, Enumerations} = require("../dist/cjs/webmidi.cjs.js");
 
@@ -198,7 +198,7 @@ describe("OutputChannel Object", function() {
       // Assert
       expect(
         spy.calledOnceWithExactly(
-          Enumerations.MIDI_REGISTERED_PARAMETERS["pitchbendrange"],
+          Enumerations.REGISTERED_PARAMETERS["pitchbendrange"],
           options
         )
       ).to.be.true;
@@ -435,7 +435,7 @@ describe("OutputChannel Object", function() {
       // Assert
       expect(
         spy.calledOnceWithExactly(
-          Enumerations.MIDI_REGISTERED_PARAMETERS["pitchbendrange"],
+          Enumerations.REGISTERED_PARAMETERS["pitchbendrange"],
           options
         )
       ).to.be.true;
@@ -538,6 +538,49 @@ describe("OutputChannel Object", function() {
 
     });
 
+    it("should call 'sendNoteOn()' with correct parameters if passed a Note", function () {
+
+      // Arrange
+      let note = new Note("C4", { duration: 250, attack: 0.5, rawAttack: 127 });
+      let options = { time: 10 };
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendNoteOff");
+
+      // Act
+      WEBMIDI_OUTPUT.channels[1].playNote(note, options);
+
+      // Assert
+      expect(spy.calledOnceWith(note)).to.be.true;
+      expect(spy.args[0][0]).to.equal(note);
+      expect(spy.args[0][0].attack).to.equal(note.attack);
+      expect(spy.args[0][0].rawAttack).to.equal(note.rawAttack);
+      expect(spy.args[0][1].time).to.equal(options.time + note.duration);
+    });
+
+    it("should call 'sendNoteOff()' for each note if parameter is Note[]", function () {
+
+      // Arrange
+      let note = new Note("C4", { duration: 250 });
+      let notes = [
+        note,
+        new Note("D#2", { duration: 500 }),
+        new Note("F3", { duration: 250 })
+      ];
+
+      let options = {};
+      let spy = sinon.spy(WEBMIDI_OUTPUT.channels[1], "sendNoteOff");
+
+      // // Act
+      WEBMIDI_OUTPUT.channels[1].playNote(notes, options);
+
+      // // Assert
+      expect(spy.callCount).to.equal(3);
+      expect(spy.args[0][0]).to.equal(note);
+      // Hard to get exact timing values, assert in future
+      expect(spy.args[0][1].time).to.greaterThan(WebMidi.time);
+      expect(spy.args[0][1].release).to.equal(note.release);
+      expect(spy.args[0][1].rawRelease).to.equal(note.rawRelease);
+    });
+
     it("should return 'OutputChannel' object for method chaining", function () {
       expect(
         WEBMIDI_OUTPUT.channels[1].playNote("C3")
@@ -560,13 +603,12 @@ describe("OutputChannel Object", function() {
       // Act
       WEBMIDI_OUTPUT.channels[channel].playNote(note, {time: timestamp, duration: duration});
 
-
       // Assert
       function assert(deltaTime, message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - sent - delay - duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.removeListener("message", assert);
           done();
         }
 
@@ -589,13 +631,12 @@ describe("OutputChannel Object", function() {
       // Act
       WEBMIDI_OUTPUT.channels[channel].playNote(note, {time: timestamp, duration: duration});
 
-
       // Assert
       function assert(deltaTime, message) {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - timestamp - duration).to.be.within(-5, 10);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.removeListener("message", assert);
           done();
         }
 
@@ -623,7 +664,32 @@ describe("OutputChannel Object", function() {
 
         if (JSON.stringify(message) == JSON.stringify(expected)) {
           expect(WebMidi.time - sent - duration).to.be.within(-5, 15);
-          VIRTUAL_OUTPUT.removeAllListeners();
+          VIRTUAL_OUTPUT.removeListener("message", assert);
+          done();
+        }
+
+      }
+
+    });
+
+    it("should call 'sendNoteOff()' if duration in Note object is valid", function (done) {
+
+      // Arrange
+      let note = new Note("C4", { duration: 250 });
+      let channel = WEBMIDI_OUTPUT.channels[1];
+      let expected = [128, note.number, 64]; // 128 = note off on ch 1
+      let sent = WebMidi.time;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      channel.playNote(note);
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        if (JSON.stringify(message) == JSON.stringify(expected)) {
+          expect(WebMidi.time - sent - note.duration).to.be.within(-5, 10);
+          VIRTUAL_OUTPUT.removeListener("message", assert);
           done();
         }
 
@@ -661,7 +727,7 @@ describe("OutputChannel Object", function() {
       // Assert
       function assert(deltaTime, message) {
         expect(message).to.have.ordered.members(expected);
-        VIRTUAL_OUTPUT.removeAllListeners();
+        VIRTUAL_OUTPUT.removeListener("message", assert);
         done();
       }
 
@@ -1078,53 +1144,55 @@ describe("OutputChannel Object", function() {
         ["expressioncoarse", 11],
         ["effectcontrol1coarse", 12],
         ["effectcontrol2coarse", 13],
-        ["generalpurposeslider1", 16],
-        ["generalpurposeslider2", 17],
-        ["generalpurposeslider3", 18],
-        ["generalpurposeslider4", 19],
+        ["generalpurposecontroller1", 16],
+        ["generalpurposecontroller2", 17],
+        ["generalpurposecontroller3", 18],
+        ["generalpurposecontroller4", 19],
         ["bankselectfine", 32],
         ["modulationwheelfine", 33],
         ["breathcontrollerfine", 34],
         ["footcontrollerfine", 36],
         ["portamentotimefine", 37],
         ["dataentryfine", 38],
-        ["volumefine", 39],
+        ["channelvolumefine", 39],
         ["balancefine", 40],
         ["panfine", 42],
         ["expressionfine", 43],
         ["effectcontrol1fine", 44],
         ["effectcontrol2fine", 45],
-        ["holdpedal", 64],
+        ["damperpedal", 64],
         ["portamento", 65],
-        ["sustenutopedal", 66],
+        ["sostenuto", 66],
         ["softpedal", 67],
         ["legatopedal", 68],
-        ["hold2pedal", 69],
+        ["hold2", 69],
         ["soundvariation", 70],
         ["resonance", 71],
-        ["soundreleasetime", 72],
-        ["soundattacktime", 73],
+        ["releasetime", 72],
+        ["attacktime", 73],
         ["brightness", 74],
-        ["soundcontrol6", 75],
-        ["soundcontrol7", 76],
-        ["soundcontrol8", 77],
-        ["soundcontrol9", 78],
-        ["soundcontrol10", 79],
-        ["generalpurposebutton1", 80],
-        ["generalpurposebutton2", 81],
-        ["generalpurposebutton3", 82],
-        ["generalpurposebutton4", 83],
-        ["reverblevel", 91],
-        ["tremololevel", 92],
-        ["choruslevel", 93],
-        ["celestelevel", 94],
-        ["phaserlevel", 95],
-        ["databuttonincrement", 96],
-        ["databuttondecrement", 97],
-        ["nonregisteredparametercoarse", 98],
-        ["nonregisteredparameterfine", 99],
-        ["registeredparametercoarse", 100],
-        ["registeredparameterfine", 101],
+        ["decaytime", 75],
+        ["vibratorate", 76],
+        ["vibratodepth", 77],
+        ["vibratodelay", 78],
+        ["controller79", 79],
+        ["generalpurposecontroller5", 80],
+        ["generalpurposecontroller6", 81],
+        ["generalpurposecontroller7", 82],
+        ["generalpurposecontroller8", 83],
+        ["portamentocontrol", 84],
+        ["highresolutionvelocityprefix", 88],
+        ["effect1depth", 91],
+        ["effect2depth", 92],
+        ["effect3depth", 93],
+        ["effect4depth", 94],
+        ["effect5depth", 95],
+        ["dataincrement", 96],
+        ["datadecrement", 97],
+        ["nonregisteredparameterfine", 98],
+        ["nonregisteredparametercoarse", 99],
+        ["registeredparameterfine", 100],
+        ["registeredparametercoarse", 101],
 
         ["allsoundoff", 120],
         ["resetallcontrollers", 121],
@@ -1134,6 +1202,65 @@ describe("OutputChannel Object", function() {
         ["omnimodeon", 125],
         ["monomodeon", 126],
         ["polymodeon", 127]
+      ];
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      map.forEach(pair => WEBMIDI_OUTPUT.channels[1].sendControlChange(pair[0], 123));
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        expect(message[0]).to.equal(176);
+        expect(message[1]).to.equal(map[index][1]);
+        index++;
+
+        if (index >= map.length) {
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should properly send MIDI message for deprecated names (legacy)", function(done) {
+
+      // Arrange
+      let index = 0;
+      let map = [
+        ["generalpurposeslider1", 16],
+        ["generalpurposeslider2", 17],
+        ["generalpurposeslider3", 18],
+        ["generalpurposeslider4", 19],
+        ["volumefine", 39],
+        ["holdpedal", 64],
+        ["sustenutopedal", 66],
+        ["hold2pedal", 69],
+        ["soundreleasetime", 72],
+        ["soundattacktime", 73],
+        ["soundcontrol6", 75],
+        ["soundcontrol7", 76],
+        ["soundcontrol8", 77],
+        ["soundcontrol9", 78],
+        ["soundcontrol10", 79],
+        ["generalpurposebutton1", 80],
+        ["generalpurposebutton2", 81],
+        ["generalpurposebutton3", 82],
+        ["generalpurposebutton4", 83],
+        ["portamentocontrol", 84],
+        ["highresolutionvelocityprefix", 88],
+        ["reverblevel", 91],
+        ["tremololevel", 92],
+        ["choruslevel", 93],
+        ["celestelevel", 94],
+        ["phaserlevel", 95],
+        ["databuttonincrement", 96],
+        ["databuttondecrement", 97],
+        ["nonregisteredparameterfine", 98],
+        ["nonregisteredparametercoarse", 99],
+        ["registeredparameterfine", 100],
+        ["registeredparametercoarse", 101],
       ];
       VIRTUAL_OUTPUT.on("message", assert);
 
@@ -1762,7 +1889,7 @@ describe("OutputChannel Object", function() {
 
   describe("sendChannelAftertouch()", function () {
 
-    it("should send correct MIDI message when using float", function(done) {
+    it("should send correct MIDI message when using float (0-1)", function(done) {
 
       // Arrange
       let index = 0;
@@ -1786,6 +1913,31 @@ describe("OutputChannel Object", function() {
         index++;
 
         if (index >= expected.length) {
+          VIRTUAL_OUTPUT.removeAllListeners();
+          done();
+        }
+
+      }
+
+    });
+
+    it("should send correct MIDI message when using integer (0-127)", function(done) {
+
+      // Arrange
+      let index = 0;
+      VIRTUAL_OUTPUT.on("message", assert);
+
+      // Act
+      for (let i = 0; i < 128; i++) {
+        WEBMIDI_OUTPUT.channels[1].sendChannelAftertouch(i, {rawValue: true});
+      }
+
+      // Assert
+      function assert(deltaTime, message) {
+
+        expect(message[1]).to.equal(index++);
+
+        if (index >= 128) {
           VIRTUAL_OUTPUT.removeAllListeners();
           done();
         }

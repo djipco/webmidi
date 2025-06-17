@@ -17,6 +17,8 @@ All 16 `OutputChannel` objects can be found inside the parent output's
 
 ### `Constructor`
 
+Creates an `OutputChannel` object.
+
 
   **Parameters**
 
@@ -134,13 +136,13 @@ listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to.|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to.|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
@@ -179,7 +181,7 @@ global listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
@@ -266,7 +268,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -301,7 +303,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -336,7 +338,7 @@ Note: to specifically check for global listeners added with
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> |(any event)|The event to check|
+    |[**`event`**] | string<br />Symbol<br /> |(any event)|The event to check|
     |[**`callback`**] | function<br />Listener<br /> |(any callback)|The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
@@ -389,9 +391,9 @@ functionally equivalent to a **note off** message.
     |[**`options`**] | object<br /> |{}||
     |[**`options.duration`**] | number<br /> ||A positive decimal number larger than `0` representing the number of milliseconds to wait before sending a **note off** message. If invalid or left undefined, only a **note on** message will be sent.|
     |[**`options.attack`**] | number<br /> |0.5|The velocity at which to play the note (between `0` and `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity value will silently trigger the default of `0.5`.|
-    |[**`options.rawAttack`**] | number<br /> |0.5|The attack velocity at which to play the note (between `0` and `127`). This has priority over the `attack` property. An invalid velocity value will silently trigger the default of `0.5`.|
+    |[**`options.rawAttack`**] | number<br /> |64|The attack velocity at which to play the note (between `0` and `127`). This has priority over the `attack` property. An invalid velocity value will silently trigger the default of 64.|
     |[**`options.release`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
-    |[**`options.rawRelease`**] | number<br /> |0.5|The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of `0.5`. This is only used with the **note off** event triggered when `options.duration` is set.|
+    |[**`options.rawRelease`**] | number<br /> |64|The velocity at which to release the note (between `0` and `127`). This has priority over the `release` property. An invalid velocity value will silently trigger the default of 64. This is only used with the **note off** event triggered when `options.duration` is set.|
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
 
   </div>
@@ -409,9 +411,10 @@ Returns the `OutputChannel` object so methods can be chained.
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes all the listeners that match the specified criterias. If no parameters are passed, all
-listeners will be removed. If only the `event` parameter is passed, all listeners for that
-event will be removed. You can remove global listeners by using
+Removes all the listeners that were added to the object upon which the method is called and
+that match the specified criterias. If no parameters are passed, all listeners added to this
+object will be removed. If only the `event` parameter is passed, all listeners for that event
+will be removed from that object. You can remove global listeners by using
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter.
 
 To use more granular options, you must at least define the `event`. Then, you can specify the
@@ -426,11 +429,11 @@ callback to match or one or more of the additional options.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br /> |(any events)|The event name.|
-    |[**`callback`**] | EventEmitter~callback<br /> |(any callbacks)|Only remove the listeners that match this exact callback function.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.context`**] | *<br /> |(any contexts)|Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] | number<br /> |(any number)|Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`event`**] | string<br /> ||The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`options`**] | Object<br /> |||
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
 
   </div>
 
@@ -468,7 +471,6 @@ from the MIDI Manufacturers Association.
     |**`message`** | Array.&lt;number&gt;<br />Uint8Array<br />Message<br /> ||A `Message` object, an array of 8-bit unsigned integers or a `Uint8Array` object (not available in Node.js) containing the message bytes.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
-    |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a number, the operation will be scheduled for that time.|
 
   </div>
 
@@ -691,8 +693,8 @@ following common names:
 | 93     |`choruslevel`                  |
 | 94     |`celestelevel`                 |
 | 95     |`phaserlevel`                  |
-| 96     |`databuttonincrement`          |
-| 97     |`databuttondecrement`          |
+| 96     |`dataincrement`                |
+| 97     |`datadecrement`                |
 | 98     |`nonregisteredparametercoarse` |
 | 99     |`nonregisteredparameterfine`   |
 | 100    |`registeredparametercoarse`    |
@@ -763,13 +765,13 @@ aftertouch. For a channel-wide aftertouch message, use
 
   **Parameters**
 
-  > Signature: `sendKeyAftertouch(note, [pressure], [options])`
+  > Signature: `sendKeyAftertouch(target, [pressure], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`note`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`). When using a note identifier, the octave value will be offset by the local [`octaveOffset`](#octaveOffset) and by [`Output.octaveOffset`](Output#octaveOffset) and [`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if those values are not `0`). When using a key number, `octaveOffset` values are ignored.|
+    |**`target`** | number<br />Note<br />string<br />Array.&lt;number&gt;<br />Array.&lt;Note&gt;<br />Array.&lt;string&gt;<br /> ||The note(s) for which you are sending an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the previous types. When using a note identifier, octave range must be between `-1` and `9`. The lowest note is `C-1` (MIDI note number `0`) and the highest note is `G9` (MIDI note number `127`). When using a note identifier, the octave value will be offset by the local [`octaveOffset`](#octaveOffset) and by [`Output.octaveOffset`](Output#octaveOffset) and [`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if those values are not `0`). When using a key number, `octaveOffset` values are ignored.|
     |[**`pressure`**] | number<br /> |0.5|The pressure level (between `0` and `1`). An invalid pressure value will silently trigger the default behaviour. If the `rawValue` option is set to `true`, the pressure is defined by using an integer between `0` and `127`.|
     |[**`options`**] | object<br /> |{}||
     |[**`options.rawValue`**] | boolean<br /> |false|A boolean indicating whether the value should be considered a float between `0` and `1.0` (default) or a raw integer between `0` and `127`.|
@@ -1019,13 +1021,13 @@ For further implementation details, refer to the manufacturer's documentation.
 
   **Parameters**
 
-  > Signature: `sendNrpnValue(parameter, [data], [options])`
+  > Signature: `sendNrpnValue(nrpn, [data], [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`parameter`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (0x63, 0x62) that identify the non-registered parameter.|
+    |**`nrpn`** | Array.&lt;number&gt;<br /> ||A two-position array specifying the two control bytes (0x63, 0x62) that identify the non-registered parameter.|
     |[**`data`**] | number<br />Array.&lt;number&gt;<br /> |[]|An integer or an array of integers with a length of 1 or 2 specifying the desired data.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.time`**] | number<br />string<br /> |(now)|If `time` is a string prefixed with `"+"` and followed by a number, the message will be delayed by that many milliseconds. If the value is a positive number ([`DOMHighResTimeStamp`](https://developer.mozilla.org/docs/Web/API/DOMHighResTimeStamp)), the operation will be scheduled for that time. The current time can be retrieved with [`WebMidi.time`](WebMidi#time). If `options.time` is omitted, or in the past, the operation will be carried out as soon as possible.|
@@ -1534,7 +1536,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -1565,7 +1567,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -1597,7 +1599,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 

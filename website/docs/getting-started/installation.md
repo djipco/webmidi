@@ -6,10 +6,9 @@ sidebar_position: 2
 
 ## Distribution Flavours
 
-To cater to various needs, WEBMIDI.js is distributed in 3 different flavours which you can find
-inside the [`dist`](https://github.com/djipco/webmidi/tree/develop/dist) folder:
+To cater to various needs, WEBMIDI.js is distributed in 3 different flavours:
 
-* **Immediately Invoked Function Expression** (IIFE): This version adds its objects directly in the
+* **Immediately Invoked Function Expression** (IIFE): This version adds its objects directly to the
   global namespace. This is the legacy approach which is often easier for beginners.
 
 * **ES6 Module** (ESM): This is the modern approach which allows you to `import` the objects as
@@ -33,7 +32,7 @@ The fastest way to get started is to link the library directly from the
 `<script>` tag to your HTML page:
 
 ```html
-<script src="https://cdn.jsdelivr.net/npm/webmidi@next/dist/iife/webmidi.iife.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.js"></script>
 ```
 
 You can retrieve different versions and flavours of the library by modifying the URL. For example, 
@@ -51,10 +50,10 @@ If you want more control over versions and flavours, check out the
 
 ## Installing Manually
 
-Obviously, you can also install the library the old-fashioned way by manually downloading the
-[latest release](https://github.com/djipco/webmidi/releases/latest) (zip file). Then, simply 
-uncompress the package, grab the `./dist/iife/webmidi.iife.js` file and copy it to your project. 
-Link to it from your HTML page using a `<script>` tag as usual.
+Obviously, you can also install the library the old-fashioned way by manually
+[downloading it](https://cdn.jsdelivr.net/npm/webmidi@latest/dist/iife/webmidi.iife.min.js) and 
+placing it somewhere in your project. Link to it from your HTML page using a `<script>` tag as 
+usual.
 
 ## Installing with NPM
 
@@ -75,7 +74,7 @@ Then, you can use any of these approaches depending on your environment:
   namespace and might be easier for beginners.
   
   ```html
-  <!-- Script tag an HTML page -->
+  <!-- Script tag in HTML page -->
   <script src="node_modules/webmidi/dist/iife/webmidi.iife.js"></script>
   ```
   * ### CommonJS

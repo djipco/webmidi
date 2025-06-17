@@ -23,7 +23,7 @@ function HomepageHero() {
               type="button-bg-full"
               href="./docs/"
               target="_self"
-            >Get started - 5 minutes!
+            >Get started in 5 minutes!
             </Button>
           </div>
         </div>
@@ -42,9 +42,9 @@ function Presentation() {
           type="col-2"
         >
           <p>
-            The <strong>Web MIDI API</strong> is a really exciting addition to the web platform
+            The existing <strong>Web MIDI API</strong> is a really exciting addition to the web platform
             allowing a web page to interact with <strong>MIDI musical instruments</strong>.
-            However, while great, most developers will find the API to be
+            However, while great, most developers will find the original API to be
             too <em>low-level</em> for their needs. Having to perform binary arithmetic
             or needing to read the 300-page MIDI spec is no fun (trust us on this!).
             The goal behind <strong>WEBMIDI.js</strong> is to get you started with your web-based
@@ -74,13 +74,13 @@ export default function Home() {
       <HomepageHero />
       <main>
         <InformationBar>
-          <strong>Version 3.0 is coming soon.</strong> <br/>
+          <strong>Version 3.0 has been released!</strong> <br/>
           <a
             rel="noreferrer"
             target="_blank"
             href="https://mailchi.mp/eeffe50651bd/webmidijs-newsletter">Subscribe to the newsletter
           </a> <br/>
-          to be notified of its availability.
+          to learn about all the new features.
         </InformationBar>
         <Presentation />
       </main>

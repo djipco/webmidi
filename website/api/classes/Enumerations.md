@@ -2,8 +2,8 @@
 # Enumerations
 
 The `Enumerations` class contains enumerations and arrays of elements used throughout the
-library. All properties are static and should be referenced using the class name. For example:
-`Enumerations.MIDI_CHANNEL_MESSAGES`.
+library. All its properties are static and should be referenced using the class name. For
+example: `Enumerations.CHANNEL_MESSAGES`.
 
 **Since**: 3.0.0
 
@@ -12,62 +12,44 @@ library. All properties are static and should be referenced using the class name
 
 ## Properties
 
-### `.MIDI_CHANNEL_NUMBERS` {#MIDI_CHANNEL_NUMBERS}
+### `.CHANNEL_EVENTS` {#CHANNEL_EVENTS}
+**Type**: Array.&lt;string&gt;<br />
+**Attributes**: read-only, static<br />
+
+
+Array of channel-specific event names that can be listened for. This includes channel mode
+events and RPN/NRPN events.
+
+
+### `.CHANNEL_NUMBERS` {#CHANNEL_NUMBERS}
+**Since**: 3.1<br />
 **Type**: Array.&lt;number&gt;<br />
 **Attributes**: read-only, static<br />
 
 
-An simple array of the 16 valid MIDI channel numbers (`1` to `16`):
+A simple array of the 16 valid MIDI channel numbers (`1` to `16`):
 
 
-
-***
-
-## Enums
-
-### `.MIDI_CHANNEL_MESSAGES` {#MIDI_CHANNEL_MESSAGES}
-**Type**: Object.&lt;string, number&gt;<br />
-**Attributes**: static
-
-Enumeration of all MIDI channel message names and their associated 4-bit numerical value:
-
-| Message Name        | Hexadecimal | Decimal |
-|---------------------|-------------|---------|
-| `noteoff`           | 0x8         | 8       |
-| `noteon`            | 0x9         | 9       |
-| `keyaftertouch`     | 0xA         | 10      |
-| `controlchange`     | 0xB         | 11      |
-| `programchange`     | 0xC         | 12      |
-| `channelaftertouch` | 0xD         | 13      |
-| `pitchbend`         | 0xE         | 14      |
-### `.MIDI_CHANNEL_MODE_MESSAGES` {#MIDI_CHANNEL_MODE_MESSAGES}
-**Type**: Object.&lt;string, number&gt;<br />
-**Attributes**: static
-
-Enumeration of all MIDI channel mode message names and their associated numerical value:
+### `.CONTROL_CHANGE_MESSAGES` {#CONTROL_CHANGE_MESSAGES}
+**Since**: 3.1<br />
+**Type**: Array.&lt;object&gt;<br />
+**Attributes**: read-only, static<br />
 
 
-| Message Name          | Hexadecimal | Decimal |
-|-----------------------|-------------|---------|
-| `allsoundoff`         | 0x78        | 120     |
-| `resetallcontrollers` | 0x79        | 121     |
-| `localcontrol`        | 0x7A        | 122     |
-| `allnotesoff`         | 0x7B        | 123     |
-| `omnimodeoff`         | 0x7C        | 124     |
-| `omnimodeon`          | 0x7D        | 125     |
-| `monomodeon`          | 0x7E        | 126     |
-| `polymodeon`          | 0x7F        | 127     |
-### `.MIDI_CONTROL_CHANGE_MESSAGES` {#MIDI_CONTROL_CHANGE_MESSAGES}
-**Type**: Object.&lt;string, number&gt;<br />
-**Attributes**: static
+An array of objects, ordered by control number, describing control change messages. Each object
+in the array has 3 properties with some objects having a fourth one (`position`) :
 
-Enumeration of all control change messages identifying the control function associated to its
-control number.
+ * `number`: MIDI control number (0-127);
+ * `name`: name of emitted event (eg: `bankselectcoarse`, `choruslevel`, etc) that can be
+ listened to;
+ * `description`: user-friendly description of the controller's purpose;
+ * `position` (optional): whether this controller's value should be considered an `msb` or
+ `lsb`
 
-Not all numbers have a preassigned control function. For those that don't, the control function
-is identified as the word "controller" followed by the number (e.g. `controller123`).
+Not all controllers have a predefined function. For those that don't, `name` is the word
+"controller" followed by the number (e.g. `controller112`).
 
-| Control Function               | Control Number |
+| Event name                     | Control Number |
 |--------------------------------|----------------|
 | `bankselectcoarse`             | 0              |
 | `modulationwheelcoarse`        | 1              |
@@ -85,10 +67,10 @@ is identified as the word "controller" followed by the number (e.g. `controller1
 | `effectcontrol2coarse`         | 13             |
 | `controller14`                 | 14             |
 | `controller15`                 | 15             |
-| `generalpurposeslider1`        | 16             |
-| `generalpurposeslider2`        | 17             |
-| `generalpurposeslider3`        | 18             |
-| `generalpurposeslider4`        | 19             |
+| `generalpurposecontroller1`    | 16             |
+| `generalpurposecontroller2`    | 17             |
+| `generalpurposecontroller3`    | 18             |
+| `generalpurposecontroller4`    | 19             |
 | `controller20`                 | 20             |
 | `controller21`                 | 21             |
 | `controller22`                 | 22             |
@@ -108,7 +90,7 @@ is identified as the word "controller" followed by the number (e.g. `controller1
 | `footcontrollerfine`           | 36             |
 | `portamentotimefine`           | 37             |
 | `dataentryfine`                | 38             |
-| `volumefine`                   | 39             |
+| `channelvolumefine`            | 39             |
 | `balancefine`                  | 40             |
 | `controller41`                 | 41             |
 | `panfine`                      | 42             |
@@ -133,44 +115,44 @@ is identified as the word "controller" followed by the number (e.g. `controller1
 | `controller61`                 | 61             |
 | `controller62`                 | 62             |
 | `controller63`                 | 63             |
-| `holdpedal`                    | 64             |
+| `damperpedal`                  | 64             |
 | `portamento`                   | 65             |
-| `sustenutopedal`               | 66             |
+| `sostenuto`                    | 66             |
 | `softpedal`                    | 67             |
 | `legatopedal`                  | 68             |
-| `hold2pedal`                   | 69             |
+| `hold2`                        | 69             |
 | `soundvariation`               | 70             |
 | `resonance`                    | 71             |
-| `soundreleasetime`             | 72             |
-| `soundattacktime`              | 73             |
+| `releasetime`                  | 72             |
+| `attacktime`                   | 73             |
 | `brightness`                   | 74             |
-| `soundcontrol6`                | 75             |
-| `soundcontrol7`                | 76             |
-| `soundcontrol8`                | 77             |
-| `soundcontrol9`                | 78             |
-| `soundcontrol10`               | 79             |
-| `generalpurposebutton1`        | 80             |
-| `generalpurposebutton2`        | 81             |
-| `generalpurposebutton3`        | 82             |
-| `generalpurposebutton4`        | 83             |
-| `controller84`                 | 84             |
+| `decaytime`                    | 75             |
+| `vibratorate`                  | 76             |
+| `vibratodepth`                 | 77             |
+| `vibratodelay`                 | 78             |
+| `controller79`                 | 79             |
+| `generalpurposecontroller5`    | 80             |
+| `generalpurposecontroller6`    | 81             |
+| `generalpurposecontroller7`    | 82             |
+| `generalpurposecontroller8`    | 83             |
+| `portamentocontrol`            | 84             |
 | `controller85`                 | 85             |
 | `controller86`                 | 86             |
 | `controller87`                 | 87             |
-| `controller88`                 | 88             |
+| `highresolutionvelocityprefix` | 88             |
 | `controller89`                 | 89             |
 | `controller90`                 | 90             |
-| `reverblevel`                  | 91             |
-| `tremololevel`                 | 92             |
-| `choruslevel`                  | 93             |
-| `celestelevel`                 | 94             |
-| `phaserlevel`                  | 95             |
-| `databuttonincrement`          | 96             |
-| `databuttondecrement`          | 97             |
-| `nonregisteredparametercoarse` | 98             |
-| `nonregisteredparameterfine`   | 99             |
-| `registeredparametercoarse`    | 100            |
-| `registeredparameterfine`      | 101            |
+| `effect1depth`                 | 91             |
+| `effect2depth`                 | 92             |
+| `effect3depth`                 | 93             |
+| `effect4depth`                 | 94             |
+| `effect5depth`                 | 95             |
+| `dataincrement`                | 96             |
+| `datadecrement`                | 97             |
+| `nonregisteredparameterfine`   | 98             |
+| `nonregisteredparametercoarse` | 99             |
+| `nonregisteredparameterfine`   | 100            |
+| `registeredparametercoarse`    | 101            |
 | `controller102`                | 102            |
 | `controller103`                | 103            |
 | `controller104`                | 104            |
@@ -197,7 +179,46 @@ is identified as the word "controller" followed by the number (e.g. `controller1
 | `omnimodeon`                   | 125            |
 | `monomodeon`                   | 126            |
 | `polymodeon`                   | 127            |
-### `.MIDI_REGISTERED_PARAMETERS` {#MIDI_REGISTERED_PARAMETERS}
+
+
+
+***
+
+## Enums
+
+### `.CHANNEL_MESSAGES` {#CHANNEL_MESSAGES}
+**Type**: Object.&lt;string, number&gt;<br />
+**Attributes**: static
+
+Enumeration of all MIDI channel message names and their associated 4-bit numerical value:
+
+| Message Name        | Hexadecimal | Decimal |
+|---------------------|-------------|---------|
+| `noteoff`           | 0x8         | 8       |
+| `noteon`            | 0x9         | 9       |
+| `keyaftertouch`     | 0xA         | 10      |
+| `controlchange`     | 0xB         | 11      |
+| `programchange`     | 0xC         | 12      |
+| `channelaftertouch` | 0xD         | 13      |
+| `pitchbend`         | 0xE         | 14      |
+### `.CHANNEL_MODE_MESSAGES` {#CHANNEL_MODE_MESSAGES}
+**Type**: Object.&lt;string, number&gt;<br />
+**Attributes**: static
+
+Enumeration of all MIDI channel mode message names and their associated numerical value:
+
+
+| Message Name          | Hexadecimal | Decimal |
+|-----------------------|-------------|---------|
+| `allsoundoff`         | 0x78        | 120     |
+| `resetallcontrollers` | 0x79        | 121     |
+| `localcontrol`        | 0x7A        | 122     |
+| `allnotesoff`         | 0x7B        | 123     |
+| `omnimodeoff`         | 0x7C        | 124     |
+| `omnimodeon`          | 0x7D        | 125     |
+| `monomodeon`          | 0x7E        | 126     |
+| `polymodeon`          | 0x7F        | 127     |
+### `.REGISTERED_PARAMETERS` {#REGISTERED_PARAMETERS}
 **Type**: Object.&lt;string, Array.&lt;number&gt;&gt;<br />
 **Attributes**: static
 
@@ -223,11 +244,11 @@ there are only a limited number of them:
 | `referencedistanceratio`     | [0x3D, 0x06] |
 | `panspreadangle`             | [0x3D, 0x07] |
 | `rollangle`                  | [0x3D, 0x08] |
-### `.MIDI_SYSTEM_MESSAGES` {#MIDI_SYSTEM_MESSAGES}
+### `.SYSTEM_MESSAGES` {#SYSTEM_MESSAGES}
 **Type**: Object.&lt;string, number&gt;<br />
 **Attributes**: static
 
-Enumeration of all valid MIDI system messages and matching numerical values. WebMidi.js also
+Enumeration of all valid MIDI system messages and matching numerical values. This library also
 uses two additional custom messages.
 
 **System Common Messages**
@@ -260,7 +281,7 @@ serve any specific purpose. The
 [MIDI 1.0 spec](https://www.midi.org/specifications/item/table-1-summary-of-midi-message)
 simply states that they are undefined/reserved.
 
-**Custom WebMidi.js Messages**
+**Custom Messages**
 
 These two messages are mostly for internal use. They are not MIDI messages and cannot be sent
 or forwarded.

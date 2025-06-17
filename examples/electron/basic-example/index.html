@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+
+<html>
+
+  <head>
+
+    <meta charset="UTF-8">
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'"
+    >
+
+    <title>WEBMIDI.js + Electron Demo</title>
+
+  </head>
+
+  <body>
+
+    <h1>WEBMIDI.js + Electron Demo</h1>
+
+    <p>
+      Node.js <span id="node-version"></span>,
+      Chromium <span id="chrome-version"></span>,
+      Electron <span id="electron-version"></span>
+    </p>
+
+    <p>WEBMIDI.js <span id="webmidi-version"></span></p>
+    <p>MIDI Inputs: <span id="webmidi-inputs"></span></p>
+    <p>MIDI Outputs: <span id="webmidi-outputs"></span></p>
+
+    <!-- You can also require other files to run in this process -->
+    <script src="./renderer.js" type="module"></script>
+
+  </body>
+
+</html>

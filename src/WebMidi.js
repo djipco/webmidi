@@ -1,17 +1,53 @@
-import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
+import {EventEmitter} from "../node_modules/djipevents/src/djipevents.js";
 import {Input} from "./Input.js";
 import {Output} from "./Output.js";
 import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";
-import {InputChannel} from "./InputChannel.js";
 
 /*START-CJS*/
-// This is the way to import the necessary modules under Node.js when using "type: commonjs" in the
-// package.json file. This block will be stripped in IIFE and ESM versions.
-global["performance"] = require("perf_hooks").performance;
-global["navigator"] = require("jzz");
-/*END-CJS*/
 
+// This code will only be included in the CJS version (CommonJS).
+
+/*
+
+coud we use this instead of eval():
+
+let jzz = await Object.getPrototypeOf(async function() {}).constructor(`
+  let jzz = await import("jzz");
+  return jzz.default;
+`)();
+
+ */
+
+// If this code is executed by Node.js then we must import the `jzz` module. I import it in this
+// convoluted way to prevent Webpack from automatically bundling it in browser bundles where it
+// isn't needed.
+if (Utilities.isNode) {
+
+  // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React Native,
+  // etc.) so we also check for the presence of the window.navigator property.
+  try {
+    window.navigator;
+  } catch (err) {
+    let jzz;
+    eval('jzz = require("jzz")');
+    if (!global.navigator) global.navigator = {}; // for Node.js prior to v21
+    Object.assign(global.navigator, jzz);
+  }
+
+  // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
+  // imported only in v16+.
+  try {
+    performance;
+  } catch (err) {
+    let performance;
+    eval('performance = require("perf_hooks").performance');
+    global.performance = performance;
+  }
+
+}
+
+/*END-CJS*/
 /**
  * The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Basically, it
  * simplifies sending outgoing MIDI messages and reacting to incoming MIDI messages.
@@ -25,13 +61,19 @@ global["navigator"] = require("jzz");
  * @fires WebMidi#disabled
  * @fires WebMidi#disconnected
  * @fires WebMidi#enabled
+ * @fires WebMidi#error
  * @fires WebMidi#midiaccessgranted
+ * @fires WebMidi#portschanged
  *
  * @extends EventEmitter
  * @license Apache-2.0
  */
 class WebMidi extends EventEmitter {
 
+  /**
+   * The WebMidi class is a singleton and you cannot instantiate it directly. It has already been
+   * instantiated for you.
+   */
   constructor() {
 
     super();
@@ -63,7 +105,7 @@ class WebMidi extends EventEmitter {
      * instance used to talk to the lower-level Web MIDI API. This should not be used directly
      * unless you know what you are doing.
      *
-     * @type {?MIDIAccess}
+     * @type {MIDIAccess}
      * @readonly
      */
     this.interface = null;
@@ -189,9 +231,14 @@ class WebMidi extends EventEmitter {
    * the host system. This is part of the spec but has not yet been implemented by most browsers as
    * of April 2020.
    *
+   * @param [options.requestMIDIAccessFunction] {function} A custom function to use to return
+   * the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API
+   * or if you want to use a custom implementation of the Web MIDI API - probably for testing
+   * purposes.
+   *
    * @async
    *
-   * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object fro
+   * @returns {Promise.<WebMidi>} The promise is fulfilled with the `WebMidi` object for
    * chainability
    *
    * @throws {Error} The Web MIDI API is not supported in your environment.
@@ -200,19 +247,40 @@ class WebMidi extends EventEmitter {
   async enable(options = {}, legacy = false) {
 
     /*START-ESM*/
-    // This is the way to import the necessary modules under Node.js when using "type: module" in
-    // the package.json file. This block will be stripped in IIFE and CJS versions.
-    try {
-      const perf_hooks = await import("perf_hooks");
-      global["performance"] = perf_hooks.performance;
-      // eslint-disable-next-line no-empty
-    } catch (err) {} // ignored because it means we already have the modules
 
-    try {
-      const jzz = await import("jzz");
-      global["navigator"] = jzz.default;
-      // eslint-disable-next-line no-empty
-    } catch (err) {} // ignored because it means we already have the modules
+    // This block is stripped out of the IIFE and CJS versions where it isn't needed.
+
+    // If this code is executed by Node.js in "module" mode (when "type": "module" is used in the
+    // package.json file), then we must import the `jzz` module. I import it in this convoluted way
+    // to prevent Webpack from automatically bundling it in browser bundles where it isn't needed.
+    if (Utilities.isNode) {
+
+      // Some environments may have both Node.js and browser runtimes (Electron, NW.js, React
+      // Native, etc.) so we also check for the presence of the window.navigator property.
+      try {
+        window.navigator;
+      } catch (err) {
+        let jzz = await Object.getPrototypeOf(async function() {}).constructor(`
+        let jzz = await import("jzz");
+        return jzz.default;
+        `)();
+        if (!global.navigator) global.navigator = {}; // for Node.js prior to v21
+        Object.assign(global.navigator, jzz);
+      }
+
+      // The `performance` module appeared in Node.js v8.5.0 but has started to be automatically
+      // imported only in v16+.
+      try {
+        performance;
+      } catch (err) {
+        global.performance = await Object.getPrototypeOf(async function() {}).constructor(`
+        let perf_hooks = await import("perf_hooks");
+        return perf_hooks.performance;
+        `)();
+      }
+
+    }
+
     /*END-ESM*/
 
     this.validation = (options.validation !== false);
@@ -228,35 +296,6 @@ class WebMidi extends EventEmitter {
       if (typeof options.callback === "function") options.callback();
       return Promise.resolve();
     }
-
-    // The Jazz-Plugin takes a while to be available (even after the Window's 'load' event has been
-    // fired). Therefore, we wait a little while to give it time to finish loading (initiqted in
-    // constructor).
-    // if (!this.supported) {
-    //
-    //   await new Promise((resolve, reject) => {
-    //
-    //     const start = this.time;
-    //
-    //     const intervalID = setInterval(() => {
-    //
-    //       if (this.supported) {
-    //         clearInterval(intervalID);
-    //         resolve();
-    //       } else {
-    //         if (this.time > start + 1500) {
-    //           clearInterval(intervalID);
-    //           let error = new Error("The Web MIDI API is not available in your environment.");
-    //           if (typeof options.callback === "function") options.callback(error);
-    //           reject(error);
-    //         }
-    //       }
-    //
-    //     }, 25);
-    //
-    //   });
-    //
-    // }
 
     /**
      * Event emitted when an error occurs trying to enable `WebMidi`
@@ -309,11 +348,17 @@ class WebMidi extends EventEmitter {
       type: "enabled"
     };
 
-    // Request MIDI access (this iw where the prompt will appear)
+    // Request MIDI access (this is where the prompt will appear)
     try {
-      this.interface = await navigator.requestMIDIAccess(
-        {sysex: options.sysex, software: options.software}
-      );
+      if (typeof options.requestMIDIAccessFunction === "function") {
+        this.interface = await options.requestMIDIAccessFunction(
+          {sysex: options.sysex, software: options.software}
+        );
+      } else {
+        this.interface = await navigator.requestMIDIAccess(
+          {sysex: options.sysex, software: options.software}
+        );
+      }
     } catch(err) {
       errorEvent.error = err;
       this.emit("error", errorEvent);
@@ -356,7 +401,7 @@ class WebMidi extends EventEmitter {
    * are also destroyed.
    *
    * @async
-   * @returns {Promise}
+   * @returns {Promise<Array>}
    *
    * @throws {Error} The Web MIDI API is not supported by your environment.
    *
@@ -364,11 +409,14 @@ class WebMidi extends EventEmitter {
    */
   async disable() {
 
+    // This needs to be done right away to prevent racing conditions in listeners while the inputs
+    // are being destroyed.
+    if (this.interface) this.interface.onstatechange = undefined;
+
     return this._destroyInputsAndOutputs().then(() => {
 
-      if (typeof navigator.close === "function") navigator.close();
+      if (navigator && typeof navigator.close === "function") navigator.close(); // jzz
 
-      if (this.interface) this.interface.onstatechange = undefined;
       this.interface = null; // also resets enabled, sysexEnabled
 
       /**
@@ -405,26 +453,32 @@ class WebMidi extends EventEmitter {
    * @param id {string} The ID string of the input. IDs can be viewed by looking at the
    * [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs
    * are strings.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
-   * @returns {Input|false} An [`Input`](Input) object matching the specified ID string or `false`
+   * @returns {Input} An [`Input`](Input) object matching the specified ID string or `undefined`
    * if no matching input can be found.
    *
    * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
-  getInputById(id) {
+  getInputById(id, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
-    for (let i = 0; i < this.inputs.length; i++) {
-      if (this.inputs[i].id === id.toString()) return this.inputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedInputs.length; i++) {
+        if (this._disconnectedInputs[i].id === id.toString()) return this._disconnectedInputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.inputs.length; i++) {
+        if (this.inputs[i].id === id.toString()) return this.inputs[i];
+      }
     }
-
-    return false;
 
   };
 
@@ -436,26 +490,32 @@ class WebMidi extends EventEmitter {
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [inputs](WebMidi#inputs) array).
    *
-   * @returns {Input|false} The [`Input`](Input) that was found or `false` if no input contained the
+   * @returns {Input} The [`Input`](Input) that was found or `undefined` if no input contained the
    * specified name.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected input
    *
    * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
-  getInputByName(name) {
+  getInputByName(name, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
-    for (let i = 0; i < this.inputs.length; i++) {
-      if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedInputs.length; i++) {
+        if (~this._disconnectedInputs[i].name.indexOf(name)) return this._disconnectedInputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.inputs.length; i++) {
+        if (~this.inputs[i].name.indexOf(name)) return this.inputs[i];
+      }
     }
-
-    return false;
 
   };
 
@@ -466,27 +526,33 @@ class WebMidi extends EventEmitter {
    *
    * @param name {string} The non-empty string to look for within the name of MIDI inputs (such as
    * those visible in the [`outputs`](#outputs) array).
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
-   * @returns {Output|false} The [`Output`](Output) that was found or `false` if no output matched
+   * @returns {Output} The [`Output`](Output) that was found or `undefined` if no output matched
    * the specified name.
    *
    * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
-  getOutputByName(name) {
+  getOutputByName(name, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!name) return false;
+      if (!name) return;
       name = name.toString();
     }
 
-    for (let i = 0; i < this.outputs.length; i++) {
-      if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedOutputs.length; i++) {
+        if (~this._disconnectedOutputs[i].name.indexOf(name)) return this._disconnectedOutputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.outputs.length; i++) {
+        if (~this.outputs[i].name.indexOf(name)) return this.outputs[i];
+      }
     }
-
-    return false;
 
   };
 
@@ -500,26 +566,32 @@ class WebMidi extends EventEmitter {
    *
    * @param id {string} The ID string of the port. IDs can be viewed by looking at the
    * [`WebMidi.outputs`](WebMidi#outputs) array.
+   * @param [options] {object}
+   * @param [options.disconnected] {boolean} Whether to retrieve a disconnected output
    *
-   * @returns {Output|false} An [`Output`](Output) object matching the specified ID string. If no
-   * matching output can be found, the method returns `false`.
+   * @returns {Output} An [`Output`](Output) object matching the specified ID string. If no
+   * matching output can be found, the method returns `undefined`.
    *
    * @throws {Error} WebMidi is not enabled.
    *
    * @since 2.0.0
    */
-  getOutputById(id) {
+  getOutputById(id, options = {disconnected: false}) {
 
     if (this.validation) {
       if (!this.enabled) throw new Error("WebMidi is not enabled.");
-      if (!id) return false;
+      if (!id) return;
     }
 
-    for (let i = 0; i < this.outputs.length; i++) {
-      if (this.outputs[i].id === id.toString()) return this.outputs[i];
+    if (options.disconnected) {
+      for (let i = 0; i < this._disconnectedOutputs.length; i++) {
+        if (this._disconnectedOutputs[i].id === id.toString()) return this._disconnectedOutputs[i];
+      }
+    } else {
+      for (let i = 0; i < this.outputs.length; i++) {
+        if (this.outputs[i].id === id.toString()) return this.outputs[i];
+      }
     }
-
-    return false;
 
   };
 
@@ -657,6 +729,24 @@ class WebMidi extends EventEmitter {
     this._updateInputsAndOutputs();
 
     /**
+     * Event emitted when an [`Input`](Input) or [`Output`](Output) port is connected or
+     * disconnected. This event is typically fired whenever a MIDI device is plugged in or
+     * unplugged. Please note that it may fire several times if a device possesses multiple inputs
+     * and/or outputs (which is often the case).
+     *
+     * @event WebMidi#portschanged
+     * @type {object}
+     * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
+     * (in milliseconds since the navigation start of the document).
+     * @property {string} type `portschanged`
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
+     *
+     * @since 3.0.2
+     */
+
+    /**
      * Event emitted when an [`Input`](Input) or [`Output`](Output) becomes available. This event is
      * typically fired whenever a MIDI device is plugged in. Please note that it may fire several
      * times if a device possesses multiple inputs and/or outputs (which is often the case).
@@ -665,8 +755,9 @@ class WebMidi extends EventEmitter {
      * @type {object}
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred
      * (in milliseconds since the navigation start of the document).
-     * @property {string} type `"connected"`
-     * @property {Input|Output} target The [`Input`](Input) or [`Output`](Output) object that
+     * @property {string} type `connected`
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
      * triggered the event.
      */
 
@@ -679,19 +770,15 @@ class WebMidi extends EventEmitter {
      * @type {object}
      * @property {DOMHighResTimeStamp} timestamp The moment when the event occurred (in milliseconds
      * since the navigation start of the document).
-     * @property {string} type `"disconnected"`
-     * @property {object} target Object with properties describing the [`Input`](Input) or
-     * [`Output`](Output) that triggered the event.
-     * @property {string} target.connection `"closed"`
-     * @property {string} target.id ID of the input
-     * @property {string} target.manufacturer Manufacturer of the device that provided the input
-     * @property {string} target.name Name of the device that provided the input
-     * @property {string} target.state `disconnected`
-     * @property {string} target.type `input` or `output`
+     * @property {string} type `disconnected`
+     * @property {WebMidi} target The object to which the listener was originally added (`WebMidi`)
+     * @property {Input|Output} port The [`Input`](Input) or [`Output`](Output) object that
+     * triggered the event.
      */
     let event = {
       timestamp: e.timeStamp,
-      type: e.port.state
+      type: e.port.state,
+      target: this
     };
 
     // We check if "connection" is "open" because connected events are also triggered with
@@ -699,32 +786,35 @@ class WebMidi extends EventEmitter {
     if (e.port.state === "connected" && e.port.connection === "open") {
 
       if (e.port.type === "output") {
-        event.port = this.getOutputById(e.port.id); // legacy
-        event.target = event.port;
+        event.port = this.getOutputById(e.port.id);
       } else if (e.port.type === "input") {
-        event.port = this.getInputById(e.port.id); // legacy
-        event.target = event.port;
+        event.port = this.getInputById(e.port.id);
       }
 
+      // Emit "connected" event
       this.emit(e.port.state, event);
+
+      // Make a shallow copy of the event so we can use it for the "portschanged" event
+      const portsChangedEvent = Object.assign({}, event);
+      portsChangedEvent.type = "portschanged";
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
     // We check if "connection" is "pending" because we do not always get the "closed" event
     } else if (e.port.state === "disconnected" && e.port.connection === "pending") {
 
-      // It feels more logical to include a `target` property instead of a `port` property. This is
-      // the terminology used everywhere in the library.
-      event.port = {
-        connection: "closed",
-        id: e.port.id,
-        manufacturer: e.port.manufacturer,
-        name: e.port.name,
-        state: e.port.state,
-        type: e.port.type
-      };
+      if (e.port.type === "input") {
+        event.port = this.getInputById(e.port.id, {disconnected: true});
+      } else if (e.port.type === "output") {
+        event.port = this.getOutputById(e.port.id, {disconnected: true});
+      }
 
-      event.target = event.port;
-
+      // Emit "disconnected" event
       this.emit(e.port.state, event);
+
+      // Make a shallow copy of the event so we can use it for the "portschanged" event
+      const portsChangedEvent = Object.assign({}, event);
+      portsChangedEvent.type = "portschanged";
+      this.emit(portsChangedEvent.type, portsChangedEvent);
 
     }
 
@@ -837,7 +927,7 @@ class WebMidi extends EventEmitter {
   // injectPluginMarkup(parent) {
   //
   //   // Silently ignore on Node.js
-  //   if (this.isNode) return;
+  //   if (Utilities.isNode) return;
   //
   //   // Default to <body> if no parent is specified
   //   if (!(parent instanceof Element) && !(parent instanceof HTMLDocument)) {
@@ -871,39 +961,38 @@ class WebMidi extends EventEmitter {
    * An array of all currently available MIDI inputs.
    *
    * @readonly
-   * @type {Array}
+   * @type {Input[]}
    */
   get inputs() {
     return this._inputs;
   }
 
   /**
-   * Indicates whether the current environment is Node.js or not. If you need to check if we are in
-   * browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-   * [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-   * @type {boolean}
+   * @private
+   * @deprecated
    */
   get isNode() {
 
-    return (Object.prototype.toString.call(
-      typeof process !== "undefined" ? process : 0
-    ) === "[object process]");
+    if (this.validation) {
+      console.warn("WebMidi.isNode has been deprecated. Use Utilities.isNode instead.");
+    }
 
-    // Alternative way to try
-    // return typeof process !== "undefined" &&
-    //   process.versions != null &&
-    //   process.versions.node != null;
+    return Utilities.isNode;
 
   }
 
   /**
-   * Indicates whether the current environment is a browser environment or not. If you need to check
-   * if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-   * NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-   * @type {boolean}
+   * @private
+   * @deprecated
    */
   get isBrowser() {
-    return typeof window !== "undefined" && typeof window.document !== "undefined";
+
+    if (this.validation) {
+      console.warn("WebMidi.isBrowser has been deprecated. Use Utilities.isBrowser instead.");
+    }
+
+    return Utilities.isBrowser;
+
   }
 
   /**
@@ -940,7 +1029,7 @@ class WebMidi extends EventEmitter {
    * An array of all currently available MIDI outputs as [`Output`](Output) objects.
    *
    * @readonly
-   * @type {Array}
+   * @type {Output[]}
    */
   get outputs() {
     return this._outputs;
@@ -959,7 +1048,7 @@ class WebMidi extends EventEmitter {
    * @type {boolean}
    */
   get supported() {
-    return (typeof navigator !== "undefined" && navigator.requestMIDIAccess);
+    return (typeof navigator !== "undefined" && !!navigator.requestMIDIAccess);
   }
 
   /**
@@ -982,6 +1071,8 @@ class WebMidi extends EventEmitter {
    * time should be accurate to 5 µs (microseconds). However, due to various constraints, the
    * browser might only be accurate to one millisecond.
    *
+   * Note: `WebMidi.time` is simply an alias to `performance.now()`.
+   *
    * @type {DOMHighResTimeStamp}
    * @readonly
    */
@@ -1000,62 +1091,77 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * @private
-   * @deprecated since 3.0.0. Use InputChannel.EVENTS instead.
+   * The flavour of the library. Can be one of:
+   *
+   * * `esm`: ECMAScript Module
+   * * `cjs`: CommonJS Module
+   * * `iife`: Immediately-Invoked Function Expression
+   *
+   * @readonly
+   * @type string
+   * @since 3.0.25
    */
-  get CHANNEL_EVENTS() {
-    if (this.validation) {
-      console.warn(
-        "The CHANNEL_EVENTS enum has been moved to InputChannel.EVENTS."
-      );
-    }
-    return InputChannel.EVENTS;
+  get flavour() {
+    return "__flavour__"; // will be replaced during bundling by the correct identifier
   }
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_SYSTEM_MESSAGES instead.
+   * @deprecated since 3.0.0. Use Enumerations.CHANNEL_EVENTS instead.
+   */
+  get CHANNEL_EVENTS() {
+    if (this.validation) {
+      console.warn(
+        "The CHANNEL_EVENTS enum has been moved to Enumerations.CHANNEL_EVENTS."
+      );
+    }
+    return Enumerations.CHANNEL_EVENTS;
+  }
+
+  /**
+   * @private
+   * @deprecated since 3.0.0. Use Enumerations.SYSTEM_MESSAGES instead.
    */
   get MIDI_SYSTEM_MESSAGES() {
 
     if (this.validation) {
       console.warn(
         "The MIDI_SYSTEM_MESSAGES enum has been moved to " +
-        "Enumerations.MIDI_SYSTEM_MESSAGES."
+        "Enumerations.SYSTEM_MESSAGES."
       );
     }
 
-    return Enumerations.MIDI_SYSTEM_MESSAGES;
+    return Enumerations.SYSTEM_MESSAGES;
 
   }
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_CHANNEL_MODE_MESSAGES instead
+   * @deprecated since 3.0.0. Use Enumerations.CHANNEL_MODE_MESSAGES instead
    */
   get MIDI_CHANNEL_MODE_MESSAGES() {
 
     if (this.validation) {
       console.warn(
         "The MIDI_CHANNEL_MODE_MESSAGES enum has been moved to " +
-        "Enumerations.MIDI_CHANNEL_MODE_MESSAGES."
+        "Enumerations.CHANNEL_MODE_MESSAGES."
       );
     }
 
-    return Enumerations.MIDI_CHANNEL_MODE_MESSAGES;
+    return Enumerations.CHANNEL_MODE_MESSAGES;
 
   }
 
   /**
    * @private
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_CONTROL_CHANGE_MESSAGES instead.
+   * @deprecated since 3.0.0. Use Enumerations.CONTROL_CHANGE_MESSAGES instead.
    */
   get MIDI_CONTROL_CHANGE_MESSAGES() {
 
     if (this.validation) {
       console.warn(
-        "The MIDI_CONTROL_CHANGE_MESSAGES enum has been moved to " +
-        "Enumerations.MIDI_CONTROL_CHANGE_MESSAGES."
+        "The MIDI_CONTROL_CHANGE_MESSAGES enum has been replaced by the " +
+        "Enumerations.CONTROL_CHANGE_MESSAGES array."
       );
     }
 
@@ -1064,7 +1170,7 @@ class WebMidi extends EventEmitter {
   }
 
   /**
-   * @deprecated since 3.0.0. Use Enumerations.MIDI_REGISTERED_PARAMETERS instead.
+   * @deprecated since 3.0.0. Use Enumerations.REGISTERED_PARAMETERS instead.
    * @private
    */
   get MIDI_REGISTERED_PARAMETER() {
@@ -1072,11 +1178,11 @@ class WebMidi extends EventEmitter {
     if (this.validation) {
       console.warn(
         "The MIDI_REGISTERED_PARAMETER enum has been moved to " +
-        "Enumerations.MIDI_REGISTERED_PARAMETERS."
+        "Enumerations.REGISTERED_PARAMETERS."
       );
     }
 
-    return this.MIDI_REGISTERED_PARAMETERS;
+    return Enumerations.REGISTERED_PARAMETERS;
 
   }
 
@@ -1101,10 +1207,15 @@ class WebMidi extends EventEmitter {
 // extensible (properties can be added at will).
 const wm = new WebMidi();
 wm.constructor = null;
+
+export {Enumerations} from "./Enumerations.js";
+export {Forwarder} from "./Forwarder.js";
+export {Input} from "./Input.js";
+export {InputChannel} from "./InputChannel.js";
+export {Message} from "./Message.js";
+export {Note} from "./Note.js";
+export {Output} from "./Output.js";
+export {OutputChannel} from "./OutputChannel.js";
+export {Utilities} from "./Utilities.js";
 export {wm as WebMidi};
 
-export {Note} from "./Note.js";
-export {Utilities} from "./Utilities.js";
-export {Enumerations} from "./Enumerations.js";
-export {Message} from "./Message.js";
-export {Forwarder} from "./Forwarder.js";

@@ -13,7 +13,15 @@ module) version, you get an already-instantiated object when you import the modu
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`connected`](#event:connected), [`disabled`](#event:disabled), [`disconnected`](#event:disconnected), [`enabled`](#event:enabled), [`midiaccessgranted`](#event:midiaccessgranted)
+**Fires**: [`connected`](#event:connected), [`disabled`](#event:disabled), [`disconnected`](#event:disconnected), [`enabled`](#event:enabled), [`error`](#event:error), [`midiaccessgranted`](#event:midiaccessgranted), [`portschanged`](#event:portschanged)
+
+### `Constructor`
+
+The WebMidi class is a singleton and you cannot instantiate it directly. It has already been
+instantiated for you.
+
+
+
 ***
 
 ## Properties
@@ -86,8 +94,21 @@ specific event.
 Whether or not the execution of callbacks is currently suspended for this emitter.
 
 
+### `.flavour` {#flavour}
+**Since**: 3.0.25<br />
+**Type**: string<br />
+**Attributes**: read-only<br />
+
+
+The flavour of the library. Can be one of:
+
+* `esm`: ECMAScript Module
+* `cjs`: CommonJS Module
+* `iife`: Immediately-Invoked Function Expression
+
+
 ### `.inputs` {#inputs}
-**Type**: Array<br />
+**Type**: Array.&lt;Input&gt;<br />
 **Attributes**: read-only<br />
 
 
@@ -96,30 +117,12 @@ An array of all currently available MIDI inputs.
 
 ### `.interface` {#interface}
 **Type**: MIDIAccess<br />
-**Attributes**: read-only, nullable<br />
+**Attributes**: read-only<br />
 
 
 The [`MIDIAccess`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIAccess)
 instance used to talk to the lower-level Web MIDI API. This should not be used directly
 unless you know what you are doing.
-
-
-### `.isBrowser` {#isBrowser}
-**Type**: boolean<br />
-
-
-Indicates whether the current environment is a browser environment or not. If you need to check
-if we are in Node.js, use [`isNode`](#isNode). In certain environments (such as Electron and
-NW.js) [`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
-
-
-### `.isNode` {#isNode}
-**Type**: boolean<br />
-
-
-Indicates whether the current environment is Node.js or not. If you need to check if we are in
-browser, use [`isBrowser`](#isBrowser). In certain environments (such as Electron and NW.js)
-[`isNode`](#isNode) and [`isBrowser`](#isBrowser) can both be true at the same time.
 
 
 ### `.octaveOffset` {#octaveOffset}
@@ -140,7 +143,7 @@ number sent will be 72 (instead of 60).
 
 
 ### `.outputs` {#outputs}
-**Type**: Array<br />
+**Type**: Array.&lt;Output&gt;<br />
 **Attributes**: read-only<br />
 
 
@@ -182,6 +185,8 @@ floating-point number, it has sub-millisecond accuracy. According to the
 [documentation](https://developer.mozilla.org/en-US/docs/Web/API/DOMHighResTimeStamp), the
 time should be accurate to 5 µs (microseconds). However, due to various constraints, the
 browser might only be accurate to one millisecond.
+
+Note: `WebMidi.time` is simply an alias to `performance.now()`.
 
 
 ### `.validation` {#validation}
@@ -229,13 +234,13 @@ listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to.|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to.|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs.|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The value of `this` in the callback function.|
     |[**`options.prepend`**] | boolean<br /> |false|Whether the listener should be added at the beginning of the listeners array and thus executed first.|
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds before the listener automatically expires.|
-    |[**`options.remaining`**] | boolean<br /> |Infinity|The number of times after which the callback should automatically be removed.|
+    |[**`options.remaining`**] | number<br /> |Infinity|The number of times after which the callback should automatically be removed.|
     |[**`options.arguments`**] | array<br /> ||An array of arguments which will be passed separately to the callback function. This array is stored in the [`arguments`](Listener#arguments) property of the [`Listener`](Listener) object and can be retrieved or modified as desired.|
 
   </div>
@@ -274,7 +279,7 @@ global listener will also be triggered by non-registered events.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to listen to|
+    |**`event`** | string<br />Symbol<br /> ||The event to listen to|
     |**`callback`** | EventEmitter~callback<br /> ||The callback function to execute when the event occurs|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.context`**] | Object<br /> |this|The context to invoke the callback function in.|
@@ -311,7 +316,7 @@ are also destroyed.
 
 **Return Value**
 
-> Returns: `Promise`<br />
+> Returns: `Promise.<Array>`<br />
 
 
 **Throws**:
@@ -425,6 +430,7 @@ WebMidi.enable().then(() => {
     |[**`options.sysex`**] | boolean<br /> |false|Whether to enable MIDI system exclusive messages or not.|
     |[**`options.validation`**] | boolean<br /> |true|Whether to enable library-wide validation of method arguments and setter values. This is an advanced setting that should be used carefully. Setting [`validation`](#validation) to `false` improves performance but should only be done once the project has been thoroughly tested with [`validation`](#validation)  turned on.|
     |[**`options.software`**] | boolean<br /> |false|Whether to request access to software synthesizers on the host system. This is part of the spec but has not yet been implemented by most browsers as of April 2020.|
+    |[**`options.requestMIDIAccessFunction`**] | function<br /> ||A custom function to use to return the MIDIAccess object. This is useful if you want to use a polyfill for the Web MIDI API or if you want to use a custom implementation of the Web MIDI API - probably for testing purposes.|
 
   </div>
 
@@ -433,7 +439,7 @@ WebMidi.enable().then(() => {
 
 > Returns: `Promise.<WebMidi>`<br />
 
-The promise is fulfilled with the `WebMidi` object fro
+The promise is fulfilled with the `WebMidi` object for
 chainability
 
 
@@ -455,22 +461,24 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
-  > Signature: `getInputById(id)`
+  > Signature: `getInputById(id, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`id`** | string<br /> ||The ID string of the input. IDs can be viewed by looking at the [`WebMidi.inputs`](WebMidi#inputs) array. Even though they sometimes look like integers, IDs are strings.|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected input|
 
   </div>
 
 
 **Return Value**
 
-> Returns: `Input` or `false`<br />
+> Returns: `Input`<br />
 
-An [`Input`](Input) object matching the specified ID string or `false`
+An [`Input`](Input) object matching the specified ID string or `undefined`
 if no matching input can be found.
 
 
@@ -489,22 +497,24 @@ input names in the same way as the Jazz-Plugin does.
 
   **Parameters**
 
-  > Signature: `getInputByName(name)`
+  > Signature: `getInputByName(name, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`name`** | string<br /> ||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [inputs](WebMidi#inputs) array).|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected input|
 
   </div>
 
 
 **Return Value**
 
-> Returns: `Input` or `false`<br />
+> Returns: `Input`<br />
 
-The [`Input`](Input) that was found or `false` if no input contained the
+The [`Input`](Input) that was found or `undefined` if no input contained the
 specified name.
 
 
@@ -531,7 +541,7 @@ number for a "regular" event. To get the number of global listeners, specificall
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
+    |**`event`** | string<br />Symbol<br /> ||The event which is usually a string but can also be the special [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) symbol.|
 
   </div>
 
@@ -566,7 +576,7 @@ events. To get the list of global listeners, specifically use
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to get listeners for.|
+    |**`event`** | string<br />Symbol<br /> ||The event to get listeners for.|
 
   </div>
 
@@ -594,23 +604,25 @@ kind of IDs as Jazz-Plugin.
 
   **Parameters**
 
-  > Signature: `getOutputById(id)`
+  > Signature: `getOutputById(id, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`id`** | string<br /> ||The ID string of the port. IDs can be viewed by looking at the [`WebMidi.outputs`](WebMidi#outputs) array.|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected output|
 
   </div>
 
 
 **Return Value**
 
-> Returns: `Output` or `false`<br />
+> Returns: `Output`<br />
 
 An [`Output`](Output) object matching the specified ID string. If no
-matching output can be found, the method returns `false`.
+matching output can be found, the method returns `undefined`.
 
 
 **Throws**:
@@ -628,22 +640,24 @@ input names in the same way as the Jazz-Plugin does.
 
   **Parameters**
 
-  > Signature: `getOutputByName(name)`
+  > Signature: `getOutputByName(name, [options])`
 
   <div class="parameter-table-container">
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
     |**`name`** | string<br /> ||The non-empty string to look for within the name of MIDI inputs (such as those visible in the [`outputs`](#outputs) array).|
+    |[**`options`**] | object<br /> |||
+    |[**`options.disconnected`**] | boolean<br /> ||Whether to retrieve a disconnected output|
 
   </div>
 
 
 **Return Value**
 
-> Returns: `Output` or `false`<br />
+> Returns: `Output`<br />
 
-The [`Output`](Output) that was found or `false` if no output matched
+The [`Output`](Output) that was found or `undefined` if no output matched
 the specified name.
 
 
@@ -672,7 +686,7 @@ Note: to specifically check for global listeners added with
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br />EventEmitter.ANY_EVENT<br /> |(any event)|The event to check|
+    |[**`event`**] | string<br />Symbol<br /> |(any event)|The event to check|
     |[**`callback`**] | function<br />Listener<br /> |(any callback)|The actual function that was added to the event or the [Listener](Listener) object returned by `addListener()`.|
 
   </div>
@@ -688,9 +702,10 @@ Note: to specifically check for global listeners added with
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes all the listeners that match the specified criterias. If no parameters are passed, all
-listeners will be removed. If only the `event` parameter is passed, all listeners for that
-event will be removed. You can remove global listeners by using
+Removes all the listeners that were added to the object upon which the method is called and
+that match the specified criterias. If no parameters are passed, all listeners added to this
+object will be removed. If only the `event` parameter is passed, all listeners for that event
+will be removed from that object. You can remove global listeners by using
 [`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter.
 
 To use more granular options, you must at least define the `event`. Then, you can specify the
@@ -705,11 +720,11 @@ callback to match or one or more of the additional options.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |[**`event`**] | string<br /> |(any events)|The event name.|
-    |[**`callback`**] | EventEmitter~callback<br /> |(any callbacks)|Only remove the listeners that match this exact callback function.|
-    |[**`options`**] | Object<br /> |{}||
-    |[**`options.context`**] | *<br /> |(any contexts)|Only remove the listeners that have this exact context.|
-    |[**`options.remaining`**] | number<br /> |(any number)|Only remove the listener if it has exactly that many remaining times to be executed.|
+    |[**`event`**] | string<br /> ||The event name.|
+    |[**`callback`**] | EventEmitter~callback<br /> ||Only remove the listeners that match this exact callback function.|
+    |[**`options`**] | Object<br /> |||
+    |[**`options.context`**] | *<br /> ||Only remove the listeners that have this exact context.|
+    |[**`options.remaining`**] | number<br /> ||Only remove the listener if it has exactly that many remaining times to be executed.|
 
   </div>
 
@@ -741,7 +756,7 @@ listeners alone. If you truly want to suspends all callbacks for a specific
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to suspend execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to suspend execution of all callback functions.|
 
   </div>
 
@@ -772,7 +787,7 @@ callbacks alone.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event for which to resume execution of all callback functions.|
+    |**`event`** | string<br />Symbol<br /> ||The event name (or `EventEmitter.ANY_EVENT`) for which to resume execution of all callback functions.|
 
   </div>
 
@@ -804,7 +819,7 @@ after a certain time if the event is not triggered.
 
   | Parameter    | Type(s)      | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event to wait for|
+    |**`event`** | string<br />Symbol<br /> ||The event to wait for|
     |[**`options`**] | Object<br /> |{}||
     |[**`options.duration`**] | number<br /> |Infinity|The number of milliseconds to wait before the promise is automatically rejected.|
 
@@ -835,8 +850,9 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"connected"`|
-  |**`target`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
+  |**`type`** |string|`connected`|
+  |**`target`** |WebMidi|The object to which the listener was originally added (`WebMidi`)|
+  |**`port`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 ### `disabled` {#event-disabled}
@@ -873,14 +889,9 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 | Property                 | Type                     | Description              |
 | ------------------------ | ------------------------ | ------------------------ |
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
-  |**`type`** |string|`"disconnected"`|
-  |**`target`** |object|Object with properties describing the [`Input`](Input) or [`Output`](Output) that triggered the event.|
-  |**`target.connection`** |string|`"closed"`|
-  |**`target.id`** |string|ID of the input|
-  |**`target.manufacturer`** |string|Manufacturer of the device that provided the input|
-  |**`target.name`** |string|Name of the device that provided the input|
-  |**`target.state`** |string|`disconnected`|
-  |**`target.type`** |string|`input` or `output`|
+  |**`type`** |string|`disconnected`|
+  |**`target`** |WebMidi|The object to which the listener was originally added (`WebMidi`)|
+  |**`port`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 ### `enabled` {#event-enabled}
@@ -937,6 +948,29 @@ granted access to MIDI).
   |**`timestamp`** |DOMHighResTimeStamp|The moment when the event occurred (in milliseconds since the navigation start of the document).|
   |**`target`** |WebMidi|The object that triggered the event|
   |**`type`** |string|`midiaccessgranted`|
+
+
+### `portschanged` {#event-portschanged}
+
+<a id="event:portschanged"></a>
+
+
+Event emitted when an [`Input`](Input) or [`Output`](Output) port is connected or
+disconnected. This event is typically fired whenever a MIDI device is plugged in or
+unplugged. Please note that it may fire several times if a device possesses multiple inputs
+and/or outputs (which is often the case).
+
+**Since**: 3.0.2
+
+
+**Event Properties**
+
+| Property                 | Type                     | Description              |
+| ------------------------ | ------------------------ | ------------------------ |
+  |**`timestamp`** |number|The moment (DOMHighResTimeStamp) when the event occurred (in milliseconds since the navigation start of the document).|
+  |**`type`** |string|`portschanged`|
+  |**`target`** |WebMidi|The object to which the listener was originally added (`WebMidi`)|
+  |**`port`** |Input|The [`Input`](Input) or [`Output`](Output) object that triggered the event.|
 
 
 

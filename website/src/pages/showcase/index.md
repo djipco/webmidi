@@ -26,7 +26,6 @@ page on GitHub and submit a pull request.
   Digital Audio Workstation (DAW) application built using web technologies and distributed as a 
   native application using Electron.
 
-
 ## Education
 
 * ### [Learn Push 2](https://github.com/greyivy/learn-push2-with-svelte)
@@ -50,6 +49,12 @@ page on GitHub and submit a pull request.
 
   An interactive educational web-site for the visual music language based on associating chromatic notes with spectral colors. 
 
+* ### [Chromatone](https://chromatone.center/)
+  Created by: **Denis Starov**
+
+  An interactive educational web-site for the visual music language based on associating chromatic 
+  notes with spectral colors.
+
 * ### [WebAudio Generator](https://webaudio.simmsreeve.com/)
   Created by: **Joe Reeve & Magnus**
 
@@ -61,6 +66,10 @@ page on GitHub and submit a pull request.
   A collection of midi responsive widgets made to aid musicians, teachers, and students in their education,
   creative process, and practice routine.
 
+* ### [Virtual Piano Keyboard](https://muted.io/piano/)
+  Created by: **Sébastien Noël**
+
+  A simple way to practice playing a piano keyboard online with helpers like chord identification and locking to a scale.
 
 ## Experiments
 
@@ -73,14 +82,19 @@ page on GitHub and submit a pull request.
 * ### [Eternal](https://github.com/kousun12/eternal)
   Created by: **Rob Cheung**
 
-  This experiment lets you play a piano duet with the computer. Just play some notes, and the 
-  computer will respond to your melody.
+  Eternal is node-based sound and music programming and exploration environment.
 
 * ### [Mideo](https://github.com/jwktje/mideo)
   Created by: **Jan Willem Kilkman**
 
   A Mac application that turns videos into music. It uses color tracking in combination with a grid 
   to generate MIDI data.
+
+* ### [Sonification: turning the yield curve into music](https://www.ft.com/content/80269930-40c3-11e9-b896-fe36ec32aece)
+  Created by: **Alan Smith**
+
+  This experiment turns the US yield curve into music and uses WEBMIDI.js to generate the MIDI note
+  messages.
 
 * ### [Seeing Music](https://experiments.withgoogle.com/seeing-music)
   Created by: **Jay Alan Zimmerman, Yotam Mann, Claire Kearney-Volpe, Luisa Pereira, Kyle Phillips, 

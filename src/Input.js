@@ -1,5 +1,5 @@
 import {Enumerations} from "./Enumerations.js";
-import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
+import {EventEmitter} from "../node_modules/djipevents/src/djipevents.js";
 import {Forwarder} from "./Forwarder.js";
 import {InputChannel} from "./InputChannel.js";
 import {Message} from "./Message.js";
@@ -23,13 +23,11 @@ import {WebMidi} from "./WebMidi.js";
  * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
  * [`InputChannel`](InputChannel) objects at once.
  *
- * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
- * object as provided by the MIDI subsystem (Web MIDI API).
- *
  * @fires Input#opened
  * @fires Input#disconnected
  * @fires Input#closed
  * @fires Input#midimessage
+ *
  * @fires Input#sysex
  * @fires Input#timecode
  * @fires Input#songposition
@@ -41,6 +39,7 @@ import {WebMidi} from "./WebMidi.js";
  * @fires Input#stop
  * @fires Input#activesensing
  * @fires Input#reset
+ *
  * @fires Input#unknownmidimessage
  *
  * @extends EventEmitter
@@ -48,6 +47,12 @@ import {WebMidi} from "./WebMidi.js";
  */
 export class Input extends EventEmitter {
 
+  /**
+   * Creates an `Input` object.
+   *
+   * @param {MIDIInput} midiInput [`MIDIInput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIInput)
+   * object as provided by the MIDI subsystem (Web MIDI API).
+   */
   constructor(midiInput) {
 
     super();
@@ -73,6 +78,10 @@ export class Input extends EventEmitter {
     this.channels = [];
     for (let i = 1; i <= 16; i++) this.channels[i] = new InputChannel(this, i);
 
+    /**
+     * @type {Forwarder[]}
+     * @private
+     */
     this._forwarders = [];
 
     // Setup listeners
@@ -110,7 +119,8 @@ export class Input extends EventEmitter {
 
     let event = {
       timestamp: WebMidi.time,
-      target: this
+      target: this,
+      port: this // for consistency
     };
 
     if (e.port.connection === "open") {
@@ -124,7 +134,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `opened`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        */
       event.type = "opened";
       this.emit("opened", event);
@@ -140,7 +151,8 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `closed`
-       * @property {Input} target The `Input` that triggered the event.
+       * @property {Input} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
        */
       event.type = "closed";
       this.emit("closed", event);
@@ -156,17 +168,12 @@ export class Input extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `disconnected`
-       * @property {object} target Object with properties describing the {@link Input} that
-       * triggered the event. This is not the actual `Input` as it is no longer available.
-       * @property {string} target.connection `"closed"`
-       * @property {string} target.id ID of the input
-       * @property {string} target.manufacturer Manufacturer of the device that provided the input
-       * @property {string} target.name Name of the device that provided the input
-       * @property {string} target.state `disconnected`
-       * @property {string} target.type `input`
+       * @property {Input} port Object with properties describing the {@link Input} that was
+       * disconnected. This is not the actual `Input` as it is no longer available.
+       * @property {Input} target The object that dispatched the event.
        */
       event.type = "disconnected";
-      event.target = {
+      event.port = {
         connection: e.port.connection,
         id: e.port.id,
         manufacturer: e.port.manufacturer,
@@ -191,7 +198,6 @@ export class Input extends EventEmitter {
    */
   _onMidiMessage(e) {
 
-
     // Create Message object from MIDI data
     const message = new Message(e.data);
 
@@ -202,7 +208,8 @@ export class Input extends EventEmitter {
      *
      * @type {object}
      *
-     * @property {Input} target The `Input`that triggered the event.
+     * @property {Input} port The `Input` that triggered the event.
+     * @property {Input} target The object that dispatched the event.
      * @property {Message} message A [`Message`](Message) object containing information about the
      * incoming MIDI message.
      * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -212,6 +219,7 @@ export class Input extends EventEmitter {
      * @since 2.1
      */
     const event = {
+      port: this,
       target: this,
       message: message,
       timestamp: e.timeStamp,
@@ -227,7 +235,7 @@ export class Input extends EventEmitter {
 
     // Messages are forwarded to InputChannel if they are channel messages or parsed locally for
     // system messages.
-    if (message.isSystemMessage) {                                         // system messages
+    if (message.isSystemMessage) {           // system messages
       this._parseEvent(event);
     } else if (message.isChannelMessage) {   // channel messages
       this.channels[message.channel]._processMidiMessageEvent(event);
@@ -249,7 +257,9 @@ export class Input extends EventEmitter {
 
     // Add custom property for 'songselect'
     if (event.type === "songselect") {
-      event.song = e.data[1] + 1;
+      event.song = e.data[1] + 1; // deprecated
+      event.value = e.data[1];
+      event.rawValue = event.value;
     }
 
     // Emit event
@@ -354,7 +364,8 @@ export class Input extends EventEmitter {
    * const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
    * ```
    *
-   * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects.
+   * In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects. The order of
+   * the listeners in the array follows the order the channels were specified in.
    *
    * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
    * instance that actually gets a listener added and not the `Input` instance. You can check that
@@ -423,18 +434,18 @@ export class Input extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
-   * @param event {string} The type of the event.
+   * @param event {string | EventEmitter.ANY_EVENT} The type of the event.
    *
    * @param listener {function} A callback function to execute when the specified event is detected.
    * This function will receive an event parameter object. For details on this object's properties,
@@ -459,7 +470,7 @@ export class Input extends EventEmitter {
    * @param {boolean} [options.prepend=false] Whether the listener should be added at the beginning
    * of the listeners array and thus be triggered before others.
    *
-   * @param {boolean} [options.remaining=Infinity] The number of times after which the callback
+   * @param {number} [options.remaining=Infinity] The number of times after which the callback
    * should automatically be removed.
    *
    * @returns {Listener|Listener[]} If the event is input-wide, a single [`Listener`](Listener)
@@ -480,7 +491,7 @@ export class Input extends EventEmitter {
     }
 
     // Check if the event is channel-specific or input-wide
-    if (InputChannel.EVENTS.includes(event)) {
+    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
 
       // If no channel defined, use all.
       if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
@@ -600,16 +611,16 @@ export class Input extends EventEmitter {
    *    * [`nrpn`]{@link InputChannel#event:nrpn}
    *    * [`nrpn-dataentrycoarse`]{@link InputChannel#event:nrpn-dataentrycoarse}
    *    * [`nrpn-dataentryfine`]{@link InputChannel#event:nrpn-dataentryfine}
-   *    * [`nrpn-databuttonincrement`]{@link InputChannel#event:nrpn-databuttonincrement}
-   *    * [`nrpn-databuttondecrement`]{@link InputChannel#event:nrpn-databuttondecrement}
+   *    * [`nrpn-dataincrement`]{@link InputChannel#event:nrpn-dataincrement}
+   *    * [`nrpn-datadecrement`]{@link InputChannel#event:nrpn-datadecrement}
    *
    * 8. **RPN** Events (channel-specific)
    *
    *    * [`rpn`]{@link InputChannel#event:rpn}
    *    * [`rpn-dataentrycoarse`]{@link InputChannel#event:rpn-dataentrycoarse}
    *    * [`rpn-dataentryfine`]{@link InputChannel#event:rpn-dataentryfine}
-   *    * [`rpn-databuttonincrement`]{@link InputChannel#event:rpn-databuttonincrement}
-   *    * [`rpn-databuttondecrement`]{@link InputChannel#event:rpn-databuttondecrement}
+   *    * [`rpn-dataincrement`]{@link InputChannel#event:rpn-dataincrement}
+   *    * [`rpn-datadecrement`]{@link InputChannel#event:rpn-datadecrement}
    *
    * @param event {string} The type of the event.
    *
@@ -657,7 +668,7 @@ export class Input extends EventEmitter {
    * function. For channel-specific events, the function will return `true` only if all channels
    * have the listener defined.
    *
-   * @param event {string} The type of the event.
+   * @param event {string|Symbol} The type of the event.
    *
    * @param listener {function} The callback function to check for.
    *
@@ -683,7 +694,7 @@ export class Input extends EventEmitter {
 
     }
 
-    if (InputChannel.EVENTS.includes(event)) {
+    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
 
       // If no channel defined, use all.
       if (options.channels === undefined) options.channels = Enumerations.MIDI_CHANNEL_NUMBERS;
@@ -699,17 +710,18 @@ export class Input extends EventEmitter {
   }
 
   /**
-   * Removes the specified listener for the specified event. If no listener is specified, all
-   * listeners for the specified event will be removed. If no event is specified, all listeners for
-   * the `Input` as well as all listeners for all [`InputChannel`]{@link InputChannel} objects will
-   * be removed.
+   * Removes the specified event listener. If no listener is specified, all listeners matching the
+   * specified event will be removed. If the event is channel-specific, the listener will be removed
+   * from all [`InputChannel`]{@link InputChannel} objects belonging to that channel. If no event is
+   * specified, all listeners for the `Input` as well as all listeners for all
+   * [`InputChannel`]{@link InputChannel} objects belonging to the `Input` will be removed.
    *
-   * By default, channel-specific listeners will be removed from all channels unless the
-   * `options.channel` narrows it down.
+   * By default, channel-specific listeners will be removed from all
+   * [`InputChannel`]{@link InputChannel} objects unless the `options.channel` narrows it down.
    *
    * @param [type] {string} The type of the event.
    *
-   * @param [listener] {Function} The callback function to check for.
+   * @param [listener] {function} The callback function to check for.
    *
    * @param {object} [options={}]
    *
@@ -746,7 +758,7 @@ export class Input extends EventEmitter {
     }
 
     // If the event is specified, check if it's channel-specific or input-wide.
-    if (InputChannel.EVENTS.includes(event)) {
+    if (Enumerations.CHANNEL_EVENTS.includes(event)) {
 
       Utilities.sanitizeChannels(options.channels).forEach(ch => {
         this.channels[ch].removeListener(event, listener, options);
@@ -765,17 +777,17 @@ export class Input extends EventEmitter {
    * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
    * the added benefit of being able to filter which data is forwarded.
    *
-   * @param {Output|Output[]} [destinations=\[\]] An [`Output`](Output) object, or an array of such
+   * @param {Output|Output[]} output An [`Output`](Output) object, or an array of such
    * objects, to forward messages to.
    * @param {object} [options={}]
    * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
    * types (`noteon`, `controlchange`, etc.), that the message type must match in order to be
    * forwarded. If this option is not specified, all types of messages will be forwarded. Valid
    * messages are the ones found in either
-   * [`MIDI_SYSTEM_MESSAGES`](Enumerations#MIDI_SYSTEM_MESSAGES) or
-   * [`MIDI_CHANNEL_MESSAGES`](Enumerations#MIDI_CHANNEL_MESSAGES).
-   * @param {number} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]] A
-   * MIDI channel number or an array of channel numbers that the message must match in order to be
+   * [`SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) or
+   * [`CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
+   * @param {number|number[]} [options.channels=[1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16]]
+   * A MIDI channel number or an array of channel numbers that the message must match in order to be
    * forwarded. By default all MIDI channels are included (`1` to `16`).
    *
    * @returns {Forwarder} The [`Forwarder`](Forwarder) object created to handle the forwarding. This
@@ -939,7 +951,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -956,7 +969,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -973,7 +987,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -990,13 +1005,14 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `songselect`
- * @property {string} song Song (or sequence) number to select (0-127)
+ * @property {string} value Song (or sequence) number to select (0-127)
+ * @property {string} rawValue Song (or sequence) number to select (0-127)
  *
  * @since 2.1
  */
@@ -1008,7 +1024,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1025,7 +1042,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1042,7 +1060,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1059,7 +1078,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1076,7 +1096,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1093,7 +1114,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1110,7 +1132,8 @@ export class Input extends EventEmitter {
  *
  * @type {object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
@@ -1124,16 +1147,17 @@ export class Input extends EventEmitter {
  * Input-wide (system) event emitted when an unknown MIDI message has been received. It could
  * be, for example, one of the undefined/reserved messages.
  *
- * @event Input#unknownmidimessage
+ * @event Input#unknownmessage
  *
  * @type {Object}
  *
- * @property {Input} target The `Input` that triggered the event.
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
  * @property {Message} message A [`Message`](Message) object containing information about the
  * incoming MIDI message.
  * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
  * milliseconds since the navigation start of the document).
- * @property {string} type `unknownmidimessage`
+ * @property {string} type `unknownmessage`
  *
  * @since 2.1
  */

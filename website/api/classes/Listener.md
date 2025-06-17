@@ -10,6 +10,8 @@ to, the callback function and so on.
 
 ### `Constructor`
 
+Creates a new `Listener` object
+
 
   **Parameters**
 
@@ -19,7 +21,7 @@ to, the callback function and so on.
 
   | Parameter    | Type         | Default      | Description  |
   | ------------ | ------------ | ------------ | ------------ |
-    |**`event`** | string<br />EventEmitter.ANY_EVENT<br /> ||The event being listened to|
+    |**`event`** | string<br />Symbol<br /> ||The event being listened to|
     |**`target`** | EventEmitter<br /> ||The [`EventEmitter`](EventEmitter) object that the listener is attached to.|
     |**`callback`** | EventEmitter~callback<br /> ||The function to call when the listener is triggered|
     |[**`options`**] | Object<br /> |{}||

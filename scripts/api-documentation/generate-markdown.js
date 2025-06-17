@@ -1,7 +1,7 @@
 // Imports
 const djipHelpers = require("./templates/helpers/djip-helpers.js");
 const fs = require("fs-extra");
-const git = require("simple-git/promise")();
+const git = require("simple-git")();
 const Handlebars = require("handlebars");
 const jsdoc2md = require("jsdoc-to-markdown");
 const moment = require("moment");

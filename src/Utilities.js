@@ -118,7 +118,7 @@ export class Utilities {
    * @param [channel] {number|number[]} An integer or an array of integers to parse as channel
    * numbers.
    *
-   * @returns {Array} An array of 0 or more valid MIDI channel numbers.
+   * @returns {number[]} An array of 0 or more valid MIDI channel numbers.
    *
    * @since 3.0.0
    * @static
@@ -127,7 +127,7 @@ export class Utilities {
 
     let channels;
 
-    if (this.validation) {
+    if (WebMidi.validation) {
 
       if (channel === "all") { // backwards-compatibility
         channels = ["all"];
@@ -199,6 +199,7 @@ export class Utilities {
    * -2, the resulting MIDI note number will be 36.
    *
    * @param input {string|number} A string or number to extract the MIDI note number from.
+   * @param octaveOffset {number} An integer to offset the octave by
    *
    * @returns {number|false} A valid MIDI note number (0-127) or `false` if the input could not
    * successfully be parsed to a note number.
@@ -386,7 +387,7 @@ export class Utilities {
    * Passing `Infinity` will return `1` and passing `-Infinity` will return `0`. Otherwise, when the
    * input value cannot be converted to an integer, the method returns 0.
    *
-   * @param value A positive integer between 0 and 127 (inclusive)
+   * @param value {number} A positive integer between 0 and 127 (inclusive)
    * @returns {number} A number between 0 and 1 (inclusive)
    * @static
    */
@@ -397,15 +398,15 @@ export class Utilities {
   }
 
   /**
-   * Returns a number between 0 and 127 which is the result of multiplying the input value by 127.
-   * The input value should be number between 0 and 1 (inclusively). The returned value is
+   * Returns an integer between 0 and 127 which is the result of multiplying the input value by
+   * 127. The input value should be a number between 0 and 1 (inclusively). The returned value is
    * restricted between 0 and 127 even if the input is greater than 1 or smaller than 0.
    *
    * Passing `Infinity` will return `127` and passing `-Infinity` will return `0`. Otherwise, when
    * the input value cannot be converted to a number, the method returns 0.
    *
-   * @param value A positive integer between 0 and 127 (inclusive)
-   * @returns {number} A number between 0 and 1 (inclusive)
+   * @param value {number} A positive float between 0 and 1 (inclusive)
+   * @returns {number} A number between 0 and 127 (inclusive)
    * @static
    */
   static fromFloatTo7Bit(value) {
@@ -508,7 +509,34 @@ export class Utilities {
    * @static
    */
   static getCcNameByNumber(number) {
-    return Utilities.getPropertyByValue(Enumerations.MIDI_CONTROL_CHANGE_MESSAGES, number);
+
+    if (WebMidi.validation) {
+      number = parseInt(number);
+      if (!(number >= 0 && number <= 127)) return undefined;
+    }
+
+    return Enumerations.CONTROL_CHANGE_MESSAGES[number].name;
+
+  }
+
+  /**
+   * Returns the number of a control change message matching the specified name.
+   *
+   * @param {string} name A string representing the control change message
+   * @returns {string|undefined} The matching control change number or `undefined` if no match was
+   * found.
+   *
+   * @since 3.1
+   * @static
+   */
+  static getCcNumberByName(name) {
+    let message = Enumerations.CONTROL_CHANGE_MESSAGES.find(element => element.name === name);
+    if (message) {
+      return message.number;
+    } else {
+      // Legacy (remove in v4)
+      return Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[name];
+    }
   }
 
   /**
@@ -525,11 +553,11 @@ export class Utilities {
 
     if ( !(number >= 120 && number <= 127) ) return false;
 
-    for (let cm in Enumerations.MIDI_CHANNEL_MODE_MESSAGES) {
+    for (let cm in Enumerations.CHANNEL_MODE_MESSAGES) {
 
       if (
-        Enumerations.MIDI_CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
-        number === Enumerations.MIDI_CHANNEL_MODE_MESSAGES[cm]
+        Enumerations.CHANNEL_MODE_MESSAGES.hasOwnProperty(cm) &&
+        number === Enumerations.CHANNEL_MODE_MESSAGES[cm]
       ) {
         return cm;
       }
@@ -538,6 +566,24 @@ export class Utilities {
 
     return false;
 
+  }
+
+  /**
+   * Indicates whether the execution environment is Node.js (`true`) or not (`false`)
+   * @type {boolean}
+   */
+  static get isNode() {
+    return typeof process !== "undefined" &&
+      process.versions != null &&
+      process.versions.node != null;
+  }
+
+  /**
+   * Indicates whether the execution environment is a browser (`true`) or not (`false`)
+   * @type {boolean}
+   */
+  static get isBrowser() {
+    return typeof window !== "undefined" && typeof window.document !== "undefined";
   }
 
 }

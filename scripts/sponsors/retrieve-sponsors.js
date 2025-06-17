@@ -1,33 +1,96 @@
 const { graphql } = require("@octokit/graphql");
 const { token } = require("../../.credentials/sponsors.js");
+const replace = require("replace-in-file");
+const path = require("path");
 
-console.log(token);
+const TARGET = path.join(process.cwd(), "website", "src", "pages", "sponsors", "index.md");
 
-async function test() {
+async function getSponsors() {
 
-  const { repository } = await graphql(
-    `
-    {
-      repository(owner: "djipco", name: "webmidi") {
-        issues(last: 3) {
-          edges {
-            node {
-              title
+  const query = `{
+
+    user (login: "djipco") {
+      sponsorshipsAsMaintainer(first: 100, includePrivate: true) {
+        totalCount
+        nodes {
+          sponsorEntity {
+          ... on User {
+            login
+            name
+            avatarUrl
+            url
+            sponsorshipForViewerAsSponsorable {
+                isOneTimePayment
+                privacyLevel
+                tier {
+                  id
+                  name
+                  monthlyPriceInDollars
+                }
+              }
             }
           }
         }
       }
     }
-  `,
-    {
-      headers: {
-        authorization: `token ${token}`,
-      },
-    }
+
+  }`;
+
+  const {user} = await graphql(
+    query,
+    { headers: { authorization: `token ${token}` } }
   );
 
-  return repository;
+  return user.sponsorshipsAsMaintainer.nodes;
 
 }
 
-test().then(data => console.info(data));
+getSponsors().then(async data => {
+
+  // data.forEach(d => {
+  //   console.log(d.sponsorEntity.login, d.sponsorEntity.sponsorshipForViewerAsSponsorable);
+  //   // console.log(d);
+  // });
+
+  let output = "";
+
+  data.sort((a, b) => {
+    a = a.sponsorEntity.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars;
+    b = b.sponsorEntity.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars;
+
+    if (a > b) return -1;
+    if (a < b) return -1;
+    return 0;
+
+  });
+
+  data.forEach(entity => {
+
+    const sponsor = entity.sponsorEntity;
+
+    if (sponsor.sponsorshipForViewerAsSponsorable.tier.monthlyPriceInDollars < 6) {
+      return;
+    }
+
+    if (sponsor.sponsorshipForViewerAsSponsorable.privacyLevel === "PUBLIC") {
+      const name = sponsor.name || sponsor.login;
+      output += `<a href="${sponsor.url}" title="${name}" class="user-icon">\n`;
+      output += `\t<img src="${sponsor.avatarUrl}" `;
+      output += `alt="${name}" width="100" height="100" />\n`;
+      output += `</a>\n\n`;
+    } else {
+      output += `<a class="user-icon"><img src="/img/sponsors/user.png" `;
+      output += `alt="Anonymous" width="100" height="100" /></a>\n\n`;
+    }
+
+  });
+
+  const options = {
+    files: TARGET,
+    from: /<!-- SPONSOR START -->.*<!-- SPONSOR END -->/sgm,
+    to: "<!-- SPONSOR START -->\n\n" + output + "<!-- SPONSOR END -->",
+  };
+
+  const results = await replace(options);
+
+});

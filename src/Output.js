@@ -1,4 +1,4 @@
-import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
+import {EventEmitter} from "../node_modules/djipevents/src/djipevents.js";
 import {OutputChannel} from "./OutputChannel.js";
 import {Enumerations, Message, WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
@@ -17,9 +17,6 @@ import {Utilities} from "./Utilities.js";
  * [`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
  * [`WebMidi.getOutputById()`](WebMidi#getOutputById).
  *
- * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
- * object as provided by the MIDI subsystem.
- *
  * @fires Output#opened
  * @fires Output#disconnected
  * @fires Output#closed
@@ -29,6 +26,12 @@ import {Utilities} from "./Utilities.js";
  */
 export class Output extends EventEmitter {
 
+  /**
+   * Creates an `Output` object.
+   *
+   * @param {MIDIOutput} midiOutput [`MIDIOutput`](https://developer.mozilla.org/en-US/docs/Web/API/MIDIOutput)
+   * object as provided by the MIDI subsystem.
+   */
   constructor(midiOutput) {
 
     super();
@@ -68,7 +71,7 @@ export class Output extends EventEmitter {
     this.removeListener();
     this.channels.forEach(ch => ch.destroy());
     this.channels = [];
-    this._midiOutput.onstatechange = null;
+    if (this._midiOutput) this._midiOutput.onstatechange = null;
     await this.close();
     this._midiOutput = null;
   }
@@ -93,10 +96,12 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"opened"`
-       * @property {Output} target The object that triggered the event
+       * @property {Output} target The object to which the listener was originally added (`Output`).
+       * @property {Output} port The port that was opened
        */
       event.type = "opened";
       event.target = this;
+      event.port = event.target; // for consistency
       this.emit("opened", event);
 
     } else if (e.port.connection === "closed" && e.port.state === "connected") {
@@ -110,10 +115,12 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"closed"`
-       * @property {Output} target The object that triggered the event
+       * @property {Output} target The object to which the listener was originally added (`Output`).
+       * @property {Output} port The port that was closed
        */
       event.type = "closed";
       event.target = this;
+      event.port = event.target; // for consistency
       this.emit("closed", event);
 
     } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
@@ -127,17 +134,12 @@ export class Output extends EventEmitter {
        * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
        * milliseconds since the navigation start of the document).
        * @property {string} type `"disconnected"`
-       * @property {object} target Object with properties describing the {@link Output} that
-       * triggered the event. This is not the actual `Output` as it is no longer available.
-       * @property {string} target.connection `"closed"`
-       * @property {string} target.id ID of the input
-       * @property {string} target.manufacturer Manufacturer of the device that provided the input
-       * @property {string} target.name Name of the device that provided the input
-       * @property {string} target.state `"disconnected"`
-       * @property {string} target.type `"output"`
+       * @property {Output} target The object to which the listener was originally added (`Output`).
+       * @property {object} port Object with properties describing the {@link Output} that was
+       * disconnected. This is not the actual `Output` as it is no longer available.
        */
       event.type = "disconnected";
-      event.target = {
+      event.port = {
         connection: e.port.connection,
         id: e.port.id,
         manufacturer: e.port.manufacturer,
@@ -228,17 +230,17 @@ export class Output extends EventEmitter {
    *
    * @license Apache-2.0
    */
-  send(message, options = {time: 0}, legacy = undefined) {
+  send(message, options = {time: 0}, legacy = 0) {
 
     // If a Message object is passed in we extract the message data (the jzz plugin used on Node.js
     // does not support using Uint8Array).
     if (message instanceof Message) {
-      message = WebMidi.isNode ? message.data : message.rawData;
+      message = Utilities.isNode ? message.data : message.rawData;
     }
 
     // If the data is a Uint8Array and we are on Node, we must convert it to array so it works with
     // the jzz module.
-    if (message instanceof Uint8Array && WebMidi.isNode) {
+    if (message instanceof Uint8Array && Utilities.isNode) {
       message = Array.from(message);
     }
 
@@ -249,7 +251,7 @@ export class Output extends EventEmitter {
       if (!Array.isArray(message) && !(message instanceof Uint8Array)) {
         message = [message];
         if (Array.isArray(options)) message = message.concat(options);
-        options = legacy ? {time: legacy} : {time: 0};
+        options = isNaN(legacy) ? {time: 0} : {time: legacy};
       }
 
       if (!(parseInt(message[0]) >= 128 && parseInt(message[0]) <= 255)) {
@@ -276,12 +278,27 @@ export class Output extends EventEmitter {
   /**
    * Sends a MIDI [**system exclusive**]{@link
     * https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages}
-   * (*sysex*) message. The `data` parameter should only contain the data of the message. When
-   * sending out the actual MIDI message, WEBMIDI.js will automatically prepend the data with the
-   * **sysex byte** (`0xF0`) and the manufacturer ID byte(s). It will also automatically terminate
-   * the message with the **sysex end byte** (`0xF7`).
+   * (*sysex*) message. There are two categories of system exclusive messages: manufacturer-specific
+   * messages and universal messages. Universal messages are further divided into three subtypes:
    *
-   * The data can be an array of unsigned integers (`0` - `127`) or a `Uint8Array` object.
+   *   * Universal non-commercial (for research and testing): `0x7D`
+   *   * Universal non-realtime: `0x7E`
+   *   * Universal realtime: `0x7F`
+   *
+   * The method's first parameter (`identification`) identifies the type of message. If the value of
+   * `identification` is `0x7D` (125), `0x7E` (126) or `0x7F` (127), the message will be identified
+   * as a **universal non-commercial**, **universal non-realtime** or **universal realtime** message
+   * (respectively).
+   *
+   * If the `identification` value is an array or an integer between 0 and 124, it will be used to
+   * identify the manufacturer targeted by the message. The *MIDI Manufacturers Association*
+   * maintains a full list of
+   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
+   *
+   * The `data` parameter should only contain the data of the message. When sending out the actual
+   * MIDI message, WEBMIDI.js will automatically prepend the data with the **sysex byte** (`0xF0`)
+   * and the identification byte(s). It will also automatically terminate the message with the
+   * **sysex end byte** (`0xF7`).
    *
    * To use the `sendSysex()` method, system exclusive message support must have been enabled. To
    * do so, you must set the `sysex` option to `true` when calling
@@ -292,7 +309,7 @@ export class Output extends EventEmitter {
    *   .then(() => console.log("System exclusive messages are enabled");
    * ```
    *
-   * ##### Examples
+   * ##### Examples of manufacturer-specific system exclusive messages
    *
    * If you want to send a sysex message to a Korg device connected to the first output, you would
    * use the following code:
@@ -318,19 +335,34 @@ export class Output extends EventEmitter {
    * WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
    * ```
    *
-   * The **MIDI Manufacturers Association** is in charge of maintaining the full updated list of
-   * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
-   *
    * There is no limit for the length of the data array. However, it is generally suggested to keep
    * system exclusive messages to 64Kb or less.
    *
-   * @param manufacturer {number|number[]} An unsigned integer or an array of three unsigned
-   * integers between `0` and `127` that identify the targeted manufacturer. The *MIDI Manufacturers
-   * Association* maintains a full list of
+   * ##### Example of universal system exclusive message
+   *
+   * If you want to send a universal sysex message, simply assign the correct identification number
+   * in the first parameter. Number `0x7D` (125) is for non-commercial, `0x7E` (126) is for
+   * non-realtime and `0x7F` (127) is for realtime.
+   *
+   * So, for example, if you wanted to send an identity request non-realtime message (`0x7E`), you
+   * could use the following:
+   *
+   * ```js
+   * WebMidi.outputs[0].sendSysex(0x7E, [0x7F, 0x06, 0x01]);
+   * ```
+   *
+   * For more details on the format of universal messages, consult the list of
+   * [universal sysex messages](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages).
+   *
+   * @param {number|number[]} identification An unsigned integer or an array of three unsigned
+   * integers between `0` and `127` that either identify the manufacturer or sets the message to be
+   * a **universal non-commercial message** (`0x7D`), a **universal non-realtime message** (`0x7E`)
+   * or a **universal realtime message** (`0x7F`). The *MIDI Manufacturers Association* maintains a
+   * full list of
    * [Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
    *
-   * @param {number[]|Uint8Array} [data=[]] A `Uint8Array` or an array of unsigned integers between
-   * `0` and `127`. This is the data you wish to transfer.
+   * @param {number[]|Uint8Array} [data] A `Uint8Array` or an array of unsigned integers between `0`
+   * and `127`. This is the data you wish to transfer.
    *
    * @param {object} [options={}]
    *
@@ -350,21 +382,21 @@ export class Output extends EventEmitter {
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
-  sendSysex(manufacturer, data= [], options = {}) {
+  sendSysex(identification, data= [], options = {}) {
 
-    manufacturer = [].concat(manufacturer);
+    identification = [].concat(identification);
 
     // Check if data is Uint8Array
     if (data instanceof Uint8Array) {
-      const merged = new Uint8Array(1 + manufacturer.length + data.length + 1);
-      merged[0] = Enumerations.MIDI_SYSTEM_MESSAGES.sysex;
-      merged.set(Uint8Array.from(manufacturer), 1);
-      merged.set(data, 1 + manufacturer.length);
-      merged[merged.length - 1] = Enumerations.MIDI_SYSTEM_MESSAGES.sysexend;
+      const merged = new Uint8Array(1 + identification.length + data.length + 1);
+      merged[0] = Enumerations.SYSTEM_MESSAGES.sysex;
+      merged.set(Uint8Array.from(identification), 1);
+      merged.set(data, 1 + identification.length);
+      merged[merged.length - 1] = Enumerations.SYSTEM_MESSAGES.sysexend;
       this.send(merged, {time: options.time});
     } else {
-      const merged = manufacturer.concat(data, Enumerations.MIDI_SYSTEM_MESSAGES.sysexend);
-      this.send([Enumerations.MIDI_SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
+      const merged = identification.concat(data, Enumerations.SYSTEM_MESSAGES.sysexend);
+      this.send([Enumerations.SYSTEM_MESSAGES.sysex].concat(merged), {time: options.time});
     }
 
     return this;
@@ -372,13 +404,12 @@ export class Output extends EventEmitter {
   };
 
   /**
-   * Clears all messages that have been queued but not yet delivered.
+   * Clears all MIDI messages that have been queued and scheduled but not yet sent.
    *
-   * **Warning**: this method has been defined in the specification but has not been implemented
-   * yet. As soon as browsers implement it, it will work.
-   *
-   * You can check out the current status of this feature for Chromium (Chrome) here:
-   * https://bugs.chromium.org/p/chromium/issues/detail?id=471798
+   * **Warning**: this method is defined in the
+   * [Web MIDI API specification](https://www.w3.org/TR/webmidi/#MIDIOutput) but has not been
+   * implemented by all browsers yet. You can follow
+   * [this issue](https://github.com/djipco/webmidi/issues/52) for more info.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
@@ -432,7 +463,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        Enumerations.MIDI_SYSTEM_MESSAGES.timecode,
+        Enumerations.SYSTEM_MESSAGES.timecode,
         value
       ],
       {time: options.time}
@@ -473,7 +504,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        Enumerations.MIDI_SYSTEM_MESSAGES.songposition,
+        Enumerations.SYSTEM_MESSAGES.songposition,
         msb,
         lsb
       ],
@@ -519,7 +550,7 @@ export class Output extends EventEmitter {
 
     this.send(
       [
-        Enumerations.MIDI_SYSTEM_MESSAGES.songselect,
+        Enumerations.SYSTEM_MESSAGES.songselect,
         value
       ],
       {time: options.time}
@@ -549,7 +580,7 @@ export class Output extends EventEmitter {
   sendTuneRequest(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.tunerequest],
+      [Enumerations.SYSTEM_MESSAGES.tunerequest],
       {time: options.time}
     );
 
@@ -576,7 +607,7 @@ export class Output extends EventEmitter {
   sendClock(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.clock],
+      [Enumerations.SYSTEM_MESSAGES.clock],
       {time: options.time}
     );
 
@@ -604,7 +635,7 @@ export class Output extends EventEmitter {
   sendStart(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.start],
+      [Enumerations.SYSTEM_MESSAGES.start],
       {time: options.time}
     );
 
@@ -632,7 +663,7 @@ export class Output extends EventEmitter {
   sendContinue(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.continue],
+      [Enumerations.SYSTEM_MESSAGES.continue],
       {time: options.time}
     );
 
@@ -659,7 +690,7 @@ export class Output extends EventEmitter {
   sendStop(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.stop],
+      [Enumerations.SYSTEM_MESSAGES.stop],
       {time: options.time}
     );
 
@@ -687,7 +718,7 @@ export class Output extends EventEmitter {
   sendActiveSensing(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.activesensing],
+      [Enumerations.SYSTEM_MESSAGES.activesensing],
       {time: options.time}
     );
 
@@ -714,7 +745,7 @@ export class Output extends EventEmitter {
   sendReset(options = {}) {
 
     this.send(
-      [Enumerations.MIDI_SYSTEM_MESSAGES.reset],
+      [Enumerations.SYSTEM_MESSAGES.reset],
       {time: options.time}
     );
 
@@ -845,8 +876,8 @@ export class Output extends EventEmitter {
    * | 93     |`choruslevel`                  |
    * | 94     |`celestelevel`                 |
    * | 95     |`phaserlevel`                  |
-   * | 96     |`databuttonincrement`          |
-   * | 97     |`databuttondecrement`          |
+   * | 96     |`dataincrement`                |
+   * | 97     |`datadecrement`                |
    * | 98     |`nonregisteredparametercoarse` |
    * | 99     |`nonregisteredparameterfine`   |
    * | 100    |`registeredparametercoarse`    |
@@ -1592,7 +1623,7 @@ export class Output extends EventEmitter {
   /**
    * Sends an **all notes off** channel mode message. This will make all currently playing notes
    * fade out just as if their key had been released. This is different from the
-   * [`turnSoundOff()`]{@link #turnSoundOff} method which mutes all sounds immediately.
+   * [`sendAllSoundOff()`]{@link #sendAllSoundOff} method which mutes all sounds immediately.
    *
    * @param {Object} [options={}]
    *
@@ -2219,18 +2250,18 @@ export class Output extends EventEmitter {
    * `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity
    * value will silently trigger the default of `0.5`.
    *
-   * @param {number} [options.rawAttack=0.5] The attack velocity at which to play the note (between
+   * @param {number} [options.rawAttack=64] The attack velocity at which to play the note (between
    * `0` and `127`). This has priority over the `attack` property. An invalid velocity value will
-   * silently trigger the default of `0.5`.
+   * silently trigger the default of 64.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
    * and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid
    * velocity value will silently trigger the default of `0.5`. This is only used with the
    * **note off** event triggered when `options.duration` is set.
    *
-   * @param {number} [options.rawRelease=0.5] The velocity at which to release the note (between `0`
+   * @param {number} [options.rawRelease=64] The velocity at which to release the note (between `0`
    * and `127`). This has priority over the `release` property. An invalid velocity value will
-   * silently trigger the default of `0.5`. This is only used with the **note off** event triggered
+   * silently trigger the default of 64. This is only used with the **note off** event triggered
    * when `options.duration` is set.
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
@@ -2240,10 +2271,6 @@ export class Output extends EventEmitter {
    * the operation will be scheduled for that time. The current time can be retrieved with
    * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
-   *
-   * @param {number} [options.attack=0.5] The attack velocity to use when playing the note (between
-   * `0` and `1`). If the `rawValue` option is `true`, the value should be specified as an integer
-   * between `0` and `127`. An invalid velocity value will silently trigger the default of `0.5`.
    *
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */

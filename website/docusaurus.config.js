@@ -1,14 +1,14 @@
 const lightCodeTheme = require("prism-react-renderer/themes/github");
 const darkCodeTheme = require("prism-react-renderer/themes/dracula");
 
-const BASE_URL = "/webmidi/";
+const BASE_URL = "/";
 
 /** @type {import("@docusaurus/types").DocusaurusConfig} */
 module.exports = {
 
   title: "WEBMIDI.js",
   tagline: "Kickstart your JavaScript MIDI projects!",
-  url: "https://webmdidijs.org",
+  url: "https://webmidijs.org",
   baseUrl: BASE_URL,
   onBrokenLinks: "warn",
   onBrokenMarkdownLinks: "warn",
@@ -17,13 +17,10 @@ module.exports = {
   organizationName: "djipco",
   projectName: "webmidi",
 
+  // trailingSlash: false,
+
   scripts: [
-    // Inject MailChimp newsletter pop-up in <head>
-    {
-      src: BASE_URL + "scripts/mailchimp/newsletter-exit-prompt.js",
-      async: true,
-      id: "mcjs"
-    }
+
   ],
   themeConfig: {
     navbar: {
@@ -35,10 +32,10 @@ module.exports = {
       },
       items: [
         {
+          label: "Docs",
           type: "doc",
           docId: "index",
           position: "left",
-          label: "Documentation",
         },
         {
           type: "dropdown",
@@ -46,16 +43,16 @@ module.exports = {
           position: "left",
           items: [
             {
-              label: "3.0.0-alpha.XX 🚧",
-              to: "api/index"
+              label: "3.x",
+              to: "api/"
             },
             {
               label: "2.5.3",
-              href: "https://djipco.github.io/webmidi/archives/api/v2/",
+              href: "https://webmidijs.org/archives/api/v2/",
             },
             {
               label: "1.0.0-beta.15",
-              href: "https://djipco.github.io/webmidi/archives/api/v1/classes/WebMidi.html"
+              href: "http://webmidijs.org/archives/api/v1/classes/WebMidi.html"
             }
           ]
         },
@@ -64,6 +61,14 @@ module.exports = {
           label: "Community",
           position: "left",
           items: [
+            {
+              label: "Sponsors",
+              to: "sponsors"
+            },
+            {
+              label: "Showcase",
+              to: "showcase"
+            },
             {
               label: "GitHub Discussions",
               href: "https://github.com/djipco/webmidi/discussions",
@@ -81,16 +86,31 @@ module.exports = {
             }
           ]
         },
+
         {
-          to: "showcase",
-          label: "Showcase",
+          type: "dropdown",
+          label: "Behind the Scenes",
           position: "left",
+          items: [
+            {
+              to: "about",
+              label: "About",
+            },
+            {
+              to: "blog",
+              label: "Blog",
+            },
+            {
+              to: "research",
+              label: "Academic Research",
+            },
+          ]
         },
-        {
-          to: "about",
-          label: "About",
-          position: "left",
-        },
+
+
+
+
+
         {
           href: "https://github.com/djipco/webmidi",
           position: "right",
@@ -161,9 +181,9 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
     algolia: {
-      apiKey: "af63ae0f5f71033e19ac5047d02b08bb",
+      apiKey: "417771b74406a78671b6592f451f2453",
       indexName: "webmidi",
-      appId: "BH4D9OD16A",
+      appId: "KHO24V8B5T",
 
       // Optional: see doc section below
       contextualSearch: true,
@@ -174,23 +194,19 @@ module.exports = {
       //... other Algolia params
       placeholder: "Search website..."
     },
-    image: "og-card.png",
+    image: "img/og-card.png",
+    metadata: [{ name: "robots", content: "max-image-preview:large" }],
     announcementBar: {
-      id: "github-banner",
+      id: "sponsor-banner",
       content: "<a target='_blank' href='https://github.com/sponsors/djipco'>" +
         "<strong>Sponsor</strong></a> ❤️ WEBMIDI.js on GitHub!"
-    },
-    gtag: {
-      trackingID: "UA-162785934-1",
-    },
-    googleAnalytics: {
-      trackingID: "UA-162785934-1"
-    },
+    }
   },
 
   presets: [
     [
       "@docusaurus/preset-classic",
+
       {
         theme: {
           customCss: [
@@ -198,6 +214,7 @@ module.exports = {
             require.resolve("./src/css/index.scss"),
           ],
         },
+
         docs: {
           path: "docs",
           lastVersion: "current",
@@ -205,13 +222,33 @@ module.exports = {
           sidebarPath: require.resolve("./sidebars.js"),
           editUrl: "https://github.com/djipco/webmidi/edit/master/website/",
         },
-        blog: false,
+
+        blog: {
+          path: "blog",
+          blogTitle: "Blog de Docusaurus !",
+          blogDescription: "Un blog alimenté par Docusaurus !",
+          postsPerPage: "ALL",
+        },
+
         pages: {},
-      },
+
+        gtag: {
+          // trackingID: "UA-162785934-1",
+          trackingID: "G-Z65JF8XMJG",
+        },
+
+        googleAnalytics: {
+          // trackingID: "UA-162785934-1",
+          trackingID: "G-Z65JF8XMJG",
+        }
+
+      }
+
     ],
   ],
 
   plugins: [
+
     [
       "@docusaurus/plugin-content-docs",
       {
@@ -221,12 +258,24 @@ module.exports = {
         sidebarPath: require.resolve("./sidebars.js"),
       },
     ],
+
     [
       "docusaurus-plugin-sass",
-      {
-
-      }
+      {}
     ],
+
+    [
+      "@docusaurus/plugin-client-redirects",
+      {
+        redirects: [
+          {
+            from: ["/latest/classes/WebMidi.html"], // string | string[]
+            to: "/api/",
+          },
+        ],
+      },
+    ],
+
   ],
 
 };

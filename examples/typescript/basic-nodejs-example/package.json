@@ -1,0 +1,11 @@
+{
+  "name": "typescript-basic-nidejs-example",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "webmidi": "latest"
+  }
+}

@@ -1,4 +1,4 @@
-import {EventEmitter} from "../node_modules/djipevents/dist/esm/djipevents.esm.min.js";
+import {EventEmitter} from "../node_modules/djipevents/src/djipevents.js";
 import {WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
 import {Enumerations} from "./Enumerations.js";
@@ -21,6 +21,12 @@ import {Enumerations} from "./Enumerations.js";
  */
 export class OutputChannel extends EventEmitter {
 
+  /**
+   * Creates an `OutputChannel` object.
+   *
+   * @param {Output} output The [`Output`](Output) this channel belongs to.
+   * @param {number} number The MIDI channel number (`1` - `16`).
+   */
   constructor(output, number) {
 
     super();
@@ -87,10 +93,6 @@ export class OutputChannel extends EventEmitter {
    * [`WebMidi.time`]{@link WebMidi#time}. If `options.time` is omitted, or in the past, the
    * operation will be carried out as soon as possible.
    *
-   * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
-   * followed by a number, the message will be delayed by that many milliseconds. If the value is a
-   * number, the operation will be scheduled for that time.
-   *
    * @throws {RangeError} The first byte (status) must be an integer between 128 and 255.
    *
    * @throws {RangeError} Data bytes must be integers between 0 and 255.
@@ -107,7 +109,7 @@ export class OutputChannel extends EventEmitter {
    * aftertouch. For a channel-wide aftertouch message, use
    * [`sendChannelAftertouch()`]{@link #sendChannelAftertouch}.
    *
-   * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
+   * @param target {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
    * an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a
    * [`Note`](Note) object, a note identifier (e.g. `C3`, `G#4`, `F-1`, `Db7`) or an array of the
    * previous types. When using a note identifier, octave range must be between `-1` and `9`. The
@@ -174,7 +176,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(target).forEach(n => {
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.keyaftertouch << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           pressure
         ],
@@ -244,8 +246,8 @@ export class OutputChannel extends EventEmitter {
    * | 93     |`choruslevel`                  |
    * | 94     |`celestelevel`                 |
    * | 95     |`phaserlevel`                  |
-   * | 96     |`databuttonincrement`          |
-   * | 97     |`databuttondecrement`          |
+   * | 96     |`dataincrement`                |
+   * | 97     |`datadecrement`                |
    * | 98     |`nonregisteredparametercoarse` |
    * | 99     |`nonregisteredparameterfine`   |
    * | 100    |`registeredparametercoarse`    |
@@ -305,7 +307,7 @@ export class OutputChannel extends EventEmitter {
   sendControlChange(controller, value, options = {}) {
 
     if (typeof controller === "string") {
-      controller = Enumerations.MIDI_CONTROL_CHANGE_MESSAGES[controller];
+      controller = Utilities.getCcNumberByName(controller);
     }
 
     if (!Array.isArray(value)) value = [value];
@@ -338,7 +340,7 @@ export class OutputChannel extends EventEmitter {
 
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
           controller + (index * 32),
           value[index]
         ],
@@ -546,7 +548,7 @@ export class OutputChannel extends EventEmitter {
    */
   sendRpnDecrement(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
 
@@ -556,10 +558,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.REGISTERED_PARAMETERS).forEach(p => {
         if (
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          Enumerations.REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -617,7 +619,7 @@ export class OutputChannel extends EventEmitter {
    */
   sendRpnIncrement(parameter, options = {}) {
 
-    if (!Array.isArray(parameter)) parameter = Enumerations.MIDI_REGISTERED_PARAMETERS[parameter];
+    if (!Array.isArray(parameter)) parameter = Enumerations.REGISTERED_PARAMETERS[parameter];
 
     if (WebMidi.validation) {
 
@@ -627,10 +629,10 @@ export class OutputChannel extends EventEmitter {
 
       let valid = false;
 
-      Object.getOwnPropertyNames(Enumerations.MIDI_REGISTERED_PARAMETERS).forEach(p => {
+      Object.getOwnPropertyNames(Enumerations.REGISTERED_PARAMETERS).forEach(p => {
         if (
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][0] === parameter[0] &&
-          Enumerations.MIDI_REGISTERED_PARAMETERS[p][1] === parameter[1]
+          Enumerations.REGISTERED_PARAMETERS[p][0] === parameter[0] &&
+          Enumerations.REGISTERED_PARAMETERS[p][1] === parameter[1]
         ) {
           valid = true;
         }
@@ -689,18 +691,18 @@ export class OutputChannel extends EventEmitter {
    * `1`). If the `rawAttack` option is also defined, it will have priority. An invalid velocity
    * value will silently trigger the default of `0.5`.
    *
-   * @param {number} [options.rawAttack=0.5] The attack velocity at which to play the note (between
+   * @param {number} [options.rawAttack=64] The attack velocity at which to play the note (between
    * `0` and `127`). This has priority over the `attack` property. An invalid velocity value will
-   * silently trigger the default of `0.5`.
+   * silently trigger the default of 64.
    *
    * @param {number} [options.release=0.5] The velocity at which to release the note (between `0`
    * and `1`). If the `rawRelease` option is also defined, it will have priority. An invalid
    * velocity value will silently trigger the default of `0.5`. This is only used with the
    * **note off** event triggered when `options.duration` is set.
    *
-   * @param {number} [options.rawRelease=0.5] The velocity at which to release the note (between `0`
+   * @param {number} [options.rawRelease=64] The velocity at which to release the note (between `0`
    * and `127`). This has priority over the `release` property. An invalid velocity value will
-   * silently trigger the default of `0.5`. This is only used with the **note off** event triggered
+   * silently trigger the default of 64. This is only used with the **note off** event triggered
    * when `options.duration` is set.
    *
    * @param {number|string} [options.time=(now)] If `time` is a string prefixed with `"+"` and
@@ -718,17 +720,24 @@ export class OutputChannel extends EventEmitter {
     // Send note on and, optionally, note off message (if duration is a positive number)
     this.sendNoteOn(note, options);
 
-    // https://stackoverflow.com/questions/600763#answer-601877
-    if (options.duration > 0 && isFinite(String(options.duration).trim() || NaN)) {
+    const notes = Array.isArray(note) ? note : [note];
 
-      let noteOffOptions = {
-        time: (Utilities.toTimestamp(options.time) || WebMidi.time) + options.duration,
-        release: options.release,
-        rawRelease: options.rawRelease,
-      };
-
-      this.sendNoteOff(note, noteOffOptions);
-
+    for(let note of notes) {
+      if (parseInt(note.duration) > 0) {
+        const noteOffOptions = {
+          time: (Utilities.toTimestamp(options.time) || WebMidi.time) + parseInt(note.duration),
+          release: note.release,
+          rawRelease: note.rawRelease
+        };
+        this.sendNoteOff(note, noteOffOptions);
+      } else if (parseInt(options.duration) > 0) {
+        const noteOffOptions = {
+          time: (Utilities.toTimestamp(options.time) || WebMidi.time) + parseInt(options.duration),
+          release: options.release,
+          rawRelease: options.rawRelease
+        };
+        this.sendNoteOff(note, noteOffOptions);
+      }
     }
 
     return this;
@@ -817,7 +826,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawRelease: parseInt(nVelocity)}).forEach(n => {
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.noteoff << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawRelease,
         ],
@@ -828,16 +837,6 @@ export class OutputChannel extends EventEmitter {
     return this;
 
   }
-
-  /**
-   * This is an alias to the [sendNoteOff()]{@link OutputChannel#sendNoteOff} method.
-   *
-   * @see {@link OutputChannel#sendNoteOff}
-   *
-   * @param note
-   * @param options
-   * @returns {Output}
-   */
 
   /**
    * Sends a **note off** message for the specified MIDI note number. The first parameter is the
@@ -966,7 +965,7 @@ export class OutputChannel extends EventEmitter {
     Utilities.buildNoteArray(note, {rawAttack: nVelocity}).forEach(n => {
       this.send(
         [
-          (Enumerations.MIDI_CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
+          (Enumerations.CHANNEL_MESSAGES.noteon << 4) + (this.number - 1),
           n.getOffsetNumber(offset),
           n.rawAttack
         ],
@@ -1020,7 +1019,7 @@ export class OutputChannel extends EventEmitter {
   sendChannelMode(command, value = 0, options = {}) {
 
     // Normalize command to integer
-    if (typeof command === "string") command = Enumerations.MIDI_CHANNEL_MODE_MESSAGES[command];
+    if (typeof command === "string") command = Enumerations.CHANNEL_MODE_MESSAGES[command];
 
     if (WebMidi.validation) {
 
@@ -1040,7 +1039,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
+        (Enumerations.CHANNEL_MESSAGES.controlchange << 4) + (this.number - 1),
         command,
         value
       ],
@@ -1133,10 +1132,13 @@ export class OutputChannel extends EventEmitter {
 
     }
 
+    // Normalize pressure to integer
+    if (!options.rawValue) pressure = Utilities.fromFloatTo7Bit(pressure);
+
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
-        Math.round(pressure * 127)
+        (Enumerations.CHANNEL_MESSAGES.channelaftertouch << 4) + (this.number - 1),
+        Math.round(pressure)
       ],
       {time: Utilities.toTimestamp(options.time)}
     );
@@ -1275,7 +1277,7 @@ export class OutputChannel extends EventEmitter {
    *
    * For further implementation details, refer to the manufacturer's documentation.
    *
-   * @param parameter {number[]} A two-position array specifying the two control bytes (0x63,
+   * @param nrpn {number[]} A two-position array specifying the two control bytes (0x63,
    * 0x62) that identify the non-registered parameter.
    *
    * @param [data=[]] {number|number[]} An integer or an array of integers with a length of 1 or 2
@@ -1389,7 +1391,7 @@ export class OutputChannel extends EventEmitter {
         }
 
         if (!(value >= -1 && value <= 1)) {
-          throw new RangeError("The pitch bend MSB must be an integer between 0 and 127.");
+          throw new RangeError("The pitch bend value must be a float between -1 and 1.");
         }
 
       }
@@ -1413,7 +1415,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
+        (Enumerations.CHANNEL_MESSAGES.pitchbend << 4) + (this.number - 1),
         lsb,
         msb
       ],
@@ -1507,7 +1509,7 @@ export class OutputChannel extends EventEmitter {
 
     this.send(
       [
-        (Enumerations.MIDI_CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
+        (Enumerations.CHANNEL_MESSAGES.programchange << 4) + (this.number - 1),
         program
       ],
       {time: Utilities.toTimestamp(options.time)}
@@ -1568,7 +1570,7 @@ export class OutputChannel extends EventEmitter {
    */
   sendRpnValue(rpn, data, options = {}) {
 
-    if (!Array.isArray(rpn)) rpn = Enumerations.MIDI_REGISTERED_PARAMETERS[rpn];
+    if (!Array.isArray(rpn)) rpn = Enumerations.REGISTERED_PARAMETERS[rpn];
 
     if (WebMidi.validation) {
 
