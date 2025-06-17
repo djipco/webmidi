@@ -43,6 +43,11 @@ page on GitHub and submit a pull request.
 
   Shared Piano is a simple tool for remote music teaching and collaboration that lets you play music
   together live on the web.
+  
+* ### [Chromatone](https://chromatone.center/)
+  Created by: **Denis Starov**
+
+  An interactive educational web-site for the visual music language based on associating chromatic notes with spectral colors. 
 
 * ### [Chromatone](https://chromatone.center/)
   Created by: **Denis Starov**
@@ -58,8 +63,8 @@ page on GitHub and submit a pull request.
 * ### [Midi Sandbox](https://midisandbox.com/)
   Created by: **Jon Lee**
 
-  A collection of midi responsive widgets made to aid musicians, teachers, and students in their 
-  education, creative process, and practice routine.
+  A collection of midi responsive widgets made to aid musicians, teachers, and students in their education,
+  creative process, and practice routine.
 
 * ### [Virtual Piano Keyboard](https://muted.io/piano/)
   Created by: **Sébastien Noël**
@@ -133,6 +138,11 @@ page on GitHub and submit a pull request.
   A Desktop app to browse and manage guitar amp tones. Control your bluetooth amp, jam to video
   backing tracks.
 
+* ### [Sonicware Liven XFM Web Editor](https://aesqe.github.io/sonicware-liven-xfm-web-editor/)
+  Created by: **Bruno Babić**
+
+  Web editor for the Sonicware Liven XFM groovebox.
+
 
 ## Components & Languages
 
@@ -190,3 +200,8 @@ page on GitHub and submit a pull request.
   The Dexter Development Environment, which is used to control the Dexter 7-axis robot arm, bundles
   WEBMIDI.js for MIDI control of the device. 
 
+## SysEx Librarian
+* ### [Patchup](https://www.patchup.app)
+  Created by: **Middledot Tech**
+
+  Patchup is a free web app for sending, receiving, saving, and managing System Exclusive messages. All data is saved to your browser's local storage.
