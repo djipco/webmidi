@@ -15,10 +15,14 @@ invite academics to cite it in their publication whenever appropriate:
 
 You can also cite the library itself like so (APA style):
 
-> Côté, J. P. (2023). WEBMIDI.js v3.1.6 [Computer Software]. Retrieved from 
+> Côté, J. P. (2025). WEBMIDI.js v3.1.14 [Computer Software]. Retrieved from 
 > https://github.com/djipco/webmidi
 
 ## Papers Citing Usage of WEBMIDI.js
+
+* Arora, A., Tandori, E., Marshall, J. et Favilla, S. (2025). **Designing Sensory NIME for Autism** 
+  (p. 436‑442). Proceedings of the International Conference on New Interfaces for Musical 
+  Expression. https://www.nime.org/proc/nime2025_63/index.html
 
 * Leischner, V., & Husa, P. (2023). Sonification of a Juggling Performance Using Spatial Audio. 
   Proceedings of the ACM on Computer Graphics and Interactive Techniques, 6(2), 1–6. 
@@ -59,5 +63,4 @@ You can also cite the library itself like so (APA style):
   Católica del Ecuador]. Retrieved from http://repositorio.puce.edu.ec/handle/22000/15838
 
 If you are using WEBMIDI.js in your research, I would love to know about it. To notify me, you can 
-simply drop me a note on [Twitter](https://twitter.com/djipco). By the way, I'm open to artistic
-and/or academic collaborations.
+simply [drop me a note](https://djip.co/contact).
