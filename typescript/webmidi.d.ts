@@ -308,7 +308,8 @@ export declare class EventEmitter {
    * property of the [`Listener`]{@link Listener} object and can be retrieved or modified as
    * desired.
    *
-   * @returns {Listener} The newly created [`Listener`]{@link Listener} object.
+   * @returns {Listener} The newly created [`Listener`]{@link Listener} object (typical) or an array
+   * of [`Listener`]{@link Listener} objects.
    *
    * @throws {TypeError} The `event` parameter must be a string or
    * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
@@ -320,7 +321,7 @@ export declare class EventEmitter {
     duration?: number;
     remaining?: number;
     arguments?: any[];
-  }): Listener;
+  }): Listener | Listener[];
 
   /**
    * Adds a one-time listener for the specified event. The listener will be executed once and then
@@ -344,7 +345,8 @@ export declare class EventEmitter {
    * property of the [`Listener`]{@link Listener} object and can be retrieved or modified as
    * desired.
    *
-   * @returns {Listener} The newly created [`Listener`]{@link Listener} object.
+   * @returns {Listener} The newly created [`Listener`]{@link Listener} object (typical) or an array
+   * of [`Listener`]{@link Listener} objects.
    *
    * @throws {TypeError} The `event` parameter must be a string or
    * [`EventEmitter.ANY_EVENT`]{@link EventEmitter#ANY_EVENT}.
@@ -355,7 +357,7 @@ export declare class EventEmitter {
     prepend?: boolean;
     duration?: number;
     arguments?: any[];
-  }): Listener;
+  }): Listener | Listener[];
 
   /**
    * Returns `true` if the specified event has at least one registered listener. If no event is
@@ -1122,7 +1124,7 @@ export class Input extends EventEmitter {
    * specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
    * the added benefit of being able to filter which data is forwarded.
    *
-   * @param {Output|Output[]|Forwarder} output An [`Output`](Output) object, a [`Forwarder`](Forwarder) 
+   * @param {Output|Output[]|Forwarder} output An [`Output`](Output) object, a [`Forwarder`](Forwarder)
    * object or an array of such objects, to forward messages to.
    * @param {object} [options={}]
    * @param {string|string[]} [options.types=(all messages)] A message type, or an array of such
@@ -1143,6 +1145,7 @@ export class Input extends EventEmitter {
     channels?: number | number[];
   }): Forwarder;
 
+  // @ts-ignore
   /**
    * Adds an event listener that will trigger a function callback when the specified event is
    * dispatched. The event usually is **input-wide** but can also be **channel-specific**.
