@@ -472,11 +472,17 @@ class WebMidi extends EventEmitter {
 
     if (options.disconnected) {
       for (let i = 0; i < this._disconnectedInputs.length; i++) {
-        if (this._disconnectedInputs[i].id === id.toString()) return this._disconnectedInputs[i];
+        if (
+          this._disconnectedInputs[i]._midiInput &&
+          this._disconnectedInputs[i].id === id.toString()
+        ) return this._disconnectedInputs[i];
       }
     } else {
       for (let i = 0; i < this.inputs.length; i++) {
-        if (this.inputs[i].id === id.toString()) return this.inputs[i];
+        if (
+          this.inputs[i]._midiInput &&
+          this.inputs[i].id === id.toString()
+        ) return this.inputs[i];
       }
     }
 
@@ -585,11 +591,17 @@ class WebMidi extends EventEmitter {
 
     if (options.disconnected) {
       for (let i = 0; i < this._disconnectedOutputs.length; i++) {
-        if (this._disconnectedOutputs[i].id === id.toString()) return this._disconnectedOutputs[i];
+        if (
+          this._disconnectedOutputs[i]._midiOutput &&
+          this._disconnectedOutputs[i].id === id.toString()
+        ) return this._disconnectedOutputs[i];
       }
     } else {
       for (let i = 0; i < this.outputs.length; i++) {
-        if (this.outputs[i].id === id.toString()) return this.outputs[i];
+        if (
+          this.outputs[i]._midiOutput &&
+          this.outputs[i].id === id.toString()
+        ) return this.outputs[i];
       }
     }
 
