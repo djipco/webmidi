@@ -173,7 +173,7 @@ page on GitHub and submit a pull request.
 ## Online Synthesizers
 
 * ### [synth.kitchen](https://synth.kitchen/)
-  Created by: **Spencer Rudnick**
+  Created by: **Rain Rudnick**
 
   In-browser modular synthesis with Web Audio and Web MIDI.
 
