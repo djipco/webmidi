@@ -1,8 +1,8 @@
 import {Enumerations} from "./Enumerations.js";
-import {EventEmitter} from "../node_modules/djipevents/src/djipevents.js";
 import {Forwarder} from "./Forwarder.js";
 import {InputChannel} from "./InputChannel.js";
 import {Message} from "./Message.js";
+import {Port} from "./Port.js";
 import {Utilities} from "./Utilities.js";
 import {WebMidi} from "./WebMidi.js";
 
@@ -42,10 +42,11 @@ import {WebMidi} from "./WebMidi.js";
  *
  * @fires Input#unknownmidimessage
  *
- * @extends EventEmitter
+ * @extends Port
  * @license Apache-2.0
  */
-export class Input extends EventEmitter {
+export class Input extends Port {
+
 
   /**
    * Creates an `Input` object.
@@ -54,28 +55,8 @@ export class Input extends EventEmitter {
    * object as provided by the MIDI subsystem (Web MIDI API).
    */
   constructor(midiInput) {
+    super(midiInput);
 
-    super();
-
-    /**
-     * Reference to the actual MIDIInput object
-     * @private
-     */
-    this._midiInput = midiInput;
-
-    /**
-     * @type {number}
-     * @private
-     */
-    this._octaveOffset = 0;
-
-    /**
-     * Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
-     * channels are numbered 1 through 16.
-     *
-     * @type {InputChannel[]}
-     */
-    this.channels = [];
     for (let i = 1; i <= 16; i++) this.channels[i] = new InputChannel(this, i);
 
     /**
@@ -85,9 +66,7 @@ export class Input extends EventEmitter {
     this._forwarders = [];
 
     // Setup listeners
-    this._midiInput.onstatechange = this._onStateChange.bind(this);
-    this._midiInput.onmidimessage = this._onMidiMessage.bind(this);
-
+    this._port.onmidimessage = this._onMidiMessage.bind(this);
   }
 
   /**
@@ -97,98 +76,11 @@ export class Input extends EventEmitter {
    * @returns {Promise<void>}
    */
   async destroy() {
-    this.removeListener();
-    this.channels.forEach(ch => ch.destroy());
-    this.channels = [];
     this._forwarders = [];
-    if (this._midiInput) {
-      this._midiInput.onstatechange = null;
-      this._midiInput.onmidimessage = null;
+    if (this._port) {
+      this._port.onmidimessage = null;
     }
-    await this.close();
-    this._midiInput = null;
-  }
-
-  /**
-   * Executed when a `"statechange"` event occurs.
-   *
-   * @param e
-   * @private
-   */
-  _onStateChange(e) {
-
-    let event = {
-      timestamp: WebMidi.time,
-      target: this,
-      port: this // for consistency
-    };
-
-    if (e.port.connection === "open") {
-
-      /**
-       * Event emitted when the `Input` has been opened by calling the [`open()`]{@link #open}
-       * method.
-       *
-       * @event Input#opened
-       * @type {object}
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `opened`
-       * @property {Input} target The object that dispatched the event.
-       * @property {Input} port The `Input` that triggered the event.
-       */
-      event.type = "opened";
-      this.emit("opened", event);
-
-    } else if (e.port.connection === "closed" && e.port.state === "connected") {
-
-      /**
-       * Event emitted when the `Input` has been closed by calling the
-       * [`close()`]{@link #close} method.
-       *
-       * @event Input#closed
-       * @type {object}
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `closed`
-       * @property {Input} target The object that dispatched the event.
-       * @property {Input} port The `Input` that triggered the event.
-       */
-      event.type = "closed";
-      this.emit("closed", event);
-
-    } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
-
-      /**
-       * Event emitted when the `Input` becomes unavailable. This event is typically fired
-       * when the MIDI device is unplugged.
-       *
-       * @event Input#disconnected
-       * @type {object}
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `disconnected`
-       * @property {Input} port Object with properties describing the {@link Input} that was
-       * disconnected. This is not the actual `Input` as it is no longer available.
-       * @property {Input} target The object that dispatched the event.
-       */
-      event.type = "disconnected";
-      event.port = {
-        connection: e.port.connection,
-        id: e.port.id,
-        manufacturer: e.port.manufacturer,
-        name: e.port.name,
-        state: e.port.state,
-        type: e.port.type
-      };
-      this.emit("disconnected", event);
-
-    } else if (e.port.connection === "pending" && e.port.state === "disconnected") {
-      // I don't see the need to forward that...
-    } else {
-      console.warn("This statechange event was not caught: ", e.port.connection, e.port.state);
-    }
-
+    super.destroy();
   }
 
   /**
@@ -280,32 +172,7 @@ export class Input extends EventEmitter {
     // `onmidimessage` property of the `MIDIInput`. We do it explicitly so that 'connected' events
     // are dispatched immediately and that we are ready to listen.
     try {
-      await this._midiInput.open();
-    } catch (err) {
-      return Promise.reject(err);
-    }
-
-    return Promise.resolve(this);
-
-  }
-
-  /**
-   * Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
-   * the input is opened again by calling [`Input.open()`](Input#open).
-   *
-   * **Note**: if what you want to do is stop events from being dispatched, you should use
-   * [`eventsSuspended`](#eventsSuspended) instead.
-   *
-   * @returns {Promise<Input>} The promise is fulfilled with the `Input` object
-   */
-  async close() {
-
-    // We close the port. This triggers a statechange event which, in turn, will emit the 'closed'
-    // event.
-    if (!this._midiInput) return Promise.resolve(this);
-
-    try {
-      await this._midiInput.close();
+      await this._port.open();
     } catch (err) {
       return Promise.reject(err);
     }
@@ -829,96 +696,6 @@ export class Input extends EventEmitter {
    */
   hasForwarder(forwarder) {
     return this._forwarders.includes(forwarder);
-  }
-
-  /**
-   * Name of the MIDI input.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get name() {
-    return this._midiInput.name;
-  }
-
-  /**
-   * ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
-   * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-   * the same port.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get id() {
-    return this._midiInput.id;
-  }
-
-  /**
-   * Input port's connection state: `pending`, `open` or `closed`.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get connection() {
-    return this._midiInput.connection;
-  }
-
-  /**
-   * Name of the manufacturer of the device that makes this input port available.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get manufacturer() {
-    return this._midiInput.manufacturer;
-  }
-
-  /**
-   * An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
-   * number 60) is placed on the 4th octave (C4).
-   *
-   * If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
-   * `octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
-   *
-   * Note that this value is combined with the global offset value defined in the
-   * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) property (if any).
-   *
-   * @type {number}
-   *
-   * @since 3.0
-   */
-  get octaveOffset() {
-    return this._octaveOffset;
-  }
-  set octaveOffset(value) {
-
-    if (this.validation) {
-      value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
-    }
-
-    this._octaveOffset = value;
-
-  }
-
-  /**
-   * State of the input port: `connected` or `disconnected`.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get state() {
-    return this._midiInput.state;
-  }
-
-  /**
-   * The port type. In the case of the `Input` object, this is always: `input`.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get type() {
-    return this._midiInput.type;
   }
 
   /**
