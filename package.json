@@ -114,7 +114,7 @@
     "fs-extra": "^10.0.0",
     "ftp-deploy": "^2.3.7",
     "gh-pages": "^5.0.0",
-    "handlebars": "^4.7.7",
+    "handlebars": "^4.7.9",
     "jsdoc": "^3.6.7",
     "jsdoc-to-markdown": "^7.1.0",
     "markdown-it": "^12.3.2",
