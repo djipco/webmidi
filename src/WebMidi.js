@@ -738,6 +738,11 @@ class WebMidi extends EventEmitter {
    */
   _onInterfaceStateChange(e) {
 
+    // If WebMidi is no longer enabled, silently ignore the event. Methods like getOutputById()
+    // and getInputById() throw when WebMidi is disabled, and since this handler is triggered by a
+    // browser event, client code cannot catch those errors — causing unrecoverable crashes (#546).
+    if (!this.enabled) return;
+
     this._updateInputsAndOutputs();
 
     /**
