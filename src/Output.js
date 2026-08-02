@@ -1,5 +1,5 @@
-import {EventEmitter} from "../node_modules/djipevents/src/djipevents.js";
 import {OutputChannel} from "./OutputChannel.js";
+import { Port } from "./Port.js";
 import {Enumerations, Message, WebMidi} from "./WebMidi.js";
 import {Utilities} from "./Utilities.js";
 
@@ -21,11 +21,10 @@ import {Utilities} from "./Utilities.js";
  * @fires Output#disconnected
  * @fires Output#closed
  *
- * @extends EventEmitter
+ * @extends Port
  * @license Apache-2.0
  */
-export class Output extends EventEmitter {
-
+export class Output extends Port {
   /**
    * Creates an `Output` object.
    *
@@ -33,168 +32,8 @@ export class Output extends EventEmitter {
    * object as provided by the MIDI subsystem.
    */
   constructor(midiOutput) {
-
-    super();
-
-    /**
-     * A reference to the `MIDIOutput` object
-     * @type {MIDIOutput}
-     * @private
-     */
-    this._midiOutput = midiOutput;
-
-    /**
-     * @type {number}
-     * @private
-     */
-    this._octaveOffset = 0;
-
-    /**
-     * Array containing the 16 [`OutputChannel`]{@link OutputChannel} objects available provided by
-     * this `Output`. The channels are numbered 1 through 16.
-     *
-     * @type {OutputChannel[]}
-     */
-    this.channels = [];
+    super(midiOutput);
     for (let i = 1; i <= 16; i++) this.channels[i] = new OutputChannel(this, i);
-
-    this._midiOutput.onstatechange = this._onStateChange.bind(this);
-
-  }
-
-  /**
-   * Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
-   * subsystem is unlinked.
-   * @returns {Promise<void>}
-   */
-  async destroy() {
-    this.removeListener();
-    this.channels.forEach(ch => ch.destroy());
-    this.channels = [];
-    if (this._midiOutput) this._midiOutput.onstatechange = null;
-    await this.close();
-    this._midiOutput = null;
-  }
-
-  /**
-   * @private
-   */
-  _onStateChange(e) {
-
-    let event = {
-      timestamp: WebMidi.time
-    };
-
-    if (e.port.connection === "open") {
-
-      /**
-       * Event emitted when the {@link Output} has been opened by calling the
-       * [open()]{@link Output#open} method.
-       *
-       * @event Output#opened
-       * @type {object}
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `"opened"`
-       * @property {Output} target The object to which the listener was originally added (`Output`).
-       * @property {Output} port The port that was opened
-       */
-      event.type = "opened";
-      event.target = this;
-      event.port = event.target; // for consistency
-      this.emit("opened", event);
-
-    } else if (e.port.connection === "closed" && e.port.state === "connected") {
-
-      /**
-       * Event emitted when the {@link Output} has been closed by calling the
-       * [close()]{@link Output#close} method.
-       *
-       * @event Output#closed
-       * @type {object}
-       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `"closed"`
-       * @property {Output} target The object to which the listener was originally added (`Output`).
-       * @property {Output} port The port that was closed
-       */
-      event.type = "closed";
-      event.target = this;
-      event.port = event.target; // for consistency
-      this.emit("closed", event);
-
-    } else if (e.port.connection === "closed" && e.port.state === "disconnected") {
-
-      /**
-       * Event emitted when the {@link Output} becomes unavailable. This event is typically fired
-       * when the MIDI device is unplugged.
-       *
-       * @event Output#disconnected
-       * @type {object}
-       * @property {number} timestamp The moment (DOMHighResTimeStamp0 when the event occurred (in
-       * milliseconds since the navigation start of the document).
-       * @property {string} type `"disconnected"`
-       * @property {Output} target The object to which the listener was originally added (`Output`).
-       * @property {object} port Object with properties describing the {@link Output} that was
-       * disconnected. This is not the actual `Output` as it is no longer available.
-       */
-      event.type = "disconnected";
-      event.port = {
-        connection: e.port.connection,
-        id: e.port.id,
-        manufacturer: e.port.manufacturer,
-        name: e.port.name,
-        state: e.port.state,
-        type: e.port.type
-      };
-      this.emit("disconnected", event);
-
-    } else if (e.port.connection === "pending" && e.port.state === "disconnected") {
-      // I don't see the need to forward that...
-    } else {
-      console.warn("This statechange event was not caught:", e.port.connection, e.port.state);
-    }
-
-  }
-
-  /**
-   * Opens the output for usage. When the library is enabled, all ports are automatically opened.
-   * This method is only useful for ports that have been manually closed.
-   *
-   * @returns {Promise<Output>} The promise is fulfilled with the `Output` object.
-   */
-  async open() {
-
-    // Explicitly opens the port for usage. This is not mandatory. When the port is not explicitly
-    // opened, it is implicitly opened (asynchronously) when calling `send()` on the `MIDIOutput`.
-    // We do it explicitly so that 'connected' events are dispatched immediately and we are ready to
-    // send.
-    try {
-      await this._midiOutput.open();
-      return Promise.resolve(this);
-    } catch (err) {
-      return Promise.reject(err);
-    }
-
-  }
-
-  /**
-   * Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
-   * until the output is opened again by calling [`open()`]{@link #open}. You can check
-   * the connection status by looking at the [`connection`]{@link #connection} property.
-   *
-   * @returns {Promise<void>}
-   */
-  async close() {
-
-    // We close the port. This triggers a 'statechange' event which we listen to to re-trigger the
-    // 'closed' event.
-    if (this._midiOutput) {
-      await this._midiOutput.close();
-    } else {
-      await Promise.resolve();
-    }
-
   }
 
   /**
@@ -270,7 +109,7 @@ export class Output extends EventEmitter {
     }
 
     // Send message and return `Output` for chaining
-    this._midiOutput.send(message, Utilities.toTimestamp(options.time));
+    this._port.send(message, Utilities.toTimestamp(options.time));
     return this;
 
   }
@@ -414,11 +253,8 @@ export class Output extends EventEmitter {
    * @returns {Output} Returns the `Output` object so methods can be chained.
    */
   clear() {
-
-    if (this._midiOutput.clear) {
-
-      this._midiOutput.clear();
-
+    if (this._port.clear) {
+      this._port.clear();
     } else {
 
       if (WebMidi.validation) {
@@ -2374,94 +2210,5 @@ export class Output extends EventEmitter {
     });
 
     return this;
-
   }
-
-  /**
-   * Name of the MIDI output.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get name() {
-    return this._midiOutput.name;
-  }
-
-  /**
-   * ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
-   * platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-   * the same port.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get id() {
-    return this._midiOutput.id;
-  }
-
-  /**
-   * Output port's connection state: `pending`, `open` or `closed`.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get connection() {
-    return this._midiOutput.connection;
-  }
-
-  /**
-   * Name of the manufacturer of the device that makes this output port available.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get manufacturer() {
-    return this._midiOutput.manufacturer;
-  }
-
-  /**
-   * State of the output port: `connected` or `disconnected`.
-   *
-   * @type {string}
-   * @readonly
-   */
-  get state() {
-    return this._midiOutput.state;
-  }
-
-  /**
-   * Type of the output port (it will always be: `output`).
-   *
-   * @type {string}
-   * @readonly
-   */
-  get type() {
-    return this._midiOutput.type;
-  }
-
-  /**
-   * An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
-   * is placed on the 4th octave (C4).
-   *
-   * Note that this value is combined with the global offset value defined in
-   * [`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if any).
-   *
-   * @type {number}
-   *
-   * @since 3.0
-   */
-  get octaveOffset() {
-    return this._octaveOffset;
-  }
-  set octaveOffset(value) {
-
-    if (this.validation) {
-      value = parseInt(value);
-      if (isNaN(value)) throw new TypeError("The 'octaveOffset' property must be an integer.");
-    }
-
-    this._octaveOffset = value;
-
-  }
-
 }
