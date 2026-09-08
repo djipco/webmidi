@@ -147,6 +147,14 @@ export class InputChannel extends EventEmitter {
     this._octaveOffset = 0;
 
     /**
+     * Tracks incoming MIDI message rate so floods of messages can be
+     * throttled to avoid event loop blocking and memory exhaustion.
+     * @type {{count: number, windowStart: number}}
+     * @private
+     */
+    this._messageRateLimit = {count: 0, windowStart: 0};
+
+    /**
      * An array of messages that form the current NRPN sequence
      * @private
      * @type {Message[]}
@@ -202,6 +210,16 @@ export class InputChannel extends EventEmitter {
    * @private
    */
   _processMidiMessageEvent(e) {
+
+    // Rate-limit incoming messages (max 1000/s per channel) to protect
+    // against event loop blocking and memory exhaustion from a flooding
+    // or malicious MIDI device.
+    const now = e.timeStamp || Date.now();
+    if (now - this._messageRateLimit.windowStart > 1000) {
+      this._messageRateLimit.windowStart = now;
+      this._messageRateLimit.count = 0;
+    }
+    if (++this._messageRateLimit.count > 1000) return;
 
     // Create and emit a new 'midimessage' event based on the incoming one
     const event = Object.assign({}, e);
