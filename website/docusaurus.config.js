@@ -181,7 +181,7 @@ module.exports = {
       darkTheme: darkCodeTheme,
     },
     algolia: {
-      apiKey: "417771b74406a78671b6592f451f2453",
+      apiKey: process.env.ALGOLIA_API_KEY,
       indexName: "webmidi",
       appId: "KHO24V8B5T",
 
