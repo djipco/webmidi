@@ -17,6 +17,24 @@ page on GitHub and submit a pull request.
 
 ---
 
+## Components & Languages
+
+* ### [FAUST](https://faust.grame.fr/)
+  Created by: **Grame Research Lab**
+
+  The online Faust IDE can be used to edit, compile and run Faust code from the Web Browser.
+
+* ### [Midi Bricks](https://midi-bricks.timsusa.vercel.app/)
+  Created by: **Tim Susa**
+
+  A tool to build custom interfaces for MIDI control.
+
+* ### [React Audio Tools](http://react-audio-tools.surge.sh/)
+  Created by: **ambewas**
+
+  A set of React components to build things with the Web Audio and Web MIDI APIs.
+
+
 ## DAWs & Editors
 
 * ### [DAWG](https://dawg.dev/)
@@ -110,6 +128,14 @@ page on GitHub and submit a pull request.
   over a WebRTC video call (using Daily.)
 
 
+## Live Coding
+
+* ### [Sema](https://sema.codes/)
+  Created by: **Francisco Bernardo, Chris Kiefer & Thor Magnusson**
+
+  Sema is a playground where you can rapidly prototype live coding mini-languages for signal 
+  synthesis, machine learning and machine listening.
+
 ## Music Hardware Control
 
 * ### [Mercury7 editor](https://github.com/francoisgeorgy/mercury7-web-editor)
@@ -144,40 +170,6 @@ page on GitHub and submit a pull request.
   Web editor for the Sonicware Liven XFM groovebox.
 
 
-## Components & Languages
-
-* ### [FAUST](https://faust.grame.fr/)
-  Created by: **Grame Research Lab**
-
-  The online Faust IDE can be used to edit, compile and run Faust code from the Web Browser.
-
-* ### [Midi Bricks](https://midi-bricks.timsusa.vercel.app/)
-  Created by: **Tim Susa**
-
-  A tool to build custom interfaces for MIDI control.
-
-* ### [React Audio Tools](http://react-audio-tools.surge.sh/)
-  Created by: **ambewas**
-
-  A set of React components to build things with the Web Audio and Web MIDI APIs.
-
-
-## Live Coding
-
-* ### [Sema](https://sema.codes/)
-  Created by: **Francisco Bernardo, Chris Kiefer & Thor Magnusson**
-
-  Sema is a playground where you can rapidly prototype live coding mini-languages for signal 
-  synthesis, machine learning and machine listening.
-
-## Online Synthesizers
-
-* ### [synth.kitchen](https://synth.kitchen/)
-  Created by: **Rain Rudnick**
-
-  In-browser modular synthesis with Web Audio and Web MIDI.
-
-
 ## Notation
 
 * ### [Inscore](https://inscore.grame.fr/)
@@ -190,6 +182,16 @@ page on GitHub and submit a pull request.
 
   An A.I.-powered interactive score distributed as an Electron application. It allows users to
   interact intuitively with any existing music composition algorithm.
+
+
+## Online Synthesizers
+
+* ### [synth.kitchen](https://synth.kitchen/)
+  Created by: **Rain Rudnick**
+
+  In-browser modular synthesis with Web Audio and Web MIDI.
+
+
 
 
 ## Robotics
