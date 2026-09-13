@@ -1,25 +1,7 @@
 
 # Note
 
-The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.
-
-`Note` objects can be played back on a single channel by calling
-[`OutputChannel.playNote()`](OutputChannel#playNote) or, on multiple channels of the same
-output, by calling [`Output.playNote()`](Output#playNote).
-
-The note has [`attack`](#attack) and [`release`](#release) velocities set at `0.5` by default.
-These can be changed by passing in the appropriate option. It is also possible to set a
-system-wide default for attack and release velocities by using the
-[`WebMidi.defaults`](WebMidi#defaults) property.
-
-If you prefer to work with raw MIDI values (`0` to `127`), you can use [`rawAttack`](#rawAttack) and
-[`rawRelease`](#rawRelease) to both get and set the values.
-
-The note may have a [`duration`](#duration). If it does, playback will be automatically stopped
-when the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to
-`Infinity`. In this case, it will never stop playing unless explicitly stopped by calling a
-method such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),
-[`Output.stopNote()`](Output#stopNote) or similar.
+The `Note` class represents a single musical note such as `"D3"`, `"G#4"`, `"F-1"`, `"Gb7"`, etc.`Note` objects can be played back on a single channel by calling[`OutputChannel.playNote()`](OutputChannel#playNote) or, on multiple channels of the sameoutput, by calling [`Output.playNote()`](Output#playNote).The note has [`attack`](#attack) and [`release`](#release) velocities set at `0.5` by default.These can be changed by passing in the appropriate option. It is also possible to set asystem-wide default for attack and release velocities by using the[`WebMidi.defaults`](WebMidi#defaults) property.If you prefer to work with raw MIDI values (`0` to `127`), you can use [`rawAttack`](#rawAttack) and[`rawRelease`](#rawRelease) to both get and set the values.The note may have a [`duration`](#duration). If it does, playback will be automatically stoppedwhen the duration has elapsed by sending a `"noteoff"` event. By default, the duration is set to`Infinity`. In this case, it will never stop playing unless explicitly stopped by calling amethod such as [`OutputChannel.stopNote()`](OutputChannel#stopNote),[`Output.stopNote()`](Output#stopNote) or similar.
 
 **Since**: 3.0.0
 
@@ -83,8 +65,7 @@ The attack velocity of the note as a float between 0 and 1.
 **Type**: number<br />
 
 
-The duration of the note as a positive decimal number representing the number of milliseconds
-that the note should play for.
+The duration of the note as a positive decimal number representing the number of millisecondsthat the note should play for.
 
 
 ### `.identifier` {#identifier}
@@ -100,8 +81,7 @@ The name, optional accidental and octave of the note, as a string.
 **Type**: string<br />
 
 
-The name (letter) of the note. If you need the full name with octave and accidental, you can
-use the [`identifier`](#Note+identifier) property instead.
+The name (letter) of the note. If you need the full name with octave and accidental, you canuse the [`identifier`](#Note+identifier) property instead.
 
 
 ### `.number` {#number}
@@ -110,8 +90,7 @@ use the [`identifier`](#Note+identifier) property instead.
 **Attributes**: read-only<br />
 
 
-The MIDI number of the note (`0` - `127`). This number is derived from the note identifier
-using C4 as a reference for middle C.
+The MIDI number of the note (`0` - `127`). This number is derived from the note identifierusing C4 as a reference for middle C.
 
 
 ### `.octave` {#octave}
@@ -155,9 +134,7 @@ The release velocity of the note as an integer between 0 and 1.
 ### `.getOffsetNumber(...)` {#getOffsetNumber}
 
 
-Returns a MIDI note number offset by octave and/or semitone. If the calculated value is less
-than 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. If
-an invalid value is supplied, 0 will be used.
+Returns a MIDI note number offset by octave and/or semitone. If the calculated value is lessthan 0, 0 will be returned. If the calculated value is more than 127, 127 will be returned. Ifan invalid value is supplied, 0 will be used.
 
 
   **Parameters**

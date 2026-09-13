@@ -1,18 +1,7 @@
 
 # Output
 
-The `Output` class represents a single MIDI output port (not to be confused with a MIDI channel).
-A port is made available by a MIDI device. A MIDI device can advertise several input and output
-ports. Each port has 16 MIDI channels which can be accessed via the [`channels`](#channels)
-property.
-
-The `Output` object is automatically instantiated by the library according to the host's MIDI
-subsystem and should not be directly instantiated.
-
-You can access all available `Output` objects by referring to the
-[`WebMidi.outputs`](WebMidi#outputs) array or by using methods such as
-[`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or
-[`WebMidi.getOutputById()`](WebMidi#getOutputById).
+The `Output` class represents a single MIDI output port (not to be confused with a MIDI channel).A port is made available by a MIDI device. A MIDI device can advertise several input and outputports. Each port has 16 MIDI channels which can be accessed via the [`channels`](#channels)property.The `Output` object is automatically instantiated by the library according to the host's MIDIsubsystem and should not be directly instantiated.You can access all available `Output` objects by referring to the[`WebMidi.outputs`](WebMidi#outputs) array or by using methods such as[`WebMidi.getOutputByName()`](WebMidi#getOutputByName) or[`WebMidi.getOutputById()`](WebMidi#getOutputById).
 
 
 **Extends**: [`EventEmitter`](EventEmitter)
@@ -47,8 +36,7 @@ Creates an `Output` object.
 **Type**: Array.&lt;OutputChannel&gt;<br />
 
 
-Array containing the 16 [`OutputChannel`](OutputChannel) objects available provided by
-this `Output`. The channels are numbered 1 through 16.
+Array containing the 16 [`OutputChannel`](OutputChannel) objects available provided bythis `Output`. The channels are numbered 1 through 16.
 
 
 ### `.connection` {#connection}
@@ -106,9 +94,7 @@ Whether or not the execution of callbacks is currently suspended for this emitte
 **Attributes**: read-only<br />
 
 
-ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on different
-platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
-the same port.
+ID string of the MIDI output. The ID is host-specific. Do not expect the same ID on differentplatforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs forthe same port.
 
 
 ### `.manufacturer` {#manufacturer}
@@ -132,11 +118,7 @@ Name of the MIDI output.
 **Type**: number<br />
 
 
-An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)
-is placed on the 4th octave (C4).
-
-Note that this value is combined with the global offset value defined in
-[`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if any).
+An integer to offset the octave of outgoing notes. By default, middle C (MIDI note number 60)is placed on the 4th octave (C4).Note that this value is combined with the global offset value defined in[`WebMidi.octaveOffset`](WebMidi#octaveOffset) (if any).
 
 
 ### `.state` {#state}
@@ -252,12 +234,7 @@ The newly created [`Listener`](Listener) object.
 ### `.clear()` {#clear}
 
 
-Clears all MIDI messages that have been queued and scheduled but not yet sent.
-
-**Warning**: this method is defined in the
-[Web MIDI API specification](https://www.w3.org/TR/webmidi/#MIDIOutput) but has not been
-implemented by all browsers yet. You can follow
-[this issue](https://github.com/djipco/webmidi/issues/52) for more info.
+Clears all MIDI messages that have been queued and scheduled but not yet sent.**Warning**: this method is defined in the[Web MIDI API specification](https://www.w3.org/TR/webmidi/#MIDIOutput) but has not beenimplemented by all browsers yet. You can follow[this issue](https://github.com/djipco/webmidi/issues/52) for more info.
 
 
 **Return Value**
@@ -273,9 +250,7 @@ Returns the `Output` object so methods can be chained.
 
 **Attributes**: async
 
-Closes the output connection. When an output is closed, it cannot be used to send MIDI messages
-until the output is opened again by calling [`open()`](#open). You can check
-the connection status by looking at the [`connection`](#connection) property.
+Closes the output connection. When an output is closed, it cannot be used to send MIDI messagesuntil the output is opened again by calling [`open()`](#open). You can checkthe connection status by looking at the [`connection`](#connection) property.
 
 
 **Return Value**
@@ -289,8 +264,7 @@ the connection status by looking at the [`connection`](#connection) property.
 
 **Attributes**: async
 
-Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDI
-subsystem is unlinked.
+Destroys the `Output`. All listeners are removed, all channels are destroyed and the MIDIsubsystem is unlinked.
 
 
 **Return Value**
@@ -450,8 +424,7 @@ Note: to specifically check for global listeners added with
 
 **Attributes**: async
 
-Opens the output for usage. When the library is enabled, all ports are automatically opened.
-This method is only useful for ports that have been manually closed.
+Opens the output for usage. When the library is enabled, all ports are automatically opened.This method is only useful for ports that have been manually closed.
 
 
 **Return Value**
@@ -466,33 +439,7 @@ The promise is fulfilled with the `Output` object.
 ### `.playNote(...)` {#playNote}
 
 
-Plays a note or an array of notes on one or more channels of this output. If you intend to play
-notes on a single channel, you should probably use
-[`OutputChannel.playNote()`](OutputChannel#playNote) instead.
-
-The first parameter is the note to play. It can be a single value or an array of the following
-valid values:
-
- - A MIDI note number (integer between `0` and `127`)
- - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [`Note`](Note) object
-
-The `playNote()` method sends a **note on** MIDI message for all specified notes on all
-specified channels. If no channel is specified, it will send to all channels. If a `duration`
-is set in the `options` parameter or in the [`Note`](Note) object's
-[`duration`](Note#duration) property, it will also schedule a **note off** message to end
-the note after said duration. If no `duration` is set, the note will simply play until a
-matching **note off** message is sent with [`stopNote()`](#stopNote).
-
-The execution of the **note on** command can be delayed by using the `time` property of the
-`options` parameter.
-
-When using [`Note`](Note) objects, the durations and velocities defined in the
-[`Note`](Note) objects have precedence over the ones specified via the method's `options`
-parameter.
-
-**Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
-functionally equivalent to a **note off** message.
+Plays a note or an array of notes on one or more channels of this output. If you intend to playnotes on a single channel, you should probably use[`OutputChannel.playNote()`](OutputChannel#playNote) instead.The first parameter is the note to play. It can be a single value or an array of the followingvalid values: - A MIDI note number (integer between `0` and `127`) - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`) - A [`Note`](Note) objectThe `playNote()` method sends a **note on** MIDI message for all specified notes on allspecified channels. If no channel is specified, it will send to all channels. If a `duration`is set in the `options` parameter or in the [`Note`](Note) object's[`duration`](Note#duration) property, it will also schedule a **note off** message to endthe note after said duration. If no `duration` is set, the note will simply play until amatching **note off** message is sent with [`stopNote()`](#stopNote).The execution of the **note on** command can be delayed by using the `time` property of the`options` parameter.When using [`Note`](Note) objects, the durations and velocities defined in the[`Note`](Note) objects have precedence over the ones specified via the method's `options`parameter.**Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` isfunctionally equivalent to a **note off** message.
 
 
   **Parameters**
@@ -562,18 +509,7 @@ callback to match or one or more of the additional options.
 ### `.send(...)` {#send}
 
 
-Sends a MIDI message on the MIDI output port. If no time is specified, the message will be
-sent immediately. The message should be an array of 8 bit unsigned integers (0-225), a
-[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)
-object or a [`Message`](Message) object.
-
-It is usually not necessary to use this method directly as you can use one of the simpler
-helper methods such as [`playNote()`](#playNote), [`stopNote()`](#stopNote),
-[`sendControlChange()`](#sendControlChange), etc.
-
-Details on the format of MIDI messages are available in the summary of
-[MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)
-from the MIDI Manufacturers Association.
+Sends a MIDI message on the MIDI output port. If no time is specified, the message will besent immediately. The message should be an array of 8 bit unsigned integers (0-225), a[`Uint8Array`](https://developer.mozilla.org/docs/Web/JavaScript/Reference/Global_Objects/Uint8Array)object or a [`Message`](Message) object.It is usually not necessary to use this method directly as you can use one of the simplerhelper methods such as [`playNote()`](#playNote), [`stopNote()`](#stopNote),[`sendControlChange()`](#sendControlChange), etc.Details on the format of MIDI messages are available in the summary of[MIDI messages](https://www.midi.org/specifications-old/item/table-1-summary-of-midi-message)from the MIDI Manufacturers Association.
 
 
   **Parameters**
@@ -605,9 +541,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendActiveSensing(...)` {#sendActiveSensing}
 
 
-Sends an **active sensing** real-time message. This tells the device connected to this port
-that the connection is still good. Active sensing messages are often sent every 300 ms if there
-was no other activity on the MIDI port.
+Sends an **active sensing** real-time message. This tells the device connected to this portthat the connection is still good. Active sensing messages are often sent every 300 ms if therewas no other activity on the MIDI port.
 
 
   **Parameters**
@@ -637,9 +571,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends an **all notes off** channel mode message. This will make all currently playing notes
-fade out just as if their key had been released. This is different from the
-[`sendAllSoundOff()`](#sendAllSoundOff) method which mutes all sounds immediately.
+Sends an **all notes off** channel mode message. This will make all currently playing notesfade out just as if their key had been released. This is different from the[`sendAllSoundOff()`](#sendAllSoundOff) method which mutes all sounds immediately.
 
 
   **Parameters**
@@ -668,8 +600,7 @@ fade out just as if their key had been released. This is different from the
 
 **Since**: 3.0.0<br />
 
-Sends an **all sound off** channel mode message. This will silence all sounds playing on that
-channel but will not prevent new sounds from being triggered.
+Sends an **all sound off** channel mode message. This will silence all sounds playing on thatchannel but will not prevent new sounds from being triggered.
 
 
   **Parameters**
@@ -698,8 +629,7 @@ channel but will not prevent new sounds from being triggered.
 
 **Since**: 3.0.0<br />
 
-Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
-aftertouch, you should instead use [`setKeyAftertouch()`](#setKeyAftertouch).
+Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specificaftertouch, you should instead use [`setKeyAftertouch()`](#setKeyAftertouch).
 
 
   **Parameters**
@@ -731,26 +661,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendChannelMode(...)` {#sendChannelMode}
 
 
-Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message to
-send can be specified numerically or by using one of the following common names:
-
-|  Type                |Number| Shortcut Method                                               |
-| ---------------------|------|-------------------------------------------------------------- |
-| `allsoundoff`        | 120  | [`sendAllSoundOff()`](#sendAllSoundOff)                 |
-| `resetallcontrollers`| 121  | [`sendResetAllControllers()`](#sendResetAllControllers) |
-| `localcontrol`       | 122  | [`sendLocalControl()`](#sendLocalControl)               |
-| `allnotesoff`        | 123  | [`sendAllNotesOff()`](#sendAllNotesOff)                 |
-| `omnimodeoff`        | 124  | [`sendOmniMode(false)`](#sendOmniMode)                  |
-| `omnimodeon`         | 125  | [`sendOmniMode(true)`](#sendOmniMode)                   |
-| `monomodeon`         | 126  | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)     |
-| `polymodeon`         | 127  | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)     |
-
-Note: as you can see above, to make it easier, all channel mode messages also have a matching
-helper method.
-
-It should also be noted that, per the MIDI specification, only `localcontrol` and `monomodeon`
-may require a value that's not zero. For that reason, the `value` parameter is optional and
-defaults to 0.
+Sends a MIDI **channel mode** message to the specified channel(s). The channel mode message tosend can be specified numerically or by using one of the following common names:|  Type                |Number| Shortcut Method                                               || ---------------------|------|-------------------------------------------------------------- || `allsoundoff`        | 120  | [`sendAllSoundOff()`](#sendAllSoundOff)                 || `resetallcontrollers`| 121  | [`sendResetAllControllers()`](#sendResetAllControllers) || `localcontrol`       | 122  | [`sendLocalControl()`](#sendLocalControl)               || `allnotesoff`        | 123  | [`sendAllNotesOff()`](#sendAllNotesOff)                 || `omnimodeoff`        | 124  | [`sendOmniMode(false)`](#sendOmniMode)                  || `omnimodeon`         | 125  | [`sendOmniMode(true)`](#sendOmniMode)                   || `monomodeon`         | 126  | [`sendPolyphonicMode("mono")`](#sendPolyphonicMode)     || `polymodeon`         | 127  | [`sendPolyphonicMode("poly")`](#sendPolyphonicMode)     |Note: as you can see above, to make it easier, all channel mode messages also have a matchinghelper method.It should also be noted that, per the MIDI specification, only `localcontrol` and `monomodeon`may require a value that's not zero. For that reason, the `value` parameter is optional anddefaults to 0.
 
 
   **Parameters**
@@ -786,8 +697,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendClock(...)` {#sendClock}
 
 
-Sends a MIDI **clock** real-time message. According to the standard, there are 24 MIDI clocks
-for every quarter note.
+Sends a MIDI **clock** real-time message. According to the standard, there are 24 MIDI clocksfor every quarter note.
 
 
   **Parameters**
@@ -816,9 +726,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendContinue(...)` {#sendContinue}
 
 
-Sends a **continue** real-time message. This resumes song playback where it was previously
-stopped or where it was last cued with a song position message. To start playback from the
-start, use the [`sendStart()`](#Output+sendStart)` method.
+Sends a **continue** real-time message. This resumes song playback where it was previouslystopped or where it was last cued with a song position message. To start playback from thestart, use the [`sendStart()`](#Output+sendStart)` method.
 
 
   **Parameters**
@@ -847,87 +755,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendControlChange(...)` {#sendControlChange}
 
 
-Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. The
-control change message to send can be specified numerically (0-127) or by using one of the
-following common names:
-
-| Number | Name                          |
-|--------|-------------------------------|
-| 0      |`bankselectcoarse`             |
-| 1      |`modulationwheelcoarse`        |
-| 2      |`breathcontrollercoarse`       |
-| 4      |`footcontrollercoarse`         |
-| 5      |`portamentotimecoarse`         |
-| 6      |`dataentrycoarse`              |
-| 7      |`volumecoarse`                 |
-| 8      |`balancecoarse`                |
-| 10     |`pancoarse`                    |
-| 11     |`expressioncoarse`             |
-| 12     |`effectcontrol1coarse`         |
-| 13     |`effectcontrol2coarse`         |
-| 18     |`generalpurposeslider3`        |
-| 19     |`generalpurposeslider4`        |
-| 32     |`bankselectfine`               |
-| 33     |`modulationwheelfine`          |
-| 34     |`breathcontrollerfine`         |
-| 36     |`footcontrollerfine`           |
-| 37     |`portamentotimefine`           |
-| 38     |`dataentryfine`                |
-| 39     |`volumefine`                   |
-| 40     |`balancefine`                  |
-| 42     |`panfine`                      |
-| 43     |`expressionfine`               |
-| 44     |`effectcontrol1fine`           |
-| 45     |`effectcontrol2fine`           |
-| 64     |`holdpedal`                    |
-| 65     |`portamento`                   |
-| 66     |`sustenutopedal`               |
-| 67     |`softpedal`                    |
-| 68     |`legatopedal`                  |
-| 69     |`hold2pedal`                   |
-| 70     |`soundvariation`               |
-| 71     |`resonance`                    |
-| 72     |`soundreleasetime`             |
-| 73     |`soundattacktime`              |
-| 74     |`brightness`                   |
-| 75     |`soundcontrol6`                |
-| 76     |`soundcontrol7`                |
-| 77     |`soundcontrol8`                |
-| 78     |`soundcontrol9`                |
-| 79     |`soundcontrol10`               |
-| 80     |`generalpurposebutton1`        |
-| 81     |`generalpurposebutton2`        |
-| 82     |`generalpurposebutton3`        |
-| 83     |`generalpurposebutton4`        |
-| 91     |`reverblevel`                  |
-| 92     |`tremololevel`                 |
-| 93     |`choruslevel`                  |
-| 94     |`celestelevel`                 |
-| 95     |`phaserlevel`                  |
-| 96     |`dataincrement`                |
-| 97     |`datadecrement`                |
-| 98     |`nonregisteredparametercoarse` |
-| 99     |`nonregisteredparameterfine`   |
-| 100    |`registeredparametercoarse`    |
-| 101    |`registeredparameterfine`      |
-| 120    |`allsoundoff`                  |
-| 121    |`resetallcontrollers`          |
-| 122    |`localcontrol`                 |
-| 123    |`allnotesoff`                  |
-| 124    |`omnimodeoff`                  |
-| 125    |`omnimodeon`                   |
-| 126    |`monomodeon`                   |
-| 127    |`polymodeon`                   |
-
-Note: as you can see above, not all control change message have a matching name. This does not
-mean you cannot use the others. It simply means you will need to use their number (`0` - `127`)
-instead of their name. While you can still use them, numbers `120` to `127` are usually
-reserved for *channel mode* messages. See [`sendChannelMode()`](#sendChannelMode) method
-for more info.
-
-To view a list of all available **control change** messages, please consult [Table 3 - Control
-Change Messages](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
-from the MIDI specification.
+Sends a MIDI **control change** message to the specified channel(s) at the scheduled time. Thecontrol change message to send can be specified numerically (0-127) or by using one of thefollowing common names:| Number | Name                          ||--------|-------------------------------|| 0      |`bankselectcoarse`             || 1      |`modulationwheelcoarse`        || 2      |`breathcontrollercoarse`       || 4      |`footcontrollercoarse`         || 5      |`portamentotimecoarse`         || 6      |`dataentrycoarse`              || 7      |`volumecoarse`                 || 8      |`balancecoarse`                || 10     |`pancoarse`                    || 11     |`expressioncoarse`             || 12     |`effectcontrol1coarse`         || 13     |`effectcontrol2coarse`         || 18     |`generalpurposeslider3`        || 19     |`generalpurposeslider4`        || 32     |`bankselectfine`               || 33     |`modulationwheelfine`          || 34     |`breathcontrollerfine`         || 36     |`footcontrollerfine`           || 37     |`portamentotimefine`           || 38     |`dataentryfine`                || 39     |`volumefine`                   || 40     |`balancefine`                  || 42     |`panfine`                      || 43     |`expressionfine`               || 44     |`effectcontrol1fine`           || 45     |`effectcontrol2fine`           || 64     |`holdpedal`                    || 65     |`portamento`                   || 66     |`sustenutopedal`               || 67     |`softpedal`                    || 68     |`legatopedal`                  || 69     |`hold2pedal`                   || 70     |`soundvariation`               || 71     |`resonance`                    || 72     |`soundreleasetime`             || 73     |`soundattacktime`              || 74     |`brightness`                   || 75     |`soundcontrol6`                || 76     |`soundcontrol7`                || 77     |`soundcontrol8`                || 78     |`soundcontrol9`                || 79     |`soundcontrol10`               || 80     |`generalpurposebutton1`        || 81     |`generalpurposebutton2`        || 82     |`generalpurposebutton3`        || 83     |`generalpurposebutton4`        || 91     |`reverblevel`                  || 92     |`tremololevel`                 || 93     |`choruslevel`                  || 94     |`celestelevel`                 || 95     |`phaserlevel`                  || 96     |`dataincrement`                || 97     |`datadecrement`                || 98     |`nonregisteredparametercoarse` || 99     |`nonregisteredparameterfine`   || 100    |`registeredparametercoarse`    || 101    |`registeredparameterfine`      || 120    |`allsoundoff`                  || 121    |`resetallcontrollers`          || 122    |`localcontrol`                 || 123    |`allnotesoff`                  || 124    |`omnimodeoff`                  || 125    |`omnimodeon`                   || 126    |`monomodeon`                   || 127    |`polymodeon`                   |Note: as you can see above, not all control change message have a matching name. This does notmean you cannot use the others. It simply means you will need to use their number (`0` - `127`)instead of their name. While you can still use them, numbers `120` to `127` are usuallyreserved for *channel mode* messages. See [`sendChannelMode()`](#sendChannelMode) methodfor more info.To view a list of all available **control change** messages, please consult [Table 3 - ControlChange Messages](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)from the MIDI specification.
 
 
   **Parameters**
@@ -963,9 +791,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
-is a key-specific aftertouch. For a channel-wide aftertouch message, use
-[`setChannelAftertouch()`](#setChannelAftertouch).
+Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. Thisis a key-specific aftertouch. For a channel-wide aftertouch message, use[`setChannelAftertouch()`](#setChannelAftertouch).
 
 
   **Parameters**
@@ -999,9 +825,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Turns local control on or off. Local control is usually enabled by default. If you disable it,
-the instrument will no longer trigger its own sounds. It will only send the MIDI messages to
-its out port.
+Turns local control on or off. Local control is usually enabled by default. If you disable it,the instrument will no longer trigger its own sounds. It will only send the MIDI messages toits out port.
 
 
   **Parameters**
@@ -1033,13 +857,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends a master tuning message to the specified channel(s). The value is decimal and must be
-larger than `-65` semitones and smaller than `64` semitones.
-
-Because of the way the MIDI specification works, the decimal portion of the value will be
-encoded with a resolution of 14bit. The integer portion must be between -64 and 63
-inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** and
-a **Master Fine Tuning** RPN messages.
+Sends a master tuning message to the specified channel(s). The value is decimal and must belarger than `-65` semitones and smaller than `64` semitones.Because of the way the MIDI specification works, the decimal portion of the value will beencoded with a resolution of 14bit. The integer portion must be between -64 and 63inclusively. This function actually generates two MIDI messages: a **Master Coarse Tuning** anda **Master Fine Tuning** RPN messages.
 
 
   **Parameters**
@@ -1066,17 +884,14 @@ Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
-  * `RangeError` : The value must be a decimal number between larger than -65 and smaller
-than 64.
+  * `RangeError` : The value must be a decimal number between larger than -65 and smallerthan 64.
 
 
 ### `.sendModulationRange(...)` {#sendModulationRange}
 
 **Since**: 3.0.0<br />
 
-Sends a **modulation depth range** message to the specified channel(s) so that they adjust the
-depth of their modulation wheel's range. The range can be specified with the `semitones`
-parameter, the `cents` parameter or by specifying both parameters at the same time.
+Sends a **modulation depth range** message to the specified channel(s) so that they adjust thedepth of their modulation wheel's range. The range can be specified with the `semitones`parameter, the `cents` parameter or by specifying both parameters at the same time.
 
 
   **Parameters**
@@ -1111,16 +926,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendNoteOff(...)` {#sendNoteOff}
 
 
-Sends a **note off** message for the specified MIDI note number on the specified channel(s).
-The first parameter is the note to stop. It can be a single value or an array of the following
-valid values:
-
- - A MIDI note number (integer between `0` and `127`)
- - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [`Note`](Note) object
-
-The execution of the **note off** command can be delayed by using the `time` property of the
-`options` parameter.
+Sends a **note off** message for the specified MIDI note number on the specified channel(s).The first parameter is the note to stop. It can be a single value or an array of the followingvalid values: - A MIDI note number (integer between `0` and `127`) - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`) - A [`Note`](Note) objectThe execution of the **note off** command can be delayed by using the `time` property of the`options` parameter.
 
 
   **Parameters**
@@ -1153,19 +959,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendNoteOn(...)` {#sendNoteOn}
 
 
-Sends a **note on** message for the specified MIDI note number on the specified channel(s). The
-first parameter is the number. It can be a single value or an array of the following valid
-values:
-
- - A MIDI note number (integer between `0` and `127`)
- - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [`Note`](Note) object
-
- The execution of the **note on** command can be delayed by using the `time` property of the
-`options` parameter.
-
-**Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` is
-functionally equivalent to a **note off** message.
+Sends a **note on** message for the specified MIDI note number on the specified channel(s). Thefirst parameter is the number. It can be a single value or an array of the following validvalues: - A MIDI note number (integer between `0` and `127`) - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`) - A [`Note`](Note) object The execution of the **note on** command can be delayed by using the `time` property of the`options` parameter.**Note**: As per the MIDI standard, a **note on** message with an attack velocity of `0` isfunctionally equivalent to a **note off** message.
 
 
   **Parameters**
@@ -1198,36 +992,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendNrpnValue(...)` {#sendNrpnValue}
 
 
-Sets a non-registered parameter to the specified value. The NRPN is selected by passing a
-two-position array specifying the values of the two control bytes. The value is specified by
-passing a single integer (most cases) or an array of two integers.
-
-NRPNs are not standardized in any way. Each manufacturer is free to implement them any way
-they see fit. For example, according to the Roland GS specification, you can control the
-**vibrato rate** using NRPN (`1`, `8`). Therefore, to set the **vibrato rate** value to `123`
-you would use:
-
-```js
-WebMidi.outputs[0].sendNrpnValue([1, 8], 123);
-```
-
-You probably want to should select a channel so the message is not sent to all channels. For
-instance, to send to channel `1` of the first output port, you would use:
-
-```js
-WebMidi.outputs[0].sendNrpnValue([1, 8], 123, 1);
-```
-
-In some rarer cases, you need to send two values with your NRPN messages. In such cases, you
-would use a 2-position array. For example, for its **ClockBPM** parameter (`2`, `63`), Novation
-uses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if the
-value to send was `10`, you could use:
-
-```js
-WebMidi.outputs[0].sendNrpnValue([2, 63], [0, 10], 1);
-```
-
-For further implementation details, refer to the manufacturer's documentation.
+Sets a non-registered parameter to the specified value. The NRPN is selected by passing atwo-position array specifying the values of the two control bytes. The value is specified bypassing a single integer (most cases) or an array of two integers.NRPNs are not standardized in any way. Each manufacturer is free to implement them any waythey see fit. For example, according to the Roland GS specification, you can control the**vibrato rate** using NRPN (`1`, `8`). Therefore, to set the **vibrato rate** value to `123`you would use:```jsWebMidi.outputs[0].sendNrpnValue([1, 8], 123);```You probably want to should select a channel so the message is not sent to all channels. Forinstance, to send to channel `1` of the first output port, you would use:```jsWebMidi.outputs[0].sendNrpnValue([1, 8], 123, 1);```In some rarer cases, you need to send two values with your NRPN messages. In such cases, youwould use a 2-position array. For example, for its **ClockBPM** parameter (`2`, `63`), Novationuses a 14-bit value that combines an MSB and an LSB (7-bit values). So, for example, if thevalue to send was `10`, you could use:```jsWebMidi.outputs[0].sendNrpnValue([2, 63], [0, 10], 1);```For further implementation details, refer to the manufacturer's documentation.
 
 
   **Parameters**
@@ -1263,10 +1028,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sets OMNI mode to **on** or **off** for the specified channel(s). MIDI's OMNI mode causes the
-instrument to respond to messages from all channels.
-
-It should be noted that support for OMNI mode is not as common as it used to be.
+Sets OMNI mode to **on** or **off** for the specified channel(s). MIDI's OMNI mode causes theinstrument to respond to messages from all channels.It should be noted that support for OMNI mode is not as common as it used to be.
 
 
   **Parameters**
@@ -1302,12 +1064,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.
-
-The resulting bend is relative to the pitch bend range that has been defined. The range can be
-set with [`sendPitchBendRange()`](#sendPitchBendRange). So, for example, if the pitch
-bend range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octave
-below its nominal value.
+Sends a MIDI **pitch bend** message to the specified channel(s) at the scheduled time.The resulting bend is relative to the pitch bend range that has been defined. The range can beset with [`sendPitchBendRange()`](#sendPitchBendRange). So, for example, if the pitchbend range has been set to 12 semitones, using a bend value of `-1` will bend the note 1 octavebelow its nominal value.
 
 
   **Parameters**
@@ -1340,10 +1097,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends a **pitch bend range** message to the specified channel(s) at the scheduled time so that
-they adjust the range used by their pitch bend lever. The range is specified by using the
-`semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`
-means that the pitch bend range will be 12 semitones above and below the nominal pitch.
+Sends a **pitch bend range** message to the specified channel(s) at the scheduled time so thatthey adjust the range used by their pitch bend lever. The range is specified by using the`semitones` and `cents` parameters. For example, setting the `semitones` parameter to `12`means that the pitch bend range will be 12 semitones above and below the nominal pitch.
 
 
   **Parameters**
@@ -1379,9 +1133,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sets the polyphonic mode. In `poly` mode (usually the default), multiple notes can be played
-and heard at the same time. In `mono` mode, only one note will be heard at once even if
-multiple notes are being played.
+Sets the polyphonic mode. In `poly` mode (usually the default), multiple notes can be playedand heard at the same time. In `mono` mode, only one note will be heard at once even ifmultiple notes are being played.
 
 
   **Parameters**
@@ -1440,15 +1192,13 @@ Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
-  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greater
-than 0xFF.
+  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index 1 is greaterthan 0xFF.
 
 
 ### `.sendReset(...)` {#sendReset}
 
 
-Sends a **reset** real-time message. This tells the device connected to this output that it
-should reset itself to a default state.
+Sends a **reset** real-time message. This tells the device connected to this output that itshould reset itself to a default state.
 
 
   **Parameters**
@@ -1477,8 +1227,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendResetAllControllers(...)` {#sendResetAllControllers}
 
 
-Sends a **reset all controllers** channel mode message. This resets all controllers, such as
-the pitch bend, to their default value.
+Sends a **reset all controllers** channel mode message. This resets all controllers, such asthe pitch bend, to their default value.
 
 
   **Parameters**
@@ -1506,24 +1255,7 @@ the pitch bend, to their default value.
 ### `.sendRpnDecrement(...)` {#sendRpnDecrement}
 
 
-Decrements the specified MIDI registered parameter by 1. Here is the full list of parameter
-names that can be used with this method:
-
- * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
- * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
- * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
- * Tuning Program (0x00, 0x03): `"tuningprogram"`
- * Tuning Bank (0x00, 0x04): `"tuningbank"`
- * Modulation Range (0x00, 0x05): `"modulationrange"`
- * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
- * Elevation Angle (0x3D, 0x01): `"elevationangle"`
- * Gain (0x3D, 0x02): `"gain"`
- * Distance Ratio (0x3D, 0x03): `"distanceratio"`
- * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
- * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
- * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
- * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
- * Roll Angle (0x3D, 0x08): `"rollangle"`
+Decrements the specified MIDI registered parameter by 1. Here is the full list of parameternames that can be used with this method: * Pitchbend Range (0x00, 0x00): `"pitchbendrange"` * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"` * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"` * Tuning Program (0x00, 0x03): `"tuningprogram"` * Tuning Bank (0x00, 0x04): `"tuningbank"` * Modulation Range (0x00, 0x05): `"modulationrange"` * Azimuth Angle (0x3D, 0x00): `"azimuthangle"` * Elevation Angle (0x3D, 0x01): `"elevationangle"` * Gain (0x3D, 0x02): `"gain"` * Distance Ratio (0x3D, 0x03): `"distanceratio"` * Maximum Distance (0x3D, 0x04): `"maximumdistance"` * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"` * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"` * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"` * Roll Angle (0x3D, 0x08): `"rollangle"`
 
 
   **Parameters**
@@ -1556,24 +1288,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendRpnIncrement(...)` {#sendRpnIncrement}
 
 
-Increments the specified MIDI registered parameter by 1. Here is the full list of parameter
-names that can be used with this method:
-
- * Pitchbend Range (0x00, 0x00): `"pitchbendrange"`
- * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"`
- * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"`
- * Tuning Program (0x00, 0x03): `"tuningprogram"`
- * Tuning Bank (0x00, 0x04): `"tuningbank"`
- * Modulation Range (0x00, 0x05): `"modulationrange"`
- * Azimuth Angle (0x3D, 0x00): `"azimuthangle"`
- * Elevation Angle (0x3D, 0x01): `"elevationangle"`
- * Gain (0x3D, 0x02): `"gain"`
- * Distance Ratio (0x3D, 0x03): `"distanceratio"`
- * Maximum Distance (0x3D, 0x04): `"maximumdistance"`
- * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"`
- * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"`
- * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"`
- * Roll Angle (0x3D, 0x08): `"rollangle"`
+Increments the specified MIDI registered parameter by 1. Here is the full list of parameternames that can be used with this method: * Pitchbend Range (0x00, 0x00): `"pitchbendrange"` * Channel Fine Tuning (0x00, 0x01): `"channelfinetuning"` * Channel Coarse Tuning (0x00, 0x02): `"channelcoarsetuning"` * Tuning Program (0x00, 0x03): `"tuningprogram"` * Tuning Bank (0x00, 0x04): `"tuningbank"` * Modulation Range (0x00, 0x05): `"modulationrange"` * Azimuth Angle (0x3D, 0x00): `"azimuthangle"` * Elevation Angle (0x3D, 0x01): `"elevationangle"` * Gain (0x3D, 0x02): `"gain"` * Distance Ratio (0x3D, 0x03): `"distanceratio"` * Maximum Distance (0x3D, 0x04): `"maximumdistance"` * Maximum Distance Gain (0x3D, 0x05): `"maximumdistancegain"` * Reference Distance Ratio (0x3D, 0x06): `"referencedistanceratio"` * Pan Spread Angle (0x3D, 0x07): `"panspreadangle"` * Roll Angle (0x3D, 0x08): `"rollangle"`
 
 
   **Parameters**
@@ -1604,34 +1319,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendRpnValue(...)` {#sendRpnValue}
 
 
-Sets the specified MIDI registered parameter to the desired value. The value is defined with
-up to two bytes of data (msb, lsb) that each can go from `0` to `127`.
-
-MIDI
-[registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)
-extend the original list of control change messages. The MIDI 1.0 specification lists only a
-limited number of them:
-
-| Numbers      | Function                 |
-|--------------|--------------------------|
-| (0x00, 0x00) | `pitchbendrange`         |
-| (0x00, 0x01) | `channelfinetuning`      |
-| (0x00, 0x02) | `channelcoarsetuning`    |
-| (0x00, 0x03) | `tuningprogram`          |
-| (0x00, 0x04) | `tuningbank`             |
-| (0x00, 0x05) | `modulationrange`        |
-| (0x3D, 0x00) | `azimuthangle`           |
-| (0x3D, 0x01) | `elevationangle`         |
-| (0x3D, 0x02) | `gain`                   |
-| (0x3D, 0x03) | `distanceratio`          |
-| (0x3D, 0x04) | `maximumdistance`        |
-| (0x3D, 0x05) | `maximumdistancegain`    |
-| (0x3D, 0x06) | `referencedistanceratio` |
-| (0x3D, 0x07) | `panspreadangle`         |
-| (0x3D, 0x08) | `rollangle`              |
-
-Note that the `tuningprogram` and `tuningbank` parameters are part of the *MIDI Tuning
-Standard*, which is not widely implemented.
+Sets the specified MIDI registered parameter to the desired value. The value is defined withup to two bytes of data (msb, lsb) that each can go from `0` to `127`.MIDI[registered parameters](https://www.midi.org/specifications-old/item/table-3-control-change-messages-data-bytes-2)extend the original list of control change messages. The MIDI 1.0 specification lists only alimited number of them:| Numbers      | Function                 ||--------------|--------------------------|| (0x00, 0x00) | `pitchbendrange`         || (0x00, 0x01) | `channelfinetuning`      || (0x00, 0x02) | `channelcoarsetuning`    || (0x00, 0x03) | `tuningprogram`          || (0x00, 0x04) | `tuningbank`             || (0x00, 0x05) | `modulationrange`        || (0x3D, 0x00) | `azimuthangle`           || (0x3D, 0x01) | `elevationangle`         || (0x3D, 0x02) | `gain`                   || (0x3D, 0x03) | `distanceratio`          || (0x3D, 0x04) | `maximumdistance`        || (0x3D, 0x05) | `maximumdistancegain`    || (0x3D, 0x06) | `referencedistanceratio` || (0x3D, 0x07) | `panspreadangle`         || (0x3D, 0x08) | `rollangle`              |Note that the `tuningprogram` and `tuningbank` parameters are part of the *MIDI TuningStandard*, which is not widely implemented.
 
 
   **Parameters**
@@ -1664,8 +1352,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends a **song position** MIDI message. The value is expressed in MIDI beats (between `0` and
-`16383`) which are 16th note. Position `0` is always the start of the song.
+Sends a **song position** MIDI message. The value is expressed in MIDI beats (between `0` and`16383`) which are 16th note. Position `0` is always the start of the song.
 
 
   **Parameters**
@@ -1728,9 +1415,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendStart(...)` {#sendStart}
 
 
-Sends a **start** real-time message. A MIDI Start message starts the playback of the current
-song at beat 0. To start playback elsewhere in the song, use the
-[`sendContinue()`](#sendContinue) method.
+Sends a **start** real-time message. A MIDI Start message starts the playback of the currentsong at beat 0. To start playback elsewhere in the song, use the[`sendContinue()`](#sendContinue) method.
 
 
   **Parameters**
@@ -1759,8 +1444,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendStop(...)` {#sendStop}
 
 
-Sends a **stop** real-time message. This tells the device connected to this output to stop
-playback immediately (or at the scheduled time, if specified).
+Sends a **stop** real-time message. This tells the device connected to this output to stopplayback immediately (or at the scheduled time, if specified).
 
 
   **Parameters**
@@ -1789,82 +1473,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendSysex(...)` {#sendSysex}
 
 
-Sends a MIDI [**system exclusive**](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)
-(*sysex*) message. There are two categories of system exclusive messages: manufacturer-specific
-messages and universal messages. Universal messages are further divided into three subtypes:
-
-  * Universal non-commercial (for research and testing): `0x7D`
-  * Universal non-realtime: `0x7E`
-  * Universal realtime: `0x7F`
-
-The method's first parameter (`identification`) identifies the type of message. If the value of
-`identification` is `0x7D` (125), `0x7E` (126) or `0x7F` (127), the message will be identified
-as a **universal non-commercial**, **universal non-realtime** or **universal realtime** message
-(respectively).
-
-If the `identification` value is an array or an integer between 0 and 124, it will be used to
-identify the manufacturer targeted by the message. The *MIDI Manufacturers Association*
-maintains a full list of
-[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).
-
-The `data` parameter should only contain the data of the message. When sending out the actual
-MIDI message, WEBMIDI.js will automatically prepend the data with the **sysex byte** (`0xF0`)
-and the identification byte(s). It will also automatically terminate the message with the
-**sysex end byte** (`0xF7`).
-
-To use the `sendSysex()` method, system exclusive message support must have been enabled. To
-do so, you must set the `sysex` option to `true` when calling
-[`WebMidi.enable()`](WebMidi#enable):
-
-```js
-WebMidi.enable({sysex: true})
-  .then(() => console.log("System exclusive messages are enabled");
-```
-
-##### Examples of manufacturer-specific system exclusive messages
-
-If you want to send a sysex message to a Korg device connected to the first output, you would
-use the following code:
-
-```js
-WebMidi.outputs[0].sendSysex(0x42, [0x1, 0x2, 0x3, 0x4, 0x5]);
-```
-In this case `0x42` is the ID of the manufacturer (Korg) and `[0x1, 0x2, 0x3, 0x4, 0x5]` is the
-data being sent.
-
-The parameters can be specified using any number notation (decimal, hex, binary, etc.).
-Therefore, the code above is equivalent to this code:
-
-```js
-WebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]);
-```
-
-Some manufacturers are identified using 3 bytes. In this case, you would use a 3-position array
-as the first parameter. For example, to send the same sysex message to a
-*Native Instruments* device:
-
-```js
-WebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);
-```
-
-There is no limit for the length of the data array. However, it is generally suggested to keep
-system exclusive messages to 64Kb or less.
-
-##### Example of universal system exclusive message
-
-If you want to send a universal sysex message, simply assign the correct identification number
-in the first parameter. Number `0x7D` (125) is for non-commercial, `0x7E` (126) is for
-non-realtime and `0x7F` (127) is for realtime.
-
-So, for example, if you wanted to send an identity request non-realtime message (`0x7E`), you
-could use the following:
-
-```js
-WebMidi.outputs[0].sendSysex(0x7E, [0x7F, 0x06, 0x01]);
-```
-
-For more details on the format of universal messages, consult the list of
-[universal sysex messages](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages).
+Sends a MIDI [**system exclusive**](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages)(*sysex*) message. There are two categories of system exclusive messages: manufacturer-specificmessages and universal messages. Universal messages are further divided into three subtypes:  * Universal non-commercial (for research and testing): `0x7D`  * Universal non-realtime: `0x7E`  * Universal realtime: `0x7F`The method's first parameter (`identification`) identifies the type of message. If the value of`identification` is `0x7D` (125), `0x7E` (126) or `0x7F` (127), the message will be identifiedas a **universal non-commercial**, **universal non-realtime** or **universal realtime** message(respectively).If the `identification` value is an array or an integer between 0 and 124, it will be used toidentify the manufacturer targeted by the message. The *MIDI Manufacturers Association*maintains a full list of[Manufacturer ID Numbers](https://www.midi.org/specifications-old/item/manufacturer-id-numbers).The `data` parameter should only contain the data of the message. When sending out the actualMIDI message, WEBMIDI.js will automatically prepend the data with the **sysex byte** (`0xF0`)and the identification byte(s). It will also automatically terminate the message with the**sysex end byte** (`0xF7`).To use the `sendSysex()` method, system exclusive message support must have been enabled. Todo so, you must set the `sysex` option to `true` when calling[`WebMidi.enable()`](WebMidi#enable):```jsWebMidi.enable({sysex: true})  .then(() => console.log("System exclusive messages are enabled");```##### Examples of manufacturer-specific system exclusive messagesIf you want to send a sysex message to a Korg device connected to the first output, you woulduse the following code:```jsWebMidi.outputs[0].sendSysex(0x42, [0x1, 0x2, 0x3, 0x4, 0x5]);```In this case `0x42` is the ID of the manufacturer (Korg) and `[0x1, 0x2, 0x3, 0x4, 0x5]` is thedata being sent.The parameters can be specified using any number notation (decimal, hex, binary, etc.).Therefore, the code above is equivalent to this code:```jsWebMidi.outputs[0].sendSysex(66, [1, 2, 3, 4, 5]);```Some manufacturers are identified using 3 bytes. In this case, you would use a 3-position arrayas the first parameter. For example, to send the same sysex message to a*Native Instruments* device:```jsWebMidi.outputs[0].sendSysex([0x00, 0x21, 0x09], [0x1, 0x2, 0x3, 0x4, 0x5]);```There is no limit for the length of the data array. However, it is generally suggested to keepsystem exclusive messages to 64Kb or less.##### Example of universal system exclusive messageIf you want to send a universal sysex message, simply assign the correct identification numberin the first parameter. Number `0x7D` (125) is for non-commercial, `0x7E` (126) is fornon-realtime and `0x7F` (127) is for realtime.So, for example, if you wanted to send an identity request non-realtime message (`0x7E`), youcould use the following:```jsWebMidi.outputs[0].sendSysex(0x7E, [0x7F, 0x06, 0x01]);```For more details on the format of universal messages, consult the list of[universal sysex messages](https://www.midi.org/specifications-old/item/table-4-universal-system-exclusive-messages).
 
 
   **Parameters**
@@ -1891,18 +1500,14 @@ Returns the `Output` object so methods can be chained.
 
 
 **Throws**:
-  * `DOMException` : Failed to execute 'send' on 'MIDIOutput': System exclusive message is
-not allowed.
-  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index x is greater
-than 0xFF.
+  * `DOMException` : Failed to execute 'send' on 'MIDIOutput': System exclusive message isnot allowed.
+  * `TypeError` : Failed to execute 'send' on 'MIDIOutput': The value at index x is greaterthan 0xFF.
 
 
 ### `.sendTimecodeQuarterFrame(...)` {#sendTimecodeQuarterFrame}
 
 
-Sends a MIDI **timecode quarter frame** message. Please note that no processing is being done
-on the data. It is up to the developer to format the data according to the
-[MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
+Sends a MIDI **timecode quarter frame** message. Please note that no processing is being doneon the data. It is up to the developer to format the data according to the[MIDI Timecode](https://en.wikipedia.org/wiki/MIDI_timecode) format.
 
 
   **Parameters**
@@ -1963,8 +1568,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the
-*MIDI Tuning Standard*, which is not widely implemented.
+Sets the MIDI tuning bank to use. Note that the **Tuning Bank** parameter is part of the*MIDI Tuning Standard*, which is not widely implemented.
 
 
   **Parameters**
@@ -1998,8 +1602,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the
-*MIDI Tuning Standard*, which is not widely implemented.
+Sets the MIDI tuning program to use. Note that the **Tuning Program** parameter is part of the*MIDI Tuning Standard*, which is not widely implemented.
 
 
   **Parameters**
@@ -2032,16 +1635,7 @@ Returns the `Output` object so methods can be chained.
 ### `.stopNote(...)` {#stopNote}
 
 
-Sends a **note off** message for the specified MIDI note number on the specified channel(s).
-The first parameter is the note to stop. It can be a single value or an array of the following
-valid values:
-
- - A MIDI note number (integer between `0` and `127`)
- - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`)
- - A [`Note`](Note) object
-
-The execution of the **note off** command can be delayed by using the `time` property of the
-`options` parameter.
+Sends a **note off** message for the specified MIDI note number on the specified channel(s).The first parameter is the note to stop. It can be a single value or an array of the followingvalid values: - A MIDI note number (integer between `0` and `127`) - A note identifier (e.g. `"C3"`, `"G#4"`, `"F-1"`, `"Db7"`) - A [`Note`](Note) objectThe execution of the **note off** command can be delayed by using the `time` property of the`options` parameter.
 
 
   **Parameters**
@@ -2177,8 +1771,7 @@ after a certain time if the event is not triggered.
 <a id="event:closed"></a>
 
 
-Event emitted when the [Output](Output) has been closed by calling the
-[close()](Output#close) method.
+Event emitted when the [Output](Output) has been closed by calling the[close()](Output#close) method.
 
 
 
@@ -2197,8 +1790,7 @@ Event emitted when the [Output](Output) has been closed by calling the
 <a id="event:disconnected"></a>
 
 
-Event emitted when the [Output](Output) becomes unavailable. This event is typically fired
-when the MIDI device is unplugged.
+Event emitted when the [Output](Output) becomes unavailable. This event is typically firedwhen the MIDI device is unplugged.
 
 
 
@@ -2217,8 +1809,7 @@ when the MIDI device is unplugged.
 <a id="event:opened"></a>
 
 
-Event emitted when the [Output](Output) has been opened by calling the
-[open()](Output#open) method.
+Event emitted when the [Output](Output) has been opened by calling the[open()](Output#open) method.
 
 
 

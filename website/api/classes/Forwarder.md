@@ -1,15 +1,7 @@
 
 # Forwarder
 
-The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When you
-call its [`forward()`](#forward) method, it will send the specified [`Message`](Message) object
-to all the outputs listed in its [`destinations`](#destinations) property.
-
-If specific channels or message types have been defined in the [`channels`](#channels) or
-[`types`](#types) properties, only messages matching the channels/types will be forwarded.
-
-While it can be manually instantiated, you are more likely to come across a `Forwarder` object as
-the return value of the [`Input.addForwarder()`](Input#addForwarder) method.
+The `Forwarder` class allows the forwarding of MIDI messages to predetermined outputs. When youcall its [`forward()`](#forward) method, it will send the specified [`Message`](Message) objectto all the outputs listed in its [`destinations`](#destinations) property.If specific channels or message types have been defined in the [`channels`](#channels) or[`types`](#types) properties, only messages matching the channels/types will be forwarded.While it can be manually instantiated, you are more likely to come across a `Forwarder` object asthe return value of the [`Input.addForwarder()`](Input#addForwarder) method.
 
 **Since**: 3.0.0
 
@@ -45,8 +37,7 @@ Creates a `Forwarder` object.
 **Type**: Array.&lt;number&gt;<br />
 
 
-An array of MIDI channel numbers that the message must match in order to be forwarded. By
-default, this array includes all MIDI channels (`1` to `16`).
+An array of MIDI channel numbers that the message must match in order to be forwarded. Bydefault, this array includes all MIDI channels (`1` to `16`).
 
 
 ### `.destinations` {#destinations}
@@ -67,10 +58,7 @@ Indicates whether message forwarding is currently suspended or not in this forwa
 **Type**: Array.&lt;string&gt;<br />
 
 
-An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in order
-for messages to be forwarded. By default, this array includes all
-[`Enumerations.SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) and
-[`Enumerations.CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
+An array of message types (`"noteon"`, `"controlchange"`, etc.) that must be matched in orderfor messages to be forwarded. By default, this array includes all[`Enumerations.SYSTEM_MESSAGES`](Enumerations#SYSTEM_MESSAGES) and[`Enumerations.CHANNEL_MESSAGES`](Enumerations#CHANNEL_MESSAGES).
 
 
 
@@ -82,8 +70,7 @@ for messages to be forwarded. By default, this array includes all
 ### `.forward(...)` {#forward}
 
 
-Sends the specified message to the forwarder's destination(s) if it matches the specified
-type(s) and channel(s).
+Sends the specified message to the forwarder's destination(s) if it matches the specifiedtype(s) and channel(s).
 
 
   **Parameters**
