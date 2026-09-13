@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkdocusaurus||=[]).push([[7472],{5513(e){e.exports=JSON.parse('{"title":"Recent posts","items":[{"title":"WEBMIDI.js v3 is available now!","permalink":"/blog/2021/12/01/version-3-has-been-released"}]}')}}]);
