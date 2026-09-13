@@ -8,7 +8,7 @@
 
   text-align: center;
 
-  @media screen and(max-width: 1000px){
+  @media screen and (max-width: 1000px){
     min-height: 40vh;
     padding-top: 0;
   }
@@ -20,7 +20,7 @@
     background: center url("/img/webmidijs-logo-dark.svg") no-repeat;
     margin: auto;
 
-    @media screen and(max-width: 500px){
+    @media screen and (max-width: 500px){
       height: 10em;
       margin: var(--spacing-md) 0;
     }
@@ -50,7 +50,7 @@
     .Button:nth-child(1){
       margin-left: 0;
     }
-    /*@media screen and(max-width: 1000px){
+    /*@media screen and (max-width: 1000px){
       justify-content: center;
 
     }*/
@@ -59,7 +59,7 @@
     margin: auto;
   }
   .texts{
-    @media screen and(max-width: 1000px){
+    @media screen and (max-width: 1000px){
       order: 2;
     }
   }
@@ -89,7 +89,7 @@
 
     box-shadow: 10px 10px 0 rgba(255, 208, 0, 0.5);
 
-    @media screen and(max-width: 1000px){
+    @media screen and (max-width: 1000px){
       width: 90%;
       margin: var(--spacing-md) auto;
     }
@@ -106,7 +106,7 @@
 
   .media :nth-child(1){
     background: center url("/img/front-page/webmidi-demonstration.svg") no-repeat;
-    @media screen and(max-width: 1000px){
+    @media screen and (max-width: 1000px){
       background: center url("/img/front-page/webmidi-demonstration-vertical.svg") no-repeat;
     }
   }

@@ -40,16 +40,18 @@ html[data-theme=dark] .hero .logo {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  /*@media screen and(max-width: 1000px){
-    justify-content: center;
-
-  }*/
 }
 .hero .cta .Button {
   margin: var(--spacing-sm) 0 0 var(--spacing-sm);
 }
 .hero .cta .Button:nth-child(1) {
   margin-left: 0;
+}
+.hero .cta {
+  /*@media screen and (max-width: 1000px){
+    justify-content: center;
+
+  }*/
 }
 .hero .img {
   margin: auto;
