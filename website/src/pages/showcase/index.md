@@ -201,6 +201,11 @@ page on GitHub and submit a pull request.
   WEBMIDI.js for MIDI control of the device. 
 
 ## SysEx Librarian
+* ### [Bipluk](https://bipluk.com)
+  Created by: **Max Comperatore**
+
+  Bipluk is a browser-native Web MIDI SysEx librarian and cloud vault for 80+ vintage synthesizers (Yamaha DX7, Roland Juno-106, Korg M1, Sequential Prophet, Casio CZ). Features 31,250 baud CPU pacing, real-time ASCII patch decoding, and cloud backup.
+
 * ### [Patchup](https://www.patchup.app)
   Created by: **Middledot Tech**
 
