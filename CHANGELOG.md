@@ -21,11 +21,6 @@ removed in v4.
 - The `unknownmessage` event dispatched by `InputChannel` was missing from the documentation and,
 as a result, from the generated TypeScript definitions.
 
-- The documentation of `Output` referred to `setKeyAftertouch()` and `setChannelAftertouch()`, which
-no longer exist. The methods are `sendKeyAftertouch()` and `sendChannelAftertouch()`.
-
-- Various broken links and anchors in the generated API documentation.
-
 ## [3.0.0]
 
 ### Added
