@@ -1168,7 +1168,7 @@ export class Input extends EventEmitter {
  * milliseconds since the navigation start of the document).
  * @property {string} type `unknownmessage`
  *
- * @since 3.2.0
+ * @since 3.3.0
  */
 
 /**
