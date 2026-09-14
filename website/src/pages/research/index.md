@@ -15,7 +15,7 @@ invite academics to cite it in their publication whenever appropriate:
 
 You can also cite the library itself like so (APA style):
 
-> Côté, J. P. (2025). WEBMIDI.js v3.1.14 [Computer Software]. Retrieved from 
+> Cô, J. P. (2025). WEBMIDI.js v3.1.14 [Computer Software]. Retrieved from 
 > https://github.com/djipco/webmidi
 
 ## Papers Citing Usage of WEBMIDI.js

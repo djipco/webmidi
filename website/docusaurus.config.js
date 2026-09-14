@@ -179,7 +179,7 @@ module.exports = {
           ],
         },
       ],
-      copyright: `© 2015-${new Date().getFullYear()} Jean-Philippe Côté`,
+      copyright: `© 2015-${new Date().getFullYear()} Jean-Philippe Cô`,
     },
     prism: {
       theme: lightCodeTheme,

@@ -2,7 +2,7 @@
 
 ## Who created this?
 
-**WEBMIDI.js** is a passion project of mine. I am Jean-Philippe Côté (a.k.a. 
+**WEBMIDI.js** is a passion project of mine. I am Jean-Philippe Cô (a.k.a. 
 [djip.co](https://djip.co)), an 
 [academic](https://www.cegepmontpetit.ca/cegep/recherche/professeurs-chercheurs/jean-philippe-cote) 
 and artist with particular interests in creative coding, interactive arts and music technology. You 
@@ -31,4 +31,4 @@ Unless required by applicable law or agreed to in writing, software distributed 
 is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or
 implied. See the above license for the specific language governing permissions and limitations.
 
-© 2015-2023, Jean-Philippe Côté.
+© 2015-2026, Jean-Philippe Cô.
