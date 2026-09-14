@@ -9,7 +9,6 @@ import {useThemeConfig} from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.scss";
 import useDocusaurusContext from "@docusaurus/useDocusaurusContext";
-import {Helmet} from "react-helmet";
 
 function Footer() {
 
@@ -50,10 +49,6 @@ function Footer() {
           />
         ) : null}
       </div>
-
-      <Helmet>
-        <script id="mcjs" src="/js/newsletter-popup.js" type="text/javascript" />
-      </Helmet>
 
     </footer>
   );

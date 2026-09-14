@@ -20,7 +20,7 @@ module.exports = {
   // trailingSlash: false,
 
   scripts: [
-
+    {src: "/js/newsletter-popup.js", id: "mcjs"},
   ],
   themeConfig: {
     navbar: {
