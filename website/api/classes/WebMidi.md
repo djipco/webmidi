@@ -7,7 +7,7 @@ The `WebMidi` object makes it easier to work with the low-level Web MIDI API. Ba
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`connected`](#event:connected), [`disabled`](#event:disabled), [`disconnected`](#event:disconnected), [`enabled`](#event:enabled), [`error`](#event:error), [`midiaccessgranted`](#event:midiaccessgranted), [`portschanged`](#event:portschanged)
+**Fires**: [`connected`](#event-connected), [`disabled`](#event-disabled), [`disconnected`](#event-disconnected), [`enabled`](#event-enabled), [`error`](#event-error), [`midiaccessgranted`](#event-midiaccessgranted), [`portschanged`](#event-portschanged)
 
 ### `Constructor`
 

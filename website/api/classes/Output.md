@@ -7,7 +7,7 @@ The `Output` class represents a single MIDI output port (not to be confused with
 **Extends**: [`EventEmitter`](EventEmitter)
 <!--**Extends**: EventEmitter-->
 
-**Fires**: [`closed`](#event:closed), [`disconnected`](#event:disconnected), [`opened`](#event:opened)
+**Fires**: [`closed`](#event-closed), [`disconnected`](#event-disconnected), [`opened`](#event-opened)
 
 ### `Constructor`
 
