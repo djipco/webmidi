@@ -629,7 +629,7 @@ Sends an **all sound off** channel mode message. This will silence all sounds pl
 
 **Since**: 3.0.0<br />
 
-Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specificaftertouch, you should instead use [`setKeyAftertouch()`](#setKeyAftertouch).
+Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specificaftertouch, you should instead use [`sendKeyAftertouch()`](#sendKeyAftertouch).
 
 
   **Parameters**
@@ -791,7 +791,7 @@ Returns the `Output` object so methods can be chained.
 
 **Since**: 3.0.0<br />
 
-Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. Thisis a key-specific aftertouch. For a channel-wide aftertouch message, use[`setChannelAftertouch()`](#setChannelAftertouch).
+Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. Thisis a key-specific aftertouch. For a channel-wide aftertouch message, use[`sendChannelAftertouch()`](#sendChannelAftertouch).
 
 
   **Parameters**
