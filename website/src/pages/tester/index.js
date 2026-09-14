@@ -1,6 +1,5 @@
 import React from "react";
 import Layout from "@theme/Layout";
-import {Helmet} from "react-helmet";
 
 
 
@@ -17,10 +16,6 @@ import {Helmet} from "react-helmet";
 function Tester() {
   return (
     <Layout title="Tester">
-
-      <Helmet>
-        {/*<div id={}></div>*/}
-      </Helmet>
 
       <div
         style={{

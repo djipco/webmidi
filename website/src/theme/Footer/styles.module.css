@@ -43,8 +43,5 @@
   height: 50px;
   object-fit: fill;
 }
-html[data-theme=light] .footer .container img {
-  filter: invert(1);
-}
 
 /*# sourceMappingURL=styles.module.css.map */

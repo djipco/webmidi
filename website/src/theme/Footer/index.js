@@ -5,6 +5,7 @@
  * LICENSE file in the root directory of this source tree.
  */
 import React from "react";
+import clsx from "clsx";
 import {useThemeConfig} from "@docusaurus/theme-common";
 import useBaseUrl from "@docusaurus/useBaseUrl";
 import styles from "./styles.module.scss";
@@ -15,18 +16,17 @@ function Footer() {
   const {footer} = useThemeConfig();
   // eslint-disable-next-line no-unused-vars
   const {sponsors = []} = useDocusaurusContext();
-  const {copyright,} = footer || {};
+  const {copyright, style} = footer || {};
 
+  const sponsorLogoPath = useBaseUrl("img/sponsors/edouard-montpetit-logo.svg");
 
   if (!footer) {
     return null;
   }
 
-  const sponsorLogoPath = useBaseUrl("img/sponsors/edouard-montpetit-logo.svg");
-
   return (
     <footer
-      className={`footer ${styles.footer}`}>
+      className={clsx("footer", styles.footer, {"footer--dark": style === "dark"})}>
       <div className={`container ${styles.container}`}>
         <div className={styles.sponsor}>
           <p>This project is supported in part by:</p>
