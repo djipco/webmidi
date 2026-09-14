@@ -150,7 +150,7 @@ Adds a listener for the specified event. It returns the [`Listener`](Listener) o
 that was created and attached to the event.
 
 To attach a global listener that will be triggered for any events, use
-[`EventEmitter.ANY_EVENT`](#ANY_EVENT) as the first parameter. Note that a global
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter. Note that a global
 listener will also be triggered by non-registered events.
 
 
@@ -726,7 +726,7 @@ Returns the `Output` object so methods can be chained.
 ### `.sendContinue(...)` {#sendContinue}
 
 
-Sends a **continue** real-time message. This resumes song playback where it was previouslystopped or where it was last cued with a song position message. To start playback from thestart, use the [`sendStart()`](#Output+sendStart)` method.
+Sends a **continue** real-time message. This resumes song playback where it was previouslystopped or where it was last cued with a song position message. To start playback from thestart, use the [`sendStart()`](#sendStart)` method.
 
 
   **Parameters**

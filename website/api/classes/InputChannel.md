@@ -127,7 +127,7 @@ Adds a listener for the specified event. It returns the [`Listener`](Listener) o
 that was created and attached to the event.
 
 To attach a global listener that will be triggered for any events, use
-[`EventEmitter.ANY_EVENT`](#ANY_EVENT) as the first parameter. Note that a global
+[`EventEmitter.ANY_EVENT`](EventEmitter#ANY_EVENT) as the first parameter. Note that a global
 listener will also be triggered by non-registered events.
 
 
