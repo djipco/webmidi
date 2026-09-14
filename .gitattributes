@@ -1,0 +1,7 @@
+# Keep text files as LF in the repository *and* in the working tree.
+#
+# Without this, Windows checkouts get CRLF through core.autocrlf, which trips the ESLint
+# linebreak-style rule and makes IDE-regenerated CSS look modified to git even when its content is
+# unchanged. Declaring the policy here keeps every clone consistent, whatever the platform.
+
+* text=auto eol=lf
