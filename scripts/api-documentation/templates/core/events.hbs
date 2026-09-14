@@ -4,6 +4,7 @@
 
     - inlineLinks
     - stripNewlines
+    - eq
 
 }}
 {{#if this}}
@@ -24,6 +25,13 @@
 {{! Since }}
 {{#if since}}
 **Since**: {{since}}
+{{/if}}
+
+{{! Deprecation notice }}
+{{#if deprecated}}
+:::warning Deprecated
+{{#if (eq deprecated true)}}This event is deprecated.{{else}}{{{inlineLinks deprecated}}}{{/if}}
+:::
 {{/if}}
 
 {{! Properties }}
