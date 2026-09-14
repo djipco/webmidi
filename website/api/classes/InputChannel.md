@@ -1,7 +1,12 @@
 
 # InputChannel
 
-The `InputChannel` class represents a single MIDI input channel (1-16) from a single inputdevice. This object is derived from the host's MIDI subsystem and should not be instantiateddirectly.All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)property.
+The `InputChannel` class represents a single MIDI input channel (1-16) from a single input
+device. This object is derived from the host's MIDI subsystem and should not be instantiated
+directly.
+
+All 16 `InputChannel` objects can be found inside the input's [`channels`](Input#channels)
+property.
 
 **Since**: 3.0.0
 
@@ -88,7 +93,8 @@ The [`Input`](Input) this channel belongs to.
 **Type**: Array.&lt;boolean&gt;<br />
 
 
-Contains the current playing state of all MIDI notes of this channel (0-127). The state is`true` for a currently playing note and `false` otherwise.
+Contains the current playing state of all MIDI notes of this channel (0-127). The state is
+`true` for a currently playing note and `false` otherwise.
 
 
 ### `.number` {#number}
@@ -104,14 +110,30 @@ This channel's MIDI number (1-16).
 **Type**: number<br />
 
 
-An integer to offset the reported octave of incoming note-specific messages (`noteon`,`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4thoctave (C4).If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.Note that this value is combined with the global offset value defined by[`WebMidi.octaveOffset`](WebMidi#octaveOffset) object and with the value defined on the parentinput object with [`Input.octaveOffset`](Input#octaveOffset).
+An integer to offset the reported octave of incoming note-specific messages (`noteon`,
+`noteoff` and `keyaftertouch`). By default, middle C (MIDI note number 60) is placed on the 4th
+octave (C4).
+
+If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+
+Note that this value is combined with the global offset value defined by
+[`WebMidi.octaveOffset`](WebMidi#octaveOffset) object and with the value defined on the parent
+input object with [`Input.octaveOffset`](Input#octaveOffset).
 
 
 ### `.parameterNumberEventsEnabled` {#parameterNumberEventsEnabled}
 **Type**: boolean<br />
 
 
-Indicates whether events for **Registered Parameter Number** and **Non-Registered ParameterNumber** should be dispatched. RPNs and NRPNs are composed of a sequence of specific**control change** messages. When a valid sequence of such control change messages isreceived, an [`rpn`](#event-rpn) or [`nrpn`](#event-nrpn) event will fire.If an invalid or out-of-order **control change** message is received, it will fall throughthe collector logic and all buffered **control change** messages will be discarded asincomplete.
+Indicates whether events for **Registered Parameter Number** and **Non-Registered Parameter
+Number** should be dispatched. RPNs and NRPNs are composed of a sequence of specific
+**control change** messages. When a valid sequence of such control change messages is
+received, an [`rpn`](#event-rpn) or [`nrpn`](#event-nrpn) event will fire.
+
+If an invalid or out-of-order **control change** message is received, it will fall through
+the collector logic and all buffered **control change** messages will be discarded as
+incomplete.
 
 
 
@@ -211,7 +233,8 @@ The newly created [`Listener`](Listener) object.
 ### `.destroy()` {#destroy}
 
 
-Destroys the `InputChannel` by removing all listeners and severing the link with the MIDIsubsystem's input.
+Destroys the `InputChannel` by removing all listeners and severing the link with the MIDI
+subsystem's input.
 
 
 
@@ -334,7 +357,11 @@ An array of [`Listener`](Listener) objects.
 
 **Since**: version 3.0.0<br />
 
-Returns the playing status of the specified note (`true` if the note is currently playing,`false` if it is not). The `note` parameter can be an unsigned integer (0-127), a noteidentifier (`"C4"`, `"G#5"`, etc.) or a [`Note`](Note) object.IF the note is specified using an integer (0-127), no octave offset will be applied.
+Returns the playing status of the specified note (`true` if the note is currently playing,
+`false` if it is not). The `note` parameter can be an unsigned integer (0-127), a note
+identifier (`"C4"`, `"G#5"`, etc.) or a [`Note`](Note) object.
+
+IF the note is specified using an integer (0-127), no octave offset will be applied.
 
 
   **Parameters**
@@ -620,7 +647,8 @@ Event emitted when a **control change** MIDI message has been received.
 <a id="event:controlchange-allnotesoff"></a>
 
 
-Event emitted when a **controlchange-allnotesoff** MIDI message has beenreceived.
+Event emitted when a **controlchange-allnotesoff** MIDI message has been
+received.
 
 
 
@@ -647,7 +675,8 @@ Event emitted when a **controlchange-allnotesoff** MIDI message has beenreceive
 <a id="event:controlchange-allsoundoff"></a>
 
 
-Event emitted when a **controlchange-allsoundoff** MIDI message has beenreceived.
+Event emitted when a **controlchange-allsoundoff** MIDI message has been
+received.
 
 
 
@@ -674,7 +703,8 @@ Event emitted when a **controlchange-allsoundoff** MIDI message has beenreceive
 <a id="event:controlchange-attacktime"></a>
 
 
-Event emitted when a **controlchange-attacktime** MIDI message has beenreceived.
+Event emitted when a **controlchange-attacktime** MIDI message has been
+received.
 
 
 
@@ -701,7 +731,8 @@ Event emitted when a **controlchange-attacktime** MIDI message has beenreceived
 <a id="event:controlchange-balancecoarse"></a>
 
 
-Event emitted when a **controlchange-balancecoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-balancecoarse** MIDI message has been
+received.
 
 
 
@@ -728,7 +759,8 @@ Event emitted when a **controlchange-balancecoarse** MIDI message has beenrecei
 <a id="event:controlchange-balancefine"></a>
 
 
-Event emitted when a **controlchange-balancefine** MIDI message has beenreceived.
+Event emitted when a **controlchange-balancefine** MIDI message has been
+received.
 
 
 
@@ -755,7 +787,8 @@ Event emitted when a **controlchange-balancefine** MIDI message has beenreceive
 <a id="event:controlchange-bankselectcoarse"></a>
 
 
-Event emitted when a **controlchange-bankselectcoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-bankselectcoarse** MIDI message has been
+received.
 
 
 
@@ -782,7 +815,8 @@ Event emitted when a **controlchange-bankselectcoarse** MIDI message has beenre
 <a id="event:controlchange-bankselectfine"></a>
 
 
-Event emitted when a **controlchange-bankselectfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-bankselectfine** MIDI message has been
+received.
 
 
 
@@ -809,7 +843,8 @@ Event emitted when a **controlchange-bankselectfine** MIDI message has beenrece
 <a id="event:controlchange-breathcontrollercoarse"></a>
 
 
-Event emitted when a **controlchange-breathcontrollercoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-breathcontrollercoarse** MIDI message has been
+received.
 
 
 
@@ -836,7 +871,8 @@ Event emitted when a **controlchange-breathcontrollercoarse** MIDI message has b
 <a id="event:controlchange-breathcontrollerfine"></a>
 
 
-Event emitted when a **controlchange-breathcontrollerfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-breathcontrollerfine** MIDI message has been
+received.
 
 
 
@@ -863,7 +899,8 @@ Event emitted when a **controlchange-breathcontrollerfine** MIDI message has bee
 <a id="event:controlchange-brightness"></a>
 
 
-Event emitted when a **controlchange-brightness** MIDI message has beenreceived.
+Event emitted when a **controlchange-brightness** MIDI message has been
+received.
 
 
 
@@ -890,7 +927,8 @@ Event emitted when a **controlchange-brightness** MIDI message has beenreceived
 <a id="event:controlchange-channelvolumefine"></a>
 
 
-Event emitted when a **controlchange-channelvolumefine** MIDI message has beenreceived.
+Event emitted when a **controlchange-channelvolumefine** MIDI message has been
+received.
 
 
 
@@ -917,7 +955,9 @@ Event emitted when a **controlchange-channelvolumefine** MIDI message has beenr
 <a id="event:controlchange-controllerxxx"></a>
 
 
-Event emitted when a **control change** MIDI message has been received and that message istargeting the controller numbered "xxx". Of course, "xxx" should be replaced by a validcontroller number (0-127).
+Event emitted when a **control change** MIDI message has been received and that message is
+targeting the controller numbered "xxx". Of course, "xxx" should be replaced by a valid
+controller number (0-127).
 
 
 
@@ -944,7 +984,8 @@ Event emitted when a **control change** MIDI message has been received and that 
 <a id="event:controlchange-damperpedal"></a>
 
 
-Event emitted when a **controlchange-damperpedal** MIDI message has beenreceived.
+Event emitted when a **controlchange-damperpedal** MIDI message has been
+received.
 
 
 
@@ -971,7 +1012,8 @@ Event emitted when a **controlchange-damperpedal** MIDI message has beenreceive
 <a id="event:controlchange-datadecrement"></a>
 
 
-Event emitted when a **controlchange-datadecrement** MIDI message has beenreceived.
+Event emitted when a **controlchange-datadecrement** MIDI message has been
+received.
 
 
 
@@ -998,7 +1040,8 @@ Event emitted when a **controlchange-datadecrement** MIDI message has beenrecei
 <a id="event:controlchange-dataentrycoarse"></a>
 
 
-Event emitted when a **controlchange-dataentrycoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-dataentrycoarse** MIDI message has been
+received.
 
 
 
@@ -1025,7 +1068,8 @@ Event emitted when a **controlchange-dataentrycoarse** MIDI message has beenrec
 <a id="event:controlchange-dataentryfine"></a>
 
 
-Event emitted when a **controlchange-dataentryfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-dataentryfine** MIDI message has been
+received.
 
 
 
@@ -1052,7 +1096,8 @@ Event emitted when a **controlchange-dataentryfine** MIDI message has beenrecei
 <a id="event:controlchange-dataincrement"></a>
 
 
-Event emitted when a **controlchange-dataincrement** MIDI message has beenreceived.
+Event emitted when a **controlchange-dataincrement** MIDI message has been
+received.
 
 
 
@@ -1079,7 +1124,8 @@ Event emitted when a **controlchange-dataincrement** MIDI message has beenrecei
 <a id="event:controlchange-decaytime"></a>
 
 
-Event emitted when a **controlchange-decaytime** MIDI message has beenreceived.
+Event emitted when a **controlchange-decaytime** MIDI message has been
+received.
 
 
 
@@ -1106,7 +1152,8 @@ Event emitted when a **controlchange-decaytime** MIDI message has beenreceived.
 <a id="event:controlchange-effect1depth"></a>
 
 
-Event emitted when a **controlchange-effect1depth** MIDI message has beenreceived.
+Event emitted when a **controlchange-effect1depth** MIDI message has been
+received.
 
 
 
@@ -1133,7 +1180,8 @@ Event emitted when a **controlchange-effect1depth** MIDI message has beenreceiv
 <a id="event:controlchange-effect2depth"></a>
 
 
-Event emitted when a **controlchange-effect2depth** MIDI message has beenreceived.
+Event emitted when a **controlchange-effect2depth** MIDI message has been
+received.
 
 
 
@@ -1160,7 +1208,8 @@ Event emitted when a **controlchange-effect2depth** MIDI message has beenreceiv
 <a id="event:controlchange-effect3depth"></a>
 
 
-Event emitted when a **controlchange-effect3depth** MIDI message has beenreceived.
+Event emitted when a **controlchange-effect3depth** MIDI message has been
+received.
 
 
 
@@ -1187,7 +1236,8 @@ Event emitted when a **controlchange-effect3depth** MIDI message has beenreceiv
 <a id="event:controlchange-effect4depth"></a>
 
 
-Event emitted when a **controlchange-effect4depth** MIDI message has beenreceived.
+Event emitted when a **controlchange-effect4depth** MIDI message has been
+received.
 
 
 
@@ -1214,7 +1264,8 @@ Event emitted when a **controlchange-effect4depth** MIDI message has beenreceiv
 <a id="event:controlchange-effect5depth"></a>
 
 
-Event emitted when a **controlchange-effect5depth** MIDI message has beenreceived.
+Event emitted when a **controlchange-effect5depth** MIDI message has been
+received.
 
 
 
@@ -1241,7 +1292,8 @@ Event emitted when a **controlchange-effect5depth** MIDI message has beenreceiv
 <a id="event:controlchange-effectcontrol1coarse"></a>
 
 
-Event emitted when a **controlchange-effectcontrol1coarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-effectcontrol1coarse** MIDI message has been
+received.
 
 
 
@@ -1268,7 +1320,8 @@ Event emitted when a **controlchange-effectcontrol1coarse** MIDI message has bee
 <a id="event:controlchange-effectcontrol1fine"></a>
 
 
-Event emitted when a **controlchange-effectcontrol1fine** MIDI message has beenreceived.
+Event emitted when a **controlchange-effectcontrol1fine** MIDI message has been
+received.
 
 
 
@@ -1295,7 +1348,8 @@ Event emitted when a **controlchange-effectcontrol1fine** MIDI message has been
 <a id="event:controlchange-effectcontrol2coarse"></a>
 
 
-Event emitted when a **controlchange-effectcontrol2coarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-effectcontrol2coarse** MIDI message has been
+received.
 
 
 
@@ -1322,7 +1376,8 @@ Event emitted when a **controlchange-effectcontrol2coarse** MIDI message has bee
 <a id="event:controlchange-effectcontrol2fine"></a>
 
 
-Event emitted when a **controlchange-effectcontrol2fine** MIDI message has beenreceived.
+Event emitted when a **controlchange-effectcontrol2fine** MIDI message has been
+received.
 
 
 
@@ -1349,7 +1404,8 @@ Event emitted when a **controlchange-effectcontrol2fine** MIDI message has been
 <a id="event:controlchange-expressioncoarse"></a>
 
 
-Event emitted when a **controlchange-expressioncoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-expressioncoarse** MIDI message has been
+received.
 
 
 
@@ -1376,7 +1432,8 @@ Event emitted when a **controlchange-expressioncoarse** MIDI message has beenre
 <a id="event:controlchange-expressionfine"></a>
 
 
-Event emitted when a **controlchange-expressionfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-expressionfine** MIDI message has been
+received.
 
 
 
@@ -1403,7 +1460,8 @@ Event emitted when a **controlchange-expressionfine** MIDI message has beenrece
 <a id="event:controlchange-footcontrollercoarse"></a>
 
 
-Event emitted when a **controlchange-footcontrollercoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-footcontrollercoarse** MIDI message has been
+received.
 
 
 
@@ -1430,7 +1488,8 @@ Event emitted when a **controlchange-footcontrollercoarse** MIDI message has bee
 <a id="event:controlchange-footcontrollerfine"></a>
 
 
-Event emitted when a **controlchange-footcontrollerfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-footcontrollerfine** MIDI message has been
+received.
 
 
 
@@ -1457,7 +1516,8 @@ Event emitted when a **controlchange-footcontrollerfine** MIDI message has been
 <a id="event:controlchange-generalpurposecontroller1"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller1** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller1** MIDI message has been
+received.
 
 
 
@@ -1484,7 +1544,8 @@ Event emitted when a **controlchange-generalpurposecontroller1** MIDI message ha
 <a id="event:controlchange-generalpurposecontroller2"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller2** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller2** MIDI message has been
+received.
 
 
 
@@ -1511,7 +1572,8 @@ Event emitted when a **controlchange-generalpurposecontroller2** MIDI message ha
 <a id="event:controlchange-generalpurposecontroller3"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller3** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller3** MIDI message has been
+received.
 
 
 
@@ -1538,7 +1600,8 @@ Event emitted when a **controlchange-generalpurposecontroller3** MIDI message ha
 <a id="event:controlchange-generalpurposecontroller4"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller4** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller4** MIDI message has been
+received.
 
 
 
@@ -1565,7 +1628,8 @@ Event emitted when a **controlchange-generalpurposecontroller4** MIDI message ha
 <a id="event:controlchange-generalpurposecontroller5"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller5** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller5** MIDI message has been
+received.
 
 
 
@@ -1592,7 +1656,8 @@ Event emitted when a **controlchange-generalpurposecontroller5** MIDI message ha
 <a id="event:controlchange-generalpurposecontroller6"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller6** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller6** MIDI message has been
+received.
 
 
 
@@ -1619,7 +1684,8 @@ Event emitted when a **controlchange-generalpurposecontroller6** MIDI message ha
 <a id="event:controlchange-generalpurposecontroller7"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller7** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller7** MIDI message has been
+received.
 
 
 
@@ -1646,7 +1712,8 @@ Event emitted when a **controlchange-generalpurposecontroller7** MIDI message ha
 <a id="event:controlchange-generalpurposecontroller8"></a>
 
 
-Event emitted when a **controlchange-generalpurposecontroller8** MIDI message has beenreceived.
+Event emitted when a **controlchange-generalpurposecontroller8** MIDI message has been
+received.
 
 
 
@@ -1673,7 +1740,8 @@ Event emitted when a **controlchange-generalpurposecontroller8** MIDI message ha
 <a id="event:controlchange-highresolutionvelocityprefix"></a>
 
 
-Event emitted when a **controlchange-highresolutionvelocityprefix** MIDI message has beenreceived.
+Event emitted when a **controlchange-highresolutionvelocityprefix** MIDI message has been
+received.
 
 
 
@@ -1700,7 +1768,8 @@ Event emitted when a **controlchange-highresolutionvelocityprefix** MIDI message
 <a id="event:controlchange-hold2"></a>
 
 
-Event emitted when a **controlchange-hold2** MIDI message has beenreceived.
+Event emitted when a **controlchange-hold2** MIDI message has been
+received.
 
 
 
@@ -1727,7 +1796,8 @@ Event emitted when a **controlchange-hold2** MIDI message has beenreceived.
 <a id="event:controlchange-legatopedal"></a>
 
 
-Event emitted when a **controlchange-legatopedal** MIDI message has beenreceived.
+Event emitted when a **controlchange-legatopedal** MIDI message has been
+received.
 
 
 
@@ -1754,7 +1824,8 @@ Event emitted when a **controlchange-legatopedal** MIDI message has beenreceive
 <a id="event:controlchange-localcontrol"></a>
 
 
-Event emitted when a **controlchange-localcontrol** MIDI message has beenreceived.
+Event emitted when a **controlchange-localcontrol** MIDI message has been
+received.
 
 
 
@@ -1781,7 +1852,8 @@ Event emitted when a **controlchange-localcontrol** MIDI message has beenreceiv
 <a id="event:controlchange-modulationwheelcoarse"></a>
 
 
-Event emitted when a **controlchange-modulationwheelcoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-modulationwheelcoarse** MIDI message has been
+received.
 
 
 
@@ -1808,7 +1880,8 @@ Event emitted when a **controlchange-modulationwheelcoarse** MIDI message has be
 <a id="event:controlchange-modulationwheelfine"></a>
 
 
-Event emitted when a **controlchange-modulationwheelfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-modulationwheelfine** MIDI message has been
+received.
 
 
 
@@ -1835,7 +1908,8 @@ Event emitted when a **controlchange-modulationwheelfine** MIDI message has been
 <a id="event:controlchange-monomodeon"></a>
 
 
-Event emitted when a **controlchange-monomodeon** MIDI message has beenreceived.
+Event emitted when a **controlchange-monomodeon** MIDI message has been
+received.
 
 
 
@@ -1862,7 +1936,8 @@ Event emitted when a **controlchange-monomodeon** MIDI message has beenreceived
 <a id="event:controlchange-nonregisteredparametercoarse"></a>
 
 
-Event emitted when a **controlchange-nonregisteredparametercoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-nonregisteredparametercoarse** MIDI message has been
+received.
 
 
 
@@ -1889,7 +1964,8 @@ Event emitted when a **controlchange-nonregisteredparametercoarse** MIDI message
 <a id="event:controlchange-nonregisteredparameterfine"></a>
 
 
-Event emitted when a **controlchange-nonregisteredparameterfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-nonregisteredparameterfine** MIDI message has been
+received.
 
 
 
@@ -1916,7 +1992,8 @@ Event emitted when a **controlchange-nonregisteredparameterfine** MIDI message h
 <a id="event:controlchange-omnimodeoff"></a>
 
 
-Event emitted when a **controlchange-omnimodeoff** MIDI message has beenreceived.
+Event emitted when a **controlchange-omnimodeoff** MIDI message has been
+received.
 
 
 
@@ -1943,7 +2020,8 @@ Event emitted when a **controlchange-omnimodeoff** MIDI message has beenreceive
 <a id="event:controlchange-omnimodeon"></a>
 
 
-Event emitted when a **controlchange-omnimodeon** MIDI message has beenreceived.
+Event emitted when a **controlchange-omnimodeon** MIDI message has been
+received.
 
 
 
@@ -1970,7 +2048,8 @@ Event emitted when a **controlchange-omnimodeon** MIDI message has beenreceived
 <a id="event:controlchange-pancoarse"></a>
 
 
-Event emitted when a **controlchange-pancoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-pancoarse** MIDI message has been
+received.
 
 
 
@@ -1997,7 +2076,8 @@ Event emitted when a **controlchange-pancoarse** MIDI message has beenreceived.
 <a id="event:controlchange-panfine"></a>
 
 
-Event emitted when a **controlchange-panfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-panfine** MIDI message has been
+received.
 
 
 
@@ -2024,7 +2104,8 @@ Event emitted when a **controlchange-panfine** MIDI message has beenreceived.
 <a id="event:controlchange-polymodeon"></a>
 
 
-Event emitted when a **controlchange-polymodeon** MIDI message has beenreceived.
+Event emitted when a **controlchange-polymodeon** MIDI message has been
+received.
 
 
 
@@ -2051,7 +2132,8 @@ Event emitted when a **controlchange-polymodeon** MIDI message has beenreceived
 <a id="event:controlchange-portamento"></a>
 
 
-Event emitted when a **controlchange-portamento** MIDI message has beenreceived.
+Event emitted when a **controlchange-portamento** MIDI message has been
+received.
 
 
 
@@ -2078,7 +2160,8 @@ Event emitted when a **controlchange-portamento** MIDI message has beenreceived
 <a id="event:controlchange-portamentocontrol"></a>
 
 
-Event emitted when a **controlchange-portamentocontrol** MIDI message has beenreceived.
+Event emitted when a **controlchange-portamentocontrol** MIDI message has been
+received.
 
 
 
@@ -2105,7 +2188,8 @@ Event emitted when a **controlchange-portamentocontrol** MIDI message has beenr
 <a id="event:controlchange-portamentotimecoarse"></a>
 
 
-Event emitted when a **controlchange-portamentotimecoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-portamentotimecoarse** MIDI message has been
+received.
 
 
 
@@ -2132,7 +2216,8 @@ Event emitted when a **controlchange-portamentotimecoarse** MIDI message has bee
 <a id="event:controlchange-portamentotimefine"></a>
 
 
-Event emitted when a **controlchange-portamentotimefine** MIDI message has beenreceived.
+Event emitted when a **controlchange-portamentotimefine** MIDI message has been
+received.
 
 
 
@@ -2159,7 +2244,8 @@ Event emitted when a **controlchange-portamentotimefine** MIDI message has been
 <a id="event:controlchange-registeredparametercoarse"></a>
 
 
-Event emitted when a **controlchange-registeredparametercoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-registeredparametercoarse** MIDI message has been
+received.
 
 
 
@@ -2186,7 +2272,8 @@ Event emitted when a **controlchange-registeredparametercoarse** MIDI message ha
 <a id="event:controlchange-registeredparameterfine"></a>
 
 
-Event emitted when a **controlchange-registeredparameterfine** MIDI message has beenreceived.
+Event emitted when a **controlchange-registeredparameterfine** MIDI message has been
+received.
 
 
 
@@ -2213,7 +2300,8 @@ Event emitted when a **controlchange-registeredparameterfine** MIDI message has 
 <a id="event:controlchange-releasetime"></a>
 
 
-Event emitted when a **controlchange-releasetime** MIDI message has beenreceived.
+Event emitted when a **controlchange-releasetime** MIDI message has been
+received.
 
 
 
@@ -2240,7 +2328,8 @@ Event emitted when a **controlchange-releasetime** MIDI message has beenreceive
 <a id="event:controlchange-resetallcontrollers"></a>
 
 
-Event emitted when a **controlchange-resetallcontrollers** MIDI message has beenreceived.
+Event emitted when a **controlchange-resetallcontrollers** MIDI message has been
+received.
 
 
 
@@ -2267,7 +2356,8 @@ Event emitted when a **controlchange-resetallcontrollers** MIDI message has been
 <a id="event:controlchange-resonance"></a>
 
 
-Event emitted when a **controlchange-resonance** MIDI message has beenreceived.
+Event emitted when a **controlchange-resonance** MIDI message has been
+received.
 
 
 
@@ -2294,7 +2384,8 @@ Event emitted when a **controlchange-resonance** MIDI message has beenreceived.
 <a id="event:controlchange-softpedal"></a>
 
 
-Event emitted when a **controlchange-softpedal** MIDI message has beenreceived.
+Event emitted when a **controlchange-softpedal** MIDI message has been
+received.
 
 
 
@@ -2321,7 +2412,8 @@ Event emitted when a **controlchange-softpedal** MIDI message has beenreceived.
 <a id="event:controlchange-sostenuto"></a>
 
 
-Event emitted when a **controlchange-sostenuto** MIDI message has beenreceived.
+Event emitted when a **controlchange-sostenuto** MIDI message has been
+received.
 
 
 
@@ -2348,7 +2440,8 @@ Event emitted when a **controlchange-sostenuto** MIDI message has beenreceived.
 <a id="event:controlchange-soundvariation"></a>
 
 
-Event emitted when a **controlchange-soundvariation** MIDI message has beenreceived.
+Event emitted when a **controlchange-soundvariation** MIDI message has been
+received.
 
 
 
@@ -2375,7 +2468,8 @@ Event emitted when a **controlchange-soundvariation** MIDI message has beenrece
 <a id="event:controlchange-vibratodelay"></a>
 
 
-Event emitted when a **controlchange-vibratodelay** MIDI message has beenreceived.
+Event emitted when a **controlchange-vibratodelay** MIDI message has been
+received.
 
 
 
@@ -2402,7 +2496,8 @@ Event emitted when a **controlchange-vibratodelay** MIDI message has beenreceiv
 <a id="event:controlchange-vibratodepth"></a>
 
 
-Event emitted when a **controlchange-vibratodepth** MIDI message has beenreceived.
+Event emitted when a **controlchange-vibratodepth** MIDI message has been
+received.
 
 
 
@@ -2429,7 +2524,8 @@ Event emitted when a **controlchange-vibratodepth** MIDI message has beenreceiv
 <a id="event:controlchange-vibratorate"></a>
 
 
-Event emitted when a **controlchange-vibratorate** MIDI message has beenreceived.
+Event emitted when a **controlchange-vibratorate** MIDI message has been
+received.
 
 
 
@@ -2456,7 +2552,8 @@ Event emitted when a **controlchange-vibratorate** MIDI message has beenreceive
 <a id="event:controlchange-volumecoarse"></a>
 
 
-Event emitted when a **controlchange-volumecoarse** MIDI message has beenreceived.
+Event emitted when a **controlchange-volumecoarse** MIDI message has been
+received.
 
 
 
@@ -2506,7 +2603,9 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 <a id="event:localcontrol"></a>
 
 
-Event emitted when a "local control" channel-mode MIDI message has been received. The valueproperty of the event is set to either `true` (local control on) of `false` (local controloff).
+Event emitted when a "local control" channel-mode MIDI message has been received. The value
+property of the event is set to either `true` (local control on) of `false` (local control
+off).
 
 
 
@@ -2548,7 +2647,9 @@ Event emitted when a MIDI message of any kind is received by an `InputChannel`
 <a id="event:monomode"></a>
 
 
-Event emitted when a "mono/poly mode" MIDI message has been received. The value property ofthe event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /poly mode on).
+Event emitted when a "mono/poly mode" MIDI message has been received. The value property of
+the event is set to either `true` (mono mode on / poly mode off) or `false` (mono mode off /
+poly mode on).
 
 
 
@@ -2616,7 +2717,15 @@ Event emitted when a **note on** MIDI message has been received.
 <a id="event:nrpn"></a>
 
 
-Event emitted when any NRPN message is received on the input. There are four subtypes of NRPNmessages:  * `nrpn-dataentrycoarse`  * `nrpn-dataentryfine`  * `nrpn-dataincrement`  * `nrpn-datadecrement`The parameter to which the message applies can be found in the event's `parameter` property.
+Event emitted when any NRPN message is received on the input. There are four subtypes of NRPN
+messages:
+
+  * `nrpn-dataentrycoarse`
+  * `nrpn-dataentryfine`
+  * `nrpn-dataincrement`
+  * `nrpn-datadecrement`
+
+The parameter to which the message applies can be found in the event's `parameter` property.
 
 
 
@@ -2642,7 +2751,10 @@ Event emitted when any NRPN message is received on the input. There are four sub
 <a id="event:nrpn-datadecrement"></a>
 
 
-Event emitted when an **NRPN data decrement** message is received on the input. The specificparameter to which the message applies can be found in the event's `parameter` property. Itis one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **NRPN data decrement** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2667,7 +2779,10 @@ Event emitted when an **NRPN data decrement** message is received on the input. 
 <a id="event:nrpn-dataentrycoarse"></a>
 
 
-Event emitted when an **NRPN data entry coarse** message is received on the input. Thespecific parameter to which the message applies can be found in the event's `parameter`property. It is one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **NRPN data entry coarse** message is received on the input. The
+specific parameter to which the message applies can be found in the event's `parameter`
+property. It is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2692,7 +2807,10 @@ Event emitted when an **NRPN data entry coarse** message is received on the inpu
 <a id="event:nrpn-dataentryfine"></a>
 
 
-Event emitted when an **NRPN data entry fine** message is received on the input. Thespecific parameter to which the message applies can be found in the event's `parameter`property. It is one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **NRPN data entry fine** message is received on the input. The
+specific parameter to which the message applies can be found in the event's `parameter`
+property. It is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2717,7 +2835,10 @@ Event emitted when an **NRPN data entry fine** message is received on the input.
 <a id="event:nrpn-dataincrement"></a>
 
 
-Event emitted when an **NRPN data increment** message is received on the input. The specificparameter to which the message applies can be found in the event's `parameter` property. Itis one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **NRPN data increment** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2742,7 +2863,8 @@ Event emitted when an **NRPN data increment** message is received on the input. 
 <a id="event:omnimode"></a>
 
 
-Event emitted when an "omni mode" channel-mode MIDI message has been received. The valueproperty of the event is set to either `true` (omni mode on) of `false` (omni mode off).
+Event emitted when an "omni mode" channel-mode MIDI message has been received. The value
+property of the event is set to either `true` (omni mode on) of `false` (omni mode off).
 
 
 
@@ -2827,7 +2949,17 @@ Event emitted when a "reset all controllers" channel-mode MIDI message has been 
 <a id="event:rpn"></a>
 
 
-Event emitted when any RPN message is received on the input. There are four subtypes of RPNmessages:  * `rpn-dataentrycoarse`  * `rpn-dataentryfine`  * `rpn-dataincrement`  * `rpn-datadecrement`The parameter to which the message applies can be found in the event's `parameter` property.It is one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when any RPN message is received on the input. There are four subtypes of RPN
+messages:
+
+  * `rpn-dataentrycoarse`
+  * `rpn-dataentryfine`
+  * `rpn-dataincrement`
+  * `rpn-datadecrement`
+
+The parameter to which the message applies can be found in the event's `parameter` property.
+It is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2853,7 +2985,10 @@ Event emitted when any RPN message is received on the input. There are four subt
 <a id="event:rpn-datadecrement"></a>
 
 
-Event emitted when an **RPN data decrement** message is received on the input. The specificparameter to which the message applies can be found in the event's `parameter` property. Itis one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **RPN data decrement** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2878,7 +3013,10 @@ Event emitted when an **RPN data decrement** message is received on the input. T
 <a id="event:rpn-dataentrycoarse"></a>
 
 
-Event emitted when an **RPN data entry coarse** message is received on the input. Thespecific parameter to which the message applies can be found in the event's `parameter`property. It is one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **RPN data entry coarse** message is received on the input. The
+specific parameter to which the message applies can be found in the event's `parameter`
+property. It is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2903,7 +3041,10 @@ Event emitted when an **RPN data entry coarse** message is received on the input
 <a id="event:rpn-dataentryfine"></a>
 
 
-Event emitted when an **RPN data entry fine** message is received on the input. Thespecific parameter to which the message applies can be found in the event's `parameter`property. It is one of the ones defined in[`EnumerationsREGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **RPN data entry fine** message is received on the input. The
+specific parameter to which the message applies can be found in the event's `parameter`
+property. It is one of the ones defined in
+[`EnumerationsREGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2928,7 +3069,10 @@ Event emitted when an **RPN data entry fine** message is received on the input. 
 <a id="event:rpn-dataincrement"></a>
 
 
-Event emitted when an **RPN data increment** message is received on the input. The specificparameter to which the message applies can be found in the event's `parameter` property. Itis one of the ones defined in[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+Event emitted when an **RPN data increment** message is received on the input. The specific
+parameter to which the message applies can be found in the event's `parameter` property. It
+is one of the ones defined in
+[`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
 
 
 
@@ -2953,7 +3097,8 @@ Event emitted when an **RPN data increment** message is received on the input. T
 <a id="event:unknownmessage"></a>
 
 
-Event emitted when an unknown MIDI message has been received on the channel. It couldbe, for example, one of the undefined/reserved messages.
+Event emitted when an unknown MIDI message has been received on the channel. It could
+be, for example, one of the undefined/reserved messages.
 
 
 

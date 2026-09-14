@@ -1,7 +1,21 @@
 
 # Input
 
-The `Input` class represents a single MIDI input port. This object is automatically instantiatedby the library according to the host's MIDI subsystem and does not need to be directlyinstantiated. Instead, you can access all `Input` objects by referring to the[`WebMidi.inputs`](WebMidi#inputs) array. You can also retrieve inputs by using methods such as[`WebMidi.getInputByName()`](WebMidi#getInputByName) and[`WebMidi.getInputById()`](WebMidi#getInputById).Note that a single MIDI device may expose several inputs and/or outputs.**Important**: the `Input` class does not directly fire channel-specific MIDI messages(such as [`noteon`](InputChannel#event-noteon) or[`controlchange`](InputChannel#event-controlchange), etc.). The [`InputChannel`](InputChannel)object does that. However, you can still use the[`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple[`InputChannel`](InputChannel) objects at once.
+The `Input` class represents a single MIDI input port. This object is automatically instantiated
+by the library according to the host's MIDI subsystem and does not need to be directly
+instantiated. Instead, you can access all `Input` objects by referring to the
+[`WebMidi.inputs`](WebMidi#inputs) array. You can also retrieve inputs by using methods such as
+[`WebMidi.getInputByName()`](WebMidi#getInputByName) and
+[`WebMidi.getInputById()`](WebMidi#getInputById).
+
+Note that a single MIDI device may expose several inputs and/or outputs.
+
+**Important**: the `Input` class does not directly fire channel-specific MIDI messages
+(such as [`noteon`](InputChannel#event-noteon) or
+[`controlchange`](InputChannel#event-controlchange), etc.). The [`InputChannel`](InputChannel)
+object does that. However, you can still use the
+[`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
+[`InputChannel`](InputChannel) objects at once.
 
 
 **Extends**: [`EventEmitter`](EventEmitter)
@@ -36,7 +50,8 @@ Creates an `Input` object.
 **Type**: Array.&lt;InputChannel&gt;<br />
 
 
-Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. Thechannels are numbered 1 through 16.
+Array containing the 16 [`InputChannel`](InputChannel) objects available for this `Input`. The
+channels are numbered 1 through 16.
 
 
 ### `.connection` {#connection}
@@ -94,7 +109,9 @@ Whether or not the execution of callbacks is currently suspended for this emitte
 **Attributes**: read-only<br />
 
 
-ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on differentplatforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs forthe same port.
+ID string of the MIDI port. The ID is host-specific. Do not expect the same ID on different
+platforms. For example, Google Chrome and the Jazz-Plugin report completely different IDs for
+the same port.
 
 
 ### `.manufacturer` {#manufacturer}
@@ -118,7 +135,14 @@ Name of the MIDI input.
 **Type**: number<br />
 
 
-An integer to offset the reported octave of incoming notes. By default, middle C (MIDI notenumber 60) is placed on the 4th octave (C4).If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.Note that this value is combined with the global offset value defined in the[`WebMidi.octaveOffset`](WebMidi#octaveOffset) property (if any).
+An integer to offset the reported octave of incoming notes. By default, middle C (MIDI note
+number 60) is placed on the 4th octave (C4).
+
+If, for example, `octaveOffset` is set to 2, MIDI note number 60 will be reported as C6. If
+`octaveOffset` is set to -1, MIDI note number 60 will be reported as C3.
+
+Note that this value is combined with the global offset value defined in the
+[`WebMidi.octaveOffset`](WebMidi#octaveOffset) property (if any).
 
 
 ### `.state` {#state}
@@ -146,7 +170,9 @@ The port type. In the case of the `Input` object, this is always: `input`.
 ### `.addForwarder(...)` {#addForwarder}
 
 
-Adds a forwarder that will forward all incoming MIDI messages matching the criteria to thespecified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, withthe added benefit of being able to filter which data is forwarded.
+Adds a forwarder that will forward all incoming MIDI messages matching the criteria to the
+specified [`Output`](Output) destination(s). This is akin to the hardware MIDI THRU port, with
+the added benefit of being able to filter which data is forwarded.
 
 
   **Parameters**
@@ -169,7 +195,8 @@ Adds a forwarder that will forward all incoming MIDI messages matching the crite
 
 > Returns: `Forwarder`<br />
 
-The [`Forwarder`](Forwarder) object created to handle the forwarding. Thisis useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
+The [`Forwarder`](Forwarder) object created to handle the forwarding. This
+is useful if you wish to manipulate or remove the [`Forwarder`](Forwarder) later on.
 
 
 
@@ -177,7 +204,123 @@ The [`Forwarder`](Forwarder) object created to handle the forwarding. Thisis us
 ### `.addListener(...)` {#addListener}
 
 
-Adds an event listener that will trigger a function callback when the specified event isdispatched. The event usually is **input-wide** but can also be **channel-specific**.Input-wide events do not target a specific MIDI channel so it makes sense to listen for themat the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specificevents target a specific channel. Usually, in this case, you would add the listener to the[`InputChannel`](InputChannel) object. However, as a convenience, you can also listen tochannel-specific events directly on an `Input`. This allows you to react to a channel-specificevent no matter which channel it actually came through.When listening for an event, you simply need to specify the event name and the function toexecute:```javascriptconst listener = WebMidi.inputs[0].addListener("midimessage", e => {  console.log(e);});```Calling the function with an input-wide event (such as[`"midimessage"`](#event-midimessage)), will return the [`Listener`](Listener) objectthat was created.If you call the function with a channel-specific event (such as[`"noteon"`](InputChannel#event-noteon)), it will return an array of all[`Listener`](Listener) objects that were created (one for each channel):```javascriptconst listeners = WebMidi.inputs[0].addListener("noteon", someFunction);```You can also specify which channels you want to add the listener to:```javascriptconst listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});```In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects. The order ofthe listeners in the array follows the order the channels were specified in.Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)instance that actually gets a listener added and not the `Input` instance. You can check thatby calling [`InputChannel.hasListener()`](InputChannel#hasListener).There are 8 families of events you can listen to:1. **MIDI System Common** Events (input-wide)   * [`songposition`](Input#event-songposition)   * [`songselect`](Input#event-songselect)   * [`sysex`](Input#event-sysex)   * [`timecode`](Input#event-timecode)   * [`tunerequest`](Input#event-tunerequest)2. **MIDI System Real-Time** Events (input-wide)   * [`clock`](Input#event-clock)   * [`start`](Input#event-start)   * [`continue`](Input#event-continue)   * [`stop`](Input#event-stop)   * [`activesensing`](Input#event-activesensing)   * [`reset`](Input#event-reset)3. **State Change** Events (input-wide)   * [`opened`](Input#event-opened)   * [`closed`](Input#event-closed)   * [`disconnected`](Input#event-disconnected)4. **Catch-All** Events (input-wide)   * [`midimessage`](Input#event-midimessage)   * [`unknownmessage`](Input#event-unknownmessage)5. **Channel Voice** Events (channel-specific)   * [`channelaftertouch`](InputChannel#event-channelaftertouch)   * [`controlchange`](InputChannel#event-controlchange)     * `controlchange-controller0`     * `controlchange-controller1`     * `controlchange-controller2`     * (...)     * `controlchange-controller127`   * [`keyaftertouch`](InputChannel#event-keyaftertouch)   * [`noteoff`](InputChannel#event-noteoff)   * [`noteon`](InputChannel#event-noteon)   * [`pitchbend`](InputChannel#event-pitchbend)   * [`programchange`](InputChannel#event-programchange)   Note: you can listen for a specific control change message by using an event name like this:   `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,   etc.6. **Channel Mode** Events (channel-specific)   * [`allnotesoff`](InputChannel#event-allnotesoff)   * [`allsoundoff`](InputChannel#event-allsoundoff)   * [`localcontrol`](InputChannel#event-localcontrol)   * [`monomode`](InputChannel#event-monomode)   * [`omnimode`](InputChannel#event-omnimode)   * [`resetallcontrollers`](InputChannel#event-resetallcontrollers)7. **NRPN** Events (channel-specific)   * [`nrpn`](InputChannel#event-nrpn)   * [`nrpn-dataentrycoarse`](InputChannel#event-nrpn-dataentrycoarse)   * [`nrpn-dataentryfine`](InputChannel#event-nrpn-dataentryfine)   * [`nrpn-dataincrement`](InputChannel#event-nrpn-dataincrement)   * [`nrpn-datadecrement`](InputChannel#event-nrpn-datadecrement)8. **RPN** Events (channel-specific)   * [`rpn`](InputChannel#event-rpn)   * [`rpn-dataentrycoarse`](InputChannel#event-rpn-dataentrycoarse)   * [`rpn-dataentryfine`](InputChannel#event-rpn-dataentryfine)   * [`rpn-dataincrement`](InputChannel#event-rpn-dataincrement)   * [`rpn-datadecrement`](InputChannel#event-rpn-datadecrement)
+Adds an event listener that will trigger a function callback when the specified event is
+dispatched. The event usually is **input-wide** but can also be **channel-specific**.
+
+Input-wide events do not target a specific MIDI channel so it makes sense to listen for them
+at the `Input` level and not at the [`InputChannel`](InputChannel) level. Channel-specific
+events target a specific channel. Usually, in this case, you would add the listener to the
+[`InputChannel`](InputChannel) object. However, as a convenience, you can also listen to
+channel-specific events directly on an `Input`. This allows you to react to a channel-specific
+event no matter which channel it actually came through.
+
+When listening for an event, you simply need to specify the event name and the function to
+execute:
+
+```javascript
+const listener = WebMidi.inputs[0].addListener("midimessage", e => {
+  console.log(e);
+});
+```
+
+Calling the function with an input-wide event (such as
+[`"midimessage"`](#event-midimessage)), will return the [`Listener`](Listener) object
+that was created.
+
+If you call the function with a channel-specific event (such as
+[`"noteon"`](InputChannel#event-noteon)), it will return an array of all
+[`Listener`](Listener) objects that were created (one for each channel):
+
+```javascript
+const listeners = WebMidi.inputs[0].addListener("noteon", someFunction);
+```
+
+You can also specify which channels you want to add the listener to:
+
+```javascript
+const listeners = WebMidi.inputs[0].addListener("noteon", someFunction, {channels: [1, 2, 3]});
+```
+
+In this case, `listeners` is an array containing 3 [`Listener`](Listener) objects. The order of
+the listeners in the array follows the order the channels were specified in.
+
+Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
+instance that actually gets a listener added and not the `Input` instance. You can check that
+by calling [`InputChannel.hasListener()`](InputChannel#hasListener).
+
+There are 8 families of events you can listen to:
+
+1. **MIDI System Common** Events (input-wide)
+
+   * [`songposition`](Input#event-songposition)
+   * [`songselect`](Input#event-songselect)
+   * [`sysex`](Input#event-sysex)
+   * [`timecode`](Input#event-timecode)
+   * [`tunerequest`](Input#event-tunerequest)
+
+2. **MIDI System Real-Time** Events (input-wide)
+
+   * [`clock`](Input#event-clock)
+   * [`start`](Input#event-start)
+   * [`continue`](Input#event-continue)
+   * [`stop`](Input#event-stop)
+   * [`activesensing`](Input#event-activesensing)
+   * [`reset`](Input#event-reset)
+
+3. **State Change** Events (input-wide)
+
+   * [`opened`](Input#event-opened)
+   * [`closed`](Input#event-closed)
+   * [`disconnected`](Input#event-disconnected)
+
+4. **Catch-All** Events (input-wide)
+
+   * [`midimessage`](Input#event-midimessage)
+   * [`unknownmessage`](Input#event-unknownmessage)
+
+5. **Channel Voice** Events (channel-specific)
+
+   * [`channelaftertouch`](InputChannel#event-channelaftertouch)
+   * [`controlchange`](InputChannel#event-controlchange)
+     * `controlchange-controller0`
+     * `controlchange-controller1`
+     * `controlchange-controller2`
+     * (...)
+     * `controlchange-controller127`
+   * [`keyaftertouch`](InputChannel#event-keyaftertouch)
+   * [`noteoff`](InputChannel#event-noteoff)
+   * [`noteon`](InputChannel#event-noteon)
+   * [`pitchbend`](InputChannel#event-pitchbend)
+   * [`programchange`](InputChannel#event-programchange)
+
+   Note: you can listen for a specific control change message by using an event name like this:
+   `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
+   etc.
+
+6. **Channel Mode** Events (channel-specific)
+
+   * [`allnotesoff`](InputChannel#event-allnotesoff)
+   * [`allsoundoff`](InputChannel#event-allsoundoff)
+   * [`localcontrol`](InputChannel#event-localcontrol)
+   * [`monomode`](InputChannel#event-monomode)
+   * [`omnimode`](InputChannel#event-omnimode)
+   * [`resetallcontrollers`](InputChannel#event-resetallcontrollers)
+
+7. **NRPN** Events (channel-specific)
+
+   * [`nrpn`](InputChannel#event-nrpn)
+   * [`nrpn-dataentrycoarse`](InputChannel#event-nrpn-dataentrycoarse)
+   * [`nrpn-dataentryfine`](InputChannel#event-nrpn-dataentryfine)
+   * [`nrpn-dataincrement`](InputChannel#event-nrpn-dataincrement)
+   * [`nrpn-datadecrement`](InputChannel#event-nrpn-datadecrement)
+
+8. **RPN** Events (channel-specific)
+
+   * [`rpn`](InputChannel#event-rpn)
+   * [`rpn-dataentrycoarse`](InputChannel#event-rpn-dataentrycoarse)
+   * [`rpn-dataentryfine`](InputChannel#event-rpn-dataentryfine)
+   * [`rpn-dataincrement`](InputChannel#event-rpn-dataincrement)
+   * [`rpn-datadecrement`](InputChannel#event-rpn-datadecrement)
 
 
   **Parameters**
@@ -205,7 +348,9 @@ Adds an event listener that will trigger a function callback when the specified 
 
 > Returns: `Listener` or `Array.<Listener>`<br />
 
-If the event is input-wide, a single [`Listener`](Listener)object is returned. If the event is channel-specific, an array of all the[`Listener`](Listener) objects is returned (one for each channel).
+If the event is input-wide, a single [`Listener`](Listener)
+object is returned. If the event is channel-specific, an array of all the
+[`Listener`](Listener) objects is returned (one for each channel).
 
 
 
@@ -213,7 +358,114 @@ If the event is input-wide, a single [`Listener`](Listener)object is returned. 
 ### `.addOneTimeListener(...)` {#addOneTimeListener}
 
 
-Adds a one-time event listener that will trigger a function callback when the specified eventhappens. The event can be **channel-bound** or **input-wide**. Channel-bound events aredispatched by [`InputChannel`](InputChannel) objects and are tied to a specific MIDIchannel while input-wide events are dispatched by the `Input` object itself and are not tiedto a specific channel.Calling the function with an input-wide event (such as[`"midimessage"`](#event-midimessage)), will return the [`Listener`](Listener) objectthat was created.If you call the function with a channel-specific event (such as[`"noteon"`](InputChannel#event-noteon)), it will return an array of all[`Listener`](Listener) objects that were created (one for each channel):```javascriptconst listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);```You can also specify which channels you want to add the listener to:```javascriptconst listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});```In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.The code above will add a listener for the `"noteon"` event and call `someFunction` when theevent is triggered on MIDI channels `1`, `2` or `3`.Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instancethat actually gets a listener added and not the `Input` instance.Note: if you want to add a listener to a single MIDI channel you should probably do so directlyon the [`InputChannel`](InputChannel) object itself.There are 8 families of events you can listen to:1. **MIDI System Common** Events (input-wide)   * [`songposition`](Input#event-songposition)   * [`songselect`](Input#event-songselect)   * [`sysex`](Input#event-sysex)   * [`timecode`](Input#event-timecode)   * [`tunerequest`](Input#event-tunerequest)2. **MIDI System Real-Time** Events (input-wide)   * [`clock`](Input#event-clock)   * [`start`](Input#event-start)   * [`continue`](Input#event-continue)   * [`stop`](Input#event-stop)   * [`activesensing`](Input#event-activesensing)   * [`reset`](Input#event-reset)3. **State Change** Events (input-wide)   * [`opened`](Input#event-opened)   * [`closed`](Input#event-closed)   * [`disconnected`](Input#event-disconnected)4. **Catch-All** Events (input-wide)   * [`midimessage`](Input#event-midimessage)   * [`unknownmessage`](Input#event-unknownmessage)5. **Channel Voice** Events (channel-specific)   * [`channelaftertouch`](InputChannel#event-channelaftertouch)   * [`controlchange`](InputChannel#event-controlchange)     * `controlchange-controller0`     * `controlchange-controller1`     * `controlchange-controller2`     * (...)     * `controlchange-controller127`   * [`keyaftertouch`](InputChannel#event-keyaftertouch)   * [`noteoff`](InputChannel#event-noteoff)   * [`noteon`](InputChannel#event-noteon)   * [`pitchbend`](InputChannel#event-pitchbend)   * [`programchange`](InputChannel#event-programchange)   Note: you can listen for a specific control change message by using an event name like this:   `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,   etc.6. **Channel Mode** Events (channel-specific)   * [`allnotesoff`](InputChannel#event-allnotesoff)   * [`allsoundoff`](InputChannel#event-allsoundoff)   * [`localcontrol`](InputChannel#event-localcontrol)   * [`monomode`](InputChannel#event-monomode)   * [`omnimode`](InputChannel#event-omnimode)   * [`resetallcontrollers`](InputChannel#event-resetallcontrollers)7. **NRPN** Events (channel-specific)   * [`nrpn`](InputChannel#event-nrpn)   * [`nrpn-dataentrycoarse`](InputChannel#event-nrpn-dataentrycoarse)   * [`nrpn-dataentryfine`](InputChannel#event-nrpn-dataentryfine)   * [`nrpn-dataincrement`](InputChannel#event-nrpn-dataincrement)   * [`nrpn-datadecrement`](InputChannel#event-nrpn-datadecrement)8. **RPN** Events (channel-specific)   * [`rpn`](InputChannel#event-rpn)   * [`rpn-dataentrycoarse`](InputChannel#event-rpn-dataentrycoarse)   * [`rpn-dataentryfine`](InputChannel#event-rpn-dataentryfine)   * [`rpn-dataincrement`](InputChannel#event-rpn-dataincrement)   * [`rpn-datadecrement`](InputChannel#event-rpn-datadecrement)
+Adds a one-time event listener that will trigger a function callback when the specified event
+happens. The event can be **channel-bound** or **input-wide**. Channel-bound events are
+dispatched by [`InputChannel`](InputChannel) objects and are tied to a specific MIDI
+channel while input-wide events are dispatched by the `Input` object itself and are not tied
+to a specific channel.
+
+Calling the function with an input-wide event (such as
+[`"midimessage"`](#event-midimessage)), will return the [`Listener`](Listener) object
+that was created.
+
+If you call the function with a channel-specific event (such as
+[`"noteon"`](InputChannel#event-noteon)), it will return an array of all
+[`Listener`](Listener) objects that were created (one for each channel):
+
+```javascript
+const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction);
+```
+
+You can also specify which channels you want to add the listener to:
+
+```javascript
+const listeners = WebMidi.inputs[0].addOneTimeListener("noteon", someFunction, {channels: [1, 2, 3]});
+```
+
+In this case, the `listeners` variable contains an array of 3 [`Listener`](Listener) objects.
+
+The code above will add a listener for the `"noteon"` event and call `someFunction` when the
+event is triggered on MIDI channels `1`, `2` or `3`.
+
+Note that, when adding events to channels, it is the [`InputChannel`](InputChannel) instance
+that actually gets a listener added and not the `Input` instance.
+
+Note: if you want to add a listener to a single MIDI channel you should probably do so directly
+on the [`InputChannel`](InputChannel) object itself.
+
+There are 8 families of events you can listen to:
+
+1. **MIDI System Common** Events (input-wide)
+
+   * [`songposition`](Input#event-songposition)
+   * [`songselect`](Input#event-songselect)
+   * [`sysex`](Input#event-sysex)
+   * [`timecode`](Input#event-timecode)
+   * [`tunerequest`](Input#event-tunerequest)
+
+2. **MIDI System Real-Time** Events (input-wide)
+
+   * [`clock`](Input#event-clock)
+   * [`start`](Input#event-start)
+   * [`continue`](Input#event-continue)
+   * [`stop`](Input#event-stop)
+   * [`activesensing`](Input#event-activesensing)
+   * [`reset`](Input#event-reset)
+
+3. **State Change** Events (input-wide)
+
+   * [`opened`](Input#event-opened)
+   * [`closed`](Input#event-closed)
+   * [`disconnected`](Input#event-disconnected)
+
+4. **Catch-All** Events (input-wide)
+
+   * [`midimessage`](Input#event-midimessage)
+   * [`unknownmessage`](Input#event-unknownmessage)
+
+5. **Channel Voice** Events (channel-specific)
+
+   * [`channelaftertouch`](InputChannel#event-channelaftertouch)
+   * [`controlchange`](InputChannel#event-controlchange)
+     * `controlchange-controller0`
+     * `controlchange-controller1`
+     * `controlchange-controller2`
+     * (...)
+     * `controlchange-controller127`
+   * [`keyaftertouch`](InputChannel#event-keyaftertouch)
+   * [`noteoff`](InputChannel#event-noteoff)
+   * [`noteon`](InputChannel#event-noteon)
+   * [`pitchbend`](InputChannel#event-pitchbend)
+   * [`programchange`](InputChannel#event-programchange)
+
+   Note: you can listen for a specific control change message by using an event name like this:
+   `controlchange-controller23`, `controlchange-controller99`, `controlchange-controller122`,
+   etc.
+
+6. **Channel Mode** Events (channel-specific)
+
+   * [`allnotesoff`](InputChannel#event-allnotesoff)
+   * [`allsoundoff`](InputChannel#event-allsoundoff)
+   * [`localcontrol`](InputChannel#event-localcontrol)
+   * [`monomode`](InputChannel#event-monomode)
+   * [`omnimode`](InputChannel#event-omnimode)
+   * [`resetallcontrollers`](InputChannel#event-resetallcontrollers)
+
+7. **NRPN** Events (channel-specific)
+
+   * [`nrpn`](InputChannel#event-nrpn)
+   * [`nrpn-dataentrycoarse`](InputChannel#event-nrpn-dataentrycoarse)
+   * [`nrpn-dataentryfine`](InputChannel#event-nrpn-dataentryfine)
+   * [`nrpn-dataincrement`](InputChannel#event-nrpn-dataincrement)
+   * [`nrpn-datadecrement`](InputChannel#event-nrpn-datadecrement)
+
+8. **RPN** Events (channel-specific)
+
+   * [`rpn`](InputChannel#event-rpn)
+   * [`rpn-dataentrycoarse`](InputChannel#event-rpn-dataentrycoarse)
+   * [`rpn-dataentryfine`](InputChannel#event-rpn-dataentryfine)
+   * [`rpn-dataincrement`](InputChannel#event-rpn-dataincrement)
+   * [`rpn-datadecrement`](InputChannel#event-rpn-datadecrement)
 
 
   **Parameters**
@@ -249,7 +501,11 @@ An array of all [`Listener`](Listener) objects that were created.
 
 **Attributes**: async
 
-Closes the input. When an input is closed, it cannot be used to listen to MIDI messages untilthe input is opened again by calling [`Input.open()`](Input#open).**Note**: if what you want to do is stop events from being dispatched, you should use[`eventsSuspended`](#eventsSuspended) instead.
+Closes the input. When an input is closed, it cannot be used to listen to MIDI messages until
+the input is opened again by calling [`Input.open()`](Input#open).
+
+**Note**: if what you want to do is stop events from being dispatched, you should use
+[`eventsSuspended`](#eventsSuspended) instead.
 
 
 **Return Value**
@@ -265,7 +521,8 @@ The promise is fulfilled with the `Input` object
 
 **Attributes**: async
 
-Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array andunlinking the MIDI subsystem. This is mostly for internal use.
+Destroys the `Input` by removing all listeners, emptying the [`channels`](#channels) array and
+unlinking the MIDI subsystem. This is mostly for internal use.
 
 
 **Return Value**
@@ -390,7 +647,8 @@ An array of [`Listener`](Listener) objects.
 ### `.hasForwarder(...)` {#hasForwarder}
 
 
-Checks whether the specified [`Forwarder`](Forwarder) object has already been attached to thisinput.
+Checks whether the specified [`Forwarder`](Forwarder) object has already been attached to this
+input.
 
 
   **Parameters**
@@ -416,7 +674,9 @@ Checks whether the specified [`Forwarder`](Forwarder) object has already been at
 ### `.hasListener(...)` {#hasListener}
 
 
-Checks if the specified event type is already defined to trigger the specified callbackfunction. For channel-specific events, the function will return `true` only if all channelshave the listener defined.
+Checks if the specified event type is already defined to trigger the specified callback
+function. For channel-specific events, the function will return `true` only if all channels
+have the listener defined.
 
 
   **Parameters**
@@ -439,7 +699,8 @@ Checks if the specified event type is already defined to trigger the specified c
 
 > Returns: `boolean`<br />
 
-Boolean value indicating whether or not the `Input` or[`InputChannel`](InputChannel) already has this listener defined.
+Boolean value indicating whether or not the `Input` or
+[`InputChannel`](InputChannel) already has this listener defined.
 
 
 
@@ -448,7 +709,8 @@ Boolean value indicating whether or not the `Input` or[`InputChannel`](InputCha
 
 **Attributes**: async
 
-Opens the input for usage. This is usually unnecessary as the port is opened automatically whenWebMidi is enabled.
+Opens the input for usage. This is usually unnecessary as the port is opened automatically when
+WebMidi is enabled.
 
 
 **Return Value**
@@ -486,7 +748,14 @@ Removes the specified [`Forwarder`](Forwarder) object from the input.
 ### `.removeListener(...)` {#removeListener}
 
 
-Removes the specified event listener. If no listener is specified, all listeners matching thespecified event will be removed. If the event is channel-specific, the listener will be removedfrom all [`InputChannel`](InputChannel) objects belonging to that channel. If no event isspecified, all listeners for the `Input` as well as all listeners for all[`InputChannel`](InputChannel) objects belonging to the `Input` will be removed.By default, channel-specific listeners will be removed from all[`InputChannel`](InputChannel) objects unless the `options.channel` narrows it down.
+Removes the specified event listener. If no listener is specified, all listeners matching the
+specified event will be removed. If the event is channel-specific, the listener will be removed
+from all [`InputChannel`](InputChannel) objects belonging to that channel. If no event is
+specified, all listeners for the `Input` as well as all listeners for all
+[`InputChannel`](InputChannel) objects belonging to the `Input` will be removed.
+
+By default, channel-specific listeners will be removed from all
+[`InputChannel`](InputChannel) objects unless the `options.channel` narrows it down.
 
 
   **Parameters**
@@ -659,7 +928,8 @@ Input-wide (system) event emitted when a **timing clock** message has been recei
 <a id="event:closed"></a>
 
 
-Event emitted when the `Input` has been closed by calling the[`close()`](#close) method.
+Event emitted when the `Input` has been closed by calling the
+[`close()`](#close) method.
 
 
 
@@ -699,7 +969,8 @@ Input-wide (system) event emitted when a **continue** message has been received.
 <a id="event:disconnected"></a>
 
 
-Event emitted when the `Input` becomes unavailable. This event is typically firedwhen the MIDI device is unplugged.
+Event emitted when the `Input` becomes unavailable. This event is typically fired
+when the MIDI device is unplugged.
 
 
 
@@ -739,7 +1010,8 @@ Event emitted when any MIDI message is received on an `Input`.
 <a id="event:opened"></a>
 
 
-Event emitted when the `Input` has been opened by calling the [`open()`](#open)method.
+Event emitted when the `Input` has been opened by calling the [`open()`](#open)
+method.
 
 
 
@@ -864,7 +1136,14 @@ Input-wide (system) event emitted when a **stop** message has been received.
 <a id="event:sysex"></a>
 
 
-Input-wide (system) event emitted when a **system exclusive** message has been received.You should note that, to receive `sysex` events, you must call the[`WebMidi.enable()`](WebMidi#enable) method with the `sysex` option set to `true`:```jsWebMidi.enable({sysex: true}) .then(() => console.log("WebMidi has been enabled with sysex support."))```
+Input-wide (system) event emitted when a **system exclusive** message has been received.
+You should note that, to receive `sysex` events, you must call the
+[`WebMidi.enable()`](WebMidi#enable) method with the `sysex` option set to `true`:
+
+```js
+WebMidi.enable({sysex: true})
+ .then(() => console.log("WebMidi has been enabled with sysex support."))
+```
 
 
 
@@ -884,7 +1163,8 @@ Input-wide (system) event emitted when a **system exclusive** message has been r
 <a id="event:timecode"></a>
 
 
-Input-wide (system) event emitted when a **time code quarter frame** message has beenreceived.
+Input-wide (system) event emitted when a **time code quarter frame** message has been
+received.
 
 **Since**: 2.1
 
@@ -926,9 +1206,10 @@ Input-wide (system) event emitted when a **tune request** message has been recei
 <a id="event:unknownmessage"></a>
 
 
-Input-wide (system) event emitted when an unknown MIDI message has been received. It couldbe, for example, one of the undefined/reserved messages.
+Input-wide (system) event emitted when an unknown MIDI message has been received. It could
+be, for example, one of the undefined/reserved messages.
 
-**Since**: 3.1.16
+**Since**: 3.3.0
 
 
 **Event Properties**
