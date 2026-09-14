@@ -1,0 +1,1 @@
+"use strict";(globalThis.webpackChunkdocusaurus||=[]).push([[8947],{6600(e){e.exports=JSON.parse('{"authors":[{"name":"Jean-Philippe C\xf4","title":"Creator of WEBMIDI.js","url":"/about","imageURL":"/img/blog/jean-philippe_cote.jpg","key":"djipco","page":null,"count":1}]}')}}]);
