@@ -2182,6 +2182,7 @@ Event emitted when the [Output](Output) has been closed by calling the
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2202,6 +2203,7 @@ when the MIDI device is unplugged.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2219,6 +2221,7 @@ when the MIDI device is unplugged.
 
 Event emitted when the [Output](Output) has been opened by calling the
 [open()](Output#open) method.
+
 
 
 

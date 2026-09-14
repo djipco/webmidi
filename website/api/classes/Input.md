@@ -891,6 +891,7 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 **Since**: 2.1
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -910,6 +911,7 @@ Input-wide (system) event emitted when an **active sensing** message has been re
 Input-wide (system) event emitted when a **timing clock** message has been received.
 
 **Since**: 2.1
+
 
 
 **Event Properties**
@@ -933,6 +935,7 @@ Event emitted when the `Input` has been closed by calling the
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -951,6 +954,7 @@ Event emitted when the `Input` has been closed by calling the
 Input-wide (system) event emitted when a **continue** message has been received.
 
 **Since**: 2.1
+
 
 
 **Event Properties**
@@ -974,6 +978,7 @@ when the MIDI device is unplugged.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -992,6 +997,7 @@ when the MIDI device is unplugged.
 Event emitted when any MIDI message is received on an `Input`.
 
 **Since**: 2.1
+
 
 
 **Event Properties**
@@ -1015,6 +1021,7 @@ method.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1033,6 +1040,7 @@ method.
 Input-wide (system) event emitted when a **reset** message has been received.
 
 **Since**: 2.1
+
 
 
 **Event Properties**
@@ -1056,6 +1064,7 @@ Input-wide (system) event emitted when a **song position** message has been rece
 **Since**: 2.1
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1075,6 +1084,7 @@ Input-wide (system) event emitted when a **song position** message has been rece
 Input-wide (system) event emitted when a **song select** message has been received.
 
 **Since**: 2.1
+
 
 
 **Event Properties**
@@ -1099,6 +1109,7 @@ Input-wide (system) event emitted when a **start** message has been received.
 **Since**: 2.1
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1118,6 +1129,7 @@ Input-wide (system) event emitted when a **start** message has been received.
 Input-wide (system) event emitted when a **stop** message has been received.
 
 **Since**: 2.1
+
 
 
 **Event Properties**
@@ -1147,6 +1159,7 @@ WebMidi.enable({sysex: true})
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1169,6 +1182,7 @@ received.
 **Since**: 2.1
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1188,6 +1202,7 @@ received.
 Input-wide (system) event emitted when a **tune request** message has been received.
 
 **Since**: 2.1
+
 
 
 **Event Properties**
@@ -1212,6 +1227,7 @@ be, for example, one of the undefined/reserved messages.
 **Since**: 3.3.0
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1231,6 +1247,11 @@ be, for example, one of the undefined/reserved messages.
 Input-wide (system) event emitted when an unknown MIDI message has been received.
 
 **Since**: 2.1
+
+:::warning Deprecated
+Use [`unknownmessage`](#event-unknownmessage) instead. This alias is dispatched
+alongside `unknownmessage` for backwards compatibility and will be removed in v4.
+:::
 
 
 **Event Properties**

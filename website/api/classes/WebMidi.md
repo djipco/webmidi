@@ -845,6 +845,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -861,6 +862,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 
 Event emitted once `WebMidi` has been successfully disabled.
+
 
 
 
@@ -884,6 +886,7 @@ times if a device possesses multiple inputs and/or outputs (which is often the c
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -903,6 +906,7 @@ Event emitted once `WebMidi` has been fully enabled
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -918,6 +922,7 @@ Event emitted once `WebMidi` has been fully enabled
 
 
 Event emitted when an error occurs trying to enable `WebMidi`
+
 
 
 
@@ -941,6 +946,7 @@ granted access to MIDI).
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -961,6 +967,7 @@ unplugged. Please note that it may fire several times if a device possesses mult
 and/or outputs (which is often the case).
 
 **Since**: 3.0.2
+
 
 
 **Event Properties**

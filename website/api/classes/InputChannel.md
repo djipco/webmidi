@@ -562,6 +562,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -579,6 +580,7 @@ Event emitted when an "all notes off" channel-mode MIDI message has been receive
 
 
 Event emitted when an "all sound off" channel-mode MIDI message has been received.
+
 
 
 
@@ -602,6 +604,7 @@ Event emitted when a control change MIDI message has been received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -621,6 +624,7 @@ Event emitted when a control change MIDI message has been received.
 
 
 Event emitted when a **control change** MIDI message has been received.
+
 
 
 
@@ -652,6 +656,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -677,6 +682,7 @@ received.
 
 Event emitted when a **controlchange-allsoundoff** MIDI message has been
 received.
+
 
 
 
@@ -708,6 +714,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -733,6 +740,7 @@ received.
 
 Event emitted when a **controlchange-balancecoarse** MIDI message has been
 received.
+
 
 
 
@@ -764,6 +772,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -789,6 +798,7 @@ received.
 
 Event emitted when a **controlchange-bankselectcoarse** MIDI message has been
 received.
+
 
 
 
@@ -820,6 +830,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -845,6 +856,7 @@ received.
 
 Event emitted when a **controlchange-breathcontrollercoarse** MIDI message has been
 received.
+
 
 
 
@@ -876,6 +888,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -904,6 +917,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -929,6 +943,7 @@ received.
 
 Event emitted when a **controlchange-channelvolumefine** MIDI message has been
 received.
+
 
 
 
@@ -961,6 +976,7 @@ controller number (0-127).
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -986,6 +1002,7 @@ controller number (0-127).
 
 Event emitted when a **controlchange-damperpedal** MIDI message has been
 received.
+
 
 
 
@@ -1017,6 +1034,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1042,6 +1060,7 @@ received.
 
 Event emitted when a **controlchange-dataentrycoarse** MIDI message has been
 received.
+
 
 
 
@@ -1073,6 +1092,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1098,6 +1118,7 @@ received.
 
 Event emitted when a **controlchange-dataincrement** MIDI message has been
 received.
+
 
 
 
@@ -1129,6 +1150,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1154,6 +1176,7 @@ received.
 
 Event emitted when a **controlchange-effect1depth** MIDI message has been
 received.
+
 
 
 
@@ -1185,6 +1208,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1210,6 +1234,7 @@ received.
 
 Event emitted when a **controlchange-effect3depth** MIDI message has been
 received.
+
 
 
 
@@ -1241,6 +1266,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1266,6 +1292,7 @@ received.
 
 Event emitted when a **controlchange-effect5depth** MIDI message has been
 received.
+
 
 
 
@@ -1297,6 +1324,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1322,6 +1350,7 @@ received.
 
 Event emitted when a **controlchange-effectcontrol1fine** MIDI message has been
 received.
+
 
 
 
@@ -1353,6 +1382,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1378,6 +1408,7 @@ received.
 
 Event emitted when a **controlchange-effectcontrol2fine** MIDI message has been
 received.
+
 
 
 
@@ -1409,6 +1440,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1434,6 +1466,7 @@ received.
 
 Event emitted when a **controlchange-expressionfine** MIDI message has been
 received.
+
 
 
 
@@ -1465,6 +1498,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1490,6 +1524,7 @@ received.
 
 Event emitted when a **controlchange-footcontrollerfine** MIDI message has been
 received.
+
 
 
 
@@ -1521,6 +1556,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1546,6 +1582,7 @@ received.
 
 Event emitted when a **controlchange-generalpurposecontroller2** MIDI message has been
 received.
+
 
 
 
@@ -1577,6 +1614,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1602,6 +1640,7 @@ received.
 
 Event emitted when a **controlchange-generalpurposecontroller4** MIDI message has been
 received.
+
 
 
 
@@ -1633,6 +1672,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1658,6 +1698,7 @@ received.
 
 Event emitted when a **controlchange-generalpurposecontroller6** MIDI message has been
 received.
+
 
 
 
@@ -1689,6 +1730,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1714,6 +1756,7 @@ received.
 
 Event emitted when a **controlchange-generalpurposecontroller8** MIDI message has been
 received.
+
 
 
 
@@ -1745,6 +1788,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1770,6 +1814,7 @@ received.
 
 Event emitted when a **controlchange-hold2** MIDI message has been
 received.
+
 
 
 
@@ -1801,6 +1846,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1826,6 +1872,7 @@ received.
 
 Event emitted when a **controlchange-localcontrol** MIDI message has been
 received.
+
 
 
 
@@ -1857,6 +1904,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1882,6 +1930,7 @@ received.
 
 Event emitted when a **controlchange-modulationwheelfine** MIDI message has been
 received.
+
 
 
 
@@ -1913,6 +1962,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1938,6 +1988,7 @@ received.
 
 Event emitted when a **controlchange-nonregisteredparametercoarse** MIDI message has been
 received.
+
 
 
 
@@ -1969,6 +2020,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -1994,6 +2046,7 @@ received.
 
 Event emitted when a **controlchange-omnimodeoff** MIDI message has been
 received.
+
 
 
 
@@ -2025,6 +2078,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2050,6 +2104,7 @@ received.
 
 Event emitted when a **controlchange-pancoarse** MIDI message has been
 received.
+
 
 
 
@@ -2081,6 +2136,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2106,6 +2162,7 @@ received.
 
 Event emitted when a **controlchange-polymodeon** MIDI message has been
 received.
+
 
 
 
@@ -2137,6 +2194,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2162,6 +2220,7 @@ received.
 
 Event emitted when a **controlchange-portamentocontrol** MIDI message has been
 received.
+
 
 
 
@@ -2193,6 +2252,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2218,6 +2278,7 @@ received.
 
 Event emitted when a **controlchange-portamentotimefine** MIDI message has been
 received.
+
 
 
 
@@ -2249,6 +2310,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2274,6 +2336,7 @@ received.
 
 Event emitted when a **controlchange-registeredparameterfine** MIDI message has been
 received.
+
 
 
 
@@ -2305,6 +2368,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2330,6 +2394,7 @@ received.
 
 Event emitted when a **controlchange-resetallcontrollers** MIDI message has been
 received.
+
 
 
 
@@ -2361,6 +2426,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2386,6 +2452,7 @@ received.
 
 Event emitted when a **controlchange-softpedal** MIDI message has been
 received.
+
 
 
 
@@ -2417,6 +2484,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2442,6 +2510,7 @@ received.
 
 Event emitted when a **controlchange-soundvariation** MIDI message has been
 received.
+
 
 
 
@@ -2473,6 +2542,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2498,6 +2568,7 @@ received.
 
 Event emitted when a **controlchange-vibratodepth** MIDI message has been
 received.
+
 
 
 
@@ -2529,6 +2600,7 @@ received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2554,6 +2626,7 @@ received.
 
 Event emitted when a **controlchange-volumecoarse** MIDI message has been
 received.
+
 
 
 
@@ -2584,6 +2657,7 @@ Event emitted when a **key-specific aftertouch** MIDI message has been received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2609,6 +2683,7 @@ off).
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2628,6 +2703,7 @@ off).
 
 
 Event emitted when a MIDI message of any kind is received by an `InputChannel`
+
 
 
 
@@ -2653,6 +2729,7 @@ poly mode on).
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2672,6 +2749,7 @@ poly mode on).
 
 
 Event emitted when a **note off** MIDI message has been received on the channel.
+
 
 
 
@@ -2695,6 +2773,7 @@ Event emitted when a **note off** MIDI message has been received on the channel.
 
 
 Event emitted when a **note on** MIDI message has been received.
+
 
 
 
@@ -2729,6 +2808,7 @@ The parameter to which the message applies can be found in the event's `paramete
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2755,6 +2835,7 @@ Event emitted when an **NRPN data decrement** message is received on the input. 
 parameter to which the message applies can be found in the event's `parameter` property. It
 is one of the ones defined in
 [`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+
 
 
 
@@ -2786,6 +2867,7 @@ property. It is one of the ones defined in
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2811,6 +2893,7 @@ Event emitted when an **NRPN data entry fine** message is received on the input.
 specific parameter to which the message applies can be found in the event's `parameter`
 property. It is one of the ones defined in
 [`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+
 
 
 
@@ -2842,6 +2925,7 @@ is one of the ones defined in
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2868,6 +2952,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2887,6 +2972,7 @@ property of the event is set to either `true` (omni mode on) of `false` (omni mo
 
 
 Event emitted when a pitch bend MIDI message has been received.
+
 
 
 
@@ -2912,6 +2998,7 @@ Event emitted when a **program change** MIDI message has been received.
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2931,6 +3018,7 @@ Event emitted when a **program change** MIDI message has been received.
 
 
 Event emitted when a "reset all controllers" channel-mode MIDI message has been received.
+
 
 
 
@@ -2963,6 +3051,7 @@ It is one of the ones defined in
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -2989,6 +3078,7 @@ Event emitted when an **RPN data decrement** message is received on the input. T
 parameter to which the message applies can be found in the event's `parameter` property. It
 is one of the ones defined in
 [`Enumerations.REGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+
 
 
 
@@ -3020,6 +3110,7 @@ property. It is one of the ones defined in
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -3045,6 +3136,7 @@ Event emitted when an **RPN data entry fine** message is received on the input. 
 specific parameter to which the message applies can be found in the event's `parameter`
 property. It is one of the ones defined in
 [`EnumerationsREGISTERED_PARAMETERS`](Enumerations#REGISTERED_PARAMETERS).
+
 
 
 
@@ -3076,6 +3168,7 @@ is one of the ones defined in
 
 
 
+
 **Event Properties**
 
 | Property                 | Type                     | Description              |
@@ -3099,6 +3192,7 @@ is one of the ones defined in
 
 Event emitted when an unknown MIDI message has been received on the channel. It could
 be, for example, one of the undefined/reserved messages.
+
 
 
 
