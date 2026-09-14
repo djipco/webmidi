@@ -110,7 +110,6 @@ import {Enumerations} from "./Enumerations.js";
  * @fires InputChannel#event:controlchange-omnimodeon
  * @fires InputChannel#event:controlchange-monomodeon
  * @fires InputChannel#event:controlchange-polymodeon
- * @fires InputChannel#event:
  *
  * @extends EventEmitter
  * @license Apache-2.0
@@ -2296,7 +2295,25 @@ export class InputChannel extends EventEmitter {
       event.rawValue = (data2 << 7) + data1;
 
     } else {
+
+      /**
+       * Event emitted when an unknown MIDI message has been received on the channel. It could
+       * be, for example, one of the undefined/reserved messages.
+       *
+       * @event InputChannel#unknownmessage
+       *
+       * @type {object}
+       * @property {string} type `unknownmessage`
+       *
+       * @property {InputChannel} target The object that dispatched the event.
+       * @property {Input} port The `Input` that triggered the event.
+       * @property {Message} message A [`Message`](Message) object containing information about the
+       * incoming MIDI message.
+       * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+       * milliseconds since the navigation start of the document).
+       */
       event.type = "unknownmessage";
+
     }
 
     this.emit(event.type, event);

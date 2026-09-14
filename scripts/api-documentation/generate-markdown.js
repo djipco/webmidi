@@ -62,12 +62,27 @@ async function generate() {
 
   });
 
-  // Commit generated files
+  // Stage generated files and commit them, but only if they actually changed. Committing with
+  // nothing staged makes git exit with code 1, which simple-git turns into a thrown error.
   await git.add([TARGET_PATH]);
-  await git.commit("Automatically generated on: " + moment().format(), [TARGET_PATH]);
-  console.info(`Files in ${TARGET_PATH} committed to git`);
-  await git.push();
-  console.info(`Files pushed to remote`);
+  const staged = await git.diff(["--cached", "--name-only", "--", TARGET_PATH]);
+
+  if (staged.trim()) {
+    await git.commit("Automatically generated on: " + moment().format(), [TARGET_PATH]);
+    console.info(`Files in ${TARGET_PATH} committed to git`);
+  } else {
+    console.info("API documentation is unchanged: nothing to commit.");
+  }
+
+  // Only push when the branch is actually ahead of its remote counterpart.
+  const {ahead} = await git.status();
+
+  if (ahead > 0) {
+    await git.push();
+    console.info(`Files pushed to remote`);
+  } else {
+    console.info("Nothing to push: branch is up to date with remote.");
+  }
 
 }
 
@@ -131,4 +146,7 @@ function parseFile(data) {
 
 }
 
-generate().catch(error => console.error("\x1b[31m", "Error: " + error, "\x1b[0m"));
+generate().catch(error => {
+  console.error("\x1b[31m", "Error: " + error, "\x1b[0m");
+  process.exitCode = 1;
+});

@@ -772,7 +772,7 @@ export class Output extends EventEmitter {
   /**
    * Sends a MIDI **key aftertouch** message to the specified channel(s) at the scheduled time. This
    * is a key-specific aftertouch. For a channel-wide aftertouch message, use
-   * [`setChannelAftertouch()`]{@link #setChannelAftertouch}.
+   * [`sendChannelAftertouch()`]{@link #sendChannelAftertouch}.
    *
    * @param note {number|Note|string|number[]|Note[]|string[]} The note(s) for which you are sending
    * an aftertouch value. The notes can be specified by using a MIDI note number (`0` - `127`), a
@@ -1104,7 +1104,7 @@ export class Output extends EventEmitter {
 
   /**
    * Sends a MIDI **channel aftertouch** message to the specified channel(s). For key-specific
-   * aftertouch, you should instead use [`setKeyAftertouch()`]{@link #setKeyAftertouch}.
+   * aftertouch, you should instead use [`sendKeyAftertouch()`]{@link #sendKeyAftertouch}.
    *
    * @param [pressure=0.5] {number} The pressure level (between `0` and `1`). An invalid pressure
    * value will silently trigger the default behaviour. If the `rawValue` option is set to `true`,

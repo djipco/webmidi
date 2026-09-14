@@ -185,21 +185,21 @@ class WebMidi extends EventEmitter {
    *
    * By the way, if you call the [`enable()`](#enable) method while WebMidi.js is already enabled,
    * the callback function will be executed (if any), the promise will resolve but the events
-   * ([`"midiaccessgranted"`](#event:midiaccessgranted), [`"connected"`](#event:connected) and
-   * [`"enabled"`](#event:enabled)) will not be fired.
+   * ([`"midiaccessgranted"`](#event-midiaccessgranted), [`"connected"`](#event-connected) and
+   * [`"enabled"`](#event-enabled)) will not be fired.
    *
    * There are 3 ways to execute code after `WebMidi` has been enabled:
    *
    * - Pass a callback function in the `options`
-   * - Listen to the [`"enabled"`](#event:enabled) event
+   * - Listen to the [`"enabled"`](#event-enabled) event
    * - Wait for the promise to resolve
    *
    * In order, this is what happens towards the end of the enabling process:
    *
-   * 1. [`"midiaccessgranted"`](#event:midiaccessgranted) event is triggered once the user has
+   * 1. [`"midiaccessgranted"`](#event-midiaccessgranted) event is triggered once the user has
    * granted access to use MIDI.
-   * 2. [`"connected"`](#event:connected) events are triggered (for each available input and output)
-   * 3. [`"enabled"`](#event:enabled) event is triggered when WebMidi.js is fully ready
+   * 2. [`"connected"`](#event-connected) events are triggered (for each available input and output)
+   * 3. [`"enabled"`](#event-enabled) event is triggered when WebMidi.js is fully ready
    * 4. specified callback (if any) is executed
    * 5. promise is resolved and fulfilled with the `WebMidi` object.
    *
@@ -1017,7 +1017,7 @@ class WebMidi extends EventEmitter {
    * devices.
    *
    * When a MIDI message comes in on an input channel the reported note name will be offset. For
-   * example, if the `octaveOffset` is set to `-1` and a [`"noteon"`](InputChannel#event:noteon)
+   * example, if the `octaveOffset` is set to `-1` and a [`"noteon"`](InputChannel#event-noteon)
    * message with MIDI number 60 comes in, the note will be reported as C3 (instead of C4).
    *
    * By the same token, when [`OutputChannel.playNote()`](OutputChannel#playNote) is called, the

@@ -6,6 +6,7 @@
     - inlineLinks
     - eq
     - eventName
+    - createEventAnchor
 
 }}
 
@@ -28,5 +29,5 @@
 
 {{! Fires }}
 {{#if fires}}
-**Fires**: {{#each fires}}[`{{eventName this}}`](#event:{{eventName this}}){{#unless @last}}, {{/unless}}{{/each}}
+**Fires**: {{#each fires}}[`{{eventName this}}`]({{createEventAnchor (eventName this)}}){{#unless @last}}, {{/unless}}{{/each}}
 {{/if}}

@@ -21,6 +21,41 @@ function eventName (input) {
 exports.eventName = eventName;
 
 /**
+ * Normalizes the anchor part of a URL resolved by ddata so that it matches the heading ids our
+ * Handlebars templates actually emit:
+ *
+ *   #Note+identifier    ->  #identifier      (jsdoc internal id form, never emitted as an id)
+ *   #hasListener()      ->  #hasListener     (parentheses prematurely close a markdown link)
+ *   #ANY_EVENT          ->  EventEmitter#ANY_EVENT   (only documented on the EventEmitter page)
+ *   #event:noteon       ->  #event-noteon    (the heading id emitted by createEventAnchor)
+ *
+ * The raw <a id="event:noteon"> marker that events.hbs writes next to each event heading is
+ * kept, so URLs using the older colon form still resolve in a browser.
+ */
+function normalizeAnchor(url) {
+
+  if (!url || /^[a-z]+:/i.test(url)) return url;   // external or protocol-prefixed URL
+  const index = url.indexOf("#");
+  if (index === -1) return url;
+
+  let page = url.slice(0, index);
+  let anchor = url.slice(index + 1);
+
+  anchor = anchor.replace(/^event:/, "event-");
+
+  const plus = anchor.indexOf("+");
+  if (plus !== -1) anchor = anchor.slice(plus + 1);
+
+  anchor = anchor.replace(/\(\)$/, "");
+
+  if (anchor === "ANY_EVENT" && !page) page = "EventEmitter";
+
+  return `${page}#${anchor}`;
+
+}
+exports.normalizeAnchor = normalizeAnchor;
+
+/**
  * Replaces JSDoc {@link} tags with markdown links in the supplied text
  */
 function inlineLinks (text, options) {
@@ -31,6 +66,7 @@ function inlineLinks (text, options) {
       const linked = ddata._link(link.url, options);
       if (link.caption === link.url) link.caption = linked.name;
       if (linked.url) link.url = linked.url;
+      link.url = normalizeAnchor(link.url);
       text = text.replace(link.original, `[${link.caption}](${link.url})`);
     });
   }

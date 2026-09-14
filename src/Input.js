@@ -17,8 +17,8 @@ import {WebMidi} from "./WebMidi.js";
  * Note that a single MIDI device may expose several inputs and/or outputs.
  *
  * **Important**: the `Input` class does not directly fire channel-specific MIDI messages
- * (such as [`noteon`](InputChannel#event:noteon) or
- * [`controlchange`](InputChannel#event:controlchange), etc.). The [`InputChannel`](InputChannel)
+ * (such as [`noteon`](InputChannel#event-noteon) or
+ * [`controlchange`](InputChannel#event-controlchange), etc.). The [`InputChannel`](InputChannel)
  * object does that. However, you can still use the
  * [`Input.addListener()`](#addListener) method to listen to channel-specific events on multiple
  * [`InputChannel`](InputChannel) objects at once.
@@ -40,6 +40,7 @@ import {WebMidi} from "./WebMidi.js";
  * @fires Input#activesensing
  * @fires Input#reset
  *
+ * @fires Input#unknownmessage
  * @fires Input#unknownmidimessage
  *
  * @extends EventEmitter
@@ -253,7 +254,7 @@ export class Input extends EventEmitter {
 
     // Make a shallow copy of the incoming event so we can use it as the new event.
     const event = Object.assign({}, e);
-    event.type = event.message.type || "unknownmidimessage";
+    event.type = event.message.type || "unknownmessage";
 
     // Add custom property for 'songselect'
     if (event.type === "songselect") {
@@ -264,6 +265,14 @@ export class Input extends EventEmitter {
 
     // Emit event
     this.emit(event.type, event);
+
+    // For backwards compatibility, unknown messages are also dispatched under the legacy
+    // `unknownmidimessage` name. `InputChannel` has always used `unknownmessage`, which is now
+    // the canonical name on `Input` too. The legacy alias is deprecated and will be removed in
+    // v4.
+    if (event.type === "unknownmessage") {
+      this.emit("unknownmidimessage", Object.assign({}, event, {type: "unknownmidimessage"}));
+    }
 
   }
 
@@ -369,7 +378,7 @@ export class Input extends EventEmitter {
    *
    * Note that, when adding channel-specific listeners, it is the [`InputChannel`](InputChannel)
    * instance that actually gets a listener added and not the `Input` instance. You can check that
-   * by calling [`InputChannel.hasListener()`](InputChannel#hasListener()).
+   * by calling [`InputChannel.hasListener()`](InputChannel#hasListener).
    *
    * There are 8 families of events you can listen to:
    *
@@ -399,17 +408,17 @@ export class Input extends EventEmitter {
    * 4. **Catch-All** Events (input-wide)
    *
    *    * [`midimessage`]{@link Input#event:midimessage}
-   *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
+   *    * [`unknownmessage`]{@link Input#event:unknownmessage}
    *
    * 5. **Channel Voice** Events (channel-specific)
    *
    *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
    *    * [`controlchange`]{@link InputChannel#event:controlchange}
-   *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
-   *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
-   *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
+   *      * `controlchange-controller0`
+   *      * `controlchange-controller1`
+   *      * `controlchange-controller2`
    *      * (...)
-   *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
+   *      * `controlchange-controller127`
    *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
    *    * [`noteoff`]{@link InputChannel#event:noteoff}
    *    * [`noteon`]{@link InputChannel#event:noteon}
@@ -576,17 +585,17 @@ export class Input extends EventEmitter {
    * 4. **Catch-All** Events (input-wide)
    *
    *    * [`midimessage`]{@link Input#event:midimessage}
-   *    * [`unknownmidimessage`]{@link Input#event:unknownmidimessage}
+   *    * [`unknownmessage`]{@link Input#event:unknownmessage}
    *
    * 5. **Channel Voice** Events (channel-specific)
    *
    *    * [`channelaftertouch`]{@link InputChannel#event:channelaftertouch}
    *    * [`controlchange`]{@link InputChannel#event:controlchange}
-   *      * [`controlchange-controller0`]{@link InputChannel#event:controlchange-controller0}
-   *      * [`controlchange-controller1`]{@link InputChannel#event:controlchange-controller1}
-   *      * [`controlchange-controller2`]{@link InputChannel#event:controlchange-controller2}
+   *      * `controlchange-controller0`
+   *      * `controlchange-controller1`
+   *      * `controlchange-controller2`
    *      * (...)
-   *      * [`controlchange-controller127`]{@link InputChannel#event:controlchange-controller127}
+   *      * `controlchange-controller127`
    *    * [`keyaftertouch`]{@link InputChannel#event:keyaftertouch}
    *    * [`noteoff`]{@link InputChannel#event:noteoff}
    *    * [`noteon`]{@link InputChannel#event:noteon}
@@ -940,7 +949,7 @@ export class Input extends EventEmitter {
 /**
  * Input-wide (system) event emitted when a **system exclusive** message has been received.
  * You should note that, to receive `sysex` events, you must call the
- * [`WebMidi.enable()`](WebMidi#enable()) method with the `sysex` option set to `true`:
+ * [`WebMidi.enable()`](WebMidi#enable) method with the `sysex` option set to `true`:
  *
  * ```js
  * WebMidi.enable({sysex: true})
@@ -1159,5 +1168,25 @@ export class Input extends EventEmitter {
  * milliseconds since the navigation start of the document).
  * @property {string} type `unknownmessage`
  *
+ * @since 3.2.0
+ */
+
+/**
+ * Input-wide (system) event emitted when an unknown MIDI message has been received.
+ *
+ * @event Input#unknownmidimessage
+ *
+ * @type {Object}
+ *
+ * @property {Input} port The `Input` that triggered the event.
+ * @property {Input} target The object that dispatched the event.
+ * @property {Message} message A [`Message`](Message) object containing information about the
+ * incoming MIDI message.
+ * @property {number} timestamp The moment (DOMHighResTimeStamp) when the event occurred (in
+ * milliseconds since the navigation start of the document).
+ * @property {string} type `unknownmidimessage`
+ *
  * @since 2.1
+ * @deprecated Use [`unknownmessage`](#event-unknownmessage) instead. This alias is dispatched
+ * alongside `unknownmessage` for backwards compatibility and will be removed in v4.
  */

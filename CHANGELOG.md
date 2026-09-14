@@ -3,6 +3,29 @@
 Starting with version 3.x, all notable changes to WebMidi.js will be documented in this file. The 
 format used is the one suggested by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [3.2.0]
+
+### Added
+
+- `Input` objects now dispatch an `unknownmessage` event when an unrecognized MIDI message is
+received. This is the name `InputChannel` has always used, so both classes are now consistent.
+
+### Deprecated
+
+- The `unknownmidimessage` event dispatched by `Input` is deprecated in favour of `unknownmessage`.
+Both names are dispatched for now, so existing listeners keep working. The deprecated alias will be
+removed in v4.
+
+### Fixed
+
+- The `unknownmessage` event dispatched by `InputChannel` was missing from the documentation and,
+as a result, from the generated TypeScript definitions.
+
+- The documentation of `Output` referred to `setKeyAftertouch()` and `setChannelAftertouch()`, which
+no longer exist. The methods are `sendKeyAftertouch()` and `sendChannelAftertouch()`.
+
+- Various broken links and anchors in the generated API documentation.
+
 ## [3.0.0]
 
 ### Added
