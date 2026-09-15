@@ -238,12 +238,6 @@ module.exports = {
         pages: {},
 
         gtag: {
-          // trackingID: "UA-162785934-1",
-          trackingID: "G-Z65JF8XMJG",
-        },
-
-        googleAnalytics: {
-          // trackingID: "UA-162785934-1",
           trackingID: "G-Z65JF8XMJG",
         }
 
