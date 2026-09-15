@@ -3,6 +3,18 @@
 Starting with version 3.x, all notable changes to WebMidi.js will be documented in this file. The 
 format used is the one suggested by [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
+## [3.3.1]
+
+### Fixed
+
+- The bundles in `dist` were not being rebuilt on Windows: the build script invoked the Rollup shim
+in `node_modules/.bin`, which `cmd.exe` cannot execute, and the failure was swallowed instead of
+stopping the chain. As a result, v3.3.0 was published with bundles generated in October 2025, which
+did not contain the `unknownmessage` changes announced in 3.3.0. The build script now runs Rollup's
+CLI through `node` and exits with a non-zero code on failure.
+
+- The Rollup configuration files are now ES modules (`.mjs`), which Rollup 3 is able to load.
+
 ## [3.3.0]
 
 ### Added
