@@ -8,7 +8,7 @@
   },
   "license": "CC0-1.0",
   "devDependencies": {
-    "electron": "^39.8.10"
+    "electron": "^41.10.6"
   },
   "dependencies": {
     "webmidi": "latest"
