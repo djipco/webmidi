@@ -19,16 +19,13 @@ have native support:
 * Opera 30+
 * Firefox 108+
 
-It is also possible to use this library in other browsers if you install
-[Jazz-Plugin](https://jazz-soft.net/download/Jazz-Plugin/) v1.4+. This combination provides
-support for the following additional web browsers:
-
-* Safari
-* Internet Explorer
+It is also possible to use this library in Internet Explorer if you install
+[Jazz-Plugin](https://jazz-soft.net/download/Jazz-Plugin/) v1.4+.
 
 Note that, in 2020, [Apple has announced](https://webkit.org/tracking-prevention/) that they would
 not natively support the Web MIDI API (and a host of other APIs) in Safari because of fingerprinting
-concerns.
+concerns. On macOS, Safari 18.4+ can get the API from a third-party extension,
+[Web MIDI for Safari](https://triglavmodular.hu/mods/safari-webmidi/).
 
 ## Node.js Support
 
