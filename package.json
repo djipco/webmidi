@@ -118,7 +118,7 @@
     "handlebars": "^4.7.10",
     "jsdoc": "^4.0.5",
     "jsdoc-to-markdown": "^7.1.0",
-    "markdown-it": "^14.3.0",
+    "markdown-it": "^14.3.3",
     "marked": "^4.0.10",
     "minimist": "^1.2.5",
     "mocha": "^10.8.2",
