@@ -127,7 +127,7 @@
     "object-get": "^2.1.1",
     "prepend-file": "^2.0.0",
     "reduce-flatten": "^3.0.1",
-    "release-it": "^21.0.1",
+    "release-it": "^21.1.2",
     "replace-in-file": "^6.3.2",
     "rollup": "^3.30.0",
     "rollup-plugin-license": "^3.6.0",
