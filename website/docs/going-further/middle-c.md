@@ -13,7 +13,9 @@ manufacturers have assigned middle C to various octaves/pitches (usually C3, C4 
 
 In accordance with the **MIDI Tuning Standard** and the 
 [**scientific pitch notation**](https://en.wikipedia.org/wiki/Scientific_pitch_notation), WEBMIDI.js 
-considers middle C (261.626 Hz) to be C4 by default.
+considers middle C (261.626 Hz) to be C4 by default. To see where any note lands, this
+[chart of every note](https://plastic.audio/note-frequencies/) lists its MIDI number, its name in
+scientific pitch notation and its frequency.
 
 ## Offsetting Middle C
 
