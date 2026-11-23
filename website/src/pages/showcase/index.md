@@ -89,7 +89,14 @@ page on GitHub and submit a pull request.
 
   A Mac application that turns videos into music. It uses color tracking in combination with a grid 
   to generate MIDI data.
+  
+* ### [r-Evolution](https://evolutive.buddha.rocks/)
+  Created by: **Massimo Cavallo**
 
+  r-Evolution is an experimental, beta-version tool for generating evolving sound streams.
+  It serves as an instrument that helps define the scope and methods for creating "evolutive music"—a contemporary development of generative music.
+  Evolutive music is characterized by its connection to specific events and states; for this reason, it cannot be defined as generative, as it is not self-generating.
+  
 * ### [Sonification: turning the yield curve into music](https://www.ft.com/content/80269930-40c3-11e9-b896-fe36ec32aece)
   Created by: **Alan Smith**
 
